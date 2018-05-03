@@ -1,0 +1,97 @@
+<?php
+//$this->headTitle('Member Login');
+
+//$this->mainMenu()->setActiveItemId('login');
+
+$form->get('username')->setAttributes([
+    'class'=>'form-control', 
+    'placeholder'=>'Username',
+    'required' => true,
+    'autofocus' => true
+    ])
+    ->setLabelAttributes([
+        
+    ]);
+
+$form->get('password')->setAttributes([
+    'class'=>'form-control', 
+    'placeholder'=>'Password',
+    'required' => true,
+    ])
+    ->setLabelAttributes([
+        
+    ]);
+?>
+<html>
+<body>
+		<div style='width: 1000px; margin: auto;' class="login_page">
+			<div class='login_header'>
+				<div class='logo'>
+					<a href='http://www.<?php echo Util_HandyServerUtils::get_server(); ?>.net/'><img src='/img/Fisdap_logo_new_small.png' width='82' height='35'></a>
+				</div>
+				<div class='spacer'></div>
+			</div>
+
+			<div id='main-content' class='container_12'>
+			<h1>Member Login2</h1>
+				<div class="row-container">
+    <div id='login_area' class="area">
+        <form class="form-signin" method="post">
+            
+            <?php if ($isLoginError): ?>
+            <div class="alert alert-warning" role="alert">
+                Incorrect login and/or password. 
+                <a href="<?= $this->url('reset-password') ?>">Forgot password?</a>
+            </div>
+            <?php endif; ?>
+            <?= $this->formLabel($form->get('username')); ?>
+            <?= $this->formElement($form->get('username')); ?>
+            <?= $this->formLabel($form->get('password')); ?>
+            <?= $this->formElement($form->get('password')); ?>
+            <div class="checkbox">
+                <label>
+                    <?= $this->formElement($form->get('remember_me')); ?> Remember me
+                </label>
+            </div>
+            <?= $this->formElement($form->get('redirect_url')); ?>
+            <?= $this->formElement($form->get('csrf')) ?>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
+
+    <div id='create_acct' class='area'>
+        <h3 class="section-header no-border">Not a member yet?</h3>
+        <a href="/account/new/">Create an Account</a>
+
+        <h3 class="section-header no-border">Questions?</h3>
+        <a href="https://www.<?php echo Util_HandyServerUtils::get_server(); ?>.net/contact_us">Contact Us</a>
+
+    </div>
+</div>
+
+				<div class="clear"></div>
+				
+
+					<div class="grid_12 bottomLinks">
+						<a href="/privacy" target="_blank">Privacy Policy</a>
+						<a href="/terms" target="_blank">Terms of Use</a>
+					</div>
+					<div class="clear"></div>
+				
+			</div>
+			<?php //echo $this->mainFooter(); ?>
+		</div>
+
+		<div id='jquery-dialog-container'></div>
+		
+  <style>
+  .navbar{
+	display:none;
+  }
+  .login_page h1 {
+    margin-top: 1em;
+}
+  </style>
+    
+    </body>
+</html>

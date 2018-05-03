@@ -1,0 +1,26 @@
+{
+  "name": "fisdap/data-repository",
+  "version": "dev-master",
+  "description": "Library providing common Repository and (query) Specification tools for use with the Doctrine ORM",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ben Getsug",
+      "email": "bgetsug@fisdap.net"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Fisdap\\": "src"
+    }
+  },
+  "require": {
+    "happyr/doctrine-specification": "^0.7.2"
+  },
+  "require-dev": {
+    "doctrine/orm": "2.*",
+    "monolog/monolog": "1.*"
+  }
+}

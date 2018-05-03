@@ -1,0 +1,33 @@
+{
+  "name": "fisdap/doctrine-entity-timestamps",
+  "description": "Library providing support for created and updated timestamps on Doctrine Entities",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ben Getsug",
+      "email": "bgetsug@fisdap.net"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Fisdap\\Entity\\": "src/Entity",
+      "Fisdap\\Timestamps\\": "src/Timestamps"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://toran.fisdap.net/repo/private/"
+    },
+    {
+      "type": "composer",
+      "url": "https://toran.fisdap.net/repo/packagist/"
+    },
+    {"packagist": false}
+  ],
+  "require-dev": {
+    "doctrine/orm": "2.*"
+  }
+}

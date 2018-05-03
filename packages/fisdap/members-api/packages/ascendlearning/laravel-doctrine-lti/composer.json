@@ -1,0 +1,34 @@
+{
+    "name": "ascendlearning/laravel-doctrine-lti",
+    "description": "A library providing LTI domain entities (for use with Doctrine ORM) and Laravel console commands",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ben Getsug",
+            "email": "bgetsug@fisdap.net"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://toran.fisdap.net/repo/private/"
+        }
+    ],
+    "require": {
+        "franzl/lti": "dev-master",
+        "fisdap/data-repository": "dev-master",
+        "fisdap/doctrine-extensions": "dev-master"
+    },
+    "require-dev": {
+        "illuminate/support": "~5",
+        "illuminate/console": "~5"
+    },
+    "autoload": {
+        "psr-4": {
+            "AscendLearning\\Lti\\": "src/"
+        }
+    }
+}

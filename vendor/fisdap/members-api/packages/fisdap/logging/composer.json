@@ -1,0 +1,34 @@
+{
+  "name": "fisdap/logging",
+  "description": "A library of utilities for application event logs and debugging",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ben Getsug",
+      "email": "bgetsug@fisdap.net"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Fisdap\\Logging\\": "src"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://toran.fisdap.net/repo/private/"
+    },
+    {
+      "type": "composer",
+      "url": "https://toran.fisdap.net/repo/packagist/"
+    },
+    {"packagist": false}
+  ],
+  "require-dev": {
+    "laracasts/commander": "~1.0",
+    "monolog/monolog": "~1.0",
+    "doctrine/dbal": "~2"
+  }
+}

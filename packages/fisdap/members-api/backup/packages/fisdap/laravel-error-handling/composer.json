@@ -1,0 +1,41 @@
+{
+  "name": "fisdap/laravel-error-handling",
+  "description": "Provides a common error handler, wiring in support for JSON responses, Bugsnag and New Relic",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ben Getsug",
+      "email": "bgetsug@fisdap.net"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Fisdap\\ErrorHandling\\": "src"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://toran.fisdap.net/repo/private/"
+    },
+    {
+      "type": "composer",
+      "url": "https://toran.fisdap.net/repo/packagist/"
+    },
+    {"packagist": false}
+  ],
+  "require": {
+    "illuminate/support": "~5",
+    "bugsnag/bugsnag-laravel": "2.*",
+    "intouch/laravel-newrelic": "~2.0"
+  },
+  "require-dev": {
+    "illuminate/http": "~5",
+    "illuminate/routing": "~5",
+    "illuminate/auth": "~5",
+    "illuminate/config": "~5",
+    "psr/log": "~1.0"
+  }
+}

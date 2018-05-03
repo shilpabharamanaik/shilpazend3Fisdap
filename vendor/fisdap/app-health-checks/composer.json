@@ -1,0 +1,32 @@
+{
+  "name": "fisdap/app-health-checks",
+  "version": "dev-master",
+  "description": "A package providing various application health checks and build metadata handling",
+  "authors": [
+    {
+      "name": "Ben Getsug",
+      "email": "bgetsug@fisdap.net"
+    }
+  ],
+  "require": {
+  "illuminate/support": "~5"
+  },
+  "require-dev": {
+    "illuminate/config": "~5",
+    "illuminate/http": "~5",
+    "illuminate/database": "~5",
+    "illuminate/console": "~5",
+    "illuminate/redis": "~5",
+    "illuminate/container": "~5",
+    "illuminate/routing": "~5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Fisdap\\AppHealthChecks\\": "src/AppHealthChecks/"
+    }
+  },
+  "suggest": {
+    "illuminate/redis": "for Redis health check"
+  },
+  "minimum-stability": "stable"
+}

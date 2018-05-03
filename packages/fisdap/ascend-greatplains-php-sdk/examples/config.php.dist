@@ -1,0 +1,9 @@
+<?php
+return [
+    'baseUri' => 'http://dev.fisdap-gp.com/',
+    'apiKey'  => '',
+    'appId'   => '',
+    'timeout' => 20,
+    'debug'   => true,
+    'verify'  => false
+];

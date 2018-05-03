@@ -1,0 +1,33 @@
+{
+    "name": "fisdap/members-rest-api-client",
+    "type": "library",
+    "description": "Members REST API Client",
+    "require": {
+        "php": ">=5.4",
+        "guzzlehttp/guzzle": "~6.0",
+        "netresearch/jsonmapper": "@stable",
+        "illuminate/support": "~5",
+        "symfony/http-kernel": "~2"
+    },
+    "require-dev": {
+        "codeception/codeception": "2.*",
+        "codeception/mockery-module": "0.2.*",
+        "psy/psysh": "0.3.*",
+        "illuminate/container": "~5",
+        "illuminate/config": "~5",
+        "zf1/zend-config": "1.12.*"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ben Getsug",
+            "email": "bgetsug@fisdap.net"
+        }
+    ],
+    "autoload": {
+      "psr-4": {
+        "Fisdap\\Api\\Client\\": "src/"
+      }
+    },
+    "minimum-stability": "stable"
+}

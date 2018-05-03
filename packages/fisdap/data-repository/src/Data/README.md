@@ -1,0 +1,1 @@
+The _Data_ namespace should be deprecated, moving _Repository_ up one level to the _Fisdap_ vendor root. ~bgetsug

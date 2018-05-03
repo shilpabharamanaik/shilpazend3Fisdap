@@ -1,0 +1,39 @@
+{
+    "name": "fisdap/jbl-rest-authentication-php-sdk",
+    "description": "PHP SDK to authenticate users against JBL REST API",
+    "keywords": ["fisdap", "ascend", "jbl"],
+    "license": "Closed",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jason Michels",
+            "email": "jmichels@fisdap.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "monolog/monolog": "^1.17",
+        "php-curl-class/php-curl-class": "8.0.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "phing/phing": "^2.13",
+        "mockery/mockery": "^0.9.4",
+        "halleck45/php-metrics": "^1.8",
+        "squizlabs/php_codesniffer": "^2.5",
+        "sebastian/phpcpd": "^2.0",
+        "phpmd/phpmd": "^2.3",
+        "phpdocumentor/phpdocumentor": "^2.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fisdap\\JBL\\Authentication\\": "src",
+            "Fisdap\\JBL\\Authentication\\Phpunit\\": "tests"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

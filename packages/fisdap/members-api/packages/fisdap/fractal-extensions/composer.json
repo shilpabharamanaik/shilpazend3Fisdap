@@ -1,0 +1,26 @@
+{
+  "name": "fisdap/fractal-extensions",
+  "description": "Library providing additional Fractal transformation functionality and response helpers",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ben Getsug",
+      "email": "bgetsug@fisdap.net"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Fisdap\\Fractal\\": "src"
+    }
+  },
+  "require": {
+    "league/fractal": "@stable"
+  },
+  "require-dev": {
+    "laravel/framework": "~5",
+    "doctrine/annotations": "@stable",
+    "doctrine/cache": "@stable"
+  }
+}

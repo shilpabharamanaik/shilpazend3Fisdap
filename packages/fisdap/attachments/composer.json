@@ -1,0 +1,53 @@
+{
+  "name": "fisdap/attachments",
+  "version": "dev-master",
+  "description": "Library providing file attachment functionality for Doctrine Entities",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ben Getsug",
+      "email": "bgetsug@fisdap.net"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Fisdap\\Attachments\\": "src"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://toran.fisdap.net/repo/private/"
+    },
+    {
+      "type": "composer",
+      "url": "https://toran.fisdap.net/repo/packagist/"
+    },
+    {"packagist": false}
+  ],
+  "require": {
+    "php": ">=5.5",
+    "intervention/image": "^2.3.2",
+    "hoa/mime": "~3.0",
+    "hoa/file": "~1.0",
+    "aws/aws-sdk-php": "~3.0",
+    "aws/aws-sdk-php-laravel": "^3.0.0",
+    "league/flysystem-aws-s3-v3": "~1.0",
+    "fisdap/data-repository": "dev-master",
+    "fisdap/doctrine-entity-timestamps": "dev-master",
+    "fisdap/laravel-console-extensions": "dev-master",
+    "fisdap/logging": "dev-master",
+    "fisdap/laravel-error-handling": "dev-master",
+    "fisdap/fractal-extensions": "dev-master",
+    "fisdap/doctrine-extensions": "dev-master",
+    "doctrine/orm": "^2.5"
+  },
+  "require-dev": {
+    "laravel/framework": "~5",
+    "monolog/monolog": "^1.0",
+    "codeception/codeception": "^2.4",
+    "codeception/mockery-module": "0.2.3"
+  }
+}

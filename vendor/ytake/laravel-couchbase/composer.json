@@ -1,0 +1,75 @@
+{
+  "name": "ytake/laravel-couchbase",
+  "description": "Couchbase providers for Laravel",
+  "keywords": [
+    "laravel",
+    "couchbase",
+    "database",
+    "session",
+    "cache",
+    "queue"
+  ],
+  "authors": [
+    {
+      "name": "Yuuki Takezawa",
+      "email": "yuuki.takezawa@comnect.jp.net"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.0.0",
+    "ext-couchbase": ">=2.3.2",
+    "illuminate/support": "5.5.*",
+    "illuminate/config": "5.5.*",
+    "illuminate/console": "5.5.*",
+    "illuminate/events": "5.5.*",
+    "illuminate/cache": "5.5.*",
+    "illuminate/session": "5.5.*",
+    "illuminate/database": "5.5.*",
+    "illuminate/encryption": "5.5.*",
+    "illuminate/queue": "5.5.*",
+    "illuminate/contracts": "5.5.*",
+    "illuminate/container": "5.5.*"
+  },
+  "require-dev": {
+    "symfony/framework-bundle": "~3.0",
+    "symfony/console": "~3.0",
+    "phpunit/phpunit": "^6.0",
+    "satooshi/php-coveralls": "*",
+    "phploc/phploc": "*",
+    "pdepend/pdepend" : "^2.2.4",
+    "phpmd/phpmd": "@stable",
+    "friendsofphp/php-cs-fixer": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ytake\\LaravelCouchbase\\": "src"
+    },
+    "files": [
+      "src/transfer.php"
+    ]
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests/CouchbaseTestCase.php",
+      "tests/MockApplication.php"
+    ]
+  },
+  "scripts": {
+    "test": [
+      "php vendor/bin/phpunit"
+    ],
+    "cs": [
+      "php vendor/bin/php-cs-fixer fix"
+    ]
+  },
+  "minimum-stability": "stable",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Ytake\\LaravelCouchbase\\CouchbaseServiceProvider",
+        "Ytake\\LaravelCouchbase\\ConsoleServiceProvider"
+      ]
+    }
+  }
+}

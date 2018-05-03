@@ -1,0 +1,26 @@
+{
+    "name": "fisdap/codeception-modules",
+    "description": "A collection of Codeception modules for extending functionality for testing Laravel with Doctrine, using Alice for fixtures.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ben Getsug",
+            "email": "bgetsug@fisdap.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "codeception/codeception": "2.*",
+        "nelmio/alice": "3.*",
+        "doctrine/data-fixtures": "~1.2",
+        "flow/jsonpath": "~0.1"
+    },
+    "autoload": {
+        "classmap": [
+            "src/Cest/CestWithFixtures.php"
+        ],
+        "psr-4": {
+            "Codeception\\Module\\": "src/Module"
+        }
+    }
+}

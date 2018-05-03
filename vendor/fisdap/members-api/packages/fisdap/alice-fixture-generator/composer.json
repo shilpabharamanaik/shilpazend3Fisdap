@@ -1,0 +1,21 @@
+{
+    "name": "fisdap/alice-fixture-generator",
+    "description": "Enables generation of Alice fixtures from hydrated Doctrine entities",
+    "authors": [
+        {
+            "name": "Ben Getsug",
+            "email": "bgetsug@fisdap.net"
+        }
+    ],
+    "require": {
+        "illuminate/console": "~5",
+        "doctrine/orm": "2.*",
+        "symfony/yaml": "2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fisdap\\AliceFixtureGenerator\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

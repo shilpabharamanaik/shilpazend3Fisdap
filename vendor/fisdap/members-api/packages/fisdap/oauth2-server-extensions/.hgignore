@@ -1,0 +1,11 @@
+syntax: regexp
+
+^vendor
+composer\.phar
+\.DS_Store
+Thumbs\.db
+^\.idea
+^\.project
+^\.vagrant
+^composer.lock
+^atlassian-ide-plugin.xml

@@ -1,0 +1,183 @@
+{
+    "name": "zendframework/skeleton-application",
+    "description": "Skeleton Application for Zend Framework zend-mvc applications",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "framework",
+        "mvc",
+        "zf"
+    ],
+    "homepage": "http://framework.zend.com/",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^5.6 || ^7.2",
+        "zendframework/zend-component-installer": "^1.0 || ^0.7 || ^1.0.0-dev@dev",
+        "zendframework/zend-mvc": "^3.0.1",
+        "zfcampus/zf-development-mode": "^3.0",
+        "zendframework/zendframework": "^3.0",
+        "monolog/monolog": "^1.23",
+        "filp/whoops": "^2.1",
+        "bugsnag/bugsnag": "^3.12",
+        "doctrine/orm": "^2.5",
+        "braintree/braintree_php": "^3.29",
+        "pda/pheanstalk": "^3.1",
+        "kss-php/kss-php": "^2.0",
+        "leafo/scssphp": "^0.7.5",
+        "vlucas/phpdotenv": "^2.4",
+        "psy/psysh": "^0.8.17",
+        "illuminate/bus": "^5.5",
+        "symfony/config": "^3.4",
+        "symfony/yaml": "^3.4",
+        "symfony/process": "^3.4",
+        "illuminate/filesystem": "^5.5",
+        "league/flysystem": "^1.0",
+        "illuminate/config": "^5.5",
+        "illuminate/container": "^5.5",
+        "illuminate/encryption": "^5.5",
+        "illuminate/events": "^5.5",
+        "illuminate/mail": "^5.5",
+        "illuminate/redis": "^5.5",
+        "illuminate/support": "^5.5",
+        "illuminate/translation": "^5.5",
+        "illuminate/validation": "^5.5",
+        "illuminate/view": "^5.5",
+        "mtdowling/cron-expression": "^1.2",
+        "maximebf/debugbar": "^1.15",
+        "zendframework/zend-diactoros": "^1.7",
+        "jeremeamia/SuperClosure": "^2.3",
+        "zendframework/zftool": "^0.1.0",
+        "happyr/doctrine-specification": "^0.7.2",
+        "fisdap/ascend-greatplains-php-sdk": "^1.4",
+        "fisdap/jbl-rest-authentication-php-sdk": "dev-master",
+        "fisdap/data-repository": "dev-master",
+        "fisdap/members-rest-api-client": "dev-master",
+        "fisdap/app-health-checks": "dev-master",
+        "fisdap/attachments": "dev-master",
+        "moontoast/math": "^1.1",
+        "intervention/imagecache": "^2.3",
+        "fisdap/codeception-modules": "dev-master",
+        "php-curl-class/php-curl-class": "^8.0",
+        "nelmio/alice": "^3.1",
+        "symfony/console": "v3.4.6",
+        "symfony/event-dispatcher": "v3.4.6",
+        "symfony/filesystem": "v3.4.6",
+        "fisdap/members-api": "dev-master",
+        "doctrine/doctrine-orm-module": "^2.1",
+        "zendframework/zend-session": "^2.8"
+    },
+    "autoload": {
+        "psr-0": {
+            "ExceptionLogger": "library/",
+            "Fisdap\\": "library/Fisdap",
+            "Fisdap_": "library/Fisdap",
+            "": "library/"
+        },
+        "psr-4": {
+            "Application\\": "module/Application/src/",
+            "User\\": "module/User/src/",
+            "MyFisdap\\": "module/MyFisdap/src/",
+            "Codeception\\Module\\": "tests/_modules"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ApplicationTest\\": "module/Application/test/"
+        }
+    },
+    "extra": [],
+    "scripts": {
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "development-disable": "zf-development-mode disable",
+        "development-enable": "zf-development-mode enable",
+        "development-status": "zf-development-mode status",
+        "post-create-project-cmd": [
+            "@development-enable"
+        ],
+        "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
+        "test": "phpunit"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "codeception/codeception": "^2.4",
+        "codeception/mockery-module": "^0.2.3"
+    },
+    "replace": {
+        "zf1/zend-registry": "~1.12",
+        "laravel/framework": "*",
+        "bugsnag/bugsnag-laravel": "*",
+        "laravel-doctrine/orm": "*",
+        "intouch/laravel-newrelic": "*",
+        "aws/aws-sdk-php": "*",
+        "aws/aws-sdk-php-laravel": "*",
+        "fideloper/proxy": "*",
+        "shift31/glean": "*",
+        "barryvdh/laravel-ide-helper": "*",
+        "barryvdh/laravel-cors": "*",
+        "bshaffer/oauth2-server-php": "*",
+        "bshaffer/oauth2-server-httpfoundation-bridge": "*",
+        "league/flysystem-aws-s3-v3": "*",
+        "fisdap/oauth2-server-extensions": "*",
+        "fisdap/laravel-console-extensions": "*",
+        "fisdap/laravel-error-handling": "*",
+        "fisdap/fractal-extensions": "*",
+        "fisdap/alice-fixture-generator": "*",
+        "jlapp/swaggervel": "*"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./packages/ascendlearning/laravel-doctrine-lti/"
+        },
+        {
+            "type": "path",
+            "url": "./packages/fisdap/ascend-greatplains-php-sdk/"
+        },
+        {
+            "type": "path",
+            "url": "./packages/fisdap/jbl-rest-authentication-php-sdk/"
+        },
+        {
+            "type": "path",
+            "url": "./packages/fisdap/attachments/"
+        },
+        {
+            "type": "path",
+            "url": "./packages/fisdap/members-api/"
+        },
+        {
+            "type": "path",
+            "url": "./packages/fisdap/members-rest-api-client/"
+        },
+        {
+            "type": "path",
+            "url": "./packages/fisdap/codeception-modules/"
+        },
+        {
+            "type": "path",
+            "url": "./packages/fisdap/data-repository/"
+        },
+        {
+            "type": "path",
+            "url": "./packages/fisdap/doctrine-extensions/"
+        },
+        {
+            "type": "path",
+            "url": "./packages/fisdap/doctrine-entity-timestamps/"
+        },
+        {
+            "type": "path",
+            "url": "./packages/fisdap/app-health-checks/"
+        },
+        {
+            "type": "path",
+            "url": "./packages/fisdap/laravel-build-metadata/"
+        },
+        {
+            "type": "path",
+            "url": "./packages/fisdap/logging/"
+        }
+    ]
+}

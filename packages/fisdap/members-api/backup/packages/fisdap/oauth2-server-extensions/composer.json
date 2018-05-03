@@ -1,0 +1,33 @@
+{
+    "name": "fisdap/oauth2-server-extensions",
+    "description": "A library containing classes that extend or compliment Brent Shaffer's OAuth2 Server library (https://github.com/bshaffer/oauth2-server-php)",
+    "license": "proprietary",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://toran.fisdap.net/repo/private/"
+        }
+    ],
+    "authors": [
+        {
+            "name": "Alex Stevenson",
+            "email": "astevenson@fisdap.net"
+        },
+        {
+            "name": "Ben Getsug",
+            "email": "bgetsug@fisdap.net"
+        }
+    ],
+    "require": {
+        "bshaffer/oauth2-server-php": "1.*",
+        "illuminate/support": "~5",
+        "fisdap/doctrine-extensions": "dev-master",
+        "fisdap/jbl-rest-authentication-php-sdk": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fisdap\\OAuth\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

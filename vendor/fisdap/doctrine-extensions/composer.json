@@ -1,0 +1,25 @@
+{
+    "name": "fisdap/doctrine-extensions",
+	"version": "dev-master",
+    "description": "A collection of extensions to Doctrine that enhance/extend its functionality.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jesse Mortenson",
+            "email": "jmortenson@fisdap.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "doctrine/orm": "2.*",
+        "ramsey/uuid": "2.8.*"
+    },
+    "require-dev": {
+        "illuminate/support": "~4|~5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fisdap\\Doctrine\\Extensions\\": "src/"
+        }
+    }
+}
