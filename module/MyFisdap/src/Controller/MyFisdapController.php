@@ -1,15 +1,15 @@
 <?php
-namespace MyFisdap\Controller;
+namespace Myfisdap\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-
-class MyFisdapController extends AbstractActionController
+use Zend\View\Model\ViewModel;
+class MyfisdapController extends AbstractActionController
 {
 	public function __construct()
     {
 		echo "test";//exit;
 	}
-  /*  public function init()
+	/*public function init()
     {
 		parent::init();
         $this->loggedInUser =  $this->user;
@@ -19,17 +19,10 @@ class MyFisdapController extends AbstractActionController
 		}
     }
 	*/
-    /**
-     * Index action now loads all widgets and displays them in initial page load
-     * (instead of doing a bunch of AJAX requests)
-     */
     public function myfisdapAction()
     {
-		echo "here";
-		//
-		
-		die();
-		//$this->view->pageTitle = "MyFisdap Dashboard";
+		echo "fhf fhgfh"; //die();
+		 return new ViewModel();
     }
 
 }

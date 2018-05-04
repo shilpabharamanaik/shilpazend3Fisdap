@@ -18,7 +18,7 @@ return [
                         'id'     => '[0-9]+',
                     ],
                     'defaults' => [
-                        'controller' => Controller\MyFisdapController::class,
+                        'controller' => Controller\MyfisdapController::class,
                         'action'     => 'myfisdap',
                     ],
                 ],

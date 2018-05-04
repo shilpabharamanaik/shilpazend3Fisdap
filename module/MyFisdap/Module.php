@@ -16,8 +16,8 @@ class Module implements ConfigProviderInterface
     {
         return [
             'factories' => [
-                Controller\MyFisdapController::class => function () {
-                    return new Controller\MyFisdapController();
+                Controller\MyfisdapController::class => function () {
+                    return new Controller\MyfisdapController();
                 },
             ],
         ];
