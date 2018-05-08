@@ -79,7 +79,7 @@ class AuthController extends AbstractActionController
                     // If redirect URL is provided, redirect the user to that URL;
                     // otherwise redirect to Home page.
                     if(empty($redirectUrl)) {
-                        return $this->redirect()->toRoute('home');
+                        return $this->redirect()->toRoute('my-fisdap');
                     } else {
                         $this->redirect()->toUrl($redirectUrl);
                     }
