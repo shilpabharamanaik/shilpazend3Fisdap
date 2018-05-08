@@ -3,11 +3,11 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?= $this->headTitle('ZF Skeleton Application')->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?= $this->headTitle('Fisdap')->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?= $this->headMeta()
-            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+				  ->appendHttpEquiv('Content-Language', 'en-US')
+				  ->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
         ?>
 
         <!-- Le styles -->
@@ -24,32 +24,78 @@
         ?>
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="<?= $this->url('home') ?>">
-                        <img src="<?= $this->basePath('img/zf-logo-mark.svg') ?>" height="28" alt="Zend Framework <?= \Application\Module::VERSION ?>"/>&nbsp;Skeleton Application
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="<?= $this->url('home') ?>">Home</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class="container">
+	<div class="site">
+	<div id='main_header' class='main_header'>
+				<div id='header_nav' class='header_nav'>
+					<div id='header_upper_nav'>
+						<a href='https://www.fisdap.net'><div id='site-title'>FISDAP</div></a>
+						<div id='user_info' class='user_info'> $this->view->profileLink()</div>
+						<div class='clear'></div>
+						<div id='subtitle'> Online Tools for $profession Education${releaseStageHtml}</div><div class='clear'></div></div>
+						
+						
+
+       <ul class="main_navigation">
+    <li class="active">
+        <a title="MyFisdap" href="/my-fisdap" style="position: relative; top: 2px;">MyFisdap</a>
+        
+    </li>
+    <li>
+        <a title="Shifts" href="/skills-tracker" style="position: relative; top: 2px;">Shifts</a>
+        <ul style="text-align: center; width: 225px; position: absolute; top: 112px; left: 117.35px; display: none;">
+            <li>
+                <a href="/scheduler">Schedule</a>
+            </li>
+            <li>
+                <a href="/skills-tracker/shifts">Skills &amp; Pt. Care</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a title="Learning Center" href="/learning-center" style="position: relative; top: 2px;">Learning Center</a>
+        <ul style="text-align: center; width: 255px; position: absolute; top: 112px; left: 241.2px; display: none;">
+            <li>
+                <a href="/learning-center/index/schedule">Test Schedule</a>
+            </li>
+            <li>
+                <a href="/learning-center/index/retrieve">Retrieve Scores</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a title="Reports" href="/reports/index/splash" style="position: relative; top: 2px;">Reports</a>
+        <ul style="text-align: center; width: 230px; position: absolute; top: 112px; left: 392.55px; display: none;">
+            <li>
+                <a href="/reports/index/legacy">Evals &amp; Skill Sheets</a>
+            </li>
+            <li>
+                <a href="/reports">Reports</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a title="Account" href="/account" style="position: relative; top: 2px;">Account</a>
+    </li>
+    <li>
+        <a title="Community" href="/community" style="position: relative; top: 2px;">Community</a>
+    </li>
+    <li>
+        <a title="Help" href="/help" style="position: relative; top: 2px;">Help</a>
+    </li>
+</ul>
+		</div>
+		</div>
+        <div id="main-content" class="container_12">
             <?= $this->content ?>
-            <hr>
-            <footer>
-                <p>&copy; 2005 - <?= date('Y') ?> by Zend Technologies Ltd. All rights reserved.</p>
-            </footer>
-        </div>
-        <?= $this->inlineScript() ?>
+			</div>
+           <div id='footer' class='footer'>
+				<div id='footer_text' class='footer_text'>
+					651-690-9241
+					<span class='footer_separator'>|</span>
+					
+					<a href='mailto:info@fisdap.net'>info@fisdap.net</a>
+				</div>
+			</div>
+		</div>
     </body>
 </html>

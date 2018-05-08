@@ -7,7 +7,7 @@ class MyfisdapController extends AbstractActionController
 {
 	public function __construct()
     {
-		echo "test";//exit;
+		//echo "test";//exit;
 	}
 	/*public function init()
     {
@@ -21,7 +21,7 @@ class MyfisdapController extends AbstractActionController
 	*/
     public function myfisdapAction()
     {
-		echo "fhf fhgfh"; //die();
+		//echo "fhf fhgfh"; //die();
 		 return new ViewModel();
     }
 
