@@ -2,6 +2,10 @@
 
 <html lang="en">
     <head>
+	<?php
+	echo $this->headTitle($this->headTitleHelper());
+		
+		$header = $this->mainHeader(); ?>
         <meta charset="utf-8">
         <?= $this->headTitle('Fisdap')->setSeparator(' - ')->setAutoEscape(false) ?>
 
@@ -29,9 +33,9 @@
 				<div id='header_nav' class='header_nav'>
 					<div id='header_upper_nav'>
 						<a href='https://www.fisdap.net'><div id='site-title'>FISDAP</div></a>
-						<div id='user_info' class='user_info'> $this->view->profileLink()</div>
+						<div id='user_info' class='user_info'> <?php echo "Test".$this->view->profileLink()?></div>
 						<div class='clear'></div>
-						<div id='subtitle'> Online Tools for $profession Education${releaseStageHtml}</div><div class='clear'></div></div>
+						<div id='subtitle'> Online Tools for <?php echo $profession; ?> Education${releaseStageHtml}</div><div class='clear'></div></div>
 						
 						
 

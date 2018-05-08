@@ -8,7 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'vierbergenlars\\SemVer\\' => array($vendorDir . '/vierbergenlars/php-semver/src'),
     'vierbergenlars\\LibJs\\' => array($vendorDir . '/vierbergenlars/php-semver/src'),
-    'ZendXml\\' => array($vendorDir . '/zendframework/zendxml/library'),
     'ZendDiagnostics\\' => array($vendorDir . '/zendframework/zenddiagnostics/src'),
     'ZendDiagnosticsTest\\' => array($vendorDir . '/zendframework/zenddiagnostics/tests'),
     'ZFTool\\' => array($vendorDir . '/zendframework/zftool/src'),
