@@ -78,6 +78,7 @@
             "Application\\": "module/Application/src/",
             "User\\": "module/User/src/",
             "MyFisdap\\": "module/MyFisdap/src/",
+            "Skillstracker\\": "module/Skillstracker/src/",
             "Codeception\\Module\\": "tests/_modules"
         }
     },

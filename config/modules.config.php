@@ -38,4 +38,5 @@ return [
     'Application',
     'User',
 	'MyFisdap',
+	'Skillstracker',
 ];

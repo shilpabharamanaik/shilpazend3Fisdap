@@ -103,6 +103,7 @@ return array(
     'Symfony\\Component\\BrowserKit\\' => array($vendorDir . '/symfony/browser-kit'),
     'Swagger\\' => array($vendorDir . '/zircote/swagger-php/src'),
     'SuperClosure\\' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
+    'Skillstracker\\' => array($baseDir . '/module/Skillstracker/src'),
     'Robo\\' => array($vendorDir . '/codegyre/robo/src'),
     'Rhumsaa\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
     'Psy\\' => array($vendorDir . '/psy/psysh/src/Psy'),

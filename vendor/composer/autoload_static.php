@@ -155,6 +155,7 @@ class ComposerStaticInite157492c5e2799fab0508c7ca457ea69
             'Symfony\\Component\\BrowserKit\\' => 29,
             'Swagger\\' => 8,
             'SuperClosure\\' => 13,
+            'Skillstracker\\' => 14,
         ),
         'R' => 
         array (
@@ -694,6 +695,10 @@ class ComposerStaticInite157492c5e2799fab0508c7ca457ea69
         'SuperClosure\\' => 
         array (
             0 => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src',
+        ),
+        'Skillstracker\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/module/Skillstracker/src',
         ),
         'Robo\\' => 
         array (
