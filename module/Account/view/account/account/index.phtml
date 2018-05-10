@@ -1,0 +1,42 @@
+<?php
+    $title = 'Account';
+    $this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title); ?></h1>
+
+<div class="grid_12 island">
+
+    <div id="accountLinksStudent">
+
+        <h3 class="section-header">My Account</h3>
+
+        <div class="grid_6">
+            <a href="/account/edit/student">Account Information</a><br />
+            Update your information including password, email address, and emergency contact.
+        </div>
+    <?php if ($this->programCanOrder && !$this->transitionOnly) {
+    $needMargin = "needMargin"; ?>
+        <div class="grid_6 prefix 1">
+            <a href="/account/orders/upgrade-individual">Upgrade</a><br />
+            Purchase additional products or attempts.
+        </div>
+        <div style="clear:both"></div>
+    <?php
+} ?>
+
+        <div class="grid_6 <?= $needMargin ?>">
+            <a href="/account/index/program-eval">Program Evaluations</a><br />
+            Evaluate program resources including preceptors, sites, and personnel.
+        </div>
+
+
+        <div class="grid_6 needMargin">
+            <a href="/account/new/research-consent">Research Consent Form</a><br />
+            Help Fisdap with EMS research. Donate your data--it's all anonymous!
+        </div>
+
+        <div style="clear:both"></div>
+
+    </div>
+
+</div>
