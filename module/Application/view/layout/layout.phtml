@@ -6,8 +6,8 @@
         <?= $this->headTitle('Fisdap')->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?= $this->headMeta()
-				  ->appendHttpEquiv('Content-Language', 'en-US')
-				  ->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+                  ->appendHttpEquiv('Content-Language', 'en-US')
+                  ->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
         ?>
 
         <!-- Le styles -->
@@ -15,30 +15,48 @@
             ->prependStylesheet($this->basePath('css/style.css'))
             ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
             ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+            ->appendStylesheet('/css/global.css')
+            ->appendStylesheet('/css/library/Fisdap/View/Helper/Navigation/mainMenu.css')
+            ->appendStylesheet('/css/library/Fisdap/View/Helper/Navigation/mainFooter.css');
         ?>
 
         <!-- Scripts -->
         <?= $this->headScript()
             ->prependFile($this->basePath('js/bootstrap.min.js'))
-            ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))
+            //->prependFile($this->basePath('js/jquery-3.1.0.min.js'))
+
+     ->prependFile('/js/jquery-1.10.0.min.js')
+     ->prependFile('/js/jquery-ui-1.8.12.custom.min.js')
+     ->prependFile('/js/jquery-migrate-1.2.1.js')
+     ->appendFile('/js/jquery.urldecoder.min.js')
+     ->appendFile('/js/jquery.blockUI.js')
+     ->appendFile('/js/jquery.form.js')
+     ->appendFile('/js/jquery.FisdapBlockUI.js')
+     ->appendFile('/js/countdown.js')
+     ->appendFile('/js/jquery.cookie.js')
+     ->appendFile('/js/library/Fisdap/View/Helper/Navigation/mainMenu.js')
+     ->appendFile('/js/jquery.chosen.relative.js')
+     ->appendFile('/js/FisdapUtils.js');
+
         ?>
     </head>
     <body>
-	<div class="site">
-	<div id='main_header' class='main_header'>
-				<div id='header_nav' class='header_nav'>
-					<div id='header_upper_nav'>
-						<a href='https://www.fisdap.net'><div id='site-title'>FISDAP</div></a>
-						<div id='user_info' class='user_info'> $this->view->profileLink()</div>
-						<div class='clear'></div>
-						<div id='subtitle'> Online Tools for $profession Education${releaseStageHtml}</div><div class='clear'></div></div>
-						
-						
+    <div class="site">
+    <div id='main_header' class='main_header'>
+        <div id='header_nav' class='header_nav'>
+            <div id='header_upper_nav'>
+                <a href='https://www.fisdap.net'><div id='site-title'>FISDAP</div></a>
+                <div id='user_info' class='user_info'> $this->view->profileLink()</div>
+                <div class='clear'></div>
+                <div id='subtitle'> Online Tools for $profession Education${releaseStageHtml}</div><div class='clear'></div>
+            </div>
+
+
 
        <ul class="main_navigation">
     <li class="active">
         <a title="MyFisdap" href="/my-fisdap" style="position: relative; top: 2px;">MyFisdap</a>
-        
+
     </li>
     <li>
         <a title="Shifts" href="/skills-tracker" style="position: relative; top: 2px;">Shifts</a>
@@ -83,19 +101,22 @@
         <a title="Help" href="/help" style="position: relative; top: 2px;">Help</a>
     </li>
 </ul>
-		</div>
-		</div>
+        </div>
+
+            <div id='header_subnav' class='header_subnav'></div>
+            <div style='clear: both;'></div>
+        </div>
         <div id="main-content" class="container_12">
             <?= $this->content ?>
-			</div>
+            </div>
            <div id='footer' class='footer'>
-				<div id='footer_text' class='footer_text'>
-					651-690-9241
-					<span class='footer_separator'>|</span>
-					
-					<a href='mailto:info@fisdap.net'>info@fisdap.net</a>
-				</div>
-			</div>
-		</div>
+                <div id='footer_text' class='footer_text'>
+                    651-690-9241
+                    <span class='footer_separator'>|</span>
+
+                    <a href='mailto:info@fisdap.net'>info@fisdap.net</a>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
