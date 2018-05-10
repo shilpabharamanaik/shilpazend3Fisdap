@@ -76,9 +76,13 @@
         },
         "psr-4": {
             "Application\\": "module/Application/src/",
-            "User\\": "module/User/src/",
+            "Account\\": "module/Account/src/",
+            "Community\\": "module/Community/src/",
+            "Learningcenter\\": "module/Learningcenter/src/",
             "MyFisdap\\": "module/MyFisdap/src/",
+            "Reports\\": "module/Reports/src/",
             "Skillstracker\\": "module/Skillstracker/src/",
+            "User\\": "module/User/src/",
             "Codeception\\Module\\": "tests/_modules"
         }
     },

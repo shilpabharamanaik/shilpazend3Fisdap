@@ -36,7 +36,11 @@ return [
     'DoctrineModule',
     'DoctrineORMModule',
     'Application',
-    'User',
+    'Account',
+    'Community',
+    'Learningcenter',
 	'MyFisdap',
+    'Reports',
 	'Skillstracker',
+    'User',
 ];
