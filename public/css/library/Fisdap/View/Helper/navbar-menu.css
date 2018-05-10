@@ -1,0 +1,168 @@
+#nav-bar {
+	height:30px;
+	background-color:#c4baae;
+	border-top-right-radius:12px;
+	border-top-left-radius:12px;
+	margin-left:0.6em;
+	width:917px;
+	padding-right:1em;
+}
+
+#main-content .grid_9 #nav-bar {
+	width:104.3%;
+	margin-left:-1.01em;
+}
+
+#nav-bar .navbar-options {
+	display:none;
+}
+
+#nav-bar .dashed-right-border {
+	width:0em;
+	border-right: 0.12em dashed #fff;
+	float:right;
+	margin: 0.3em;
+	height: 30px;
+	margin-top: 0em;
+	margin-bottom: 0em;
+}
+
+#nav-bar .nav-bar-menu-item,
+#nav-bar .single-navbar-option {
+	display:block;
+	font-family: Century Gothic,Arial,Helvetica,sans-serif;
+	color:#fff;
+	font-weight:bold;
+	float:right;
+	text-decoration:none;
+	padding:0.42em;
+	padding-right:3.5em;
+	padding-left:1.4em;
+	border-left: 1px solid #C4BAAE;
+}
+
+#nav-bar .single-navbar-option.active {
+	color:#666;
+	background-color:#fff;
+	cursor: default;
+}
+
+#nav-bar .single-navbar-option a {
+	font-family: Century Gothic,Arial,Helvetica,sans-serif;
+	color:#fff;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+#nav-bar .single-navbar-option {
+	padding:0.42em;
+	text-align:center;
+	padding-right:1.25em;
+	padding-left:1.25em;
+}
+
+#nav-bar .nav-bar-menu-item {
+	background-image:url("/images/accordion_arrow_down_white.png");
+	background-repeat:no-repeat;
+	background-position: 84% 54%;
+}
+
+#nav-bar .nav-bar-menu-item:hover {
+	text-decoration:none;
+	background-image:url("/images/accordion_arrow_down.png");
+	color:#666;
+	background-color:#fff;
+	cursor:pointer;
+}
+
+#nav-bar .settings-link {
+    background: url("/images/icons/gear_white.png") no-repeat scroll 90% 50% rgba(0, 0, 0, 0);
+    padding-right: 32px;
+    text-decoration: none;
+}
+
+#nav-bar .selected-single-nav-bar-item,
+#nav-bar .single-navbar-option:hover a,
+#nav-bar .single-navbar-option:hover:not(.active) {
+	text-decoration:none;
+	color:#666;
+	background-color:#fff;
+	cursor:pointer;
+}
+
+#nav-bar .settings-link:hover,
+#nav-bar .settings-link.active {
+    background-image: url("/images/icons/gear_gray.png");
+}
+
+#nav-bar .nav-bar-menu-item:first-child,
+#nav-bar .single-navbar-option:first-child,
+#nav-bar .top-right-radius-option,
+#nav-bar .student-pdf {
+	margin-right:-1em;
+	border-top-right-radius:12px;
+}
+
+#nav-bar .navbar-options {
+	background-color:#fff;
+	border:1px solid #ccc;
+	box-shadow:0px 2px 2px #aaa;
+	width:200px;
+	position:absolute;
+	z-index:5000;
+	border-top:0px;
+	padding-top:0.5em;
+	padding-bottom:0.75em;
+}
+
+#nav-bar .request-count {
+	display:block;
+	height:15px;
+	border-radius:15px;
+	color:#fff;
+	font-weight:bold;
+	float:left;
+	margin-left:0.5em;
+	text-align:center;
+	line-height:14px;
+	font-size:9.5pt;
+	margin-top:0.12em;
+	background-color:rgb(234, 134, 45);
+	padding-left:0.25em;
+	padding-right:0.3em;
+	min-width:10px;
+}
+
+#nav-bar .requests-txt {
+	float:left;
+}
+
+#nav-bar .navbar-options li a,
+#nav-bar .navbar-options li.inactive {
+	color:#666;
+	display:block;
+	text-decoration:none;
+	display:block;
+	width: 84%;
+	padding:2%;
+	font-size:10pt;
+	padding-left: 14%;
+	font-family: Century Gothic,Arial,Helvetica,sans-serif;
+	font-weight: normal;
+}
+
+#nav-bar .navbar-options li a:hover {
+	background-color:#eee;
+	text-decoration:none;
+	color:#666;
+}
+
+#nav-bar .navbar-sub-option .sub-option-title {
+	color: #333333;
+}
+
+#nav-bar .navbar-sub-option .sub-option-description {
+	font-size: 90%;
+	font-style: italic;
+	margin-bottom: 0.3em;
+}

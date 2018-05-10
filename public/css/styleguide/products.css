@@ -1,0 +1,22 @@
+div.product {
+  margin-bottom: 1em;
+  clear: both; }
+
+.category .section-header {
+  margin-bottom: 0; }
+
+img.product-shield {
+  width: 2em;
+  height: 2em;
+  float: left; }
+
+.shield-label {
+  padding-top: 0.4em;
+  padding-left: 2.5em; }
+
+.category .shield-label {
+  padding-top: 2px;
+  font-weight: bold; }
+
+.shield-desc {
+  padding-left: 3em; }

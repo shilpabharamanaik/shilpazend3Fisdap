@@ -1,0 +1,77 @@
+.which-events-btns {
+    float: right;
+    margin: 1.7em 0 0;
+}
+
+#cancel-which-events-btn,
+#continue-which-events-btn {
+	display: inline;
+}
+
+#whichEventsDialog {
+	padding-bottom:1em;
+}
+
+#series_days {
+	display:none;
+}
+
+#selected_days {
+	display:none;
+}
+
+#whichEventsDialog .header {
+	margin-top:-0.5em;
+	margin-left:0.25em;
+}
+
+#whichEventsDialog #description {
+	margin-left:1em;
+	margin-bottom:1em;
+	margin-top:1em;
+}
+
+#just-this-event-option {
+	border-top:1px solid #bbb;
+}
+
+.series-option {
+	border-bottom:1px solid #bbb;
+	padding:1em;
+}
+
+.series-option:hover {
+	background-color:#eee;
+	cursor:pointer;
+}
+
+.selected-series-option {
+	background-color:#eee;
+}
+
+#multiple-shifts-multipick-cal {
+	display:none;
+	margin-top:1.5em;
+}
+
+#multiple-shifts-multipick-cal a {
+	color:#A94612;
+	text-decoration:none;
+	margin-bottom:1em;
+}
+
+#multiple-shifts-multipick-cal a:hover {
+	text-decoration: underline;
+}
+
+#next-months {
+	float:right;
+}
+
+#date-range {
+	margin: .355em;
+}
+
+#date-range input[type="text"] {
+	font-size: 10pt;
+}

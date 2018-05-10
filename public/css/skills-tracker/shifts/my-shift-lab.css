@@ -1,0 +1,150 @@
+.quick-table {
+/*	cell-padding: 20px;
+	cell-spacing: 5px;
+	padding: 20px;
+	width: 100%;*/
+	background-color: #ffffff;
+	width:100%;
+	margin-top: .5em;
+	
+	border-top: 2px solid #b0b0b0;
+	border-bottom: 2px solid #b0b0b0;
+}
+
+.quick-table tbody{
+	border-top: 2px solid #b0b0b0;
+	border-bottom: 2px solid #b0b0b0;
+}
+
+.quick-table tbody td{
+	border: 1px solid #b0b0b0;
+}
+
+.quick-table thead, tfoot{
+	border-top: 1px solid #b0b0b0;
+	border-bottom: 1px solid #b0b0b0;
+	border-left: 0px;
+	border-right: 0px;
+	background-color: #f5e079;
+}
+
+.quick-table thead th, td {
+	border: none;
+}
+
+.quick-table tfoot th, td {
+	border: none;
+}
+/*#run-table th.add-run-container {
+	text-align: left;
+}*/
+
+.quick-table .first-cell {
+	border-left: none;
+}
+
+.quick-table .last-cell {
+	border-right: none;
+}
+
+.quick-row{
+	width: 100%;
+	/*padding: 10px;*/
+}
+.quick-cell{
+	/*height: 100px;*/
+	padding: 0.5em;
+	border: 1px #000 solid;
+}
+
+.inline{
+	display: inline;
+}
+
+.quick-hover{
+	background-color: #EFEDEB;
+}
+
+#add-skills-btn {
+	float:left;
+}
+
+#signoff-btn {
+	float:right;
+}
+
+#autosave-timer {
+	float:right;
+	margin-top: .5em;
+	border-radius: 10px;
+	padding: .5em;
+}
+
+.updated {
+	background-color: #cfeba7;
+}
+
+#add-lab-partner, #add-lab-partner-instructor {
+    background-position: center bottom;
+    position: absolute;
+    right: 0;
+    top: -6px;
+    height: 29px;
+    text-indent: -9999px;
+    width: 112px;
+	background-image: url(/images/buttons/new_lab_partner_button.png);
+}
+
+#add-lab-partner.clinical, #add-lab-partner-instructor.clinical {
+	background-image: url(/images/buttons/new_clinical_partner_button.png);
+}
+
+#add-lab-partner.field, #add-lab-partner-instructor.field {
+	background-image: url(/images/buttons/new_field_partner_button.png);
+}
+
+#add-lab-partner:hover, #add-lab-partner-instructor:hover {
+	background-position: center;
+}
+
+#add-lab-partner:active, #add-lab-partner-instructor:active {
+	background-position: top;
+}
+
+#dummy-content-table {
+	margin-bottom:2em;
+}
+
+#lab-skills-widgets {
+	margin-bottom:-1.4em;
+}
+
+.login-form-wrapper {
+	padding:1em;
+	background: rgba(0, 0, 0, 0.75);
+	color:#fff;
+	top:1em;
+	
+}
+
+.login-form-wrapper h3 {
+	color:#fff;
+}
+
+.login-form-wrapper .ok-wrapper, .login-form-wrapper .cancel-wrapper {
+	float:right;
+	margin-top:1.5em;
+}
+
+.login-form-wrapper .ok-wrapper {
+	margin-right:-.5em;
+}
+
+.login-form-wrapper .cancel-wrapper {
+	margin-right:1em;
+}
+
+.subheader {
+	font-size:12pt;
+	margin-bottom:1em;
+}

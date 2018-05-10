@@ -1,0 +1,21 @@
+#new_share {
+    margin: 1.5em 0em;
+    border: 1px solid #bfbfbf;
+    padding: 1em;
+}
+
+.new_directions {
+    margin: 0em 0em 1.5em 0em;
+}
+
+#new_share {
+    margin-left: 10px;
+}
+
+.settings-line {
+    height: 3em;
+}
+
+.checkboxes {
+    float: right;
+}

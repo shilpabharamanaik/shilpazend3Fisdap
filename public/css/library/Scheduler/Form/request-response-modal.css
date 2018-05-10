@@ -1,0 +1,44 @@
+.header {
+	margin-top: .7em;
+}
+
+.site-desc {
+	margin-top: 5px;
+}
+
+#shift-div {
+	margin: 1em;
+}
+
+#swap-div {
+	margin: 1em;
+}
+
+#terms-div,
+#directions-div {
+	margin: 1em 0em;
+}
+
+#terms-list {
+	list-style: disc inside none;
+	margin-left: 2em;
+}
+
+.permissions {
+	margin-bottom: 1em;
+}
+
+.buttons {
+	float: right;
+	left: 1.5em;
+	margin-bottom: 0.5em;
+	position: relative;
+}
+
+#cancelButtonWrapper,
+#approveButtonWrapper,
+#denyButtonWrapper,
+#saveButtonWrapper {
+	display: inline;
+}
+

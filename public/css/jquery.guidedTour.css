@@ -1,0 +1,215 @@
+
+/* * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * * * * * * * * * ** * * * * * * * * * * * * * 
+*                                                                           							 *
+*        			Copyright (C) 1996-2011.  This is an unpublished work of           					 *
+*                         			Headwaters Software, Inc.                         					 *
+*                           		 	ALL RIGHTS RESERVED                            					 *
+*       		 	This program is a trade secret of Headwaters Software, Inc. and    					 *
+*       		 	it is not to be copied, distributed, reproduced, published, or     					 *
+*       			 adapted without prior authorization of Headwaters Software, Inc.   				 *
+*                                                                           							 *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
+
+/**
+ * Styles for jQuery plugin guidedTours
+ * @author Hammer :)
+*/
+
+#guided_tour_wrapper .tour_directions,
+#guided_tour_wrapper ul,
+#guided_tour_wrapper .guided_tour_welcome_modal {display:none;}
+
+
+/** ------------------- styling for corner robot (jQuery handles most of his styling) ------------------ **/
+
+#guided_tour_wrapper .guided_tour_robot {
+	position:fixed;
+	right:2em;
+	z-index:5000;
+}
+
+#guided_tour_wrapper .guided_tour_robot_tooltip {
+	position:fixed;
+	bottom:1em;
+	right:5.75em;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	color:#fff;
+	padding:0.25em 1em;
+	padding-right:0.5em;
+	font-size:9pt;
+	background-color:rgba(20, 20, 20, 0.85);
+	display:none;
+}
+
+#guided_tour_wrapper .guided_tour_robot_tooltip_arrow_left {
+	border-top: 0.95em solid transparent;
+	border-bottom: 0.95em solid transparent; 
+	border-left: 1em solid rgba(20, 20, 20, 0.85);
+	top: 0em;
+	right: -1em;
+	width:0;
+	height:0;
+	position:absolute;
+}
+
+#guided_tour_wrapper .guided_tour_robot.active_tour_robot {bottom:-1.25em;}
+#guided_tour_wrapper .guided_tour_robot.inactive_tour_robot {bottom:-1.7em; right:0.5em;}
+#guided_tour_wrapper .guided_tour_robot.inactive_tour_robot:hover {cursor:pointer;}
+#guided_tour_wrapper .guided_tour_robot.inactive_tour_robot img {width:50px;}
+#guided_tour_wrapper .guided_tour_robot.active_tour_robot img {width:120px;}
+	
+
+
+/** ------------------------------------ styling for welcome modal ------------------------------------ **/
+
+.guided_tour_welcome_modal .guided_tour_welcome_modal_buttons {margin-top:4em; float:right; margin-bottom:1em;}
+.guided_tour_welcome_modal .guided_tour_welcome_msg {margin-top:1em;}
+.guided_tour_welcome_modal .guided_tour_welcome_header {color:#655d57; margin-top:1em; font-weight:normal;}
+#end_tour_guide_throbber {display:none;position:absolute;right:12.25em;bottom:2.3em;}
+
+
+/** --------------------- styling for bottom navigation (black bottom directions) --------------------- **/
+
+#guided_tour_wrapper .tour_directions {
+	width:100%;
+    position:fixed;
+    bottom:0em;
+	left:0em;
+    height:100px;
+    z-index:2000;
+    background-color:rgba(20, 20, 20, 0.9);
+    border-top:2px solid #fff;
+}
+
+#guided_tour_wrapper .tour_directions a {
+	color:#A6CC6F;
+	text-decoration:underline;
+}
+
+#guided_tour_wrapper .tour_directions a:hover {
+	text-decoration:none;
+}
+
+#guided_tour_wrapper .tour_directions .guided_tour_dots_wrapper .dot {
+	font-size:20pt;
+	font-weight:bold;
+	color:#fff;
+	opacity:0.4;
+	margin:0.07em;
+}
+
+#guided_tour_wrapper .tour_directions .guided_tour_navigation .guided_tour_arrow {
+	display:block;
+	float:left;
+	width:18px;
+	height:30px;
+}
+
+#guided_tour_wrapper .guided_tour_current_step,
+#guided_tour_wrapper .guided_tour_step {
+    width:40px;
+    height:40px;
+    border-radius:30px;
+    background-color:#3BAAE3;
+    float:left;
+    text-align:center;
+    line-height:38px;
+    color:#fff;
+    font-weight:bold;
+    font-size:18pt;
+    font-family:Century Gothic, Arial, Helvetica, sans-serif;
+}
+
+#guided_tour_wrapper .guided_tour_current_step.guided_tour_green_circle {
+	background-color:#84c724;
+	color:#84c724;
+}
+
+#guided_tour_wrapper .guided_tour_current_step {
+	margin-right:0.25em;
+    margin-left:0.25em;
+    margin-top:-0.25em;
+}
+
+#guided_tour_wrapper .guided_tour_step_text {
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	color:#fff;
+	margin-left:10em;
+	width:58%;
+	padding-top:2.25em;
+}
+
+#guided_tour_wrapper .tour_directions button,
+#guided_tour_wrapper .tour_complete_throbber,
+#guided_tour_wrapper .tour_checkmark,
+#guided_tour_wrapper .close_guided_tour {
+	position:fixed;
+	bottom:2em;
+	display:none;
+	right:11em;
+}
+
+#guided_tour_wrapper .close_guided_tour {bottom:3.75em;right:0.75em;width:40px;opacity:0.7;}
+#guided_tour_wrapper .close_guided_tour:hover {cursor:pointer;opacity:1;}
+#guided_tour_wrapper .tour_checkmark {bottom:3em;left:4em;}
+#guided_tour_wrapper .tour_complete_throbber {bottom:2.75em;right:15em;}
+#guided_tour_wrapper .tour_directions .guided_tour_navigation {margin-left:2em;margin-top:2em;float:left;}
+#guided_tour_wrapper .tour_directions .guided_tour_navigation .guided_tour_arrow:hover {cursor:pointer;}
+#guided_tour_wrapper .tour_directions .guided_tour_dots_wrapper {text-align:center;line-height:10px;}
+#guided_tour_wrapper .tour_directions .guided_tour_next {background:url("/images/tall_arrow_right.png");}
+#guided_tour_wrapper .tour_directions .guided_tour_prev {background:url("/images/tall_arrow_left.png");}
+
+
+
+/** --------------------- styling for the blue steps throughout the page --------------------- **/
+
+#guided_tour_wrapper .guided_tour_step {
+    position:absolute;
+	box-shadow:2px 1px 8px #ccc;
+	z-index:1000;
+	opacity:0.5;
+	display:none;
+}
+
+#guided_tour_wrapper .guided_tour_step:hover,
+#guided_tour_wrapper .selected_tour_step {
+	cursor:pointer;
+	opacity:1;
+}
+
+#guided_tour_wrapper .guided_tour_arrow_top,
+#guided_tour_wrapper .guided_tour_arrow_bottom,
+#guided_tour_wrapper .guided_tour_arrow_right,
+#guided_tour_wrapper .guided_tour_arrow_left {width:0;height:0;position:absolute;}
+
+#guided_tour_wrapper .guided_tour_arrow_top {
+	border-left: 8px solid transparent;
+	border-right: 9px solid transparent;
+	border-bottom: 12px solid #3BAAE3;
+	top:-0.35em;
+	left:0.5em;
+}
+
+#guided_tour_wrapper .guided_tour_arrow_bottom {
+	border-left: 8px solid transparent;
+	border-right: 9px solid transparent;
+	border-top: 12px solid #3BAAE3;
+	top:1.5em;
+	left:0.5em;
+}
+
+#guided_tour_wrapper .guided_tour_arrow_right {
+	border-top: 8px solid transparent;
+	border-bottom: 9px solid transparent;	
+	border-left: 12px solid #3BAAE3;
+	top:0.5em;
+	left:1.5em;
+}
+
+#guided_tour_wrapper .guided_tour_arrow_left {
+	border-top: 8px solid transparent;
+	border-bottom: 9px solid transparent; 
+	border-right:12px solid #3BAAE3;
+	top:0.5em;
+	left:-0.35em;
+}

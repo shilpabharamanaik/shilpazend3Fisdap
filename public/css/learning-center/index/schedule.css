@@ -1,0 +1,89 @@
+
+
+#scheduled-test-list.fisdap-table tbody td {
+	padding: 0 0.5em;
+	border-right: none;
+	border-left: none;
+}
+
+#scheduled-test-list tbody td.action {
+	width: 6%;
+	text-align: center;
+	padding-bottom:0.5em;
+	padding-top:0.5em;
+}
+
+#scheduled-test-list tbody td.contactCell {
+	width:17%;
+}
+
+#scheduled-test-list tbody td.deleteCell {
+	width:4%;
+}
+
+
+#add-test-btn {
+	display: block;
+	width: 120px; height: 29px;
+	background-position: bottom;
+	text-indent: -9999px;
+	float:right;
+	background-image: url("/images/buttons/new-test.png");
+	margin-top:-0.5em;
+	margin-right:-2em;
+	margin-bottom:0em;
+}
+
+.action img {
+	height:19px;
+	margin-top:0.3em;
+}
+
+.action {
+	padding-bottom:0.3em;
+}
+
+.action a {
+	color:#1f1f1f;
+	font-size:9pt;
+}
+
+.npublished {
+	font-size:10pt;
+	color:#CE4944;
+}
+
+#add-test-btn:hover {
+	background-position: center;
+}
+
+#add-test-btn:active {
+	background-position: top;
+}
+
+.program-name {
+	margin-bottom: .5em;
+	color: #655D57;
+}
+
+/* keep the white triangle even when filter element is focused and hovered */
+.dark-accordion #test-filters .ui-state-active .ui-icon, .dark-accordion #test-filters .ui-state-hover .ui-icon, .dark-accordion #test-filters .ui-state-focus .ui-icon {
+    background-image: url("/css/themeroller/dark-accordion/images/ui-icons_ffffff_256x240.png");
+}
+
+
+.action a, .action {
+	font-size:0.85em;
+}
+
+.action a:hover {
+	text-decoration:none;
+}
+
+.action {
+	color:#444;
+}
+
+.student-cell {
+	text-align:center;
+}

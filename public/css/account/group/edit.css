@@ -1,0 +1,43 @@
+#group_form div {
+	margin: 4px 0px;
+}
+
+.list_div {
+	margin-top: 2em;
+}
+
+.user_list {
+		max-height: 15em;
+		overflow: auto;
+		width:98%;
+		color: black;
+		font-size: 90%;
+		margin-bottom: 4px;
+}
+
+.group-option {
+	color: black;
+}
+	
+.result-selected {
+	color: black;
+}
+	
+.active-result {
+	color: black;
+}
+
+.action-buttons-wrapper {
+	float: right;
+	margin-top: 1.5em;
+}
+
+#error_message {
+	width: 95%;
+}
+
+.count-text{
+	text-align: left;
+	color: #655D57;
+	width: 100%;
+}

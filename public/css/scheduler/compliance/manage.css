@@ -1,0 +1,354 @@
+#main-content .island {
+	overflow: visible;
+}
+
+
+#controls-blocker {
+	width:97%;
+	display: none;
+	height:3em;
+	position:absolute;
+	z-index:500;
+}
+
+#table-blocker {
+	display: none;
+	height: 100%;
+    left: -1em;
+    position: absolute;
+    top: 3.5em;
+    width: 103%;
+    z-index: 100000000;
+}
+
+#req-throbber {
+    display: none;
+    left: 25%;
+    position: fixed;
+    top: 45%;
+    z-index: 1001;
+}
+
+.compliance-nav {
+	float: right;
+	font-size: 10pt;
+}
+
+.search-box {
+	color:#666;
+	padding:0.35em;
+	width:300px;
+	background-color: #fff;
+	background-image: url(/images/icons/magnifying-glass.png), -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+	background-image: url(/images/icons/magnifying-glass.png), -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+	background-repeat:no-repeat;
+	background-position:97%;
+	border: 1px solid #bbb;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11pt;
+	padding-right:2em;
+	padding-top:0.25em;
+	padding-bottom:0.25em;
+	float: right;
+	margin-bottom: 3px;
+}
+
+.program-requirements-header {
+	overflow: auto;
+	padding-bottom: 0.5em;
+	line-height: 28px;
+}
+
+.requirement-category-section {
+	/*max-height:55em;*/
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	overflow:auto;
+	padding-top:0em;
+	position: relative;
+}
+
+.requirement-category {
+	position: relative;
+	top: -1em;
+}
+
+
+.category-controls {
+	font-size: 85%;
+    position: absolute;
+    right: 2px;
+    top: 3px;
+}
+
+.attachment-info {
+	border-top:1px solid #ccc;
+	overflow: auto;
+	width: 100%;
+}
+
+.attachment-summary {
+	border-right: 1px solid #ccc;
+	padding: .5em;
+	width: 33%;
+	vertical-align: top;
+}
+
+.attachment-summary:last-child {
+	border: none;
+}
+
+.requirement-row-header {
+	display:block;
+	width:100%;
+	padding-top:.3em;
+	padding-bottom:.3em;
+	position:relative;
+	min-height: 23px;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	background-color: #ffffff;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=0 );   
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #eeeeee), color-stop(100%, #f4f4f4));
+	background-image: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -moz-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -o-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -ms-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%); 
+	color:#000;
+}
+
+.requirement-row-header:not(.no-hover):hover,
+.selectedRow.requirement-row-header
+{
+	background: #dddddd; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#dddddd'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#dddddd)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #eeeeee,  #dddddd); /* for firefox 3.6+ */
+}
+
+
+.requirement-category-section .manage-requirement-row:last-child .requirement-row-header {
+	border-bottom: none;
+}
+
+.manage-requirement-row {
+	border-top:1px solid #bbb;
+    position: relative;
+}
+
+.requirement-row-header.pending {
+    opacity: 0.5;
+}
+
+.pendingThrobber {
+    position: absolute;
+    z-index: 100;
+    top: 0.6em;
+    left: 0.6em;
+}
+
+.manage-requirement-row.pending input.requirement-checkbox,
+.manage-requirement-row.pending img.arrow-toggle {
+    opacity: 0;
+}
+
+.attachment-specific {
+	margin-left: 1em;
+}
+
+.show-specific-attachments {
+	float: right;
+}
+
+.attachment-summary .fisdap-table, .attachment-summary .fisdap-table tbody {
+	border-top: none;
+	border-bottom: none;
+}
+
+.attachment-summary .fisdap-table tr:first-child td {
+	border-top: none;
+}
+
+.attachment-summary .fisdap-table tr:last-child td {
+	border-bottom: none;
+}
+
+#checkbox-selector-menu, #more-selector-menu {
+    padding: 5px;
+	margin: 0px;
+    position: absolute;
+	z-index: 700;
+	text-align: left;
+	border: 1px solid #C6C4B8;
+    border-radius: 5px;
+	display: none;
+    padding: 1px;
+    top: 1.77em;
+    border-top-left-radius: 0px;
+}
+
+#checkbox-selector-menu ul li:hover, #more-selector-menu ul li:hover {
+	background: #EFEDEB;
+}
+
+#checkbox-selector-menu ul li, #more-selector-menu ul li {
+	padding: 0.2em;
+	padding-right: 40px;
+	padding-left: 0.7em;
+}
+
+#more-selector-menu ul li {
+	padding-right:10px;
+}
+
+#more-selector-menu {
+	right: 50px;
+	width: 7.25em;
+}
+
+
+#add-requirement {
+    background-position: center bottom;
+    display: inline-block;
+	position: relative;
+	left: 26px;
+	height: 29px;
+    margin: 4px;
+    text-indent: -9999px;
+    width: 132px;
+	background-image: url(/images/buttons/add-requirement.png);
+}
+
+#add-requirement:hover {
+	background-position: center;
+}
+#add-requirement:active {
+	background-position: top;
+}
+
+.buttonWrapper {
+	display: inline;
+}
+
+.modal-buttons {
+	float: right;
+	margin: 1em 0;
+}
+
+#requirement-filters .section-header {
+	color: #ffffff;
+	font-family: Century Gothic, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+#requirement-filters label {
+	font-family: Century Gothic, Arial, Helvetica, sans-serif;
+}
+
+#requirement-filters .modal-buttons {
+	margin-right: 15px;
+}
+
+#requirement-filters .slider-container {
+	width: 60px;
+	float: left;
+	margin-right: 8px;
+}
+
+#sitelist-blocker {
+	width:100%;
+	display: none;
+	height:60px;
+	position:absolute;
+	z-index:500;
+}
+
+.type-icon {
+	position: relative;
+	top: 3px;
+}
+
+.global-icon {
+	width: 15px;
+	height: auto;
+	float: right;
+}
+
+#preceptors_filters_chzn .hidden-sd-option,
+#students_chzn .hidden-sd-option, 
+#instructors_chzn .hidden-sd-option 
+ {
+	display:none;
+}
+
+.accountType-chosen-text,
+.sites-chosen-text,
+.category-chosen-text,
+.students-chosen-text,
+.instructors-chosen-text {
+	color:#999;
+	position:absolute;
+	top:0.45em;
+	left:0.4em;
+	font-size:13px;
+	font-family: sans-serif;
+}
+
+#requirement-filters .white-text {
+	color: #ffffff;
+}
+
+.stage .slider-frame .slider-button:before {
+    width: 39px;
+}
+
+#manage-requirements-container .stage .slider-frame .slider-button:before {
+	width:49px;
+}
+
+#notificationsForm a {
+	color:#a94612;
+}
+
+#load-modal-throbber {
+	position:Absolute;
+	top:0.4em;
+}
+
+#requirement-filters-wrapper {
+	display:none;
+}
+
+.fixed-menu-bar {
+	position:fixed;
+	top:0;
+	background-color:#fff;
+	border-bottom:2px solid #bbb;
+	left: 3.3em;
+	padding-left: 0.35em;
+	z-index:1000;
+	padding-top:1em;
+	width: 926px;
+	box-shadow:0px 5px 5px #dfdfdf;
+	-webkit-box-shadow: 0px 5px 5px #dfdfdf;
+	-moz-box-shadow:0px 5px 5px #dfdfdf;
+}
+
+.fancy-input-focus {
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,.3);
+	-moz-box-shadow   : 0 0 5px rgba(0,0,0,.3);
+	-o-box-shadow     : 0 0 5px rgba(0,0,0,.3);
+	box-shadow        : 0 0 5px rgba(0,0,0,.3);
+	outline:none;
+}
+
+#shared-requirements-container {
+	margin-top: 2em;
+}
+
+.null-search {
+	display: none;
+}
+
+

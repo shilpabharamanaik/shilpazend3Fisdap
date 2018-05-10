@@ -1,0 +1,124 @@
+#calendar {
+	margin-left:0.5em;
+}
+
+.mpc-day-block {
+	display:block;
+	float:left;
+	width:2.191em;
+	height:32px;
+	margin:1px;
+	background-color:#fff;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	text-align:center;
+	line-height:32px;
+	color:#444;
+}
+
+.hidden-row {
+	display:none;
+}
+
+.has-opacity {
+	opacity:0.5;
+}
+
+.has-opacity .day-num {
+	display:none;
+}
+
+.cal-header h3 {
+	color:#666;
+	text-align:center;
+	font-size:12pt;
+	margin-bottom:0.4em;
+}
+
+.pc-day-name {
+	color:#fff;
+	width:32px;
+	float:left;
+	margin-right: 1px;
+	text-align: center;
+	margin-left: 1px;
+	font-size: 9pt;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+}
+
+.smart-pick-cal {
+	width:243px;
+	float:left;
+	margin:0.355em;
+}
+
+.month {
+	width:239px;
+	padding:5px;
+	background-color: #73889D;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#73889D), to(#8299AF));
+    background-image: -moz-linear-gradient(center bottom,#73889D 50%,#8299AF 75%);
+    background: -ms-linear-gradient(top, #73889D, #8299AF);
+    background: -o-linear-gradient(top, #73889D, #8299AF);
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.mpc-day-block:hover {
+	cursor:pointer;
+}
+
+.has-opacity:hover {
+	cursor:default;
+}
+
+.mpc-day-block-hover {
+	color:#444;
+	text-shadow:0 1px 1px rgba(255,255,255,0.75);
+	background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top,#fff,#e6e6e6);
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6));
+	background-image: -webkit-linear-gradient(top,#fff,#e6e6e6);
+	background-image: -o-linear-gradient(top,#fff,#e6e6e6);
+	background-image: linear-gradient(to bottom,#fff,#e6e6e6);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffe6e6e6',GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+}
+
+.selected-day {
+	background-color: #BDBDBD;
+	background-image: none;
+	-webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+	-moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+	box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+}
+
+
+.repeated-day {
+	background-color: #ccc;
+	color:#fff;
+	background-image: none;
+	-webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+	-moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+	box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+}
+
+.repeated-day {
+	background-image:-webkit-repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255, 255, 255, .5) 5px, rgba(255, 255, 255, .5) 8px);
+}
+
+#day-disable, #week-disable, #month-disable {
+	width:93px;
+	height:50px;
+	position:absolute;
+	z-index:7800;
+	left:10em;
+	display:none;
+}
+
+#week-disable {width:82px;left:16.5em;}
+#month-disable {width:88px;left:22.2em;}

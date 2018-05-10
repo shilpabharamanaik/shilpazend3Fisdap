@@ -1,0 +1,136 @@
+#programContainer {
+	width:660px;
+	margin:0 auto;
+	margin-top:2.5em;
+}
+
+#programContainer select {
+	width:284px;
+}
+
+#activeContainer {
+	margin-top:-1.88em;
+	float:right;
+	width: 43%;
+}
+
+#inactiveContainer {
+	margin-top:-1.88em;
+	float:left;
+	width: 43%;
+}
+
+#activeContainer div,
+#inactiveContainer div {
+	font-size: 90%;
+}
+
+#nonsharingProgram-label,
+#sharingProgram-label {
+	text-align:center;
+	font-size: 1em;
+	font-family: Century Gothic, Arial, Helvetica, sans-serif;
+	color: #fff;
+	font-weight:normal;
+	display:block;
+	padding:.5em;
+	background:#73869B;
+	background: #73869B; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#73869B', endColorstr='#5E7084'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#73869B), to(#5E7084)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #73869B,  #5E7084); /* for firefox 3.6+ */
+	border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#programContainer h3 {
+	width: 270px;
+}
+
+select#sharingProgram,
+select#nonsharingProgram {
+	line-height: 1;
+	font: normal 11pt Tahoma, Geneva, sans-serif;
+	color: #000;
+	height: 100%;
+	padding:.2em;
+}
+
+#moveButtonsPrograms {
+	width:90px;
+	float:left;
+	margin-top:1.3em;
+	text-align:center;
+}
+
+#moveButtonsPrograms a {
+	color:#000;
+	width:40px;
+	font-size:1em;
+	font-weight:bold;
+	margin:.5em;
+	padding:.3em;
+}
+
+#moveButtonsPrograms a:hover {
+	color:#fff;
+}
+
+#sharingButtonsContainer {
+	float: right;
+	width:102px;
+	position:relative;
+	margin:1em auto 1.5em;
+}
+
+#requestButtonsContainer {
+	float: right;
+	margin: .5em;
+}
+
+#sharingButtonsContainer a {
+	width:70px;
+	float:left;
+	margin-left:1em;
+}
+
+#requestButtonsContainer a {
+	width: 10em;
+}
+
+.buttons {
+    float: right;
+    left: 1.5em;
+    margin-bottom: 0.5em;
+    position: relative;
+}
+
+.buttons div {
+	display: inline;
+}
+
+#sharingDirections {
+	float: left;
+	margin: 1em;
+	margin-top: .5em;
+}
+
+#sharingDirections p {
+	margin-bottom: .5em;
+}
+
+#sharingDirections div.success {
+	padding: 1em 1.5em 1.5em 2em;
+	width: 606px;
+	margin: 0em;
+}
+
+#contact-list {
+	line-height: 1.7;
+	margin: 1em 0 0 4em;
+	list-style: disc outside none;
+}
+
+.no-request {
+	color: #A09E9C;
+}

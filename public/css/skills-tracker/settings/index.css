@@ -1,0 +1,524 @@
+h3.settings-header {
+    width: 100%;
+    font-weight: normal;
+    color: #655d57;
+    /*font-size: 1.2em;*/
+    border-bottom: 1px solid #bbb;
+    /*padding-top: 10px;*/
+    margin-bottom: 1em;
+}
+
+h4.settings-header {
+    font-weight: bolder;
+    color: #655d57;
+    margin: .5em 0;
+}
+
+#control-buttons {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 245px;
+    font-size: 15px;
+}
+
+#video-wrapper {
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+
+#save-button {
+    float: right;
+}
+
+#tabs {
+    float: left;
+}
+
+#tabs button {
+    background-color: transparent;
+    border: 0px;
+    display: inline-block;
+    color: black;
+    font-size: 1.3em;
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    margin-right: 20px;
+    margin-left: .5em;
+    background-repeat: no-repeat;
+    padding: 0px;
+    height: 30px;
+}
+
+#tabs button:hover {
+    cursor: pointer;
+}
+
+#ticker-wrapper {
+    margin-top: -.8em;
+}
+
+#ticker {
+    width: 40px;
+    margin-bottom: -0.35em;
+    margin-left: 4em;
+}
+
+.active-tab-img {
+    display: none;
+}
+
+#tabs img {
+    margin-top: 1em;
+}
+
+.tab-text {
+    display: block;
+    margin-left: 2em;
+}
+
+.lab-skills-tab-content {
+    display: none;
+    margin-top: 1em;
+}
+
+.category-accordion h3 {
+    color: #fff;
+    border: 1px solid #C7C2BD;
+    font-weight: normal;
+    border-top-right-radius: 6px;
+    -khtml-border-top-right-radius: 6px;
+    -webkit-border-top-right-radius: 6px;
+    -moz-border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    -khtml-border-top-left-radius: 6px;
+    -webkit-border-top-left-radius: 6px;
+    -moz-border-top-left-radius: 6px;
+    color: #444;
+    margin-bottom: .2em;
+
+    /* fallback */
+    background-color: #eee;
+    background: url(/css/themeroller/default/images/ui-bg_highlight-soft_100_c6c1bc_1x100.png) repeat-x;
+
+    /* Safari 4-5, Chrome 1-9 */
+    background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0.50, #ddd),
+            color-stop(0.75, #eee)
+    );
+
+    /* Firefox 3.6+ */
+    background-image: -moz-linear-gradient(
+            center bottom,
+            #ddd 50%,
+            #eee 75%
+    );
+
+    /* IE 10 */
+    background: -ms-linear-gradient(top, #eee, #ddd);
+
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(top, #eee, #ddd);
+}
+
+.category-accordion h3:hover {
+    background: #C6C1BC url(/css/themeroller/default/images/ui-bg_highlight-soft_100_c6c1bc_1x100.png) 50% 50% repeat-x;
+}
+
+.category-accordion h3 button {
+    color: #665D58;
+    font-size: 10.5pt;
+    display: block;
+    width: 100%;
+    border: 0px;
+    background: transparent;
+    text-align: left;
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: .2em;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    position: relative;
+}
+
+.category-accordion h3 button:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.bottom-rounded-corners {
+    border-bottom-right-radius: 6px;
+    -khtml-border-bottom-right-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    -moz-border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    -khtml-border-bottom-left-radius: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    -moz-border-bottom-left-radius: 6px;
+}
+
+.category-content {
+    display: none;
+    margin-top: -.3em;
+    border: 1px solid #C7C2BD;
+    margin-bottom: 0.2em;
+}
+
+.category-content table thead {
+    background-color: #faee91;
+    border-bottom: 2px solid #f3c321;
+    text-align: left;
+}
+
+.category-content table tbody td {
+    border: 0px;
+}
+
+.category-content table tbody {
+    border: 0px;
+}
+
+.category-content table {
+    border-top: 0px;
+}
+
+.peer-col input, .instructor-col input, .eureka-col input {
+    width: 35px;
+}
+
+.skillsheet-col {
+    text-align: center;
+}
+
+.no-eval img {
+    opacity: 0.6;
+    margin-left: -0.1em;
+}
+
+.peer-col input, .instructor-col input, .eureka-col input, .hidden-name-input input, .category-name input, .ff-input-fix {
+    background-color: #fff;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+    background-image: -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+    background-image: -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+    background-image: -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+    background-image: -ms-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+    background-image: linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+    border: 1px solid #aaa;
+    margin: 0;
+    padding: 0.2em;
+    cursor: text;
+    overflow: hidden;
+    height: 20px;
+    position: relative;
+    border: 1px solid #AAA;
+    color: #444;
+    text-align: center;
+}
+
+.skill-col input {
+    margin-top: 0.5em;
+}
+
+.fancy-input-focus {
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    -o-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    outline: none;
+}
+
+.right-txt-align {
+    text-align: right;
+    display: block;
+    float: right;
+    margin-right: 0.6em;
+}
+
+.defintion-name {
+    font-size: 10pt;
+}
+
+.def-name-wrapper {
+    position: relative;
+    width: 150px;
+}
+
+.hidden-name-input input {
+    position: absolute;
+    top: 0em;
+    left: 0em;
+    text-align: left;
+}
+
+.island {
+    position: static;
+}
+
+.hidden-name-input, .category-name input {
+    display: none;
+}
+
+.category-name input, .ff-input-fix {
+    position: absolute;
+    text-align: left;
+    top: 0.4em;
+    left: 0.4em;
+    color: #665D58;
+    font-size: 10.5pt;
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.ff-input-fix {
+    top: 0.55em;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+}
+
+.tooltip img {
+    width: 10px;
+}
+
+.tooltip-text {
+    border: 1px solid #bbb;
+    background-color: #fff;
+    padding: .5em;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-weight: normal;
+    font-size: 9pt;
+}
+
+.add-lab-practice-item, .add-category {
+    display: block;
+    width: 120px;
+    height: 29px;
+    background-position: bottom;
+    text-indent: -9999px;
+    float: left;
+    margin: .5em;
+}
+
+.add-lab-practice-item {
+    background-image: url(/images/buttons/add-practice-def.png);
+}
+
+.add-category {
+    background-image: url(/images/buttons/add-lab-category.png);
+}
+
+.add-lab-practice-item:hover, .add-category:hover {
+    background-position: center;
+}
+
+.add-lab-practice-item:active, .add-category:active {
+    background-position: top;
+}
+
+.chzn-container {
+    margin-top: 0.4em;
+}
+
+.add-item-wrapper {
+    width: 125px;
+    height: 50px;
+    position: relative;
+}
+
+.add-item-wrapper img {
+    position: absolute;
+    left: 4em;
+    top: 1em;
+    display: none;
+}
+
+.overflowMe {
+    max-height: 300px;
+    overflow: auto;
+}
+
+.category-table-thead {
+    width: 911px;
+}
+
+.categpry-table {
+    width: 911px;
+}
+
+.category-table-scrollable-content {
+    max-height: 200px;
+    overflow: auto;
+}
+
+.hidden-def-name, .hidden-skillsheet-id {
+    display: none;
+}
+
+.add-category-wrapper {
+    position: relative;
+    margin-top: -1.5em;
+    float: right;
+    width: 135px;
+    height: 48px;
+}
+
+.add-category-wrapper img {
+    position: absolute;
+    top: 1em;
+    left: 4.2em;
+    display: none;
+}
+
+.no-practice-items {
+    display: block;
+    margin: 1em;
+}
+
+.def-name-throbber {
+    position: absolute;
+    top: 0.2em;
+    right: 0em;
+}
+
+.active-col {
+    position: relative;
+    width: 65px;
+}
+
+.def-name-col {
+    width: 150px;
+}
+
+.skillsheet-col {
+    width: 67px;
+}
+
+.skill-col {
+    width: 328px;
+}
+
+.peer-col {
+    width: 60px;
+    text-align: center;
+}
+
+.instructor-col {
+    width: 90px;
+    text-align: center;
+}
+
+.eureka-col {
+    width: 110px;
+}
+
+.peer-col img, .instructor-col img, .eureka-col img {
+    float: right;
+    height: 21px;
+}
+
+.fisdap-table tbody td {
+    padding: 6px 3px 6px 3px;
+}
+
+.fisdap-table thead th, td {
+    padding: 6px 3px 6px 3px;
+}
+
+.fisdap-table thead th {
+    padding: 6px 3px 6px 3px;
+}
+
+.category-table-thead {
+    background-color: #faee91;
+    border-bottom: 2px solid #f3c321;
+    text-align: left;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    width: 899px;
+}
+
+.category-table-thead .active-col,
+.category-table-thead .skillsheet-col,
+.category-table-thead .skill-col,
+.category-table-thead .peer-col,
+.category-table-thead .instructor-col,
+.category-table-thead .def-name-col,
+.category-table-thead .eureka-col {
+    float: left;
+    width: 60px;
+    margin-left: 0.3em;
+}
+
+.category-table-thead .active-col {
+    width: 58px;
+    text-align: center;
+}
+
+.category-table-thead .def-name-col {
+    width: 149px;
+}
+
+.category-table-thead .skillsheet-col {
+    width: 69px;
+}
+
+.category-table-thead .skill-col {
+    width: 325px;
+}
+
+.category-table-thead .peer-col {
+    width: 58px;
+}
+
+.category-table-thead .instructor-col {
+    width: 85px;
+    margin-left: 0.5em;
+}
+
+.category-table-thead .eureka-col {
+    width: 71px;
+    margin-left: 1.5em
+}
+
+.throbber-bg {
+    background: url(/images/throbber_small.gif);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+#defNameChange-modal-buttons {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    width: 300px;
+}
+
+#defNameChange-throbber {
+    position: absolute;
+    right: 2em;
+    bottom: .8em;
+}
+
+#defNameChange-modal-buttons a {
+    float: right;
+    margin-left: 0.5em;
+}
+
+#defNameChangeModalSpacer {
+    width: 100%;
+    height: 40px;
+}
+
+#autosave-text {
+    float: left;
+    width: 180px;
+    font-size: 15px;
+    margin-top: 0.5em;
+    display: none;
+}

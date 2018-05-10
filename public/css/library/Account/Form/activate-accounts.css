@@ -1,0 +1,84 @@
+input[type="text"] {
+    display: block;
+    width: 100%;
+    font:normal 10pt Tahoma, Geneva, sans-serif;
+    padding-left:.2em;
+}
+
+select {
+    font-family: Tahoma, Geneva, sans-serif;
+    width:44%;
+    margin-right:.5em;
+}
+
+select.license-state {
+	width: 109%;
+}
+
+table.activate-accounts-table {
+    margin: 15px 0;
+    width:97%;
+}
+
+table.activate-accounts-table tbody td {
+    border-left: none;
+    border-right: none;
+}
+
+table.activate-accounts-table td.grad-date {
+    width:180px;
+}
+
+table.activate-accounts-table thead td {
+    text-align: center;
+}
+
+table.activate-accounts-table tr.has-errors {
+    background: #fbe3e4;
+}
+
+td.hiddenCell {
+    display:none;
+}
+
+.distributed {
+    width:22px;
+    height:21px;
+    background-color:#fff;
+    position:absolute;
+    right:-1.85em;
+    top:0.3em;
+}
+
+.distributed p {
+    font-size:18px;
+    color:#fff;
+    font-weight:bold;
+    margin-top:-.1em;
+}
+
+.distributedToolTip {
+    background-color:#FFFBD8;
+	border:1px solid #f6c61f;
+	padding:.4em;
+	position:absolute;
+	z-index:100;
+    display:none;
+    right:.7em;
+    top:0.7em;
+    width:220px;
+    font-size:11px;
+}
+
+button.useAnywaysTrigger {
+    background: rgba(255,255,255, 0);
+    border:0px;
+    color:#7A330C;
+    font-family:Verdana, Geneva, sans-serif;
+    text-decoration:none;
+}
+
+button.useAnywaysTrigger:hover {
+    text-decoration:underline;
+    cursor:pointer;
+}

@@ -1,0 +1,91 @@
+#sitesContainer {
+	position:relative;
+	border:1px solid white;
+}
+
+#siteListContainer {
+	position:relative;
+	margin-top:45px;
+}
+
+#site-list {
+	font-size:12px;
+	height:250px;
+	overflow:auto;
+	overflow-x: hidden;
+	border:1px solid #ACA9A2;
+	margin-bottom:10px;
+	-moz-border-radius-bottomleft: .6em;
+	border-bottom-left-radius: .6em;
+}
+
+table#sites-table td,
+table#sites-table th {
+	padding:5px;
+	padding-left: 18px;
+}
+
+tr#titles {
+	text-align:left;
+	position:absolute;
+	top:-25px;
+	left:0px;
+	height:20px;
+	padding-bottom:4px;
+	color:#000;
+	background: #C6C1BC; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#C6C1BC', endColorstr='#ACA9A2'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#C6C1BC), to(#ACA9A2)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #C6C1BC,  #ACA9A2); /* for firefox 3.6+ */
+	padding-right:20px;
+	border:1px solid #ACA9A2;
+	-moz-border-radius-topleft: .6em;
+	-moz-border-radius-topright: .6em;
+	border-top-left-radius: .6em;
+	border-top-right-radius: .6em;
+}
+
+th.siteType {
+	-moz-border-radius-topleft: .6em;
+	border-top-left-radius: .6em;
+}
+
+table.tablesorter thead tr .header {
+	background-image: url(/js/tableSorter/themes/blue/bg.gif);
+	background-repeat: no-repeat;
+	background-position: center left;
+	cursor: pointer;
+}
+
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(/js/tableSorter/themes/blue/asc.gif);
+}
+
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(/js/tableSorter/themes/blue/desc.gif);
+}
+
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+	background-color: #EBEBEB;
+}
+
+tr.lab, tr.clinical, tr.field {
+	color:black;
+}
+
+tr:hover {
+	cursor:pointer;
+	background: #eee;
+}
+
+tr.field.selectedRow {
+	background: #d2ecf2;
+}
+
+tr.clinical.selectedRow {
+	background: #cfeba7;
+}
+
+tr.lab.selectedRow {
+	background: #faee91;
+}

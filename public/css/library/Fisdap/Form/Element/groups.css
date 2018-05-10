@@ -1,0 +1,7 @@
+select#group-id, select#group-year {
+    border:1px solid #ccc;
+}
+
+select#group-id {
+    width:275px;
+}

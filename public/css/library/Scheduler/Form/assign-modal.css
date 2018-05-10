@@ -1,0 +1,85 @@
+#assign-modal .buttons {
+	position:absolute;
+	bottom:0.5em;
+	right:1.6em;
+	width:300px;
+	left:auto;
+}
+
+
+#assign-modal .buttons a {
+	float:right;
+	margin-left:1em;
+}
+
+#assign-modal {
+	padding-bottom:5em;
+}
+
+#assign-modal .table-label {
+	padding:0px;
+}
+
+#assign-modal h4 {
+	font-size:13pt;
+}
+
+#assign-modal .grid_7 .header {
+	margin-top:-0.2em;
+}
+
+#assign-modal dt {
+	display:none;
+}
+
+#assign-modal #site-icon {
+	float:right;
+	margin-right:0em;
+	margin-top:0.3em;
+}
+
+#assign-modal .ms-picklist-wrapper {
+	position:relative;
+}
+
+#assign-modal-content .grid_1 {width:30px;}
+#assign-modal-content .grid_7 {width:375px;}
+#assign-modal-content .weebles {width:207px; text-align:right;}
+#assign-modal-content .weebles img {height:28px; margin-left:0.4em;}
+
+.text-slots {
+	background-color:#eee;
+	padding:0.5em;
+	border:1px solid #ccc;
+	color:#555;
+	text-align:center;
+}
+
+#assign-modal .info, #assign-modal .notice {
+	font-size:10pt;
+}
+
+#assign-modal .hidden_students, #assign-modal .drop-only-students, #assign-modal .has-data-other-program, #assign-modal .has-data {
+	display:none;
+}
+
+#assign-modal .info b {
+	font-weight:bold;
+}
+
+
+#assign-modal .info ul li {
+	margin-left:1em;
+}
+
+#first-ms-picker-load {
+	position:absolute;
+	top:4.5em;
+	left:320px;
+}
+
+#assign-modal-save-throbber {
+	position:absolute;
+	right:2em;
+	bottom:1em;
+}

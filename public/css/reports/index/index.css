@@ -1,0 +1,53 @@
+#main-content .island {
+	overflow: inherit;
+}
+
+#reports-filters {
+	margin-top: 1em;
+}
+
+input#report_search {
+	width: 45%;
+}
+
+#category-filter {
+	float:right;
+	width: 45%;
+}
+
+#category {
+	width: 100%;
+}
+
+#reports-container {
+	margin: 1.5em 0em;
+	border-bottom: solid 1px #aaa;
+}
+
+#reports-container .report-row {
+	border: solid 1px #aaa;
+	border-bottom: none;
+	padding: .5em;
+}
+
+#reports-container .report-row:hover {
+	background: #eee;
+}
+
+.report-title,
+.report-title a {
+	font-weight: bold;
+	font-family: Verdana,Geneva,sans-serif;
+}
+
+.report-desc {
+    font-size: 95%;
+	 margin: 5px 0px;
+}
+
+.report-categories {
+	font-style: italic; 
+    font-size: 90%;
+    margin: 5px 0px;
+	font-family: Century Gothic,Arial,Helvetica,sans-serif;
+}

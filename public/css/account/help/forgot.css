@@ -1,0 +1,101 @@
+.infoBox {
+	width:400px;
+	float:left;
+	padding:1.5em;
+	padding-top:0em;
+	margin-top:.5em;
+	min-height:285px;
+}
+
+#throbber {
+	position:absolute;
+	top:0px;
+	right:70px;
+	display:none;
+}
+
+.infoBox p {
+	margin-top:.5em;
+}
+
+.infoBox ul {
+	margin-top:.5em;
+}
+
+.infoBox li {
+	list-style-type:circle;
+	margin:.2em;
+	margin-left:2em;
+}
+
+.infoBox i {
+	font-style:italic;
+}
+
+.left {
+	width:400px;
+	border-right:1px solid #ccc;
+}
+
+a#back {
+	display:block;
+	margin-top:2.5em;
+}
+
+.optional {
+	display:none;
+}
+
+.reset-password-form {
+	width:387px;
+	margin:0 auto;
+	margin-top:2em;
+	position:relative;
+}
+
+#email {
+	margin-left:2em;
+	width:200px;
+	margin-top:-.2em;
+}
+
+#save {
+	float:right;
+	margin-top:-3em;
+}
+
+#notice {
+	font-size:10pt;
+	margin-top:2em;
+	background-color:#F7F7F7;
+	padding:1em;
+	border:2px solid #ccc;
+	width:368px;
+}
+
+a.userList {
+	display:block;
+	padding:.2em;
+}
+
+#errorsContainer {
+	display:none;
+	font-size:11pt;
+	padding:0.5em;
+	margin-bottom:1em;
+	border:2px solid #FBC2C4;
+	background:#FBE3E4;
+	color:#8A1F11;
+}
+
+#usersContainer {
+	display:none;
+	background-color:#F7F7F7;
+	width:365px;
+	border:2px solid #ccc;
+	padding:1em;
+}
+
+#mulitpleAccountsMessage {
+	margin-bottom:0.5em;
+}

@@ -1,0 +1,66 @@
+.score_table {
+    border-top: 2px solid #B0B0B0;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 3em;
+}
+
+.score_table tbody {
+    border-bottom: 2px solid #B0B0B0;
+    border-top: 2px solid #B0B0B0;
+}
+
+.score_table thead, tfoot {
+    background-color: #C6C1BC;
+}
+
+.score_table thead {
+    border-color: #B0B0B0 -moz-use-text-color;
+    border-style: solid none;
+    border-width: 1px 0;
+}
+
+.score_table tbody td {
+    border: 1px solid #B0B0B0;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+}
+
+.score_table tbody td.name_col {
+    border-left: 0 none;
+    padding-left: .5em;
+    width: 55%;
+}
+
+.score_table tbody td.date_col {
+    text-align: center; 
+    width: 15%;
+}
+
+.score_table tbody td.score_col {
+    text-align: center; 
+    width: 15%;
+}
+
+.score_table tbody td.rx_col {
+    border-right: 0 none;
+    text-align: center; 
+    width: 15%;
+}
+
+.score_table tbody td.full_row {
+    border-left: 0 none;
+    border-right: 0 none;
+    text-align: center; 
+}
+
+img.shield {
+    padding: 0px 5px;
+    height: 35px;
+}
+
+.title-text {
+    position: relative;
+    top: -6px;
+}
+

@@ -1,0 +1,115 @@
+.floating-button-container {
+	position:absolute;
+	top:0.6em;
+	left:365px;
+}
+
+table.attendee-search-table {
+	font-size:12pt;
+	width:100%;
+	text-align:left;
+}
+
+table.attendee-search-table td {
+	font-size:10pt;
+	padding:.8em;
+}
+
+table.attendee-search-table th {
+	font-size:10pt !important;
+}
+
+table.attendee-search-table tr {
+	border-bottom:1px solid #A2A2A2;
+}
+
+table.attendee-search-table tr:hover {
+	background-color:#eee;
+}
+
+table.tablesorter thead tr .header {
+	background-image: none !important;
+}
+
+table.tablesorter thead tr .headerSortUp {
+	background-image:url(/js/tableSorter/themes/blue/asc.gif) !important;
+}
+
+table.tablesorter thead tr .headerSortDown {
+	background-image:url(/js/tableSorter/themes/blue/desc.gif) !important;
+}
+
+tr#head {
+	background-color:#C6C1BC;
+	border-top:2px solid #A2A2A2;
+	border-bottom:2px solid #A2A2A2;
+}
+
+tr#head:hover {
+	background-color:#C6C1BC;
+}
+
+th.organization,
+th.cert,
+th.workshop,
+th.cert-taught,
+th.zip,
+th.state,
+th.phone,
+th.cert-num,
+th.address1,
+th.address2,
+th.action,
+th.id,
+th.username {
+	padding-right: 20px !important;
+}
+
+#other-links{
+	float: right;
+}
+
+#allAttendees {
+	float: right;
+}
+
+#showAllAttendees {
+	font-size: small;
+}
+
+#submit{
+	font-size: medium;
+}
+
+#displayOptionsTrigger{
+	float: right;
+	font-size: small;
+	margin-left: 5%;
+}
+
+#export-workshop-report-links .pdfLink{
+	font-size: small;
+    left: 10%;
+    position: relative;
+}
+
+#emailAllAttendeesOther{
+	margin-left: 5%;
+	font-size: small;
+	float: right;
+}
+
+#results_area,
+#outer_results_area{
+	min-width: 100% !important;
+	width: auto;
+}
+
+.extraLong {
+	width:950px;
+	margin-left:0.7em;
+}
+
+#search_area_filters-title {
+	width:400px;
+}

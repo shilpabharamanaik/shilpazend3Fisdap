@@ -1,0 +1,27 @@
+.upload-widget-subtext{
+	font-size: .75em;
+	color: gray;
+}
+
+.file-list {
+}
+
+.file-upload-form {
+	border-top: 2px solid gray;
+	margin-top: 10px;
+	padding-top: 10px;
+}
+
+.file-upload-label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.file-upload-options {
+	margin-top: 10px;
+	overflow: auto;
+}
+
+.file-upload-submit {
+	margin-top: 10px;
+}

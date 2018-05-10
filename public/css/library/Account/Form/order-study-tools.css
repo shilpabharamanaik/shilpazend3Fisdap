@@ -1,0 +1,24 @@
+#productList input {
+    display:block;
+    margin-top:-1.1em;
+    float:left;
+}
+
+#productList label {
+    display:block;
+    float:left;
+    margin-left:2em;
+}
+
+input#save {
+    float:right;
+    margin-top:-.59em;
+}
+
+#orderWrapper {
+    width:400px;
+}
+
+#totals {
+    float:right;
+}

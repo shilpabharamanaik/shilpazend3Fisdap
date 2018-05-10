@@ -1,0 +1,45 @@
+#search_area_filters label {
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	margin-bottom:0.25em;
+}
+
+#groups-label, #status-label {
+	margin-top:0.6em;
+}
+
+#search_area_filters dd label {
+	font-size:10pt;
+}
+
+#search_area_filters .grid_5 {
+	border-left:1px solid #eee;
+	padding-left:1em;
+	width:42%;
+}
+
+#search_area_filters .grid_7 {
+	margin-left:-0.5em;
+	width:52%;
+}
+
+#groups {
+	width:100%;
+}
+
+#grad-month {
+	margin-right:1em;
+
+}
+
+#grad_month_chzn {
+	margin-right:0.7em;
+}
+
+#grad-label, #certificationLevels-label,
+#groups-label, #status-label {
+	margin-bottom:0.25em;
+}
+
+#search_area_filters .chzn-container .chzn-results {
+	max-height:120px;
+}

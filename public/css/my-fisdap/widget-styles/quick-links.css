@@ -1,0 +1,28 @@
+.quick-link-section-header{
+	
+}
+
+.quick-link-a{
+	/*padding-left: 15px;*/
+	padding: 1px 0 1px 15px;
+}
+
+.quick-links-widget-background{
+
+}
+
+.quick-links-config-div{
+	width: 380px;
+	height: 250px;
+}
+
+.quick-links-config-div h2:first-child {
+	margin-top: 0;
+}
+
+.quick-links-config-div h2 {
+	margin-top: 10px;
+	font-size: 18px;
+	color: #363636;
+	font-weight: normal;
+}

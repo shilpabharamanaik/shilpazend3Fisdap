@@ -1,0 +1,58 @@
+.rewards_block{
+
+}
+
+.rewards_text{
+	line-height: 130%;
+	padding-left: 15px;
+}
+
+.reward_discount{
+	padding-bottom: 4px;
+}
+
+.rewards_points_summary_text{
+	padding-top: 7px;
+	padding-bottom: 7px;
+	font-size: 1.1em;
+}
+
+.rewards_points_text_big{
+	font-size: 1.25em;
+	font-weight: 900;
+}
+
+.reward_bar_background{
+	height: 52px;
+	width: 100%;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border-top: 1px solid #655D57;
+	border-bottom: 1px solid #655D57;
+	border-left: 2px solid #655D57;
+	border-right: 2px solid #655D57;
+	background-color: #888888;
+}
+
+.reward_bar_foreground{
+	position: relative;
+	top: 1px;
+	height: 50px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #EB882F;
+	
+	background-image: linear-gradient(bottom, #f0791b 40%, #e59944 70%);
+	background-image: -o-linear-gradient(bottom, #f0791b 40%, #e59944 70%);
+	background-image: -moz-linear-gradient(bottom, #f0791b 40%, #e59944 70%);
+	background-image: -webkit-linear-gradient(bottom, #f0791b 40%, #e59944 70%);
+	background-image: -ms-linear-gradient(bottom, #f0791b 40%, #e59944 70%);
+	
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.4, #f0791b),
+		color-stop(0.7, #e59944)
+	);
+}

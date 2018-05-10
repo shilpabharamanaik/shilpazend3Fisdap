@@ -1,0 +1,69 @@
+textarea {
+    font:normal 11pt Tahoma, Geneva, sans-serif;
+    height:250px;
+    color:#666;
+}
+
+input#agreeFlag {
+    float:left;
+    display:block;
+    margin-top:-2.5em;
+}
+
+#agreeDetails {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    padding-left: 50px;
+}
+
+label.required {
+    margin-left:2em;
+	display:block;
+}
+
+#saveButton label {
+    display:none;
+}
+
+#agreeCheckbox {
+    margin-top:2em;
+}
+
+ul.form-errors li b {
+    display:none;
+}
+
+ul.errors li {
+    list-style-type: none;
+    margin-left:-.5em;
+}
+
+#privacyPolicyDialog {
+font:normal 11pt Tahoma, Geneva, sans-serif;
+color:#000;
+}
+
+#privacyPolicyDialog p{
+    margin-bottom:.5em;
+    margin-top:.5em;
+}
+
+p.sectionHeader {
+    font-weight:bold;
+    color:#666;
+}
+
+#privacyPolicyDialog b {
+    display:block;
+    margin-top:1.5em;
+}
+
+.bottomLinks {
+    display:none;
+}
+
+h3 {
+	margin-top:.5em;
+	margin-bottom:.5em;
+}

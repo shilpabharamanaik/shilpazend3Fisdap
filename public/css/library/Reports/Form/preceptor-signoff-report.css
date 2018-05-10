@@ -1,0 +1,94 @@
+/*
+ * ---------------------------------------------------------------------------------------------------------------------------------------
+ *  Styles for the preceptor sign off options form elements
+ * ---------------------------------------------------------------------------------------------------------------------------------------
+ */
+
+.eurkea_options_label {margin-bottom:0.1em;}
+#eureka_skills-element {margin-bottom:1em;}
+#preceptor_signoff_report_options_form {margin-left:0.6em;}
+#preceptor_signoff_report_options_form dt {display:none;}
+#preceptor_signoff_report_options_form .preceptor_signoff_goals_wrapper dd, #eureka_slash {width:60px;float:left;}
+#eureka_slash {width:20px;text-align:center;padding-right:6px;margin-top:0.2em;}
+
+#eureka_goal, #eureka_window  {
+	width:45px;
+	text-align:center;
+	padding-left:0.15em;
+}
+
+#preceptor_signoff_report_options_form .preceptor_signoff_goals_wrapper .grid_3 {
+	margin-left:0em;
+	width: 36%;
+	margin-right: 0em;
+}
+
+#preceptor_signoff_report_options_form .preceptor_signoff_goals_wrapper .grid_5 {
+	color:#666;
+	font-size:10pt;
+	margin-top:0.3em;
+}
+
+.subtle_eureka_summary {
+	font-size:10pt;
+	color:#666;
+}
+
+#preceptor_signoff_report_options_form .eureka_form_left_column {margin-left:0em;}
+#preceptor_signoff_report_options_form .eureka_form_right_column {margin-left:1em;}
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------------------------
+ *  Styles for the Eureka graphs
+ * ---------------------------------------------------------------------------------------------------------------------------------------
+ */
+
+.eureka_home:not(.empty_eureka_home) {
+	width:400px;
+	height:210px;
+	position:relative;
+	margin:0 auto;
+}
+
+.eureka_graph_wrapper {
+	width:423px;
+	float: left;
+	margin-left: 2em;
+	margin-top: -0.5em;
+}
+
+.signoffs_graphs_wrapper {
+	float:left;
+	width:423px;
+	position:relative;
+}
+
+.eureka_graph_wrapper .graph_wrapper {
+	height:auto;
+}
+
+.preceptor_signoff_eureka {margin-top:0.25em;}
+
+.eureka_attempts_table_wrapper {max-height:750px;}
+
+
+.eureka_table_wrapper {width:49%;}
+
+.eureka_graph_wrapper .key-wrapper {margin-left:0em;}
+
+.eureka_table_wrapper td {
+	border: 1px solid #ddd;
+}
+
+.eureka_attempts_table {
+	margin-top:0em;	
+}
+
+.gray_rating {
+	color: #979797;
+}
+
+.eureka_success_cell .eureka_attempts_x {width:10px; margin-left:0.5em;}
+.eureka_success_cell .eureka_attempts_checkmark {width:10px; margin-left:0.5em;}
+
+.eureka_attempts_table .eureka_reached {background-color:rgba(230, 239, 194, 0.55);}

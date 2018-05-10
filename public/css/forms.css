@@ -1,0 +1,59 @@
+.input-section {
+	margin: 0.3em 0 1em;
+}
+
+.multi-checkboxes {
+    margin-top: 0.5em;
+}
+
+.multi-checkboxes label {
+	float: left;
+    margin-bottom: 5px;
+    width: 33%;
+}
+
+.multi-checkboxes input {
+    margin-right: 1em;
+}
+
+.multi-checkboxes br {
+	display: none;
+}
+
+/* styling for decorators in modal forms */
+form.standard-form {
+    width: 100%;
+}
+
+form.standard-form .form-prompt {
+    display: table-row;
+    height: 3em;
+}
+
+form.standard-form .label {
+    display: table-cell;
+    padding: 0.7em 0.5em 0.5em;
+    text-align: right;
+    vertical-align: top;
+    width: 25%;
+}
+
+form.standard-form .label .form-desc {
+    display: block;
+}
+
+form.standard-form .input {
+    display: table-cell;
+    padding: 0.5em 0.5em 0em;
+    width: 75%;
+}
+
+form.standard-form .input .modal-input {
+    width: 92%;
+    resize: none;
+}
+
+form.standard-form .note-limit {
+    padding-right: 6.5%;
+    text-align: right;
+}

@@ -1,0 +1,14 @@
+.export-links {
+	float: right;
+}
+
+.export-button {
+    margin-left: 0.5em;
+}
+
+.export-button img {
+    float: left;
+    margin-right: 0.5em;
+    margin-top: -0.1em;
+	width:20px;
+}

@@ -1,0 +1,118 @@
+#subscriptions-table div.calendar-subscription {
+    clear: both;
+    height:2.7em;
+}
+
+#subscriptions-table div.accordion-header-bar div {
+    float: left;
+}
+
+#subscriptions-table div.accordion-header-bar div.subscription-header {
+    cursor: pointer;
+    width: 94%;
+    height: 1.75em;
+    padding: 10px 7px 4px 7px;
+}
+
+img.accordion-arrow {
+    margin-right: .3em;
+}
+
+#subscriptions-table div.accordion-header-bar div.stage {
+    position: relative;
+    top: 9px;
+    margin-right: 1em;
+}
+
+#subscriptions-table div.accordion-header-bar div.subscription-actions {
+    padding-top: 5px;
+    position: relative;
+}
+
+.edit-btn-div {
+    margin-right: 1em;
+    position: relative;
+}
+
+.delete-email {
+    float: right;
+}
+
+#subscriptions-table div.email-details {
+    border-top: 1px solid #cccccc;
+    clear: both;
+}
+
+h6.email-summary {
+    padding: 0.5em;
+}
+
+h6.column-header {
+}
+
+h6.site-title {
+    padding-top: 0.5em;
+}
+
+div.email-details {
+    display: none;
+}
+
+ul.filter-info {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+ul.filter-info li {
+    margin-left: 1.5em;
+}
+
+.stage .slider-frame .slider-button:before {
+    width:49px;
+}
+
+#load-pdf-modal-throbber {
+    left: 1.5em;
+    position: absolute;
+    top: 0.5em;
+}
+
+#load-delete-modal-throbber {
+    left: 4.6em;
+    position: absolute;
+    top: 0.7em;
+}
+
+#deleteModalThrobber {
+    position: relative;
+    right: 2em;
+}
+
+#delete-modal-content {
+    padding-bottom: 1em;
+}
+
+span#email-title {
+    font-weight: bold;
+}
+
+.delete-email-buttons {
+    float: right;
+    left: 0.5em;
+    margin-bottom: 0.5em;
+    position: relative;
+}
+
+#cancelButtonWrapper, #confirmButtonWrapper {
+    display: inline;
+}
+
+.emails_display_options {
+    border-top:1px solid #bbb;
+    width:98.5%;
+    display:block;
+    padding:0.5em;
+    background-color:rgba(145, 131, 126, 0.075);
+    font-size:10pt;
+    color:#494540;
+}

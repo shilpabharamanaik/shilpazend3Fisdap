@@ -1,0 +1,21 @@
+.receipt-table {
+	margin: 20px 5px;
+}
+
+.receipt-table td {
+	padding: 10px 5px;
+}
+
+.receipt-table tr td:first-child {
+	font-weight: bold;
+	color: #655d57;
+	padding-right: 50px;
+}
+
+.receipt-table tr {
+	border-bottom: 2px solid #b0b0b0;
+}
+
+.product-code-container {
+	margin: 3px 0;
+}

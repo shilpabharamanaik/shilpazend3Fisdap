@@ -1,0 +1,213 @@
+html {
+    min-height:100%;
+}
+
+body {
+    /* fallback */
+    /*background-color: #D6D6D6;*/
+	line-height: 1;
+	font: normal 11pt Tahoma, Geneva, sans-serif;
+    color: #000000;
+	height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+	font-family: Century Gothic, Arial, Helvetica, sans-serif;
+    color: #000000;
+}
+
+h1 {
+    font-size: 18pt;
+}
+
+h2 {
+    font-size: 16pt;
+}
+
+h3 {
+	font-size: 14pt;
+}
+
+h4 {
+	font-size: 12pt;
+}
+
+a {
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: normal;
+    color: #a94612;
+    text-decoration:none;
+}
+
+#mobile-site-content {
+	margin-bottom: 2em;
+	overflow: auto;
+}
+
+/* This is necessary to keep long select boxes from causing horizontal scroll */
+#mobile-site-content select {
+	width:100%;
+}
+
+#header {
+    /*margin-bottom: 1em;*/
+}
+
+#content {
+    margin-top: .5em;
+}
+
+#profile-link {
+    float:right;
+}
+
+#site-title {
+    color: #655D57;
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 20px;
+    font-weight: bolder;    
+}
+
+.form-prompt {
+    margin: .25em 0em;
+}
+
+.form-desc {
+	color: gray;
+	font-style: italic;
+	font-size: 80%;
+	font-weight: normal;
+}
+
+.form-errors {
+	font-size: 11pt;
+}
+
+.form-errors ul {
+	list-style-type: circle;
+}
+
+.form-errors li {
+	display: list-item;
+	margin-left: 10px;
+	padding: .2em 0em;
+}
+
+#menu-container {
+	width:100%;
+	overflow:auto;
+	text-align:center;
+	color:white;
+}
+
+#menu-container a {
+	color:white;
+}
+
+div.menu-button-left {
+	width:49.75%;
+	float:left;
+	/*background-color:#f08632;*/
+	padding-top:0.3em;
+	padding-bottom:0.3em;
+	font-weight:bold;
+	background: #f08632;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+
+div.menu-button-right {
+	width:49.75%;
+	float:right;
+	/*background-color:#f08632;*/
+	padding-top:0.3em;
+	padding-bottom:0.3em;
+	font-weight:bold;
+	background: #f08632;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+
+div.menu-button-selected {
+	background-color:#f05132;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f87638), to(#f05132));
+	background: -moz-linear-gradient(top,  #f87638,  #f05132);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f87638', endColorstr='#f05132');
+}
+
+div.menu-ticker {
+	width:50%;
+	float:left;
+	display:none;
+	position:relative;
+	top:-1px;
+}
+
+div.menu-ticker-right {
+	float:right;
+}
+
+.island {
+    background-color: #FFFFFF;
+    padding:.5em;
+    overflow:auto;
+	margin-bottom: 1.5em;
+}
+
+.field {
+	color: #0d7c9a;
+}
+
+.clinical {
+	color: #6aad0a;
+}
+
+.lab {
+	color: #f59c19;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.page-title {
+    font-weight:normal;
+    color: #655d57;
+}
+
+.medium {
+	font-size: 11pt;
+}
+
+.small {
+	font-size: 19pt;
+}
+
+.medium-btn {
+	font-size: 10pt;
+}
+
+.small-btn{
+	font-size:8pt;
+}
+
+/* Success, info, notice and error/alert boxes
+	Borrowed from http://www.blueprintcss.org/ 
+-------------------------------------------------------------- */
+.error,
+.alert, 
+.notice,
+.success, 
+.info 			{ padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd; }
+
+.error, .alert { background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
+.notice     { background: #fff6bf; color: #514721; border-color: #ffd324; }
+.success    { background: #e6efc2; color: #264409; border-color: #c6d880; }
+.info 			{ background: #d5edf8; color: #205791; border-color: #92cae4; }
+.error a, .alert a { color: #8a1f11; }
+.notice a   { color: #514721; }
+.success a  { color: #264409; }
+.info a			{ color: #205791; }

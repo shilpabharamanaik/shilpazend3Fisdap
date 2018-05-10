@@ -1,0 +1,14 @@
+#report-form-form .report-form-section:first-child h3 {
+	position: relative;
+	top: .5em;
+}
+
+.goalset-buttons {
+    position: absolute;
+    right: 0;
+    top: -2.5em;
+}
+
+td.completed {
+	background-color: #E6EFC2;
+}

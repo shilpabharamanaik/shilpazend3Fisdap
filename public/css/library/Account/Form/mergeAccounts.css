@@ -1,0 +1,94 @@
+.optional {
+	display: none;
+}
+
+#save {
+	float: right;
+	width: 125px;
+}
+
+.user_id {
+	position: relative;
+}
+
+#throbberA {
+    display: none;
+    position: absolute;
+    top: 1.9em;
+    right: 1em;
+}
+
+#throbberB {
+	display: none;
+    position: absolute;
+    top: 1.9em;
+    right: 1em;
+}
+
+#formContainer select {
+	font-family: Tahoma, Geneva, sans-serif
+}
+
+#merge-account-error {
+    display: none;
+}
+
+#merge-account-table {
+	width: 100%;
+}
+
+#result-div {
+    margin-top: 1.5em;
+}
+
+#merge-account-table tr:first-child {
+    border-bottom: 1px solid #000;
+}
+
+#merge-account-table th {
+    height: 4em;
+}
+
+#merge-account-table td {
+	border-left: 1px solid #000;
+    min-height: 3em;
+    padding-top: 1em;
+    height: 100%;
+}
+
+#merge-account-table td:first-child {
+	border-left: none;
+}
+
+#merge-account-table .radio {
+	display: inline-block;
+	width: 100%;
+}
+
+#merge-account-table label {
+	border: 3px solid white;
+    margin-left: 4px;
+}
+
+#merge-account-table td span {
+    display: block;
+    margin-left: 10px;
+    line-height: 2em;
+}
+
+#merge-account-table input[type=radio] {
+	display: none;
+}
+
+#merge-account-table input[type=radio]:checked + .radio {
+    background-color: #e9fccf;
+	border: 3px solid #6aad0a;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.row-label {
+	text-align: right;
+}

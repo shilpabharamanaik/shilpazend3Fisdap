@@ -1,0 +1,118 @@
+/** -------------------------------- begin styles for the preceptors tab ------------------------------ **/
+/** note: general accordion styles are in edit.css, any accordion styles in here are preceptor accordion specific **/
+
+.preceptor_edit {width:100px; float:right; margin-right:5px; text-align:right; position:relative;}
+.preceptor_empty_contact_info {width:500px; float:left; margin-right:3px;}
+
+#preceptor-buttons {
+	margin:1.5em;
+	margin-left:0em;
+	position:relative;
+}
+
+#preceptors .add-preceptor {
+	display:block;
+	width:132px;
+	height:29px;
+	background-position:bottom;
+	position:absolute;
+	top:0.75em;
+	right:0.75em;
+}
+
+#search_preceptors-element {margin-right:-2.1em;}
+#search_preceptors-label {display:none;}
+
+#preceptors .add-preceptor:hover {background-position:center;}
+#preceptors .add-preceptor:active {background-position:top;}
+
+#preceptors .add-preceptor-lab {background-image:url('/images/buttons/site-admin/new-lab-preceptor-button.png');}
+#preceptors .add-preceptor-field {background-image:url('/images/buttons/site-admin/new-field-preceptor-button.png');}
+#preceptors .add-preceptor-clinical {background-image:url('/images/buttons/site-admin/new-clinical-preceptor-button.png');}
+
+#merge-preceptors {float:left;margin-left:-0.55em;}
+
+#load-new-preceptor-modal-throbber, #save-preceptor-modal-throbber, #edit-preceptor-throbber, #merge-preceptors-btn-throbber {position:absolute;}
+
+#load-new-preceptor-modal-throbber {top:1.1em;right:4.5em;}
+#save-preceptor-modal-throbber {display:none;right:3em;bottom:0.5em;}
+#edit-preceptor-throbber {top:0em;right:0em;}
+#merge-preceptors-btn-throbber {top:0.5em;left:2.25em;}
+
+#tab-content .all-action-links-preceptors {font-size:9pt;margin-bottom: 0.5em;margin-top: -0.25em;}
+#tab-content .all-action-links-preceptors .activate-preceptors {float:right; text-align:right;}
+
+/** -------------------------------- begin styles for the preceptor modal -------------------------------- **/
+
+#preceptor-modal {padding-bottom:5em;position:static;}
+#preceptor-modal .fancy-input {width:99%;}
+
+#preceptor-modal-buttons {
+	position:absolute;
+	bottom:1em;
+	right:0.5em;
+}
+
+#preceptor-modal dt, #preceptor-modal label {
+	display:block;
+	float:left;
+	width: 115px;
+	margin-top: 0.65em;
+	padding-top: 0em;
+	text-align: right;
+}
+
+#preceptor-modal dd {
+	display:block;
+	float:left;
+	width:250px;
+	margin-left:1em;
+	margin-top:1em;
+}
+
+#preceptor-modal dd .preceptor_short_input {
+	width:92px;
+}
+
+#preceptor-modal .required-field {
+	color:#666;
+	font-style:italic;
+	font-size:0.77em;
+	padding-right:0.1em;
+	display:block;
+}
+
+#preceptor-modal #preceptor_work {width:145px;}
+#preceptor-modal label.required {margin-top:0.8em;}
+
+#preceptor-modal-buttons a, #preceptor-modal-buttons .green-buttons {float:right;margin-right:0.5em;}
+#preceptor-modal #preceptor_id-label, #preceptor-modal #preceptor_id-element {display:none;}
+
+
+/** -------------------------------- begin styles for the merge preceptors modal ------------------------------ **/
+
+#mergePreceptorsDialog .preceptors-table {margin: 1em; width:94%;}
+#mergePreceptorsDialog .preceptors-table td {padding-left: 2em;}
+
+#mergePreceptorsDialog .preceptors-table tr.selected,
+#mergePreceptorsDialog .preceptors-table tr.selected:hover {
+	background-color:#DDDCDC;
+	background-image:url("/images/icons/checkmark.png");
+	background-repeat:no-repeat;
+	background-position:2%, 50%;
+	background-size:3%;
+}
+
+#mergePreceptorsDialog .buttons {
+	float: right;
+	left: 1.5em;
+	margin-bottom: 0.5em;
+	margin-top:1em;
+	width:187px;
+	position: relative;
+}
+
+#mergePreceptorsDialog #target_preceptor-label label {font-size:11pt;padding-top:1em;display:block;}
+#cancel-preceptor-merge-wrapper {display:inline;float:left;}
+#preceptor-merge-wrapper {float:right;}
+#mergePreceptorsDialog li {list-style:none;}

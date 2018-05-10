@@ -1,0 +1,62 @@
+#form-blocker {
+	background-color: #FFFFFF;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 3em;
+    width: 100%;
+    z-index: 1010;
+}
+
+#update-table-throbber {
+	left: 49%;
+    position: absolute;
+    top: 12.5em;
+    z-index: 1020;
+}
+
+
+table.dataTable.hide-header thead {
+	display: none;
+}
+
+.label {
+	font-weight: bold;
+	width: 25%;
+}
+
+.question {
+	width: 65%;
+}
+
+table.narrow.dataTable td.statistic_category {
+    padding-left: 2em;
+}
+
+table.narrow.dataTable td.right {
+    padding-right: 2em;
+}
+
+#report-results .table-container .dataTables_wrapper {
+    margin-bottom: 0em;
+}
+
+.page-break {
+	margin-bottom: 3em;
+}
+
+#report-content h3.table-title.no-search {
+    border-bottom: 1px solid #B0B0B0;
+}
+
+.signature {
+	float: left;
+    padding: 2em 1em;
+    width: 60%;
+}
+
+.signature-date {
+	float: left;
+    padding: 2em 1em;
+    width: 30%;
+}

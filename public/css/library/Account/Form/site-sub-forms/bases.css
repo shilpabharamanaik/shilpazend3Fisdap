@@ -1,0 +1,162 @@
+
+/** -------------------------------- begin styles for the base tab ------------------------------ **/
+/** note: general accordion styles are in edit.css, any accordion styles in here are base accordion specific **/
+
+.base_address {width:250px; float:left; margin-right:3px;}
+.base_city {width:175px; float:left; margin-right:3px;}
+.base_state {width:40px; float:left; margin-right:3px;}
+.base_zip {width:75px; float:left; margin-right:3px;}
+.base_edit {width:50px; float:right; margin-right:5px; text-align:right; position:relative;}
+.base_empty_address {width:500px; float:left; margin-right:3px;}
+
+#base-buttons {
+	margin:1.5em;
+	margin-left:0em;
+	position:relative;
+}
+
+#add-base-wrapper .add-base {
+	display:block; 
+	width:132px;
+	height:29px;
+	background-position:bottom;
+	position:absolute;
+	top:0.75em;
+	right:0.75em;
+}
+
+#search_bases-element {margin-right:-2.1em;}
+#search_bases-label {display:none;}
+
+#add-base-wrapper .add-base:hover {background-position:center;}
+#add-base-wrapper .add-base:active {background-position:top;}
+
+#add-base-wrapper .add-base-lab {background-image:url('/images/buttons/site-admin/new-lab-base-button.png');}
+#add-base-wrapper .add-base-field {background-image:url('/images/buttons/site-admin/new-field-base-button.png');}
+#add-base-wrapper .add-base-clinical {width:146px; background-image:url('/images/buttons/site-admin/new-clinical-department-button.png');}
+
+#merge-bases {float:left;margin-left:-0.55em;}
+#no_active_bases_warning {display:none;}
+
+#base-accordion .default_select_checkbox_wrapper {
+	height:0.5em;
+	float:left;
+	width:1.9em;
+}
+
+#base-accordion .standard-department,
+#base-modal .standard-department {
+	font-size:9pt;
+	font-style:italic;
+	color:#666;
+	margin-left:0.5em;
+}
+
+#base-accordion .department-edit-link-wrapper {
+	float:left;
+	width:82px;
+	overflow:hidden;
+	text-align:right;
+	line-height:24px;
+}
+
+.standard-departments-msg {
+	margin-top:2em;
+	margin-bottom:0.25em;
+	font-size:10pt;
+	color:#444;
+}
+
+#base-accordion .deparment-accordion-header .accordion_base_name_wrapper {width:485px;}
+
+#load-new-base-modal-throbber, #save-base-modal-throbber, #edit-base-throbber, #merge-bases-btn-throbber, #mergeModalThrobber {position:absolute;}
+
+#load-new-base-modal-throbber {top:1.1em;right:4.5em;}
+#save-base-modal-throbber {display:none;right:3em;bottom:0.5em;}
+#edit-base-throbber {top:0em;right:0em;}
+#merge-bases-btn-throbber {top:0.5em;left:2.25em;}
+#mergeModalThrobber {top:0.5em;left:11.25em;}
+
+
+#tab-content .all-action-links-bases {font-size:9pt;margin-bottom: 0.5em;margin-top: -0.25em;}
+#tab-content .all-action-links-bases .activate-bases {float:right; text-align:right;}
+
+/** -------------------------------- begin styles for the merge bases modal ------------------------------ **/
+
+#mergeBasesDialog .bases-table {margin: 1em; width:94%;}
+#mergeBasesDialog .bases-table td {padding-left: 2em;}
+
+#mergeBasesDialog .bases-table tr.selected,
+#mergeBasesDialog .bases-table tr.selected:hover {
+	background-color:#DDDCDC;
+	background-image:url("/images/icons/checkmark.png");
+	background-repeat:no-repeat;
+	background-position:2%, 50%;
+	background-size:3%;
+}
+
+#mergeBasesDialog .buttons {
+	float: right;
+	left: 1.5em;
+	margin-bottom: 0.5em;
+	margin-top:1em;
+	width:187px;
+	position: relative;
+}
+
+#mergeBasesDialog #target_base-label label {font-size:11pt;padding-top:1em;display:block;}
+
+#cancelButtonWrapper {display:inline;float:left;}
+#mergeButtonWrapper {float:right;}
+#mergeBasesDialog li {list-style:none;}
+
+
+/** -------------------------------- begin styles for the base modal -------------------------------- **/
+
+#base-modal {padding-bottom:5em;position:static;}
+#base-modal .fancy-input {width:99%;}
+
+#base-modal-buttons {
+	position:absolute;
+	bottom:1em;
+	right:0.5em;
+}
+
+#base-modal dt, #base-modal label {
+	display:block;
+	float:left;
+	width: 67px;
+	margin-top: 0.65em;
+	padding-top: 0em;
+	text-align: right;
+}
+
+#base-modal dd {
+	display:block;
+	float:left;
+	width:322px;
+	margin-left:1em;
+	margin-top:1em;
+}
+
+#base-modal dd.standard_base_name {
+    margin-top:0.7em;
+    font-family:Century Gothic,Arial,Helvetica,sans-serif;
+    color: #655d57;
+}
+
+#base-modal .required-field {
+	color:#666;
+	font-style:italic;
+	font-size:0.77em;
+	padding-right:0.1em;
+	display:block;
+}
+
+#base-modal #base_state-element {width:200px;}
+#base-modal #base_zip-label label, #base-modal #base_zip-label {width:30px;}
+#base-modal #base_zip-element {width:75px;}
+#base-modal label.required {margin-top:0.8em;}
+#base-modal-buttons a, #base-modal-buttons .green-buttons {float:right;margin-right:0.5em;}
+#base-modal .chzn-container .chzn-results {max-height:150px;}
+#base-modal #base_id-label, #base-modal #base_id-element {display:none;}

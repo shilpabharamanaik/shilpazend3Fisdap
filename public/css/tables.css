@@ -1,0 +1,98 @@
+.fisdap-table {
+	width:100%;
+	border-top: 2px solid #b0b0b0;
+}
+
+.fisdap-table-scrolling-container {
+	border: 1px solid #B0B0B0;
+    max-height: 14em;
+    overflow: auto;
+}
+
+.fisdap-table.scrollable {
+	border-top: none;
+}
+
+.fisdap-table tbody{
+	border-top: 2px solid #b0b0b0;
+	border-bottom: 2px solid #b0b0b0;
+}
+
+.fisdap-table.scrollable tbody{
+	border: none;
+}
+
+.fisdap-table thead, .fisdap-table tfoot {
+	background-color: #c6c1bc;
+}
+
+.fisdap-table thead {
+	border-top: 1px solid #b0b0b0;
+	border-bottom: 1px solid #b0b0b0;
+	border-left: 0px;
+	border-right: 0px;
+}
+
+.fisdap-table thead th, td {
+	border: none;
+	padding: .5em;
+}
+
+.fisdap-table tbody td {
+	border: 1px solid #b0b0b0;
+	padding: .5em;
+}
+
+.fisdap-table tbody td:first-child, .fisdap-table tbody td:last-child {
+    border-left:none;
+    border-right:none;
+}
+
+.fisdap-table.scrollable tbody td {
+    border: none;
+}
+
+.fisdap-table.scrollable tbody tr {
+    border-top: 1px solid #b0b0b0;
+    border-bottom: 1px solid #b0b0b0;
+}
+
+.fisdap-table.scrollable tbody tr:first-child {
+	border-top:none;
+}
+
+.fisdap-table.scrollable tbody tr:last-child {
+    border-bottom:none;
+}
+
+.fisdap-table tbody td.undo {
+	background-color: #fffcb3;
+	border: none;
+    padding: 0.7em;
+}
+
+.fisdap-table tbody tr:hover {
+	background-color: #EFEDEB;
+}
+
+.fisdap-table tbody td.actions-column {
+    padding: 0.5em 0;
+}
+
+.fisdap-table tbody div.action-cell > div,
+.fisdap-table tbody div.action-cell > a:not(.delete-run) {
+    float: left;
+    margin: 0.3em 0 0 1em;
+}
+
+.fisdap-table tbody div.action-cell {
+    font-size: 12px;
+}
+
+.dataTable td.completed {
+	background-color: #E6EFC2;
+}
+
+.dataTable tr:hover td.completed {
+	background-color: #CFD7AF;
+}

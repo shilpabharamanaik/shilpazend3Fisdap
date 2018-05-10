@@ -1,0 +1,213 @@
+/* 
+    Document   : multiStudentPicker
+    Created on : Aug 2, 2012, 3:55:52 PM
+    Author     : astevenson
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.msp_student_list_div{
+	position:relative;
+	padding-top:35px;
+	z-index:5;
+
+}
+
+#msp_student_list_container {
+	height: 300px;
+	overflow: auto;
+}
+
+#msp_student_list thead {
+	position:absolute;
+	top:0em;
+	left:0em;
+	width:100%;
+	border-top:2px solid #A2A2A2;
+	border-bottom:2px solid #A2A2A2;
+}
+
+#msp_student_list {
+	border-top:0px;
+}
+
+#msp_student_list thead tr {
+	border:0px;
+}
+
+#msp_student_list tbody {
+	border:0px;
+}
+
+#msp_student_list tbody td{
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+#msp_filter_menu {
+	margin-bottom: 10px
+}
+
+#msp_filters h3 {
+	width:99.9%;
+	margin-left:-0.05em;
+}
+
+#msp_filter_form {
+	border-bottom:1px solid #bbb;
+}
+
+td.checkboxCell {
+	text-align:center;
+	width:0.1%;
+}
+
+#checkAll {
+	background-color:transparent;
+	border:0px;
+	padding:0px;
+	margin:0px;
+	color:#7A330C;
+	font-size:10pt;
+}
+
+#checkAll:hover {
+	cursor:pointer;
+	text-decoration:underline;
+}
+
+
+h4.studentList {
+	font-weight:normal;
+	margin-bottom:0.5em;
+	font-size:14pt;
+}
+
+#student-list-throbber {
+	float:left;
+	margin-top:-2.2em;
+	margin-left:800px;
+}
+
+td.Name-cell:hover, td.checkboxCell:hover {
+	cursor:pointer;
+}
+
+#msp_container {
+	position:relative;
+	padding-top:2.5em;
+	margin-top:0.5em;
+}
+
+.graduatingWrapper {
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+	padding-left:2.5em;
+	padding-right:1.5em;
+}
+
+#msp_filter_menu {
+	width:784px;
+	position:absolute;
+	top:0em;
+}
+
+#section {
+	width:180px;
+	margin-left:.15em;
+}
+
+#msp_filter_form {
+	display:none;
+	background-color:black;
+	opacity:0.8;
+	color:#fff;
+	padding-top:1em;
+	padding-bottom:1em;
+	padding-left:10px;
+	border-bottom-right-radius:6px;
+	-khtml-border-bottom-right-radius:6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-bottom-right-radius: 6px;
+	border-bottom-left-radius:6px;
+	-khtml-border-bottom-left-radius:6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-bottom-left-radius: 6px;
+	margin-left:-0.05em;
+	width:775px;
+}
+
+#msp_filter_menu h3 {
+	color:#fff;
+	background:#C6C1BC url(/css/themeroller/default/images/ui-bg_highlight-soft_100_c6c1bc_1x100.png) 50% 50% repeat-x;
+	border:1px solid #8C857D;
+	font-weight:normal;
+	border-top-right-radius:6px;
+	-khtml-border-top-right-radius:6px;
+	-webkit-border-top-right-radius: 6px;
+	-moz-border-top-right-radius: 6px;
+	border-top-left-radius:6px;
+	-khtml-border-top-left-radius:6px;
+	-webkit-border-top-left-radius: 6px;
+	-moz-border-top-left-radius: 6px;
+}
+
+#msp_filter_menu h3:hover {
+	background:#C6C1BC url(/css/themeroller/default/images/ui-bg_highlight-soft_100_a89e94_1x100.png) 50% 50% repeat-x;
+}
+
+
+#msp_filter_menu h3 img {
+	width:15px;
+}
+
+#filters-title-icon {
+	width:15px;
+	margin-right:.5em;
+	margin-top:.1em;
+	float:left;
+}
+
+#msp_filter_menu h3 button {
+	color:#000;
+	font-size:11pt;
+	display:block;
+	width:100%;
+	border:0px;
+	background:transparent;
+	text-align:left;
+}
+
+.bottomRoundedCorners {
+	border-bottom-right-radius:6px;
+	-khtml-border-bottom-right-radius:6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-bottom-right-radius: 6px;
+	border-bottom-left-radius:6px;
+	-khtml-border-bottom-left-radius:6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-bottom-left-radius: 6px;
+}
+
+#msp_filter_menu h3 button:hover {
+text-decoration:none;
+cursor:pointer;
+}
+
+#msp_filter_menu {
+	z-index:50;
+}
+
+.certLevelWrapper {
+	margin-left:-.5em;
+}
+
+.productCell {
+	width:12%;
+}
+.site.fluid-width .productCell.Name-cell {
+	width: 200px; /* maximum width on name cell */
+}
+.site.fluid-width .productCell {
+	width: auto;
+}

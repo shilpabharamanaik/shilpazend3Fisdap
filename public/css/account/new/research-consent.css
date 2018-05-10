@@ -1,0 +1,30 @@
+#researchConsent p {
+	margin:1em;
+}
+
+.radioConsent {
+	margin:0em;
+	margin-left:2em;
+	margin-top:-1em;
+	margin-bottom:2.5em;
+}
+
+#userDetailsWrapper {
+	width:40%;
+	float:left;
+	padding:1em;
+	color:#666;
+	margin-top:-1em;
+	font-size:11.5pt;
+}
+
+#userDetailsWrapper p {
+	margin:0em;
+}
+
+#save {
+	float:right;
+	margin-right:2em;
+	margin-top:-0.8em;
+	width:120px;
+}

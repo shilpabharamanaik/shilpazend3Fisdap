@@ -1,0 +1,99 @@
+form.study-tools-form {
+    width:800px;
+}
+#formContainer{
+    width:385px;
+    position:relative;
+}
+
+#searchWrapper {
+    margin:0 auto;
+    width:680px;
+}
+
+input#save {
+    float:right;
+    margin-top:-.59em;
+}
+
+#formContainer p {
+    margin-bottom:1em;
+}
+
+#throbberContainer {
+    position:absolute;
+    top:0px;
+    right:0px;
+}
+
+#saveButton label {
+    display:none;
+}
+
+#textContainer {
+    margin-bottom:1em;
+}
+
+#saveButton {
+float:right;
+width:120px;
+}
+
+input#email {
+    margin-left:1.7em;
+    margin-top:-.2em;
+    font-family: Verdana, Geneva, sans-serif;
+    padding:.2em;
+    width:220px;
+}
+
+.user {
+    width:450px;
+    border:1px solid #eee;
+    padding:.1em;
+    margin-top:-1.3em;
+}
+
+.user:hover {
+    cursor:pointer;
+    background-color:#eee;
+}
+
+.user b {
+    font-weight:bold;
+}
+
+.radioText {
+    float:left;
+    width:420px;
+
+}
+
+.radioWrapper {
+    width:30px;
+    float:left;
+}
+
+.studyTools {
+    font-size:11px;
+    float:right;
+    margin-top:1em;
+    margin-bottom:0.6em;
+    color:#666;
+}
+
+
+a#backButton {
+    float:left;
+    margin-top:2em;
+    height:1.73em;
+    font-size:1.2em;
+}
+
+.ui-button-text {
+    line-height:1;
+}
+
+#formContainer b {
+    font-weight:bold;
+}

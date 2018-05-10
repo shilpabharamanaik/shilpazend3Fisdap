@@ -1,0 +1,40 @@
+.summary-table {
+    margin-bottom: 3em;
+}
+
+.summary-table td {
+    width: 256px;
+    border: 1px solid #868686;
+    padding: 0 1em 1em;
+    position: relative;
+    vertical-align: top;
+}
+
+.productsBox {
+    width: 325px;
+}
+
+.affiliationBox {
+    width: 256px;
+}
+
+a#productDescriptionsLink {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    font-size: 12px;
+}
+
+#couponWrapper {
+    margin-top: 1em;
+}
+
+#productDescriptionsDialog p {
+    margin-top: -0.6em;
+    margin-bottom: 1em;
+}
+
+.moreAttempts {
+    font-size: 8pt;
+    color: #666;
+}

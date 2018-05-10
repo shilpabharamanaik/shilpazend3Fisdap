@@ -1,0 +1,140 @@
+div.comment-heading-created {
+	margin-top:0px;
+	margin-bottom:5px;
+	font-size: 85%;
+}
+
+div.comment-heading-user-nick {
+	color:#000000;
+	font-size:120%;
+	margin-top:0px;
+}
+
+div.comment-heading {
+	clear:both;
+	margin:0;
+	float:left;
+	width:200px;
+}
+
+#commenting-dialog-container {
+	border-top:thin outset;
+}
+
+div.comment-body {
+	float:left;
+	width:720px;
+	margin:0;
+	margin-left:0px;
+	margin-top:0px;
+	padding-left:0px;
+	position:relative;
+	left:20px;
+	font-size: 100%;
+}
+
+div.comment-outer-div {
+	clear:both;
+	float:left;
+	border-bottom:thin outset;
+	position:relative;
+	padding: 10px 0px;
+}
+
+div.comment-body-deleted {
+	text-align:left;
+	vertical-align:middle;
+	font-size:100%;
+	width: 920px;
+	padding-bottom:1em;
+	padding-top:1em;
+	
+	float:left;
+	margin:0;
+	margin-left:0px;
+	margin-top:0px;
+	padding-left:0px;
+	position:relative;
+	left:20px;
+}
+
+#comment-cancel-button {
+	visibility:hidden;
+	/*position:absolute;*/
+	/*left:545px;*/
+	/*position:relative;*/
+	/*left:-150px;*/
+	/*top:30px;*/
+	color: #a94612;
+	padding: 4px 12px;
+	float: right;
+}
+
+#comment-save-button {
+	/*position:absolute;*/
+	/*left:640px;*/
+	/*position:relative;*/
+	/*left:-150px;*/
+	/*top:30px;*/
+	color: #a94612;
+	padding: 4px 12px;
+	float: right;
+	margin: 0 30px 0 10px;
+	/*padding-left: 6px;*/
+	/*padding-right: 6px;*/
+}
+
+
+#commenting-dialog-container {
+	margin-left: 0 !important;
+	margin-top: 40px !important;
+	background-color: #ffffff;
+	padding: 1em;
+	overflow: hidden;
+	width: 925px;
+	box-shadow: 0 5px 5px #C6C1BC;
+}
+
+div.delete-comment {
+	float:right;
+	margin-right:12px; 
+}
+
+div.edit-comment {
+	position:absolute;
+	bottom:5px;
+	right:8%;
+}
+
+div.edit-comment a {
+	color: #A94612;
+}
+
+div#add-comment-form {
+	background-color:#e0eeff;
+	padding-top:10px;
+	clear:both;
+}
+
+
+.instructor-only {
+	background-color:#cccccc;
+}
+
+.new-comment-element {
+	margin-top:15px;	
+}
+
+.comment-label {
+	font-size:125%;
+	font-family: Century Gothic,Arial,Helvetica,sans-serif;
+	color: #655D57;
+}
+
+div#jquery-dialog-container {
+	
+}
+
+.form-prompt {
+	font-size: 90%;
+}

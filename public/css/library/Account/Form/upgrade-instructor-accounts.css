@@ -1,0 +1,38 @@
+#instructors {
+	height:400px;
+	overflow:auto;
+	width:632px;
+	overflow-x:hidden;
+	margin-bottom:1em;
+	float:left;
+}
+
+td.names {
+	width:550px;
+	padding-left:1em;
+}
+
+td.checkboxes {
+	width:100px;
+	text-align:center;
+	vertical-align: middle;
+}
+
+img.checkmark {
+	height:13px;
+}
+
+#orderSummary {
+	width:228px;
+	float:right;
+	padding:1em;
+	border:2px solid #bbb;
+}
+
+#orderSummary h3 {
+	color:#888;
+}
+
+#noneSelectedError {
+	display:none;
+}

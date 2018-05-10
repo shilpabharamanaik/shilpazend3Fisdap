@@ -1,0 +1,28 @@
+h3#gettingStartedHeader {
+	border:0px;
+	margin-top:1em;
+}
+
+ul#tutorials li {
+	margin-left:2em;
+	list-style-position:inside;
+	color:#A94612;
+	font-size:.6em;
+}
+
+ul#tutorials li a {
+	font-size:14px;
+}
+
+ul#tutorials {
+	margin-top:1em;
+	margin-bottom:1em;
+}
+
+ul#tutorials > li:before {
+        content:"*  ";
+}
+
+#welcome b {
+	font-weight:bold;
+}

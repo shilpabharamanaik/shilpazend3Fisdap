@@ -1,0 +1,102 @@
+#submit {
+    padding: .4em 1em;
+    float: right;
+}
+
+.login_box {
+    background: #cfeba7;
+    margin-bottom: 1em;
+}
+
+.login_content {
+    padding: 0 .5em .5em .5em;
+}
+
+.announcements_box {
+    border: 2px solid #c6c1bc;
+    margin-bottom: 2em;
+    padding: .5em;
+}
+
+.login_prompt {
+    margin: .5em 0em;
+    overflow: hidden;
+}
+
+div.login_prompts label {
+    width: 5.5em;
+    float: left;
+}
+
+.login_prompt input {
+    display: block;
+    width: 100%;
+}
+
+#main-content {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 10px 0px;
+}
+
+.row-container {
+    display: table-row;
+}
+
+div.area {
+    border: solid 2px #CCCCCC;
+    border-radius: 15px 15px 15px 15px;
+    padding: 20px;
+    background: #FFFFFF;
+    display: table-cell;
+}
+
+#login_area {
+    width: 60%;
+}
+
+#create_acct {
+    width: 40%;
+}
+
+div.header {
+    padding-top: 12px;
+    font-size: 20pt;
+    margin-top: 3px;
+    color: #707070;
+    font-family: "Century Gothic", "Helvetica", "Arial", sans-serif;
+}
+
+div.back_link {
+    margin: 10px;
+}
+
+div.logo {
+    float: left;
+    margin: 1px;
+}
+
+p.hint {
+    font-weight: 900;
+    padding-bottom: 10px;
+}
+
+.secure {
+    font-size: 85%;
+    color: #707070;
+}
+
+.success {
+    margin-top: 1em;
+    margin-bottom: 0em;
+    margin-left: 0em;
+}
+
+#create_acct h3 {
+    margin: 0 0 0.3em;
+}
+
+#create_acct a {
+    margin-bottom: 2em;
+    display: block;
+}

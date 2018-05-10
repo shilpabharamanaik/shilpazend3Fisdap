@@ -1,0 +1,170 @@
+#siteInfo #form-errors {
+	display: none;
+}
+
+
+
+
+.input-div,
+.input-div-left {
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+.input-div div,
+.input-div input {
+	float: right;
+	margin-right: 0.5em;
+}
+
+.input-div-left div,
+.input-div-left input {
+	float: left;
+	margin-right: 0.5em;
+}
+
+.label-div {
+	position: relative;
+    top: 5px;
+}
+
+.form-desc {
+	margin-top: 3px;
+}
+
+#activateSite {
+	float: right;
+    position: relative;
+    top: -0.3em;
+}
+
+#activateSite .stage .slider-frame .slider-button:before {
+    width: 55px;
+}
+
+#abbrev-div div.form-desc {
+	left: 30px;
+	position: relative;
+	top: -8px;
+}
+
+#type-div div.form-desc {
+	left: -2px;
+	position: relative;
+	top: -14px;
+	float: left;
+}
+
+#address-2 {
+	margin-top: 1em;
+}
+
+#city,
+#contactPhone {
+	width: 130px;
+}
+
+#state_chzn {
+	margin-right: 0px;
+}
+
+#state_chzn a.input-error,
+#site-type.input-error {
+	box-shadow: 0px 0px 5px #D1595D;
+	border:1px solid #C7877F;
+}
+
+.address-directions {
+	color: #808080;
+	font-size: 90%;
+	margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+#type-div {
+	position: relative;
+	left: -1em;
+}
+
+#site-type {
+	border: 1px solid #EEEEEE;
+    border-radius: 6px;
+    margin-left: 3px;
+    position: relative;
+    top: -0.2em;
+    width: 137px;
+}
+
+#site-type .ui-button-text {
+	padding: 5px 11px 1px;	
+}
+
+#site-type img.icon {
+	width: 22px;
+}
+
+#siteInfo #control-buttons {
+	float: right;
+}
+
+#siteInfo #control-buttons div {
+	float: right;
+	margin-left: 0.5em;
+}
+
+#siteInfo #submitThrobber {
+    float: right;
+    left: -4em;
+    margin: 0.6em 1em;
+    position: relative;
+	display: none;
+}
+
+#siteInfoHelper .section-header {padding-bottom:0.25em;}
+#siteInfoHelper .section-header img {float:left;margin-right:0.25em;margin-top:-0.1em;}
+
+
+#siteInfo .section-header:first-of-type {padding-bottom:0.25em;}
+#siteInfo .section-header:first-of-type img {float:left;margin-right:0.25em;margin-top:-0.1em;}
+
+
+#siteInfo .grid_6 {width:49.3%;}
+
+#name, #address, #contactName {width:355px;}
+
+
+#address-2 .grid_3:first-of-type, #siteInfo .contact_phone_wrapper {
+	width:24.3%;
+	margin-right:0;
+}
+
+#address-2 .grid_3:last-of-type {
+	margin-left:0;
+}
+
+#city-label {
+	display:block;
+	width:67px;
+	float:left;
+	text-align:right;
+}
+
+#address-2 .grid_3:first-child .form-desc {
+	float:left;
+	text-align:right;
+	margin-left:1.1em;
+}
+
+#zip-label {
+	margin-left:0.4em;
+}
+
+#siteInfo .contact_fax_wrapper {
+	margin-left:1.25em;
+}
+
+#abbrev-div {width:22%; margin-right:0;}
+
+#type-div {margin-left:1.6em;margin-right:0;}
+
+#sharing_icon {position:absolute;right:1em;}

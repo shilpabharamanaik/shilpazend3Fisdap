@@ -1,0 +1,233 @@
+.grey-island {
+	margin-bottom: 10px;
+	border: 1px solid black;
+	background-color: #DEDBCF;
+}
+
+.white-text{
+	color: #FFFFFF;
+}
+
+.thin-tab{
+	padding: 0.1em 0.5em 0.1em 0.5em;
+}
+
+
+.ui-accordion .ui-accordion-header a {
+	padding:.2em;
+	color:black;
+	font-size:0.9em;
+	padding-left:2em;
+}
+
+#testAccordian .ui-state-active a, #testAccordian .ui-state-active a:link, #testAccordian .ui-state-active a:visited {
+	border:1px solid #bbb;
+	border-bottom:0px;
+	width:474px;
+	margin-left:-0.05em;
+}
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+	border-bottom:0px;
+}
+
+
+
+#testAccordian {
+	margin-bottom:0.5em;
+}
+
+#testAccordian .ui-accordion-content {
+	height:100px;
+	overflow-x:hidden;
+	border:1px solid #bbb;
+	border-top:0px;
+}
+
+#testAccordian select {
+	font-family:Tahoma, Geneva, sans-serif;
+	width:97%;
+	height:100px;
+	font-size:10pt;
+}
+
+#retrieve{
+	width:150px;
+}
+
+.retrieveWrapper {
+	width:170px;
+	margin-top:2em;
+	float:right;
+	margin-right:-2em;
+}
+
+.dateRange {
+	background-color:#FAFAFA;
+	border:2px solid #ccc;
+	padding:.5em;
+	margin-top:1.2em;
+	margin-left:2.7em;
+	width:100%;
+}
+
+.dateRange input {
+	width:100px;
+	margin:.3em;
+	margin-top:0.6em;
+}
+
+.dateRange h2 {
+	font-size:11.5pt;
+	font-weight:normal;
+}
+
+.proTip {
+	margin-left:2.7em;
+	margin-top:1em;
+	border:2px solid #ccc;
+}
+
+.proTip p {
+	margin:0.9em;
+}
+
+.proTip h3 {
+	width:285px;
+}
+
+#start_date {
+	margin-left:0.9em;
+}
+
+#start_date, #end_date {
+
+}
+
+#selectTestsWrapper {
+	margin:0 auto;
+}
+
+#errorWrapper {
+	margin-left:0.65em;
+	margin-top:-2.7em;
+	width:78%;
+}
+
+#retrieveThrobber {
+	margin-top:-2.4em;
+	float:right;
+}
+
+#testAccordian optgroup {
+	background-color:#eee;
+	font-weight:normal;
+	font-size:10pt;
+}
+
+#testAccordian select {
+	height:232px;
+	border:2px solid #ccc;
+	color:#000;
+	padding:.35em;
+	width:515px;
+}
+
+
+#testAccordian {
+	width:500px;
+	height:213px;
+	border:2px solid #ccc;
+	overflow:auto;
+	padding-top:0em;
+	margin-top:1em;
+}
+
+.accordianHeader {
+	display:block;
+	width:100%;
+	padding-top:.3em;
+	padding-bottom:.3em;
+	border-bottom:1px solid #bbb;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	background: #dddddd; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#dddddd'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#dddddd)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #eee,  #ddd); /* for firefox 3.6+ */
+	
+	color:#000;
+}
+
+.accordianHeader:hover {
+	cursor:pointer;
+	background: #73869B; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#73869B', endColorstr='#5E7084'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#73869B), to(#5E7084)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #73869B,  #5E7084); /* for firefox 3.6+ */
+	color:#fff;
+
+}
+
+.accordianHeader img {
+	width:16px;
+	float:left;
+	margin-left:.5em;
+	margin-right:0.5em;
+	margin-top:0.1em;
+}
+
+.accordianOptions {
+	display:none;
+	margin:.6em;
+}
+
+
+.option {
+	display:block;
+	width:97%;
+	padding-bottom:0.2em;
+	padding-top:0.2em;
+	padding-left:3%;
+	
+}
+
+.option:hover {
+	cursor:pointer;
+}
+
+.selectedOption {
+	background-color:#ccc;
+}
+
+.selectedCategory {
+	background: #73869B; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#73869B', endColorstr='#5E7084'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#73869B), to(#5E7084)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #73869B,  #5E7084); /* for firefox 3.6+ */
+	color:#fff;
+
+}
+
+
+#currentlySelectedTests {
+	margin-left:1em;
+	margin-top:1em;
+	margin-bottom:1em;
+}
+
+.clearAllButton {
+	border:0px;
+	background-color:#fff;
+	padding:0px;
+	color:#7A330C;
+	font-size:10pt;
+}
+
+.clearAllButton:hover {
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+.print_icons {
+	float: right;
+}

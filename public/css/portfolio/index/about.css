@@ -1,0 +1,32 @@
+/* 
+    Document   : internship-records
+    Created on : Nov 29, 2011, 2:57:22 PM
+    Author     : astevenson
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.certification-item{
+	margin-bottom: 7px;
+}
+
+.certification-name{
+	font-weight: 600;
+}
+
+.student-id {
+	font-size: 55%;
+}
+
+#student_description_display {
+	margin: 1em 0em;
+}
+
+#profile-pic img {
+	width: 100%;
+}

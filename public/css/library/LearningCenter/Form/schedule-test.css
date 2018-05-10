@@ -1,0 +1,75 @@
+.view-scores-container {
+	border: 2px solid #ccc;
+	padding: 1em;
+	background-color:#FAFAFA;
+	margin-left:-0.5em;
+	margin-right:1em;
+	text-align:center;
+}
+
+.widget-title-bar {
+	color: #FFFFFF !important;
+}
+
+.no-attempts {
+	color: red;
+}
+
+#msp_filter_form {
+	border-right:1px solid #BBB;
+}
+
+#msp_filter_form {
+	margin-left:0.05em;
+	width:776px;
+}
+
+#test_id {
+	height:23px;
+	width:350px;
+}
+
+#start_date, #end_date {
+	width:144px;
+	padding:0.3em;
+	margin-top:1em;
+	background-position:97%;
+}
+
+#end_date {
+	margin-left:0.3em;
+}
+
+.dateRange {
+	margin-top:1em;
+}
+
+.contact-info input {
+	margin-top:-0.5em;
+	margin-left:-0.5em;
+	width:170px;
+	padding:0.2em;
+}
+
+
+#test_notes {
+	padding:0.2em;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:10pt;
+	color:#444;
+	width:344px;
+}
+
+#notes {
+	margin-left:1em;
+	margin-top:0.3em;
+}
+
+#notes p {
+	float:left;
+	margin-right:5.65em;
+}
+
+.saveContainer {
+	margin-top:2em;
+}

@@ -1,0 +1,256 @@
+table.student-search-table {
+	font-size:9pt;
+	width:100%;
+	text-align:left;
+}
+
+#student-table tbody tr {
+	background:#fff;
+}
+
+#no-students-error {
+	margin-bottom:0.1em;
+}
+
+#search-result-options {
+	z-index:100;
+}
+
+#export-throbber {
+	position:absolute;
+	left:12.5em;
+	top:0.5em;
+}
+
+table.student-search-table td {
+	padding:.8em;
+	vertical-align: middle;
+}
+
+table.student-search-table tr {
+	border-bottom:1px solid #A2A2A2;
+}
+
+table.student-search-table tr:hover {
+	background-color:#eee;
+}
+
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color:#C6C1BC;
+	border:0px;
+	font-size:10pt;
+}
+
+table.tablesorter thead tr .header {
+	background-image:none;
+	
+}
+
+.product-access img {
+	margin: 2px;
+}
+
+table.tablesorter tbody td {
+	vertical-align: middle;
+}
+
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+	background-image:url(/js/tableSorter/themes/blue/desc.gif);
+	background-repeat: no-repeat;
+	background-color:#C6C1BC;
+}
+
+table.tablesorter thead tr .headerSortUp {
+	background-image:url(/js/tableSorter/themes/blue/asc.gif);
+}
+
+#student-table tbody tr:hover {
+	background-color:#eee;
+}
+tr#head {
+	background-color:#C6C1BC;
+	border-top:2px solid #A2A2A2;
+	border-bottom:2px solid #A2A2A2;
+}
+
+tr#head:hover {
+	background-color:#C6C1BC;
+}
+
+.fancy-input-focus {
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,.3);
+  -moz-box-shadow   : 0 0 5px rgba(0,0,0,.3);
+  -o-box-shadow     : 0 0 5px rgba(0,0,0,.3);
+  box-shadow        : 0 0 5px rgba(0,0,0,.3);
+    outline:none;
+}
+
+#other_links div:first-child {
+	margin-right: 0.5em;
+}
+
+#go-throbber {
+	display:none;
+	position:absolute;
+	top:0.5em;
+	left:1.4em;
+}
+
+#all-throbber {
+	display:none;
+	position:absolute;
+	top:1.5em;
+	right:5.25em;
+}
+
+#email img {
+	width:19px;
+	float:left;
+	margin-right:0.5em;
+	margin-top:0.2em;
+}
+
+.search-label {
+	margin-bottom:0.7em;
+	font-size:11pt;
+	margin-left:-0.5em;
+}
+
+#search-placeholder-text {
+	position:absolute;
+	color:#666;
+	bottom:1em;
+	z-index:3;
+	left:0.5em;
+}
+
+#search-island, #no-students-island {
+	width:99%;
+	margin-left:0em;
+}
+
+#updateDisplay {
+	position:absolute;
+	bottom:0.5em;
+	right:0.5em;
+}
+
+#email-modal .info {
+	display:none;
+}
+
+#email-url-too-long {
+	font-size:9.5pt;
+	width:285px;
+	margin-bottom:0.3em;
+}
+
+#displayOptions {
+	padding-bottom:3em;
+}
+
+#displayOptions .first_col {
+	margin-right:2em;
+}
+
+#searchString {
+	background-color: #fff;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+	background-image: -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+	background-image: -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+	background-image: -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+	background-image: -ms-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+	background-image: linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+	border: 1px solid #aaa;
+	margin: 0;
+	padding: 0.3em;
+	cursor: text;
+	overflow: hidden;
+	height: 20px;
+	position: relative;
+	border:1px solid #AAA;
+	color:#666;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size:15px;
+	width:99%;
+	margin-bottom:0.4em;
+}
+
+#searchString {
+	width:102%;
+}
+
+#search-island .green-buttons {
+	margin-left:2em;
+}
+
+#search-result-options .filters-wrapper {
+	margin-right:-0.95em;
+}
+
+#results_area .section-header {
+	visibility: hidden;
+	height:34px;
+}
+
+#search-result-options {
+	position:absolute;
+	display:block !important;
+	width:1025px;
+	margin-left:0.2em;
+	top:333px;
+}
+
+#other_links a {
+	margin-right: 0.75em;
+	float:right;
+}
+
+#export-student-list-links a {
+	float: none;
+	margin-left: 0em;
+}
+
+#other-links {
+	margin-bottom: 1%;
+}
+
+#send-email-throbber {
+	position:absolute;
+	right:3em;
+	bottom:0.6em;
+}
+
+.product-icons {
+	margin: 0.25em;
+}
+
+#emailAllOther{
+	float: right;
+	margin-right: 8px;
+}
+
+#allStudents{
+	position: absolute;
+	top: 1.55em;
+	right: 1.55em;
+}
+
+#or{
+	margin-right: 10px;
+}
+
+#spacing {
+	min-height: 300px !important;
+	height: auto;
+	width: auto;
+}
+
+#mainSearch{
+	width: auto;
+	min-width: 100% !important;
+}
+
+.id {
+	width:40px;
+}

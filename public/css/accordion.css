@@ -1,0 +1,72 @@
+.accordionContainer {
+	border:1px solid #ccc;
+	padding-top:0em;
+}
+
+.accordionHeader {
+	display:block;
+	width:100%;
+	padding-top:.5em;
+	padding-bottom:.5em;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	position:relative;
+}
+
+.accordionHeader:not(.no-hover):hover {
+	cursor:pointer;
+}
+
+.accordionHeader {
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	border-bottom:1px solid #bbb; 
+	background-color: #ffffff;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=0 );   
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #eeeeee), color-stop(100%, #f4f4f4));
+	background-image: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -moz-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -o-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -ms-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%); 
+	color:#000;
+}
+
+.accordionHeader:not(.no-hover):hover,
+.selectedCategory
+{
+	background: #dddddd; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#dddddd'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#dddddd)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #eeeeee,  #dddddd); /* for firefox 3.6+ */
+}
+
+.accordionHeader.warning {
+	color:#B42A2A;
+	font-weight: bold;
+	font-size: 93%
+}
+
+.accordionHeader.warning:not(.no-hover):hover,
+.selectedCategory.warning {
+	background: #FBE3E4; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FBE3E4', endColorstr='#FFC5C6'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#FBE3E4), to(#FFC5C6)); /* for webkit browsers */
+	background: -moz-linear-gradient(top , #FBE3E4, #FFC5C6); /* for firefox 3.6+ */
+}
+
+.accordionHeader .arrowImg {
+	left: 0.75em;
+    position: absolute;
+}
+
+.accordionHeader .headerTitle {
+	position: relative;
+	left: 1.75em;
+}
+
+.accordionContent {
+	display:none;
+	color: #655D57;
+	padding: 1em;
+	background-color: #fff;
+	border-bottom: 1px solid #bbb;
+}

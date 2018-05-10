@@ -1,0 +1,208 @@
+@import 'event-details-popup.css';
+@import 'calendar-month-view.css';
+@import 'calendar-month-details-view.css';
+@import 'calendar-week-view.css';
+@import 'calendar-day-view.css';
+@import 'calendar-list-view.css';
+
+.clickable-event-title:hover {
+	cursor:pointer;
+}
+
+#cal-throbber {
+	display:none;
+	position:absolute;
+	left:35em;
+	top:30em;
+	z-index:1001;
+}
+
+#legend-temp {
+	margin-top:2em;
+	margin-left:1em;
+}
+
+.orange-cal-wrapper {
+	background-color: #e59944;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e59944), to(#f0791b));
+	background: -moz-linear-gradient(top,  #e59944,  #f0791b);
+	padding:0.3%;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+.has-opacity {
+	opacity:0.5;
+}
+
+.non-compliant-row,
+.list-event .slots-table .non-compliant-assignment-cell {
+	color:#a22121;
+	font-family: Century Gothic, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+.non-compliant-row b {
+	font-weight:bold;
+}
+
+.non-compliant-row .weeble {
+	background-color:#FBE3E4;
+	padding-left: 0.26em;
+	padding-right: 0.25em;
+	padding-top: 0.1em;
+	padding-bottom: 0.2em;
+	border:1px dashed #8a1f11;
+	margin-bottom: -0.15em;
+}
+
+.filled-slots-table .non-compliant-row:hover {
+	background-color:#FBE3E4;
+}
+
+.today-img {
+	position:absolute;
+	width:12px;
+	left:4em;
+	top:-1.4em;
+	-webkit-transform:rotate(90deg);
+	-moz-transform:rotate(90deg);
+	-o-transform:rotate(90deg);
+	-ms-transform:rotate(90deg);
+}
+
+.day-has-my-shift-img {
+	position:absolute;
+	width:12px;
+	right: 0.3em;
+	top: 0.3em;
+}
+
+.event-totals-wrapper {
+	font-size:11pt;
+}
+
+.event-totals-wrapper img {
+	height:15px;
+	float:left;
+	margin-right:0.5em;
+}
+
+.event-totals-wrapper .event-total {
+	float:left;
+	margin-left:1.75em;
+	font-weight:bold;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+}
+
+.my-shift-icon, .shared-icon {
+	width:14px;
+}
+
+.subtle-no-shifts-msg {
+	color:#666;
+	font-size:10pt;
+}
+
+.day-block, .day-name {
+	position:relative;
+	width:8.416em;
+	height:92px;
+	background-color:#fff;
+	margin:0.12em;
+	float:left;
+	-moz-border-radius: 4.5%;
+	border-radius: 4.5%;
+}
+
+.day-name {
+	background-color:transparent;
+	color:gray;
+	height:20px;
+	text-align:center;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	width:13.85%;
+}
+
+.day-num {
+	font-size:0.8em;
+	margin:3%;
+	color:#666;
+	margin-bottom:0.5%;
+}
+
+.day-block:hover, .today, .selected-day-block {
+	cursor:pointer;
+	background-color: #FBFBFB;
+    background: url(/images/linear_bg_2.png) repeat-x;
+    
+    /* Safari 4-5, Chrome 1-9 */
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.50, #eee),
+        color-stop(0.75, #F6F6F6)
+    );
+    
+    /* Firefox 3.6+ */
+   background-image: -moz-linear-gradient(
+        center bottom,
+        #eee 50%,
+        #F6F6F6 75%
+    );
+    
+    /* IE 10 */
+    background: -ms-linear-gradient(top, #F6F6F6, #eee);
+    
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(top, #F6F6F6, #eee);
+}
+
+.cal-tooltip {
+	display:none;
+	position:absolute;
+	z-index:1000;
+	padding:0.1em;
+	background: #fff6bf;
+	color: #514721;
+	font-size:8pt;
+	border: 1px solid #ffd324;
+	top:0em;
+	left:0em;
+	padding-left:0.3em;
+	padding-right:0.3em;
+	-moz-box-shadow: 1px 1px 1px #c6c1bc;
+	-webkit-box-shadow: 1px 1px 1px #c6c1bc;
+	box-shadow: 1px 1px 1px #c6c1bc;
+}
+
+
+.event-title {
+	font-size:11pt;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	float:left;
+}
+
+.broken-too-many-shifts-message {
+	width:615px;
+	padding-top:3em;
+	margin:0 auto;
+	margin-top:4em;
+}
+
+.broken-too-many-shifts-message img {
+	float:left;
+	width:225px;
+	margin-top:-3em;
+	margin-right:2em;
+}
+
+.broken-too-many-shifts-message .subtle-no-shifts-msg {
+	margin-top:0.5em;
+}
+
+.student_shift_time {
+    color:#888;
+    font-style:italic;
+}

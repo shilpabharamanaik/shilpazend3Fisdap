@@ -1,0 +1,278 @@
+#pdfDialog form .container_12 {
+	margin: 0px;
+	width: 100%;
+}
+
+#form_div div.input-line {
+	margin: .5em 0em;
+}
+
+#nameHelp {
+	position: relative;
+	top: -5px;
+	left: -5px;
+}
+
+#name-div {
+	float: right;
+}
+
+#name {
+	width: 335px;
+}
+
+#export_type .ui-button-text-only .ui-button-text {
+    padding: 0.4em 0.5em;
+}
+
+#export_type,
+#recurring_type,
+#orientation_type,
+#color_type,
+#email_frequency_offset_type {
+	font-size: 80%;
+}
+
+#export_type,
+#recurring_type,
+#orientation_type,
+#color_type {
+	float: right;
+	margin: 0.5em 0;
+}
+
+#start-div input,
+#end-div input {
+	font-size: 9pt;
+}
+
+#start-div {
+	float: left;
+	margin-top: 3px;
+	margin-bottom: 1px;
+}
+
+#end-div {
+	float: right;
+	margin-left: 10px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+#date-range {
+    position: absolute;
+    top: 6.2em;
+	right: 0em;
+}
+
+#recurring_type {
+	display: none;
+	right: 0em;
+    position: absolute;
+    top: 8.3em;
+}
+
+#pdf-options {
+    margin: 3em 0 1em;
+	float: right;
+	clear: both;
+}
+
+#pdf-options .ui-buttonset .ui-button-text-only .ui-button-text {
+	font-weight: normal;
+    width: 7.9em;
+    padding: 0.4em 0.8em;
+}
+
+#legend-div div {
+	float: right;
+}
+
+#legend-text {
+	margin-left: 0.5em;
+    text-align: right;
+    width: 3.5em;
+}
+
+#preview-title,
+#preview-image {
+	margin-right: 2.5em;
+}
+
+#preview-div img {
+	border: 2px solid gray;
+	width: 76%;
+	float: right;
+}
+
+#preview-title {
+	font-style: italic;
+	font-size: 90%;
+	float: right;
+}
+
+#email_options {
+	display: none;
+	margin: 1em 0em;
+}
+
+#email_subject {
+	width: 344px;
+}
+
+#email_note,
+#email_recipients {
+	width: 99.5%;
+}
+
+#email_recipients {
+	height: 5em;
+}
+
+#email_note {
+	height: 9.2em;
+}
+
+#recurring_options {
+	display: none;
+	margin-bottom: 1em;
+}
+
+#freq-text,
+#freq-inputs {
+	padding: 1em 0.5em 0em;
+	margin-top: 1em;
+}
+
+#freq-text {
+	width: 10%;
+	padding-left: 0em;
+}
+
+#freq-inputs {
+	background-color: #ededed;
+	border: 1px solid #c0c0c0;
+	height: 2.7em;
+	padding-left: 1em;
+}
+
+#freq-inputs div:not(.chzn-drop) {
+	float:left;
+	width: auto;
+	padding: 3px 7px 0px 0px;
+}
+
+#email_frequency_offset_chzn {
+	position: relative;
+	top: -3px;
+}
+
+#email_frequency_offset_type {
+	position: relative;
+	top: -7px;
+	left: 4px;
+}
+
+#email_frequency_offset_type .ui-button-text-only .ui-button-text {
+	font-weight: normal;
+    width: 3.7em;
+}
+
+#frequencyHelp {
+	position: relative;
+	top: -5px;
+}
+
+#emailSuccess,
+#recurringSuccess,
+#fail {
+	display: none;
+}
+
+#emailSuccess a,
+#recurringSuccess a,
+#fail a {
+	text-decoration: underline;
+}
+
+.description {
+	font-style: italic;
+	font-size: 90%;
+	color: #655D57;
+}
+
+.pdf-export-buttons {
+	float: right;
+    margin: 0.5em 0 1em;
+}
+
+#scheduler_export_instructor {
+    width: 430px;
+    display: block;
+    height: 30px;
+    float: left;
+    margin-left: 1%;
+    display:none;
+}
+
+#scheduler_export_instructor #scheduler_export_instructor-label {
+    float:left;
+    color: #655d57;
+}
+
+#scheduler_export_instructor #scheduler_export_instructor-element {
+    float:right;
+}
+
+#cancelButtonWrapper,
+#saveButtonWrapper {
+	display: inline;
+}
+
+#frequencyHelp-popup {
+	padding: .5em;
+}
+
+#filter_summary {
+	position:absolute;
+	top:1.75em;
+	right:1.75em;
+}
+
+.pdf-modal-filter-description {
+	min-height: 12px;
+	padding:0.75em;
+	background-color: rgba(145, 131, 126, 0.15);
+	border:1px solid rgba(145, 131, 126, 0.55);
+	margin-top: 0.75em;
+	margin-bottom: 0.5em;
+	margin-left: -1em;
+	font-size:10pt;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	color:#666;
+	margin-left:0em;
+	margin-bottom:1em;
+}
+
+.pdf-modal-filter-description b, #filter_summary-popup b {
+	font-weight:bold;
+	color: #777;
+}
+
+#filter_summary:focus {
+	border:0px;
+	outline:0px;
+}
+
+#subscription_url {
+    width: 600px;
+}
+
+.calendar_caption {
+    text-align: center;
+    color: #a94612;
+}
+
+#pdfDialog .success a {
+    text-decoration: underline;
+}

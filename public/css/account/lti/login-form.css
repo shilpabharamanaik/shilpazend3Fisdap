@@ -1,0 +1,15 @@
+.input-section label {
+    float: left;
+    position: relative;
+    top: 3px;
+    width: 5.5em;
+}
+
+input#username[disabled] {
+    background: #eeeeee;
+}
+
+#submit {
+    padding: .4em 1em;
+    float: right;
+}

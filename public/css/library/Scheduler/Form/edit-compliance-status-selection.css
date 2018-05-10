@@ -1,0 +1,289 @@
+#selection-by-options .ui-button {
+	width:195px;
+}
+
+#show_instructors-element .stage .slider-frame .slider-button:before {
+	width:38px;
+}
+
+.stage .slider-frame .slider-button:before {
+	width:90px;
+}
+
+#selection-info {
+	margin: 1em 0.5em;
+	font-size: 87%;
+}
+
+#selection-form {
+	overflow:hidden;
+}
+
+#selection-form .error {
+	margin-top:2em;
+}
+
+#selection-by-options .ui-button:last-child {
+	margin-left:-0.5em;
+}
+
+.selection-by-content {
+	display:none;
+}
+
+#submit-selection-throbber {
+	display:none;
+	position:absolute;
+	bottom:2.2em;
+	right:3em;
+	z-index:6;
+}
+
+#selection-by-options {
+	margin-bottom:2em;
+}
+
+#people-subfilter {
+	display:none;
+	margin-top:1em;
+}
+
+#people-subfilter dd {
+	margin-top:0.25em;
+	padding-bottom:0.45em;
+}
+
+#by-requirement-people-description {
+	margin-left:0.5em;
+}
+
+#show_instructors_wrapper {
+	width:25%;
+	position:absolute;
+	right:-3em;
+	top:1.6em;
+}
+
+#all-label {display:none;}
+
+#groups-element {
+	margin-bottom:3em;
+}
+
+#people-subfilter #grad-element {
+	padding-bottom:0.9em;
+}
+
+#grad_month_chzn {
+	margin-right:1em;
+}
+
+#button-spacer {
+	width:100%;
+	height:3em;
+}
+
+#people-subfilter .chzn-results {
+	max-height:100px;
+}
+
+#submit-selection {
+	position:absolute;
+	bottom:1.25em;
+	right:1.25em;
+}
+
+#grad_month_chzn .chzn-search,
+#grad_year_chzn .chzn-search {
+	display:none;
+}
+
+#people-subfilter #show_instructors-element {
+	width:63px;
+	float:left;
+	margin-top:-0.75em;
+}
+
+#people-subfilter #show_instructors_label {
+	float:left;
+	margin-left:0.5em;
+	margin-top:-0.75em;
+}
+
+.search-box {
+	color:#666;
+	padding:0.35em;
+	background-color: #fff;
+	background-image: url(/images/icons/magnifying-glass.png), -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+	background-image: url(/images/icons/magnifying-glass.png), -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+	background-repeat:no-repeat;
+	background-position:97%;
+	border: 1px solid #bbb;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11pt;
+	padding-right:2em;
+	padding-top:0.25em;
+	padding-bottom:0.25em;
+}
+
+#requirement_search.search-box {
+	width:350px;
+}
+
+#people_search.search-box {
+	width:218px;
+}
+
+#requirement-list-filters,
+#people-list-filters {
+	margin-top:1.8em;
+}
+
+#requirement-list-filters img,
+#people-list-filters img {
+	float:left;
+	margin-right:0.35em;
+	height:18px;
+}
+
+#people-list-filters img {
+	margin-right:0em;
+	margin-left:0.8em;
+}
+
+#ssl-icon {
+	margin-top:-0.05em;
+}
+
+#requirement-list-filters .ui-state-active,
+#people-list-filters .ui-state-active{
+	background:#F3F3F3;
+}
+
+#people-list-filters #sw-icon {
+	opacity:0.6;
+	margin-left:1.2em;
+	margin-right:-0.6em;
+}
+
+#people-list-filters .ui-button {
+
+}
+
+#people-list-filters label[for='instructors-people'],
+#people-list-filters label[for='students-people'] {
+	width:125px;
+}
+#requirement-fancy-element,
+#people-fancy-element {
+	background-image: -moz-linear-gradient(top, #eeeeee 1%, #ffffff 5%);
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(1%, #eeeeee), color-stop(5%, #ffffff));
+	border: 1px solid #bbb;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11pt;
+	overflow:auto;
+	height:172px;
+	width:600px;
+	overflow-x:hidden;
+	margin-left:0.5em;
+	position:relative;
+}
+
+#by-requirements-content .dotted-line {
+	width:109%;
+}
+
+#requirements, #people {
+	display:none;
+}
+
+#requirement-fancy-element {
+	width:715px;
+}
+
+#people-fancy-element {
+	width:570px;
+}
+
+.successful-search {
+	background-color:#fff6bf;
+}
+
+.requirement-fancy-option,
+.people-fancy-option {
+	position:relative;
+	width:95%;
+	padding-top:0.25em;
+	padding-bottom:0.25em;
+	padding-left:3em;
+	height:1.391em;
+	border-bottom:1px solid #bbb;
+}
+
+.people-fancy-option img {
+	height:20px;
+	float:left;
+	margin-right:0.75em;
+}
+
+.students-people img {
+	opacity:0.7;
+}
+
+.requirement-fancy-option:hover,
+.people-fancy-option:hover {cursor:pointer;}
+
+.requirement-fancy-option-hover,
+.people-fancy-option-hover {
+	background-color: #ffffff;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=0 );   
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #eeeeee), color-stop(100%, #f4f4f4));
+	background-image: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -moz-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -o-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -ms-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%); 
+}
+
+.requirement-fancy-option-selected,
+.people-fancy-option-selected {
+	background-color:#eee;
+	background-image: url(/images/icons/checkmark.png);
+	background-image: url(/images/icons/checkmark.png);
+	background-repeat:no-repeat;
+	background-position:2.5%;
+	background-size:14px;
+	color:#000;
+}
+
+.requirement-fancy-option:last-child,
+.people-fancy-option:last-child {
+	border-bottom:0px;
+}
+
+.fancy-input-focus {
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,.3);
+  -moz-box-shadow   : 0 0 5px rgba(0,0,0,.3);
+  -o-box-shadow     : 0 0 5px rgba(0,0,0,.3);
+  box-shadow        : 0 0 5px rgba(0,0,0,.3);
+    outline:none;
+}
+
+.fancy-option-site-icon {
+	position:absolute;
+	right:3.5em;
+	top:0.36em;
+}
+
+.fancy-option-program-icon {
+	position:absolute;
+	right:3.5em;
+	top:0.36em;
+}
+
+.fancy-option-shared-icon {
+	height: 17px;
+    position: absolute;
+    right: 2em;
+    top: 0.4em;
+}

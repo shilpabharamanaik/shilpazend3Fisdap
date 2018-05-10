@@ -1,0 +1,21 @@
+.order-history-container {
+
+}
+
+.order-filters{
+	margin-bottom: 20px;
+}
+
+#startDate, #endDate {
+	padding:.2em;
+	width:90px;
+	background-position: 95%;
+}
+
+#endDate {
+	margin-left:.2em;
+}
+
+#startDate {
+	margin-right:0.2em;
+}

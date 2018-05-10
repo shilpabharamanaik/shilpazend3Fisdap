@@ -1,0 +1,49 @@
+#code-container {
+    border: solid 2px #CCCCCC;
+	border-radius: 15px 15px 15px 15px;
+    padding: 20px;
+    background: #f0eeeb;
+    margin: 20px 0;
+	margin-top:.2em;
+}
+
+#code-container h3 {
+	margin-top:0em;
+}
+
+.question-mark {
+    height: auto;
+    width: 18px;
+}
+
+p {
+    margin: 10px 0;
+}
+
+#welcomeWrapper {
+	margin-left:.5em;
+}
+
+.form-errors b {
+	display: none;
+}
+
+.form-errors li {
+	list-style-type: none;
+	margin-left: 0px;
+}
+
+ul.product-list {
+    color: #f0791b;
+    font-family: Century Gothic,Arial,Helvetica,sans-serif;
+    font-size: 140%;
+    font-weight: bold;
+    line-height: 1.2;
+    list-style: disc inside none;
+    margin: 0.5em 1em 1em;;
+}
+
+ul.product-list li span {
+    color: #655d57;
+    font-size: 75%;
+}

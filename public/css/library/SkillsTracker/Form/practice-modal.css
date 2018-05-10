@@ -1,0 +1,78 @@
+#practiceDialog {
+	overflow-x:hidden;
+}
+
+#practice-modal-wrapper .grid_12 {
+	margin-bottom:.5em;
+}
+
+#practice-modal-wrapper .time-element input {
+	width:100px;
+	padding:.2em;
+}
+
+#practice-modal-wrapper select {
+	height:27px;
+	padding-left:.2em;
+	width:275px;
+}
+
+#practice-modal-wrapper .passFail {
+	margin-left:6.8em;
+}
+
+#instructor-evaltype-label .ui-button-text, #instructor-evaltype-label-checked .ui-button-text {
+	padding-left:36px;
+	background:url(/images/icons/lab_skills_icon_instructor_white.png);
+	background-repeat:no-repeat;
+	background-position:18%, 44%;
+}
+
+#instructor-evaltype-label .ui-button-text {background-image:url(/images/icons/lab_skills_icon_instructor_blue.png);}
+
+#student-evaltype-label .ui-button-text, #student-evaltype-label-checked .ui-button-text {
+	padding-left:38px;
+	background:url(/images/icons/lab_skills_icon_peer_white.png);
+	background-repeat:no-repeat;
+	background-position:21%, 44%;
+}
+
+#student-evaltype-label .ui-button-text {background-image:url(/images/icons/lab_skills_icon_peer_blue.png);}
+
+#practice-modal-btn-spacer {
+	height:100px;
+}
+
+#practice-modal-buttons {
+	position:absolute;
+	bottom:1em;
+	right:1em;
+	width:257px;
+}
+
+#practice-modal-buttons img {
+	position:absolute;
+	top:0.7em;
+	right:2em;
+}
+
+#practice-modal-buttons a {
+	float:right;
+}
+
+#practice-modal-buttons div {
+	float: right;
+}
+
+.updatePracticeItemWidgetThrobber {
+	margin-left:1em;
+	margin-top:.2em;
+}
+
+#confirmCredentials {
+	display: none;
+}
+
+#confirmCredentials input#usernameConfirm, #confirmCredentials input#passwordConfirm {
+	width: 275px;
+}

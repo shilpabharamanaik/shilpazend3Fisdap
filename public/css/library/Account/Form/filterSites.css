@@ -1,0 +1,35 @@
+#filterMessage {
+	margin: .8em;
+}
+
+label.filterLabels {
+	margin: 0 0.5em 0 1.5em;
+	position: relative;
+	top: 0.2em;
+}
+
+.selectContainer div {
+	float: left;
+}
+
+#site_search {
+	width: 280px;
+}
+
+#site-type-filter {
+	float:right;
+}
+
+#site-type-filter.cupertino .ui-button {
+	margin-right: -4px;
+}
+
+#site-type-filter .ui-button-text {
+	width: 50px;
+}
+
+img#filterThrobber {
+	position:absolute;
+	top:15%;
+	left:50%;
+}

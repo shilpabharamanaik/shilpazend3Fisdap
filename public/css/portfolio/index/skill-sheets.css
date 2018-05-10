@@ -1,0 +1,46 @@
+/* 
+    Document   : internship-records
+    Created on : Nov 29, 2011, 2:57:22 PM
+    Author     : astevenson
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.skill-sheet-header {
+    background-color: #F5E079;
+
+    border-top: 1px solid #B0B0B0;
+
+}
+
+.skill-sheet-row-left {
+    padding: 10px;
+
+    width: 75%;
+
+    border-bottom: 1px solid #B0B0B0;
+    border-right: 1px solid #B0B0B0;
+}
+
+.skill-sheet-row-right {
+    text-align: center;
+    padding: 10px;
+
+    width: 25%;
+
+    border-bottom: 1px solid #B0B0B0;
+    border-left: 1px solid #B0B0B0;
+}
+
+div.content {
+    margin: 0 0 10px;
+}
+
+.shift-count {
+    font-weight: 900;
+}

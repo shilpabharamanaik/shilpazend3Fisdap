@@ -1,0 +1,193 @@
+/*
+ * ---------------------------------------------------------------------------------------------------------------------------------------
+ *  Styles for the eureka options form elements
+ * ---------------------------------------------------------------------------------------------------------------------------------------
+ */
+
+.eurkea_options_label {margin-bottom:0.1em;}
+#eureka_skills-element {margin-bottom:1em;}
+#eureka_report_options_form {margin-left:0.6em;}
+#eureka_report_options_form dt {display:none;}
+#eureka_report_options_form .eureka_goals_wrapper dd, #eureka_slash {width:60px;float:left;}
+#eureka_slash {width:20px;text-align:center;padding-right:6px;margin-top:0.2em;}
+#eureka_combine_graphs-element {width:70px;float:left;margin-left: -0.3em;margin-bottom: 1em;margin-right:0.5em;}
+
+#eureka_goal, #eureka_window  {
+	width:45px;
+	text-align:center;
+	padding-left:0.15em;
+}
+
+#eureka_report_options_form .eureka_goals_wrapper .grid_3 {
+	margin-left:0em;
+	width: 36%;
+	margin-right: 0em;
+}
+
+#eureka_report_options_form .eureka_goals_wrapper .grid_5 {
+	color:#666;
+	font-size:10pt;
+	margin-top:0.3em;
+}
+
+.subtle_eureka_summary {
+	font-size:10pt;
+	color:#666;
+}
+
+#combine_erueka_graphs_wrapper {display:none;}
+#eureka_report_options_form .eureka_form_left_column {margin-left:0em;}
+#eureka_report_options_form .eureka_form_right_column {margin-left:1em;}
+
+.anon-checkbox-container {display:none;}
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------------------------
+ *  General styles for the report
+ * ---------------------------------------------------------------------------------------------------------------------------------------
+ */
+
+#export-report-links .csvLink {display:none;}
+#export-report-links .pdfLink {display:block;}
+.eureka_skill_wrapper {margin-bottom:2em;}
+.eureka_student_report_wrapper {margin-top:-0.5em;}
+.eureka_report_wrapper h3 {color:#655d57;}
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------------------------
+ *  Styles for attempts table
+ * ---------------------------------------------------------------------------------------------------------------------------------------
+ */
+
+.eureka_table_wrapper {
+	width:39%;
+	float: left;
+}
+
+.eureka_attempts_table_wrapper {
+	max-height:550px;
+	overflow:auto;
+	width:100%;
+}
+
+.eureka_success_cell {width:70px;text-align:center;}
+td.eureka_shift_info_cell {padding-right:1em;border-right: 1px solid #eee;}
+.eureka_table_wrapper td {padding:0.5em;font-size:10pt;}
+.eureka_table_wrapper td:not(.eureka_reached):hover {background-color:rgba(196, 186, 174, 0.1);}
+
+.eureka_success_cell .eureka_attempts_checkmark {width:15px;}
+.eureka_success_cell .eureka_attempts_x {width:10px;}
+.eureka_table_wrapper tr {border-bottom:1px solid #CCCCCC;}
+.eureka_attempts_table  {margin-top:0.5em;width: 100%;}
+
+.eureka_table_wrapper thead th {
+	background: rgba(196, 186, 174, 0.3);
+	border-left: none;
+	border-right: none;
+    color: #524944;
+    font-family: Century Gothic,Arial,Helvetica,sans-serif;
+    font-size: 10pt;
+    font-weight: normal;
+    padding: 0.5em;
+}
+
+.fixed_eureka_attempts_thead table {
+	width:100%;
+	margin-top:0.5em;
+}
+
+.eureka_row .eureka_reached {background-color:rgba(230, 239, 194, 0.55);}
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------------------------
+ *  Styles for the Eureka graphs
+ * ---------------------------------------------------------------------------------------------------------------------------------------
+ */
+
+.eureka_home {
+	width:450px;
+	position:relative;
+}
+
+.eureka_home:not(.empty_eureka_home){height:300px;}
+
+.eureka_graph_wrapper {
+	width:500px;
+	float: left;
+	margin-left: 2em;
+	margin-top: -0.5em;
+}
+
+.no_eureka_attempt_table {
+	margin-top:0em;
+	margin-left:0em;
+	width:100%;
+}
+
+.eureka_graph_wrapper .details-wrapper .details {
+	font-size:10pt;
+	margin-top:0em;
+	margin-bottom:0em;
+}
+
+.eureka_graph_wrapper .details-wrapper {
+	padding:0.75em;
+	background-color:rgba(196, 186, 174, 0.2);
+	margin-bottom:1em;
+}
+
+.eureka_graph_wrapper .eureka_reached {
+	background-color:rgba(230, 239, 194, 0.55);
+	background-image:url(/images/icons/checkmark.png);
+	background-repeat:no-repeat;
+	background-position: 95%;
+	background-size: 4%;
+}
+
+.eureka_graph_wrapper .key {
+	position:static;
+	right:auto;
+	top:auto;
+	width:100%;
+	margin-top:1em;
+	color:#666;
+}
+
+.loading_eureka_graph_throbber {
+	position:absolute;
+	left: 17em;
+	top: 4em;
+}
+
+.eureka_graph_wrapper .key-wrapper {margin-left:2.5em;}
+.eureka_graph_wrapper .key .left-justified {margin-bottom:0em;}
+.eureka_graph_wrapper .spacer {height:0.25em;}
+.eureka_custom_details_msg {font-family:Century Gothic, Arial, Helvetica, sans-serif;}
+
+.eureka_graph_wrapper .success-list {display:none;}
+.eureka_graph_wrapper .date-list {display:none;}
+.eureka_graph_wrapper .print-eureka {display:none;}
+
+.eureka_graph_wrapper .graph_wrapper {opacity:0;height:530px;}
+.no_eureka_attempt_table .graph_wrapper {height:110px;}
+.eureka_graph_wrapper  {position:relative;}
+
+.eureka_table_wrapper .shift_summary_display_large .shift_summary_location_display {font-size: 9.5pt;}
+.eureka_table_wrapper .shift_summary_display_large .shift_summary_date_display {font-size: 10pt;}
+.eureka_table_wrapper .shift_summary_display_large .shift_summary_instructor_display, .shift_summary_display_large .shift_summary_preceptor_display {font-size:8.75pt;}
+
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------------------------
+ *  Special styles just for printing
+ * ---------------------------------------------------------------------------------------------------------------------------------------
+ */
+
+#print-eureka-report {display:none;}
+
+ /* the canvases used for graphs are converted to images for printing purposes. their positioning gets a bit tricky */
+.canvas_to_img {position:absolute;}
+.canvas_to_img:not(.zero_zero_flag) {top:0.7em;}
+.canvas_to_img_small_y_axis {left:1.5em;}
+.canvas_to_img_med_y_axis {left:2em;}
+.eureka_home .left-justified {width:35px;}

@@ -1,0 +1,35 @@
+.links {
+    clear: both;
+}
+
+.links a {
+    border-right: 1px solid grey;
+    display: block;
+    float: left;
+    padding: 0 1em;
+}
+
+.links a:last-child {
+    border: none;
+}
+
+.headerExpand {
+    background: url('/images/icons/plus.png') no-repeat;
+    background-position: 97% 50%;
+    cursor: pointer;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    font-size: medium;
+}
+
+.headerExpand:hover {
+    background-color: #eee;
+}
+.contentExpand {
+    padding: 5px 10px;
+}
+
+.minus {
+    background: url('/images/icons/minus.png') no-repeat;
+    background-position: 97% 50%;
+}

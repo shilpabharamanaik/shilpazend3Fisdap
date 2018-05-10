@@ -1,0 +1,33 @@
+#show-reqs-aa,
+#show-reqs-n {
+    color: #A94612;
+    cursor: pointer;
+    float: right;
+    position: relative;
+    top: -1.5em;
+}
+
+#req-list-aa,
+#req-list-n {
+	display: none;
+    border: 1px solid #CCCCCC;
+    color: #655D57;
+	margin: 1em 0em;
+    padding: 1em;
+}
+
+.buttons {
+	float: right;
+	width:200px;
+	margin-top: 1.5em;
+}
+
+.buttons a {
+	float:right;
+	margin-left: 5px;
+}
+
+#modalThrobber {
+	position: relative;
+	left: 12.5em;
+}

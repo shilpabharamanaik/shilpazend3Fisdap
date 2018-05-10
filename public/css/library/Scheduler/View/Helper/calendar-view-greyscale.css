@@ -1,0 +1,59 @@
+.orange-cal-wrapper {
+	background: #ccc;
+}
+
+.subtle-no-shifts-msg {
+	color:#666;
+	font-size:10pt;
+}
+
+.day-block:hover, .today, .selected-day-block {
+	cursor:pointer;
+	background-color: #F0F0F0;
+}
+
+.cal-tooltip {
+	background: #fff;
+	color: #444;
+	-moz-box-shadow: 1px 1px 1px #ccc;
+	-webkit-box-shadow: 1px 1px 1px #ccc;
+	box-shadow: 1px 1px 1px #ccc;
+}
+
+.field {
+    color: #444;
+}
+
+.clinical {
+	color: #888;
+}
+
+.lab {
+    color: #666;
+}
+
+.base-row .field,
+.field-bar {
+    background-color: #222;
+}
+
+.base-row .clinical,
+.clinical-bar {
+    background-color: #888;
+}
+
+.base-row .lab,
+.lab-bar {
+    background-color: #666;
+}
+
+.filled-slot-col .slots-table tbody .non-compliant-row, .red-plus-slots, .red-plus-slots p,
+.non-compliant-row, .list-event .slots-table .non-compliant-assignment-cell {
+	color: #000;
+}
+
+.closed-weebles .red-weeble-img,
+#legend #red-weeble {
+    background-color: #eee;
+    border: 1px dashed #333;
+}

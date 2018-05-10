@@ -1,0 +1,73 @@
+.lockShiftDialog {
+    max-height: 700px !important;
+}
+
+#shift-history {
+    margin-top: 0.5em;
+}
+
+#shift-history .fisdap-list {
+    max-height: 100px;
+    overflow: auto;
+    width: 100%;
+}
+
+#short-run-table tbody td.summary-column {
+	width: 60%;
+	vertical-align: middle;
+	text-align:left;
+	border-left: 0px;
+    border-right: 1px;
+    font-size: 80%;
+}	
+
+#short-run-table tbody td.number-column {
+	border-left: 0px;
+	border-right: 0px;
+	width: 5%;
+}
+
+#short-run-table tbody td.unlock-column {
+	border-right: 0px;
+	width: 18%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 80%;
+}
+
+a.lock-run-btn img {
+    height: 2.5em;
+}
+
+#short-run-table tbody td.status-column {
+    text-align: center;
+    vertical-align: middle;
+    width: 12%;
+}
+
+.table-box {
+    margin-top: 1.5em;
+    overflow: auto;
+    max-height: 181px;
+    border-bottom: 1px solid #b0b0b0;
+    border-top: 1px solid #b0b0b0;
+}
+
+#short-run-table tr.locked-run {
+	background-color: #FFFFFF;
+}
+
+#email-container {
+      margin-top: 1.5em;
+  }
+
+#email-container textarea {
+    display: none;
+    margin-top: 0.5em;
+    resize: none;
+}
+
+#patient-unlock-notice {
+    display: none;
+    margin: 1.5em 0 0;
+}

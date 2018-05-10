@@ -1,0 +1,24 @@
+/* 
+    Document   : internship-records
+    Created on : Nov 29, 2011, 2:57:22 PM
+    Author     : astevenson
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.export-option-item{
+	padding-bottom: 3px;
+}
+
+.export-group{
+	padding-bottom: 7px;
+}
+
+.export-question {
+	margin-bottom: 1em;
+}

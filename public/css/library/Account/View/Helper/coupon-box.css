@@ -1,0 +1,23 @@
+input#coupon {
+	width:165px;
+	float:left;
+	font:normal 11pt Tahoma, Geneva, sans-serif;
+	padding:.2em;
+}
+
+#apply {
+	float:right;
+}
+
+#couponLabel {
+	font-size:12px;
+}
+
+#couponBox p {
+	margin-left:0;
+	font-size:13px;
+}
+
+#couponBox {
+    width: 260px;
+}

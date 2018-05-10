@@ -1,0 +1,47 @@
+#request-type-div {
+	margin: 1em 0;
+}
+
+
+#duration-label,
+#site-label, 
+#site_type-label {
+    display: inline;
+    position: relative;
+    top: -5px;
+}
+
+#duration-label {
+    top: 0px;
+}
+
+.term-prompts {
+    margin: 0 0 1em 1.5em;
+}
+
+#recipientDiv {
+    margin: 1.5em 0;
+}
+
+span.optional {
+	font-size: 80%;
+	font-style: italic;
+}
+
+#instructions {
+    margin: 1em 0 0 0;
+}
+
+.buttons {
+	float: right;
+	left: 1.5em;
+	margin-bottom: 0.5em;
+	position: relative;
+}
+
+#cancelButtonWrapper,
+#saveButtonWrapper {
+	display: inline;
+}
+
+

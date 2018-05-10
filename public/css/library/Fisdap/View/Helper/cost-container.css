@@ -1,0 +1,40 @@
+#cost-container {
+    width: auto;
+}
+
+#cost-container > * {
+    display: inline;
+    margin-right: 0.4em;
+}
+
+#cost-container > div {
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+#cost-container .discount-cost-container {
+    opacity: 0;
+}
+
+#cost-container .discount-cost-container.discounted {
+    opacity: 1;
+}
+
+.discounted {
+    position: relative;
+}
+
+.total-cost-container.discounted::after,
+.price.discounted::after {
+    border-bottom: 2px solid #655d57;
+    content: "";
+    left: -5px;
+    position: absolute;
+    right: -4px;
+    top: 46%;
+    -webkit-transform:rotate(15deg);
+    -moz-transform:rotate(15deg);
+    -ms-transform:rotate(15deg);
+    -o-transform:rotate(15deg);
+    transform:rotate(15deg);
+}

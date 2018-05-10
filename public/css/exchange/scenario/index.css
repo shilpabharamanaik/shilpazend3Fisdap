@@ -1,0 +1,12 @@
+.review_table{
+	width: 100%;
+}
+
+.review_table thead{
+	font-weight: 900;
+	border-bottom: 2px solid #999999;
+}
+
+.review_table td{
+	padding-top: 3px;
+}

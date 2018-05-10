@@ -1,0 +1,68 @@
+.largetext {
+    font-size: 0.9em;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 1.5em;
+}
+
+element.style {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#results {
+    border-style: outset;
+    border-width: 2px;
+    margin-bottom: 20px;
+    width: 800px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table.test_schedule_tbl td, th {
+    border-style: inset;
+    border-width: 1px;
+    padding: 3px;
+}
+
+tr.resultRow0 {
+    background-color: #EEEEFF;
+}
+
+#lp_details {
+    float: left;
+    margin: 20px 40px;
+    width: 650px;
+}
+
+.section {
+}
+
+.category_info {
+    border: 1px solid #DDDDDD;
+    margin: 0 0 30px 25px;
+    padding: 5px;
+    width: 40%;
+}
+
+.mediumboldtext {
+    font-size: 0.74em;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 1.5em;
+}
+
+.category_info ul {
+    list-style-type: none;
+}
+
+.intro {
+    margin: 20px 0 5px;
+}
+
+ol, ul {
+    list-style: none outside none;
+}

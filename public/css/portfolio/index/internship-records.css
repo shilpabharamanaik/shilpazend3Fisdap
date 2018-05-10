@@ -1,0 +1,37 @@
+/* 
+    Document   : internship-records
+    Created on : Nov 29, 2011, 2:57:22 PM
+    Author     : astevenson
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.skill_block{
+	border-top: 1px solid #D8D7D6;
+	border-bottom: 1px solid #D8D7D6;
+	
+	padding: 10px;
+	
+	width: 90%;
+}
+
+.skill_block .left{
+	float: left;
+}
+
+.skill_block .right{
+	float: right;
+}
+
+.skill_block .clear{
+	clear: both;
+}
+
+.intro-text{
+	padding-bottom: 5px;
+}

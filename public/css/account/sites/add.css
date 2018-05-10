@@ -1,0 +1,124 @@
+.new-site-nav {
+    float: right;
+    font-size: 10pt;
+}
+
+#create-new-site {
+    background-image: url("/images/buttons/new-site.png");
+    background-position: center bottom;
+    display: inline-block;
+    height: 29px;
+    left: 26px;
+    margin: 4px;
+    position: relative;
+    text-indent: -9999px;
+    width: 132px;
+}
+
+#create-new-site:hover {
+    background-position: center;
+}
+
+#create-new-site:active {
+    background-position: top;
+}
+
+#site-list {
+	width:593px;
+}
+
+table#sites-table {
+	width:593px;
+}
+
+tr:hover {
+	cursor:default;
+}
+
+.siteType {
+	width:32px;
+}
+
+.siteName {
+	width:232px;
+}
+
+.siteCity {
+	width:150px;
+}
+
+.siteState {
+	width:55px;
+}
+
+.siteShared {
+	width:52px;
+}
+
+td.siteShared {
+	text-align:center;
+}
+
+.siteActive {
+	width:0px;
+	padding: 0px;
+}
+
+.scrollbar {
+	width:5px;
+}
+
+#sitesContainer{
+	width:595px;
+	margin:0 auto;
+}
+
+#site-info {
+	float: left;
+	font-size: 13px;
+	margin: 0px 0px 0px 3px;
+	width: 440px;
+	border-radius: 4px;
+}
+
+#site-info.lab, 
+#site-info.clinical, 
+#site-info.field {
+	color:black;
+}
+
+#site-info.field {
+	background: #d2ecf2;
+}
+
+#site-info.clinical {
+	background: #cfeba7;
+}
+
+#site-info.lab {
+	background: #faee91;
+}
+
+#site-info div {
+	display: none;
+	margin: .5em 1em;
+}
+
+#site-info .info-title {
+	font-weight: bold;
+	color: #3C3C3C;
+}
+
+#editButton {
+	padding: .4em;
+	width: 120px;
+	float: right;
+	margin: 5px 0px 25px;
+}
+
+#addSiteThrobber {
+	float: right;
+    left: 7em;
+    position: relative;
+    top: 1em;
+}

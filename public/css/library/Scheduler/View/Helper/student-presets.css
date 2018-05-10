@@ -1,0 +1,43 @@
+.student-presets .my-shift-wrapper {
+	width:100px;
+	float:left;
+	border-right:1px solid #bbb;
+}
+
+.student-presets .my-available-shifts-wrapper {
+	width:270px;
+	float:left;
+	margin-left:1em;
+}
+
+.student-presets .my-available-shifts-wrapper img {
+	height:16px;
+	float:left;
+	margin:0 auto;
+	margin-bottom:0.5em;
+}
+
+.student-presets .my-available-shifts-wrapper a {
+	width:44px;
+}
+
+.student-presets {
+	margin-bottom:0em;
+	height:40px;
+}
+
+.student-presets .avail-text {
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	color:#555;
+	float: left;
+	margin-right: 1em;
+	margin-top: 0.5em;
+	font-size: 10pt;
+}
+
+.student-presets .student-shift-limit-warning {
+    float:left;
+    width: 507px;
+    margin-top: 0;
+    padding: .3em;
+}

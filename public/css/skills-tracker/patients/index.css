@@ -1,0 +1,153 @@
+h3.section_header{
+	/*font-size: 1.5em;*/
+	/*margin-top: 25px;*/
+	width:100%;
+	font-weight:normal;
+	color: #655d57;
+	/*font-size: 1.2em;*/
+	border-bottom: 1px solid #655d57;
+	padding-top: 10px;
+}
+
+div.required-fields-container {
+	margin-top: 1em;
+}
+
+div.section {
+	padding-left: 1em;
+}
+
+.label_text{
+	font-size: .95em;
+}
+
+#autosave-timer-nar, #autosave-timer {
+	float:right;
+	margin-right:1em;
+	padding: .5em;
+	border-radius: 10px;
+}
+
+#shift-overview-link {
+	display:block;
+	margin-top:1.75em;
+}
+
+.lower-nav {
+	margin-top: 1em;
+}
+
+.tab-holder{
+	overflow: auto;
+	background-color: #FFFFFF;
+}
+
+.ticker-image-holder{
+	overflow: hidden;
+	text-align: center;
+	margin-top: -3px;
+}
+
+.ticker-image{
+	width:4em; 
+	position: relative; 
+	top: .3em;
+}
+
+.tab-block{
+	margin-top: 25px;
+}
+
+.tab-text {
+	font-size: 1.3em;
+	font-family: Century Gothic, Arial, Helvetica, sans-serif;
+	
+	position: relative;
+	
+	top: -5px;
+	
+	color: black;
+}
+
+div.long-form-prompt {
+	margin: .5em 0em;
+	overflow: auto;
+}
+
+#narrative-next {
+	color: #000000;
+}
+
+.eval-icon-div{
+	padding-left: 8px;
+	padding-top: 22px;
+}
+
+.airway_management_options_wrapper {
+	margin-left:3.75em;
+	margin-bottom:1em;
+	opacity: 0;
+}
+
+#patientCareForm .complaints_wrapper {
+	margin-top: 2em;
+	height: 21em;
+}
+
+#patientCareForm .secondary_impression_wrapper {
+	width:45%;
+	margin-left:2em;
+}
+
+.alert_fields_wrapper {
+}
+
+.alert_fields_wrapper_top_margin {
+	margin-top:0em;
+}
+
+.complaints_wrapper div {
+	margin-top:-0.25em;
+}
+
+.gender_element_wrapper {
+	margin-bottom:0.75em;
+}
+
+.interview_exam_wrapper {
+	height:6.2em;
+}
+
+.interview_exam_wrapper .form-prompt:last-of-type {
+	margin-top:0.8em;
+}
+
+.airway_management_wrapper {
+	margin: -0.5em 0 2.5em 0.25em;
+}
+
+.airway_management_options_wrapper input {
+	margin-left: 4.75em;
+}
+
+.airway_management_wrapper img {
+	width:25px;
+	float:left;
+	margin-right:0.5em;
+}
+
+.am_key_icon {
+    width:20px;
+    float:left;
+    margin-right:0.26em;
+}
+
+.patient_care_legend {
+    float:right;
+    width:78%;
+    margin-bottom:0.5em;
+}
+
+.avpu_score_wrapper {
+	float:right;
+}

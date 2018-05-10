@@ -1,0 +1,69 @@
+table.upgrade-order-summary {
+    width: 30%;
+}
+
+table.order-summary {
+    width: 100%;
+}
+
+table.order-summary td {
+    padding: 0.2em;
+}
+
+.billing-form input[type="text"] {
+    display: block;
+    width: 100%;
+}
+
+#city, #billingState, #zip {
+    display: inline;
+    width: auto;
+}
+
+#billingCountry {
+    width: 100%;
+}
+
+.form-section {
+    border-right: 1px solid #b0b0b0;
+    padding-right: 20px;
+    min-height: 21em;
+}
+
+div.columns-container div:last-child .form-section {
+    border: none;
+}
+
+div.columns-container {
+    border-top: 3px dashed #bbb;
+    border-bottom: 3px dashed #bbb;
+    overflow: auto;
+    padding: 1em 0em;
+    margin: 1em 0em;
+}
+
+.paypal-icon {
+    width: 40px;
+    position: relative;
+    top: 15px;
+}
+
+#cost-container {
+    float: left;
+}
+
+#confirmPayment {
+    float:right;
+    margin-right:5em;
+}
+
+.island .action-buttons {
+    margin-top: 1em;
+    padding-right: 13em;
+}
+
+#orderButton {
+    position: absolute;
+    right: 1em;
+    bottom: 1.1em;
+}

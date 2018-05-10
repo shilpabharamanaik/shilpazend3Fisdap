@@ -1,0 +1,119 @@
+#report-header {
+	color: #333;
+}
+
+#report-form-errors {
+	display: none;
+}
+
+#report-form-form .island,
+#report-form {
+	overflow: visible;
+}
+
+#report-form-form .report-form-section {
+	margin-bottom: 1.5em;
+}
+
+#skill_type_chzn .chzn-drop {
+	z-index: 2000;
+}
+
+#report-form-form .ms-picklist-wrapper {
+	margin: 0em 1%;
+}
+
+#report-form.hidden, #report-results.hidden, #show-report-form.hidden {
+	display: none;
+}
+#report-form.shown, #report-results.shown, #show-report-form.shown {
+	display: block;
+	overflow: inherit;
+}
+
+#report-buttons {
+	float: right;
+    position: relative;	
+}
+
+#hide-report-form {
+    bottom: -0.5em;
+    position: relative;
+    right: 1em;
+}
+
+#submit-report-throbber {
+	left: 15px;
+    position: absolute;
+    top: 6px;
+}
+
+#available_list_chzn a.input-error, #site-type.input-error {
+    border: 1px solid #C7877F;
+    box-shadow: 0 0 5px #D1595D;
+}
+
+
+#skill_type.chzn-select {
+	width: 210px;
+}
+
+#report-content {
+	min-width: 98%;
+}
+
+#report-content .report-header {
+	margin-bottom: 1.5em;
+}
+
+#report-content .report-header h2.section-header {
+	margin-bottom: 0em;
+}
+
+#report-content .header-section {
+	font-size: 95%;
+	margin-left: 1%;
+}
+
+#report-content h3.table-title {
+	margin-bottom: 3px;
+}
+
+#report-content .dataTables_wrapper {
+	margin-bottom: 3em;
+}
+
+.about-student {
+	margin-left: 24px;
+	margin-right:24px;
+}
+
+.goals-widget {
+	margin-left: 28px;
+	margin-right: 28px;
+}
+
+.goals-widget-throbber {
+	position:relative;
+	margin-left:10px;
+	top: -5px;
+}
+
+.about-student h2 {
+    font-size: 22px;
+    margin-top: 0.5em;
+    margin-bottom: 0.3em;
+}
+
+.about-student .cert-program, .about-student .graduation, .about-student .student-email {
+	font-size: 14px;
+	margin-bottom: 3px;
+}
+
+.about-student .product-icons-container {
+    margin-top: 0.6em;
+}
+
+.about-student .product-icons-container img {
+	margin-right: 7px;
+}

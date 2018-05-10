@@ -1,0 +1,129 @@
+input[type="checkbox"]{
+    float:left;
+    margin-top:-.8em;
+}
+
+.form-prompt label {
+    margin-left:1.6em;
+    margin-bottom:-1.5em;
+    display:block;
+}
+
+.calHeader {
+    background:#73869B;
+	background: #73869B; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#73869B', endColorstr='#5E7084'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#73869B), to(#5E7084)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #73869B,  #5E7084); /* for firefox 3.6+ */
+}
+
+.inventoryFormLeft {
+    width:400px;
+    float:left;
+    margin-top:1em;
+}
+
+.inventoryFormRight {
+    width:400px;
+    float:left;
+    margin-top:1em;
+}
+
+#dateBegin, #dateEnd {
+    width:104px;
+    float:left;
+    margin:.5em;
+    padding:.3em;
+    font:normal 11pt Tahoma, Geneva, sans-serif;
+}
+
+select {
+    font:normal 11pt Tahoma, Geneva, sans-serif;
+}
+
+#dateBegin {
+    margin-top:-0.1em;
+    margin-right:0.8em;
+}
+
+#dateEnd {
+    margin-top:-3.6em;
+    margin-left:11.5em;
+}
+
+#dateContainer {
+    margin-top:-1em;
+}
+
+label[for="save"]{
+    display:none;
+}
+
+#groupsWrapper {
+    margin-top:-1.25em;
+}
+
+#groupsWrapper p {
+    margin-bottom:-1.2em;
+}
+
+select#group-year {
+    margin-left:.5em;
+}
+
+#certLevelsWrapper {
+    margin-left:.4em;
+    margin-top:1em;
+    margin-bottom:1.5em;
+}
+
+#searchButton {
+    float:right;
+    width:150px;
+    margin-top:1em;
+}
+
+#productsWrapper {
+    margin-left:.5em;
+}
+
+#statusWrapper {
+    margin-left:.5em;
+}
+
+#statusWrapper div {
+    float: left;
+    margin-right: 1.5em;
+}
+
+label[for="grad"]{
+    margin-left:0em;
+    margin-bottom:-0.8em;
+}
+
+#grad-month, #grad-year {
+    border:1px solid #ddd;
+}
+
+#grad-month {
+    margin-left:0.5em;
+    width:83px;
+    margin-right:0.2em;
+}
+
+#grad-year {
+    width:78px;
+}
+
+#groupsWrapper label {
+	display:none;
+}
+
+#grad_month_chzn {
+	margin-right:1em;
+	marign-left:0.5em;
+}
+
+#groupsWrapper .form-prompt {
+	marign-left:0.5em;
+}

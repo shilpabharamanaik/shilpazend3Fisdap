@@ -1,0 +1,50 @@
+.accreditation_buttonset_wrapper dt, .accreditation_buttonset_wrapper dd {float:left;margin:0.75em;}
+.accreditation_buttonset_wrapper dt {line-height:20px;}
+.accreditation_buttonset_wrapper dd {width:100px;}
+.accreditation-yes-no-buttonset {width:48px;}
+
+#accreditation_student_supervision_type-element {width:335px;}
+
+#accreditationinfo .dotted-line hr {margin-top:1.2em;}
+
+#accreditationinfo .accreditation_element_row .grid_7, #accreditationinfo .accreditation_element_row .grid_4 {margin:0em;}
+#accreditationinfo .accreditation_element_row .grid_4 {margin-left:0.2em}
+#accreditationinfo .accreditation_element_row dt, #accreditationinfo .accreditation_element_row dd {float:left;margin-right:0.75em;}
+#accreditationinfo .accreditation_element_row dt label {line-height:24px;}
+
+#accreditationinfo {overflow:hidden;}
+
+#accreditation_cao {width:310px;}
+#accreditation_phone {width:130px;}
+
+.accreditation_element_row {margin-top:1.5em;margin-bottom:1.5em;margin-left:0.5em;}
+.accreditation_element_row.distance_from_program_element_row{margin-top:0em;}
+
+#accreditationinfo #accreditation_distance_from_program-label {float:left;line-height:24px;margin-bottom:0.75em;margin-right:0em;}
+#accreditationinfo #accreditation_distance_from_program-element {float:left;margin-left:1em;margin-right:0em;}
+#accreditationinfo #accreditation_distance_from_program {width:65px;text-align:center;}
+
+#accreditationinfo .subtle-label {font-size:10pt; color:#666; font-style:italic;}
+#accreditationinfo .miles-label {line-height:24px;margin-left:0.5em;float:left;}
+
+#accreditation_preceptor_hours_wrapper {margin-top:0.6em;}
+#accreditation_preceptor_hours_wrapper dt {float:left;line-height:24px;}
+#accreditation_preceptor_hours_wrapper dd {float:left;margin-left:1em;}
+#accreditation_preceptor_training_hours {width:40px;text-align:center;}
+
+#accreditation_preceptor_hours_wrapper.disabled-preceptor-hours {opacity:0.4;}
+
+.appendix-f {width:40px;text-align:center;}
+
+#accreditationinfo label:not(.ui-button) {margin-left:-0.2em;}
+
+#accreditation_signed_agreement-label label {margin-left:0.5em;}
+
+#accreditationinfo .accreditation_buttonset_wrapper label:not(.ui-button) {margin-left:-0.5em;}
+
+#accreditationinfo .preceptor_wrapper {margin-left:-0.45em;}
+#accreditationinfo .preceptor_wrapper .grid_7 {width:53%;}
+
+#save_accreditation-element {float:right;margin-right:1em;margin-top:-1em;}
+
+#clear-accreditation-form {font-size:10pt; color:#A94612 }

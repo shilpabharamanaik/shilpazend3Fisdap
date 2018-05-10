@@ -1,0 +1,36 @@
+.silver, .silver:visited {
+	background: #e2e2e2;
+}
+
+.silver:hover {
+	background: #e2e2e2;
+}
+
+.silver:active {
+	background: #e2e2e2;
+}
+
+.blue, .blue:visited {
+	background: #1378a4;
+}
+
+
+.blue:hover	{
+	background: #1378a4;
+}
+
+.blue:active {
+	background: #1378a4;
+}
+
+.green, .green:visited		{
+	background: #84c724;
+}
+
+.green:hover {
+	background: #84c724;
+}
+
+.green:active {
+	background: #84c724;
+}

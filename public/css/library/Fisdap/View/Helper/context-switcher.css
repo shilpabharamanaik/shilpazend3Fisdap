@@ -1,0 +1,36 @@
+#context-switcher {
+    display: inline;
+    padding-bottom: 1em;
+}
+
+#context-switcher img.context-switcher-trigger {
+    width: 1em;
+    margin: 0 2px 3px;
+}
+
+#context-switcher img.ticker {
+    position: absolute;
+    right: 1em;
+    top: -0.9em;
+    width: 3em;
+}
+
+#context-switcher .context-switcher-menu {
+    background: white none repeat scroll 0 0;
+    box-shadow: 1px 3px 11px #8f8a85;
+    display: none;
+    position: absolute;
+    top: 3em;
+    z-index: 10;
+    border-top: 1px solid grey;
+}
+
+#context-switcher li {
+    border: 1px solid grey;
+    border-top: none;
+    padding: 1em;
+}
+
+#context-switcher a.switch-context {
+    cursor: pointer;
+}

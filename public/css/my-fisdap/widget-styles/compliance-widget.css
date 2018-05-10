@@ -1,0 +1,36 @@
+.non-compliant-list-item {
+	margin:0.5em;
+}
+
+.non-compliant-list-item b {
+	font-weight:bold;
+}
+
+#non-compliant-list .non-compliant-list-name {
+	margin-top:1.25em;
+	margin-bottom:0.5em;
+	font-weight:bold;
+	color:#666;
+	font-size:16px;
+}
+
+#non-compliant-list {
+	position:relative;
+}
+
+#edit-compliance-status {
+	position:absolute;
+	top:-1.3em;
+	right:0em;
+	font-size:10pt;
+}
+
+#shared-site-icon {
+	float:left;
+	margin-right:0.5em;
+	margin-top:-0.1em;
+}
+
+#shared-sites-title {
+	padding-bottom:0.2em;
+}

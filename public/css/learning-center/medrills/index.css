@@ -1,0 +1,18 @@
+img.thumbnail {
+    width: 100%;
+    border: solid 1px #89847f;
+}
+
+a.thumbnail-link:hover img.thumbnail {
+    box-shadow: 0 5px 5px #c6c1bc;
+}
+
+img.play-button {
+    position: absolute;
+    top: 60px;
+    left: 111px;
+}
+
+.video-caption {
+    margin-bottom: 1em;
+}

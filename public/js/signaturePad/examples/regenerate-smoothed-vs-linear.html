@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Regenerate a Signature · Signature Pad</title>
+  <style>
+    body { font: normal 100.01%/1.375 "Helvetica Neue",Helvetica,Arial,sans-serif; }
+    p { margin: 0.515em 0 0; padding: 0 6px; }
+    div.sigPad { margin-bottom: 20px;}
+  </style>
+  <link href="../assets/jquery.signaturepad.css" rel="stylesheet">
+  <!--[if lt IE 9]><script src="../assets/flashcanvas.js"></script><![endif]-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+</head>
+<body>
+  <section>
+    <h2>Regenerating Smooth Signatures</h2>
+    <p>These 3 generated signatures are generated from the same data (basically a JSON list of (x, y) coordinates)</p>
+    <br>
+  </section>
+
+  <div id="sig1" class="sigPad signed" style="width:700px;border:solid black 1px;">
+    <div class="sigWrapper" style="height:250px;">
+      <div class="typed">Sir John A. Macdonald</div>
+      <canvas class="pad" width="700" height="250"></canvas>
+    </div>
+    <p>Linear interpolation between sampled signature points (original)</p>
+  </div>
+
+  <div id="sig2" class="sigPad signed" style="width:700px;border:solid black 1px;">
+    <div class="sigWrapper" style="height:250px;">
+      <div class="typed">Sir John A. Macdonald</div>
+      <canvas class="pad" width="700" height="250"></canvas>
+    </div>
+    <p>Bezier curves that pass through all sampled points, fixed stroke width</p>
+  </div>
+
+  <div id="sig3" class="sigPad signed" style="width:700px;border:solid black 1px;">
+    <div class="sigWrapper" style="height:250px;">
+      <div class="typed">Sir John A. Macdonald</div>
+      <canvas class="pad" width="700" height="250"></canvas>
+    </div>
+    <p>Bezier curves that pass through all sampled points, stroke width based on estimated mouse velocity</p>
+  </div>
+
+  <script src="../assets/numeric-1.2.6.min.js"></script>
+  <script src="../assets/bezier.js"></script>
+
+  <script src="../jquery.signaturepad.js"></script>
+  <script src="carlos-signature-output.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#sig1').signaturePad({displayOnly:true, autoscale:true}).regenerate(sig);
+      $('#sig2').signaturePad({displayOnly:true, autoscale:true, drawBezierCurves:true}).regenerate(sig);
+      $('#sig3').signaturePad({displayOnly:true, autoscale:true, drawBezierCurves:true, variableStrokeWidth:true}).regenerate(sig);
+    });
+  </script>
+  <script src="../assets/json2.min.js"></script>
+</body>

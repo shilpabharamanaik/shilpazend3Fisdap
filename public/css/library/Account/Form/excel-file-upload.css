@@ -1,0 +1,205 @@
+
+
+#uploadTrigger {
+    float:right;
+    width:180px;
+}
+
+a#clickHere {
+    color:#A94612;
+}
+
+#buttons {
+    width:200px;
+    position:absolute;
+    right:10px;
+    bottom:10px;
+}
+
+#uploadContainer {
+    width:91px;
+    height:37px;
+    float:right;
+    position:relative;
+}
+
+#uploadContainer img {
+    position:absolute;
+    left:40px;
+    top:10px;
+}
+
+a#uploadButton, a#cancelButton {
+    float:right;
+}
+
+a#cancelButton {
+    margin-right:.5em;
+}
+
+input#file {
+    z-index:2;
+    opacity:0;
+    margin-left:-101px;
+    width:228px;
+    height:29px;
+}
+
+#inputFix {
+    width:100px;
+    height:40px;
+    z-index:3;
+    background-color:white;
+    position:absolute;
+    left:-103px;
+    bottom:0px;
+}
+
+#fileInput {
+    position: relative;
+    width:425px;
+    height:50px;
+    margin-left:2.5em;
+    margin-top:-0.5em;
+}
+
+
+input#file:hover {
+    cursor:pointer;
+}
+
+#fancyFileInput {
+    position:absolute;
+    left:4px;
+    bottom:2px;
+}
+
+a#chooseFile {
+    width:120px;
+}
+
+#fileName {
+    position:absolute;
+    left:130px;
+    bottom:10px;
+    font-size:12px;
+    width:450px;
+}
+ol#steps {
+    height:380px;
+}
+
+ol#steps li {
+    display:block;
+    height:28px;
+    line-height:28px;
+    padding-left:35px;
+    margin-top:.8em;
+    margin-bottom:.4em;
+    font-family:Century Gothic, Arial, Helvetica, sans-serif;
+    font-size:18px;
+}
+
+li#step1 {
+    background: url("/images/icons/tab_1.png") left no-repeat;
+}
+
+li#step2 {
+    background: url("/images/icons/tab_2.png") left no-repeat;
+}
+
+li#step3 {
+    background: url("/images/icons/tab_3.png") left no-repeat;
+}
+
+.stepDetails {
+    margin-left:3.2em;
+    font-size:11pt;
+    font-family:Tahoma, Geneva, sans-serif;
+}
+
+a#downloadFile, a#chooseFile {
+    font-weight:normal;
+}
+
+
+input#uploadSave {
+    height:36px;
+    position:absolute;
+    top:0px;
+}
+
+#uploadContainer img {
+    position:absolute;
+    top:0px;
+    right:0px;
+}
+
+#errors {
+    display:none;
+}
+
+.form-errors li {
+    list-style-type:none;
+}
+
+li#no-margin {
+    margin-left:0em;
+}
+
+#uploadResult, #warningUploadResult {
+    margin:0px;
+    width:96.8%;
+    margin-bottom:1em;
+}
+
+#warningUploadResult {
+    background-color:#FFFBD8;
+    border-color:#F1DA86;
+    color:#000;
+    margin-top:-.8em;
+}
+
+#warningUploadResult li {
+    list-style-type:circle;
+    margin-left:1.5em;
+    color:#726315;
+}
+
+input.missingValue, select.missingValue {
+    background-color:#FFFBD8;
+    border:1px solid #bbb;
+}
+
+#rowsAvailable {
+    display:none;
+}
+
+#additionalStudentsWarning,
+#notReadableWarning,
+#hasDistributedNotUsedWarning,
+#hasDistributedUsedWarning {
+    display:none;
+}
+
+dd#override-element {
+    float:left;
+}
+
+dt#override-label {
+    float:right;
+    margin-right:45px;
+    width:500px;
+}
+
+p#distributionWarning {
+    margin-top:.8em;
+    margin-bottom:.3em;
+    font-weight:bold;
+    color:#5E7084;
+}
+
+dt#override-label:hover {
+   cursor: pointer;
+    
+}

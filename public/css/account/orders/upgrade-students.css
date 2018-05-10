@@ -1,0 +1,54 @@
+.productInnerCell {
+    padding-left: 45%;
+}
+.site.fluid-width .productInnerCell {
+    padding: 0;
+}
+
+.mini-checkmark {
+    width: 10px;
+    /* height: auto;
+    position: relative;
+    float:left;
+    margin-top:0.3em; */
+}
+
+.hasProduct input {
+    /*
+    float:left;
+    margin-left:1.4em;
+    margin-right:.5em;
+    */
+}
+
+.hasProduct {
+    /*
+    width:50px;
+    height:13px;
+    display:block;
+    margin:0 auto;
+    */
+}
+
+.downgradeProduct, .reduceAttemptProduct {
+    margin-left: 5px;
+    background-color: #FFACAA;
+ /*   
+    display: block;
+    float: right;
+    */
+}
+.reduceAttemptProduct {
+    background-color: #FFE1AA;
+}
+.downgradeProduct input, .reduceAttemptProduct input {
+    opacity: .6;
+}
+
+.upgrade-accounts-form {
+    margin-bottom: 15px;
+}
+
+.centerMe {
+    text-align:center;
+}

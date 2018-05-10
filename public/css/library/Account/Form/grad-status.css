@@ -1,0 +1,20 @@
+#gradDate-month {
+	margin-right: .5em;
+}
+
+#left-program-settings {
+	margin-left: 1.5em;
+	margin-top: -.5em;
+}
+
+.centerMe, .Date-cell, .Status-cell, .Data-cell {
+	text-align: left;
+}
+
+ul.changes {
+	list-style: disc inside; 
+}
+
+ul.changes li {
+	margin-left: 3em;
+}

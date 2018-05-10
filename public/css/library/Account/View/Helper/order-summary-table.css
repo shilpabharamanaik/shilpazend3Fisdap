@@ -1,0 +1,47 @@
+table.order-summary {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+table.order-summary.static {
+    width: 60%;
+}
+
+.order-summary td {
+    padding: 10px;
+    border-top: 1px solid #b0b0b0;
+    border-bottom: 1px solid #b0b0b0;
+}
+
+.order-summary td.count {
+    min-width: 2%;
+}
+
+.order-summary td.account {
+    width: 20%;
+}
+
+.order-summary.static td.account {
+    width: 15%;
+}
+
+.order-summary td.products {
+    width: 45%;
+}
+
+.order-summary td.products div.product-summary-downgrades strong {
+    color: red;
+}
+
+.order-summary td.cost {
+    width: 15%;
+    text-align: center;
+}
+
+.order-summary td.quantity {
+    width: 15%;
+}
+
+.order-summary td.delete {
+    width: 5%;
+}

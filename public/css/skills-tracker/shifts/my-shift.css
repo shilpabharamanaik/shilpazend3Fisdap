@@ -1,0 +1,189 @@
+#shift-summary {
+	width: 575px;
+}
+
+#shift-summary .shift-summary-links {
+    margin-left: 2.8em;
+}
+
+#report-ticker {
+	margin-top:2em;
+}
+
+#shift-data {
+	background-color: #ffffff;
+	padding: .5em;
+	margin-top: 3em;
+}
+
+.content-div {
+	background-color: #ffffff;
+	padding: .5em;
+	border: 1px solid #ccc;
+	overflow: auto;
+	margin-bottom: 10px;
+}
+
+.content-div:last-child{
+	margin-bottom: 0;
+}
+
+#shift-buttons-container {
+	text-align: center;
+}
+
+.lock-shift-btn {
+	margin-bottom: .5em;
+	width:auto;
+}
+
+tr.locked-run .field {
+	color: #5895a5;
+}
+
+tr.locked-run .clinical {
+	color: #96c751;
+}
+
+tr.locked-run .lab {
+	color: #f2af4d;
+}
+
+tr.locked-run {
+	background-color: #F0EEEB;
+}
+
+#run-table th.add-run-container {
+	text-align: left;
+}
+
+.summary-column, .interventions-column, .team-lead-column, .number-column, .actions-column, .status-column {
+	vertical-align: middle;
+	text-align: center;
+}
+
+table.my-shift-table tbody td.summary-column {
+	width: 40%;
+	vertical-align: middle;
+	text-align:left;
+	border-left: 0px;
+}	
+
+.interventions-column {
+	width: 38%;
+}
+
+.team-lead-column {
+	width: 6%;
+}
+
+table.my-shift-table td.number-column,
+table.my-shift-table td.thumbnail-column,
+table.my-shift-table td.name-column {
+    border-left: 0px;
+    border-right: 0px;
+}
+
+table.my-shift-table tbody td.number-column {
+	width: 4%;
+}
+
+table.my-shift-table tbody td.lock-column {
+    width: 2%;
+}
+
+table.my-shift-table td.thumbnail-column {
+    position: relative;
+    width: 50px;
+}
+
+table.my-shift-table td.actions-column {
+	border-right: 0px;
+	width: 5%;
+}
+
+table.my-shift-table td.actions-column .signoff {
+    margin-right: 0.3em;
+}
+
+#attachment-table td.actions-column,
+table.lab-practice-widget td.actions-column {
+    border-right: 0px;
+    padding-left: 0.3em;
+    width: 9%;
+    cursor: default;
+}
+
+table.my-shift-table td.date-column {
+    text-align: center;
+    width: 25%;
+}
+
+.status-column {
+	width: 63px;
+}
+
+.alt {
+    background-color: #ffffff;
+}
+
+#run-table .over {
+    background-color: #EFEDEB;
+}
+
+#run-table .intervention {
+	float:left;
+	width: 33%;
+}
+
+p {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.undo {
+	background-color: #fffcb3;
+    padding: 0.7em;
+}
+
+.detailed-shift-report-link {
+}
+
+#audit-shift-widget {
+	margin-top: 1em;
+}
+
+.table-header {
+    position: relative;
+}
+
+#add-patient {
+    background-position: center bottom;
+    display: block;
+    height: 29px;
+    text-indent: -9999px;
+    width: 96px;
+    position: absolute;
+    right: 0em;
+    top: -7px;
+}
+
+#add-patient.field {
+	background-image: url(/images/buttons/new-patient-field.png);
+}
+
+#add-patient.clinical {
+	background-image: url(/images/buttons/new-patient-clinical.png);
+}
+
+#add-patient.lab {
+	background-image: url(/images/buttons/new-patient-lab.png);
+}
+
+#add-patient:hover {
+	background-position: center;
+}
+#add-patient:active {
+	background-position: top;
+}
+

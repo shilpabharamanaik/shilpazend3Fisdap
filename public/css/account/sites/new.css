@@ -1,0 +1,339 @@
+#site-list{
+	width:593px;
+	font-size:12px;
+	height:250px;
+	overflow:auto;
+	border:1px solid #ACA9A2;
+	margin-bottom:10px;
+	-moz-border-radius-bottomleft: .6em;
+	border-bottom-left-radius: .6em;
+	overflow-x:hidden;
+}
+
+.island {
+	margin-top:1em;
+}
+
+#site-list a:hover {
+	text-decoration:none;
+	cursor:default;
+}
+
+table#sites-table {
+	width:593px;
+}
+
+table#sites-table td {
+	padding:5px;
+}
+
+tr:hover {
+	cursor:default;
+}
+
+tr#titles,
+tr#defaultTitles {
+	text-align:left;
+	position:absolute;
+	top:-25px;
+	left:0px;
+	height:20px;
+	padding-bottom:5px;
+	color:#fff;
+	background: #807B76; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#807B76', endColorstr='#ACA9A2'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#807B76), to(#ACA9A2)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #807B76,  #ACA9A2); /* for firefox 3.6+ */
+	padding-right:20px;
+	border:1px solid #ACA9A2;
+	-moz-border-radius-topleft: .6em;
+	-moz-border-radius-topright: .6em;
+	border-top-left-radius: .6em;
+	border-top-right-radius: .6em;
+}
+
+tr#defaultTitles {
+	font-size:.8em;
+	color:#fff;
+}
+
+tr#defaultTitles:hover,
+tr#titles:hover {
+	cursor:pointer;
+}
+
+td.siteType {
+	width:55px;
+	padding-left:10px;
+	text-align:center;
+}
+
+td.siteName {
+	width:232px;
+}
+
+td.siteCity {
+	width:150px;
+}
+
+td.siteState {
+	width:55px;
+}
+
+td.siteShared {
+	width:40px;
+}
+
+td.siteActive {
+	width:0px;
+	padding: 0px;
+}
+
+td.scrollbar {
+	width:5px;
+}
+
+#sitesContainer{
+	width:595px;
+	margin:0 auto;
+}
+
+#siteListContainer {
+	position:relative;
+	margin-top:45px;
+
+}
+
+#filters a {
+	margin-left:-5px;
+	margin-right:0px;
+	float:right;
+}
+
+
+.mostInputs input, select#site_state,
+.rightColInput input{
+	line-height: 1;
+	font: normal 11pt Tahoma, Geneva, sans-serif;
+    color: #000;
+	height: 100%;
+	padding:.2em;
+}
+
+
+.leftLabels, .rightColLabel {
+	margin-right:1em;
+	margin-top:.7em;
+}
+
+.rightColLabel {
+	margin-left:1.8em;
+	margin-right:-7.3em;
+}
+
+.rightColInput input {
+	
+}
+
+.zipLabel {
+	margin-top:.7em;
+	margin-left:.1em;
+}
+
+.zipInput {
+	margin-left:0px;
+	margin:.4em;
+}
+
+select#site_state {
+	width:165px;
+}
+
+input.long {
+	width:255px;
+}
+
+input.short {
+	width:162px;
+}
+
+input.med {
+	width:195px;
+}
+
+input.tiny {
+	width:65px;
+}
+
+input.name {
+	margin:.5em;
+	margin-left:65px;
+}
+
+input.abbrev {
+	margin:.5em;
+	margin-left:10px;
+}
+
+input.address {
+	margin:.5em;
+	margin-left:86px;
+}
+
+input.city {
+	margin:.5em;
+	margin-left:119px;
+}
+
+select#site_state {
+	margin:.5em;
+	margin-left:107px;
+}
+
+#new-site-btn, #editButton {
+	width:100px;
+	float:left;
+}
+
+#typeContainer {
+	width:289px;
+	border:1px solid #807B76;
+	float:right;
+	margin-top:.5em;
+	margin-right:3.38em;
+	position:relative;
+}
+
+#typeContainer h3 {
+	font-size: 1em;
+	font-family: Century Gothic, Arial, Helvetica, sans-serif;
+	color: #fff;
+	font-weight:normal;
+	display:block;
+	width:274px;
+	padding:.5em;
+	background:#73869B;
+	background: #73869B; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#73869B', endColorstr='#5E7084'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#73869B), to(#5E7084)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #73869B,  #5E7084); /* for firefox 3.6+ */
+}
+
+#typeContainer p {
+	margin:1.5em;
+}
+
+#typeContainer img {
+	margin-right:1em;
+	margin-top:-.2em;
+	float:left;
+}
+
+input#site_type-clinical,
+input#site_type-field,
+input#site_type-lab {
+	margin-bottom:.7em;
+}
+
+img#field {
+	position:absolute;
+	top:49px;
+	left:70px;
+}
+
+img#clinical {
+	position:absolute;
+	top:75px;
+	left:88px;
+}
+
+img#lab {
+	position:absolute;
+	top:103px;
+	left:56px;
+}
+
+#radioContainer {
+	margin-top:-.5em;
+}
+
+label.activateLabel {
+	margin-left:11.5em;
+}
+
+.activateInput {
+	margin-right:10em;
+}
+
+label.prompt-error {
+	font-weight:normal;
+}
+
+img#throbber {
+	position:absolute;
+	top:50px;
+	left:300px;
+}
+
+.filterInputs select {
+	line-height: 1;
+	font: normal 11pt Tahoma, Geneva, sans-serif;
+    color: #000;
+	height: 100%;
+	padding:.2em;
+	width:180px;
+	margin-top:-.2em;
+}
+
+select#type {
+	width:100px;
+	margin-left:1.6em;
+}
+
+#filterMessage {
+	color:#5E7084;
+	position:absolute;
+	top:50px;
+	left:130px;
+	font-weight:bold;
+	font-size:1.2em;
+}
+
+
+option.fieldOption {
+	background:url("/images/icons/fieldSiteIcon.png") left no-repeat;
+}
+
+option.clinicalOption {
+	background:url("/images/icons/clinicalSiteIcon.png") left no-repeat;
+}
+
+option.labOption {
+	background:url("/images/icons/labSiteIcon.png") left no-repeat;
+}
+
+select#type option {
+	height:20px;
+	padding-left:25px;
+
+}
+
+label.filterLabels {
+	margin-right:-1em;
+}
+
+.selectContainer {
+	width:470px;
+	margin:0 auto;
+}
+
+.space {
+	display:block;
+	height:2px;
+	width:50px;
+	float:left;
+}
+
+tr:hover {
+	cursor:pointer;
+}

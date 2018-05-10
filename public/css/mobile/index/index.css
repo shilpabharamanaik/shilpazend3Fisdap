@@ -1,0 +1,28 @@
+#shift-filters-container {
+    float:left;
+}
+
+#add-shift-container {
+    float:right;
+}
+
+#shift-list-container {
+    margin:auto;
+    margin-top: .5em;
+    width:100%;
+    border: 1px solid #f0eeeb;
+}
+
+.shift-container {
+    border: 1px solid #f0eeeb;
+    padding: .5em;
+}
+
+.alt {
+    background-color: #f0eeeb;
+}
+
+#shift-list-container a {
+    color: #000000;
+    font: normal 11pt Tahoma, Geneva, sans-serif;
+}

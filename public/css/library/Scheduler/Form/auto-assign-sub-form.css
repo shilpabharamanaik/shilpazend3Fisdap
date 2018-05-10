@@ -1,0 +1,13 @@
+@import 'compliance-settings.css';
+
+#autoAssignForm {
+    min-height: 2.5em;
+}    
+.hide-on-auto-assign-off {
+    float: left;
+}
+
+#auto_assign_accounts_chzn {
+    margin-left: 0.7em;
+}
+

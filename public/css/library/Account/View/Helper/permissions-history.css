@@ -1,0 +1,54 @@
+.permissionCat {
+	width:280px;
+	float:left;
+}
+
+.moreWidth {
+	width:420px;
+}
+
+.permissionCat h4 {
+	color:#000;
+	margin-bototm:.5em;
+	margin-top:.5em;
+	font-size:11pt;
+	font-weight:normal;
+}
+
+.permissionCat img {
+	width:20px;
+	float:left;
+	margin-right:.25em;
+	margin-left:.5em;
+	margin-top:-.15em;
+}
+
+img.check {
+	width:14px;
+	margin-left:.65em;
+	margin-right:.5em;
+	margin-top:0em;
+}
+
+.recordHeader {
+	background: #73869B; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#73869B', endColorstr='#5E7084'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#73869B), to(#5E7084)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #73869B,  #5E7084); /* for firefox 3.6+ */
+	padding:.25em;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	width:707px;
+	margin-left:-.6em;
+	color:#fff;
+	padding-left:8px;
+}
+
+.historyRecord {
+	width:701px;
+	margin:0 auto;
+	border:2px solid #bbb;
+	border-top:1px solid #bbb;
+	margin-top:.6em;
+	padding:.5em;
+	padding-top:0em;
+}

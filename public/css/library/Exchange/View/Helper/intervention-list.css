@@ -1,0 +1,176 @@
+#intervention-list {
+	margin-top:1em;
+}
+
+.intervention-table {
+	width:640px;
+	border-collapse:collapse;
+}
+
+#intervention-table tbody {
+	cursor: pointer;
+}
+
+#intervention-table td, th {
+	/* border-top: 2px solid #c6c1bc; */
+	border-bottom: 2px solid #c6c1bc;
+	padding: .5em;
+}
+
+#summary-column {
+	width: 60%;
+	vertical-align: middle;
+}
+
+/*.num-patients-column, .id-column, .actions-column {*/
+/*	vertical-align: middle;*/
+/*	text-align: center;*/
+/*}*/
+
+.alt {
+    background-color: #ffffff;
+}
+
+#intervention-list .over {
+    background-color: #c6c1bc;
+	cursor: move;
+}
+
+#intervention-list .new {
+	background-color: #cfeba7;
+}
+
+a {
+	width: 100%;
+}
+
+img.small-skill-icon {
+	float:left;
+	width:26px;
+}
+
+img.iv-skill-icon {
+	float:left;
+	width:18px;
+}
+
+.summary-header{
+	font-weight: 900;
+	font-size: 0.8em;
+}
+
+.summary-details{
+	font-size: 0.8em;
+}
+
+.undo {
+	background-color: #fffcb3;
+}
+
+.interventions-btn {
+	margin: .25em 0em;
+}
+
+.procedure-grabby-column {
+	width: 3%;
+}
+
+.procedure-icon-column{
+	width: 7%;
+	padding-left: 10px;
+}
+
+.procedure-description-column{
+	width: 55%;
+}
+
+.procedure-tools-column{
+	width: 35%;
+	text-align: right;
+}
+
+.grabby-icon {
+	float:left;
+	padding-left: 3px;
+}
+
+.toggle-als-bls{
+	position: relative;
+    top: -10px;
+}
+
+.prompt_name{
+	font-weight: 900;
+	font-size: 0.75em;
+}
+
+.g_12_width{
+	width: 100%;
+	display: inline;
+}
+
+.g_3_width{
+	width: 30%;
+	display: inline;
+}
+
+.g_9_width{
+	width: 65%;
+	display: inline;
+}
+
+.prompt_value{
+	padding-left: 5px;
+	font-size: 0.75em;
+}
+
+.priority_header{
+	font-weight: 900;
+}
+
+.priority_1{
+	background-color: #99FF66;
+}
+
+
+.priority_2{
+	background-color: #FFFF99;
+}
+
+
+.priority_3{
+	background-color: #FF6666;
+}
+
+.priority_1_dragdrop{
+	background-color: #CCFF99;
+}
+
+
+.priority_2_dragdrop{
+	background-color: #FFFFCC;
+}
+
+
+.priority_3_dragdrop{
+	background-color: #FF9999;
+}
+
+.drop_target_text{
+	width: 640px;
+	font-weight: 900;
+	border: 1px solid black;
+}
+
+.drop_target_hover{
+	background-color: #99FF66;
+}
+
+.prompt_name_large{
+	font-weight: 900;
+	font-size: 1em;
+}
+.prompt_value_large{
+	padding-left: 5px;
+	font-size: 1em;
+}

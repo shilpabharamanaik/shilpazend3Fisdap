@@ -1,0 +1,32 @@
+#shift-div {
+    margin: 1em 0 1.5em 0;
+}
+
+.dropped-students {
+	margin-left: 1.5em;
+	margin-top: .5em;
+}
+
+ul.student-list {
+	list-style: disc inside none;
+	margin-bottom: .5em;
+	margin-left: 1em;
+}
+
+.data-students ul.student-list {
+	margin-left: 1.5em;
+}
+
+.buttons {
+	float: right;
+	left: 1.5em;
+	margin-bottom: 0.5em;
+	position: relative;
+}
+
+#cancelButtonWrapper,
+#saveButtonWrapper {
+	display: inline;
+}
+
+

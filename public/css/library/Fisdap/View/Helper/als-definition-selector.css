@@ -1,0 +1,23 @@
+.definition-selector ul,
+.definition-selector ol {
+	padding-left: 2em;
+    margin-bottom: 0.5em;
+}
+
+.definition-selector ul {
+    list-style-type: circle;
+}
+
+.definition-selector ol {
+    list-style-type: upper-alpha;
+}
+
+#als-def-radio,
+#goalset_chzn {
+    margin: 8px 0em;
+}
+
+.manage-link {
+    float: right;
+    font-size: 90%;
+}

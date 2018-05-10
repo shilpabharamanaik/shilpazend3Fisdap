@@ -1,0 +1,45 @@
+.summary-box{
+	border: #B0B0B0 solid 1px;
+	padding: 5px;
+}
+
+.report-header{
+	color: #655d57;
+}
+
+table tbody tr td.completed{
+	background-color: #A5EB5F;
+}
+
+table tbody tr td.started{
+	background-color: #EDDF70;
+}
+/*#E6D388*/
+
+.table-header-op{
+	border-top: 1px solid white; 
+	text-align: center;
+}
+
+.category-sub-heading{
+	padding-top: 4px;
+	padding-bottom: 5px;
+}
+
+.category-sub-heading2{
+	padding-top: 10px;
+	padding-bottom: 0px;
+}
+
+.goal-element{
+	padding-top: 6px;
+}
+
+.errors{
+	color: #ff0000;
+}
+
+.report-category-subtitle{
+	border-bottom: 1px solid #655D57;
+	width:100%;
+}

@@ -1,0 +1,121 @@
+#goalset-table {
+	position: relative;
+}
+
+#goalset-table-blocker {
+	background-color: #FFFFFF;
+    height: 20em;
+	opacity: 0.5;
+    position: absolute;
+    top: -3em;
+    width: 100%;
+	z-index: 9;
+}
+
+#load-goalset-table-throbber {
+	left: 50%;
+    position: absolute;
+	top: 2em;
+    z-index: 10;
+}
+
+.goalset-buttons {
+	float: right;
+}
+
+#add-goalset {
+    background-image: url("/images/buttons/add-goalset.png");
+    background-position: center bottom;
+    display: inline-block;
+    height: 29px;
+    text-indent: -9999px;
+    width: 132px;
+}
+
+#add-goalset:hover {
+	background-position: center;
+}
+#add-goalset:active {
+	background-position: top;
+}
+
+.fisdap-table-scrolling-container.goalset-table {
+	width: 96%;
+	margin: 1.5em 2%;
+	max-height: 13.7em;
+}
+
+.fisdap-table tbody tr {
+	height: 40px;
+}
+
+.fisdap-table tbody tr.selected {
+	background-color: #EEEEEE;
+}
+
+.fisdap-table tbody tr.selected td.goalset-name {
+    background-image: url("/images/icons/checkmark.png");
+    background-position: 2.5% center;
+    background-repeat: no-repeat;
+    background-size: 14px auto;
+}
+
+.fisdap-table tbody td.goalset-name:hover {
+	cursor: pointer;
+}
+
+.fisdap-table.goalset-table td {
+	padding: 3px;
+}
+
+.fisdap-table tbody td.goalset-name {
+	padding-left: 3em;
+}
+
+td.goalset-cert-level {
+	color: #555555;
+	text-align: center;
+	width: 6em;
+}
+
+td.goalset-default {
+	color: #555555;
+	text-align: left;
+	font-style: italic;
+	width: 6em;
+}
+
+td.edit-goalset {
+	width: 3em;
+	text-align: center;
+}
+
+.standard-goalset {
+	font-size: 80%;
+	color: #444444;
+	font-style: italic;
+}
+
+td.delete-goalset {
+	text-align: center;
+	width: 3em;
+}
+
+td.delete-goalset img {
+	position: relative;
+	top: 3px;
+}
+
+.confirmation-modal-text {
+	margin-top: 1em;
+}
+
+.confirmation-modal-buttons {
+	float: right;
+	margin-top: 1em;
+}
+
+.confirmation-modal-buttons .buttonWrapper {
+	display: inline;
+	margin-left: .5em;
+}

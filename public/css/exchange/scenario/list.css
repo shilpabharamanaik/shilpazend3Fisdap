@@ -1,0 +1,41 @@
+.scenario_select{
+	width: 200px;
+}
+
+.scenario_table{
+	width: 100%;
+}
+
+.scenario_table thead{
+	font-weight: 900;
+	border-bottom: 2px solid #999999;
+}
+
+.scenario_table_hover{
+	background-color: #DDDDDD;
+}
+
+.scenario_table td{
+	padding-top: 3px;
+}
+
+.tool_icon{
+	width: 20px;
+	height: 20px;
+}
+
+#add-scenario{
+	display: block;
+	width: 132px; height: 29px;
+	background-position: bottom;
+	background-image: url(/images/buttons/new-scenario_button.png);
+}
+
+#add-scenario:hover{
+	background-position: center;
+	text-decoration:none;
+}
+
+#add-scenario:active{
+	background-position: top;
+}

@@ -1,0 +1,155 @@
+
+/** -------------------------------- begin styles for the "Additional Staff" tab ------------------------------ **/
+/** note: general accordion styles are in edit.css, any accordion styles in here are site staff accordion specific **/
+
+.base_address {width:250px; float:left; margin-right:3px;}
+.base_city {width:175px; float:left; margin-right:3px;}
+.base_state {width:40px; float:left; margin-right:3px;}
+.base_zip {width:75px; float:left; margin-right:3px;}
+.base_edit {width:50px; float:right; margin-right:5px; text-align:right; position:relative;}
+.base_empty_address {width:500px; float:left; margin-right:3px;}
+
+#site-staff-buttons {
+	margin:1.5em;
+	margin-left:0em;
+	position:relative;
+}
+
+#add-staff-member-wrapper .add-staff-member {
+	display:block; 
+	width:137px;
+	height:30px;
+	background-position:bottom;
+	position:absolute;
+	top:0.75em;
+	right:0.75em;
+}
+
+#add-staff-member-wrapper .add-staff-member:hover {background-position:center;}
+#add-staff-member-wrapper .add-staff-member:active {background-position:top; height: 29px}
+
+#add-staff-member-wrapper .add-staff-member-lab {background-image:url('/images/buttons/site-admin/new-lab-staff-button.png');}
+#add-staff-member-wrapper .add-staff-member-field {background-image:url('/images/buttons/site-admin/new-field-staff-button.png');}
+#add-staff-member-wrapper .add-staff-member-clinical {background-image:url('/images/buttons/site-admin/new-clinical-staff-button.png');}
+
+#add-staff-member-wrapper img.load-modal-throbber {
+    position: absolute;
+    right: 4.5em;
+    top: 1.1em;
+}
+
+#search_staff_members-element {margin-right:-2.1em;}
+#search_staff_members-label {display:none;}
+
+#site-staff-accordion-container {
+    position: relative;
+    top: -1.8em;
+}
+
+#site-staff-accordion-container .no-staff {
+    position: relative;
+    top: 1.8em;
+}
+
+#site-staff-accordion .accordion_element_content {
+	position: relative;
+}
+
+#site-staff-accordion .accordion_element_header {
+	padding-bottom: 0;
+	height: 2.25em;
+}
+
+#site-staff-accordion .delete_staff_member_wrapper {
+    float: right;
+	margin-right: 0.5em;
+}
+
+#site-staff-accordion .accordion_element_content div {
+	margin: 0.2em auto;
+}
+
+#site-staff-accordion .edit_link_wrapper {
+	position: absolute;
+    top: 1em;
+    right: 1em;
+}
+
+#tab-content .all-action-links-site-staff {font-size:9pt;margin-bottom: 0.5em;margin-top: -0.25em;}
+
+.accordion_staff_member_name_wrapper {
+    line-height: 24px;
+	margin-top: 0.1em;
+    margin-left: 1em;
+    padding-left: 1.5em;
+    background: url('/images/accordion_arrow_right.png') center left no-repeat;
+}
+
+.selectedRow .accordion_staff_member_name_wrapper {
+    background-image: url('/images/accordion_arrow_down.png');
+}
+
+
+/** -------------------------------- begin styles for the site staff member modal -------------------------------- **/
+
+#staff-member-modal {padding-bottom:5em;position:static;}
+#staff-member-modal .fancy-input {width:99%;}
+#staff-member-modal textarea.fancy-input {height: 4em;}
+
+#staff-member-modal .modal-buttons,
+#delete-staff-member-modal .modal-buttons {
+	position:absolute;
+	bottom:1.5em;
+	right:0.5em;
+	margin: 0;
+}
+
+#staff-member-modal dt,
+#staff-member-modal label {
+	display:block;
+	float:left;
+	width: 80px;
+	padding-top: 0em;
+	text-align: right;
+	margin-top: 0.3em;
+}
+
+#staff-member-modal label {
+	margin-top: 1em;
+}
+
+#staff-member-modal dd {
+	display:block;
+	float:left;
+	width:310px;
+	margin-left:1em;
+	margin-top:1em;
+}
+
+#staff-member-modal .optional-field {
+	color:#666;
+	font-style:italic;
+	font-size:0.77em;
+	padding-right:0.1em;
+	display:block;
+}
+
+#staff-member-modal .notes-description {
+	float: right;
+	margin-right: 1.5em;
+}
+
+.modal-buttons a,
+.modal-buttons .green-buttons {float:right;margin-right:0.5em;}
+
+#staff-member-modal .chzn-container .chzn-results {max-height:150px;}
+
+.modal-throbber {
+	position: absolute;
+	right: 5.5em;
+	top: 0.7em;
+}
+
+.confirmation-msg {
+	margin-bottom: 2em;
+}

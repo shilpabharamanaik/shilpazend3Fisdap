@@ -1,0 +1,64 @@
+/*
+# Headers
+
+Styleguide 1
+*/
+h1 {
+  font-family: Century Gothic, Arial, Helvetica, sans-serif;
+  color: #655d57;
+  font-weight: normal;
+  /*
+# Page Header
+
+Describes the overall function of the page to the user. Also provides context for navigation. Lives above the island on the top left of the page.
+
+Markup: <h1>Page Header</h1>
+
+Styleguide 1.1
+*/ }
+
+h1 {
+  font-size: 18pt;
+  margin-bottom: 0.5em;
+  margin-top: 1.5em; }
+
+.login_page h1 {
+  margin-top: 1em;
+  /*
+# Section Header
+
+Describes the function and/or contents of a section to the user. Lives within an island at the top of the section it describes (there may be more than one within a given island).
+Text is left-aligned with an underline that spans the width of the island.
+
+Markup: <h2 class="$modifierClass">Section Header</h2>
+
+.section-header     - a section header within an island
+.sub-heading        - a heading for a sub-section within an island, currently only used in account ordering
+.with-button        - for a section header with an "add+" button, used in conjunction with .section-header
+
+Styleguide 1.2
+*/ }
+
+h2 {
+  font-family: Century Gothic, Arial, Helvetica, sans-serif;
+  font-size: 16pt;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: bold; }
+
+.section-header {
+  width: 100%;
+  margin-bottom: 0.5em;
+  font-weight: normal;
+  border-bottom: 1px solid #b0b0b0;
+  font-family: Century Gothic, Arial, Helvetica, sans-serif;
+  color: #655d57; }
+
+.sub-heading {
+  font-weight: normal;
+  font-family: Century Gothic, Arial, Helvetica, sans-serif;
+  color: #655d57; }
+
+.with-button {
+  margin-top: 0.2em; }

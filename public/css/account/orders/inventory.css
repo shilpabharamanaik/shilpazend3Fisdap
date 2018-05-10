@@ -1,0 +1,238 @@
+#searchForm {
+	padding-bottom:2em;
+}
+
+#inventoryListBox {
+	height:300px;
+	overflow:auto;
+	overflow-x:hidden;
+	border-bottom:1px solid #bbb;
+	border-right:1px solid #bbb;
+	border-left:1px solid #bbb;
+}
+#tableWrapper {
+	margin-top:60px;
+	position:relative;
+}
+
+#theTopRow {
+	position:absolute;
+	top:-46px;
+	text-align:left;
+}
+
+#topRowBg {
+	position:absolute;
+	top:-46px;
+	text-align:left;
+	background-color:#C6C1BC;
+	width:100%;
+	height:43px;
+	border-top:2px solid #B0B0B0;
+	border-bottom:2px solid #B0B0B0;
+}
+
+#code-table {
+	font-size:10pt;
+	width:100%;
+	table-layout: fixed;
+}
+
+td {
+	padding:5px;
+}
+
+#code-table td {
+	border-bottom:1px solid #bbb;
+}
+
+tr.topRow {
+	margin-top:-100px;
+}
+
+tr.topRow td {
+	background-color:#C6C1BC;
+	color:#000;
+	height:33px;
+	border-top:2px solid #B0B0B0;
+	border-bottom:2px solid #B0B0B0;
+}
+
+tr:hover {
+	background-color:#F1F1F1;
+	cursor:pointer;
+}
+
+td.checkboxCell {
+	width:20px;
+}
+
+td.codeCell {
+	width:152px;
+}
+
+td.productsCell {
+	//width:245;
+	width:206px;
+}
+
+td.statusCell {
+	width:130px;
+	text-align:center;
+}
+
+td.certCell {
+	width:100px;
+	text-align:center;
+
+}
+
+td.advancedCell {
+	width:114px;
+	text-align:center;
+
+}
+
+td.orderCell {
+	width:70px;
+	text-align:center;
+
+}
+
+img#checkmark {
+	width:16px;
+}
+
+input.inTable {
+	margin-top:0em;
+}
+
+#throbber {
+	display:none;
+	position:absolute;
+	top:50px;
+	left:38%;
+	color:#888;
+}
+
+#inventoryList {
+	display:none;
+}
+
+#noCodesFound {
+	width:70%;
+	margin:0 auto;
+	margin-top:3em;
+	text-align:center;
+}
+
+#bottomButtons {
+	margin-top:1.25em;
+}
+
+#emailButtonWrapper, #certButtonWrapper, #deleteGroupButtonWrapper{
+	width:70px;
+	height:30px;
+	text-align:center;
+	float:left;
+	margin-left:3px;
+}
+#gradGroupsButtonWrapper{
+float:left;
+}
+
+#emailButtonWrapper img, #certButtonWrapper img {
+	margin-top:.3em;
+}
+
+label[for=code]{
+	margin-left:0px;
+	margin-bottom:-.5em;
+	margin-top:-.6em;
+}
+
+#code {
+	width:400px;
+	height:100px;
+	padding:.5em;
+	font:normal 10pt Tahoma, Geneva, sans-serif;
+	maring:0em;
+	float:left;
+	margin-left:210px;
+	margin-top:-2em;
+}
+
+#byCodes p {
+	margin-bottom:-1em;
+	width:200px;
+	float:left;
+}
+
+
+#byFilters, #byCodes {
+	box-shadow:2px 2px 14px #ddd;
+	padding:.5em;
+	padding-top:0em;
+	margin-top:-1.25em;
+	padding-left:1.7em;
+	width:96%;
+	padding-bottom:1em;
+	margin-bottom:1em;
+}
+
+#byCodes {
+	padding-top:1.4em;
+}
+
+.modeTrigger {
+	background-color:#fff;
+	border:0px;
+	color:#7A330C;
+	padding:0.5em;
+	text-align:left;
+	margin-left:1em;
+	font-size:12pt;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+}
+
+.modeTrigger img {
+	width:10px;
+	margin-left:.5em;
+}
+
+.modeTrigger:hover {
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+#byCodes {
+	display:none;
+}
+
+#activeCodesSelectedError, #noCodesSelectedError, #instructorsSelectedError, #cannotdeleteactivationcodeError {
+	display:none;
+}
+
+#successMessage {
+	display:none;
+}
+
+#checkAll {
+	font-family:Tahoma, Geneva, sans-serif;
+	padding:0px;
+	border:0px;
+	background-color:#fff;
+	color:#7A330C;
+	font-size:8pt;
+	margin-left:1em;
+	display:block;
+	margin-top:.5em;
+	width:69px;
+	margin-bottom:-.2em;
+	text-align:left;
+}
+
+#checkAll:hover {
+	text-decoration:underline;
+	cursor:pointer;
+}

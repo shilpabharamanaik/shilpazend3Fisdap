@@ -1,0 +1,23 @@
+.input-section {
+	margin-bottom: 1em;
+}
+
+.chzn-select {
+	width: 90%;
+}
+
+#date_range-element,
+#audit-status-filter {
+	position: relative;
+	top: 1.3em;
+}
+
+#audit-status-filter .audit-status-buttonset {
+	display: inline;
+	position: relative;
+    top: -2px;
+}
+
+#audit-status-filter .ui-button {
+	width: 6.5em;
+}

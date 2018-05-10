@@ -1,0 +1,93 @@
+#intervention-list {
+	margin-top:1em;
+}
+
+#intervention-table {
+	width:100%;
+	border-collapse:collapse;
+}
+
+#intervention-table tbody {
+	cursor: pointer;
+}
+
+#intervention-table td, th {
+	border-top: 2px solid #c6c1bc;
+	border-bottom: 2px solid #c6c1bc;
+	padding: .5em;
+}
+
+#summary-column {
+	width: 60%;
+	vertical-align: middle;
+}
+
+/*.num-patients-column, .id-column, .actions-column {*/
+/*	vertical-align: middle;*/
+/*	text-align: center;*/
+/*}*/
+
+.alt {
+    background-color: #ffffff;
+}
+
+#intervention-list .over {
+    background-color: #c6c1bc;
+	cursor: move;
+}
+
+#intervention-list .new {
+	background-color: #cfeba7;
+}
+
+a {
+	width: 100%;
+}
+
+img.small-skill-icon {
+	float:left;
+	width:26px;
+}
+
+img.iv-skill-icon {
+	float:left;
+	width:18px;
+}
+
+.summary-header{
+	font-weight: 900;
+	font-size: 0.8em;
+}
+
+.summary-details{
+	font-size: 0.8em;
+}
+
+.undo {
+	background-color: #fffcb3;
+}
+
+.interventions-btn {
+	margin: .25em 0em;
+}
+
+.procedure-grabby-column {
+	width: 3%;
+}
+
+.procedure-icon-column{
+	width: 7%;
+}
+
+.procedure-description-column{
+	width: 70%;
+}
+
+.procedure-tools-column{
+	width: 20%;
+	text-align: right;
+}
+
+.grabby-icon {
+	float:left;
+}

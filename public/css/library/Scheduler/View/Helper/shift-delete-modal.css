@@ -1,0 +1,25 @@
+#main-delete-content #shift-div {
+	margin: 1em 0em;
+}
+
+#site-icon {
+	float: left;
+	margin: 0.7em 0em 1em 1em;
+}
+
+.preceptors {
+	font-size: 90%;
+	margin-top: -3px;
+}
+
+.delete-buttons {
+	float: right;
+	margin: .7em 0em;
+}
+
+#cancelButtonWrapper,
+#deleteButtonWrapper {
+	display: inline;
+}
+
+

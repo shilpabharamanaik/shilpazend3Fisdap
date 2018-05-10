@@ -1,0 +1,58 @@
+.table-tools {
+	margin: 0.8em 2%;
+    position: relative;
+    top: 1em;
+}
+
+.table-tools input.search-box {
+	width: 60%;
+}
+
+.null-msg {
+	width: 1005;
+	text-align: center;
+	padding: 1em;
+}
+
+.multi-select-tools {
+	font-size: 95%;
+}
+
+.fisdap-table-scrolling-container.checkmark-table {
+	width: 96%;
+	margin: 1.5em 2%;
+	max-height: 13.7em;
+}
+
+.fisdap-table tbody tr {
+	height: 40px;
+}
+
+.fisdap-table tbody tr.selected {
+	background-color: #EEEEEE;
+}
+
+.fisdap-table tbody tr.selected td:first-child {
+    background-image: url("/images/icons/checkmark.png");
+    background-position: 2.5% center;
+    background-repeat: no-repeat;
+    background-size: 14px auto;
+}
+
+.fisdap-table tbody td:first-child:hover {
+	cursor: pointer;
+}
+
+.fisdap-table.checkmark td {
+	padding: 3px;
+}
+
+.fisdap-table tbody td:first-child {
+	padding-left: 3em;
+}
+
+.fisdap-table .checkmark-table-description {
+	font-size: 80%;
+	font-style: italic;
+	color: #666;
+}

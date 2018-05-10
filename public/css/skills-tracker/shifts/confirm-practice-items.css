@@ -1,0 +1,75 @@
+#find-student-container {
+    overflow: inherit;
+}
+
+#go-button-container {
+    min-height: 34px;
+}
+
+#checkbox-selector-menu {
+    padding: 5px;
+    margin: 0px;
+    position: absolute;
+    z-index: 700;
+    text-align: left;
+    border: 1px solid #C6C4B8;
+    border-radius: 5px;
+    display: none;
+    padding: 1px;
+    top: 1.77em;
+    border-top-left-radius: 0px;
+}
+
+#checkbox-selector-menu ul li:hover {
+    background: #EFEDEB;
+}
+
+#checkbox-selector-menu ul li {
+    padding: 0.2em;
+    padding-right: 40px;
+    padding-left: 0.7em;
+}
+
+.location-summary, .date-summary {
+    float: left;
+    margin-right: 10px;
+}
+
+table.practice-item-confirmation {
+    width: 100%;
+    border: 1px solid #b0b0b0;
+}
+
+table.practice-item-confirmation td {
+    border-top: 1px solid #b0b0b0;
+    border-bottom: 1px solid #b0b0b0;
+    padding: 10px;
+}
+
+table.practice-item-confirmation tr:hover {
+    background-color: #EFEDEB;
+}
+
+table.practice-item-confirmation .checkbox-col{
+    width: 5%;
+}
+
+table.practice-item-confirmation .name-col {
+    width: 35%;
+}
+
+table.practice-item-confirmation .time-col {
+    width: 10%;
+}
+
+table.practice-item-confirmation .success-col {
+    width: 10%;
+}
+
+table.practice-item-confirmation .patient-type-col {
+    width: 20%;
+}
+
+table.practice-item-confirmation .evaluator-col {
+    width: 20%;
+}

@@ -1,0 +1,39 @@
+#cal-display-filters .where {
+	width:416px;
+	padding-left:0.6em;
+}
+
+#cal-display-filters .chosen {
+	width:402px;
+	border-left:1px solid #ccc;
+	padding-left:1em;
+	margin-top:2.25em;
+}
+
+#cal-display-filters .chosen .section-header {
+	margin-top:-1.72em;
+	margin-left:-0.5em;
+}
+
+#chosen_filters-label {
+	margin-right:11em;
+}
+
+#available_filters-label {
+	margin-right:13em;
+}
+
+#cal-display-filters .where .section-header {
+	margin-left:-0.5em;
+}
+
+#cal-display-filters #avail_header {
+	margin-top:1em;
+	width:100%;
+	margin-left:0em;
+}
+
+#cd-filters-wrapper_filter-form .where div.section-header {
+	margin-top: 1.5em;
+	width: 103%;
+}

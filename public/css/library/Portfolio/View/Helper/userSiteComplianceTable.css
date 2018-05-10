@@ -1,0 +1,80 @@
+#status-filter {
+	float: right;
+	font-size: 85%;
+	position: relative;
+    top: -1.5em;
+}
+
+#status-filter.ui-buttonset .ui-button-text-only .ui-button-text {
+    font-weight: normal;
+}
+
+#attachmentsTable {
+	padding-top:0em;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+}
+
+#filter-table-throbber {
+	position: absolute;
+	left: 47%;
+	margin-top: .7em;
+}
+
+.none-found {
+	margin: .5em;
+}
+
+.compliant,
+.pending {
+	border-bottom:1px solid #bbb;
+	color:#000;
+}
+
+.non-compliant {
+	border-bottom:1px solid #ed2125;
+	color:#B42A2A;
+	font-weight: bold;
+}
+
+.non-compliant:hover {
+	background-color:#FBE3E4;
+}
+
+.compliant:hover, .pending:hover {
+	background-color:#eee;
+}
+
+table.attachment-row {
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+#table-container {
+	max-height:13em;
+	overflow: auto;
+}
+
+table.attachment-row tr {
+	border: 1px solid #d1d1d1;
+}
+
+.req_col {
+	padding: .4em 0 .4em .5em;
+}
+
+.status_col,
+.expiration_col {
+	padding: 5px 0px;
+}
+
+.icon_col {
+	text-align: center;
+	width: 25px;
+	padding-right:0.25em;
+	padding-left:0.25em;
+}
+
+.icon_col img {
+	margin-top: 5px;
+	height: 1.5em;
+}

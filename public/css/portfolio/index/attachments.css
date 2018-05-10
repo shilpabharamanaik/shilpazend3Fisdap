@@ -1,0 +1,40 @@
+/* 
+    Document   : internship-records
+    Created on : Nov 29, 2011, 2:57:22 PM
+    Author     : astevenson
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.attachment-name{
+	font-size: 1.25em;
+}
+			
+.attachment-details{
+	font-size: .80em;
+}
+
+.attachment-header{
+	border-bottom: 1px solid black;
+}
+
+.attachment-description{
+	padding: 7px;
+}
+
+.attachment-delete{
+}
+
+.attachment-delete-icon{
+	margin-top: 20px;
+}
+
+.attachment-download{
+	padding-left: 7px;
+	padding-bottom: 2em;
+}

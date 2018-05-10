@@ -1,0 +1,131 @@
+.week-picker {
+	z-index:1000;
+	position:absolute;
+	top:-0.5em;
+	left:20em;
+}
+
+#cal-island .week-control-title {
+	margin-left:0em;
+}
+
+.week-control-title:hover {
+	cursor:pointer;
+}
+
+#week-go-btn {
+	float:right;
+	margin-left:5em;
+	line-height:2em;
+	width:40px;
+	height:20px;
+	font-size:9pt;
+}
+
+.cal-wrapper-week {
+	position:absolute;
+	top:343px;
+	width:896px;
+	background-color:#fff;
+	z-index:500;
+	padding-top:0.25em;
+	padding-bottom:2.5em;
+	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 80%, rgba(255,255,255,0) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(80%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 80%,rgba(255,255,255,0) 100%);
+	background: -o-linear-gradient(top,  rgba(255,255,255,1) 80%,rgba(255,255,255,0) 100%);
+	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 80%,rgba(255,255,255,0) 100%);
+	background: linear-gradient(to bottom,  rgba(255,255,255,1) 80%,rgba(255,255,255,0) 100%);
+}
+
+.cal-wrapper-week.fixed {
+	position:fixed;
+	top:3.1em;
+}
+
+.week-view-list {
+	margin-top:1em;
+}
+
+.week-event-view .grid_4 {
+	margin:0%;
+}
+
+.week-event .special-icon {
+	position:absolute;
+	bottom:0.5em;
+	right:1em;
+}
+
+
+.week-event {
+	border:1px solid #ccc;
+	margin:0%;
+	margin-left:0em;
+	margin-bottom:0em;
+	padding:0.54em;
+	border-right:0px;
+	border-bottom:0px;
+	min-height:50px;
+}
+
+.day-header {
+	margin-top:2em;
+}
+
+.week-event .closed-weebles img,
+.week-event .open-weebles img {
+	height:20px;
+	margin-top:0.25em;
+	float:left;
+	margin-right:0.25em;
+}
+
+.right-border {
+	border-right:1px solid #ccc;
+}
+
+.week-event-view .week-event:last-child {
+	border-bottom:1px solid #ccc;
+}
+
+.week-event .preceptor-list {
+	color:#666;
+	font-size:10pt;
+}
+
+.week-event-view .week-event:hover {
+	cursor:pointer;
+}
+
+.selected-event, .week-event-view .week-event:hover {
+	background-color: #FBFBFB;
+    background: url(../images/linear_bg_2.png) repeat-x;
+    
+    /* Safari 4-5, Chrome 1-9 */
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.50, #eee),
+        color-stop(0.75, #F6F6F6)
+    );
+    
+    /* Firefox 3.6+ */
+   background-image: -moz-linear-gradient(
+        center bottom,
+        #eee 50%,
+        #F6F6F6 75%
+    );
+    
+    /* IE 10 */
+    background: -ms-linear-gradient(top, #F6F6F6, #eee);
+    
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(top, #F6F6F6, #eee);
+}
+
+.day-header .event-totals-wrapper {
+	float:right;
+	margin-top:0.1em;
+}

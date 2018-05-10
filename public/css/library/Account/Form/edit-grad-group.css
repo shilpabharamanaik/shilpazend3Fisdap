@@ -1,0 +1,87 @@
+dd#edit_groups-element, dd#edit_grad-element {
+	margin-left:1.5em;
+	margin-top:-0.5em;
+}
+
+dd#edit_grad-element {
+	margin-top:-0.1em;
+}
+
+#edit_grad-month, #edit_grad-year {
+	border:1px solid #ddd;
+}
+
+dt#edit_grad-label {
+	margin-top:0.75em;
+}
+
+#gradGroupDialog p {
+	margin-bottom:1em;
+}
+
+label[for=edit_grad]{
+	display:none;
+}
+
+#editGroupsButton, #editGradButton {
+	background-color:white;
+	border:0px;
+	color:#7A330C;
+	text-align:left;
+	font-size:11.5pt;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	margin:0em;
+}
+
+#editGroupsButton:hover, #editGradButton:hover {
+	cursor:pointer;
+	text-decoration:underline;
+}
+
+#editGroupsButton img, #editGradButton img {
+	width:10px;
+	margin-left:.5em;
+}
+
+#updateGradGroup {
+	float:right;
+	margin-top:0.2em;
+}
+
+#editGradGroupCloseButton {
+	float:right;
+	margin-top:1em;
+
+}
+
+#editGroupsWrapper {
+	margin-bottom:1em;
+	display:block;
+}
+
+#editGradWrapper {
+	display:block;
+}
+
+.resetMessage {
+	color:#888;
+	font-size:10pt;
+	margin-left:1.9em;
+	margin-top:.5em;
+}
+
+#editGradGroupButtonWrapper {
+	position:relative;
+	width:91px;
+	height:37px;
+	float:right;
+	margin-top:0em;
+	margin-left:1em;
+}
+
+#editGradGroupButtonThrobber img {
+	display:none;
+	position:absolute;
+	top:25px;
+	right:35px;
+}

@@ -1,0 +1,165 @@
+/* 
+    Document   : detailed-shift-report.phtml
+    Created on : Jul 13, 2011, 4:40:56 PM
+    Author     : astevenson
+    Description:
+        Purpose of the stylesheet follows.
+
+    Updated by: Kate Hanson on 4/21/2015
+*/
+
+#export-shift-details-links {
+	margin-right: 0.75em;
+    margin-top: 0.75em;
+}
+
+.editLink {
+	font-size: 80%;
+    margin-left: 0.5em;
+}
+
+.detailed-shift-signoff {
+    border: 1px solid #ddd;
+    margin: 1em;
+    padding: 1em;
+}
+
+.detailed-shift-signoff h3 {
+	font-weight: normal;
+}
+
+.detailed-shift-signoff .sigWrapper {
+	margin: 8px 0 8px 0;
+}
+
+.table-of-contents {
+    margin-bottom: 1em;
+}
+
+.detail-sidebar {
+	width: 100%;
+	padding: .5em;
+}
+
+.eval-sidebar {
+	height: 100%;
+}
+
+.staggered-list {
+	padding: 0.5em;
+}
+
+.section-content {
+    padding: 1em;
+}
+
+.gray-header{
+	color: #655D56;
+	font-size: 1.25em;
+	padding: 10px;
+	padding-left: 0;
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+}
+
+.eval-listing a{
+	font-size: .9em;
+}
+
+.detail-table-top {
+	border-top: 1px solid #877F78;
+}
+
+.left-table-td{
+	border-right: 1px solid #877F78; 
+	padding: 0.5em;
+}
+
+.right-table-td {
+	border-left: 1px solid #877F78; 
+	padding: 0.5em;
+}
+
+.my-shift-link {
+	margin-top: 2em;
+	margin-bottom: .5em;
+}
+
+.back-to-top {
+    margin: 0.5em 1em 1.5em;
+    text-align: right;
+}
+
+.back-to-top .edit-link {
+    float:left;
+    margin-left: 0.5em;
+}
+
+.field-header,
+.clinical-header,
+.lab-header {
+    margin-top: 1em;
+}
+
+.eval-link{
+	padding-top: 6px;
+}
+
+.detailed-signoff-hidden {
+	display: none;
+}
+
+.narrative-section {
+	padding-bottom: 1.5em;
+
+	/* Word break formatting fix: http://stackoverflow.com/a/18706058 */
+	-ms-word-break: break-all;
+	word-break: break-all;
+
+	/* Non standard for webkit */
+	word-break: break-word;
+
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
+}
+
+#lock-icon {
+	top: 5px;
+    left: 5px;
+	position: relative;
+}
+
+#rating-table, .rating-table {
+    width:100%;
+}
+
+#rating-table thead, .rating-table thead {
+    background-color: #f0eeeb;
+}
+
+#rating-table thead th, .rating-table thead th {
+    padding: .5em 0em;
+}
+
+#rating-table td, .rating-table td {
+    border: 1px solid #c6c1bc;
+    border-top:none;
+    padding: .5em;
+}
+
+#rating-table td.first, .rating-table td.first {
+    border-left: none;
+}
+
+#rating-table td.last, .rating-table td.last {
+    border-right: none;
+}
+
+#attachment-table h2.page-sub-title {
+    opacity: 0;
+}
+
+.attachment-signoff-container {
+    padding: 0.5em;
+}

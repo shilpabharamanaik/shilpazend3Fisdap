@@ -1,0 +1,1221 @@
+/* now include background/fluid-grid styles - imported here to reduce number of files so IE is happy */
+@import 'background.css?lastModified=12/16/2015';
+@import 'fluid_grid.css?lastModified=12/16/2015';
+
+/* include all of our jquery ui stylesheets - imported here to reduce number of files so IE is happy */
+@import 'themeroller/default/jquery-ui-1.8.16.custom.css?lastModified=12/16/2015';
+@import 'themeroller/cupertino/jquery-ui-1.8.16.custom.css?lastModified=12/16/2015';
+@import 'themeroller/green-buttons/jquery-ui-1.8.16.custom.css?lastModified=12/16/2015';
+@import 'themeroller/orange-button/jquery-ui-1.8.15.custom.css?lastModified=12/16/2015';
+@import 'themeroller/blue-button/jquery-ui-1.8.16.custom.css?lastModified=12/16/2015';
+@import 'themeroller/gray-button/jquery-ui-1.8.22.custom.css?lastModified=12/16/2015';
+@import 'themeroller/dark-accordion/jquery-ui-1.8.23.custom.css?lastModified=12/16/2015';
+@import 'themeroller/pick-one-gray-buttons/jquery-ui-1.8.12.custom.css?lastModified=12/16/2015';
+@import 'themeroller/pick-one-orange-buttons/jquery-ui-1.8.12.custom.css?lastModified=12/16/2015';
+@import 'jquery_buttons.css';
+@import 'jquery.chosen.css';
+
+/* now include tables/my-fisdap styles - imported here to reduce number of files so IE is happy */
+@import 'tables.css?lastModified=12/16/2015';
+@import 'forms.css?lastModified=12/16/2015';
+@import 'my-fisdap/widgetStyle.css?lastModified=12/16/2015';
+
+/* now include everything that has been converted to use the live style guide */
+@import 'styleguide/headers.css';
+@import 'styleguide/products.css';
+
+/* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+ */
+
+html, body, div, span, applet, object, iframe,
+p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    /*vertical-align: baseline;*/
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+html {
+    min-height: 100%;
+}
+
+body {
+    line-height: 1;
+    font: normal 11pt Tahoma, Geneva, sans-serif;
+    color: #000000;
+    height: 100%;
+}
+ol, ul {
+    list-style: none;
+}
+
+ol.numbered {
+    list-style: decimal inside;
+}
+
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.page-title {
+    color: #655d57;
+    font-weight: normal;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
+}
+
+h3 {
+    font-size: 14pt;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: bold;
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+    color: #000000;
+}
+
+h4 {
+    font-size: 12pt;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: bold;
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+    color: #000000;
+}
+
+h5 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: bold;
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+    color: #000000;
+    font-size: 100%;
+}
+
+h6 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: bold;
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+    color: #000000;
+    font-size: 100%;
+}
+
+h1 > #breadcrumb {
+    font-size: 60%;
+    margin-bottom: 10px;
+}
+
+.page-sub-title {
+    font-weight: normal;
+    color: #655d57;
+    margin: .5em 0;
+}
+
+.section-body {
+    margin-bottom: 1.5em;
+}
+
+.gradient-section-header {
+    color: #fff;
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+
+    width: 100%;
+    margin-bottom: .5em;
+    font-weight: normal;
+
+    padding: 5px;
+    background-color: #807B76;
+    background-image: linear-gradient(bottom, #807B76 40%, #ACA9A2 70%);
+    background-image: -o-linear-gradient(bottom, #807B76 40%, #ACA9A2 70%);
+    background-image: -moz-linear-gradient(bottom, #807B76 40%, #ACA9A2 70%);
+    background-image: -webkit-linear-gradient(bottom, #807B76 40%, #ACA9A2 70%);
+    background-image: -ms-linear-gradient(bottom, #807B76 40%, #ACA9A2 70%);
+
+    background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.4, #807B76),
+    color-stop(0.7, #ACA9A2)
+    );
+
+    -webkit-box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow:    0px 5px 5px rgba(0, 0, 0, 0.1);
+    box-shadow:         0px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.solid-section-header {
+    color: #fff;
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+    margin-bottom: .5em;
+    font-weight: normal;
+    padding: 5px;
+    background-color: #807B76;
+}
+
+.no-border {
+    border:none;
+}
+
+a {
+    font-family: Verdana, Geneva, sans-serif;
+    font-weight: normal;
+    color: #a94612;
+    text-decoration:none;
+}
+
+.small-link {
+    font-size: .8em;
+}
+
+a:visited {
+    color: #7a330c;
+}
+
+a:hover {
+    text-decoration:underline;
+}
+
+hr {
+    color: #f0eeeb;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.question-mark {
+    width: 16px;
+    height: auto;
+}
+
+.debugging {
+    width: 1000px;
+    overflow: auto;
+    padding-left: 28px;
+}
+
+/* Color definitions */
+
+/* very sparingly, as a warning (error messages) */
+.red {
+    color: #ed2125;
+}
+
+/* very sparingly, as a warning (error messages) */
+.light-red {
+    color: #f2dad2;
+}
+
+/* sparingly, as an accent (tabs, action buttons, icons, etc), with white or gray text */
+.orange {
+    color: #f08632;
+}
+
+/* sparingly, as an accent (tabs, action buttons, icons, etc), with white or gray text */
+.dark-blue {
+    color: #0085ab;
+}
+
+/* sparingly, as an accent (tabs, action buttons, icons, etc), with white or gray text */
+.blue {
+    color: #30c2ea;
+}
+
+/* as a container (background for a box, alternating rows in a table, etc), with black or gray text */
+.light-blue {
+    color: #d2ecf2;
+}
+
+/* sparingly, as an accent (tabs, action buttons, icons, etc), with white or gray text */
+.green {
+    color: #84c724;
+}
+
+/* as a container (background for a box, alternating rows in a table, etc), with black or gray text */
+.light-green {
+    color: #cfeba7;
+}
+
+/* sparingly, as an accent (tabs, action buttons, icons, etc), with white or gray text */
+.yellow {
+    color: #f6c61f;
+}
+
+/* as a container (background for a box, alternating rows in a table, etc), with black or gray text */
+.light-yellow {
+    color: #faee91
+}
+
+/* sparingly, as an accent (tabs, action buttons, icons, etc), with white or gray text  */
+.dark-gray {
+    color: #655d57;
+}
+
+/* at your discretion (could serve as an accent or a container when used appropriately), with white, black, or dark gray text  */
+.medium-gray {
+    color:#89847F;
+}
+
+/* as a container (background for a box, alternating rows in a table, etc), with black or dark gray text  */
+.light-gray {
+    color:#f0eeeb;
+}
+
+.light-gray-bg {
+    background-color: #f0eeeb;
+}
+
+
+/* Class definitions for layout */
+.site{
+    width: 1000px;
+}
+.site.fluid-width { /* optional full-width layout */
+    width: 100%;
+}
+
+.main_content{
+    padding-left: 48px;
+    padding-right: 20px;
+
+    color: #000000;
+}
+
+#bread-crumbs {
+    margin-bottom:2em;
+    font-size:75%;
+}
+
+#bread-crumbs a {
+    font-size:100%;
+}
+
+img.small-icon {
+    width: 2em;
+}
+
+/** ie11 is stupid and doesn't know how to scale svgs, so we need to be explicit about this */
+img.small-icon.square {
+    height: 2em;
+}
+
+img.tiny-icon {
+    width: 1.5em;
+}
+
+img.tiny-icon.square {
+    height: 1.5em;
+}
+
+.icon-button .icon {
+    width:1.5em;
+    height: 1.3em;
+    position: absolute;
+    left: 1em;
+}
+
+.icon-button .text {
+    margin-left: 2em;
+}
+
+.no-svg img.svg {
+    width: auto;
+}
+
+/* Success, info, notice and error/alert boxes
+Borrowed from http://www.blueprintcss.org/
+-------------------------------------------------------------- */
+.error,
+.alert,
+.notice,
+.success,
+.info {
+    padding: 0.8em;
+    margin-bottom: 1em;
+    margin-top:.5em;
+    border: 2px solid #ddd;
+}
+
+.notice-icon {
+    float: left;
+    margin-right: 0.5em;
+}
+
+.error, .alert {
+    background: #fbe3e4;
+    color: #8a1f11;
+    border-color: #fbc2c4;
+}
+
+.notice {
+    background: #fff6bf;
+    color: #514721;
+    border-color: #ffd324;
+}
+
+.success {
+    background: #e6efc2;
+    color: #264409;
+    border-color: #c6d880;
+}
+
+.info {
+    background: #d5edf8;
+    color: #205791;
+    border-color: #92cae4;
+}
+
+.error a, .alert a {
+    color: #8a1f11;
+    text-decoration: underline;
+}
+
+.notice a {
+    color: #514721;
+}
+
+.success a {
+    color: #264409;
+}
+
+.info a {
+    color: #205791;
+}
+
+.info h3.section-header {
+    color: #205791;
+}
+
+/* Form Styling */
+.form-title {
+    margin: .5em 0;
+}
+
+div.form-prompt {
+    margin: .5em 0;
+}
+
+.inline-label {
+    position: relative;
+    text-align: right;
+    top: 4px;
+}
+
+label.prompt-error {
+    color: #D1595D;
+    font-weight: bold;
+}
+
+div.select-prompt {
+    line-height:1.75;
+}
+
+div.button-container {
+    margin: .5em 0;
+}
+
+div.floating-button-container {
+    margin-top:12px;
+    float:right;
+    vertical-align: middle;
+}
+
+div.form-group {
+    margin: 1em 0;
+    overflow: auto;
+}
+
+div.form-group .form-prompt {
+    margin-top: .5em;
+    margin-bottom: .5em;
+    overflow: auto;
+}
+
+div.form-group-title {
+    font-weight: bold;
+}
+
+.form-element-error {
+    color:red;
+}
+
+input.save-button {
+
+}
+
+button.cancel-button {
+    margin-right: 1em;
+}
+
+.withTopMargin {
+    margin-top:1em;
+}
+
+.withTopMargin h3 {
+    margin-top:0em;
+}
+
+.form-live-errors {
+
+}
+
+.form-desc {
+    color: gray;
+    font-style: italic;
+    font-size: 80%;
+    font-weight: normal;
+}
+
+.form-subtitle {
+    font-size: 80%
+}
+
+.form-errors {
+    padding: .8em;
+    background: #fbe3e4;
+    color: #8a1f11;
+    border: 2px solid #fbc2c4;
+    font-size: 11pt;
+    padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd;
+    background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4;
+}
+
+.form-errors ul {
+    list-style-type: circle;
+    margin-left:1em;
+}
+
+.form-errors li {
+    display: list-item;
+    margin-left: 10px;
+    padding: .2em 0em;
+}
+
+.form-element-error {
+    color: #8A1F11;
+    background: #FBE3E4;
+}
+
+.input-error {
+    box-shadow: 0px 0px 5px #D1595D;
+    border:1px solid #C7877F;
+}
+
+img.form-validation-icon {
+    margin-left:.3em;
+    width:1em;
+}
+
+.selectDate {
+    width:100px;
+    background-color:#fff;
+    background:#fff right no-repeat url(/images/icons/calendar.gif);
+    background-position: 93%;
+    border:1px solid #A0A0A0;
+    padding:.4em;
+}
+
+/* Common CSS widgets */
+#quick-links {
+    border: 1px solid #c6c1bc;
+    padding: .4em;
+    margin: 1em 0;
+    background-color: #f0eeeb;
+}
+
+#quick-links h4 {
+    margin-bottom: .5em;
+}
+
+#quick-links li {
+    margin: .2em 0;
+}
+
+.page-title-link {
+    display:block;
+    margin-top:2em;
+    margin-bottom:-4em;
+}
+
+.field {
+    color: #0d7c9a;
+}
+
+.clinical {
+    color: #6aad0a;
+}
+
+.lab {
+    color: #f7b126;
+}
+
+thead.field,
+.field-header {
+    background-color: rgba(13, 124, 154, 0.4);
+    color: #000000;
+}
+
+thead.clinical,
+.clinical-header {
+    background-color: rgba(106, 173, 10, 0.4);
+    color: #000000;
+}
+
+thead.lab,
+.lab-header {
+    background-color: rgba(247, 177, 38, 0.4);
+    color: #000000;
+}
+
+.field-header,
+.clinical-header,
+.lab-header {
+    padding: 0.5em;
+    font-weight: normal;
+}
+
+div.page-header {
+    font-size:24pt;
+    font-family:Century Gothic,Arial,Helvetica,sans-serif;
+    font-weight:bold;
+    padding-top:12px;
+    padding-left:100px;
+    margin-left:50px;
+}
+
+h2.table-header {
+    font-family:Century Gothic,Arial,Helvetica,sans-serif;
+    color:#666;
+    font-size:12pt;
+    margin-bottom:.2em;
+}
+
+h3.header {
+    border-bottom: 1px solid #655D57;
+    color: #655D57;
+    font-weight: normal;
+    width: 100%;
+}
+
+h4.header {
+    color: #655D57;
+    font-weight: bolder;
+    margin: 0.5em 0px 5px 0px;
+}
+
+h4.header a{
+    color: #A94612;
+    font-weight: bolder;
+    margin: 0.5em 0;
+    font-family: Century Gothic,Arial,Helvetica,sans-serif;
+}
+
+div.top-bar {
+    width:980px;
+    height:65px;
+    background-color:#b5b5b5;
+    vertical-align:middle;
+    color: #606060;
+    font-family: "Century Gothic", "Helvetica", "Arial", sans-serif;
+    margin-left:25px;
+}
+
+div.top-bar-margin {
+    width:950px;
+    margin-left:0px;
+}
+
+div.island{
+    background-color: #FFFFFF;
+    padding: 1em;
+    -moz-box-shadow: 0px 3px 8px #C6C1BC;
+    -webkit-box-shadow: 0px 3px 8px #C6C1BC;
+    box-shadow:0px 3px 8px #C6C1BC;
+}
+
+div.island.overflow {
+    overflow: visible;
+}
+
+div.island.with-add-button {
+    overflow: unset;
+    position: relative;
+}
+
+
+.island .add-button {
+    position: absolute;
+    right: 22px;
+    top: -38px;
+}
+
+.island .action-buttons {
+    float: right;
+    margin: 0em;
+}
+
+.island .action-buttons a {
+    margin-left: 1em;
+}
+
+div.find-student-container {
+    margin-bottom: 2em;
+    overflow: inherit;
+}
+
+div.withStaticPosition{
+    position:static;
+}
+
+div.withNoShadow {
+    -moz-box-shadow: 0px 0px 0px #fff;
+    -webkit-box-shadow: 0px 0px 0px #fff;
+    box-shadow:0px 0px 0px #fff;
+}
+
+div.withTopMargin {
+    margin-top:1em;
+}
+
+table.show-border, th.show-border, tr.show-border, td.show-border {
+    border:1px solid;
+    padding: 1px;
+}
+
+div.no-overflow {
+    overflow:hidden;
+}
+
+/*
+ * alignment for various types of table cells
+ */
+tr {
+    page-break-inside: avoid;
+}
+
+th.name, td.name {
+    text-align: left;
+}
+
+td.date, th.date {
+    text-align: center;
+}
+
+td.number, th.number {
+    text-align: right;
+}
+
+td.level, th.level {
+    text-align: center;
+}
+
+td.center, th.center {
+    text-align: center;
+}
+
+/*
+ * Workflow navigation links within main content
+ */
+.workflow-link {
+}
+.workflow-link-top {
+    margin-top: 0;
+    margin-bottom: 1.5em;
+}
+.workflow-link-bottom {
+    margin-top: 1.5em;
+    margin-bottom: .5em;
+}
+.workflow-link-left {
+    text-align: left;
+}
+.workflow-link-right {
+    text-align: right;
+}
+
+/*
+Doesn't define any styling- but used to omit elements from showing up in
+generated PDFs.
+ */
+.no-pdf{}
+
+/* Button Icons */
+.icon-lock {
+    background-image: url("/images/icons/lock.png") !important;
+    background-size:15px 15px;
+}
+
+.icon-unlock {
+    background-image: url("/images/icons/unlock.png") !important;
+    background-size:15px 15px;
+}
+
+.icon-lock-white {
+    background-image: url("/images/icons/locked-white.svg") !important;
+    background-size:15px 15px;
+}
+
+.icon-unlock-white {
+    background-image: url("/images/icons/unlocked-white.svg") !important;
+    background-size:15px 15px;
+}
+
+select#staff_program {
+    font-size:9pt;
+}
+
+.useBullets li {
+    list-style-type:circle;
+    margin-left:2.5em;
+}
+
+.proTip {
+    width:300px;
+    border:1px solid #807B76;
+}
+
+.proTip h3 {
+    font-size:1em;
+    font-family:Century Gothic, Arial, Helvetica, sans-serif;
+    color: #fff;
+    font-weight:normal;
+    display:block;
+    width:288px;
+    padding:.5em;
+    background:#73869B;
+    background: #73869B; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#73869B', endColorstr='#5E7084'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#73869B), to(#5E7084)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #73869B,  #5E7084); /* for firefox 3.6+ */
+}
+
+.proTip p {
+    margin:1.5em;
+}
+
+#downtime-warning {
+    margin: 1em 0 1em 0;
+    border: 1px solid red;
+    padding: 1em;
+    background-color: white;
+}
+#downtime-warning strong {
+    font-weight: bold;
+}
+#downtime-warning .contact-support {
+    margin-top: 1em;
+}
+
+
+.dotted-line hr {
+    height: 20px;
+    overflow:hidden;
+    margin-bottom: -0.1em;
+    margin-top: 2em;
+    border: 0px;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    border-top: 3px dashed #DAD8D7;
+}
+
+.accordion-table {
+    margin-top: 1.5em;
+    border-bottom: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+    overflow: auto;
+    padding-top: 0;
+}
+
+.accordion-header-bar {
+    background-color: #FFFFFF;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #eeeeee), color-stop(100%, #f4f4f4));
+    background-image: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+    background-image: -moz-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+    background-image: -o-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+    background-image: -ms-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+    background-image: linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+    color: #000000;
+    font-family: Century Gothic,Arial,Helvetica,sans-serif;
+    border-top: 1px solid #BBBBBB;
+}
+.accordion-header-bar:hover:not(.no-hover),
+.accordion-header-selected {
+    background: #dddddd; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#dddddd'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#dddddd)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #eeeeee,  #dddddd); /* for firefox 3.6+ */
+}
+
+table.accordion-info {
+    border-top: 1px solid #CCCCCC;
+    overflow: auto;
+    width: 100%;
+}
+
+table.accordion-info td.accordion-summary {
+    border-right: 1px solid #CCCCCC;
+    padding: 0.5em;
+    vertical-align: top;
+    width: 33%;
+}
+
+table.accordion-info td.accordion-summary:last-child {
+    border: medium none;
+}
+
+.accordion-summary .fisdap-table, .accordion-summary .fisdap-table tbody {
+    border-bottom: medium none;
+    border-top: medium none;
+}
+
+.accordion-summary .fisdap-table tr:first-child td {
+    border-top: medium none;
+}
+
+.accordion-summary .fisdap-table tr:last-child td {
+    border-bottom: medium none;
+}
+
+.show-specific-item {
+    float: right;
+    margin: 0.3em 0;
+}
+
+.specific-filter {
+    display: none;
+    margin-left: 1em;
+}
+
+button:focus, input:focus {
+    outline:none;
+    outline:0;
+}
+
+.fancy-input-focus {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    outline: medium none;
+}
+
+.search-box,
+.search-box.fancy-input { 
+    color:#666; 
+    padding:0.35em; 
+    width:300px; 
+    background-color: #fff; 
+    background-image: url(/images/icons/magnifying-glass.png), -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%); 
+    background-image: url(/images/icons/magnifying-glass.png), -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff)); 
+    background-repeat:no-repeat;
+    background-position:97%;
+    border: 1px solid #aaa;
+    font-family:Tahoma, Geneva, sans-serif;
+    font-size:11pt;
+    padding-right:2em;
+    padding-top:0.25em;
+    padding-bottom:0.25em;
+    margin-bottom: 3px;
+}
+
+.hidden {
+    display: none;
+}
+
+.fancy-input {
+    background-color: #fff;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+    background-image: -webkit-linear-gradient(top, #eeeeee 0em, #ffffff 0.4em);
+    background-image: -moz-linear-gradient(top, #eeeeee 0em, #ffffff 0.4em);
+    background-image: -o-linear-gradient(top, #eeeeee 0em, #ffffff 0.4em);
+    background-image: -ms-linear-gradient(top, #eeeeee 0em, #ffffff 0.4em);
+    background-image: linear-gradient(top, #eeeeee 0em, #ffffff 0.4em);
+    border: 1px solid #aaa;
+    margin: 0;
+    padding: 0.2em;
+    cursor: text;
+    overflow: hidden;
+    height: 20px;
+    position: relative;
+    border:1px solid #AAA;
+    color:#555;
+}
+
+textarea.fancy-input {
+    height: 150px;
+    overflow-y: auto;
+}
+
+.fancy-input:focus {
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,.3);
+    -moz-box-shadow   : 0 0 5px rgba(0,0,0,.3);
+    -o-box-shadow     : 0 0 5px rgba(0,0,0,.3);
+    box-shadow        : 0 0 5px rgba(0,0,0,.3);
+    outline:none;
+}
+
+input.tagged,
+input.tagged.fancy-input,
+input.tagged.search-box
+{
+    color: #999;
+}
+
+/* used for display shift summary data */
+.shift_summary_wrapper {
+    display: block;
+    text-decoration: none;
+}
+
+.shift_summary_wrapper:hover {
+    text-decoration: none;
+}
+
+.shift_summary_display_large {
+    min-width: 185px;
+}
+
+.shift_summary_display_small {
+    min-width: 84px;
+}
+
+.shift_summary_wrapper img.site-icon {
+    float: left;
+    margin-right: 0.7em;
+    margin-top: 0.3em;
+    width: 2.1em;
+}
+
+.shift_summary_wrapper .site-info {
+    float: left;
+}
+
+.shift_summary_location_display {
+    color: #666;
+    font-weight: bold;
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+}
+
+.shift_summary_date_display {
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.shift_summary_basic_display,
+.shift_summary_preceptor_display,
+.shift_summary_instructor_display
+{
+    color: #444;
+}
+
+.shift_summary_display_large .shift_summary_location_display {
+    font-size: 10.5pt;
+}
+
+.shift_summary_display_large .shift_summary_date_display {
+    font-size: 11pt;
+}
+
+.shift_summary_basic_display,
+.shift_summary_display_large .shift_summary_instructor_display,
+.shift_summary_display_large .shift_summary_preceptor_display
+{
+    font-size: 8.75pt;
+}
+
+/* Generic styling for modal buttons */
+.modal-buttons {
+    float: right;
+    margin: 1em 0em;
+}
+
+.modal-buttons .modal-button-wrapper {
+    display: inline;
+    margin-left: 0.6em;
+    float: left;
+}
+
+.modal-buttons .modal-button-wrapper .button {
+    height: 2em;
+}
+
+.header-action-buttons {
+    float: right;
+    margin: 0em;
+}
+
+/* Generic ol,ul styling */
+ul.fisdap-list {
+    list-style-type: disc;
+    list-style-position: inside;
+    margin-top: 0.5em;
+}
+
+ol.fisdap-list {
+    list-style-type: decimal;
+    list-style-position: inside;
+    margin-top: 0.5em;
+}
+
+ul.fisdap-list ul, ol ul {
+    list-style-type: circle;
+    list-style-position: inside;
+    margin-left: 15px;
+}
+
+ol.fisdap-list ol, ul ol {
+    list-style-type: lower-latin;
+    list-style-position: inside;
+    margin-left: 15px;
+}
+
+.fisdap-list li {
+    margin-left: 1em;
+}
+
+.mobile-multiselect .search-available-list,
+.mobile-multiselect .search-req-list {
+    display: none;
+}
+
+.mobile-multiselect select[multiple] {
+    padding: 0.2em;
+    height: auto;
+    -moz-appearance: menulist;
+    -webkit-appearance: menulist;
+    appearance: menulist;
+}
+
+.mobile-multiselect .picklist-control-buttons {
+    padding-top: 0em;
+}
+
+.has-badge {
+    position: relative;
+    text-align: center;
+    font-size: 9pt;
+}
+
+span.badge {
+    background-color: #ea862d;
+    border-radius: 15px;
+    font-family: Century Gothic,Arial,Helvetica,sans-serif;
+    color: #fff;
+    display: block;
+    font-size: 8pt;
+    font-weight: bold;
+    min-width: 10px;
+    padding: 0.1em 0.3em;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+}
+
+span.badge.red {
+    background-color: #e22b2b;
+}
+
+#page-blocker {
+    background-color: #fff;
+    height: 100%;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    cursor: wait;
+    z-index: 10;
+}
+
+#page-blocker.transparent {
+    opacity: 0;
+}
+
+#page-blocker-msg {
+    background-color: #a29a94;
+    border: medium none;
+    border-radius: 10px;
+    color: #fff;
+    font-family: Century Gothic,Arial,Helvetica,sans-serif;
+    font-size: 15pt;
+    left: 35%;
+    opacity: 1;
+    padding: 15px;
+    position: fixed;
+    top: 40%;
+    width: 30%;
+    z-index: 20;
+    cursor: wait;
+}
+
+#uiBlockerThrobber {
+    margin-right: 0.3em;
+    position: relative;
+    top: 1px;
+}
+
+/* Progress Bar */
+.progressbox {
+    border: 1px solid #b0b0b0;
+    display: block;
+    margin: 0.3em 0;
+    opacity: 0;
+}
+
+.progressbar {
+    background-color: #84c724;
+    height: 0.5em;
+    width: 10%;
+}
+
+.progressbox .statustxt {
+    opacity: 0;
+}
+
+/* countdown */
+.countdown {
+    position: absolute;
+}
+
+.countdown .cancelTrigger:hover {
+    cursor: pointer;
+}
+
+.gravatar-container {
+    text-align: center;
+}
+
+.gravatar-container img {
+    border: 1px gray solid;
+}

@@ -1,0 +1,138 @@
+.shift-request-table {
+	margin-bottom: 2.5em;
+	font-size: 95%;
+}
+
+.top {
+	margin-top: .7em;
+}
+
+.sent, .name, .checkbox-cell {
+	text-align: left;
+	vertical-align: top;
+}
+
+.request {
+	width: 5em;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: top;
+}
+
+.recipient {
+	margin-left: 1em;
+}
+
+.shift h4 {
+	font-size: 100%;
+}
+
+.additional-shift-info {
+	margin-left: 2.4em;
+	margin-top: 10px;
+    color: #000000;
+}
+
+.status {
+	width: 13em;
+	text-align: left;
+}
+
+.icon {
+	float: left;
+}
+
+#pending-icon,
+#approved-icon,
+#denied-icon {
+	margin: .2em .4em 1em 0em;
+}
+
+.no-results {
+	text-align: center;
+}
+
+.tools a,
+.tools img {
+	cursor: pointer;
+	float: right;
+}
+
+#site-icon {
+        float: left;
+        margin-top:0.7em;
+        margin-right:.5em;
+}
+
+.shift-div {
+	margin: 1em;
+}
+
+#load-approval-modal-throbber {
+	float: right;
+	position: relative;
+	top: 11px;
+}
+
+#history-throbber {
+	position: relative;
+	top: 3px;
+	left: -3px;
+}
+
+.respond {
+	margin-right: 1em;
+}
+
+.swap-history, .open_history_modal {
+	position: relative;
+	top: 3px;
+	margin-right: 3px;
+}
+
+#request_search {
+    float:right;
+}
+
+#shift-request-action-bar{
+    margin-bottom: 3.5em;
+}
+
+#checkbox-selector-menu {
+    padding: 5px;
+    margin: 0px;
+    position: absolute;
+    z-index: 700;
+    text-align: left;
+    border: 1px solid #C6C4B8;
+    border-radius: 5px;
+    display: none;
+    padding: 1px;
+    top: 1.77em;
+    border-top-left-radius: 0px;
+}
+
+#checkbox-selector-menu ul li:hover {
+    background: #EFEDEB;
+}
+
+#checkbox-selector-menu ul li {
+    padding: 0.2em;
+    padding-right: 40px;
+    padding-left: 0.7em;
+}
+
+#pending-header {
+    min-height: 32px;
+}
+
+.load-more-cell {
+    background: #ffffff;
+    text-align: center;
+    border-bottom: 2px solid #b0b0b0;
+    padding: 5px;
+}
+
+#shift-type-filter {
+    float:right;
+}

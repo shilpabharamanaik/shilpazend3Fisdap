@@ -1,0 +1,66 @@
+table.submit-scores-table {
+    font-size:9pt;
+    width:100%;
+    text-align:left;
+}
+
+#student-table tbody tr {
+    background:#fff !important;
+}
+
+table.submit-scores-table td {
+    padding:.8em;
+    vertical-align: middle;
+}
+
+table.submit-scores-table tr {
+    border-bottom:1px solid #A2A2A2 !important;
+}
+
+table.submit-scores-table tr:hover {
+    background-color:#eee!important;
+}
+
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+    background-color:#C6C1BC !important;
+    border:0px;
+    font-size:10pt;
+    padding: .8em;
+}
+
+table.tablesorter thead tr .header {
+    background-image:none;
+    background-position: center right;
+
+}
+
+table.tablesorter tbody td {
+    vertical-align: middle;
+}
+
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+    background-image:url(/js/tableSorter/themes/blue/desc.gif);
+    background-repeat: no-repeat;
+    background-color:#C6C1BC !important;
+}
+
+table.tablesorter thead tr .headerSortUp {
+    background-image:url(/js/tableSorter/themes/blue/asc.gif);
+}
+
+#student-table tbody tr:hover {
+    background-color:#eee;
+}
+tr#head {
+    background-color:#C6C1BC !important;
+    border-top:2px solid #A2A2A2 !important;
+    border-bottom:2px solid #A2A2A2 !important;
+}
+
+tr#head:hover {
+    background-color:#C6C1BC !important;
+}
+
+input#save {
+    float: right;
+}

@@ -1,0 +1,67 @@
+#message_create_edit_show {
+    display: block;
+    /* padding: 10px; */
+    /* width: 200px; */
+    float: right;
+    /* font-size: 16px; */
+    /* color: #fff; */
+    /* background-color: #EE7C1F; */
+}
+#message_create_edit_show:hover {
+    background-color: #E7933C;
+}
+#message_create_edit.preview-hidden {
+    display: none;
+    margin: 20px 0 20px 0;
+    padding: 20px;
+    border: 1px solid #888888;
+}
+
+.cancel_link{
+	float: right;
+	position: relative;
+	top: 10px;
+	padding-right: 15px;
+}
+
+
+/* subform styles */
+.user-group-filter-subform-staff {
+    padding: 10px;
+    border: 2px solid #EED646;
+    background-color: #F9F7BC;
+}
+.user-group-filter-subform-staff .form-prompt {
+    margin: 1em 0;
+}
+.user-group-filter-subform-staff #filter-role-options {
+    padding: 10px 0 0 20px;
+}
+/* User group filter styles */
+#report-block-student-filter {
+    padding: 30px 60px 30px 10px;
+}
+.student-filter-results-wrapper {
+    padding: 0 60px 30px 10px;
+    background-color: #F0EEEB;
+}
+#student-filter-results {
+    height: 200px;
+    margin: 10px 0 0 0;
+    padding: 10px;
+    overflow: auto;
+    background-color: #fff;
+}
+#student-filter-results.disabled input.student_checkbox, #student-filter-controls.disabled {
+    display: none;
+}
+#student-filter-controls, #student-filter-status {
+    float: right;
+}
+#student-filter-controls a {
+    padding-right: 10px;
+}
+#student-filter-status {
+    padding-left: 10px;
+    font-style: italic;
+}

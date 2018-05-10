@@ -1,0 +1,23 @@
+.video-counter {
+    position: absolute;
+    top: 4em;
+    right: 6.5em;
+}
+
+.nav-arrow {
+    margin: 14em 34%;
+    cursor: pointer;
+}
+
+iframe {
+    border: 1px solid #89847f;
+}
+
+.video-caption {
+    padding: 1em 0.5em 2em;
+}
+
+.video-caption ul {
+    list-style: inside;
+    margin: 0.5em;
+}

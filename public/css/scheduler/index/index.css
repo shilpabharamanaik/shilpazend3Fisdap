@@ -1,0 +1,174 @@
+#requests-wrapper {
+    margin-top: -.8em;
+}
+
+#load-pdf-modal-throbber {
+    left: 27px;
+    position: relative;
+    top: 5px;
+    z-index: 20;
+}
+
+#menus {
+    border-left: 1px dashed #FFFFFF;
+}
+
+#scheduler-page-title {
+    width: 600px;
+    float: left;
+    margin-top: -1.3em;
+}
+
+#settings-wrapper {
+    float: right;
+    width: 100%;
+    text-align: right;
+    margin-top: 0.65em;
+}
+
+#cal-add-shift-btns {
+    float: right;
+    width: 430px;
+    margin-top: -3.85em;
+    margin-right: -2em;
+    margin-bottom: 0.75em;
+    padding-top: 0.5em;
+}
+
+#add-shift-throbber {
+    float: left;
+    position: relative;
+    top: 14px;
+}
+
+#cal-add-shift-btns a {
+    text-decoration: none;
+    color: transparent;
+    display: block;
+    width: 120px;
+    height: 29px;
+    background-position: bottom;
+    text-indent: -9999px;
+    float: right;
+    margin: .5em;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+#add-field-shift, #add-field-scheduler-shift {
+    background-image: url(/images/buttons/add_field_shift.png);
+}
+
+#add-clinical-shift, #add-clinical-scheduler-shift {
+    background-image: url(/images/buttons/add_clinical_shift.png);
+}
+
+#add-lab-shift, #add-lab-scheduler-shift {
+    background-image: url(/images/buttons/add_lab_shift.png);
+}
+
+#add-field-shift:hover, #add-clinical-shift:hover, #add-lab-shift:hover,
+#add-field-scheduler-shift:hover, #add-clinical-scheduler-shift:hover, #add-lab-scheduler-shift:hover {
+    background-position: center;
+}
+
+#add-field-shift:active, #add-clinical-shift:active, #add-lab-shift:active,
+#add-field-scheduler-shift:active, #add-clinical-scheduler-shift:active, #add-lab-scheduler-shift:active {
+    background-position: top;
+}
+
+#legend {
+    color: #666;
+    font-size: 10pt;
+    margin-top: 3em;
+}
+
+#legend .grid_2 {
+    text-align: center;
+}
+
+#legend .grid_2 img {
+    width: 18px;
+}
+
+#legend .grid_2 img.shield {
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
+}
+
+#legend .grid_10 {
+    height: 35px;
+}
+
+#legend #filled-weeble, #legend #open-weeble, #legend #seatbelt-weeble,
+#legend #red-weeble {
+    height: 22px;
+    width: auto;
+}
+
+#legend #red-weeble {
+    height: 20px;
+    background-color: #FBE3E4;
+    border: 1px dashed #8a1f11;
+    padding: 2px;
+    padding-bottom: 3px;
+}
+
+#legend #drop {
+    height: 12px;
+    width: auto;
+}
+
+#legend .grid_2 .small-img {
+    width: 13px;
+}
+
+#legend .has-borders {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+#legend .grid_3, #legend .legend_col {
+    padding-top: 1em;
+    padding-bottom: 2.5em;
+    margin: 0%;
+    width: 18.5%;
+    text-align: left;
+}
+
+.tiny-font {
+    font-size: 8pt;
+    display: block;
+    margin-top: -.1em;
+    color: #888;
+    margin-left: 0.2em;
+}
+
+#legend .no-left-border {
+    border-left: 0px;
+    margin-right: 3%;
+}
+
+.bar {
+    height: 5px;
+    width: 23px;
+    opacity: 0.6;
+    margin-bottom: 0.25em;
+}
+
+.clinical-bar {
+    background-color: #88C732;
+}
+
+.field-bar {
+    background-color: #31C3EA;
+}
+
+.lab-bar {
+    background-color: #F3C730;
+}

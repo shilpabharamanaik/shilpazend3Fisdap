@@ -1,0 +1,110 @@
+.password-section {
+    background-color: #c6c1bc;
+    border: 1px solid #655d57;
+    padding: 1em;
+    overflow: auto;
+    margin-bottom: 1em;
+}
+
+input[type='text'], input[type='password'] {
+    width: 80%;
+}
+
+input, select {
+    font: normal 11pt Tahoma, Geneva, sans-serif;
+}
+
+.order-summary {
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+}
+
+.order-summary b {
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+    color: #655D57;
+    font-size: 1.15em;
+}
+
+.need-top-margin {
+    margin-top: 1em;
+}
+
+#leftFloater, #rightFloater {
+    float: left;
+    width: 49%;
+}
+
+#rightFloater,
+#instructorForm .right,
+#instructorForm .right input.ui-button {
+    float: right;
+}
+
+#rightFloater img, #leftFloater img {
+    width: 20px;
+    float: left;
+    margin-right: .5em;
+}
+
+#leftFloater img {
+    width: 12px;
+    margin-top: .15em;
+}
+
+#leftFloater p, #rightFloater p {
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+    color: #655D57;
+    border-bottom: 1px solid #655D57;
+    margin-bottom: .5em;
+}
+
+#dialog-confirm-permissions ul {
+    margin-left: 1em;
+    font-size: 11pt;
+}
+
+label {
+    position: relative;
+}
+
+#roleThrobber {
+    position: absolute;
+    left: .1em;
+    top: .1em;
+}
+
+#cancelPC, #continuePC {
+    float: left;
+}
+
+#continuePC {
+    margin-left: .5em;
+}
+
+#buttons {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 212px;
+}
+
+#buttonFix {
+    height: 55px;
+    width: 100%;
+}
+
+button#permissionsHistory {
+    background-color: #fff;
+    border: 0px;
+    color: #7A330C;
+    float: right;
+    margin-top: .3em;
+    margin-right: .5em;
+    font-size: 10pt;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+button#permissionsHistory:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

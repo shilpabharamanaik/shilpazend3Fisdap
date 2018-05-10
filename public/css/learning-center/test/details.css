@@ -1,0 +1,39 @@
+strong {
+	font-weight: bold;
+}
+p {
+	margin: .5em 0;
+}
+.text-contents {
+	padding: 10px;
+}
+.text-with-header {
+	margin: 1em 8px;
+	border: 1px solid #757575;
+}
+.fixed-height-scroll {
+	max-height: 150px;
+	overflow: auto;
+}
+#edit_test, #back_to_list {
+	padding: 3px 10px;
+}
+#edit_test .ui-button-text, #back_to_list .ui-button-text {
+	font-size: .8em;
+	line-height: .8em;
+}
+.bottom_nav {
+	text-align: right;
+}
+
+h4.widget-title-bar {
+	color:#fff;
+	font-weight:normal;
+}
+
+.test-helpful-links ul {
+	padding-left: 2em;
+}
+.test-helpful-links ul li {
+	list-style: disc;	
+}

@@ -1,0 +1,15 @@
+#airwayDialog .airway_management_credit_wrapper {
+	display:none;
+	padding: 0.25em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.airway_management_icon_wrapper {
+	float:left;
+	margin-right:0.5em;
+}
+
+label[for='airway_management_credit'] {
+	line-height:30px;
+}

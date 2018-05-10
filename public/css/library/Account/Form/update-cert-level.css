@@ -1,0 +1,22 @@
+#editCert {
+	float:right;
+	margin-top:2.15em;
+}
+
+#editCertCloseButton {
+	float:right;
+	margin-top:2.15em;
+}
+
+#editCertButtonThrobber{
+	display:none;
+}
+
+#certLevels {
+	width:60%;
+	margin-top:.5em;
+}
+
+dt#certLevels-label {
+	margin-top:.2em;
+}

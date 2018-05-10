@@ -1,0 +1,73 @@
+#compliance-notifications .input-line {
+    clear: both;
+    padding: 1em;
+}
+
+#compliance-notifications .input-line div {
+    float: left;
+}
+
+#compliance-notifications .slider {
+    margin-right: 1em;
+}
+
+.links {
+    clear: left;
+    font-size: 90%;
+    padding-left: 7em;
+    padding-bottom: 1em;
+}
+
+.warning-row div.slider {
+    margin-top: 0.4em;
+}
+
+.warning-row div.text {
+    margin-top: 0.5em;
+}
+
+.warning-row div.textbox {
+    margin: 0.3em 0.5em;
+}
+
+#compliance-notifications .warning-frequency-offset {
+    width: 3em;
+}
+
+a.view-sample {
+	color:#7a330c !important;
+}
+
+.sample {
+    display: none;
+    border: 1px solid #CCCCCC;
+    color: #655D57;
+    margin: 0 2em 1em;
+    padding: 1em;
+}
+
+.sample ul {
+    margin-left: 1.5em;
+    list-style: disc inside none;
+}
+
+.sample div {
+    margin-bottom: 0.5em;
+}
+
+.fancy-input {
+    background-color: #FFFFFF;
+    background-image: -moz-linear-gradient(center top , #EEEEEE 1%, #FFFFFF 15%);
+    border: 1px solid #AAAAAA;
+    color: #555555;
+    cursor: text;
+    height: 20px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0.2em 0.2em 0.2em 0.5em;
+    position: relative;
+}
+
+.warning-frequency-offset {
+    text-align: right; 
+}

@@ -1,0 +1,8 @@
+#gravatar {
+    min-height: 220px
+}
+
+input[type="text"]:disabled, textarea:disabled {
+    background-color: lightgrey;
+    background-image: none !important;
+}

@@ -1,0 +1,33 @@
+.test-item-analysis-defs {
+    margin: 1em 0 1em 0;
+}
+.test-item-analysis-defs p {
+    margin-bottom: .5em;
+}
+.test-item-analysis-defs strong {
+    font-weight: bold;
+}
+
+/* Flag item for review button and form */
+td.item-highlight {
+    background-color: #FFC5C6;
+}
+.test-item-analysis-flag.ui-button-text-only .ui-button-text {
+    padding: .5em;
+}
+.test-item-analysis-flag-form {
+    display: none;
+}
+
+.test-item-analysis-flag-form .buttons {
+    position:absolute;
+    bottom:0.5em;
+    right:1em;
+    width:300px;
+    left:auto;
+}
+
+.test-item-analysis-flag-form .buttons a {
+    float:right;
+    margin-left:1em;
+}

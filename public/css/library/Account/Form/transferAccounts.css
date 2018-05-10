@@ -1,0 +1,35 @@
+.optional {
+	display:none;
+}
+
+#save {
+	float:right;
+	width:125px;
+}
+
+.user_id {
+	position:relative;
+}
+
+#throbber {
+	display:none;
+	position:absolute;
+	left:320px;
+	top:.2em;
+}
+
+#userDetails {
+	width:400px;
+	margin-left:149px;
+}
+
+.userResponse {
+	border:2px solid #ccc;
+	padding:1em;
+	margin-top:1em;
+	margin-bottom:1em;
+}
+
+#formContainer select {
+	font-family: Tahoma, Geneva, sans-serif
+}

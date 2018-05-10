@@ -1,0 +1,123 @@
+.filters-wrapper {
+	position:relative;
+	width:785px;
+	margin-bottom:1em;
+}
+
+.filters h3 {
+	color:#fff;
+	background: #d8d8d8 url(/css/themeroller/default/images/ui-bg_highlight-soft_100_d8d8d8_1x100.png) 50% 50% repeat-x;
+	border:1px solid #C7C2BD;
+	font-weight:normal; 
+	border-top-right-radius:6px;
+	-khtml-border-top-right-radius:6px;
+	-webkit-border-top-right-radius: 6px;
+	-moz-border-top-right-radius: 6px;
+	border-top-left-radius:6px;
+	-khtml-border-top-left-radius:6px;
+	-webkit-border-top-left-radius: 6px;
+	-moz-border-top-left-radius: 6px;
+	color:#444;
+}
+
+.filters h3:hover {
+	background:#C6C1BC url(/css/themeroller/default/images/ui-bg_highlight-soft_100_c8c8c8_1x100.png) 50% 50% repeat-x;
+}
+
+.filters  h3 img {
+	width:18px;
+}
+
+.filters-title-icon {
+	width:18px;
+	margin-right:.45em;
+	margin-top:0em;
+	float:left;
+	height:18px;
+}
+
+.filters-title-text {
+	margin-left: 24px;
+}
+
+.filters h3 button {
+	color:#665D58;
+	font-size:10.5pt;
+	display:block;
+	width:100%;
+	border:0px;
+	background:transparent;
+	text-align:left;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	margin-top:.2em;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+.bottom-rounded-corners {
+	border-bottom-right-radius:6px;
+	-khtml-border-bottom-right-radius:6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-bottom-right-radius: 6px;
+	border-bottom-left-radius:6px;
+	-khtml-border-bottom-left-radius:6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-bottom-left-radius: 6px;
+}
+
+.filters  h3 button:hover {
+	text-decoration:none;
+	cursor:pointer;
+}
+
+.filter-options-wrapper {
+	width:784px;
+	position:absolute;
+	top:2em;
+	z-index:1500;
+}
+
+.filter-options {
+	display:none;
+	background-color:rgba(31, 31, 31, 0.9);
+	color:#fff;
+	padding-top:1em;
+	padding-bottom:1em;
+	padding-left:15px;
+	border-bottom-right-radius:6px;
+	-khtml-border-bottom-right-radius:6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-bottom-right-radius: 6px;
+	border-bottom-left-radius:6px;
+	-khtml-border-bottom-left-radius:6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-bottom-left-radius: 6px;
+	width:770px;
+}
+
+.filters-title-text i {
+	font-style:italic;
+}
+
+.fancy-filter-throbber {
+	display:none;
+	position:absolute;
+	right:-1.5em;
+	top:0.3em;
+}
+
+.clear-filters-btn {
+	font-size:8pt;
+	background-color:transparent;
+	border:0px;
+	padding:0px;
+	margin-top:1em;
+	color:#8FC7D5;
+}
+
+.clear-filters-btn:hover {
+	text-decoration:underline;
+	cursor:pointer;
+}
+

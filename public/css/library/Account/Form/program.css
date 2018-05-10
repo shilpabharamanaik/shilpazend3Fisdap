@@ -1,0 +1,22 @@
+#emsInfo {
+    background-color: #c6c1bc;
+    border: 1px solid #655d57;
+    padding: 1em;
+    overflow: auto;
+}
+
+#emsInfo .form-group {
+    margin: 0;
+}
+
+#programForm select, #programForm input[type='text'] {
+    width: 250px;
+}
+
+#programForm #studentsPerYear, #programForm #coaemspProgramId, #programForm #yearAccredited {
+    width: 60px;
+}
+
+#programForm #referral {
+    width: 120px;
+}

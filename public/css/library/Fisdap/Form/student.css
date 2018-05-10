@@ -1,0 +1,36 @@
+.password-section {
+	background-color: #c6c1bc;
+	border: 1px solid #655d57;
+	padding: .5em;
+}
+
+input[type='text'], input[type='password'] {
+	width: 80%;
+}
+
+input, select {
+	font:normal 11pt Tahoma, Geneva, sans-serif;
+}
+
+select#ethnicity {
+	width:199px;
+}
+
+.order-summary {
+	margin-left:1.5em;
+	margin-bottom:1em;
+}
+
+.order-summary b {
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	color:#655D57;
+	font-size:1.15em;
+}
+
+.need-top-margin {
+	margin-top:1em;
+}
+
+#gradDate-label label span {
+	display:block;
+}

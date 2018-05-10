@@ -1,0 +1,15 @@
+.receipt-table tr {
+	padding:10px;
+	border-top:1px solid #B0B0B0;
+	border-bottom:1px solid #B0B0B0;
+}
+
+.receipt-table td {
+	padding:10px;
+}
+
+table {
+	width:580px;
+	margin-top:2em;
+	margin-bottom:2em;
+}

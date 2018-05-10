@@ -1,0 +1,44 @@
+/* 
+    Document   : studentPicker
+    Created on : Jan 6, 2012, 3:55:52 PM
+    Author     : astevenson
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#shift-list-container, #find-student-container, #student-results-container{
+	background-color: #ffffff;
+	padding:1em;
+}
+
+#student-list-title {
+	font-weight:normal;
+	margin-bottom:.5em;
+}
+
+#student-results ul{
+	padding-top: 5px;
+}
+
+#student-results ul li{
+	padding: 2px;
+}
+
+#find-student-container {
+	margin-bottom: 2em;
+	box-shadow: 0 5px 5px #C6C1BC;
+}
+
+.filter-prompt {
+	float:left;
+	margin: .5em .75em;
+}
+
+.ui-button { margin-left: -1px; }
+.ui-button-icon-only .ui-button-text { padding: 0.35em; }
+.ui-autocomplete-input { margin: 0; padding: 0.48em 0 0.47em 0.45em; border: solid 1px black;}

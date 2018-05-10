@@ -1,0 +1,81 @@
+.floating-button-container {
+	position:absolute;
+	top:0.6em;
+	left:365px;
+}
+
+table.user-search-table {
+	font-size:9pt;
+	width:100%;
+	text-align:left;
+}
+
+table.user-search-table td {
+	padding:.8em;
+}
+
+table.user-search-table tr {
+	border-bottom:1px solid #A2A2A2;
+}
+
+table.user-search-table tr:hover {
+	background-color:#eee;
+}
+
+tr#head {
+	background-color:#C6C1BC;
+	border-top:2px solid #A2A2A2;
+	border-bottom:2px solid #A2A2A2;
+}
+
+tr#head:hover {
+	background-color:#C6C1BC;
+}
+
+.extraLong {
+	width:900px;
+	margin-left:0.7em;
+}
+
+td.ac {
+	width:18%;
+}
+
+#searchThrobber {
+	display:none;
+	position:absolute;
+	top:2em;
+	left:390px;
+}
+
+#doSave {
+	float:right;
+	margin-top:1em;
+}
+
+
+#displayOptionsTrigger {
+	float:right;
+}
+
+
+.id {
+	width:40px;
+}
+
+.usernameText {
+	display:block;
+	float:left;
+}
+
+.imgWrapper {
+	width:16px;
+	height:11px;
+	margin-left:1em;
+	display:block;
+	float:left;
+}
+
+.imgWrapper img {
+	display:none;
+}

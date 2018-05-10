@@ -1,0 +1,36 @@
+.account-holders-table {
+    width: 100%;
+}
+
+.account-holders-table td {
+    padding: 5px;
+    border: 1px solid #b0b0b0;
+}
+
+td.account-type-cell {
+    width: 200px;
+}
+
+td.quantity {
+    width: 140px;
+}
+
+.account-holders-table tr td:first-child {
+    border-left: none;
+}
+
+.account-holders-table tr td:last-child {
+    border-right: none;
+}
+
+.account-holders-table tr:first-child td {
+    border-top:none;
+}
+
+.account-holders-table tr:last-child td {
+    border-bottom:none;
+}
+
+.education-section {
+    margin: 2em 0;
+}

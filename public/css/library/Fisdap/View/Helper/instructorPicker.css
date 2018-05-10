@@ -1,0 +1,31 @@
+#find-instructor-container, #instructor-results-container{
+	background-color: #ffffff;
+	padding:1em;
+    margin-bottom: 2em;
+}
+
+#instructor-list-title {
+	font-weight:normal;
+	margin-bottom:.5em;
+}
+
+#instructor-results ul{
+	padding-top: 5px;
+}
+
+#instructor-results ul li{
+	padding: 2px;
+}
+
+#find-instructor-container {
+	box-shadow: 0 5px 5px #C6C1BC;
+}
+
+.filter-prompt {
+	float:left;
+	margin: .5em .75em;
+}
+
+.ui-button { margin-left: -1px; }
+.ui-button-icon-only .ui-button-text { padding: 0.35em; }
+.ui-autocomplete-input { margin: 0; padding: 0.48em 0 0.47em 0.45em; border: solid 1px black;}

@@ -1,0 +1,165 @@
+div.menu-button-container {
+    display:inline-block;
+    cursor:default;
+    text-align:left;
+    line-height:27px;
+    clear:both;
+    color:#666;
+    font-family:Verdana, Geneva, sans-serif;
+    margin-top:0.5em;
+}
+
+div.menu-button-container span.selected:hover {
+    background-position-y:44%, 150%;
+    cursor:pointer;
+}
+
+div.menu-button-container span.selected {
+    width:167px;
+    text-indent:20px;
+    border:1px solid #ccc;
+    border-right:none;
+	-moz-border-radius-topleft: 5px;
+	border-top-left-radius: 5px;
+    background-image: url(/images/icons/yellow-circle-plus.png), url(/images/buttons/fancyFilterBg.png);
+    background-position-x:4%, left;
+    background-position-y:44%, 93%;
+    background-repeat:no-repeat, repeat-x;
+    overflow:hidden;
+    padding-left:20px;
+    color:#665D58;
+	font-size:10pt;
+    font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+    background-color:#F1EBE4;
+}
+
+div.menu-button-container.clinical span.selected {
+	background-image: url(/images/icons/clinical_circle_plus.png), url(/images/buttons/fancyFilterBg.png);
+}
+
+div.menu-button-container.field span.selected {
+	background-image: url(/images/icons/field_circle_plus.png), url(/images/buttons/fancyFilterBg.png);
+}
+
+.selectOptgroupName {
+    color:#665D58;
+	font-size:10pt;
+    font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+    display:block;
+    width:93%;
+    padding-lefT:.8em;
+}
+
+div.menu-button-container span.bottomRoundCorners {
+    -moz-border-radius-bottomleft: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.bottomRightRoundedCorners {
+    -moz-border-radius-bottomright: 5px;
+	border-bottom-right-radius: 5px;  
+}
+
+span.selectArrow {
+    width:35px;
+    border:1px solid #2992C9;
+	-moz-border-radius-topright: 5px;
+	border-top-right-radius: 5px;
+    text-align:center;
+    font-size:10px;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    background:#0085ab;
+    background:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.50, #2992C9),
+        color-stop(0.75, #3BAAE3)
+    );
+    color:#fff;
+}
+
+span.selectArrow,span.selected {
+    position:relative;
+    float:left;
+    height:27px;
+    z-index:1;
+}
+            
+div.selectOptions {
+    position:absolute;
+    top:28px;
+    left:0;
+    width:218px;
+    border:1px solid #ccc;
+    border-bottom-right-radius:5px;
+    border-bottom-left-radius:5px;
+    overflow:auto;
+    max-height:280px;
+    background:#faf8f6;
+    padding-top:2px;
+    display:none;
+    -moz-box-shadow: 0px 2px 2px #ccc;
+	-webkit-box-shadow: 0px 2px 2px #ccc;
+	box-shadow:0px 2px 2px #ccc;
+    z-index:100;
+	padding-top:0.75em;
+	padding-bottom:0.75em;
+}
+
+span.selectOption {
+    display:block;
+    width: 90%;
+    line-height:11px;
+    padding: 0.5em 5%;
+    font-size:9pt;
+}
+
+span.selectOption:hover {
+    background:rgba(196, 186, 174, 0.4);
+	cursor:pointer;
+}            
+
+#goLink {
+    color:#fff;
+    text-decoration:none;
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+#goLink:hover {
+    background:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.50, #0085ab),
+        color-stop(0.75, #01718b)
+    );
+}
+
+#addIcon {
+    width:22px;
+    height:22px;
+}
+
+.menu-button-container .selected .airway_management_icon_pro_list {
+	float:left;
+	width: 20px;
+	margin-right: -1.2em;
+	margin-top: 0.5em;
+	margin-left:1.75em;
+}
+
+.selectOption .airway_management_icon_pro_list  {
+	float:left;
+	width: 16px;
+	margin-right: 0.25em;
+	margin-top: -0.1em;
+}

@@ -1,0 +1,7 @@
+@import '../../../Fisdap/View/Helper/multistudent-picklist.css';
+
+.picklist-ms-picker select,
+.search-available-list input,
+.ui-widget .picklist-ms-picker select {
+	max-width: 259px;
+}

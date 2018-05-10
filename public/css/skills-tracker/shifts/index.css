@@ -1,0 +1,279 @@
+/* CSS definitions for /skills-tracker/shifts/index/ */
+#find-student-container {
+	overflow: inherit;
+	margin-bottom: 2em;
+}
+
+#add-shift-container {
+	overflow:auto;
+	/*margin-bottom: .5em;*/
+	min-height: 40px;
+}
+
+#manage-evaluations-btn {
+	width: 100%;
+	margin: 1em 0;
+}
+
+.shift-list-filter {
+}
+
+.shift-list-button {
+	float: right;
+	margin: 1em 1em 0em 0em;
+}
+
+#shift-filters {
+	z-index:100;
+	float:right;
+	margin-top:-2.8em;
+	margin-right:1.05em;
+}
+
+#settings-link {
+	display:block;
+	text-align:right;
+	margin-top:33px;
+	background:url(/images/icons/settings.png) no-repeat;
+	height:17px;
+	background-position:top right;
+	padding-right:24px;
+	width:60px;
+	line-height:17px;
+	float:right;
+	margin-right:-2.3em;
+}
+
+#settings-link:hover {
+	background-position:bottom right;
+}
+
+#shift-filters label:not(.optional) {
+	margin: .5em 0em;
+	display: block;
+}
+
+#shift-table {
+	width:100%;
+	border-top: 2px solid #b0b0b0;
+}
+
+#shift-table tbody{
+	border-top: 2px solid #b0b0b0;
+	border-bottom: 2px solid #b0b0b0;
+}
+
+#shift-table thead, tfoot {
+	background-color: #c6c1bc;
+}
+
+#shift-table thead{
+	border-top: 1px solid #b0b0b0;
+	border-bottom: 1px solid #b0b0b0;
+	border-left: 0px;
+	border-right: 0px;
+}
+
+thead th, td {
+	border: none;
+	padding-top: .5em;
+	padding-bottom: .5em;
+}
+
+#shift-table tbody td {
+	border: 1px solid #b0b0b0;
+	padding: .5em 0;
+}
+
+#shift-table tbody td.undo {
+	background-color: #fffcb3;
+	border: none;
+    padding: 0.7em;
+}
+
+#shift-table tbody td.summary-column,
+#shift-table tbody td.lock-column {
+	border-left: 0px;
+	border-right: 0px;
+	vertical-align: middle;
+}
+
+#shift-table tbody td.summary-column {
+    width: 50%;
+}
+
+#shift-table tbody td.lock-column {
+    width: 1em;
+    padding: 0.5em;
+    padding-right: 1em;
+}
+
+.num-patients-column, .id-column, .actions-column, .signoff-column, .audited-column{
+	vertical-align: middle;
+	text-align: center;
+}
+
+#shift-table tbody td.actions-column {
+	border-right: 0px;
+	width: 17%;
+}
+
+#shift-table tbody td.actions-column div.action-cell > div {
+    float: left;
+    margin: 0.3em 0 0 1em;
+    font-size: 12px;
+}
+
+#shift-table tbody td.actions-column div.delete-icon {
+    padding-top: 0.1em;
+}
+
+.alt {
+    background-color: #ffffff;
+}
+
+#shift-table tr.clickable:hover {
+    background-color: #EFEDEB;
+}
+
+.date-icon {
+	float:left;
+	width: .70em;
+	position: relative;
+	left: -1.1em;
+	margin-right:-.7em;
+}
+
+.shift-summary {
+	margin-left:3em;
+}
+
+.shift-info-container {
+	float:left;
+    padding: 0.4em 0.5em;
+    height: 2.1em;
+    position: relative;
+}
+
+.shift-info-container div.has-badge {
+    position: absolute;
+    bottom: 0.5em;
+}
+
+a.lock-shift-btn img {
+    height: 2.5em;
+}
+
+.small-icon {
+	margin: 0 .1em;
+}
+
+#shift-table tr.locked-shift .field {
+	color: #5895a5;
+}
+
+#shift-table tr.locked-shift .clinical {
+	color: #96c751;
+}
+
+#shift-table tr.locked-shift .lab {
+	color: #f2af4d;
+}
+
+#shift-table tr.locked-shift {
+	background-color: #F0EEEB;
+}
+
+#add-field-shift, #add-clinical-shift, #add-lab-shift,
+#add-field-scheduler-shift, #add-clinical-scheduler-shift, #add-lab-scheduler-shift {
+	display: block;
+	width: 120px; height: 29px;
+	background-position: bottom;
+	text-indent: -9999px;
+	float:left;
+/*	margin-right:.5em;
+	margin-top:.5em;*/
+	margin: .5em;
+}
+
+#add-field-shift, #add-field-scheduler-shift {
+	background-image: url(/images/buttons/add_field_shift.png);
+}
+
+#add-clinical-shift, #add-clinical-scheduler-shift {
+	background-image: url(/images/buttons/add_clinical_shift.png);
+}
+
+#add-lab-shift, #add-lab-scheduler-shift {
+	background-image: url(/images/buttons/add_lab_shift.png);
+}
+
+#add-field-shift:hover, #add-clinical-shift:hover, #add-lab-shift:hover,
+#add-field-scheduler-shift:hover, #add-clinical-scheduler-shift:hover, #add-lab-scheduler-shift:hover {
+	background-position: center;
+}
+
+#add-field-shift:active, #add-clinical-shift:active, #add-lab-shift:active,
+#add-field-scheduler-shift:active, #add-clinical-scheduler-shift:active, #add-lab-scheduler-shift:active {
+	background-position: top;
+}
+
+div#add-comment-form {
+	background-color:#e0eeff;
+	display: none;
+}
+
+#shift-list-container{
+	background-color: #ffffff;
+	padding:1em;
+}
+
+a.lock-shift-btn:hover {
+text-decoration: none;
+}
+
+#quick-links {
+	margin-top:0em;
+	margin-left:-.5em;
+	width:90%;
+}
+
+#export-shift-list-links {
+    position: relative;
+    top: -7px;
+}
+
+#shift-filters {
+    font-family: Century Gothic,Arial,Helvetica,sans-serif;
+    font-size: 10pt;
+}
+
+#shift-filters .filters h3 button {
+	padding: 1px;
+	font-size: 9.5pt;
+	height: 25px;
+}
+
+#shift-filters_filters-title-icon {
+	margin-right: 2px;
+}
+
+#shift-filters_filters-title-icon img {
+	width: 16px;
+	margin-top: 1px;
+}
+
+.shift-list-filter {
+	margin-top: 0.5em;
+}
+
+.reportLinkThrobber {
+	height: 0.8em;
+    margin-left: 5px;
+    position: relative;
+    top: 1px;
+}
+
+.exam-interview-link {
+	text-decoration: underline;
+}

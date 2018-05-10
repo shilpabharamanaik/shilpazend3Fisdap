@@ -1,0 +1,349 @@
+.month-details-calendar {
+	border-collapse: separate;
+	border-spacing: 0.205em;
+	width:100%;
+}
+
+.month-details-calendar td {
+	width:9em;
+	height:90px;
+	background-color:#fff;
+	-moz-border-radius:0.5em;
+	border-radius: 0.5em;
+	vertical-align: top;
+}
+
+.month-details-calendar .month-details-event:hover, .selected-month-details-event {
+	cursor:pointer;
+	background-color: #FBFBFB;
+    background: url(/images/linear_bg_2.png) repeat-x;
+    
+    /* Safari 4-5, Chrome 1-9 */
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.50, #eee),
+        color-stop(0.75, #F6F6F6)
+    );
+    
+    /* Firefox 3.6+ */
+   background-image: -moz-linear-gradient(
+        center bottom,
+        #eee 50%,
+        #F6F6F6 75%
+    );
+    
+    /* IE 10 */
+    background: -ms-linear-gradient(top, #F6F6F6, #eee);
+    
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(top, #F6F6F6, #eee);
+}
+
+
+#main-content .cal-wrapper-month-details .orange-cal-wrapper {
+	margin-left:-1em;
+	padding:0%;
+	width:915px;
+}
+
+#main-content .cal-wrapper-month-details .day-num {
+	font-size:0.8em;
+	padding: 3%;
+	color:#666;
+	margin:0;
+	margin-bottom:0.5%;
+	background-color: #efefef;
+	border-top-left-radius: 0.5em;
+	border-top-right-radius: 0.5em;
+	border-bottom: 1px solid #ddd;
+}
+
+
+#main-content .cal-wrapper-month-details .number_wrapper {
+	display:block;
+	float:left;
+	margin-left:0.2em;
+}
+
+#main-content .cal-wrapper-month-details .event-totals-wrapper {
+	float:right;
+	margin-right:0.2em;
+}
+
+
+#main-content .cal-wrapper-month-details .event-totals-wrapper .event-total,
+#display_options_modal_content .event-totals-wrapper .event-total {
+	margin-left:0.25em;
+}
+
+#main-content .cal-wrapper-month-details .event-totals-wrapper img,
+#display_options_modal_content .event-totals-wrapper img {
+	margin-right:0em;
+	height:14px;
+	width:16px;
+	margin-top:0.15em;
+}
+
+#main-content .cal-wrapper-month-details .event-totals-wrapper .field img, 
+#display_options_modal_content .event-totals-wrapper .field img {
+	margin-right:0.2em;
+}
+
+
+#main-content .cal-wrapper-month-details .details_has_today_with_totals {
+	height:40px;
+}
+
+
+#main-content .details_today_img_wrapper {
+	border-top:0px;
+	margin-top:-0.25em;
+	height:10px;
+	position:relative;
+}
+
+#main-content .details_today_img_wrapper_with_totals  {
+	height:20px;
+	position:relative;
+	margin-top:1.9em;
+	border-top:1px solid #ddd;
+	margin-left:-0.32em;
+	width:107%;
+}
+
+
+#main-content .cal-wrapper-month-details .details_today_img_wrapper .today-img {
+	top:-1.7em;
+	left:4.8em;
+}
+
+.month-details-day-content .no-shifts-msg {
+	margin:0.75em;
+	color:#444;
+	
+}
+
+.month-details-day-content .subtle-no-shifts-msg {
+	font-size:8.5pt;
+	color:#777;
+}
+
+.month-details-day-content .details_time_duration_wrapper {
+	font-weight:bold;
+	font-size:10.5pt;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+}
+
+.month-details-day-content .details_location_wrapper {
+	font-size:8.25pt;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+}
+
+.month-details-event {
+	padding-left:0.3em;
+	padding-right:0.3em;
+	border-bottom: 1px solid #ddd;
+	padding-top: 0.25em;
+	padding-bottom: 0.5em;
+	position:relative;
+}
+
+.month-details-event .special-icon {
+	position:absolute;
+	top: 0.25em;
+	right: 0.5em;
+}
+
+.month-details-event .special-icon img {
+	width:12px;
+}
+
+.month-details-event .month_details_instructors,
+.month-details-event .month_details_preceptors {
+	font-size:8.25pt;
+	color:#444;
+}
+
+.details-day-block .month-details-event:last-of-type {
+	border-bottom:0px;
+	border-bottom-left-radius: 0.5em;
+	border-bottom-right-radius: 0.5em;
+}
+
+.month_details_weebles {
+	margin-top:0.3em;
+	margin-left:0.1em;
+}
+
+.month_details_weebles img {
+	height:20px;
+	float:left;
+}
+
+.month_details_weebles .plus-slots {
+	padding-top:0.1em;
+	margin-left:0.25em;
+}
+
+.month_details_weebles .student-weeble-invisible {
+	margin-right:-0.25em;
+}
+
+.month_details_assignments {
+	font-size:7.75pt;
+	color:#666;
+	font-weight:normal;
+	margin-top:0.5em;
+}
+
+.month_details_assignments_cert {
+	font-size:7.75pt;
+}
+
+.month_details_assignments .non-compliant-row {
+	font-family:Tahoma, Geneva, sans-serif;
+	font-weight:normal;
+}
+
+.month_details_assignments b, .month_details_assignments .non-compliant-row b {
+	font-weight:normal;
+}
+
+.month_details_day_names_fixed {
+	position:fixed;
+	top:47px;
+	z-index:500;
+	border-bottom:3px solid #e59944;
+}
+
+#main-content .cal-wrapper-month-details .month_details_day_totals_fixed {
+	position:fixed;
+	top:74px;
+	z-index:500;
+	width:118px;
+	padding:0.4em;
+	border-top-left-radius: 0em;
+	border-top-right-radius: 0em;
+}
+
+#main-content .cal-wrapper-month-details .month_details_day_totals_fixed.week_day_class_6,
+#main-content .cal-wrapper-month-details .month_details_day_totals_fixed.week_day_class_7 {
+	width:119px;
+}
+
+
+#month_details_day_names {
+	background-color:#fff;
+	margin-left:-1em;
+	width:915px;
+}
+
+.month_details_display_options_summary {
+	width: 892px;
+	min-height: 12px;
+	padding:0.75em;
+	background-color: rgba(145, 131, 126, 0.15);
+	border:1px solid rgba(145, 131, 126, 0.55);
+	margin-top: 0.75em;
+	margin-bottom: 0.5em;
+	margin-left: -1em;
+	font-size:10pt;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	color:#666;
+}
+
+.month_details_display_options_summary b {
+	font-weight:bold;
+}
+
+#edit_display_options_wrapper {
+	position:relative;
+}
+
+#load-display-options-modal-throbber {
+	position:absolute;
+	left:0.25em;
+}
+
+#display_options_modal_buttons {
+	position:absolute;
+	bottom: 0.5em;
+	right: 0em;
+	width:225px;
+}
+
+#display_options_modal_buttons .small {
+	float:right;
+	margin-right:0.75em;
+}
+
+#display_options_modal_content {
+	position:relative;
+	padding-bottom:2em;
+	width: 100%;
+	height: 260px;
+}
+
+#display_options_modal_content dt {
+	display:none;
+}
+
+#display_options_modal_content p {
+	margin-top:1em;
+	color:#444;
+}
+
+#display_options_modal_content .grid_6 {
+	width:48%;
+	margin-top:1em;
+}
+
+#display_options_modal_content .display_option_row {
+	width: 99%;
+	margin-top:0.75em;
+	margin-bottom:0.75em;
+}
+
+#display_options_modal_content .display_option_row_totals {
+	margin-top:0.9em;
+}
+
+#display_options_modal_content .display_option_row .stage {
+	margin-top:0em;
+	top:0em;
+}
+
+#display-options-red-weeble {
+	height:20px;
+	background-color:#FBE3E4;
+	border: 1px dashed #8a1f11;
+	padding:2px;
+	padding-bottom:3px;
+	margin-top: 0.5em;
+	float: left;
+	margin-right: 0.5em;
+}
+
+#display-options-filled-weeble, #display-options-open-weeble {
+	height:22px;
+	width:auto;
+	margin-top: -0.2em;
+	display: block;
+	float: left;
+	margin-top: 0.55em;
+	margin-right: 0.5em;
+}
+
+.display_options_modal_totals_wrapper {
+	margin-top:0.3em;
+	margin-left:-0.45em;
+}
+
+#save-display-options-modal-throbber {
+	position:absolute;
+	bottom:0.5em;
+	right:2.75em;
+}

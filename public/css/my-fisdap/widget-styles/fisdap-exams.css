@@ -1,0 +1,44 @@
+.fisdap-exams-widget {
+    max-width: 500px;
+}
+
+.fisdap-exams-widget .test-result {
+    border-top: 1px solid #B0B0B0;
+    border-bottom: 1px solid #B0B0B0;
+}
+
+.fisdap-exams-widget .shield {
+    display: inline-block;
+    margin-left: 5px;
+    position: relative;
+    top: 5px;
+    width: 25px;
+    height: 25px;
+}
+
+.fisdap-exams-widget h4 {
+    font-size: 11pt;
+}
+
+.fisdap-exams-widget div {
+    font-size: 90%;
+    margin-bottom: 1.5em;
+}
+
+.fisdap-exams-widget table {
+    width: 100%;
+}
+
+.fisdap-exams-widget th {
+    text-align: left;
+}
+
+.fisdap-exams-widget td {
+    padding: 3px;
+}
+
+.fisdap-exams-widget .clickable:hover {
+    background-color: #EFEDEB;
+}
+
+

@@ -1,0 +1,62 @@
+h3.section-header {
+    margin-bottom: 0em;
+}
+
+#control-buttons {
+    margin-top:1em;
+}
+
+#form-errors {
+    display: none;
+    margin-left: 1%;
+    width: 86%;
+}
+
+#save-button {
+    float: right;
+    margin-bottom: 10px;
+}
+
+#settingsForm .island {
+    overflow: inherit;
+}
+
+.input-line {
+    clear: both;
+    padding: 1em;
+}
+
+.slider {
+    float: left;
+    margin-right: 1em;
+    margin-top: 0.2em;
+    
+}
+
+.slider-label {
+    float: left;
+    margin-top: 0.3em;
+}
+
+.subsection {
+    margin-top: 1em;
+}
+
+.success {
+    margin: 0 -21px 15px 8px;
+    display: none;
+}
+
+.throbber {
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.section {
+    margin-bottom: 1.5em;
+}
+
+.defaults {
+    margin-left: 1em;
+}

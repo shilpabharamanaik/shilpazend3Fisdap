@@ -1,0 +1,61 @@
+.skillsheetSelect {
+	font-size:9pt;
+	margin:1em;
+	padding:.1em;
+}
+
+.ui-widget select {
+	font-size:9pt;
+}
+
+#skillsheet-modal-buttons {
+	position:absolute;
+	bottom:1em;
+	right:1em;
+	width:300px;
+}
+
+#add-skillsheet-throbber {
+	position:absolute;
+	right:2em;
+	bottom:.8em;
+}
+
+#skillsheet-modal-buttons a {
+	float:right;
+	margin-left:0.5em;
+}
+
+#skillsheet-modal-spacer {
+	width:100%;
+	height:40px;
+}
+
+#change-warning {
+	display:none;
+	width:617px;
+}
+
+#delete-skillsheet {
+	display:none;
+}
+
+#delete-skillsheet a {
+	display:block;
+	color:#666;
+	width:130px;
+	font-size:8pt;
+
+}
+
+#delete-skillsheet a img {
+	float:left;
+	width:25px;
+	margin-top:-0.6em;
+}
+
+.delete-skillsheet-throbber {
+	float:left;
+	margin-top:-.9em;
+	margin-left:-1.3em;
+}

@@ -1,0 +1,37 @@
+.dark-gray-button, .dark-gray-button:visited
+{
+    background: #655d57 url(/images/jquery-button-backgrounds/ui-bg_highlight-hard_75_655d57_1x100.png) 50% 50% repeat-x;
+    border: 1px solid #655d57;
+    color:#FFFFFF;
+}
+.dark-gray-button:hover
+{ 
+    background: #473f39 url(/images/jquery-button-backgrounds/ui-bg_highlight-hard_75_473f39_1x100.png) 50% 50% repeat-x;
+    border: 1px solid #473f39;
+    color:#FFFFFF;
+}
+.dark-gray-button:active
+{
+    background-color:#FFFFFF;
+    border: 1px solid #132b14;
+    color:#FFFFFF;
+}
+
+.medium
+{
+	font-size: 12pt;
+}
+
+.small
+{
+	font-size: 10pt;
+}
+
+.extra-small
+{
+	font-size: 8pt;
+}
+
+.itty-bitty {
+	font-size: 6pt;
+}

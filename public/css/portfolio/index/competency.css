@@ -1,0 +1,29 @@
+/* 
+    Document   : internship-records
+    Created on : Nov 29, 2011, 2:57:22 PM
+    Author     : astevenson
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.exam_input_div{
+	padding-top: 3px;
+	padding-bottom: 2px;
+}
+
+.title{
+	font-size: 1.1em;
+}
+
+.minor-title{
+	font-size: 0.8em;
+}
+
+.jqcal{
+	width: 80px;
+}

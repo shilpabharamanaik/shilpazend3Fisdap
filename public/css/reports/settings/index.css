@@ -1,0 +1,11 @@
+@import "../index/index.css";
+
+#reports-container .stage {
+	position: relative;
+	top: 5px;
+	left: 20px;
+}
+
+#reports-container .stage .slider-frame .slider-button:before {
+    width: 50px;
+}

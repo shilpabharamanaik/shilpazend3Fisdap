@@ -1,0 +1,18 @@
+#preview-email {
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: normal;
+    color: #a94612;
+    text-decoration:none;
+	
+	display: block;
+	margin-top: 10px;
+}
+
+#preview-email-container {
+	max-height: 100px;
+	margin-top:10px;
+}
+
+#sendEmailsDialog p {
+	margin: 5px 0;
+}

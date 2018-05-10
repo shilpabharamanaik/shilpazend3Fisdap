@@ -1,0 +1,59 @@
+.tablescroll{ 
+	font: 12px normal Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif; 
+	background-color:#fff; 
+}
+
+.tablescroll td, 
+.tablescroll_wrapper,
+.tablescroll_head,
+.tablescroll_foot{ 
+	border-left: 1px solid white; 
+	border-right: 1px solid white; 
+}
+
+.tablescroll td{ 
+	padding:3px 5px; 
+}
+
+.tablescroll_wrapper{ 
+	border-left:0; 
+}
+
+.tablescroll_head{ 
+	font-size:11px; 
+	font-weight:bold; 
+	background-color: rgb(240, 134, 47);
+	color: white;
+	border-left:0; 
+	border-top:0; 
+	margin-bottom:3px; 
+}
+
+.tablescroll thead td{ 
+	border-right:0; 
+	border-bottom:0; 
+}
+
+.tablescroll tbody td{ 
+	border-right:0; 
+	border-bottom:0;
+	text-align: center;
+}
+
+.tablescroll tbody tr.first td{ 
+	border-top:0; 
+}
+
+.tablescroll_foot{ 
+	font-weight:bold; 
+	background-color: rgb(240, 134, 47);
+	color: white;
+	border-left:0; 
+	border-top:0; 
+	margin-top:3px;
+}
+
+.tablescroll tfoot td{ 
+	border-right:0; 
+	border-bottom:0;
+}

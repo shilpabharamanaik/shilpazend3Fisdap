@@ -1,0 +1,604 @@
+/*
+ * Productivity Widget tab styles. Overriding jquery ui themeroller standard styles
+ * Make sure to actually change these properties, don't just delete them. jquery.ui will take over for deleted properties.
+ */
+/* general jquery.ui */
+.productivityWidget-tabs .ui-widget-header {
+	background-image: linear-gradient(bottom, #807B76 40%, #ACA9A2 70%);
+	background-image: -o-linear-gradient(bottom, #807B76 40%, #ACA9A2 70%);
+	background-image: -moz-linear-gradient(bottom, #807B76 40%, #ACA9A2 70%);
+	background-image: -webkit-linear-gradient(bottom, #807B76 40%, #ACA9A2 70%);
+	background-image: -ms-linear-gradient(bottom, #807B76 40%, #ACA9A2 70%);
+
+	background-image: -webkit-gradient(
+			linear,
+			left bottom,
+			left top,
+			color-stop(0.4, #807B76),
+			color-stop(0.7, #ACA9A2)
+	);
+	
+	border: 0; font-weight: normal; color: #fff; height: 49px;
+}
+.productivityWidget-tabs .ui-state-default, .productivityWidget-tabs .ui-widget-content .ui-state-default, .productivityWidget-tabs .ui-widget-header .ui-state-default {
+        background: transparent;
+        border: 0;
+        color: #000;
+        font-weight: normal;
+}
+.productivityWidget-tabs .ui-state-default a { color: #000; }
+.productivityWidget-tabs .ui-corner-all, .productivityWidget-tabs .ui-corner-bottom, .productivityWidget-tabs .ui-corner-right, .productivityWidget-tabs .ui-corner-br {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.productivityWidget-tabs .ui-corner-all, .productivityWidget-tabs .ui-corner-bottom, .productivityWidget-tabs .ui-corner-left, .productivityWidget-tabs .ui-corner-bl {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+.ui-widget-content a { color: #A94612 }
+/* jquery.ui.tab specific */
+.ui-tabs.productivityWidget-tabs { position: relative; padding: 0; zoom: 1; border: none;} /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+.ui-tabs.productivityWidget-tabs .ui-tabs-nav { margin: 0; padding: 0; }
+.ui-tabs.productivityWidget-tabs .ui-tabs-nav li { list-style: none; float: left; position: relative; top: 1px; margin: 0; border-bottom: 0 !important; padding: 0; white-space: nowrap; height: 100%;}
+.ui-tabs.productivityWidget-tabs .ui-tabs-nav li a { float: left; padding: 0; text-decoration: none; }
+.ui-tabs.productivityWidget-tabs .ui-tabs-nav li.ui-tabs-selected { margin-bottom: 0; }
+.ui-tabs.productivityWidget-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs.productivityWidget-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs.productivityWidget-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text; }
+.ui-tabs.productivityWidget-tabs .ui-tabs-nav li a, .ui-tabs.productivityWidget-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+.ui-tabs.productivityWidget-tabs .ui-tabs-panel {
+        /* border stuff for productivitywidget-instance needs to be here, to override jquery ui stuff */
+        display: block; padding:0; background: none;
+/*        border-right: 1px solid #494544;
+        border-left: 1px solid #494544;*/
+}
+.ui-tabs.productivityWidget-tabs .ui-tabs-hide { display: none !important; }
+
+
+/* Tab navigation for productivity widget styles */
+.productivityWidget-tabs-buttons {
+    float: right;
+    margin: 11px 9px 0 0;
+}
+/*.productivityWidget-tabs-buttons a, .productivityWidget-tabs-buttons a:visited {
+    display: block;
+    padding: 8px;
+    background-color: #D7D5D1;
+    color: #89827E;
+    font-size: 18px;
+    text-decoration: none;
+}*/
+/*.productivityWidget-tabs-buttons a:hover {
+    color: #fff;
+    background-color: #EA8B33;
+}*/
+.ui-tabs.productivityWidget-tabs ul.ui-tabs-nav {
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.ui-tabs.productivityWidget-tabs span.unread_counter{
+	font-size: 16px;
+}
+
+.productivityWidget-tabs ul.ui-tabs-nav li.ui-state-default a {
+	font-size:20px;
+    padding: 7px 10px 15px 10px;
+    color: #fff;
+	font-family: Century Gothic, Arial, Helvetica, sans-serif;
+}
+.productivityWidget-tabs ul.ui-tabs-nav li.ui-state-default a:hover {
+    text-decoration: underline;
+}
+.productivityWidget-tabs ul.ui-tabs-nav li.ui-state-active a:hover {
+    text-decoration: none;
+}
+
+.productivityWidget-tabs ul.ui-tabs-nav li.ui-state-active {
+    background: url('/images/productivity_widget_ticker.png') center bottom no-repeat;
+	position: relative;
+	z-index: 2;
+}
+
+*:focus {
+outline: none;
+}
+
+/* general widget styles */
+.productivityWidget-instance {
+}
+.productivityWidget-instance .viewport-controls {
+    height: 30px;
+    padding:  10px 10px 10px 1px;
+    background-color: #494544;
+    line-height: 30px;
+	position: relative;
+	z-index: 1;
+	
+	-webkit-box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2), 0px -5px 5px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow:    0px 5px 5px rgba(0, 0, 0, 0.2), 0px -5px 5px rgba(0, 0, 0, 0.2);
+	box-shadow:         0px 5px 5px rgba(0, 0, 0, 0.2), 0px -5px 5px rgba(0, 0, 0, 0.2);
+}
+.productivityWidget-instance .viewport-controls .sorters {
+    float: right;
+}
+.productivityWidget-instance .viewport-controls .sorters label {
+    padding-right: 4px;
+    color: #fff;
+}
+.productivityWidget-instance .viewport-controls .filters label {
+    margin: 0 6px 0 0;
+    padding: 3px;
+    color: #fff;
+}
+.productivityWidget-instance .viewport-controls .filters label.filter-message {
+    background-color: #3c8b98;
+}
+.productivityWidget-instance .viewport-controls .filters label.filter-todo {
+    background-color: #ea8b33; 
+}
+.productivityWidget-instance .viewport-controls .filters label.filter-event {
+    background-color: #89827e;
+}
+.productivityWidget-instance div.viewport-content {
+    height: 400px;
+    overflow: auto; 
+    margin: 0;
+    padding: 0px 0 10px 0;
+}
+
+.productivityWidget-instance div.viewport-content .message-list-empty {
+	margin-top: 5px;
+	margin-left: 3px;
+}
+
+.productivityWidget-instance ul.message-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.productivityWidget-instance ul.message-list li.message a.message-inner, .productivityWidget-instance ul.message-list li.message a.message-inner:visited {
+    display: block;
+    padding: 0 0 0 10px;
+    background-color: #fff;
+    text-decoration: none;
+    color: #000;
+}
+.productivityWidget-instance ul.message-list li.message a.message-inner:hover {
+    background-color: #F0EEEB;
+}
+.productivityWidget-instance ul.message-list li.message.todo-late a.message-inner {
+    background-color: #fffae2;
+}
+.productivityWidget-instance ul.message-list li.message.todo-late span.message-todo-late {
+    padding-left:10px;
+    font-size: 80%;
+    font-style: italic;
+}
+.productivityWidget-instance ul.message-list li.message.unread span.message-title {
+    font-weight: bold;
+    font-size: 112%;
+}
+.productivityWidget-instance ul.message-list li.message.todo-completed span.message-title {
+    text-decoration: line-through;
+}
+.productivityWidget-instance ul.message-list li .message-controls a {
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.productivityWidget-instance ul.message-list li .message-controls a:hover {
+    text-decoration: none;
+}
+.productivityWidget-instance ul.message-list li .message-controls a img {
+    vertical-align: middle;
+}
+.productivityWidget-instance ul.message-list li .message-controls span.checkbox-wrapper {
+    display: inline-block;
+    width: 20px;
+}
+.productivityWidget-instance ul.message-list li .message-controls a.message-todo-done, .productivityWidget-instance ul.message-list li .message-controls a.message-todo-done:visited, .productivityWidget-instance ul.message-list li .message-controls a.message-todo-done:hover {
+    color: #494544;
+    font-size: 12px;
+}
+.productivityWidget-instance .utility-tray, .productivityWidget-instance .calendar-view-links {
+    height: 57px;
+    line-height: 57px;
+    background-color: #494544;
+    color: #fff;
+	
+	position: relative;
+	z-index: 1;
+	
+	-webkit-box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow:    0px -5px 5px rgba(0, 0, 0, 0.2);
+	box-shadow:         0px -5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.productivityWidget-instance .calendar-view-links {
+	padding-left: 15px;
+}
+
+.calendar-view-links a {
+	color: white;
+}
+
+.productivityWidget-instance .utility-tray .utility-tray-controls {
+    height: 30px;
+    float: left;
+    margin: 15px 20px 0 8px;
+}
+/*.productivityWidget-instance .utility-tray .utility-tray-controls a.button {
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    margin: 0 8px 0 0;
+    padding: 8px;
+    background-color: #D7D5D1;
+    color: #89827E;
+    font-size: 18px;
+    text-decoration: none;
+}
+.productivityWidget-instance .utility-tray .utility-tray-controls a.button:hover {
+    background-color: #EA8B33;
+}
+.productivityWidget-instance .utility-tray .utility-tray-controls a.button.button-disabled, .productivityWidget-instance .utility-tray .utility-tray-controls a.button.button-disabled:hover {
+    color: #eee;
+    background-color: #D7D5D1;
+}*/
+
+/* Standard list specific styles */
+.productivityWidget-instance div.viewport-content.list-format-standard ul.message-list li.message {
+    border-bottom: 1px solid #b0b0b0;
+}
+.productivityWidget-instance div.viewport-content.list-format-standard ul.message-list li.message span.message-teaser {
+    padding-left: 5px;
+}
+.productivityWidget-instance div.viewport-content.list-format-standard ul.message-list li a.message-selector::before {
+    content: ".";
+    visibility: hidden;
+}
+.productivityWidget-instance div.viewport-content.list-format-standard ul.message-list li a.message-selector {
+    float: left;
+    width: 20px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 7px 0 0px;
+    text-align: left;
+}
+.productivityWidget-instance div.viewport-content.list-format-standard ul.message-list li .message-controls::before {
+    content: ".";
+    visibility: hidden;
+}
+.productivityWidget-instance div.viewport-content.list-format-standard ul.message-list li .message-controls {
+    float: right;
+    width: 140px;
+    padding: 0 10px 0 0;
+    height: 36px;
+    line-height: 36px;
+    margin: 0 0 0 20px;
+    text-align: right;
+}
+.productivityWidget-instance div.viewport-content.list-format-standard ul.message-list li.message {
+    height: 40px;
+    overflow: hidden;
+    padding: 0 0 0 10px;
+    line-height: 40px;
+    background-color: #3c8b98;
+}
+.productivityWidget-instance div.viewport-content.list-format-standard ul.message-list li.message span.message-teaser {
+    opacity: .5;
+}
+.productivityWidget-instance div.viewport-content.list-format-standard ul.message-list li.message.unread span.message-teaser {
+    opacity: 1;
+}
+.productivityWidget-instance div.viewport-content.list-format-standard ul.message-list li.message a.message-inner span.message-teaser {
+    font-size: 14px;
+}
+.productivityWidget-instance div.viewport-content.list-format-standard ul.message-list li.message.todo {
+    background-color: #ea8b33;
+}
+.productivityWidget-instance div.viewport-content.list-format-standard ul.message-list li.message.event {
+    background-color: #89827e;
+}
+
+
+/* Calendar specific styles */
+.productivityWidget-instance div.viewport-content.list-format-calendar4, .productivityWidget-instance div.viewport-content.list-format-calendar1 {
+    padding: 0;
+}
+.productivityWidget-instance div.viewport-content .calendar-list-column {
+    float: left;
+    padding: 0 15px;
+    border-right: 3px dashed #ddd;
+	height: 100%;
+}
+
+.productivityWidget-instance div.viewport-content.list-format-calendar1 .calendar-list-column {
+	border-right: none;
+}
+
+.productivityWidget-instance div.viewport-content .calendar-list-column:last-child {
+	border-right: none;
+}
+
+.productivityWidget-instance div.viewport-content .calendar-list-column h3.date-heading, .productivityWidget-instance div.viewport-content.list-format-calendar1 h3.date-heading {
+    color: #636060;
+    font-size: 16px;
+    text-align: center;
+	margin-top: 5px;
+}
+
+.productivityWidget-instance div.viewport-content.list-format-calendar1 h3.date-heading {
+	margin-bottom: 5px;
+	margin-left: 15px;
+	text-align: left;
+}
+
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message {
+    height: auto;
+    padding: 0;
+    margin: 0 0 20px 0;
+    overflow: hidden;
+    line-height: normal;
+	border: 1px solid #636060;
+}
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message a.message-inner, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message a.message-inner {
+    padding: 0;
+}
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message a.message-inner span.message-title, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message a.message-inner span.message-title {
+    display: block;
+    padding: 3px 6px 3px 6px;
+    font-size: 14px;
+    color: #fff;
+}
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.todo a.message-inner span.message-title, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.todo a.message-inner span.message-title {
+    background-color: #EA8B33;
+}
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.event a.message-inner span.message-title, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.event a.message-inner span.message-title {
+    background-color: #89827E;
+}
+/* shift-specific styles */
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.shift span.message-shift-teaser-time, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.shift span.message-shift-teaser-time {
+    padding: 0 0 0 10px;
+}
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.shift .message-shift-teaser-misc > div, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.shift .message-shift-teaser-misc > div {
+    margin: 0 0 5px 0;
+}
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.shift .message-shift-teaser-misc strong, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.shift .message-shift-teaser-misc strong  {
+    color: #444;
+}
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.shift .message-shift-teaser-top, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.shift .message-shift-teaser-top {
+    line-height: 21px;
+    font-weight: bold;
+}
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.shift .message-shift-teaser-top img, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.shift .message-shift-teaser-top img {
+    vertical-align: middle;
+}
+/* Custom colored headers for shift events */
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.event.shift-field a.message-inner span.message-title, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.event.shift-field a.message-inner span.message-title {
+    background-color: #3c8b98;
+}
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.event.shift-clinical a.message-inner span.message-title, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.event.shift-clinical a.message-inner span.message-title {
+    background-color: #5b930a;
+}
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.event.shift-lab a.message-inner span.message-title, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.event.shift-lab a.message-inner span.message-title {
+    background-color: #f0bb1b;
+}
+
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message a.message-inner span.message-teaser, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message a.message-inner span.message-teaser {
+    display: block;
+    padding: 6px;
+    font-size: 12px;
+}
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.todo a.message-inner span.message-teaser, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.todo a.message-inner span.message-teaser {
+    background-color: #F1E0CF;
+}
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.event a.message-inner span.message-teaser, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.event a.message-inner span.message-teaser {
+    background-color: #F2EDEA;
+}
+
+.productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.event a.message-inner span.message-shift-teaser-misc {
+	display: block;
+}
+
+/* Custom colored teasers for shift events */
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.event.shift-field a.message-inner span.message-teaser, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.event.shift-field a.message-inner span.message-teaser {
+    background-color: #cfe8f1;
+}
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.event.shift-clinical a.message-inner span.message-teaser, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.event.shift-clinical a.message-inner span.message-teaser {
+    background-color: #e1f5c4;
+}
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message.event.shift-lab a.message-inner span.message-teaser, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message.event.shift-lab a.message-inner span.message-teaser {
+    background-color: #faf5bc;
+}
+
+.productivityWidget-instance div.viewport-content.list-format-calendar4 ul.message-list li.message .message-controls, .productivityWidget-instance div.viewport-content.list-format-calendar1 ul.message-list li.message .message-controls {
+    display: none;
+    float: none;
+    height: 30px;
+    width: auto;
+    background: transparent;
+    line-height: 30px;
+    text-align: right;
+}
+
+/* Modals */
+.productivityWidget-msgModal form {
+    margin: 0;
+}
+.productivityWidget-msgModal .message-contents {
+    padding: 0 0 30px 20px;
+}
+.productivityWidget-msgModal h2, .productivityWidget-msgModal h3 {
+    margin: 10px 0 10px 0;
+}
+.productivityWidget-msgModal h2 {
+    font-size: 18px;
+}
+.productivityWidget-msgModal h3 {
+    font-size: 16px;
+}
+.productivityWidget-msgModal div.message-meta {
+    float: right;
+    margin: 0 0 0px 20px;
+}
+.productivityWidget-msgModal h2.message-date, .productivityWidget-msgModal h2.message-author {
+    margin: 0;
+    font-size: 90%;
+    color: #89827E;
+}
+.productivityWidget-msgModal h2.message-title {
+    margin-bottom: 20px;
+}
+.productivityWidget-msgModal .message-title-controls {
+    display: block;
+    float: right;
+    padding: 0;
+   font-weight: normal;
+}
+.productivityWidget-msgModal .message-title-controls a {
+    display: inline-block;
+    vertical-align: middle;
+}
+.productivityWidget-msgModal .message-body {
+    padding: 0 30px 0 0;
+    line-height: 21px;
+}
+.productivityWidget-msgModal .message-body p {
+    margin: 1em 0;
+}
+.productivityWidget-msgModal textarea {
+    resize: vertical;
+}
+.productivityWidget-msgModal .message-todo-due, .productivityWidget-msgModal .message-event-date {
+    margin: 20px 0;
+}
+.productivityWidget-msgModal ul.message-controls {
+    margin: 10px 0 0 0;
+    padding: 0;
+    list-style-type: none;
+}
+.productivityWidget-msgModal ul.message-controls li {
+    float: left;
+    margin: 0 30px 0px 0;
+}
+.productivityWidget-msgModal .message-buttons {
+    margin: 20px 0 0 0;
+    text-align: right;
+}
+.productivityWidget-msgModal a.message-modal-close {
+    display: block;
+    position: absolute;
+    bottom: 0.5em;
+    right: 1em;
+}
+/* SHIFT modal */
+.productivityWidget-msgModal div.message-shift-details {
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #636060;
+}
+.productivityWidget-msgModal div.message-shift-details .message-shift-details-links {
+    text-align: right;
+    font-size: 80%;
+}
+.productivityWidget-msgModal div.message-shift-details .message-shift-details-links a {
+    padding-left: 10px;
+}
+.productivityWidget-msgModal .message-shift-details-students {
+    margin-top: 10px;
+    color: #807E81;
+}
+.productivityWidget-msgModal .message-shift-details-students strong {
+    font-weight: bold;
+}
+.productivityWidget-msgModal .message-shift-details-students .message-shift-details-students-list {
+    padding-left: 20px;
+}
+
+a.button {
+	display: block;
+	float:left;
+	text-indent: -9999px;
+	background-position: bottom;
+}
+
+a.button-archive {
+	width: 90px; height: 28px;
+	background-image: url(/images/buttons/archive.png);
+	margin-right: 10px;
+}
+
+a.button-archive.button-disabled {
+	background-image: url(/images/buttons/archive-inactive.png);
+}
+
+a.button-unarchive {
+	width: 110px; height: 28px;
+	background-image: url(/images/buttons/unarchive.png);
+	margin-right: 10px;
+}
+
+a.button-unarchive.button-disabled {
+	background-image: url(/images/buttons/unarchive-inactive.png);
+}
+
+a.button-delete {
+	width: 80px; height: 28px;
+	background-image: url(/images/buttons/delete.png);
+}
+
+a.button-delete.button-disabled {
+	background-image: url(/images/buttons/delete-inactive.png);
+}
+
+a.button-archive:hover, a.button-delete:hover {
+	background-position: center;
+}
+
+a.button-archive:active, a.button-delete:active {
+	background-position: top;	
+}
+
+a.button-unarchive:hover, a.button-delete:hover {
+	background-position: center;
+}
+
+a.button-unarchive:active, a.button-delete:active {
+	background-position: top;	
+}
+
+a.message-todo-create, a.message-message-create {
+	display: block;
+	float:left;
+	text-indent: -9999px;
+	background-position: bottom;
+	width: 80px; height: 28px;
+	background-image: url(/images/buttons/to-do.png);
+}
+
+a.message-message-create {
+	width: 140px;
+	background-image: url(/images/buttons/announcement.png);
+	margin-right: 10px;
+}
+
+a.message-todo-create:hover, a.message-message-create:hover {
+	background-position: center;
+	text-decoration:none;
+}
+
+a.message-todo-create:active, a.message-message-create:active {
+	background-position: top;
+}
+
+/*
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    margin: 0 8px 0 0;
+    padding: 8px;
+    background-color: #D7D5D1;
+    color: #89827E;
+    font-size: 18px;
+    text-decoration: none;
+*/

@@ -1,0 +1,49 @@
+.filter-dialog {
+	border: 1px solid #b0b0b0;
+	color: red;
+}
+
+#filterOptionsWrapper {
+	width:784px;
+	position:absolute;
+	top:1.8em;
+	height:60px;
+}
+
+.filterOptionList {
+	border-right: 1px solid #ccc;
+}
+
+#filterOptions-label {
+	display:none;
+}
+
+.filterTypeContainer {
+	display:none;
+	float:left;
+	margin-left:2em;
+	padding-left:2em;
+	width:100%;
+}
+
+.filterTypeContainer select {
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11pt;
+}
+
+#clearFilters {
+	font-size:8pt;
+	background-color:transparent;
+	border:0px;
+	padding:0px;
+	margin:0px;
+	color:#8FC7D5;
+	float:right;
+	margin-top:-1.2em;
+	margin-right:-1.8em;
+}
+
+#clearFilters:hover {
+	text-decoration:underline;
+	cursor:pointer;
+}

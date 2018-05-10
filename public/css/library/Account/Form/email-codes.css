@@ -1,0 +1,106 @@
+#message {
+	width:525px;
+	font-size:9.5pt;
+	padding:.5em;
+	height:60px;
+}
+
+#emailDialog {
+	overflow-x:hidden;
+}
+
+dt#message-label {
+	margin-top:1em;
+}
+
+#emailDialogRight {
+	width:100%;
+}
+
+table#emailCodes {
+	width:100%;
+	margin-bottom: 1em;
+}
+
+.codeRow {
+	border-bottom:1px solid #bbb;
+}
+
+.codeRow td {
+	padding:.5em;
+
+}
+
+.codeRow:hover {
+	background-color:#f8f8f8;
+}
+
+.number {
+	color:#333;
+}
+
+.products {
+	font-size:9pt;
+	color:#666;
+}
+
+.emailInput input {
+	width:100%;
+	font-size:10pt;
+}
+
+.emailInput {
+	text-align:left;
+}
+
+.emailInput input {
+	width:100%;
+}
+
+#emailCloseButton,#sendButtonWrapper {
+	float:right;
+	margin-top:1em;
+}
+
+#spacerHelper {
+	height:50px;
+	width:100%;
+}
+
+#emailErrors {
+	display:none;
+}
+
+#sendButtonWrapper{
+	width:135px;
+	height:55px;
+	text-align:center;
+}
+
+
+#sendButtonThrobber {
+	display:none;
+	margin-top:1em;
+}
+
+.distributed {
+	background-color:#FFFAD2;
+}
+
+#warningErrors {
+	display:none;
+	margin-bottom:0.5em;
+}
+
+#accountColumnHeader,
+#emailColumnHeader {
+	width:50%;
+	float:left;
+	text-align:center;
+	margin-top:.5em;
+}
+
+#accountColumnHeader {
+	text-align: right;
+}
+

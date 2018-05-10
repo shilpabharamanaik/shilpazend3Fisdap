@@ -1,0 +1,14 @@
+.iv-modal-buttons {
+	position:absolute;
+	bottom:0.5em;
+	right:0.5em;
+}
+
+#ivDialog {
+	padding-bottom:2.6em;
+}
+
+#iv-modal-throbber {
+	margin-right:1em;
+	margin-bottom:0.5em;
+}

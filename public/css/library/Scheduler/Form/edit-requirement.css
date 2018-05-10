@@ -1,0 +1,437 @@
+#custom-default-label {
+	font-style:italic;
+	color:#666;
+	font-size:10pt;
+}
+
+#manage-sites, #manage-assignments {
+	font-size:10pt;
+}
+
+#manage-sites {
+	position:absolute;
+	top: 0.2em;
+	left: 39.75em;
+}
+
+#edit-custom-title {
+	font-size:10pt;
+	float:right;
+	margin-top:-2em;
+}
+
+#collapsable-site-content, #collapsable-attachment-content {display:none;}
+
+#sites-wrapper {
+	width:84.8%;
+	max-height:244px;
+	overflow:auto;
+	margin-top:1em;
+	margin-left:1em;
+	overflow-x:hidden;
+}
+
+#custom_title-element {
+	position:relative;
+}
+
+#edit-requirement #custom_title {
+	position:absolute;
+	top:-2.25em;
+}
+
+#edit-requirement .auto-assign-wrapper {
+	margin-left:1em;
+}
+
+#edit-requirement .static-req-sum {
+	margin-top:1em;
+	margin-left:-1em;
+}
+
+#edit-requirement .bottom-wrapper .specific-people-content {
+	display:block;
+	margin-top:2em;
+	margin-left:0.9em;
+}
+
+#edit-requirement .specific-people-content h2,
+.notifications-header {
+	color:#666;
+	font-size:11pt;
+}
+
+#many-due-date-menu-txt {
+	float:left;
+	margin-right:0.5em;
+	margin-top:0.2em;
+}
+
+#edit-requirement .static-req-sum,
+#edit-requirement .dynamic-req-sum {
+	display:block;
+}
+
+#edit-requirement .dynamic-req-sum {
+	margin-left: -1.5em;
+	margin-top: 1em;
+}
+
+#edit-requirement .dynamic-req-sum-flippy-wrapper {
+	float:left;	
+}
+
+#edit-requirement .dynamic-req-sum-category-wrapper {
+	width:400px;
+	margin-left:2em;
+	float:left;
+}
+
+#edit-requirement .req-sum {
+	width:98%;
+}
+
+#edit-requirement .specific-site-content dt {
+	display:none;
+}
+
+#edit-requirement #choose-sites {
+	margin-top:1em;
+	display:block;
+	margin-left:0.5em;
+}
+
+#attachment-buttons {
+	position:relative;
+	margin-left:.85em;
+	margin-bottom:0.5em;
+	margin-top:1em;
+	width:766px;
+}
+
+#unassign-errors,
+#add-site-errors {
+	width:83.4%;
+	margin-left:1.4em;
+	margin-top:1.2em;
+}
+
+#add-site-errors {
+	width:85%;
+	margin-left:0.9em;
+}
+
+#checkbox-selector-menu,
+#many-due-date-menu {
+	padding: 5px;
+	margin: 0px;
+    position: absolute;
+	z-index: 700;
+	text-align: left;
+	border: 1px solid #C6C4B8;
+	border-radius: 4px;
+	width:119px;
+	display:none;
+	background-color:#fff;
+	-moz-box-shadow: 1px 1px 1px #E6E6E6;
+	-webkit-box-shadow: 1px 1px 1px #E6E6E6;
+	box-shadow: 1px 1px 1px #E6E6E6;
+	top:1.8em;
+	border-top-left-radius: 0px;
+	left:0.5em;
+}
+
+#many-due-date-menu {
+	width:410px;
+	left:3.9em;
+	padding: 1em;
+	box-shadow: 2px 2px 3px #D5C7C7;
+	top:2.2em;
+}
+
+#many-due-date-menu .apply-due-date-wrapper,
+#many-due-date-menu .cancel-due-date-wrapper {
+	float:right;
+	margin-top:1.5em;
+}
+
+#load-sites-modal-throbber {
+	top:1em;
+}
+
+.people-conflict-details, 
+.site-conflict-details {
+	font-size:10pt;
+	text-decoration:underline;
+}
+
+.people-conflict-details:hover,
+.site-conflict-details:hover {
+	text-decoration:none;
+}
+
+.conflict-details {
+	margin-left:1em;
+	display:none;
+}
+
+#many-due-date-menu .cancel-due-date-wrapper {
+	margin-right:0.5em;
+}
+
+#checkbox-selector-menu a {
+	display:block;
+	width:97%;
+	padding-left:2%;
+	padding-right:1%;
+	color:#444;
+}
+
+#checkbox-selector-menu a:hover {
+	background-color:#eee;
+	text-decoration:none;
+}
+
+#checkbox-selector .ui-button-text,
+#many-due .ui-button-text {
+	padding-top:0.1em;
+	padding-bottom:0.2em;
+	padding-left:0.7em;
+	padding-right:0.7em;
+}
+
+#many-due .ui-button-text,
+#unassign .ui-button-text {
+	font-size:10.2pt;
+	padding-top:0.35em;
+	padding-bottom:0.4em;
+	width:30px;
+	padding-right:2em;
+}
+
+#unassign .ui-button-text {
+	width:75px;
+	padding-right:0.4em;
+	padding-left:0.4em;
+}
+
+#many-due .ui-button-text img {
+	position:absolute;
+	top:0.45em;
+	right:0.6em;
+}
+
+.attachment-summary {
+	margin-left:0.5em;
+	margin-bottom:0.5em;
+}
+
+.attachment-summary b {
+	font-weight:bold;
+	color:#444;
+}
+
+#sites {
+	width:100%;
+}
+
+#search_attachments-label {
+	display:none;
+}
+
+#search-attachments-place-holder-text {
+	position:absolute;
+	color:#666;
+	top:0.3em;
+	z-index:1;
+	left:18.5em;
+}
+
+#search_attachments {
+	width:90%;
+	float:right;
+	margin-top:0.125em;
+	background-color: #fff;
+	background-image: url(/images/icons/magnifying-glass.png), -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+	background-image: url(/images/icons/magnifying-glass.png), -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+	background-repeat:no-repeat;
+	background-position:97%;
+	border: 1px solid #bbb;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11pt;
+	padding-right:2.75em;
+}
+
+.existing_attachments .notice {
+	width:80%;
+	margin:0 auto;
+	margin-top:3em;
+	display:none;
+}
+
+#attachments {
+	width:100%;
+}
+
+#sites tr, #attachments tr {
+	border:1px solid #bbb;
+}
+
+#attachments tr, #sites tr {
+	border-left:0em;
+	border-right:0em;
+}
+
+#sites tr:hover, #attachments tr:hover {
+	background-color:#efefef;
+}
+
+#attachments tr:hover {
+	cursor:pointer;
+}
+
+#attachments .selected-attachment-row {
+	background-color:#e9e9e9;
+}
+
+#attachments .non-compliant-selected-attachment-row {
+	background-color:#FFDDE0;
+}
+
+td {
+	color:#444;
+}
+
+#sites .remove_site {
+	text-align:center;
+	width:37px;
+}
+
+#sites .site_type {
+	width:75px;
+}
+
+#sites .remove_site img:hover,
+#attachments .remove_attachment img:hover {
+	cursor:pointer;
+}
+
+#sites td, #attachments td {
+	padding:0.1em;
+	padding-left:1em;
+	padding-right:1em;
+}
+
+#attachments td {
+	padding-top:0.25em;
+	padding-right:0.25em;
+}
+
+#sites, #attachments {
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	font-size:10.5pt;
+}
+
+#attachments .selectDate,
+#many-due-date {
+	width:89px;
+	padding:0.1em;
+	margin:0em;
+	padding-left:0.3em;
+}
+
+#attachments dt {
+	display:none;
+}
+
+#attachments {
+	font-size:10pt;
+}
+
+#attachments .status-cell dd {
+	width:94px;
+	float:right;
+}
+
+#attachments .status-cell {
+	width:64px;
+}
+
+#attachments .checkbox-cell {
+	width: 20px;
+	text-align:center;
+	padding-left: 0.7em;
+}
+
+#attachments tr:first-child, #sites tr:first-child {
+	border-top:0em;
+}
+
+#attachments tr:last-child, #sites tr:last-child {
+	border-bottom:0em;
+}
+
+#sites tr img,
+#attachments tr img {
+	width:2em;
+	margin-bottom:-0.2em;
+}
+
+.existing_attachments {
+	height:244px;
+	overflow:auto;
+	width:83%;
+	border:1px solid #bbb;
+	overflow-x: hidden;
+	margin-left: 1.5em;
+}
+
+#removing_attachment_ids-label {
+	display:none;
+}
+
+#edit-requirement #attachments .non-compliant td {
+	font-weight:bold;
+	color:#B42A2A;
+}
+
+#attachments .non-compliant:hover {
+	background-color:#FBE3E4;
+}
+
+#attachments .name-cell {
+	font-weight:bold;
+}
+
+#sites .site_name {
+	font-weight:bold;
+	width:250px;
+}
+
+#sites .adding-site-name {
+	font-weight:bold;
+}
+
+#sites .pending-removal,
+#attachments .pending-removal {
+	display:none;
+}
+
+#sites .removing-description,
+#edit-requirement #attachments .removing-description,
+#edit-requirement #attachments .non-compliant .removing-description {
+	background-color:#F0F0F0;
+	color:#666;
+	font-weight:normal;
+	background-size:45px 5px;
+	background-image:url(/images/full-event-pattern-fallback.png);
+	background-image: repeating-linear-gradient(60deg, transparent, transparent 0.17em, rgba(255,255,255,.5) 0px, rgba(255,255,255,.5) 0.4em);
+	background-image:-webkit-repeating-linear-gradient(60deg, transparent, transparent 0.17em, rgba(255, 255, 255, .5) 0px, rgba(255, 255, 255, .5) 0.4em);
+}
+
+#sites .undo-add-site,
+#sites .undo-remove-exisiting,
+#attachments .undo-remove-attachment {
+	font-size:10pt;
+	margin-left:0.5em;
+}

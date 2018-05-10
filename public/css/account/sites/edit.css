@@ -1,0 +1,253 @@
+#site-info {
+	margin-bottom: 1em;
+	overflow: visible;
+}
+
+#departments .section-header, 
+#preceptors .section-header {
+	width:522px;
+	padding-right:9.2em;
+}
+
+#simple-info {
+	display: block;
+}
+
+#toggle-site-active {
+	float: right;
+}
+
+#inactive-warning {
+	display: none;
+}
+
+#edit-site-info {
+	float: right;
+    left: 4.6em;
+    position: relative;
+    top: 2.8em;
+}
+
+#edit-form {
+	display: none;
+}
+
+#site-form-wrapper {
+	left: 7px;
+    position: relative;
+    width: 103%;
+}
+
+/** save button consistency **/
+#save_accreditation, #save-reqs-btn, #reset-reqs-btn {
+	padding:0.4em 1em;
+	font-size:16px;
+	margin:0;
+	line-height:normal;
+}
+
+#save_accreditation {
+	width:72px;
+}
+
+#save-reqs-btn .ui-button-text, #reset-reqs-btn .ui-button-text {padding:0em;}
+
+#save-reqs-btn {
+	margin-right:0.5em;
+}
+
+#tabs {
+	z-index:10;
+	border-left:1px solid #bbb;
+	border-right:1px solid #bbb;
+}
+
+#tabs a {
+	display:block;
+	padding:1em;
+	color:#444;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	border-top:1px solid transparent;
+	border-bottom:1px solid transparent;
+	
+	background:#eee;
+	background:-moz-linear-gradient(top,#eee 0%,#dfdfdf 100%);
+	background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#eee),color-stop(100%,#dfdfdf));
+	background:-webkit-linear-gradient(top,#eee 0%,#dfdfdf 100%);
+	background:-o-linear-gradient(top,#eee 0%,#dfdfdf 100%);
+	background:-ms-linear-gradient(top,#eee 0%,#dfdfdf 100%);
+	background:linear-gradient(top,#eee 0%,#dfdfdf 100%);
+}
+
+#tabs a:first-child {
+	border-top:1px solid #bbb;
+}
+
+#tabs a:last-child {
+	border-bottom:1px solid #bbb;
+}
+
+#tabs a:hover {
+	text-decoration:none;
+	background:#fff;
+}
+
+#site-form-wrapper .grid_3 {
+	width:20%;
+	margin-right:0em;
+}
+
+#tabs .selected-tab {
+	width:90.1%;
+	background:#fff;
+	border-bottom:1px solid #bbb;
+	border-right:0px;
+	border-top:1px solid #bbb;
+}
+
+#tab-content {
+	border:1px solid #bbb;
+	min-height:285px;
+}
+
+#tab-content .hidden-form-content {
+	display:none;
+	margin: 0.75em 0;
+}
+
+#tab-content .stage .slider-frame .slider-button:before,
+#toggle-site-active .stage .slider-frame .slider-button:before {
+	width:55px;
+}
+
+.accordion_element_header {
+	display:block;
+	width:100%;
+	padding-top:.3em;
+	padding-bottom:.3em;
+	position:relative;
+	
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	background-color: #ffffff;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=0 );   
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #eeeeee), color-stop(100%, #f4f4f4));
+	background-image: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -moz-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -o-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -ms-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%); 
+	color:#000;
+	border-bottom:1px solid #bbb;
+}
+
+.first-accordion-element {
+	border-top:1px solid #bbb;
+}
+
+.accordion_element_header dt {
+	display:none;
+}
+
+.accordion_element_header:not(.no-hover):hover,
+.selectedRow.accordion_element_header
+{
+	background: #dddddd; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#dddddd'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#dddddd)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #eeeeee,  #dddddd); /* for firefox 3.6+ */
+	cursor:pointer;
+}
+
+.accordion_element_content {
+	padding:1em;
+	width:95.8%;
+	display: none;
+	background-color:#fafafa;
+	border-bottom: 1px solid #bbb;
+}
+
+.accordion_element {
+	border:1px solid #bbb;
+	border-top:0px;
+	border-bottom:0px;
+}
+
+.accordion_select_checkbox_wrapper {
+	width:30px;
+	float:left;
+	text-align:center;
+}
+
+.accordion_base_name_wrapper, .accordion_preceptor_name_wrapper {
+	width:550px;
+	float:left;
+	line-height:24px;
+}
+
+.accordion_active_checkbox_wrapper {
+	width: 90px;
+	float:right;
+	margin-top: 0.1em;
+	margin-bottom: 0.09em;
+}
+
+.accordion_select_checkbox_wrapper input {
+	margin-top:0.45em;
+	margin-bottom:-0.2em;
+}
+
+.fancy-input {
+	background-color: #fff;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+	background-image: -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+	background-image: -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+	background-image: -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+	background-image: -ms-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+	background-image: linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+	border: 1px solid #aaa;
+	margin: 0;
+	padding: 0.2em;
+	cursor: text;
+	overflow: hidden;
+	height: 20px;
+	position: relative;
+	border:1px solid #AAA;
+	color:#555;
+}
+
+.fancy-input-focus {
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,.3);
+	-moz-box-shadow   : 0 0 5px rgba(0,0,0,.3);
+	-o-box-shadow     : 0 0 5px rgba(0,0,0,.3);
+	box-shadow        : 0 0 5px rgba(0,0,0,.3);
+	outline:none;
+}
+
+.accordion .error {
+	display:none;
+}
+
+.search-accordion {
+	color:#666;
+	padding:0.35em;
+	width:300px;
+	background-color: #fff;
+	background-image: url(/images/icons/magnifying-glass.png), -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+	background-image: url(/images/icons/magnifying-glass.png), -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+	background-repeat:no-repeat;
+	background-position:97%;
+	border: 1px solid #bbb;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11pt;
+	padding-right:2em;
+	padding-top:0.25em;
+	padding-bottom:0.25em;
+	float: right;
+	margin-bottom: 3px;
+}
+
+
+#base-modal .invalid-data-error, #preceptor-modal .invalid-data-error, #accreditationinfo .invalid-data-error {
+	box-shadow:0px 0px 5px #D1595D;
+	border-color:#C7877F;
+}

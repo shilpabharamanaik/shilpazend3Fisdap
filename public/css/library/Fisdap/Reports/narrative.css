@@ -1,0 +1,22 @@
+#fisdap-report-Fisdap_Reports_Narrative-narratives td {
+	padding: 0.5em 0.5em 1em 1em;
+	vertical-align: top;
+}
+
+.details {
+	margin-left: 1em;
+	font-size: 90%;
+}
+
+.location {
+	color: #665D58;
+	font-size: 100%;
+}
+
+h4.narrative-section-header {
+	color: #665D58;
+}
+
+.narrative-section {
+	margin: 0em 0em 1em 1em;
+}

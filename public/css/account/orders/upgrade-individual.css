@@ -1,0 +1,121 @@
+div.island {
+    overflow: unset;
+}
+
+a#productDescriptionsLink {
+    font-size: 12px;
+    position: absolute;
+    right: 0.3em;
+    top: 0.3em;
+}
+
+#upgrade-mode {
+    margin: 0.5em 0 1em;
+}
+
+.upgrade-table {
+	width: 95%;
+    margin: 0.5em 0 2em;
+}
+
+.upgrade-table.package{
+    width: 100%;
+}
+
+.upgrade-table td {
+    padding: 0.2em 0em;
+}
+
+.upgrade-table.summary td.form-desc {
+    padding-right: 1em;
+}
+
+.upgrade-table tr.disabled {
+    opacity: 0.3;
+}
+
+.upgrade-table.package td {
+    padding-bottom: 0em;
+}
+
+.upgrade-table.package tr.bottom-row td {
+    padding-bottom: 1em;
+}
+
+.upgrade-table td.checkbox {
+    width: 7%;
+    vertical-align: top;
+}
+
+.upgrade-table td.icon {
+    width: 15%;
+    vertical-align: top;
+    text-align: right;
+}
+
+.upgrade-table td.name {
+    width: 78%;
+}
+
+.upgrade-table td.price {
+    width: 15%;
+    text-align: right;
+}
+
+.upgrade-table.package td.name {
+    width: 73%;
+}
+
+.upgrade-table.package td.price {
+    width: 20%;
+    text-align: center;
+    vertical-align: top;
+}
+
+.upgrade-table td.form-desc {
+    padding-right: 0.5em;
+}
+
+.upgrade-table svg.icon {
+    padding: 2px 0.3em 2px 2px;
+    width: 1em;
+}
+
+.upgrade-table svg.icon.include path {
+    fill: #8DCB00;
+}
+
+#couponContainer {
+    margin: 0em 0em 1em;
+    clear: both;
+}
+
+#enterCoupon {
+    margin-top: 0.5em;
+}
+
+#showCouponInput {
+    font-size: 95%;
+}
+
+input[type=text] {
+    float: left;
+    margin-right: 1em;
+}
+
+#upgradeCode {
+    width: 80%;
+}
+
+#upgradeCoupon {
+    width: 50%;
+}
+
+#enterCode {
+    margin: 1em 0em;
+}
+
+.bottom-link {
+    text-align: right;
+    margin-top: 1em;
+}

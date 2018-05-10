@@ -1,0 +1,31 @@
+#main-drop-content #shift-div {
+	margin: 1em 0em;
+}
+
+#site-icon {
+	float: left;
+	margin: 1em;
+	margin-top: .7em;
+}
+
+.preceptors {
+	font-size: 90%;
+	margin-top: -3px;
+}
+
+.drop-buttons {
+	float: right;
+	margin: .7em 0em;
+}
+
+#cancelButtonWrapper,
+#saveButtonWrapper {
+	display: inline;
+}
+
+#drop-modal-throbber {
+    position: relative;
+    top: 3px;
+}
+
+

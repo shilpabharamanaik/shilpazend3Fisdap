@@ -1,0 +1,202 @@
+#rating-table, .rating-table {
+	width:100%;
+}
+
+#rating-table thead, .rating-table thead {
+	background-color: #f0eeeb;
+}
+
+#rating-table thead th, .rating-table thead th {
+	padding: .5em 0em;
+}
+
+#rating-table td, .rating-table td {
+	border: 1px solid #c6c1bc;
+	border-top:none;
+
+	padding: .5em;
+}
+
+#rating-table td.first, .rating-table td.first {
+	border-left: none;
+}
+
+#rating-table td.last, .rating-table td.last {
+	border-right: none;
+}
+
+#summary, #plan {
+    width:100%;
+    height:10em;
+}
+
+h3.signoff-header {
+	width:100%;
+	font-weight:normal;
+	color: #655d57;
+	font-size: 1.2em;
+	border-bottom: 1px solid #655d57;
+	padding-top: 10px;
+}
+
+p.signoff-subtext {
+	margin: .5em 0em;
+	font-size:80%;
+}
+
+.signoff-container {
+	margin: 1em 0em;
+}
+
+span.rating {
+	font-weight:bold;
+	color: #655d57;
+}
+
+#verification-container {
+	border: 1px solid #655d57;
+	border-radius: 10px;
+	overflow: auto;
+	padding-bottom: .5em;
+}
+
+#signoffForm div.button-container, .signoffForm div.button-container {
+	margin-top: 1em;
+}
+
+#autosave-timer-sig {
+	float:right;
+	margin-right:1em;
+	padding: .5em;
+	border-radius: 10px;
+}
+
+.updated {
+	background-color: #cfeba7;
+}
+
+#signoff-notice, .signoff-notice {
+	margin: .5em .5em 0em .5em;
+}
+
+#signoff-lock {
+	float:left;
+	margin-right: .5em;
+}
+
+#signOffTab1, #signOffTab2, #signOffTab3 {
+	font: normal 11pt Tahoma, Geneva, sans-serif;
+}
+
+#signoff-container dt, .signoff-container dt {
+	margin-top: .5em;
+}
+
+#clear-sig-link {
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: normal;
+    color: #a94612;
+    text-decoration:none;
+}
+
+#clear-sig-link:hover {
+	text-decoration: underline;
+}
+
+#signoff .form-errors, .signoff .form-errors {
+	margin: .5em;
+}
+
+#signOffTabs .ui-tabs-nav li a {
+    width: 7em;
+    outline: none;
+    font-size: 11.5pt;
+    padding-top: 0.4em;
+    padding-bottom: 0.5em;
+}
+
+#signOffTabs .sigWrapper.current {
+    border: 1px solid #aaa;
+    outline:none;
+}
+
+#signOffTabs .ui-tabs-nav li a {width:7em;	outline:none;font-size: 11.5pt;padding-top: 0.4em;padding-bottom: 0.5em;}
+#signOffTabs .ui-tabs-panel {border:0px;}
+
+#password-label {
+    margin-top:0.75em;
+}
+
+#username, #password, #signatureName {
+    font-family:Tahoma, Geneva, sans-serif;
+    background-color: #fff;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+    background-image: -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+    background-image: -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+    background-image: -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+    background-image: -ms-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+    background-image: linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+    border: 1px solid #aaa;
+    margin: 0;
+    padding: 0.2em;
+    cursor: text;
+    overflow: hidden;
+    height: 20px;
+    position: relative;
+    border:1px solid #AAA;
+    color:#555;
+    font-weight:normal;
+    font-size:10pt;
+    width:210px;
+}
+
+#username:focus, #password:focus, #signatureName:focus {
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,.3);
+    -moz-box-shadow   : 0 0 5px rgba(0,0,0,.3);
+    -o-box-shadow     : 0 0 5px rgba(0,0,0,.3);
+    box-shadow        : 0 0 5px rgba(0,0,0,.3);
+    outline:none;
+}
+
+.verification_sub_form_lock_wrapper {
+    font-size: 95%;
+    padding: 0 2em 1em 1.2em;
+}
+
+.verification_sub_form_submit_btn_wrapper {
+    float:right;
+    font-size:13pt;
+    margin-right:1em;
+    margin-bottom:0.5em;
+}
+
+/* The attachment sign off tab */
+#signOffTab4 {
+    position:relative;
+}
+
+#signOffTab4 .section-header {
+    margin-top: 25px;
+}
+#add-attachment {
+    margin-right: 5%;
+    margin-top: 37px;
+}
+
+#signOffTab4 #attachment-table img.thumbnail {
+    width: 45px;
+    height: 45px;
+}
+
+#signOffTab4 #attachment-table tbody td {
+    cursor: pointer;
+}
+
+#signOffTab4 .fisdap-table tbody td {
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+}
+
+#signOffTab4 .fisdap-table tbody tr.selected td:first-child {
+    background-position-x: 10%;
+}

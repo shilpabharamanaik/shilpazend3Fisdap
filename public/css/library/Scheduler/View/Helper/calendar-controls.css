@@ -1,0 +1,136 @@
+#cal-island {
+	min-height:405px;
+	position:static;
+}
+
+#cal-controls-inside-wrapper {
+	position:relative;
+}
+
+#controls-blocker {
+	width: 107%;
+	height: 41px;
+	z-index:100000000;
+	position:absolute;
+	top: -0.5em;
+	left: -1em;
+	display:none;
+}
+
+#edit-icon {
+	position: relative;
+	top: .2em;
+	left: .3em;
+	cursor: pointer;
+}
+
+.calendar-controls {
+	padding: .7em;
+	background-color: #887b76;
+	padding-right:1em;
+	padding-left:1em;
+	height:25px;
+	z-index:600;
+	width: 886px;
+	margin-left: -0.5em;
+}
+
+.calendar-controls.fixed {
+	position:fixed;
+	top:0em;
+	border-top:1px solid #fff;
+}
+
+.calendar-controls h3, .week-control-title {
+	color: #fff;
+	font-family: Century Gothic, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	float:left;
+	margin-left:1em;
+}
+
+.calendar-controls h3.header-with-date-pickers {
+	margin-top:-0.2em;
+	margin-left: -0.3em;
+}
+
+.go-to-today, .col, .next-prev-buttons {float:left;}
+.go-to-today {margin-left:1em;}
+.view-type {float:right;}
+
+.go-to-today button, #list-go-btn {width:70px;}
+.view-type button {width:75px;}
+#month-view-type-options button {width:80px;}
+.next-prev-buttons button {width:35px;}
+
+.calendar-controls button, #list-go-btn, #day-go-btn, #week-go-btn, #month-go-btn {
+	display:inline;
+	line-height:20px;
+	color:#807B76;
+	text-align:center;
+	text-shadow:0 1px 1px rgba(255,255,255,0.75);
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top,#fff,#e6e6e6);
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6));
+	background-image: -webkit-linear-gradient(top,#fff,#e6e6e6);
+	background-image: -o-linear-gradient(top,#fff,#e6e6e6);
+	background-image: linear-gradient(to bottom,#fff,#e6e6e6);
+	background-repeat: repeat-x;
+	border: 1px solid #bbb;
+	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+	border-bottom-color: #a2a2a2;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	font-weight:bold;
+	height:25px;
+	padding-bottom:0.3em;
+	margin-left:-.5em;
+}
+
+.calendar-controls button:hover, #list-go-btn:hover, #day-go-btn:hover, #week-go-btn:hover, #month-go-btn:hover  {
+	text-decoration: none;
+	background-color: #e6e6e6;
+	background-position: 0 -15px;
+	-webkit-transition: background-position .1s linear;
+	-moz-transition: background-position .1s linear;
+	-o-transition: background-position .1s linear;
+	transition: background-position .1s linear;
+}
+
+.calendar-controls button:active, .calendar-controls .selected, #list-go-btn:active, #day-go-btn:active, #week-go-btn:active, #month-go-btn:active  {
+	background-color: #e6e6e6;
+	background-color: #d9d9d9;
+	background-image: none;
+	outline: 0;
+	-webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+	-moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+	box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+}
+
+.calendar-controls .first {
+	-moz-border-radius-topleft: 4px;
+	border-top-left-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.calendar-controls .last {
+	-moz-border-radius-topright: 4px;
+	border-top-right-radius: 4px;
+	-moz-border-radius-bottomright: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+#month-view-type-options {
+	width: 165px;
+	border-right:1px dashed #fff;
+	height:34px;
+	margin-top:-0.5em;
+	padding-top: 0.5em;
+	position: absolute;
+	right: 21em;
+}

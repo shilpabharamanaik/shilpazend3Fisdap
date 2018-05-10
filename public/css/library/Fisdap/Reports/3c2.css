@@ -1,0 +1,9 @@
+.req-complete {
+    color: #264409;
+    background-color: #e6efc2;
+}
+
+.req-incomplete {
+    color: #8a1f11;
+    background-color: #fbe3e4;
+}

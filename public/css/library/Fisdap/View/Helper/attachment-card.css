@@ -1,0 +1,62 @@
+.attachment-card {
+    margin: 0.5em 0em;
+}
+
+div.download-preview  {
+    margin-right: 10px;
+    border:0;
+    cursor: pointer;
+    margin-bottom: 0.5em;
+    float: left;
+    position: relative;
+    max-width: 100%;
+}
+
+div.stock-icon {
+    height: 54px;
+    width: 54px;
+}
+
+img.stock-icon {
+    height: 54px;
+    width: 54px;
+}
+
+.attachment-card-contents {
+    padding: 0.5em 0em;
+    cursor: pointer;
+}
+
+.attachment-card img.download-icon {
+    position: absolute;
+    left: 172px;
+    top: 44%;
+    width: 45px;
+    opacity: 0;
+}
+
+.attachment-card div.stock-icon img.download-icon {
+    left: 14px;
+    top: 16px;
+    width: 25px;
+}
+
+.attachment-card div.download-preview:hover img.download-icon {
+    opacity: 1;
+}
+
+.attachment-card div.download-preview:hover img.preview,
+.attachment-card div.download-preview:hover img.stock-icon {
+    opacity: 0.3;
+}
+
+.attachment-card img.preview {
+    width: 380px;
+}
+
+.attachment-card img.stock-icon {
+    width:54px;
+}
+
+
+

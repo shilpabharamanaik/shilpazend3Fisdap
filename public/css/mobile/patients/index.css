@@ -1,0 +1,18 @@
+.skill-list-container {
+    margin:auto;
+    width:100%;
+    border: 1px solid #f0eeeb;
+}
+
+.skill-container {
+    border: 1px solid #f0eeeb;
+    padding: .5em;
+}
+
+.alt {
+    background-color: #f0eeeb;
+}
+
+.skill-grouping {
+    margin-top: 1em;
+}

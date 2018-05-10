@@ -1,0 +1,302 @@
+
+.lab-pratice-report-table {
+	margin-bottom:1em;
+}
+
+
+.lab-pratice-report-table thead {
+	border-top:2px solid #fff;
+	border-bottom:2px solid #fff;
+	background-color:#F0862F;
+	text-align:left;
+	color:#fff;
+}
+
+.even {
+	background-color:#E6E6E6;
+}
+
+.odd {
+	background-color:#C8C8C8;
+}
+
+.lab-pratice-report-table tbody td {
+	padding:.2em;
+	border-color:#fff;
+	padding-left:.5em;
+	font-size:10pt;
+}
+
+.lab-pratice-report-table tbody .success {
+	background:#cfeba7;
+	color:#264409;
+}
+
+.lab-pratice-report-table tbody tr:hover {
+	background-color:#f8f8f8;
+}
+
+.lab-pratice-report-table .dark-row {
+	background-color:#797979;
+	color:#fff;
+	font-size:10pt;
+	border-top:1px solid #fff;
+}
+.lab-pratice-report-table thead img {
+	float:left;
+	margin-right:0.4em;
+	margin-left:.1em;
+}
+
+.lab-pratice-report-table .small-thead img {
+	margin-right:0.4em;
+	margin-left:.1em;
+}
+
+
+thead.small-thead {
+	font-size:10pt;
+	padding-right:.2em;
+}
+
+
+th.peer-col img {
+	width:15px;
+}
+
+th.instructor-col img {
+	width:9px;
+}
+
+th.eureka-col img {
+	width:17px;
+}
+
+
+.lab-pratice-report-table tbody tr:hover td {
+	background-color:#f8f8f8;
+}
+.lab-pratice-report-table tbody tr:hover td:first-child {
+	background-color:#f8f8f8;
+}
+.lab-pratice-report-table tbody tr:hover td:last-child {
+	background-color:#f8f8f8;
+}
+
+.peer-col, .instructor-col, .eureka-col {width:19%;}
+.precent-col {width:13%;}
+.student-col {width:30%;}
+.attempt-col {width:12%;}
+.details-peer-col, .details-instructor-col {width:17%;}
+
+.wide-table-container {
+	width:900px;
+	overflow-x:auto;
+	margin-bottom:1.5em;
+
+}
+
+.wide-table {
+	width:1200px;
+	margin-bottom:0em;
+}
+
+.really-wide-table {
+	width:1400px;
+	margin-bottom:0em;
+}
+
+.checkoff {
+	width:9px;
+}
+
+.checkmark {
+	width:15px;
+	float:left;
+	margin-right:.5em;
+	margin-left:.1em;
+}
+
+.unconfirmKey {
+	float:left;
+}
+
+.incomplete {
+	float:left;
+	margin-right:.3em;
+}
+
+.missing-checkoff {
+	float:left;
+	width:23px;
+	height:17px;
+}
+
+.details-eureka-col {
+	width:19%;
+}
+
+.floatFix {
+	float:left;
+	width:75%;
+}
+
+.date-col {
+	width:14.5%;
+}
+
+.details-eureka-col .eureka-trigger {
+	color:#fff;
+	text-decoration:underline;
+}
+
+.min-width-cell {
+	display:block;
+	min-width:85px;
+}
+
+th.details-peer-col img {
+	width:15px;
+}
+
+th.details-instructor-col img {
+	width:9px;
+}
+
+th.details-eureka-col img {
+	width:17px;
+}
+
+#pdfLink img {
+	margin-top:-2em;
+	float:right;
+	margin-right:-14em;
+}
+
+
+#key {
+	width:417px;
+	font-size:13px;
+	display:none;
+	position:absolute;
+	background-color:#fff;
+	border:2px solid #999;
+	padding:1em;
+	z-index:100;
+	-moz-box-shadow: 0px 5px 5px #c6c1bc;
+	-webkit-box-shadow: 0px 5px 5px #c6c1bc;
+	box-shadow: 0px 5px 5px #c6c1bc;
+	
+}
+
+#closeHelp {
+	width:26px;
+	float:right;
+	margin-top:-.3em;
+	margin-right:.2em;
+}
+
+#closeHelp:hover {
+	cursor:pointer;
+}
+
+.report-body {
+	min-height:200px;
+}
+
+#key h2 {
+	display:block;
+	background-color:#ccc;
+	color:#777;
+	margin-left:-0.9em;
+	margin-top:-0.9em;
+	padding:0.5em;
+	width:429px;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	font-size:11pt;
+	margin-bottom:1em;
+}
+
+#help-bubble-wrapper {
+	width:201px;
+	float:right;
+	font-size:13px;
+	margin-right:-1em;
+	margin-top:-2em;
+}
+
+#succesKey {
+	width:65px;
+	padding:0.7em;
+	border:1px solid #eee;
+	float:left;
+	background-color:#C6D880;
+	margin-top:0em;
+	margin-bottom:0.25em;
+}
+
+.right-justified {
+	width:315px;
+	float:right;
+	margin-bottom:.5em;
+}
+
+.leftMargin {
+	margin-left:1em;
+}
+
+#start_date-element {
+	margin-left:-.4em;
+	margin-right:.5em;
+}
+
+#end_date-element {
+	margin-top:0em;
+	margin-left:.2em;
+}
+
+.date-range {
+	margin-top:-.7em;
+	margin-bottom:.7em;
+}
+
+.date-range-label {
+	display:block;
+	margin-top:.4em;
+}
+
+#msp_student_list_container {
+	height:200px;
+}
+
+.report-details {
+	font-family: Century Gothic, Arial, Helvetica, sans-serif;
+	margin-top:-0.8em;
+	margin-left:0.8em;
+}
+
+#includeClassmates-label {
+	display:block;
+	float:right;
+	margin-right:2.5em;
+}
+
+#includeClassmates-element {
+	display:block;
+	float:left;
+}
+
+#include-classmates {
+	margin-left:232px;
+	margin-top:1em;
+	margin-bottom:1em;
+}
+
+#report-settings {
+	margin-bottom:1em;
+}
+
+.confirmAlert {
+	color:#C94648;
+	font-weight:bold;
+}

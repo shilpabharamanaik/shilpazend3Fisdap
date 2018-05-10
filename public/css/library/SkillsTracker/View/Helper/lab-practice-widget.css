@@ -1,0 +1,104 @@
+table.lab-practice-widget thead td {
+    color: #000000;
+}
+
+input#password, input#username {
+    width: 100%;
+}
+
+img.evaluator-icon {
+    float: right;
+    margin-right: 5px;
+}
+
+.lab-partner-student-picker {
+    display: none;
+}
+
+#add-lab-partners-instructor {
+    float: right;
+}
+
+#msp_student_list_container {
+    height: 150px !important;
+}
+
+.relative-pos {
+    position:relative;
+}
+
+.practice-header {
+    margin-bottom:0.5em;
+    color:#666;
+    font-size:1em;
+}
+
+.remove-practice-widget {
+    color:#666;
+    font-size:10pt;
+    float:right;
+    margin-top:-2em;
+}
+
+.remove-practice-widget:visited {
+    color:#666;
+}
+
+.remove-practice-widget:hover {
+    border-color:#3BAAE3;
+}
+
+.remove-practice-widget-img {
+    width: 1.5em;
+    float:left;
+    margin-top:-.2em;
+}
+
+.delete-practice-item-throbber {
+    position:absolute;
+    top:1em;
+    left:1em;
+}
+
+.time-col {
+    width:55px;
+}
+
+.success-col {
+    width:85px;
+}
+
+.ptype-col {
+    width:135px;
+}
+
+.delete-col {
+    width:29px;
+}
+
+.evaluator-col {
+    min-width:175px;
+}
+
+.airway_management_icon {
+    width:18px;
+    float:left;
+    margin-top:0.2em;
+    margin-right:0.5em;
+    margin-left:0.25em;
+    
+}
+
+#confirm-multiple-items {
+    float:right;
+    margin-top: 10px;
+}
+
+.fisdap-table.lab-practice-widget tbody div.action-cell > div.countdown {
+    margin: 0;
+    padding: 0;
+    top: -0.2em;
+    width: 102%;
+    left: -3px;
+    font-size: 80%;
+}

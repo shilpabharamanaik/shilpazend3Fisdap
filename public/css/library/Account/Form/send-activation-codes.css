@@ -1,0 +1,19 @@
+textarea {
+	width: 100%;
+	height: 40px;
+}
+
+.subform-separator {
+	color: #655d57;
+	font-size: 45px;
+	text-align: center;
+}
+
+input[type="text"] {
+	display:block;
+	width: 75%;
+}
+
+.preview-email p {
+	margin: 10px 0;
+}

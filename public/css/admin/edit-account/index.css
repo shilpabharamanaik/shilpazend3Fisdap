@@ -1,0 +1,24 @@
+/* CSS definitions for /admin/edit-account/index */
+
+div.users-table {
+    border: 1px solid #c6c1bc;
+    margin:1em;
+}
+
+div.user-container {
+    border: 1px solid #c6c1bc;
+    padding: 1em;
+    cursor: pointer;
+}
+
+div.subtext {
+    font-size: 80%;
+}
+
+.alt {
+    background-color: #f0eeeb;
+}
+
+.over {
+    background-color: #cfeba7;
+}

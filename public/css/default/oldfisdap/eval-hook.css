@@ -1,0 +1,64 @@
+/* 
+    Document   : eval-hook.css
+    Created on : Oct 17, 2011, 3:18:55 PM
+    Author     : astevenson
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.content-block{
+	background-color: white;
+	overflow: auto;
+	padding: 1em;
+}
+
+.eval-subheader{
+	font-size: 1.1em;
+	padding-bottom: 5px;
+}
+
+.eval-row td{
+	border-bottom: 1px solid gray;
+	border-top: 1px solid gray;
+	padding: 7px;
+}
+
+.edit-eval-link{
+	font-size: .9em;
+}
+
+.eval-title-column {
+	width: 500px;
+}
+
+.fisdap-table tbody td.eval-delete-column {
+	width: 105px;
+    padding: 0.5em 0em;
+    text-align: center;
+}
+
+.fisdap-table tbody td.eval-delete-column div.action-cell > a.delete-eval-link {
+    margin-left: 6.5em;
+}
+
+td.eval-delete-column div.action-cell div.countdown {
+    top: -7px;
+}
+
+#eval-list {
+    width: 350px;
+}
+
+#eval-hook-widget-container > div {
+    float: left;
+    margin-right: 0.3em;
+    margin-bottom: 2em;
+}
+
+#eval-hook-widget-container button {
+    margin-left: 1em;
+}
+
+#eval-table {
+    width: 60%;
+}

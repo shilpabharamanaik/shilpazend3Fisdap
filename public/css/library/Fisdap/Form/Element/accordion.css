@@ -1,0 +1,80 @@
+.accordion_container {
+    border: 2px solid #CCCCCC;
+    height: 213px;
+    margin-top: 1em;
+    overflow: auto;
+    padding-top: 0;
+    width: 500px;
+}
+
+.accordion_display{
+	width: 500px;
+}
+
+.accordion_header {
+	display:block;
+	width:100%;
+	padding-top:.3em;
+	padding-bottom:.3em;
+	position:relative;
+	
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	background-color: #ffffff;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=0 );   
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #eeeeee), color-stop(100%, #f4f4f4));
+	background-image: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -moz-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -o-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -ms-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%); 
+	color:#000;
+}
+
+.accordion_header:hover {
+	cursor:pointer;
+	background: #dddddd; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#dddddd'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#dddddd)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #eeeeee,  #dddddd); /* for firefox 3.6+ */
+
+}
+
+.accordion_header img {
+    float: left;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-top: 0.1em;
+    width: 9px;
+    height: 10px;
+}
+
+.selected_header {
+    color:#000;
+	
+	background: #dddddd; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#dddddd'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#dddddd)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #eeeeee,  #dddddd); /* for firefox 3.6+ */
+}
+
+.accordion_option {
+    background-color: #FFFFFF;
+	display: block;
+    padding-bottom: 0.2em;
+    padding-left: 3%;
+    padding-top: 0.2em;
+    width: 97%;
+}
+
+.accordion_option:hover{
+	background: #DDDDFF;
+	cursor:pointer;
+}
+
+.accordion_option_selected{
+	background-color: #EFEDEB;
+}
+
+.accordion_input_container{
+	display: none;
+}

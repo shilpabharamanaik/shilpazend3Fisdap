@@ -1,0 +1,127 @@
+#report-form-form .report-form-section:first-child h3 {
+	position: relative;
+	top: .5em;
+}
+
+.goalset-buttons {
+    position: absolute;
+    right: 0;
+    top: -2.5em;
+}
+
+#report-form-form  .airway_management_report_type_wrapper {
+	margin-left:-0.8em;
+	margin-top:0.75em;
+}
+
+#report-form-form .observed_slider_wrapper {
+	margin-top:1.4em;
+	margin-left:2em;
+	width:47%;
+}
+
+#include_observed_airway_managements-label {float:right; width:345px;}
+#include_observed_airway_managements-element{width:50px; float:left;}
+
+.airway_management_success_cell {text-align:center;}
+.airway_management_failure_img {width:12px;}
+.airway_management_success_img {width:15px;}
+.airway_management_na_success {color:#aaa;}
+
+table.dataTable tfoot tr {background-color:rgba(238, 238, 238, 0.47);}
+
+table.dataTable td.right_justified_text {text-align:right;}
+
+table.dataTable td.eureka_reached {background-color:rgba(230, 239, 194, 1);}
+
+.eureka_home {
+	width:380px;
+	height:250px;
+}
+
+.date-list {display:none;}
+.success-list {display:none;}
+
+
+.eureka-goal-met, .eureka-goal-notmet {
+	position:absolute;
+	height:20px;
+	width: 21px;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	background-image: url('/images/icons/eureka-goal-met-3d-sprite.png');
+	background-position: 0 -40px;
+	margin-left:0.75em;
+	border-radius: 3px;
+}
+
+.eureka-goal-notmet {background-image: url('/images/icons/eureka-goal-not-met-3d-sprite.png');}
+.eureka-goal-met:hover {background-position: 0 -20px;}
+.eureka-goal-met:active {background-position: 0 0;}
+.eureka-goal-notmet:hover {background-position: 0 -20px;}
+.eureka-goal-notmet:active {background-position: 0 0;}
+
+#report-content h3.table-title {z-index:5;width: 60%;}
+
+.am_eureka_dialog {
+	padding-bottom:1.75em;
+	opacity:1;
+}
+
+.ui-dialog .ui-dialog-content.am_eureka_dialog  {padding-bottom:1.75em;}
+
+.am_eureka_dialog .key {
+	color:#666;
+	top:11.3em;
+	width:230px;
+}
+
+.am_eureka_dialog .details {
+	padding:0.75em;
+	background-color: rgba(196, 186, 174, 0.1);
+	font-size:10pt;
+	margin-bottom:0.8em;
+	margin-top: 0.4em;
+}
+
+.am_eureka_dialog .left-justified {width:33px;}
+
+.eureka_custom_details_msg {
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	font-size:12pt;
+	font-weight:bold;
+	color:#655d57;
+}
+
+.eureka_dialog_subheader {
+	font-weight:normal;
+	font-size:11pt;
+}
+
+.show_all_attempts_trigger, .show_coa_attempts_trigger {
+	color:#a94612;
+	font-size:10pt;
+	float:right;
+}
+
+.show_all_attempts_trigger:focus, .show_coa_attempts_trigger:focus {
+	outline:none;
+	border:0px;
+}
+
+.am_eureka_dialog .print-eureka {display:none;}
+
+#add-goalset {margin-top:0.75em;}
+
+.success_rate_goal_cell {
+    min-width:80px;
+}
+
+.airway_management_attempts_goal {
+    display:none;
+}
+
+.ui-dialog-titlebar {
+    display:block !important;
+}

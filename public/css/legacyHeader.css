@@ -1,0 +1,71 @@
+
+#legacyHeader {
+	width:88%;
+	background-color:black;
+	height:35px;
+	background-image: url('/images/logo_shadow.png');
+	background-repeat:no-repeat;
+	background-position: left;
+	padding-top:2em;
+	padding-left:12%;
+	font-family:Arial, Charcoal, sans-serif;
+	margin-bottom:1em;
+
+}
+
+#legacyHeaderLinks {
+	background-color:black;
+	width:420px;
+}
+
+#legacyHeaderLinks a {
+	color:white;
+	font-size:10pt;
+	font-weight:bold;
+	font-family:Arial, Charcoal, sans-serif;
+	background-color:black;
+	display:block;
+	float:left;
+	padding:.8em;
+	padding-top:.2em;
+	padding-bottom:.2em;
+	font-weight:bold;
+}
+
+#legacyHeaderLinks a:hover {
+	color:#CC9933;
+	text-decoration:none;
+}
+
+#legacyHeaderLoggedInAs {
+	color:white;
+	font-family:Arial, Charcoal, sans-serif;
+	margin-top:-1.5em;
+	float:left;
+	margin-left:-1em;
+	font-size:10pt;
+}
+
+#legacyHeaderDetails {
+	color:white;
+	float:right;
+	font-family:Arial, Charcoal, sans-serif;
+	margin-right:2em;
+	margin-top:-1em;
+	text-align:right;
+}
+
+#legacyHeaderLoggedInAs a, #legacyHeaderDetails a {
+	color:#fff;
+	font-family:Arial, Charcoal, sans-serif;
+	text-decoration:underline;
+}
+
+#legacyHeaderLoggedInAs a:hover, #legacyHeaderDetails a:hover {
+	text-decoration:none;
+}
+
+body {
+    background-color: #fff;
+	background-image:none;
+}

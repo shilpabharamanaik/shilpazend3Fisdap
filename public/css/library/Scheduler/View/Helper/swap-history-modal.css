@@ -1,0 +1,37 @@
+#history-modal-content {
+	font-size: 11pt;
+}
+
+#site-icon {
+	float: left;
+	margin-top:0.7em;
+	margin-right:1em;
+}
+
+.icon {
+	margin-right:.5em;
+}
+
+.history-table-body {
+	max-height: 175px;
+	overflow: auto;
+	border-bottom: 2px solid #B0B0B0;
+}
+
+.basic-table tbody {
+	border-bottom: 0 none;
+}
+
+.table-label {
+	padding: 5px;
+}
+
+.left-column {
+	width: 11em;
+}
+
+#historyCloseButton {
+	margin-top: 1em;
+	float: right;
+}
+

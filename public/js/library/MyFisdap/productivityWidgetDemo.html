@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title>Bayside College Student Dashboard</title>
+        <script type="text/javascript" src="/js/jquery-1.5.2.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-ui-1.8.12.custom.min.js"></script>
+        <script type="text/javascript" src="/js/library/MyFisdap/demoMessages.js"></script>
+        <script type="text/javascript" src="/js/library/MyFisdap/jquery.productivityWidget.js"></script>
+        
+        <script type="text/javascript" src="/js/iscroll4/iscroll.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // init!    
+                $("#widget").productivityWidget();
+                
+                $('#archive').productivityWidget({
+                    filters : {
+                        'message' : 1,
+                        'todo' : 1,
+                        'event' : 1,
+                        'archived' : 1 
+                    }
+                });
+                
+                $('#calendar').productivityWidget({
+                    filters : {
+                        'todo' : 1,
+                        'event' : 1
+                    },
+                    hideFilters : {
+                        'message' : 1
+                    },
+                    listFormat : 'calendar4'
+                });
+                
+                $('#tabs').tabs();
+                
+                $('#tabs .message-todo-create').bind('click', function(event) {
+                    event.preventDefault();
+                    $('#widget').productivityWidget('displayMessageForm', null, 'todo');
+                });
+                                
+            });
+            
+        </script>
+        
+        <link rel="stylesheet" type="text/css" media="all" href="/css/themeroller/default/jquery-ui-1.8.16.custom.css"></link>
+        <link rel="stylesheet" type="text/css" media="all" href="/css/my-fisdap/jquery.productivityWidget.css"></link>
+        <style type="text/css">
+        
+            /* Styles specific to this instance of the widget */
+            #tabs {
+                width: 650px;
+            }
+            #widget, #archive, #calendar {
+                width: 648px;
+                border: 1px solid gray;
+                border-top: 0;
+            }
+            
+            /* some fisdap styles imported for the demo */
+            a {
+                color: #A94612
+            }
+            
+            
+        </style>
+    </head>
+    
+    <body>
+        <h1>Bayside College Student Dashboard</h1>
+        <div id="tabs" class="productivityWidget-tabs">
+            <div class="productivityWidget-tabs-buttons"><a href="#" class="message-todo-create">+ To-Do</a></div>
+            <ul>
+                <li><a href="#widget">Inbox</a></li>
+                <li><a href="#calendar">Calendar</a></li>
+                <li><a href="#archive">Archive</a></li>
+            </ul>
+            <div id="widget"></div>
+            <div id="calendar"></div>
+            <div id="archive"></div>
+        </div>
+        
+        <div id="status"></div>
+    </body>
+</html>

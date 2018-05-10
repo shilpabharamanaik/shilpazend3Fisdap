@@ -1,0 +1,77 @@
+#sites-modal-content {
+	margin-top: 1em;	
+}
+
+#type-filter {
+	float: right;
+	position: relative;
+	top: -.5em;
+}
+
+#type-filter.ui-buttonset .ui-button-text-only .ui-button-text {
+    font-size: 75%;
+	margin: 0 0.7em;
+}
+
+#tableWrapper {
+	border: 1px solid #B0B0B0;
+	max-height: 20em;
+	margin-top: 1.5em;
+	overflow: auto;
+	min-height: 2em;
+}
+
+.sites-table {
+	width: 100%;
+}
+
+.sites-table tbody td {
+	border: 1px solid #B0B0B0;
+	border-left: none;
+	border-right: none;
+	padding: 0.5em;
+}
+
+.sites-table tbody {
+	padding: 0.5em;
+}
+
+.sites-table tbody tr:hover {
+	background: #FAFAFA;
+}
+
+td.site-icon {
+	width: 1.5em;
+}
+
+.sites-table tbody td img {
+	width: 1.5em;
+}
+
+td.address {
+	color: #655D57;
+}
+
+#nullMsg {
+	text-align: center;
+	margin: 1em;
+}
+
+#table-legend {
+	margin-top: 1em;
+}
+
+.legend-entry {
+	float: left;
+	margin-right: 2em;
+}
+
+.legend-entry img {
+	width: 1.5em;
+	position: relative;
+	top: 4px;
+}
+
+
+
+

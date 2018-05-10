@@ -1,0 +1,11 @@
+.cancel-buttons {
+	float: right;
+	margin-bottom: 0.5em;
+	margin-top: 1em;
+}
+
+#noButtonWrapper,
+#yesButtonWrapper {
+	display: inline;
+}
+

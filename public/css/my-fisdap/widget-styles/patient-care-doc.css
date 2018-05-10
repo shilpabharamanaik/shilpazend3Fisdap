@@ -1,0 +1,30 @@
+.patient-care-upcoming{
+	padding: 5px;
+}
+
+.patient-care-upcoming-title{
+	font-weight: 900;
+}
+
+.patient-care-past-due{
+	
+}
+
+.patient-care-gray-header{
+	
+}
+
+.patient-care-block-text{
+	margin: 5px 0;
+}
+
+.patient-care-toggle {
+	display:block;
+	margin-top: 10px;
+	font-size: 85%;
+}
+
+.patient-care-late-shift{
+    font-size: .9em;
+    margin: 5px 0px 10px 5px;
+}

@@ -1,0 +1,125 @@
+#attachment-table {
+    padding-top: 3px;
+}
+
+tr.attachment-row td.count {
+    text-align: center;
+}
+
+#attachment-table div.download-preview  {
+    margin-right: 0px;
+    margin-bottom: 0em;
+    float: none;
+    position: unset;
+}
+
+#attachment-table img.thumbnail {
+    width: 52px;
+    height: 52px;
+}
+
+#attachment-table img.thumbnail.stock-icon {
+    width: 54px;
+    height: 54px;
+}
+
+#attachment-table img.thumbnail.preview {
+    border: 1px solid #b0b0b0;
+}
+
+#attachment-table img.download-icon {
+    position: absolute;
+    left: 22px;
+    top: 22px;
+    width: 25px;
+    opacity: 0;
+}
+
+#attachment-table img.download-icon {
+    position: absolute;
+    left: 22px;
+    top: 22px;
+    width: 25px;
+    opacity: 0;
+}
+
+#attachment-table td.thumbnail-column.default img.download-icon {
+    top: 25px;
+}
+
+#attachment-table td.thumbnail-column:hover img.download-icon {
+    opacity: 1;
+}
+
+#attachment-table td.thumbnail-column:hover img.thumbnail {
+    opacity: 0.3;
+}
+
+#deleteAttachment.countdown {
+    float: none;
+    left: -5px;
+    margin: 0;
+    width: 115%;
+}
+
+#deleteAttachment a.cancelTrigger {
+    font-size: 11pt;
+}
+
+#deleteAttachment .countdownMsg {
+    font-size: 8pt;
+    margin-top: 12px;
+}
+
+#no-attachments {
+    margin: 1em;
+}
+
+#attachment-table.read-only > .table-header {
+    display: none;
+}
+
+#add-attachment {
+    background-position: center bottom;
+    display: block;
+    height: 29px;
+    text-indent: -9999px;
+    width: 129px;
+    position: absolute;
+    right: 0em;
+    top: -7px;
+}
+
+#add-attachment.field {
+    background-image: url(/images/buttons/new-attachment-field.png);
+}
+
+#add-attachment.clinical {
+    background-image: url(/images/buttons/new-attachment-clinical.png);
+}
+
+#add-attachment.lab {
+    background-image: url(/images/buttons/new-attachment-lab.png);
+}
+
+#add-attachment:hover {
+    background-position: center;
+}
+
+#add-attachment:active {
+    background-position: top;
+}
+
+.delete-skill {
+    font-size: 12px;
+}
+
+.delete-skill img {
+    position: relative;
+    top: -4px;
+}
+
+#attachment-table[data-tabletype=signoff] tr > td:first-child {
+    width: 45px;
+    background-position: 0.9em center;
+}

@@ -1,0 +1,40 @@
+.review-widget-title{
+	font-weight: 900;
+	
+}
+
+.review-widget-text{
+}
+
+.review-assigned-row{
+	background-color: #e0ffc8;
+}
+
+.review-table{
+	width: 100%;
+}
+
+.review-table-head{
+	font-weight: bold;
+	border-bottom: 2px solid gray;
+	padding-left: 3px;
+	padding-right: 3px;
+	vertical-align: bottom;
+}
+
+.review-center{
+	text-align: center;
+}
+
+.review-slots {
+	/*width: 30%;*/
+}
+
+.session-review-full-text{
+	font-weight: 900;
+	color: #f04e13;
+}
+
+.session-review-disabled-text{
+	color: #666666; 
+}

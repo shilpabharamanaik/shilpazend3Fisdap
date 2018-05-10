@@ -1,0 +1,77 @@
+.accreditation-accordion {
+	max-height: 35em;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.accordionContent {
+	position: relative;
+}
+
+.site-name {
+	font-weight: bold;
+	float: left;
+	width: 55%;
+}
+
+.accred-info {
+	font-size: 93%;
+	font-weight: bold;
+	color: #918883;
+}
+
+.subtle-label {
+    color: #666666;
+    font-size: 10pt;
+    font-style: italic;
+}
+
+.accred_info_row {
+	margin-bottom: .5em;
+    float: left;
+    width: 100%;
+}
+
+
+.accordionContent .dotted-line hr {
+	margin-top: .5em;
+}
+
+.accordionContent span.label {
+	font-weight: bold;
+	font-size: 95%;
+}
+
+.edit-btn-wrapper {
+	position: absolute;
+    right: 1em;
+}
+
+#load-edit-modal-throbber {
+	position: absolute;
+    right: 1em;
+    top: 3px;
+}
+
+#save-edit-modal-throbber {
+	bottom: 1.2em;
+    position: absolute;
+    right: 2em;
+}
+
+.modal-buttons {
+    float: right;
+}
+
+.modal-buttons div {
+    float: right;
+    margin-left: 0.5em;
+}
+
+#clear-accreditation-form {
+    color: #A94612;
+    float: left;
+    font-size: 10pt;
+    margin-top: 1em;
+    position: absolute;
+}

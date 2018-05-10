@@ -1,0 +1,315 @@
+#settings-wrapper {
+    position: relative;
+}
+
+h3.settings-header {
+    width: 100%;
+    font-weight: normal;
+    color: #655d57;
+    /*font-size: 1.2em;*/
+    border-bottom: 1px solid #bbb;
+    /*padding-top: 10px;*/
+    margin-bottom: 1em;
+}
+
+h4.settings-header {
+    font-weight: bolder;
+    color: #655d57;
+    margin: .5em 0;
+}
+
+#control-buttons {
+    margin-top: 1em;
+}
+
+#save-button {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.bottom-rounded-corners {
+    border-bottom-right-radius: 6px;
+    -khtml-border-bottom-right-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    -moz-border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    -khtml-border-bottom-left-radius: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    -moz-border-bottom-left-radius: 6px;
+}
+
+.right-txt-align {
+    text-align: right;
+    display: block;
+    float: right;
+    margin-right: 0.6em;
+}
+
+.island {
+    position: static;
+}
+
+.hidden-name-input, .category-name input {
+    display: none;
+}
+
+.category-name input, .ff-input-fix {
+    position: absolute;
+    text-align: left;
+    top: 0.4em;
+    left: 0.4em;
+    color: #665D58;
+    font-size: 10.5pt;
+    font-family: Century Gothic, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.ff-input-fix {
+    top: 0.55em;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+}
+
+.tooltip img {
+    width: 10px;
+}
+
+.tooltip-text {
+    border: 1px solid #bbb;
+    background-color: #fff;
+    padding: .5em;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-weight: normal;
+    font-size: 9pt;
+}
+
+.overflowMe {
+    max-height: 300px;
+    overflow: auto;
+}
+
+.throbber-bg {
+    background: url(/images/throbber_small.gif);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+#autosave-text {
+    float: left;
+    width: 180px;
+    font-size: 15px;
+    margin-top: 0.5em;
+    display: none;
+}
+
+.subsection {
+    margin-top: 1.75em;
+}
+
+.question-mark {
+    float: right;
+    margin-top: 0.3em;
+}
+
+.dotted-line hr {
+    margin-top: 1em;
+    margin-bottom: -1.25em;
+}
+
+.windows .gray-button {
+    float: left;
+    margin-right: 0.5em;
+}
+
+.windows_summary {
+    margin-left: 0.75em;
+    margin-bottom: 0.4em;
+    margin-top: -0.1em;
+}
+
+.windows dt {
+    display: none;
+}
+
+.windows .extra-small-input {
+    width: 23px;
+    text-align: center;
+    padding: 0.2em;
+    padding-left: 0.2em;
+}
+
+.windows .week-offset-wrapper {
+    float: left;
+}
+
+.windows .window_offset_row {
+    margin-bottom: 0.5em;
+}
+
+.windows {
+    margin-left: 0.75em;
+}
+
+.windows .offset-description {
+    float: left;
+    line-height: 1.5em;
+}
+
+.windows .week-offset-wrapper dd {
+    float: left;
+    margin-right: 0.5em;
+}
+
+.windows .date-of-shift-creation-wrapper {
+    line-height: 1.75em;
+}
+
+#offset-type-options-wrapper {
+    position: absolute;
+    display: none;
+    z-index: 100;
+}
+
+#close-offset-types {
+    width: 22px;
+    position: absolute;
+    right: 0.5em;
+    top: 0.3em;
+}
+
+#close-offset-types:hover {
+    cursor: pointer;
+}
+
+.offset-types {
+    padding: 1em;
+    background-color: #fff;
+    width: 425px;
+    -moz-box-shadow: 0px 5px 5px #c6c1bc;
+    -webkit-box-shadow: 0px 5px 5px #c6c1bc;
+    box-shadow: 0px 5px 5px #c6c1bc;
+    border: 1px solid #bbb;
+    position: relative;
+    top: -1.3em;
+    left: 0.5em;
+}
+
+#offset-types-ticker {
+    position: absolute;
+    bottom: -1.5em;
+    right: 1em;
+    width: 70px;
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1.5);
+}
+
+.offset-type-option {
+    padding: 0.5em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    border-bottom: 1px solid #bbb;
+}
+
+.offset-type-option:hover {
+    background-color: #eee;
+    cursor: pointer;
+}
+
+.input-example {
+    opacity: 0.5;
+}
+
+.month-offset-wrapper {
+    margin-top: 0.5em;
+}
+
+.offset-description {
+
+}
+
+.prev-month-offset-the {
+    float: left;
+    margin-right: 0.7em;
+    line-height: 27px;
+}
+
+.prev-month-offset-description {
+    float: left;
+    line-height: 27px;
+    margin-left: 0.5em;
+}
+
+.month-offset-wrapper dd {
+    float: left;
+}
+
+.ot-description {
+    display: block;
+    float: left;
+    width: 107px;
+}
+
+.big-line-height-ot-description {
+    line-height: 28px;
+}
+
+.full_width_ot_description {
+    width: 100%;
+}
+
+.monthly {
+    margin-top: .5em;
+}
+
+.rolling {
+    margin-top: 0.3em;
+}
+
+.offset-type-option:last-of-type {
+    border-bottom: 0px;
+}
+
+.defaults {
+    margin-left: 0em;
+}
+
+.settings-sub-header {
+    width: 100%;
+    color: #655d57;
+    margin-bottom: 1em;
+}
+
+#defaults_description_paragraph {
+    margin-bottom: 1.75em;
+    margin-top: -0.75em;
+}
+
+.settings-sub-header .icon {
+    float: left;
+    margin-right: 0.5em;
+}
+
+.top-margin-settings-header {
+    margin-top: 2.75em;
+}
+
+.grid_12 .section .windows_wrapper, .grid_12 {
+    position: static;
+}
+
+.selectDate {
+    width: 100px;
+    background-color: #fff;
+    background: #fff right no-repeat url(/images/icons/calendar.gif);
+    background-position: 93%;
+    border: 1px solid #A0A0A0;
+    padding: 0.4em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}

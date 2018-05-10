@@ -1,0 +1,12 @@
+strong {
+	font-weight: bold;
+}
+ul.test-documents-tests li {
+	margin: 1em 0 1em 0;
+}
+ul.test-documents-documents {
+	padding: 0 0 0 2em;
+}
+ul.test-documents-documents li {
+	list-style: disc;
+}

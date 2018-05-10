@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Accept Multiple Signatures · Signature Pad</title>
+  <style>
+    body { font: normal 100.01%/1.375 "Helvetica Neue",Helvetica,Arial,sans-serif; }
+  </style>
+  <link href="../assets/jquery.signaturepad.css" rel="stylesheet">
+  <!--[if lt IE 9]><script src="../assets/flashcanvas.js"></script><![endif]-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+</head>
+<body>
+  <form method="post" action="">
+
+    <div class="sigPad" id="linear" style="width:404px;">
+      <h2>Linear Interpolation (Original)</h2>
+      <ul class="sigNav">
+        <li class="drawIt"><a href="#draw-it" >Draw It</a></li>
+        <li class="clearButton"><a href="#clear">Clear</a></li>
+      </ul>
+      <div class="sig sigWrapper" style="height:auto;">
+        <div class="typed"></div>
+        <canvas class="pad" width="400" height="250"></canvas>
+        <input type="hidden" name="output" class="output">
+      </div>
+    </div>
+
+    <div class="sigPad" id="smoothed" style="width:404px;">
+      <h2>Bezier Curves (constant pen width)</h2>
+      <ul class="sigNav">
+        <li class="drawIt"><a href="#draw-it" >Draw It</a></li>
+        <li class="clearButton"><a href="#clear">Clear</a></li>
+      </ul>
+      <div class="sig sigWrapper" style="height:auto;">
+        <div class="typed"></div>
+        <canvas class="pad" width="400" height="250"></canvas>
+        <input type="hidden" name="output-2" class="output">
+      </div>
+    </div>
+
+    <div class="sigPad" id="smoothed-variableStrokeWidth" style="width:404px;">
+      <h2>Bezier Curves (variable pen width)</h2>
+      <ul class="sigNav">
+        <li class="drawIt"><a href="#draw-it" >Draw It</a></li>
+        <li class="clearButton"><a href="#clear">Clear</a></li>
+      </ul>
+      <div class="sig sigWrapper" style="height:auto;">
+        <div class="typed"></div>
+        <canvas class="pad" width="400" height="250"></canvas>
+        <input type="hidden" name="output-3" class="output">
+      </div>
+    </div>
+
+    <button type="submit">I accept the terms of this agreement.</button>
+  </form>
+
+  <script src="../assets/numeric-1.2.6.min.js"></script>
+  <script src="../assets/bezier.js"></script>
+  <script src="../jquery.signaturepad.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#linear').signaturePad({drawOnly:true, lineTop:200});
+      $('#smoothed').signaturePad({drawOnly:true, drawBezierCurves:true, lineTop:200});
+      $('#smoothed-variableStrokeWidth').signaturePad({drawOnly:true, drawBezierCurves:true, variableStrokeWidth:true, lineTop:200});
+    });
+  </script>
+  <script src="../assets/json2.min.js"></script>
+</body>

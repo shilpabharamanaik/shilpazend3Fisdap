@@ -1,0 +1,30 @@
+$small-shield: 2em;
+
+div.product {
+  margin-bottom: 1em;
+  clear: both;
+}
+
+.category .section-header {
+  margin-bottom: 0;
+}
+
+img.product-shield {
+  width: $small-shield;
+  height: $small-shield;
+  float: left;
+}
+
+.shield-label {
+  padding-top: $small-shield/5;
+  padding-left: $small-shield + 0.5em;
+}
+
+.category .shield-label {
+  padding-top: 2px;
+  font-weight: bold;
+}
+
+.shield-desc {
+  padding-left: $small-shield * 1.5;
+}

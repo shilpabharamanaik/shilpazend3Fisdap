@@ -1,0 +1,60 @@
+#edit-status-div {
+	max-height: 40em;
+	overflow: auto;
+}
+
+#selection-form .success {
+	width:96.75%;
+	margin:0em;
+	margin-bottom:1em;
+}
+
+#edit-compliance-status .form-prompt {
+	margin: 0;
+}
+
+.compliance-row {
+	margin: 10px 0;
+}
+
+.compliance-row:hover {
+	background-color: #f0eeeb;
+}
+
+.new-compliance-row {
+	margin-top: 3px;
+}
+
+.new-element {
+	background-color: #faee91;
+}
+
+.type-icon {
+	float: right;
+	margin-right: 6px;
+}
+
+#expiration-menu {
+	display: none;
+	position: absolute;
+	padding: 15px;
+	margin: 0px;
+    position: absolute;
+	z-index: 700;
+	text-align: left;
+	border: 1px solid #C6C4B8;
+	border-radius: 4px;
+	width:300px;
+	display:none;
+	background-color:#fff;
+	-moz-box-shadow: 1px 1px 1px #E6E6E6;
+	-webkit-box-shadow: 1px 1px 1px #E6E6E6;
+	box-shadow: 1px 1px 1px #E6E6E6;
+	top:1.8em;
+	border-top-left-radius: 0px;
+	left:0.5em;
+}
+
+#cancel-status-throbber {
+	margin-right:2em;
+}

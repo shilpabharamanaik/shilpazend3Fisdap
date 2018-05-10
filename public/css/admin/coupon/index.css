@@ -1,0 +1,39 @@
+table.coupon-search-table {
+	font-size:9pt;
+	width:100%;
+	text-align:left;
+}
+
+#coupon-table tbody tr {
+	background:#fff;
+}
+
+table.coupon-search-table td {
+	padding:.8em;
+	vertical-align: middle;
+}
+
+table.coupon-search-table tr {
+	border-bottom:1px solid #A2A2A2;
+}
+
+table.coupon-search-table tr:hover {
+	background-color:#eee;
+}
+
+#coupon-table tbody tr:hover {
+	background-color:#eee;
+}
+tr#head {
+	background-color:#C6C1BC;
+	border-top:2px solid #A2A2A2;
+	border-bottom:2px solid #A2A2A2;
+}
+
+tr#head:hover {
+	background-color:#C6C1BC;
+}
+
+#links {
+    float: right;
+}

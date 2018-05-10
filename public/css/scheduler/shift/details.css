@@ -1,0 +1,41 @@
+#shift-details .details-ticker img {
+	display:none;
+}
+
+#shift-details .event-details-popup {
+	display:block;
+	position:static;
+}
+
+#shift-details .close-details-popup {
+	display:none;
+}
+
+#shift-details .event-details-popup .popup-content {
+	background:transparent;
+	width:97%;
+	max-height:none;
+	overflow:visible;
+	box-shadow:0px 0px 0px transparent;
+	-moz-box-shadow:0px 0px 0px transparent;
+	-webkit-box-shadow:0px 0px 0px transparent;
+	margin:0px;
+}
+
+#shift-details .event-details-popup .event-subtitle {
+	width:700px;
+}
+
+#shift-details .slots-wrapper {
+	max-height:none;
+	overflow:visible;
+}
+
+#back-to-cal {
+	margin-bottom:1em;
+	margin-left:1em;
+}
+
+#shift-details {
+	margin-top:1em;
+}

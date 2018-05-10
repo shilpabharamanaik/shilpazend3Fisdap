@@ -1,0 +1,22 @@
+div.ui-widget-header {
+	background: white;
+	color: #655D57;
+	font-weight: normal;
+	font-size: 20pt;
+	font-family: Century Gothic,Arial,Helvetica,sans-serif;
+}
+
+div.ui-widget-content a {
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: normal;
+    color: #a94612;
+    text-decoration:none;
+}
+
+div.ui-widget-content a:visited {
+    color: #7a330c;
+}
+
+div.ui-widget-content a:hover {
+    text-decoration:underline;
+}

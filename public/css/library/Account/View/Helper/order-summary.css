@@ -1,0 +1,29 @@
+#cancel-order {
+	float:right;
+	display: block;
+	margin-bottom: 10px;
+}
+
+.total-summary, .coupon-summary {
+	margin-top: 20px;
+	border: 1px solid #b0b0b0;
+	padding: 10px;
+}
+
+.coupon-summary {
+	height: 100%;
+}
+
+.total-summary, .cost-summary {
+	text-align: right;
+}
+
+.cost-summary {
+	border-bottom: 1px solid #b0b0b0;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+
+.products-summary {
+	border-bottom: 2px solid #b0b0b0;
+}

@@ -1,0 +1,30 @@
+.student-search-widget .results-container{
+	border-top: 2px solid gray;
+	padding-left: 3px;
+	padding-right: 3px;
+	margin-top: 6px;
+}
+
+.student-search-widget .student-record{
+	border-bottom: 1px solid gray;
+	padding-bottom: 3px;
+	padding-top: 3px;
+}
+
+.student-search-widget .no-results-message{
+	border: 1px solid rgb(255, 85, 85); 
+	background-color: rgb(255, 204, 204); 
+	padding: 7px;
+}
+
+.student-search-widget .student-search-link{
+	padding: 1px;
+}
+
+.student-search-widget .clear-button-container {
+	margin-top: 10px;
+}
+
+.student-search-widget input {
+	width: 100%;
+}

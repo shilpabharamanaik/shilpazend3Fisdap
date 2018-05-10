@@ -1,0 +1,93 @@
+.add-site-nav {
+    float: right;
+    margin: 0.5em 0;
+    position: relative;
+    right: -2em;
+}
+
+#site-admin-container {
+	background-color: #ffffff;
+	padding:1em;
+	width:400px;
+}
+
+#sites-admin-title {
+	font-weight:normal;
+	margin-bottom:.5em;
+	display: inline;
+}
+
+select.sitesSelect {
+	width:100%;
+	margin-bottom:.5em;
+	line-height: 1;
+	font: normal 11pt Tahoma, Geneva, sans-serif;
+    color: #000000;
+	height: 100%;
+}
+
+#site-list {
+	width:663px;
+}
+
+table#sites-table {
+	width:663px;
+}
+
+.siteType {
+	width:30px;
+}
+
+td.siteType {
+	text-align:center;
+}
+
+.siteName {
+	width:275px;
+}
+
+.siteCity {
+	width:150px;
+}
+
+.siteState {
+	width:55px;
+}
+
+.siteActive {
+	width:50px;
+	padding-right:0px;
+}
+
+.siteShared {
+	width:40px;
+	text-align:center;
+}
+
+td.scrollbar {
+	width:5px;
+}
+
+img#checkmark {
+	padding:0px;
+	padding-left:6px;
+}
+
+#sitesContainer{
+	width:665px;
+	margin:0 auto;
+}
+
+#noAccess {
+	border:1px solid blue;
+}
+
+#addButton, #editMySiteButton {
+	width:100px;
+	float:right;
+	margin-left: 0.5em;
+}
+
+#internalPercepMergeButton {
+	float: left;
+}

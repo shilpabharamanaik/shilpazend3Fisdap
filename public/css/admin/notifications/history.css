@@ -1,0 +1,98 @@
+.notification-date {
+    white-space: nowrap;
+}
+
+.active-toggle-container {
+    margin-top: 1em;
+}
+
+.fisdap-table tbody td.notification-date {
+    border-bottom: none;
+}
+
+.fisdap-table.view-data-table {
+    margin: 0.5em 0;
+    width: 18em;
+}
+
+.fisdap-table.view-data-table tbody td {
+    padding: 0.2em 0.5em;
+    text-align: right;
+}
+
+.notification-type {}
+
+.notification-title {
+    font-family: "Century Gothic", "Helvetica", "Arial", sans-serif;
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+.notification-message {
+    font-family: "Tahoma", "Geneva", sans-serif;
+    font-size: 10pt;
+    color: #655d57;
+    width: 320px;
+}
+
+tr.update .notification-title {
+    color: #36A3C9;
+}
+
+tr.downtime .notification-title {
+    color: #E79401;
+}
+
+tr.update .notification-type {
+    background-color: #75C3E0;
+}
+
+tr.downtime .notification-type {
+    background-color: #FFD324;
+}
+
+.notification-recipients {}
+
+.notification-nav {
+    float: right;
+    font-size: 10pt;
+}
+
+#new-notification {
+    background-image: url('/images/buttons/new-notification-button.png');
+    background-position: center bottom;
+    display: inline-block;
+    position: relative;
+    left: 26px;
+    height: 29px;
+    margin: 4px;
+    text-indent: -9999px;
+    width: 117px;
+}
+
+#new-notification:hover {
+    background-position: center;
+}
+
+#new-notification:active {
+    background-position: top;
+}
+
+.load-more-cell {
+    background: #ffffff;
+    text-align: center;
+    border-bottom: 2px solid #b0b0b0;
+    padding: 4px;
+    color: #a94612;
+}
+
+.load-more-cell:hover {
+    background-color: #c6c1bc;
+    cursor: pointer;
+}
+.recipient-heading {
+    font-weight: bold;
+}
+.stage .slider-frame .slider-button:before {
+    width: 48px;
+}

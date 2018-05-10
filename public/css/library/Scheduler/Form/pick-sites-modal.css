@@ -1,0 +1,179 @@
+#req_name {
+	margin-top: 1.5em;
+}
+
+#filter_sites {
+    float: right;
+	position: relative;
+	top: -0.7em;
+}
+
+#filter_sites .ui-button-text-only .ui-button-text {
+	font-size: 75%;
+    padding: 0.4em 0.8em;
+    width: 4.5em;
+}
+
+#picklist-site-picker {
+	margin-top: 1em;
+}
+
+#all-sites {
+	display: none;
+}
+
+.search-available-list {
+	position:absolute;
+	top: 35px;
+	left: 1px;
+	z-index:1010;
+	background-color: white;
+}
+
+.magnifying-glass-icon {
+	position:absolute;
+	z-index:1011;
+	right:0.5em;
+	top: 11px;
+}
+
+#picklist-control-buttons {
+	float:left;
+	width:100%;
+	text-align:center;
+	padding-top:6.2em;
+}
+
+#picklist-control-buttons a {
+	margin:.2em;
+	width:51%;
+}
+
+#picklist-site-picker h2 {
+	text-align:center;
+	font-size: 1em;
+	font-family:'Century Gothic', Arial, Helvetica, sans-serif;
+	color: #fff;
+	font-weight:normal;
+	display:block;
+	padding:.5em;
+	margin-bottom:-.6em;
+	background:#73869B;
+	background: #73869B; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#73869B', endColorstr='#5E7084'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#73869B), to(#5E7084)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #73869B,  #5E7084); /* for firefox 3.6+ */
+	height:28px;
+	-moz-border-radius-topleft: 5px;
+	border-top-left-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-right-radius: 5px;
+}
+
+#picklist-site-picker select, .search-available-list input, .ui-widget #picklist-site-picker select {
+	width:100%;
+	height:200px;
+	background-color: #fff;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0.5%, #f2f2f2), color-stop(10%, #ffffff));
+	background-image: -webkit-linear-gradient(top, #f2f2f2 0.5%, #ffffff 10%);
+	background-image: -moz-linear-gradient(top, #f2f2f2 0.5%, #ffffff 10%);
+	background-image: -o-linear-gradient(top, #f2f2f2 0.5%, #ffffff 10%);
+	background-image: -ms-linear-gradient(top, #f2f2f2 0.5%, #ffffff 10%);
+	background-image: linear-gradient(top, #f2f2f2 0.5%, #ffffff 10%);
+	border: 1px solid #aaa;
+	margin: 0;
+	padding: 0.2em;
+	overflow: auto;
+	position: relative;
+	color:#444;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:10pt;
+	float:left;
+	padding-top:3em;
+}
+
+#picklist-site-picker select#chosen-list {
+	padding-top:0.5em;
+	margin-bottom: 1.5em;
+}
+
+.search-available-list input {
+	height:20px;
+	padding:0.2em;
+	color:#666;
+	width:219px;
+	padding-right:2em;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0.5%, #eeeeee), color-stop(15%, #ffffff));
+	background-image: -webkit-linear-gradient(top, #eeeeee 0.5%, #ffffff 15%);
+	background-image: -moz-linear-gradient(top, #eeeeee 0.5%, #ffffff 15%);
+	background-image: -o-linear-gradient(top, #eeeeee 0.5%, #ffffff 15%);
+	background-image: -ms-linear-gradient(top, #eeeeee 0.5%, #ffffff 15%);
+	background-image: linear-gradient(top, #eeeeee 0.5%, #ffffff 15%);
+	margin: 6px 5px 0px 5px;
+}
+
+#available-list a {
+	color:#444;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11pt;
+	display:block;
+	width:100%;
+}
+
+#picklist-site-picker .selected-site {
+	background-color:#eee;
+}
+
+#available-list a:hover {
+	text-decoration:none;
+	cursor:default;
+}
+
+#picklist-site-picker .fancy-focus {
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,.3);
+	-moz-box-shadow   : 0 0 5px rgba(0,0,0,.3);
+	-o-box-shadow     : 0 0 5px rgba(0,0,0,.3);
+	box-shadow        : 0 0 5px rgba(0,0,0,.3);
+	outline:none;
+}
+
+#picklist-site-picker .gray-button .ui-button-text-only .ui-button-text {
+	color:#444;
+	font-weight:normal;
+	font-family:'Century Gothic', Arial, Helvetica, sans-serif;
+	font-size:10pt;
+}
+
+#selected_count {
+	color:#655D57;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size: 90%;
+}
+
+#num_selected {
+	font-weight: bold;
+}
+
+.buttons {
+	float: right;
+	width:200px;
+	margin-top: 1.5em;
+}
+
+.buttons a {
+	float:right;
+	margin-left: 5px;
+}
+
+.clinical.disabled {
+	color:#c1dd9c;
+}
+
+.field.disabled {
+	color:#a1cfcf;
+}
+
+.lab.disabled {
+	color:#fbd7a3;
+}
+

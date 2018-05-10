@@ -1,0 +1,68 @@
+.menu {
+	z-index: 1;
+}
+
+.tab{
+	height: 35px;
+	padding: 15px 0px 1px 7px;
+	margin-right: 5px;
+	background-color: #DFDFDF;
+	
+	color: #655D57;
+    font-weight: bolder;
+	
+	background: -moz-linear-gradient(19% 75% 90deg, #C1C1C1, #DFDFDF);
+	background: -webkit-gradient(linear, left top, left bottom, from(#DFDFDF), to(#C1C1C1));
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#FFdfdfdf', EndColorStr='#FFc1c1c1');
+	
+	border: 1px solid #bdbdbd;
+	border-top: 1px solid #d3d3d3;
+	cursor: pointer;
+}
+
+a.tab-link {
+	color: #655D57;
+    font-weight: bolder;
+}
+
+a.tab-link:hover {
+	text-decoration: none;
+}
+ div.tab:hover {
+	background-color: #FFFFFF;
+	background: -moz-linear-gradient(19% 75% 90deg, #FFFFFF, #FFFFFF);
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#FFFFFF));
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#FFFFFFFF', EndColorStr='#FFFFFFFF');
+	border-bottom: 1px solid #d3d3d3;
+	border-top: 1px solid #d3d3d3;
+}
+
+.main-tab{
+	width: 200px;
+}
+
+.active-tab{
+	border: 1px solid #cacaca;
+	border-right: none;
+	background: #FFFFFF;
+	padding: 15px 8px 1px 7px;
+	cursor:	default;
+}
+
+.sub-tab{
+	width: 170px;
+	margin-left: 30px;
+	font-size: 95%;
+}
+
+#portfolio-page-content.island {
+	position: relative;
+	left: -15px;
+	min-height: 31em;
+	width: 102%;
+	border: 1px solid #cacaca;
+}
+
+div.content {
+	margin: 0px 0px 10px 0px;
+}

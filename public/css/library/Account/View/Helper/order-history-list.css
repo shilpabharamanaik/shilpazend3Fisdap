@@ -1,0 +1,32 @@
+#order-history-list thead th, #order-history-list thead td {
+	color: #ffffff;
+}
+
+#order-history-list td {
+	border-left: none;
+	border-right: none;
+	text-align: center;
+}
+
+.order-history-modal .account-summary {
+	overflow: auto;
+	margin-top: 20px;
+	border-bottom: 1px solid #b0b0b0;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	text-align: right;
+}
+
+.order-history-modal .account-summary li {
+	padding: 5px 0;
+	overflow: auto;
+}
+
+.order-history-modal .price-summary {
+	text-align: right;
+}
+
+.duplicate-order {
+	position: relative;
+	top: 8px;
+}

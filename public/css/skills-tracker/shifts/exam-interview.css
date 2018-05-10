@@ -1,0 +1,65 @@
+.optional {
+    display: none;
+}
+
+#save {
+    float: right;
+    width: 125px;
+}
+
+#formContainer select {
+    font-family: Tahoma, Geneva, sans-serif
+}
+
+#patients-table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+#patients-table tr:first-child {
+    border-bottom: 1px solid #b0b0b0;
+}
+
+#patients-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#patients-table th {
+    height: 4em;
+}
+
+#patients-table td {
+    min-height: 3em;
+    padding-top: 1em;
+    height: 100%;
+}
+
+#patients-table td:first-child {
+    border-left: none;
+}
+
+#patients-table label {
+    border: 3px solid white;
+    margin-left: 4px;
+}
+
+#patients-table td {
+    display: block;
+    margin-left: 10px;
+    line-height: 2em;
+    text-align: center;
+}
+
+input[type=checkbox] {
+    margin-top: -50%;
+    vertical-align: middle;
+}
+
+#bold-warning {
+    font-weight: bold;
+}
+
+.row-label {
+    text-align: right;
+}
+

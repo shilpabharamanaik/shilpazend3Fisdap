@@ -1,0 +1,177 @@
+#compliance-nav-bar {
+	height:30px;
+	background-color:#c4baae;
+	border-top-right-radius:12px;
+	border-top-left-radius:12px;
+	margin-left:0.6em;
+	width:917px;
+	padding-right:1em;
+}
+
+#main-content .grid_9 #compliance-nav-bar {
+	width:104.3%;
+	margin-left:-1.01em;
+}
+
+#compliance-nav-bar .navbar-options {
+	display:none;
+}
+
+#compliance-nav-bar .dashed-right-border {
+	width:0em;
+	border-right: 0.12em dashed #fff;
+	float:right;
+	margin: 0.3em;
+	height: 30px;
+	margin-top: 0em;
+	margin-bottom: 0em;
+}
+
+#compliance-nav-bar .compliance-nav-bar-menu-item,
+#compliance-nav-bar .export-pdf-nav-bar-menu-item,
+#compliance-nav-bar .subscribe-nav-bar-menu-item,
+#compliance-nav-bar .single-navbar-option {
+	display:block;
+	font-family: Century Gothic,Arial,Helvetica,sans-serif;
+	color:#fff;
+	font-weight:bold;
+	float:right;
+	text-decoration:none;
+	padding:0.42em;
+	padding-right:3.5em;
+	padding-left:1.4em;
+	border-left: 1px solid #C4BAAE;
+}
+
+#compliance-nav-bar .single-navbar-option {
+	padding:0.42em;
+	text-align:center;
+	padding-right:1.25em;
+	padding-left:1.25em;
+}
+
+#compliance-nav-bar.student-compliance-nav-bar li:first-of-type {
+	margin-right:-1em;
+	border-top-right-radius:12px;
+}
+
+
+#compliance-nav-bar .single-navbar-option.active {
+	color:#666;
+	background-color:#fff;
+	cursor: default;
+}
+
+#compliance-nav-bar .subscribe-nav-bar-menu-item {
+    padding-right: 1.5em;
+}
+
+#compliance-nav-bar .export-pdf-nav-bar-menu-item {
+	background-image:url("/images/icons/email_white.png");
+	background-repeat:no-repeat;
+	background-position: 20px 9px;
+	background-size: 18px;
+	padding-left: 2.85em;
+	padding-right: 1.5em;
+}
+
+#compliance-nav-bar .export-pdf-nav-bar-menu-item:hover {
+	background-image:url("/images/icons/email-icon.png");
+}
+
+#compliance-nav-bar .compliance-nav-bar-menu-item {
+	background-image:url("/images/accordion_arrow_down_white.png");
+	background-repeat:no-repeat;
+	background-position: 84% 54%;
+}
+
+#compliance-nav-bar .compliance-nav-bar-menu-item:hover {
+	text-decoration:none;
+	background-image:url("/images/accordion_arrow_down.png");
+	color:#666;
+	background-color:#fff;
+	cursor:pointer;
+}
+
+#compliance-nav-bar .export-pdf-nav-bar-menu-item:hover,
+#compliance-nav-bar .subscribe-nav-bar-menu-item:hover,
+#compliance-nav-bar .selected-single-nav-bar-item,
+#compliance-nav-bar .single-navbar-option:hover {
+	text-decoration:none;
+	color:#666;
+	background-color:#fff;
+	cursor:pointer;
+}
+
+#compliance-nav-bar .export-pdf-nav-bar-menu-item,
+#compliance-nav-bar .subscribe-nav-bar-menu-item {
+	position:relative;
+}
+
+#compliance-nav-bar #load-pdf-modal-throbber {
+	position:absolute;
+	left:1em;
+}
+
+#compliance-nav-bar .compliance-nav-bar-menu-item:first-child,
+#compliance-nav-bar .top-right-radius-option,
+#compliance-nav-bar .student-pdf {
+	margin-right:-1em;
+	border-top-right-radius:12px;
+}
+
+#compliance-nav-bar .navbar-options {
+	background-color:#fff;
+	border:1px solid #ccc;
+	box-shadow:0px 2px 1px #bbb;
+	width:200px;
+	position:absolute;
+	z-index:5000;
+	border-top:0px;
+	padding-top:0.5em;
+	padding-bottom:0.75em;
+}
+
+#compliance-nav-bar .request-count {
+	display:block;
+	height:15px;
+	border-radius:15px;
+	color:#fff;
+	font-weight:bold;
+	float:left;
+	margin-left:0.5em;
+	text-align:center;
+	line-height:14px;
+	font-size:9.5pt;
+	margin-top:0.12em;
+	background-color:rgb(234, 134, 45);
+	padding-left:0.25em;
+	padding-right:0.3em;
+	min-width:10px;
+}
+
+#compliance-nav-bar .requests-txt {
+	float:left;
+}
+
+#compliance-nav-bar .navbar-options li a {
+	color:#666;
+	display:block;
+	text-decoration:none;
+	display:block;
+	width: 84%;
+	padding:2%;
+	font-size:10pt;
+	padding-left: 14%;
+	font-family: Century Gothic,Arial,Helvetica,sans-serif;
+}
+
+#compliance-nav-bar .navbar-options li a:hover {
+	background-color:#eee;
+	text-decoration:none;
+	color:#666;
+}
+
+#compliance-nav-bar.student-compliance-nav-bar li:first-of-type a:hover {
+	border-top-right-radius:12px;
+}

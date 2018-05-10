@@ -1,0 +1,39 @@
+.footer{
+	width: 1000px;
+	height: 68px;
+	margin-top: 25px;
+	margin-left: 28px;
+	
+	font-family: Century Gothic, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+}
+
+.footer_text{
+	color: #F8F7F6;
+	text-align: center;
+	margin-top: 25px;
+	padding-top: 30px;
+	font-weight: 900;
+	
+	background-image: url('/images/Fisdap/View/Helper/Navigation/footer_background.jpg');
+	width: 972px;
+	height: 38px;
+	
+	float: left;
+}
+
+.footer_separator{
+	color: #D8D7D6;
+	font-weight: bold;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.footer_text a{
+	color: #F8F7F6;
+	text-decoration: none;
+	
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+}

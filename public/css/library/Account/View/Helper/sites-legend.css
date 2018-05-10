@@ -1,0 +1,63 @@
+#legend {
+	color:#666;
+	font-size:10pt;
+	margin-top:3em;
+} 
+
+#legend .legend_col .grid_2 {
+	text-align:center;
+	width:19px;
+}
+
+#legend .grid_2 img {
+	width:18px;
+	margin-right:0.2em;
+}
+
+#legend .grid_10 {
+	height:35px;
+}
+
+#legend #filled-weeble, #legend #open-weeble, #legend #seatbelt-weelbe {
+	height:22px;
+	width:auto;
+}
+
+#legend #drop {
+	height:12px;
+	width:auto;
+}
+
+#legend .grid_2 .small-img {
+	width:13px;
+}
+
+#legend .has-borders {
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+	padding-left: 2em;
+	padding-right: 2em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+#legend .grid_3, #legend .legend_col {
+	padding-top: 1em;
+	padding-bottom: 0.5em;
+	margin:0%;
+	text-align:left;
+}
+
+.tiny-font {
+	font-size: 8pt;
+	display: block;
+	margin-top: -.1em;
+	color: #888;
+	margin-left: 0.2em;
+}
+
+
+#legend .no-left-border {
+	border-left:0px;
+	margin-right:3%;
+}

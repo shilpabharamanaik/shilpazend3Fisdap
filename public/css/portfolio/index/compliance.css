@@ -1,0 +1,274 @@
+#navbar-links {
+	left: -22px;
+    position: relative;
+    width: 102.4%;
+}
+
+#statusDiv div.text {
+	float: left;
+	position: relative;
+    top: 0.9em;
+}
+
+span.status {
+	font-weight: bold;
+}
+
+.history-btn-wrapper {
+	float:right;
+}
+
+#siteButtonWrapper,
+#emailButtonWrapper {
+	margin-top:0.5em;
+	min-height: 1px;
+}
+
+#editButtonWrapper {
+	float: right;
+	position: relative;
+    top: .5em;
+}
+
+.in-progress-status {color:#666;}
+.non-compliant-status {color:#B42A2A;}
+
+.dotted-line hr {
+	margin-bottom:1em;
+}
+
+#requirements-header {
+	font-weight:normal;
+	color:#666;
+	margin-top:-0.3em;
+}
+
+#status-filter {
+	float: right;
+	position: relative;
+    top: -0.75em;
+}
+
+#status-filter.ui-buttonset .ui-button-text-only .ui-button-text {
+    font-weight: normal;
+}
+
+#attachmentsAccordion {
+	border:1px solid #ccc;
+	padding-top:0em;
+}
+
+#filter-table-throbber {
+	position: absolute;
+	left: 47%;
+	margin-top: .7em;
+}
+
+#statusDiv .grid_6 {
+	padding-bottom:0em;
+}
+
+.none-found {
+	margin: .5em;
+}
+
+.accordionHeader {
+	display:block;
+	width:100%;
+	padding-top:.3em;
+	padding-bottom:.3em;
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	position:relative;
+}
+
+.accordionHeader:not(.no-hover):hover {
+	cursor:pointer;
+}
+
+.accordionHeader.compliant,
+.accordionHeader.pending,
+.accordionHeader.non-compliant {
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	border-bottom:1px solid #bbb; 
+	background-color: #ffffff;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=0 );   
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #eeeeee), color-stop(100%, #f4f4f4));
+	background-image: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -moz-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -o-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: -ms-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+	background-image: linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%); 
+	color:#000;
+}
+
+.accordionHeader.compliant:not(.no-hover):hover,
+.accordionHeader.pending:not(.no-hover):hover,
+.selectedCategory.compliant,
+.selectedCategory.pending
+{
+	background: #dddddd; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#dddddd'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#dddddd)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #eeeeee,  #dddddd); /* for firefox 3.6+ */
+}
+
+.accordionHeader.non-compliant {
+	color:#B42A2A;
+	font-weight: bold;
+	font-size: 93%
+}
+
+.accordionHeader.non-compliant:not(.no-hover):hover,
+.selectedCategory.non-compliant {
+	background: #FBE3E4; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FBE3E4', endColorstr='#FFC5C6'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#FBE3E4), to(#FFC5C6)); /* for webkit browsers */
+	background: -moz-linear-gradient(top , #FBE3E4, #FFC5C6); /* for firefox 3.6+ */
+}
+
+.accordionHeader img {
+	position:absolute;
+	top:0.9em;
+	left:0.75em;
+}
+
+.req_col .imgWrapper {
+	width:22px;
+	height:10px;
+	float:left;
+}
+
+.accordionContent {
+	display:none;
+	color: #655D57;
+	padding: 1em;
+	padding-bottom: 2em;
+	background-color: #fff;
+	border-bottom: 1px solid #bbb;
+}
+
+/*
+.selectedCategory.compliant,
+.selectedCategory.pending {
+	background: #9F9A95; /* for non-css3 browsers */
+	/*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#B2ADA8', endColorstr='#655d57'); /* for IE */
+	/*background: -webkit-gradient(linear, left top, left bottom, from(#B2ADA8), to(#655d57)); /* for webkit browsers */
+	/*background: -moz-linear-gradient(top,  #B2ADA8,  #655d57); /* for firefox 3.6+ */
+	/*color:#fff;
+}*/
+
+.table-label {
+	margin: 1em 0em .2em .5em;
+}
+
+table.attachment-row {
+	width: 100%;
+	margin-bottom: 0px;
+}
+
+.accordionContent table.attachment-row tr {
+	border-top: 1px solid #d1d1d1;
+	border-bottom: 1px solid #d1d1d1;
+}
+
+
+.accordionContent table.attachment-row tr:hover {
+	background: #FAFAFA;
+}
+
+table.attachment-row th {
+	text-align: left;
+}
+
+th.req_col {
+	padding-left: 33px;
+    width: 267px;
+}
+
+.req_col {
+	width: 300px;
+	padding: .4em 0 .4em .5em;
+}
+
+.req-location {
+	font-weight: bold;
+	font-family: Century Gothic,Arial,Helvetica,sans-serif;
+    font-size: 11pt;
+}
+
+img.icon {
+	width: 1em;
+	position: relative;
+	top:0.15em;
+}
+
+.program_req {
+	color: #655D57;
+}
+
+.status_col,
+.expiration_col {
+	padding: 5px 5px;
+}
+
+.status_col {
+	width: 130px;
+}
+
+.expiration_col {
+	width: 130px;
+}
+
+.next_date,
+.next_link {
+	font-size: 85%;
+}
+
+
+#load-modal-throbber {
+	position: relative;
+	top: 3px;
+	left: -6em;
+}
+
+#load-history-modal-throbber {
+	position: relative;
+	top: 3px;
+	left: -2.25em;
+}
+
+#emailWrapper {
+	font-size: 90%;
+	margin: 1em;
+	color: #655D57;
+	border: 1px solid #98908A;
+	padding: 1.5em;
+}
+
+#emailWrapper ul {
+	list-style: disc inside none;
+	margin-bottom: 1.5em;
+}
+
+#emailWrapper li {
+	margin-left: 1em;
+}
+
+#success-msg {
+	display: none;
+}
+
+#emailModalButtonWrapper,
+#sitesCloseButton {
+	float: right;
+}
+
+.action-button {
+	display: inline;
+	margin-left: 0.5em;
+}
+
+
+#portfolio-compliance-status-summary {
+	min-height:36px;
+}

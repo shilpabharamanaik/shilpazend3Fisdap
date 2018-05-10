@@ -1,0 +1,187 @@
+#filters_place_holder {
+	display:block;
+	width:100%;
+	height:42px;
+}
+
+#cal-display-filters {
+	position:absolute;
+	left:4.7em;
+	z-index:1500;
+}
+
+#sites_filters_chzn .disabled-chzn-option {
+	color:#ccc;
+}
+
+#sites_filters_chzn .disabled-chzn-option:hover {
+	background:transparent;
+	cursor:default;
+}
+
+#cal-filters {
+	background-color:#fff;
+}
+
+.chzn-results li {
+	color:#444;
+}
+
+.sites-chosen-text,
+.available_cert-chosen-text,
+.available_group-chosen-text,
+.chosen_cert-chosen-text,
+.chosen_group-chosen-text,
+.students-chosen-text,
+.preceptors-chosen-text,
+.bases-chosen-text {
+	color:#999;
+	position:absolute;
+	top:0.45em;
+	left:0.4em;
+	font-size:13px;
+	font-family: sans-serif;
+}
+
+#cal-display-filters .white-text {
+	color:#fff;
+}
+
+#avail-blocker, #chosen-blocker {
+	width:273px;
+	display:none;
+	height:300px;
+	position:absolute;
+	z-index:500;
+}
+
+#cal-display-filters {
+	font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	font-size:10pt;
+	display:none;
+}
+
+#cal-display-filters dt {
+	margin-top:0.5em;
+}
+
+#cal-display-filters dd {
+
+}
+
+#bases_filters-label, #preceptors_filters-label {
+	width:90px;
+}
+
+#grad_filters_month_chzn {
+	margin-right:1em;
+}
+
+#cd-filters-wrapper .where {
+	width:270px;
+	float:left;
+	min-height:270px;
+	padding:0em;
+	padding-right:1em;
+}
+
+#cd-filters-wrapper .go,
+#cd-filters-wrapper .reset {
+	float:right;
+	margin-top:2em;
+}
+
+#cd-filters-wrapper .go {
+	margin-right:2.2em;
+	margin-left:1em;
+}
+
+#cd-filters-wrapper .available,
+#cd-filters-wrapper .chosen {
+	width:270px;
+	float:left;
+	min-height:270px;
+	padding-left:1em;
+	padding-right:1em;
+}
+
+#available_open_window_filters-label {
+	float:right;
+	width:238px;
+}
+
+#available_open_window_filters-element {
+	float:left;
+	margin-top:1em;
+}
+
+#cd-filters-wrapper .stage .slider-frame .slider-button.on {
+	margin-left:19px;
+}
+
+#cd-filters-wrapper .available {border-right:1px solid #ccc; border-left:1px solid #ccc;}
+#cd-filters-wrapper .chosen {}
+
+
+
+#cd-filters-wrapper  .filter-options-wrapper .section-header {
+	width:118%;
+	color:#fff;
+	font-size:13pt;
+}
+
+#cd-filters-wrapper .filter-options-wrapper .chosen .section-header {
+	margin-left:-0.5em;
+	width:105%;
+}
+
+#cd-filters-wrapper_filter-options {
+	padding-top: 1.5em;
+}
+
+.available .section-header {
+	margin-top:-1.91em;
+	margin-left:-0.5em;
+}
+
+.available {
+	margin-top:2.5em;
+}
+
+.stage {
+	position: relative;
+	top: -.5em;
+	margin-right: .5em;
+}
+
+#available_filters-element,
+#chosen_filters-element {
+	float:left;
+	margin-top:0.25em;
+}
+
+#available_filters-label, #chosen_filters-label {float:right;}
+
+#available_filters-label {margin-right:6.5em;}
+#chosen_filters-label {margin-right:1.3em;}
+
+#preceptors_filters_chzn .hidden-group-result,
+#bases_filters_chzn .hidden-group-result {
+	visibility: hidden;
+	height:0px;
+	margin:0px;
+	padding:0px;
+}
+
+
+#preceptors_filters_chzn .hidden-sd-option,
+#bases_filters_chzn .hidden-sd-option, 
+#students_filters_chzn .hidden-sd-option 
+ {
+	display:none;
+}
+
+#students_filters_chzn .chzn-choices {
+    max-height:90px;
+    overflow:auto;
+}

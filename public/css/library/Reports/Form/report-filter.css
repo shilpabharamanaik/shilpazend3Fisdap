@@ -1,0 +1,39 @@
+.report-headerold{
+	color: #655d57;
+	font-size: 1.25em;
+	font-weight: 900;
+	margin-bottom: 0.3em;
+	border-bottom: 1px solid #655D57;
+}
+
+.report-header {
+    width:100%;
+    /*font-weight:normal;*/
+	font-size: 1.25em;
+    color: #655d57;
+    /*font-size: 1.2em;*/
+    border-bottom: 1px solid #655d57;
+	margin-bottom: 1em;
+	margin-top:0.5em;
+    /*padding-top: 10px;*/
+}
+
+.report-block{
+	padding-bottom: 15px;
+	overflow: auto;
+}
+
+#advanced-settings-toggle{
+	margin-bottom: 0.5em;
+	margin-top: 0.5em;
+}
+
+#student-filter-group-heading{
+	padding-bottom: 0.3em;
+	font-size: 0.8em;
+}
+
+#report-block-student-filter{
+	padding: 10px;
+	background: #F0EEEB;
+}

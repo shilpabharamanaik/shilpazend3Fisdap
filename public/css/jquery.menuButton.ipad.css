@@ -1,0 +1,154 @@
+div.menu-button-container {
+    display:inline-block;
+    cursor:default;
+    text-align:left;
+    line-height:35px;
+    clear:both;
+    color:#666;
+    font-family:Verdana, Geneva, sans-serif;
+    margin-top:0.5em;
+}
+
+div.menu-button-container span.selected:hover {
+    cursor:pointer;
+	    background-image: url(/images/icons/yellow-circle-plus.png), url(/images/buttons/omnibutton-bg-ipad.png);
+    background-position-x:4%, left;
+    background-position-y:44%, top;
+    background-repeat:no-repeat, repeat-x;
+}
+
+div.menu-button-container span.selected {
+    width:167px;
+    text-indent:20px;
+    border:1px solid #ccc;
+    border-right:none;
+	-moz-border-radius-topleft: 5px;
+	border-top-left-radius: 5px;
+    background-image: url(/images/icons/yellow-circle-plus.png), url(/images/buttons/omnibutton-bg-ipad.png);
+    background-position-x:4%, left;
+    background-position-y:44%, top;
+    background-repeat:no-repeat, repeat-x;
+    overflow:hidden;
+    padding-left:20px;
+    color:#665D58;
+	font-size:12pt;
+    font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+    background-color:#C5C0BC;
+	height:35px;
+}
+
+.selectOptgroupName {
+    color:#665D58;
+	font-size:18px;
+    font-family:Century Gothic, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+    display:block;
+    width:93%;
+    padding-lefT:.8em;
+}
+
+div.menu-button-container span.bottomRoundedCorners {
+    -moz-border-radius-bottomleft: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.bottomRightRoundedCorners {
+    -moz-border-radius-bottomright: 5px;
+	border-bottom-right-radius: 5px;  
+}
+
+.selectArrow {
+	display:block;
+    width:107px;
+    border:1px solid #2992C9;
+	-moz-border-radius-topright: 5px;
+	border-top-right-radius: 5px;
+    text-align:center;
+    font-size:12px;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    background:#0085ab;
+    background:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.50, #2992C9),
+        color-stop(0.75, #3BAAE3)
+    );
+    color:#fff;
+	height:35px;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+span.selectArrow,span.selected {
+    position:relative;
+    float:left;
+    height:35px;
+    z-index:1;
+}
+            
+div.selectOptions {
+    position:absolute;
+    top:28px;
+    left:0;
+    width:218px;
+    border:1px solid #ccc;
+    border-bottom-right-radius:5px;
+    border-bottom-left-radius:5px;
+    overflow:auto;
+    max-height:200px;
+    background:#F7F7F7;
+    padding-top:2px;
+    display:none;
+    -moz-box-shadow: 0px 1px 20px #aaa;
+	-webkit-box-shadow: 0px 1px 20px #aaa;
+	box-shadow:0px 1px 20px #aaa;
+    z-index:100;
+	padding-top:15px;
+	padding-bottom:20px;
+}
+
+span.selectOption {
+    display:block;
+    width:80%;
+    line-height:18px;
+    padding:4px 10%;
+    font-size:18px;
+	padding-top:8px;
+	padding-bottom:8px;
+	border-bottom:1px solid #bbb;
+}
+
+span.selectOption:hover {
+    color:#fff;
+    background:#3BAAE3;    
+}            
+
+#goLink {
+    color:#fff;
+    text-decoration:none;
+    display:block;
+    width:140%;
+	margin-left:-0.7em;
+    height:100%;
+}
+
+#goLink:hover {
+    background:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.50, #0085ab),
+        color-stop(0.75, #01718b)
+    );
+}
+
+#addIcon {
+    width:22px;
+    height:22px;
+}

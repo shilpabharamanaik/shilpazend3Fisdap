@@ -1,0 +1,46 @@
+.view-attachment {
+    display: table-cell;
+    width: 740px;
+}
+
+.view-attachment > div {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 243px;
+}
+
+.view-attachment .date-column {
+    text-align: center;
+}
+
+.view-attachment .date {
+}
+
+.view-attachment .download-column {
+    text-align: right;
+}
+
+#attachment-modal-content .image {
+    margin: 1em 0em;
+}
+
+#attachment-modal-content > .image > img {
+    width: 740px;
+}
+
+#attachment-modal-content .no-preview {
+    color: grey;
+    margin: 1em 0;
+    padding: 0.7em 0.7em 0.5em;
+    position: relative;
+}
+
+#attachment-modal-content .no-preview .no-preview-msg {
+    left: 5em;
+    position: absolute;
+    top: 1.5em;
+}
+
+#attachment-modal-content .no-preview img {
+    height: 3em;
+}

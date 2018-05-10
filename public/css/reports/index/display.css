@@ -1,0 +1,185 @@
+#export-report-links {
+    position: relative;
+    top: -8px;
+	margin: 0.5em 0;
+}
+
+#report-header {
+	color: #333;
+}
+
+#report-header.standalone {
+	margin-bottom: 2em;
+}
+
+#report-info,
+#report-form {
+	position: relative;
+}
+
+#report-summary {
+	font-size: 95%;
+    line-height: 1.5;
+    margin: 0.5em 1em;
+}
+
+#report-summary td {
+    padding-right: 1em;
+}
+
+#report-summary .summary-section {
+	text-align: right;
+	font-weight: bold;
+	color:#655d57;
+}
+
+#show-report-form {
+	bottom: 1em;
+    position: absolute;
+    right: 1em;
+}
+
+#report-form-errors {
+	display: none;
+}
+
+#report-form-form .island,
+#report-form {
+	overflow: visible;
+}
+
+#report-form-form .report-form-section {
+	margin-bottom: 1.5em;
+}
+
+#skill_type_chzn .chzn-drop {
+	z-index: 2000;
+}
+
+#report-form-form .ms-picklist-wrapper {
+	margin: 0em 1%;
+}
+
+#report-form.shown, #report-results.shown, #show-report-form.shown {
+	display: block;
+	overflow: inherit;
+}
+
+.report-button {
+	float: right;
+    position: relative;	
+}
+
+#hide-report-form {
+    right: 1em;
+}
+
+#go-button {
+	padding: 0.4em 1em;
+}
+
+#submit-report-throbber {
+	bottom: 24px;
+    position: absolute;
+    right: 39px;
+}
+
+#available_list_chzn a.input-error, #site-type.input-error {
+    border: 1px solid #C7877F;
+    box-shadow: 0 0 5px #D1595D;
+}
+
+
+#skill_type.chzn-select {
+	width: 210px;
+}
+
+#report-content {
+	min-width: 98%;
+	width: auto;
+}
+
+#report-content .report-header {
+	margin-bottom: 1.5em;
+}
+
+#report-content .report-header h2.section-header {
+	margin-bottom: 0em;
+}
+
+#report-content .header-section {
+	font-size: 95%;
+	margin: 1%;
+	width: 75%;
+}
+
+#report-content .header-section .section-label {
+	font-weight: bold;
+}
+
+#report-content h3.table-title {
+	margin-bottom: 3px;
+	top: 2em;
+	position: relative;
+}
+
+#report-content h3.table-title.no-search {
+	top: .4em;
+	position: relative;
+}
+
+#report-content .dataTables_wrapper {
+	margin-bottom: 3em;
+}
+
+#report-content .tabs {
+	font-size: 10pt;
+	margin-bottom: 3em;
+}
+
+#report-content .tabbed-table {
+	width: auto;
+}
+
+.report_error_buttons {
+	margin-top:2em;
+	margin-bottom:-0.5em;
+}
+
+.report_error_buttons .gray-buttons {
+	margin-right:1em;
+}
+
+table.dataTable thead th div.DataTables_sort_wrapper span.am_subheader {
+    color:#524944;
+    font-weight:normal;
+    font-size:90%;
+    display:block;
+    position:relative;
+    right:auto;
+    margin-top:0.2em;
+}
+
+table.dataTable.noInitDataTable {
+    margin-top: 1em;
+    margin-bottom: 3em;
+}
+
+.report-notice {
+    clear: right;
+    margin-bottom: 1em;
+}
+
+.report-notice a.toggleDetails {
+    font-size: 90%;
+    text-decoration: underline;
+}
+
+.report-notice a.toggleDetails:hover {
+    cursor: pointer;
+}
+
+.report-notice .details {
+    margin: 0.5em 2em 1em;
+    display: none;
+}

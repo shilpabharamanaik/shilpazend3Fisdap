@@ -1,0 +1,81 @@
+@import '/css/library/Portfolio/View/Helper/userSiteComplianceTable.css';
+
+#view-compliance-modal-content.container_12 {
+	width: 100%;
+	margin: 0;
+	font-size: 10.5pt;
+}
+
+#shift-desc-div {
+	float: left;
+	width: 60%;
+}
+
+#shift-desc-div h4 {
+}
+
+#site-icon {
+	float: left;
+	margin-top:0.3em;
+	width:1.5em;
+}
+
+#cta-buttons {
+	float:right;
+}
+
+
+
+#table-legend {
+	margin: 1.5em 0em 0em 0.3em;
+}
+
+.legend-entry {
+	float: left;
+	margin: 0 1em 1em 0;
+}
+
+.legend-entry img {
+	height: 1.5em;
+	float:left;
+	margin-right:0.5em;
+	margin-top:0.1em;
+}
+
+#closeButtonWrapper {
+	margin-top: 1em;
+	float: right;
+}
+.about-student {
+	margin: 1em 0em 2em 0em;
+	font-size: 11pt;
+}
+
+.about-student h3.header {
+	border: none;
+	margin-bottom: 0em;
+}
+
+.student-id {
+	font-size: 55%;
+}
+
+.about-student h2 {
+    font-size: 22px;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+}
+
+.about-student .cert-program, .about-student .graduation, .about-student .student-email {
+	font-size: 14px;
+	margin-bottom: 3px;
+}
+
+.about-student .product-icons-container {
+    margin-top: 0.6em;
+}
+
+.about-student .product-icons-container img {
+	margin-right: 7px;
+}
+

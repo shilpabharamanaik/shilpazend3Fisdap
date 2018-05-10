@@ -1,0 +1,35 @@
+#cd-filters-wrapper .where {
+	width:420px;
+}
+
+
+#cd-filters-wrapper .chosen {
+	border-left:1px solid #ccc;
+	padding-left:2em;
+	min-height:135px;
+	width: 46%;
+	font-size: 99%;
+}
+
+#cd-filters-wrapper .where {
+	min-height:135px;
+}
+
+#cal-display-filters #available_filters-label {
+	margin-right:15.5em;
+	margin-top:1.5em;
+}
+
+#cal-display-filters #available_filters-element {
+	margin-top:1.9em;
+}
+
+#cal-display-filters #chosen_filters-label {
+	margin-right:0.1em;
+	margin-top:-2em;
+}
+
+#cal-display-filters #chosen_filters-element {
+	margin-top:-1.7em;
+	margin-left:16.4em;
+}
