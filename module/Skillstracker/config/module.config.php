@@ -19,7 +19,7 @@ return [
                     ],
                     'defaults' => [
                         'controller' => Controller\SkillstrackerController::class,
-                        'action'     => 'skillstracker',
+                        'action'     => 'index',
                     ],
                 ],
             ],
