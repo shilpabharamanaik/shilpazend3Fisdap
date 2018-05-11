@@ -161,6 +161,7 @@ class ComposerStaticInite157492c5e2799fab0508c7ca457ea69
         array (
             'Robo\\' => 5,
             'Rhumsaa\\Uuid\\' => 13,
+            'Reports\\' => 8,
         ),
         'P' => 
         array (
@@ -188,6 +189,7 @@ class ComposerStaticInite157492c5e2799fab0508c7ca457ea69
         ),
         'L' => 
         array (
+            'Learningcenter\\' => 15,
             'League\\Fractal\\' => 15,
             'League\\Flysystem\\' => 17,
             'Leafo\\ScssPhp\\' => 14,
@@ -286,6 +288,7 @@ class ComposerStaticInite157492c5e2799fab0508c7ca457ea69
             'Curl\\' => 5,
             'Cron\\' => 5,
             'Composer\\CaBundle\\' => 18,
+            'Community\\' => 10,
             'Codeception\\PHPUnit\\' => 20,
             'Codeception\\Module\\' => 19,
             'Codeception\\Extension\\' => 22,
@@ -302,6 +305,7 @@ class ComposerStaticInite157492c5e2799fab0508c7ca457ea69
             'AscendLearning\\Lti\\' => 19,
             'Application\\' => 12,
             'ApplicationTest\\' => 16,
+            'Account\\' => 8,
         ),
     );
 
@@ -708,6 +712,10 @@ class ComposerStaticInite157492c5e2799fab0508c7ca457ea69
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
         ),
+        'Reports\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/module/Reports/src',
+        ),
         'Psy\\' => 
         array (
             0 => __DIR__ . '/..' . '/psy/psysh/src/Psy',
@@ -767,6 +775,10 @@ class ComposerStaticInite157492c5e2799fab0508c7ca457ea69
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Learningcenter\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/module/Learningcenter/src',
         ),
         'League\\Fractal\\' => 
         array (
@@ -1066,6 +1078,10 @@ class ComposerStaticInite157492c5e2799fab0508c7ca457ea69
         array (
             0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
         ),
+        'Community\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/module/Community/src',
+        ),
         'Codeception\\PHPUnit\\' => 
         array (
             0 => __DIR__ . '/..' . '/codeception/phpunit-wrapper/src',
@@ -1108,6 +1124,10 @@ class ComposerStaticInite157492c5e2799fab0508c7ca457ea69
         'ApplicationTest\\' => 
         array (
             0 => __DIR__ . '/../..' . '/module/Application/test',
+        ),
+        'Account\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/module/Account/src',
         ),
     );
 
