@@ -20,6 +20,16 @@ return [
                     ],
                 ],
             ],
+            'editstudent' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route' => '/account/edit/student',
+                    'defaults' => [
+                        'controller' => Controller\StudentController::class,
+                        'action'     => 'edit',
+                    ],
+                ],
+            ],
         ],
     ],
 
