@@ -23,9 +23,25 @@ return [
             'editstudent' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route' => '/account/edit/student',
+                    'route' => '/account/edit/student[/studentId[/:studentId]]',
+                    'constraints' => [
+                        'studentId' => '[0-9]*',
+                    ],
                     'defaults' => [
                         'controller' => Controller\StudentController::class,
+                        'action'     => 'edit',
+                    ],
+                ],
+            ],
+            'editinstructor' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/account/edit/instructor/instructorId/[/:instructorId]',
+                    'constraints' => [
+                        'instructorId' => '[0-9]*',
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\InstructorController::class,
                         'action'     => 'edit',
                     ],
                 ],
