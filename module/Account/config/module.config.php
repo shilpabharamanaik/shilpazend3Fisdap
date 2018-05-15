@@ -51,6 +51,7 @@ return [
 
     'controllers' => [
         'factories' => [
+            Controller\AccountController::class => Controller\Factory\AccountControllerFactory::class,
             Controller\InstructorController::class => Controller\Factory\InstructorControllerFactory::class,
         ],
     ],
