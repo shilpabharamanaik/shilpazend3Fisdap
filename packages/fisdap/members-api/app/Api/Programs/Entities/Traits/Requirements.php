@@ -3,7 +3,6 @@
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\OneToMany;
 
-
 /**
  * Class Requirements
  *
@@ -26,7 +25,7 @@ trait Requirements
      */
     public function sendNewRequirementNotification($requirementId)
     {
-        foreach($this->requirement_notifications as $notification) {
+        foreach ($this->requirement_notifications as $notification) {
             if ($notification->requirement->id == $requirementId) {
                 return $notification->send_assignment_notification;
             }

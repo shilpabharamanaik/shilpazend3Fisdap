@@ -7,7 +7,6 @@ use Fisdap\Data\Permission\PermissionRepository;
 use Fisdap\ErrorHandling\Exceptions\NoPermissions;
 use Happyr\DoctrineSpecification\Spec;
 
-
 /**
  * Service for retrieving and determining user permissions
  *

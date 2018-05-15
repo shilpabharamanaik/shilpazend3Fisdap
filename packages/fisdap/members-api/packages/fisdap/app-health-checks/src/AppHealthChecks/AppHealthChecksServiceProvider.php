@@ -6,7 +6,6 @@ use Fisdap\AppHealthChecks\HealthChecks\CouchbaseHealthCheck;
 use Fisdap\AppHealthChecks\HealthChecks\DatabaseHealthCheck;
 use Illuminate\Support\ServiceProvider;
 
-
 /**
  * Class AppHealthChecksServiceProvider
  *

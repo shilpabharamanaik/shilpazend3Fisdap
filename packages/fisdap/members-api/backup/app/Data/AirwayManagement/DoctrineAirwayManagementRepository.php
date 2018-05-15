@@ -4,7 +4,6 @@ use Fisdap\Data\Repository\DoctrineRepository;
 use phpDocumentor\Reflection\Types\Boolean;
 use Zend_Registry;
 
-
 /**
  * Class DoctrineAirwayManagementRepository
  *
@@ -56,28 +55,28 @@ class DoctrineAirwayManagementRepository extends DoctrineRepository implements A
             ->leftJoin('shift.base', 'base')
             ->andWhere($qb->expr()->in('student.id', $student_ids));
 
-        if($audited_only){
+        if ($audited_only) {
             $qb->andWhere('shift.audited = 1');
         }
 
-        if(isset($site_ids)){
+        if (isset($site_ids)) {
             $qb->andWhere($qb->expr()->in('site.id', $site_ids));
         }
 
-        if(isset($patient_types)){
+        if (isset($patient_types)) {
             $qb->andWhere($qb->expr()->in('subject.id', $patient_types));
         }
 
         $param_count = 1;
 
-        if($start_date){
+        if ($start_date) {
             $qb->andWhere("shift.start_datetime >= ?1");
             $start_datetime_object = date_create($start_date);
             $qb->setParameter(1, $start_datetime_object->format("Y-m-d"));
             $param_count++;
         }
 
-        if($end_date){
+        if ($end_date) {
             $qb->andWhere("shift.start_datetime <= ?" . $param_count);
             $end_datetime_object = date_create($end_date);
             $qb->setParameter($param_count, $end_datetime_object->format("Y-m-d 23:59:59"));
@@ -181,7 +180,6 @@ class DoctrineAirwayManagementRepository extends DoctrineRepository implements A
                     } else {
                         return $a['patient']['id'] < $b['patient']['id'];
                     }
-
                 } else {
                     return $a['shift']['start_datetime'] < $b['shift']['start_datetime'];
                 }
@@ -214,8 +212,7 @@ class DoctrineAirwayManagementRepository extends DoctrineRepository implements A
 
     public function getTotals($student_id, $goal_set, $include_coa_success_rate_data = false, $filters = array())
     {
-
-        if(count($filters) > 0){
+        if (count($filters) > 0) {
             // format the filters in a way that our 'getDataForReport' will understand:
             $site_ids = $start_date = $end_date = $patient_types = $audited_only = null;
 
@@ -235,8 +232,7 @@ class DoctrineAirwayManagementRepository extends DoctrineRepository implements A
             $audited_only = $filters['auditedOrAll'];
 
             $raw_data = $this->getDataForReport(array($student_id), $site_ids, $start_date, $end_date, $patient_types, $audited_only);
-        }
-        else {
+        } else {
             $raw_data = $this->getDataForReport(array($student_id));
         }
 
@@ -254,41 +250,36 @@ class DoctrineAirwayManagementRepository extends DoctrineRepository implements A
 
         $et_data = array();
 
-        foreach($raw_data as $attempt){
+        foreach ($raw_data as $attempt) {
             // only include this attempt if the student performed it
-            if($attempt['performed_by']){
+            if ($attempt['performed_by']) {
                 $source = $attempt['airway_management_source']['id'];
 
                 // If this was a lab shift, add to "Simulations" chart
-                if($attempt['shift']['type'] == "lab"){
+                if ($attempt['shift']['type'] == "lab") {
 
                     // if it was an LPI, figure out what type of patient it was
-                    if($source == 1){
+                    if ($source == 1) {
                         // add to our total attempts
                         $total_attempts++;
 
-                        if($attempt['subject']['name'] == 'Manikin'){
+                        if ($attempt['subject']['name'] == 'Manikin') {
                             $key = $attempt['subject']['name'] . " - " . $attempt['subject']['type'];
-                        }
-                        else if($attempt['subject']['name'] == "Animal"){
+                        } elseif ($attempt['subject']['name'] == "Animal") {
                             $key = "Animal";
-                        }
-                        else {
+                        } else {
                             $key = ($attempt['subject']['type'] == "live") ? "Live human" : "Cadaver";
                         }
 
                         $total_sims[$key]++;
-                    }
-                    else {
+                    } else {
                         $total_attempts++;
 
-                        if($attempt['subject']['name'] == 'Manikin'){
+                        if ($attempt['subject']['name'] == 'Manikin') {
                             $key = $attempt['subject']['name'] . " - " . $attempt['subject']['type'];
-                        }
-                        else if($attempt['subject']['name'] == "Animal"){
+                        } elseif ($attempt['subject']['name'] == "Animal") {
                             $key = "Animal";
-                        }
-                        else {
+                        } else {
                             $key = ($attempt['subject']['type'] == "live") ? "Live human" : "Cadaver";
                         }
 
@@ -296,22 +287,18 @@ class DoctrineAirwayManagementRepository extends DoctrineRepository implements A
 
                         $scenario_count++;
                     }
-
-
-                }
-                else {
+                } else {
                     // add to our total attempts
                     $total_attempts++;
 
                     // Add to our "Live Patients" chart
                     $patient = $attempt['patient'];
 
-                    if(isset($patient['age'])){
+                    if (isset($patient['age'])) {
                         $age = ((intval($patient['age']) * 12) + (intval($patient['months'])))/12;
                         $age_group_name = $goal_set->getAgeFieldName($age, true);
                         $total_patients[$age_group_name]++;
-                    }
-                    else {
+                    } else {
                         $total_patients["Unknown"]++;
                     }
                 } // end shift type if
@@ -320,18 +307,16 @@ class DoctrineAirwayManagementRepository extends DoctrineRepository implements A
                 $eureka_attempts[] = ($attempt['success'] === true) ? 1 : 0;
                 $eureka_dates[] = $attempt['shift']['start_datetime'];
 
-                if($attempt['success'] === true){
+                if ($attempt['success'] === true) {
                     $success_count++;
                 }
-
             } // end if performed by
             else {
                 $observed_count++;
             }
-
         } // end for each attempt
 
-        if($total_sims['Live human'] == 0){
+        if ($total_sims['Live human'] == 0) {
             unset($total_sims['Live human']);
         }
 
@@ -344,7 +329,7 @@ class DoctrineAirwayManagementRepository extends DoctrineRepository implements A
             "total_observed" => $observed_count,
             "total_scenarios" => $scenario_count);
 
-        if($include_coa_success_rate_data){
+        if ($include_coa_success_rate_data) {
             $window = 20;
             $attempt_count = count($eureka_attempts);
             $starting_point = $attempt_count - $window;
@@ -353,24 +338,23 @@ class DoctrineAirwayManagementRepository extends DoctrineRepository implements A
             $coa_dates = array();
             $coa_success_count = 0;
 
-            if($starting_point < 0){
+            if ($starting_point < 0) {
                 $coa_attempts = $eureka_attempts;
                 $coa_dates = $eureka_dates;
-                if($eureka_attempts){
-                    foreach($eureka_attempts as $attempt){
-                        if($attempt === 1){
+                if ($eureka_attempts) {
+                    foreach ($eureka_attempts as $attempt) {
+                        if ($attempt === 1) {
                             $coa_success_count++;
                         }
                     }
                 }
-            }
-            else {
-                for($i = $starting_point; $i < $attempt_count; $i++){
-                    if(isset($eureka_attempts[$i])){
+            } else {
+                for ($i = $starting_point; $i < $attempt_count; $i++) {
+                    if (isset($eureka_attempts[$i])) {
                         $coa_attempts[] = $eureka_attempts[$i];
                         $coa_dates[] = $eureka_dates[$i];
 
-                        if($eureka_attempts[$i]){
+                        if ($eureka_attempts[$i]) {
                             $coa_success_count++;
                         }
                     }
@@ -381,7 +365,6 @@ class DoctrineAirwayManagementRepository extends DoctrineRepository implements A
         }
 
         return $return_array;
-
     } // end getTotals
 
     public function getIdByPatient($patient_id)
@@ -397,8 +380,8 @@ class DoctrineAirwayManagementRepository extends DoctrineRepository implements A
 
         $return_val = false;
 
-        if($res){
-            foreach($res as $am){
+        if ($res) {
+            foreach ($res as $am) {
                 $return_val = $am->id;
             }
         }
@@ -418,8 +401,8 @@ class DoctrineAirwayManagementRepository extends DoctrineRepository implements A
 
         $res = $qb->getQuery()->getResult();
         $single_result = false;
-        if($res){
-            foreach($res as $result){
+        if ($res) {
+            foreach ($res as $result) {
                 $single_result = $result;
             }
         }
@@ -468,14 +451,13 @@ class DoctrineAirwayManagementRepository extends DoctrineRepository implements A
         $results = $qb->getQuery()->getArrayResult();
         $return_val = false;
 
-        if($results){
+        if ($results) {
             $return_val = array();
-            foreach($results as $id){
+            foreach ($results as $id) {
                 $return_val[] = $id['id'];
             }
         }
 
         return $return_val;
-
     }
 }

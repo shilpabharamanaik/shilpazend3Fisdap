@@ -15,10 +15,10 @@ class Fisdap_View_Helper_Login
 
     public function login()
     {
-		$html = '';
-		
-		// HEADER AREA
-		$html .= <<<HEADER
+        $html = '';
+        
+        // HEADER AREA
+        $html .= <<<HEADER
 		
 			<div class='header'>
 				<!-- <div class='back_link'><a href='http://content.fisdapoffice.com/home'>&lt;&lt; Back to Fisdap Home</a></div> -->
@@ -35,17 +35,17 @@ class Fisdap_View_Helper_Login
 		<div class='grid_12'>
 		</div>
 HEADER;
-		
-		// LOGIN AREA
-		$html .= "<div class='grid_8'><div id='login_area' class='area left'>";
-		$html .= $this->view->form . '</div></div>';
-		
-		// CREATE ACCOUNT AREA
-		$createAccountLink = '<a href="' . $this->view->url() . '">Create an Account</a>';
-		$contactUsLink = '<a href="' . $this->view->url() . '">Contact Us</a>';
-		//<a href='http://content.fisdapoffice.com/contact_us'>Contact us</a> 
-		
-		$html .= <<<CREATEACCT
+        
+        // LOGIN AREA
+        $html .= "<div class='grid_8'><div id='login_area' class='area left'>";
+        $html .= $this->view->form . '</div></div>';
+        
+        // CREATE ACCOUNT AREA
+        $createAccountLink = '<a href="' . $this->view->url() . '">Create an Account</a>';
+        $contactUsLink = '<a href="' . $this->view->url() . '">Contact Us</a>';
+        //<a href='http://content.fisdapoffice.com/contact_us'>Contact us</a>
+        
+        $html .= <<<CREATEACCT
 		<div class='grid_4'>
 			<div id='create_acct' class='area left'>
 				<div class="form_field"> 
@@ -66,8 +66,7 @@ HEADER;
 			</div>
 		</div>
 CREATEACCT;
-			
-		return $html; 
-	}
+            
+        return $html;
+    }
 }
-?>

@@ -33,5 +33,4 @@ class StudentController extends AbstractActionController
 
         return new ViewModel();
     }
-
 }

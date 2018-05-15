@@ -4,7 +4,6 @@ use Illuminate\Contracts\Validation\Validator;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
-
 /**
  * For use with FormRequest classes, this trait will allow validation exceptions to be handled by
  * Fisdap\ErrorHandling\ErrorHandler, instead of being caught by the Laravel router.
@@ -39,8 +38,7 @@ trait CapturableValidationErrors
         $errors = [];
 
         foreach ($validator->getMessageBag()->getMessages() as $field => $fieldErrors) {
-                $errors[] = "$field " . implode(', ', $fieldErrors);
-
+            $errors[] = "$field " . implode(', ', $fieldErrors);
         }
 
         return 'Validation errors: ' . implode(', ', $errors);

@@ -4,10 +4,9 @@ use Fisdap\Attachments\Categories\Commands\Modification\RenameAttachmentCategory
 use Fisdap\Attachments\Categories\Entity\AttachmentCategory;
 use Fisdap\Attachments\Categories\Entity\AttachmentCategoryNotFound;
 
-
 /**
  * Class RenameAttachmentCategoryCommandCest
- * 
+ *
  * @author  Ben Getsug <bgetsug@fisdap.net>
  */
 class RenameAttachmentCategoryCommandCest extends AttachmentCategoryCommandCestTemplate
@@ -78,7 +77,7 @@ class RenameAttachmentCategoryCommandCest extends AttachmentCategoryCommandCestT
     {
         // assert
         $I->assertTrue(
-            $I->seeExceptionThrown(AttachmentCategoryNotFound::class, function() {
+            $I->seeExceptionThrown(AttachmentCategoryNotFound::class, function () {
                 // arrange
                 $command = new RenameAttachmentCategoryCommand('bar', null, 1);
 

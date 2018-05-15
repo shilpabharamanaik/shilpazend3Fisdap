@@ -17,7 +17,7 @@ class Fisdap_Reports_TestAttempts extends Fisdap_Reports_Report
         'Fisdap_Reports_Form_SingleTestPicker' => array(
             'title' => 'Report options',
             'options' => array(
-                'dateRange' => TRUE, // show the date range
+                'dateRange' => true, // show the date range
             ),
         ),
 
@@ -26,13 +26,14 @@ class Fisdap_Reports_TestAttempts extends Fisdap_Reports_Report
     /**
      * @var \Fisdap\Entity\MoodleTestDataLegacy $test
      */
-    public $test = NULL;
+    public $test = null;
 
 
     /**
      * This report is only available to STAFF ONLY
      */
-    public static function hasPermission($userContext) {
+    public static function hasPermission($userContext)
+    {
         return $userContext->getUser()->isStaff();
     }
 
@@ -40,7 +41,8 @@ class Fisdap_Reports_TestAttempts extends Fisdap_Reports_Report
      * Run a query and any processing logic that produces the data contained in the report
      * Sets resulting tables as $this->data
      */
-    public function runReport() {
+    public function runReport()
+    {
         // process report configuration to change filters
         $filter = array();
         if ($this->config['dateRange']['startDate'] != '') {
@@ -63,15 +65,15 @@ class Fisdap_Reports_TestAttempts extends Fisdap_Reports_Report
         $progRepo = \Fisdap\EntityUtils::getRepository('ProgramLegacy');
         $programResults = $progRepo->getAllPrograms(array('id', 'name'));
         $programs = array();
-        foreach($programResults as $programInfo) {
+        foreach ($programResults as $programInfo) {
             $programs[$programInfo['id']] = $programInfo['name'];
         }
         $counts = \Fisdap\MoodleUtils::countProgramQuizAttempts(array_keys($programs), array($this->test));
 
         $body = array();
-        foreach($counts as $programId => $tests) {
+        foreach ($counts as $programId => $tests) {
             $row = array($programs[$programId], $programId);
-            foreach($tests as $testId => $count) {
+            foreach ($tests as $testId => $count) {
                 $row[] = $count;
             }
             $body[] = $row;
@@ -101,7 +103,8 @@ class Fisdap_Reports_TestAttempts extends Fisdap_Reports_Report
      * Return a custom short label/description of the Test Attempts report
      * Overrides parent method
      */
-    public function getShortConfigLabel() {
+    public function getShortConfigLabel()
+    {
         // generate the form summary
         $this->getSummary('div');
 

@@ -11,13 +11,15 @@ namespace Util;
  * by using the Rserve server
  * Fisdap wrapper class for the Rserve php client library
  */
-class RStats {
+class RStats
+{
     /**
      * @var null|Rserve_Connection Connection to an Rserve server
      */
-    private $rserveConnection = NULL;
+    private $rserveConnection = null;
 
-    public function __construct($host) {
+    public function __construct($host)
+    {
         require_once 'rserve/Connection.php';
 
         // try connecting to Rserve (R server)
@@ -34,7 +36,8 @@ class RStats {
      * @param $rScript string rScript code to run
      * @return array Results of calculation
      */
-    public function runRScript($rScript = '') {
+    public function runRScript($rScript = '')
+    {
         $rResult = $this->rserveConnection->evalString($rScript);
 
         return $rResult;
@@ -48,12 +51,13 @@ class RStats {
      *
      * @return string R Script string
      */
-    public static function makeRDataFrameText($name, $table) {
+    public static function makeRDataFrameText($name, $table)
+    {
         $vectors = array();
-        foreach($table as $vectorName => $vector) {
+        foreach ($table as $vectorName => $vector) {
             $vectorString = self::sanitizeRVariableName($vectorName) . ' <- c(';
             // wrap any non-numeric values with quotes, so they are handled as strings
-            foreach($vector as $key => $element) {
+            foreach ($vector as $key => $element) {
                 if (!is_numeric($element)) {
                     $vector[$key] = '"' . $element . '"';
                 }
@@ -64,7 +68,7 @@ class RStats {
         }
         $rString = implode("\n", $vectors);
         $rString .= "\n" . $name .  " <- data.frame(";
-        foreach($vectors as $vectorName => $data) {
+        foreach ($vectors as $vectorName => $data) {
             $vectors[$vectorName] = $vectorName . '=' . self::sanitizeRVariableName($vectorName);
         }
         $rString .= implode(',', $vectors);
@@ -79,7 +83,8 @@ class RStats {
      * @param $name Name of the proposed R variable
      * @return string Sanitized name of the proposed R variable
      */
-    public static function sanitizeRVariableName($name) {
+    public static function sanitizeRVariableName($name)
+    {
         return strtolower(preg_replace('/[^a-z]+/i', '', $name));
     }
 }

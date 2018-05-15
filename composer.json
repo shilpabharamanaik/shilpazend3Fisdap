@@ -65,7 +65,8 @@
         "symfony/filesystem": "v3.4.6",
         "fisdap/members-api": "dev-master",
         "doctrine/doctrine-orm-module": "^2.1",
-        "zendframework/zend-session": "^2.8"
+        "zendframework/zend-session": "^2.8",
+        "zendframework/zend-authentication": "^2.6"
     },
     "autoload": {
         "psr-0": {

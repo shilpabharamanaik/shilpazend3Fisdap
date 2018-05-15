@@ -39,8 +39,8 @@ return [
     'Account',
     'Community',
     'Learningcenter',
-	'MyFisdap',
+    'MyFisdap',
     'Reports',
-	'Skillstracker',
+    'Skillstracker',
     'User',
 ];

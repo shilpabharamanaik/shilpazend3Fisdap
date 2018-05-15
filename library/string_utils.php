@@ -8,12 +8,15 @@ require_once('Assert.inc');
  * @param string $str2 The ending.
  * @return boolean TRUE if $str1 ends with $str2.
  */
-function str_ends_with($str1, $str2) {
+function str_ends_with($str1, $str2)
+{
     Assert::is_string($str1);
     Assert::is_string($str2);
 
     $offset = strlen($str1) - strlen($str2);
-    if ($offset < 0) return false;
+    if ($offset < 0) {
+        return false;
+    }
 
     return (substr($str1, $offset) == $str2);
 }
@@ -25,22 +28,20 @@ function str_ends_with($str1, $str2) {
  * @param int $n The number the word pertains to.
  * @return The singular (n=1) or plural form (n != 1, an 's' is added).
  */
-function pluralize($singular, $n) {
+function pluralize($singular, $n)
+{
     Assert::is_string($singular);
     Assert::is_int($n);
 
     if ($n != 1) {
         if (str_ends_with($singular, 'y')) {
             $singular = substr($singular, 0, strlen($singular)-1) . 'ies';
-        }
-        elseif (str_ends_with($singular, 'Y')) {
+        } elseif (str_ends_with($singular, 'Y')) {
             $singular = substr($singular, 0, strlen($singular)-1) . 'IES';
-        }
-        else {
+        } else {
             $singular .= 's';
         }
     }
 
     return $singular;
 }
-?>

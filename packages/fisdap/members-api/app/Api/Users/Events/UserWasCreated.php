@@ -3,7 +3,6 @@
 use Fisdap\Api\Events\Event;
 use Fisdap\Entity\User;
 
-
 /**
  * An event to fire when a user (User Entity) was created
  *

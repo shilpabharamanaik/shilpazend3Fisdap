@@ -20,5 +20,3 @@ final class Fisdap_Exception_InvalidArgumentException extends Fisdap_Exception_E
         parent::__construct($message, $cause);
     }
 }
-
-?>

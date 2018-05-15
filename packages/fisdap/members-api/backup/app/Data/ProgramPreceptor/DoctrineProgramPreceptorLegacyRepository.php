@@ -7,7 +7,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineProgramPreceptorLegacyRepository
  *
@@ -16,5 +15,4 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineProgramPreceptorLegacyRepository extends DoctrineRepository implements ProgramPreceptorLegacyRepository
 {
-
 }

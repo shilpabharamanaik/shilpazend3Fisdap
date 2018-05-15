@@ -19,24 +19,24 @@
  */
 class Fisdap_Form_Element_Signature extends Zend_Form_Element_Text
 {
-	public $signature = null;
+    public $signature = null;
 
-	public function init()
-	{
-		$this->getView()->headScript()->appendFile("/js/signaturePad/assets/jquery.signaturepad.min.js");
-		$this->getView()->headScript()->appendFile("/js/signaturePad/assets/json2.min.js");
-		$this->getView()->headLink()->appendStylesheet("/js/signaturePad/assets/jquery.signaturepad.css");
+    public function init()
+    {
+        $this->getView()->headScript()->appendFile("/js/signaturePad/assets/jquery.signaturepad.min.js");
+        $this->getView()->headScript()->appendFile("/js/signaturePad/assets/json2.min.js");
+        $this->getView()->headLink()->appendStylesheet("/js/signaturePad/assets/jquery.signaturepad.css");
 
-		$this->getView()->headScript()->appendFile("/js/signaturePad/assets/flashcanvas.js", 'text/javascript', array('conditional' => 'lt IE 9'));
-	}
+        $this->getView()->headScript()->appendFile("/js/signaturePad/assets/flashcanvas.js", 'text/javascript', array('conditional' => 'lt IE 9'));
+    }
 
-	public function render()
-	{
-		$formContents = "";
+    public function render()
+    {
+        $formContents = "";
 
-		$name = $this->getName();
+        $name = $this->getName();
 
-		$formContents = <<<FORM
+        $formContents = <<<FORM
 			<div class="sigPad" style="width: 352px">
 				<ul class="sigNav">
 					<li class="clearButton"><a id='clear-sig-link' href="#clear">Clear</a></li>
@@ -53,6 +53,6 @@ class Fisdap_Form_Element_Signature extends Zend_Form_Element_Text
 			</script>
 FORM;
 
-		return $formContents;
-	}
+        return $formContents;
+    }
 }

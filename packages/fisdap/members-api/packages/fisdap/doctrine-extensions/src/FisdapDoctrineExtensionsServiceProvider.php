@@ -16,8 +16,10 @@ use Illuminate\Support\ServiceProvider;
  *
  * @package Fisdap\Doctrine\Extensions
  */
-class FisdapDoctrineExtensionsServiceProvider extends ServiceProvider {
-    public function register() {
+class FisdapDoctrineExtensionsServiceProvider extends ServiceProvider
+{
+    public function register()
+    {
         // Make the UUID column type available
         Bootstrap\UuidType::bootstrap();
     }

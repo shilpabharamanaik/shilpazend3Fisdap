@@ -13,7 +13,6 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-
 /**
  * Handles error and exception logging, third-party error tracking, and facilitates JSON output
  *
@@ -97,15 +96,15 @@ class ErrorHandler extends Handler
                 $userId = $user instanceof Authenticatable ? $user->getAuthIdentifier() : null;
 
                 $this->logger->error($e);
-				if(\Auth::check()){
-					Bugsnag::registerCallback(function ($report) {
-					$report->setUser([
-							'id' => Auth::user()->id,
-							'name' => Auth::user()->name . ' ' . Auth::user()->surname,
-							'email' => Auth::user()->email,
-						]);
-					});
-				}
+                if (\Auth::check()) {
+                    Bugsnag::registerCallback(function ($report) {
+                        $report->setUser([
+                            'id' => Auth::user()->id,
+                            'name' => Auth::user()->name . ' ' . Auth::user()->surname,
+                            'email' => Auth::user()->email,
+                        ]);
+                    });
+                }
 
                 $this->newrelic->setUserAttributes($userId);
                 $this->newrelic->noticeError($e->getMessage(), $e);
@@ -123,12 +122,12 @@ class ErrorHandler extends Handler
             'error' => [
                 'message'        => $e->getMessage(),
                 'code'           => $e->getCode(),
-				'file'           => $e->getFile(),
-				'line'           => $e->getLine(),
+                'file'           => $e->getFile(),
+                'line'           => $e->getLine(),
                 'exceptionClass' => (new \ReflectionClass($e))->getShortName(),
             ]
         ];
-		//print_r($e->getFile());
+        //print_r($e->getFile());
         if (
             in_array('application/json', $this->request->getAcceptableContentTypes()) or
             $this->config->get('error-handling.forceJsonResponse') === true
@@ -142,4 +141,4 @@ class ErrorHandler extends Handler
 
         return parent::render($request, $e);
     }
-} 
+}

@@ -7,7 +7,6 @@ use Fisdap\Attachments\Queries\AttachmentsFinder;
 use Fisdap\Attachments\Repository\AttachmentsRepository;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 
-
 class AttachmentsFinderCest
 {
     /**
@@ -37,7 +36,9 @@ class AttachmentsFinderCest
         $this->attachmentsRepositoryMock = Mockery::mock(AttachmentsRepository::class);
         $this->eventDispatcherMock = Mockery::mock(EventDispatcher::class);
         $this->attachmentsFinder = new AttachmentsFinder(
-            $this->attachmentTypeMapperMock, $this->attachmentsRepositoryMock, $this->eventDispatcherMock
+            $this->attachmentTypeMapperMock,
+            $this->attachmentsRepositoryMock,
+            $this->eventDispatcherMock
         );
     }
 
@@ -72,7 +73,7 @@ class AttachmentsFinderCest
     {
         // assert
         $I->assertTrue(
-            $I->seeExceptionThrown(AttachmentNotFound::class, function() {
+            $I->seeExceptionThrown(AttachmentNotFound::class, function () {
 
                 // arrange
                 $this->attachmentTypeMapperMock->shouldReceive('getAttachmentEntityClassName')->once()

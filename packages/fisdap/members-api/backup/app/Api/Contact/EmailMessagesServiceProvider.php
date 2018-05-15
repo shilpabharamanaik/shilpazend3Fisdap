@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Contact;
 
-
 use Fisdap\Api\Contact\Http\ContactsController;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
@@ -27,5 +26,3 @@ final class EmailMessagesServiceProvider extends ServiceProvider
         ]);
     }
 }
-
-

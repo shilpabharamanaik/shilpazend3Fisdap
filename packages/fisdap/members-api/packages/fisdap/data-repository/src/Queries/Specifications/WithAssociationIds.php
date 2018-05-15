@@ -3,7 +3,6 @@
 use Fisdap\Queries\Specifications\QueryModifiers\PartialAssociations;
 use Happyr\DoctrineSpecification\BaseSpecification;
 
-
 /**
  * Facilitates left joins and partial associations with only their ids
  *

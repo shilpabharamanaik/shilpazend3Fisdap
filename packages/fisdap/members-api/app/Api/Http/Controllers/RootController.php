@@ -4,7 +4,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Route;
 use Swagger\Annotations as SWG;
 
-
 /**
  * Class RootController
  *

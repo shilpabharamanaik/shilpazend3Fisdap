@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Shifts\PreceptorSignoffs\Http;
 
-
 use Doctrine\ORM\EntityManagerInterface;
 use Fisdap\Api\Http\Controllers\Controller;
 use Fisdap\Api\Transformation\EnumeratedTransformer;
@@ -11,7 +10,7 @@ use League\Fractal\Manager;
 
 /**
  * Class PreceptorRatingController
- * 
+ *
  * @package Fisdap\Api\Shifts\PreceptorSignoff\Http
  * @author  Isaac White <isaac.white@ascendlearning.com>
  */
@@ -26,7 +25,7 @@ final class PreceptorRatingsController extends Controller
 
     /**
      * PreceptorRatingController constructor.
-     * 
+     *
      * @param Manager $fractal
      * @param EnumeratedTransformer $transformer
      * @param EntityManagerInterface $em
@@ -89,7 +88,4 @@ final class PreceptorRatingsController extends Controller
     {
         return $this->respondWithCollection($this->em->getRepository(PreceptorRatingRaterType::class)->findAll(), $this->transformer);
     }
-
 }
-
-

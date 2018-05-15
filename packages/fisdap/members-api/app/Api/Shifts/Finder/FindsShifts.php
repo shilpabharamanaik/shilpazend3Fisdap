@@ -3,7 +3,6 @@
 use Fisdap\Api\Queries\Exceptions\ResourceNotFound;
 use Fisdap\Api\Shifts\Queries\ShiftQueryParameters;
 
-
 /**
  * Contract for retrieving a single shift or various groups of shifts
  *

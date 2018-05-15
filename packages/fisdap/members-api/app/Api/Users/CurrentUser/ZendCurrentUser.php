@@ -3,7 +3,6 @@
 use Doctrine\ORM\EntityManager;
 use Fisdap\Entity\User;
 
-
 /**
  * Class ZendCurrentUser
  *

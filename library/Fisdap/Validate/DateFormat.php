@@ -20,35 +20,33 @@
  */
 class Fisdap_Validate_DateFormat extends Zend_Validate_Abstract
 {
-	const INVALID_START = 'invalidStart';
-	const INVALID_END = 'invalidEnd';
-	
-	protected $_messageTemplates = array(
+    const INVALID_START = 'invalidStart';
+    const INVALID_END = 'invalidEnd';
+    
+    protected $_messageTemplates = array(
         self::INVALID_START => "Please enter a valid start date in mm/dd/yyyy format.",
-		self::INVALID_END => "Please enter a valid end date in mm/dd/yyyy format.",
+        self::INVALID_END => "Please enter a valid end date in mm/dd/yyyy format.",
     );
-	
+    
     public function __construct()
-	{
-		
-	}
-	
+    {
+    }
+    
     public function isValid($value)
     {
         $isValid = true;
         $this->_setValue($value);
-		
-		if ($value['startDate'] && !\Util_String::isValidDate($value['startDate'])) {
-			$this->_error(self::INVALID_START);
-			$isValid = false;
-		}
-		
-		if ($value['endDate'] && !\Util_String::isValidDate($value['endDate'])) {
-			$this->_error(self::INVALID_END);
-			$isValid = false;
-		}
+        
+        if ($value['startDate'] && !\Util_String::isValidDate($value['startDate'])) {
+            $this->_error(self::INVALID_START);
+            $isValid = false;
+        }
+        
+        if ($value['endDate'] && !\Util_String::isValidDate($value['endDate'])) {
+            $this->_error(self::INVALID_END);
+            $isValid = false;
+        }
 
         return $isValid;
     }
-
 }

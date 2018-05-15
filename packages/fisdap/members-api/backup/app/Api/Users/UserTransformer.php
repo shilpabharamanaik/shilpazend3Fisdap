@@ -4,7 +4,6 @@ use Fisdap\Entity\User;
 use Fisdap\Fractal\Transformer;
 use Fisdap\Api\Users\UserContexts\UserContextTransformer;
 
-
 /**
  * Prepares user data for JSON output
  *
@@ -96,4 +95,4 @@ final class UserTransformer extends Transformer
 
         return $this->collection($userContexts, new UserContextTransformer);
     }
-} 
+}

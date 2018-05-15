@@ -8,15 +8,16 @@
 
 namespace Fisdap\Service;
 
-
-class CoreSubjectService implements SubjectService {
-    public function makeSubjectIdsArray(\Doctrine\ORM\EntityRepository $repository, $subjectIds) {
+class CoreSubjectService implements SubjectService
+{
+    public function makeSubjectIdsArray(\Doctrine\ORM\EntityRepository $repository, $subjectIds)
+    {
         $type_ids = array();
 
         // no type selected means give them all types
         if (is_null($subjectIds)) {
             $patientTypes = $repository->findAll();
-            foreach($patientTypes as $type) {
+            foreach ($patientTypes as $type) {
                 $type_ids[] = $type->id;
             }
             return $type_ids;
@@ -32,4 +33,4 @@ class CoreSubjectService implements SubjectService {
 
         return $type_ids;
     }
-} 
+}

@@ -4,7 +4,6 @@ use Doctrine\ORM\EntityManager;
 use Illuminate\Support\ServiceProvider;
 use Zend_Registry;
 
-
 /**
  * Mimics behavior of ZF1-Doctrine2 integration ("Bisna")
  * @codeCoverageIgnore
@@ -19,14 +18,16 @@ class DoctrineContainer
     /**
      * @param EntityManager $em
      */
-    public function __construct(EntityManager $em) {
+    public function __construct(EntityManager $em)
+    {
         $this->em = $em;
     }
 
     /**
      * @return EntityManager
      */
-    public function getEntityManager() {
+    public function getEntityManager()
+    {
         return $this->em;
     }
 }

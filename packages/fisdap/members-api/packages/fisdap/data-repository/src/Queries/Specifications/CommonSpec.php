@@ -3,7 +3,6 @@
 use Happyr\DoctrineSpecification\BaseSpecification;
 use Happyr\DoctrineSpecification\Spec;
 
-
 /**
  * Class CommonSpec
  *

@@ -5,13 +5,11 @@
  */
 
 class Fisdap_Form_BikeRideEvent extends Fisdap_Form_Base
- {
-    
+{
     public $event;
     
     public function __construct($eventid = null)
     {
-        
         $this->event = \Fisdap\EntityUtils::getEntity("BikeRideEvent", $eventid);
         
         parent::__construct();
@@ -40,10 +38,10 @@ class Fisdap_Form_BikeRideEvent extends Fisdap_Form_Base
         //route information
         $route = new Zend_Form_Element_Textarea('route_info');
         $route->setLabel('Route Information:')
-	        ->setRequired(false)
-	        ->addFilter('StripTags')
-	        ->addFilter('HtmlEntities')
-	        ->setDecorators(self::$gridElementDecorators);
+            ->setRequired(false)
+            ->addFilter('StripTags')
+            ->addFilter('HtmlEntities')
+            ->setDecorators(self::$gridElementDecorators);
         
         //region
         $region = new Zend_Form_Element_Text('region');
@@ -52,7 +50,7 @@ class Fisdap_Form_BikeRideEvent extends Fisdap_Form_Base
                   ->addFilter('StripTags')
                   ->addFilter('HtmlEntities')
                   ->addErrorMessage("Please enter a region for this bike ride event.")
-                  ->setDecorators(self::$gridElementDecorators);          
+                  ->setDecorators(self::$gridElementDecorators);
                   
         //destination
         $destination = new Zend_Form_Element_Text('destination');
@@ -63,29 +61,29 @@ class Fisdap_Form_BikeRideEvent extends Fisdap_Form_Base
                   ->addErrorMessage("Please enter a destination for this bike ride event.")
                   ->setDecorators(self::$gridElementDecorators);
          
-		//passcode
-		$passcode = new Zend_Form_Element_Text('passcode');
-		$passcode->setLabel('Passcode: *')
+        //passcode
+        $passcode = new Zend_Form_Element_Text('passcode');
+        $passcode->setLabel('Passcode: *')
                   ->setRequired(true)
                   ->addFilter('StripTags')
                   ->addFilter('HtmlEntities')
                   ->addErrorMessage("Please choose a passcode for this event.")
                   ->setDecorators(self::$gridElementDecorators);
-				  
-		//email list
-		$email_list = new Zend_Form_Element_TextArea('email_list');
-		$email_list->setLabel('Email List:')
+                  
+        //email list
+        $email_list = new Zend_Form_Element_TextArea('email_list');
+        $email_list->setLabel('Email List:')
                   ->addFilter('StripTags')
                   ->addFilter('HtmlEntities')
-				  ->setAttribs(array("cols" => 40, "rows" => 12))
+                  ->setAttribs(array("cols" => 40, "rows" => 12))
                   ->setDecorators(self::$gridElementDecorators);
-		 
+         
         //roles
         $role_options = \Fisdap\Entity\BikeRideRole::getFormOptions();
         
         $roles = new Zend_Form_Element_MultiCheckbox('roles');
         $roles->setRequired(true)
-		     ->setLabel('Please check all roles to be included: *')
+             ->setLabel('Please check all roles to be included: *')
                      ->addErrorMessage("Please check at least one role to include.")
                      ->setMultiOptions($role_options)
                      ->setDecorators(self::$gridElementDecorators);
@@ -108,13 +106,13 @@ class Fisdap_Form_BikeRideEvent extends Fisdap_Form_Base
         $housingtoggle = new Zend_Form_Element_Checkbox('housingtoggle');
         $housingtoggle->setLabel('Show housing section: ')
                 ->setDecorators(self::$gridElementDecorators);
-        if($this->event->id){
-            if(is_null($this->event->housing)){
-                    $housingtoggle->setValue('0');
-            }else {
-                    $housingtoggle->setValue('1');
+        if ($this->event->id) {
+            if (is_null($this->event->housing)) {
+                $housingtoggle->setValue('0');
+            } else {
+                $housingtoggle->setValue('1');
             }
-        }else{
+        } else {
             $housingtoggle->setValue('1');
         }
         //housing
@@ -128,13 +126,13 @@ class Fisdap_Form_BikeRideEvent extends Fisdap_Form_Base
         $transporttoggle->setLabel('Show transporation section: ')
                 ->setDecorators(self::$gridElementDecorators);
         
-        if($this->event->id){
-            if(is_null($this->event->transportation)){
-                    $transporttoggle->setValue('0');
-            }else {
-                    $transporttoggle->setValue('1');
+        if ($this->event->id) {
+            if (is_null($this->event->transportation)) {
+                $transporttoggle->setValue('0');
+            } else {
+                $transporttoggle->setValue('1');
             }
-        }else {
+        } else {
             $transporttoggle->setValue('1');
         }
         
@@ -151,33 +149,33 @@ The National EMS Memorial Bike Ride is not responsible for parking availability 
         $jerseytoggle->setLabel('Show jersey section: ')
                 ->setDecorators(self::$gridElementDecorators);
         
-        if($this->event->id){
-            if(is_null($this->event->jersey)){
-                    $jerseytoggle->setValue('0');
-            }else {
-                    $jerseytoggle->setValue('1');
+        if ($this->event->id) {
+            if (is_null($this->event->jersey)) {
+                $jerseytoggle->setValue('0');
+            } else {
+                $jerseytoggle->setValue('1');
             }
-        }else {
+        } else {
             $jerseytoggle->setValue('1');
         }
         //Jersey
         $jerseytext = new Zend_Form_Element_Textarea('jerseytext');
         $jerseytext->setLabel('Jersey Information: ')
                 ->setDecorators(self::$gridElementDecorators)
-                ->setValue('Jersey Size: Anyone riding 3 or more days will receive a NEMSMBR Official Riding Jersey. Day Riders can purchase jerseys for $75 each.');       
+                ->setValue('Jersey Size: Anyone riding 3 or more days will receive a NEMSMBR Official Riding Jersey. Day Riders can purchase jerseys for $75 each.');
         
         //tshirt toggle
         $tshirttoggle = new Zend_Form_Element_Checkbox('tshirttoggle');
         $tshirttoggle->setLabel('Show t-shirt section: ')
                 ->setDecorators(self::$gridElementDecorators);
         
-        if($this->event->id){
-            if(is_null($this->event->tshirt)){
-                    $tshirttoggle->setValue('0');
-            }else {
-                    $tshirttoggle->setValue('1');
+        if ($this->event->id) {
+            if (is_null($this->event->tshirt)) {
+                $tshirttoggle->setValue('0');
+            } else {
+                $tshirttoggle->setValue('1');
             }
-        }else {
+        } else {
             $tshirttoggle->setValue('1');
         }
         //TShirt
@@ -246,25 +244,24 @@ Printed Parent/Guardian Name");
         $notes->setLabel('Additional header notes for event: *')
                   ->addFilter('StripTags')
                   ->addFilter('HtmlEntities')
-				  ->setAttrib('rows', '6')
+                  ->setAttrib('rows', '6')
                   ->setDecorators(self::$gridElementDecorators);
                   
-	 //Hidden elements to store IDs
-	 $eventId = new Zend_Form_Element_Hidden('eventId');
-	 $eventId->setDecorators(self::$hiddenElementDecorators);
-			
-      //submit
-	  $submit = new Fisdap_Form_Element_SaveButton('submit');
-	  $submit->setLabel('Submit Form')
-		   ->setDecorators(self::$buttonDecorators);
+        //Hidden elements to store IDs
+        $eventId = new Zend_Form_Element_Hidden('eventId');
+        $eventId->setDecorators(self::$hiddenElementDecorators);
+            
+        //submit
+        $submit = new Fisdap_Form_Element_SaveButton('submit');
+        $submit->setLabel('Submit Form')
+           ->setDecorators(self::$buttonDecorators);
                   
         
         $this->addElements(array($origin, $region, $destination, $passcode, $email_list, $roles, $start, $end, $notes, $eventId, $submit, $housing, $transportation, $jerseytext, $tshirttext, $housingtoggle, $transporttoggle, $jerseytoggle, $tshirttoggle, $liability, $route));
         
-        if ($this->event->id)
-        {
+        if ($this->event->id) {
             $this->setDefaults(array(
-	        'eventId' => $this->event->id,
+            'eventId' => $this->event->id,
                 'region' => $this->event->region,
                 'origin' => $this->event->origin,
                 'destination' => $this->event->destination,
@@ -277,15 +274,15 @@ Printed Parent/Guardian Name");
                 'jerseytext' => $this->event->jersey,
                 'tshirttext' => $this->event->tshirt,
                 'liability' => $this->event->liability,
-            	'route_info' => $this->event->route_information,
-				'passcode' => $this->event->passcode,
-				'email_list' => $this->event->email_list,
+                'route_info' => $this->event->route_information,
+                'passcode' => $this->event->passcode,
+                'email_list' => $this->event->email_list,
             ));
         } else {
-			$this->setDefaults(array(
-				"passcode" => "ridebikes",
-			));
-		}
+            $this->setDefaults(array(
+                "passcode" => "ridebikes",
+            ));
+        }
         
         //Set the decorators for the form
         $this->setDecorators(array(
@@ -294,105 +291,102 @@ Printed Parent/Guardian Name");
                 array('ViewScript', array('viewScript' => "forms/bikeRideEventForm.phtml")),
                 'Form'
         ));
-        
     }
     
-	public function process($post)
-	{
-		if ($this->isValid($post)) {
-			$values = $this->getValues();
-			
-			//Create entities for a new bike ride event 
-			if (!$values['eventId']) {
-				//Create new event entity
-				$event = \Fisdap\EntityUtils::getEntity('BikeRideEvent');
-				$event->route_information = $values['route_info'];
-				$event->origin = $values['origin'];
-				$event->region = $values['region'];
-				$event->destination = $values['destination'];
-				$event->setRolesIds($values['roles']);
-				$event->start_date = new DateTime($values['start']);
-				$event->end_date = new DateTime($values['end']);
-				$event->notes = $values['notes'];
-				$event->passcode = $values['passcode'];
-				$event->email_list = $values['email_list'];
-						
-				if($values['housingtoggle'] == 1){
-					$event->housing = $values['housing'];
-				}else{
-					$event->housing = NULL;
-				}
-				
-				if($values['transporttoggle'] == 1){
-					$event->transportation = $values['transportation'];
-				}else{
-					$event->transportation = NULL;
-				}
-				
-				if($values['jerseytoggle'] == 1){
-					$event->jersey = $values['jerseytext'];
-				}else{
-					$event->jersey = NULL;    
-				}
-				
-				if($values['tshirttoggle'] == 1){
-					$event->tshirt = $values['tshirttext'];
-				}else{
-					$event->tshirt = NULL;
-				}
-				
-				$event->liability = $values['liability'];
-							
-				//Save the changes and flush
-				$event->save();
-			}
-			//Edit entities for existing bike ride
-			else{
-			    $event = \Fisdap\EntityUtils::getEntity('BikeRideEvent', $values['eventId']);
-			    $event->route_information = $values['route_info'];
-			    $event->origin = $values['origin'];
-				$event->region = $values['region'];
-				$event->destination = $values['destination'];
-				$event->setRolesIds($values['roles']);
-				$event->start_date = new DateTime($values['start']);
-				$event->end_date = new DateTime($values['end']);
-				$event->notes = $values['notes'];
-				$event->passcode = $values['passcode'];
-				$event->email_list = $values['email_list'];
+    public function process($post)
+    {
+        if ($this->isValid($post)) {
+            $values = $this->getValues();
+            
+            //Create entities for a new bike ride event
+            if (!$values['eventId']) {
+                //Create new event entity
+                $event = \Fisdap\EntityUtils::getEntity('BikeRideEvent');
+                $event->route_information = $values['route_info'];
+                $event->origin = $values['origin'];
+                $event->region = $values['region'];
+                $event->destination = $values['destination'];
+                $event->setRolesIds($values['roles']);
+                $event->start_date = new DateTime($values['start']);
+                $event->end_date = new DateTime($values['end']);
+                $event->notes = $values['notes'];
+                $event->passcode = $values['passcode'];
+                $event->email_list = $values['email_list'];
+                        
+                if ($values['housingtoggle'] == 1) {
+                    $event->housing = $values['housing'];
+                } else {
+                    $event->housing = null;
+                }
+                
+                if ($values['transporttoggle'] == 1) {
+                    $event->transportation = $values['transportation'];
+                } else {
+                    $event->transportation = null;
+                }
+                
+                if ($values['jerseytoggle'] == 1) {
+                    $event->jersey = $values['jerseytext'];
+                } else {
+                    $event->jersey = null;
+                }
+                
+                if ($values['tshirttoggle'] == 1) {
+                    $event->tshirt = $values['tshirttext'];
+                } else {
+                    $event->tshirt = null;
+                }
+                
+                $event->liability = $values['liability'];
+                            
+                //Save the changes and flush
+                $event->save();
+            }
+            //Edit entities for existing bike ride
+            else {
+                $event = \Fisdap\EntityUtils::getEntity('BikeRideEvent', $values['eventId']);
+                $event->route_information = $values['route_info'];
+                $event->origin = $values['origin'];
+                $event->region = $values['region'];
+                $event->destination = $values['destination'];
+                $event->setRolesIds($values['roles']);
+                $event->start_date = new DateTime($values['start']);
+                $event->end_date = new DateTime($values['end']);
+                $event->notes = $values['notes'];
+                $event->passcode = $values['passcode'];
+                $event->email_list = $values['email_list'];
                                 
-				if($values['housingtoggle'] == 1){
-					$event->housing = $values['housing'];
-				}else{
-					$event->housing = NULL;
-				}
-				
-				if($values['transporttoggle'] == 1){
-					$event->transportation = $values['transportation'];
-				}else{
-					$event->transportation = NULL;
-				}
-				
-				if($values['jerseytoggle'] == 1){
-					$event->jersey = $values['jerseytext'];
-				}else{
-					$event->jersey = NULL;    
-				}
-				
-				if($values['tshirttoggle'] == 1){
-					$event->tshirt = $values['tshirttext'];
-				}else{
-					$event->tshirt = NULL;
-				}
+                if ($values['housingtoggle'] == 1) {
+                    $event->housing = $values['housing'];
+                } else {
+                    $event->housing = null;
+                }
+                
+                if ($values['transporttoggle'] == 1) {
+                    $event->transportation = $values['transportation'];
+                } else {
+                    $event->transportation = null;
+                }
+                
+                if ($values['jerseytoggle'] == 1) {
+                    $event->jersey = $values['jerseytext'];
+                } else {
+                    $event->jersey = null;
+                }
+                
+                if ($values['tshirttoggle'] == 1) {
+                    $event->tshirt = $values['tshirttext'];
+                } else {
+                    $event->tshirt = null;
+                }
 
-				$event->liability = $values['liability'];
+                $event->liability = $values['liability'];
                                 
-				//Save the changes and flush
-				$event->save();
-			}
-			
-		}
-		
-		return $event->id;
-	}
-     
- }
+                //Save the changes and flush
+                $event->save();
+            }
+        }
+        
+        return $event->id;
+    }
+}

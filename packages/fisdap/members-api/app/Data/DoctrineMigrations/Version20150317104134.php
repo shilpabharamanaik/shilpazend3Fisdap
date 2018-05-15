@@ -31,6 +31,5 @@ class Version20150317104134 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql("DROP TABLE fisdap2_ethnio_screeners");
-
     }
 }

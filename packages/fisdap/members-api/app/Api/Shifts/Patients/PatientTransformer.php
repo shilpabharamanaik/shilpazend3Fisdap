@@ -2,7 +2,6 @@
 
 use Fisdap\Fractal\Transformer;
 
-
 /**
  * Prepares patient data for JSON output
  *
@@ -22,4 +21,4 @@ final class PatientTransformer extends Transformer
 
         return $patient;
     }
-} 
+}

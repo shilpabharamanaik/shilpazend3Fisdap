@@ -6,24 +6,23 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * @Entity
  * @Table(name="ItemMoodleMap")
  */
 class ItemMoodleMapLegacy extends EntityBaseClass
 {
-	/**
-	 * @Column(name="ItemMoodleMap_id", type="integer")
-	 * @GeneratedValue
-	 */
-	protected $id;
-	
-	/**
-	 * @Id
-	 * @Column(name="Item_id", type="integer")
-	 */
-	protected $item_id;
+    /**
+     * @Column(name="ItemMoodleMap_id", type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
+    
+    /**
+     * @Id
+     * @Column(name="Item_id", type="integer")
+     */
+    protected $item_id;
     
     /**
      * @Column(name="Moodle_id", type="integer")

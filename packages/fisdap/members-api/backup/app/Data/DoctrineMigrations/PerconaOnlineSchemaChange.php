@@ -19,7 +19,8 @@
  *
  * @author jmortenson
  */
-trait PerconaOnlineSchemaChange {
+trait PerconaOnlineSchemaChange
+{
 
     /**
      * Alter a table using Percona Toolkit Online Schema Change. Call this from your up() / down() methods
@@ -27,7 +28,8 @@ trait PerconaOnlineSchemaChange {
      * @param string $table Name of the table to be altered
      * @param string $alterSql Partial alter statement. See percona docs for pt-online-schema-change. Like "DROP COLUMN c1"
      */
-    function alterTableWithOnlineSchemaChange($table, $alterSql) {
+    public function alterTableWithOnlineSchemaChange($table, $alterSql)
+    {
         $this->handleOnlineSchemaChangeResult(
             $this->execOnlineSchemaChange($table, $alterSql)
         );
@@ -38,8 +40,9 @@ trait PerconaOnlineSchemaChange {
      *
      * @param array $result Resulting output from the online schema change command
      */
-    function handleOnlineSchemaChangeResult($result) {
-        if ($result['success'] == TRUE) {
+    public function handleOnlineSchemaChangeResult($result)
+    {
+        if ($result['success'] == true) {
             $this->write($result['message']);
         } else {
             $this->write('Online schema change failed. Error given: ' . $result['message']);
@@ -51,7 +54,8 @@ trait PerconaOnlineSchemaChange {
      * Make associate array of database credentials, using the Connecction object obtained from the Migration class
      * @return array
      */
-    function obtainDBCredentials() {
+    public function obtainDBCredentials()
+    {
         $dbParams = $this->connection->getParams();
 
         return array(
@@ -71,7 +75,8 @@ trait PerconaOnlineSchemaChange {
      * @param bool $execute Should the alter be executed? Right now this is always true.
      * @return array Output from the command
      */
-    function execOnlineSchemaChange($table, $alterSql, $execute = TRUE) {
+    public function execOnlineSchemaChange($table, $alterSql, $execute = true)
+    {
         $creds = $this->obtainDBCredentials();
         $dsn = "D={$creds['name']},t={$table},u={$creds['username']},p='{$creds['password']}',h={$creds['host']},P={$creds['port']}";
         $cmdBase = "pt-online-schema-change --alter '{$alterSql}' --no-check-alter --alter-foreign-keys-method=auto";
@@ -88,25 +93,23 @@ trait PerconaOnlineSchemaChange {
         // Possible relevant messages are like:
         // Successfully altered `FISDAP`.`ShiftData`.
         // `FISDAP`.`ShiftData` was not altered.
-        foreach(array_reverse($outputLines) as $line) {
-            if (stripos($line, 'Successfully') !== FALSE) {
+        foreach (array_reverse($outputLines) as $line) {
+            if (stripos($line, 'Successfully') !== false) {
                 // alter ran successfully
                 return [
-                    'success' => TRUE,
+                    'success' => true,
                     'message' => $line,
                     'log' => $output,
                 ];
-            } else if (stripos($line, 'Error') !== FALSE) {
+            } elseif (stripos($line, 'Error') !== false) {
                 // alter failed, error
                 return [
-                    'success' => FALSE,
+                    'success' => false,
                     'message' => $line,
                     'error' => $line,
                     'log' => $output,
                 ];
             }
         }
-
     }
-
 }

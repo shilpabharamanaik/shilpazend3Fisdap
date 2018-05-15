@@ -6,7 +6,6 @@ use Fisdap\Data\Program\ProgramLegacyRepository;
 use Fisdap\Logging\Events\EventLogging;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-
 /**
  * Class CreateDefaultPracticeDefinitions
  *

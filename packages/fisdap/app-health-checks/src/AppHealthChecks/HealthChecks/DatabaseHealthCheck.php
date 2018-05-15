@@ -2,7 +2,6 @@
 
 use Psr\Log\LoggerInterface;
 
-
 /**
  * Checks basic database connectivity and query functionality
  *
@@ -23,7 +22,8 @@ final class DatabaseHealthCheck extends HealthCheck
      *
      * @throws \Exception
      */
-    public function __construct(\PDO $database, LoggerInterface $logger) {
+    public function __construct(\PDO $database, LoggerInterface $logger)
+    {
         parent::__construct($logger);
         $this->database = $database;
     }
@@ -40,7 +40,6 @@ final class DatabaseHealthCheck extends HealthCheck
         $this->start();
 
         try {
-
             $statement = $this->database->query('SELECT 1');
 
             if ($statement !== false) {
@@ -48,11 +47,10 @@ final class DatabaseHealthCheck extends HealthCheck
             } else {
                 throw new HealthCheckFailure("Database query (SELECT 1) failed");
             }
-
         } catch (\Exception $e) {
             $this->handleError($e);
         }
 
         $this->stop();
     }
-} 
+}

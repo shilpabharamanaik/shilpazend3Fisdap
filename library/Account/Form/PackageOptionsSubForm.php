@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -69,7 +69,7 @@ class Account_Form_PackageOptionsSubForm extends Zend_Form_SubForm
         }
         
         if ($this->package->has_certifications) {
-            $this->addElement($certifications);        
+            $this->addElement($certifications);
         }
         
         $this->setDecorators(self::$subformDecorators);

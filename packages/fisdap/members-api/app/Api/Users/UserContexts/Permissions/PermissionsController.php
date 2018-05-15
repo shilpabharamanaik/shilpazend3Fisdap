@@ -120,7 +120,8 @@ final class PermissionsController extends Controller
      *     @SWG\Response(response="200", description="Context switched")
      * )
      */
-    public function switchContext($userId, $userContextId, UserRepository $userRepository, UserContextRepository $userContextRepository) {
+    public function switchContext($userId, $userContextId, UserRepository $userRepository, UserContextRepository $userContextRepository)
+    {
         /** @var User $user */
         $user = $userRepository->getOneById($userId);
         if (empty($user)) {

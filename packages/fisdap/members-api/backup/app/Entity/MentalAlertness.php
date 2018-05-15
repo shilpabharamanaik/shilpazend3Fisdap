@@ -11,5 +11,4 @@ use Doctrine\ORM\Mapping\Table;
  */
 class MentalAlertness extends Enumerated
 {
-
 }

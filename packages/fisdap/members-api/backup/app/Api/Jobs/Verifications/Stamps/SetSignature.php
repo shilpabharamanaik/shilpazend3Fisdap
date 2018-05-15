@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Jobs\Verifications\Stamps;
 
-
 use Fisdap\Api\Jobs\Job;
 use Fisdap\Api\Jobs\RequestHydrated;
 use Fisdap\Entity\Signature;
@@ -47,6 +46,4 @@ final class SetSignature extends Job implements RequestHydrated
         
         return $signature;
     }
-
 }
-

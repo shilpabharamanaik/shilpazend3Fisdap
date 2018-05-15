@@ -2,7 +2,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineProductPackageRepository
  *

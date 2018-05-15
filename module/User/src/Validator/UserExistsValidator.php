@@ -3,11 +3,12 @@ namespace User\Validator;
 
 use Zend\Validator\AbstractValidator;
 use User\Entity\User;
+
 /**
- * This validator class is designed for checking if there is an existing user 
+ * This validator class is designed for checking if there is an existing user
  * with such an email.
  */
-class UserExistsValidator extends AbstractValidator 
+class UserExistsValidator extends AbstractValidator
 {
     /**
      * Available validator options.
@@ -28,20 +29,22 @@ class UserExistsValidator extends AbstractValidator
      */
     protected $messageTemplates = array(
         self::NOT_SCALAR  => "The email must be a scalar value",
-        self::USER_EXISTS  => "Another user with such an email already exists"        
+        self::USER_EXISTS  => "Another user with such an email already exists"
     );
     
     /**
-     * Constructor.     
+     * Constructor.
      */
-    public function __construct($options = null) 
+    public function __construct($options = null)
     {
         // Set filter options (if provided).
-        if(is_array($options)) {            
-            if(isset($options['entityManager']))
+        if (is_array($options)) {
+            if (isset($options['entityManager'])) {
                 $this->options['entityManager'] = $options['entityManager'];
-            if(isset($options['user']))
+            }
+            if (isset($options['user'])) {
                 $this->options['user'] = $options['user'];
+            }
         }
         
         // Call the parent class constructor
@@ -51,12 +54,12 @@ class UserExistsValidator extends AbstractValidator
     /**
      * Check if user exists.
      */
-    public function isValid($value) 
+    public function isValid($value)
     {
-		//echo "check"; exit;
-        if(!is_scalar($value)) {
+        //echo "check"; exit;
+        if (!is_scalar($value)) {
             $this->error(self::NOT_SCALAR);
-            return false; 
+            return false;
         }
         
         // Get Doctrine entity manager.
@@ -65,22 +68,22 @@ class UserExistsValidator extends AbstractValidator
         $user = $entityManager->getRepository(User::class)
                 ->findOneByEmail($value);
         echo "optionsss".$this->options['user'];
-        if($this->options['user']==null) {
+        if ($this->options['user']==null) {
             $isValid = ($user==null);
         } else {
-            if($this->options['user']->getEmail()!=$value && $user!=null) 
+            if ($this->options['user']->getEmail()!=$value && $user!=null) {
                 $isValid = false;
-            else 
+            } else {
                 $isValid = true;
+            }
         }
         
         // If there were an error, set error message.
-        if(!$isValid) {            
-            $this->error(self::USER_EXISTS);            
+        if (!$isValid) {
+            $this->error(self::USER_EXISTS);
         }
         
         // Return validation result.
         return $isValid;
     }
 }
-

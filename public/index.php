@@ -12,7 +12,7 @@ APPLICATION_PATH . '/models' . PATH_SEPARATOR
 . APPLICATION_PATH . PATH_SEPARATOR
 . $siteRootDir . '/library' . PATH_SEPARATOR
 . get_include_path()
-); 
+);
 /**
  * This makes our life easier when dealing with paths. Everything is relative
  * to the application root now.

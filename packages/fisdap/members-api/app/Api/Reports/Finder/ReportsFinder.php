@@ -100,20 +100,20 @@ final class ReportsFinder extends ResourceFinder implements FindsReports
         $shiftOptions = array();
         $shiftOptions['startDate'] = $startDate;
         $shiftOptions['endDate'] = $endDate;
-        $shiftOptions['subjectTypes'] = ($subjectTypeIds ? explode(",",$subjectTypeIds) : null);
-        $shiftOptions['shiftSites'] = ($siteIds ? explode(",",$siteIds) : null);
+        $shiftOptions['subjectTypes'] = ($subjectTypeIds ? explode(",", $subjectTypeIds) : null);
+        $shiftOptions['shiftSites'] = ($siteIds ? explode(",", $siteIds) : null);
         $shiftOptions['audited'] = ($audited===true ? 1 : 0);
 
         $goals = $this->goalRepository->getGoalsForGoalSet($goalSetId);
 
         $reportData = array();
-        $ids = explode(",",$studentIds);
+        $ids = explode(",", $studentIds);
         foreach ($ids as $studentId) {
             $studentId = intval($studentId);
 
             // Need to do a check here to see if the student exists.
             $student = $this->studentLegacyRepository->getOneById($studentId);
-            if($student) {
+            if ($student) {
                 $goalData = array();
                 foreach ($procedures as $procedure) {
                     $goal = $goals->getGoalById($procedure);
@@ -135,13 +135,13 @@ final class ReportsFinder extends ResourceFinder implements FindsReports
                                 case "MALE":
                                     $goalData[] = array(
                                         "id" => $procedure,
-                                        "value" => intval($this->studentLegacyRepository->getStudentPatientGenderData($studentId, $shiftOptions, TRUE))
+                                        "value" => intval($this->studentLegacyRepository->getStudentPatientGenderData($studentId, $shiftOptions, true))
                                     );
                                     break;
                                 case "FEMALE":
                                     $goalData[] = array(
                                         "id" => $procedure,
-                                        "value" => intval($this->studentLegacyRepository->getStudentPatientGenderData($studentId, $shiftOptions, FALSE))
+                                        "value" => intval($this->studentLegacyRepository->getStudentPatientGenderData($studentId, $shiftOptions, false))
                                     );
                                     break;
                             }

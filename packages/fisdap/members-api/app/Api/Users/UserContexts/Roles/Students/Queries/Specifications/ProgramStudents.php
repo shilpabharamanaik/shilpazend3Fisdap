@@ -7,7 +7,6 @@ use Fisdap\Queries\Specifications\PartialOverrides;
 use Happyr\DoctrineSpecification\BaseSpecification;
 use Happyr\DoctrineSpecification\Spec;
 
-
 /**
  * Class ProgramStudents
  *

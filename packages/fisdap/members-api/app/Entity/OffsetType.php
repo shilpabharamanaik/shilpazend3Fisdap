@@ -6,10 +6,9 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Offset Type
- * 
+ *
  * @Entity
  * @Table(name="fisdap2_offset_type")
  */

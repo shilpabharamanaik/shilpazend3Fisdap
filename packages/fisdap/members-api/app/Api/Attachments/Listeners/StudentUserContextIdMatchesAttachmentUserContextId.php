@@ -8,7 +8,6 @@ use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\Events\Dispatcher;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-
 /**
  * Event subscriber ensuring current student UserContext ID matches Attachment userContextId
  *
@@ -87,5 +86,4 @@ final class StudentUserContextIdMatchesAttachmentUserContextId
 
         $this->eventLogDebug('Attachment belongs to student');
     }
-
 }

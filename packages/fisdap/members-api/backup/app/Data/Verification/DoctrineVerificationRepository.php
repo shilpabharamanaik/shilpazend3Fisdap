@@ -2,7 +2,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineVerificationRepository
  *
@@ -11,6 +10,4 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineVerificationRepository extends DoctrineRepository implements VerificationRepository
 {
-
-
 }

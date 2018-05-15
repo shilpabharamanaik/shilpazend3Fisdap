@@ -3,7 +3,6 @@
 use Fisdap\Api\Users\CurrentUser\CurrentUser;
 use Fisdap\Members\Lti\Session\LtiSession;
 
-
 /**
  * Controller plugin to make sure instructors have been properly introduced to Fisdap
  *

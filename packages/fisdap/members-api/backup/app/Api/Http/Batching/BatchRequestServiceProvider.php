@@ -3,7 +3,6 @@
 use Illuminate\Support\ServiceProvider;
 use Route;
 
-
 /**
  * Provides routes and REST API endpoint documentation for batch requests
  *

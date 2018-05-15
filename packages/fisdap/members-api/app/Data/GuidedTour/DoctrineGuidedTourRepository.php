@@ -7,7 +7,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineGuidedTourRepository
  *
@@ -16,19 +15,17 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineGuidedTourRepository extends DoctrineRepository implements GuidedTourRepository
 {
-	
-	public function getTourHistoryByUser($tour_id, $userContextId)
-	{
-		$qb = $this->_em->createQueryBuilder();
-		
-		$qb->select('h.id')
-		   ->from('Fisdap\Entity\GuidedTourHistory', 'h')
-		   ->andWhere('h.guided_tour = ?1')
-		   ->andWhere('h.user_context = ?2')
-		   ->setParameter(1, $tour_id)
-		   ->setParameter(2, $userContextId);
-		   
-		return $qb->getQuery()->getResult();
-	}
-	
+    public function getTourHistoryByUser($tour_id, $userContextId)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        
+        $qb->select('h.id')
+           ->from('Fisdap\Entity\GuidedTourHistory', 'h')
+           ->andWhere('h.guided_tour = ?1')
+           ->andWhere('h.user_context = ?2')
+           ->setParameter(1, $tour_id)
+           ->setParameter(2, $userContextId);
+           
+        return $qb->getQuery()->getResult();
+    }
 }

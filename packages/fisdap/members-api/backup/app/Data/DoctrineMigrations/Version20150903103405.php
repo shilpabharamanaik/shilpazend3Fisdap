@@ -20,7 +20,6 @@ class Version20150903103405 extends AbstractMigration
 
         // update package pricing for sonography
         $this->addSql('UPDATE fisdap2_product_package SET price=100 WHERE id = 16 AND certification_id=15 LIMIT 1');
-
     }
 
     /**
@@ -33,6 +32,5 @@ class Version20150903103405 extends AbstractMigration
 
         // reset package pricing for sonography
         $this->addSql('UPDATE fisdap2_product_package SET price=40 WHERE id = 16 AND certification_id=15 LIMIT 1');
-
     }
 }

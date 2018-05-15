@@ -5,7 +5,6 @@ use Fisdap\Data\Program\ProgramLegacyRepository;
 use Fisdap\Entity\ProgramLegacy;
 use Fisdap\Logging\Events\EventLogging;
 
-
 /**
  * Event listener that generates a Product Code ID for a Program
  *

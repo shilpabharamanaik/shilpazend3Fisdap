@@ -24,23 +24,31 @@ class Module
     
     /**
      * This method is called once the MVC bootstrapping is complete and allows
-     * to register event listeners. 
+     * to register event listeners.
      */
     public function onBootstrap(MvcEvent $event)
     {
         // Get event manager.
         $eventManager = $event->getApplication()->getEventManager();
         $sharedEventManager = $eventManager->getSharedManager();
-        // Register the event listener method. 
-        $sharedEventManager->attach(AbstractActionController::class, 
-                MvcEvent::EVENT_DISPATCH, [$this, 'onDispatch'], 100);
+        // Register the event listener method.
+        $sharedEventManager->attach(
+ 
+            AbstractActionController::class,
+                MvcEvent::EVENT_DISPATCH,
+ 
+            [$this, 'onDispatch'],
+ 
+            100
+ 
+        );
     }
     
     /**
      * Event listener method for the 'Dispatch' event. We listen to the Dispatch
      * event to call the access filter. The access filter allows to determine if
      * the current visitor is allowed to see the page or not. If he/she
-     * is not authorized and is not allowed to see the page, we redirect the user 
+     * is not authorized and is not allowed to see the page, we redirect the user
      * to the login page.
      */
     public function onDispatch(MvcEvent $event)
@@ -58,7 +66,7 @@ class Module
         
         // Execute the access filter on every controller except AuthController
         // (to avoid infinite redirect).
-        if ($controllerName!=AuthController::class && 
+        if ($controllerName!=AuthController::class &&
             !$authManager->filterAccess($controllerName, $actionName)) {
             
             // Remember the URL of the page the user tried to access. We will
@@ -73,8 +81,11 @@ class Module
             $redirectUrl = $uri->toString();
             
             // Redirect the user to the "Login" page.
-            return $controller->redirect()->toRoute('login', [], 
-                    ['query'=>['redirectUrl'=>$redirectUrl]]);
+            return $controller->redirect()->toRoute(
+                'login',
+                [],
+                    ['query'=>['redirectUrl'=>$redirectUrl]]
+            );
         }
     }
 }

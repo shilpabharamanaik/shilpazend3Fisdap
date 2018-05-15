@@ -6,7 +6,6 @@ use Illuminate\Cache\Repository;
 use Illuminate\Contracts\Cache\Store;
 use Symfony\Component\Console\Input\InputArgument;
 
-
 /**
  * Class CacheForgetCommand
  *
@@ -45,17 +44,14 @@ class CacheForgetCommand extends Command
 
     public function fire()
     {
-        if ( ! empty($this->argument('tags'))) {
-
+        if (! empty($this->argument('tags'))) {
             if ($this->store->tags($this->argument('tags'))->has($this->argument('key'))) {
                 $this->store->tags($this->argument('tags'))->forget($this->argument('key'));
                 $this->info("Deleted {$this->argument('key')} from tags: " . implode(', ', $this->argument('tags')));
             } else {
                 $this->error("No key named '{$this->argument('key')}' found in tags: " . implode(', ', $this->argument('tags')));
             }
-
         } else {
-
             if ($this->repository->has($this->argument('key'))) {
                 $this->store->forget($this->argument('key'));
                 $this->info("Deleted {$this->argument('key')} from cache");

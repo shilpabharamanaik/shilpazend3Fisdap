@@ -12,34 +12,34 @@
 
 /**
  * This is a pretty simple helper that just takes in a value, tests to see if it
- * is false/null/empty, then either prints the incoming value (if not null) or 
+ * is false/null/empty, then either prints the incoming value (if not null) or
  * the specified text.
  */
 
 /**
  * @package SkillsTracker
  */
-class Fisdap_View_Helper_IfNullOutput extends Zend_View_Helper_Abstract 
+class Fisdap_View_Helper_IfNullOutput extends Zend_View_Helper_Abstract
 {
-	/**
-	 * @var string the html to be rendered
-	 */
-	protected $_html;
-	
-	/**
-	 * @param String $toTest Incoming piece to test for null/emptyness.
-	 * 
-	 * @param String $falseOutput Output to be returned if $toTest is empty.
-	 *
-	 * @return string Either $falseOutput if $toTest is empty, or $toTest if
-	 * it is not.
-	 */
-	public function ifNullOutput($toTest, $falseOutput)
-	{
-		if(strlen(trim($toTest)) > 0){
-			return $toTest;
-		}else{
-			return $falseOutput;
-		}
-	}
+    /**
+     * @var string the html to be rendered
+     */
+    protected $_html;
+    
+    /**
+     * @param String $toTest Incoming piece to test for null/emptyness.
+     *
+     * @param String $falseOutput Output to be returned if $toTest is empty.
+     *
+     * @return string Either $falseOutput if $toTest is empty, or $toTest if
+     * it is not.
+     */
+    public function ifNullOutput($toTest, $falseOutput)
+    {
+        if (strlen(trim($toTest)) > 0) {
+            return $toTest;
+        } else {
+            return $falseOutput;
+        }
+    }
 }

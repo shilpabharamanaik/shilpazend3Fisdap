@@ -8,8 +8,8 @@
  * COPYING file distributed with this package.
  *
  * Copyright (c) 2008-2009, WURFL-Pro S.r.l., Rome, Italy
- * 
- * 
+ *
+ *
  *
  * @category   WURFL
  * @package    WURFL_Handlers
@@ -20,7 +20,7 @@
 
 /**
  * GrundigUserAgentHandler
- * 
+ *
  *
  * @category   WURFL
  * @package    WURFL_Handlers
@@ -28,22 +28,23 @@
  * @license
  * @version    $id$
  */
-class WURFL_Handlers_GrundigHandler extends WURFL_Handlers_Handler {
-	
-	function __construct($wurflContext, $userAgentNormalizer = null) {
-		parent::__construct ( $wurflContext, $userAgentNormalizer );
-	}
-	
-	/**
-	 * Intercept all UAs starting with "Grundig" or "GRUNDIG" 
-	 *
-	 * @param string $userAgent
-	 * @return boolean
-	 */
-	public function canHandle($userAgent) {
-		return WURFL_Handlers_Utils::checkIfStartsWith ( $userAgent, "Grundig" ) || WURFL_Handlers_Utils::checkIfStartsWith ( $userAgent, "GRUNDIG" );
-	}
-	
-	protected $prefix = "GRUNDIG";
+class WURFL_Handlers_GrundigHandler extends WURFL_Handlers_Handler
+{
+    public function __construct($wurflContext, $userAgentNormalizer = null)
+    {
+        parent::__construct($wurflContext, $userAgentNormalizer);
+    }
+    
+    /**
+     * Intercept all UAs starting with "Grundig" or "GRUNDIG"
+     *
+     * @param string $userAgent
+     * @return boolean
+     */
+    public function canHandle($userAgent)
+    {
+        return WURFL_Handlers_Utils::checkIfStartsWith($userAgent, "Grundig") || WURFL_Handlers_Utils::checkIfStartsWith($userAgent, "GRUNDIG");
+    }
+    
+    protected $prefix = "GRUNDIG";
 }
-?>

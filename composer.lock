@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f594f435a2ddfec2548f3f8f10e90789",
+    "content-hash": "93277062ac05f90f4ee2e00d5cfa920e",
     "packages": [
         {
             "name": "ascendlearning/laravel-doctrine-lti",

@@ -5,7 +5,6 @@ use Fisdap\Api\ServiceAccounts\Permissions\Repository\ServiceAccountPermissionsR
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 
-
 /**
  * Class ListServiceAccountPermissionsCommand
  *
@@ -53,7 +52,7 @@ final class ListServiceAccountPermissionsCommand extends Command
      
         $this->table(['ID', 'Route Name'], $serviceAccounts->map(function (ServiceAccountPermission $permission) {
             return [
-                $permission->getId(), 
+                $permission->getId(),
                 $permission->getRouteName(),
             ];
         }));

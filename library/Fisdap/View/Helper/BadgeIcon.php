@@ -124,5 +124,4 @@ class Fisdap_View_Helper_BadgeIcon extends Zend_View_Helper_Abstract
         $badgeClass = "red";
         return $this->badgeIcon($image, $title, $class, $href, $badgeText, $badgeClass, $shiftId);
     }
-
 }

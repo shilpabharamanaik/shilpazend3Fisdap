@@ -3,7 +3,6 @@
 use Doctrine\ORM\QueryBuilder;
 use Happyr\DoctrineSpecification\Query\QueryModifier;
 
-
 /**
  * Class PartialOverrides
  *
@@ -41,7 +40,7 @@ class PartialOverrides implements QueryModifier
         $qb->resetDQLPart('select');
 
         foreach ($this->partials as $partial) {
-            if ( ! $partial instanceof Partial) {
+            if (! $partial instanceof Partial) {
                 throw new \Exception('Got a ' . gettype($partial) . ' when a Partial object was expected');
             }
 

@@ -7,13 +7,12 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface ReportRepository
  *
  * @package Fisdap\Data\Report
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface ReportRepository extends Repository {
-
+interface ReportRepository extends Repository
+{
 }

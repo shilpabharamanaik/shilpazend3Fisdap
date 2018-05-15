@@ -118,7 +118,7 @@ class Zend_Cache_Backend_Couchbase extends Zend_Cache_Backend implements Zend_Ca
         // Setting persistent flag explicitly just to make this more obvious to developers
         // apache may need to be restarted when couchbase cluster undergoes weird states
         // it defaults to TRUE in couchbase API anyway: http://www.couchbase.com/autodocs/couchbase-php-client-1.1.5/classes/Couchbase.html#method___construct
-        $persistent = TRUE;
+        $persistent = true;
         
         // This initiates the connection with all the needed variables.
         $this->_couchbase = new \Couchbase($hosts, $username, $password, $bucket, $persistent);
@@ -149,7 +149,8 @@ class Zend_Cache_Backend_Couchbase extends Zend_Cache_Backend implements Zend_Ca
      * @param array $cas Optional: an array to store the cas identifiers of the documents
      * @return array An array containing the documents
      */
-    public function loadMultiple(array $ids, $doNotTestCacheValidity = false, $cas = array()) {
+    public function loadMultiple(array $ids, $doNotTestCacheValidity = false, $cas = array())
+    {
         return $this->_couchbase->getMulti($ids, $cas);
     }
 
@@ -163,7 +164,7 @@ class Zend_Cache_Backend_Couchbase extends Zend_Cache_Backend implements Zend_Ca
     {
         $tmp = $this->_couchbase->get($id);
         if ($tmp) {
-            return TRUE;
+            return true;
         }
         return false;
     }
@@ -209,7 +210,8 @@ class Zend_Cache_Backend_Couchbase extends Zend_Cache_Backend implements Zend_Ca
      * @param  array  $tags This backend does not actually support $tags
      * @param mixed $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
      */
-    public function saveMultiple(array $documents, $tags = array(), $specificLifetime = false) {
+    public function saveMultiple(array $documents, $tags = array(), $specificLifetime = false)
+    {
         $lifetime = $this->getLifetime($specificLifetime);
 
         $result = @$this->_couchbase->setMulti($documents, $lifetime);
@@ -415,7 +417,6 @@ class Zend_Cache_Backend_Couchbase extends Zend_Cache_Backend implements Zend_Ca
      */
     public function getMetadatas($id)
     {
-
         return false;
     }
 
@@ -460,5 +461,4 @@ class Zend_Cache_Backend_Couchbase extends Zend_Cache_Backend implements Zend_Ca
             'saveMultiple' => true
         );
     }
-
 }

@@ -17,7 +17,6 @@ class Version20150729154515 extends AbstractMigration
     {
         // add active status for notifications
         $this->addSql('ALTER TABLE fisdap2_notifications ADD COLUMN active BOOLEAN NULL DEFAULT 1');
-
     }
 
     /**
@@ -27,6 +26,5 @@ class Version20150729154515 extends AbstractMigration
     {
         // remove active status from notifications
         $this->addSql('ALTER TABLE fisdap2_notifications DROP COLUMN active');
-
     }
 }

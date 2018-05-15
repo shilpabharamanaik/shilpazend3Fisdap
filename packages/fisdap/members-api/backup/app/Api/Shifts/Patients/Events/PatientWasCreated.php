@@ -2,7 +2,7 @@
 
 /**
  * Class PatientWasCreated
- * 
+ *
  * @package Fisdap\Api\Shifts\Patients\Events
  * @author  Isaac White <iwhite@fisdap.net>
  */
@@ -30,4 +30,3 @@ final class PatientWasCreated
         return $this->id;
     }
 }
-

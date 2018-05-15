@@ -8,9 +8,10 @@
 
 namespace Fisdap\Doctrine\Extensions\Bootstrap;
 
-
-class UuidType {
-    static function bootstrap() {
+class UuidType
+{
+    public static function bootstrap()
+    {
         // Doctrine's addType() method allows us to add the column type
         \Doctrine\DBAL\Types\Type::addType('uuid', 'Fisdap\Doctrine\Extensions\ColumnType\UuidType');
     }

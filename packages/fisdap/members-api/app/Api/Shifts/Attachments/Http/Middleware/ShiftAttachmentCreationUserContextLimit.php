@@ -11,7 +11,6 @@ use Fisdap\Entity\UserContext;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-
 /**
  * Middleware that limits the number of attachments allowed per user role (context)
  *
@@ -86,7 +85,7 @@ final class ShiftAttachmentCreationUserContextLimit
 
         $userContext = $this->userContextRepository->getOneById($userContextId);
 
-        if ( ! $userContext instanceof UserContext) {
+        if (! $userContext instanceof UserContext) {
             throw new NotFoundHttpException(
                 'Unable to enforce ' . self::class . " due to missing UserContext with id $userContextId"
             );

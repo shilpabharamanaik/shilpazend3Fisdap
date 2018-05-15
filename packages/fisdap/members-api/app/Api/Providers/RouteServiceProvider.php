@@ -1,7 +1,7 @@
 <?php namespace Fisdap\Api\Providers;
-use Route as Router; 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
+use Route as Router;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 /**
  * Class RouteServiceProvider
@@ -30,7 +30,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-		$router = app('router'); // Router Instance
+        $router = app('router'); // Router Instance
         parent::boot();
     }
 
@@ -43,9 +43,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-		$router = app('router'); // Router Instance
+        $router = app('router'); // Router Instance
         $router->group(['namespace' => $this->namespace], function () {
-			$router = app('router'); // Router Instance
+            $router = app('router'); // Router Instance
             $router->get('/', 'RootController@root');
             $router->get('/routes', 'RootController@routes');
         });

@@ -5,7 +5,6 @@ use Doctrine\ORM\EntityManager;
 use Fisdap\Entity\User;
 use Fisdap\Entity\UserContext;
 
-
 /**
  * Class CommonCurrentUser
  *
@@ -25,7 +24,9 @@ abstract class CommonCurrentUser implements CurrentUser
      */
     public function getWritableUser()
     {
-        if (is_null(($this->user()))) return null;
+        if (is_null(($this->user()))) {
+            return null;
+        }
 
         $userId = $this->user()->getId();
 
@@ -38,7 +39,9 @@ abstract class CommonCurrentUser implements CurrentUser
      */
     public function reload()
     {
-        if (is_null(($this->user()))) return;
+        if (is_null(($this->user()))) {
+            return;
+        }
 
         $userId = $this->user()->getId();
 
@@ -56,7 +59,9 @@ abstract class CommonCurrentUser implements CurrentUser
      */
     public function context()
     {
-        if (is_null($this->user())) return null;
+        if (is_null($this->user())) {
+            return null;
+        }
 
         return $this->user()->getCurrentUserContext();
     }
@@ -88,7 +93,7 @@ abstract class CommonCurrentUser implements CurrentUser
         $userContextCriteria->where(Criteria::expr()->eq('id', $userContextId));
         $userContext = $user->getAllUserContexts()->matching($userContextCriteria)->first();
 
-        if ( ! $userContext instanceof UserContext) {
+        if (! $userContext instanceof UserContext) {
             $userContext = $user->getAllUserContexts()->first();
         }
 

@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Members\Config;
 
-
 /**
  * Extension of Zend_Config to be used as container for the Zend_Application config
  *

@@ -5,7 +5,6 @@ use Fisdap\Entity\InstructorLegacy;
 use Fisdap\Entity\User;
 use Fisdap\EntityUtils;
 
-
 /**
  * Class Contact
  *

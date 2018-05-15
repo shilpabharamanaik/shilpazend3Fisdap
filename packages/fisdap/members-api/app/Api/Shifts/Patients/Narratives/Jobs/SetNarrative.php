@@ -54,8 +54,7 @@ final class SetNarrative extends Job implements RequestHydrated
     public function handle(
         EntityManagerInterface $em,
         BusDispatcher $busDispatcher
-    )
-    {
+    ) {
         $this->em = $em;
         $narrative = $this->getNarrative() ? $this->getNarrative() : new Narrative;
 
@@ -102,5 +101,3 @@ final class SetNarrative extends Job implements RequestHydrated
         return $this->narrativeSectionDefinitions;
     }
 }
-
-

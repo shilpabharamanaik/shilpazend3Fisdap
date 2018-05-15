@@ -17,7 +17,6 @@ class Version20160226084412 extends AbstractMigration
     {
         // make the changing instructor nullable
         $this->addSql('ALTER TABLE InstPermHistory MODIFY Changing_Inst_id MEDIUMINT(8) NULL');
-
     }
 
     /**
@@ -27,6 +26,5 @@ class Version20160226084412 extends AbstractMigration
     {
         // make the changing instructor not nullable
         $this->addSql('ALTER TABLE InstPermHistory MODIFY Changing_Inst_id MEDIUMINT(8) NOT NULL');
-
     }
 }

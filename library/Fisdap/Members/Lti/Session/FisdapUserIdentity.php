@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Members\Lti\Session;
 
-
 /**
  * DTO encapsulating pertinent user account information for use when linking during an LTI launch
  *

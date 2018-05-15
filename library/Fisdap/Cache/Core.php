@@ -30,11 +30,11 @@ class Fisdap_Cache_Core extends Zend_Cache_Core
 
         // if the backend does not support saving multiple, then just iterate to do it the old way
         if (!isset($this->_backendCapabilities['saveMultiple']) || !$this->_backendCapabilities['saveMultiple']) {
-            $allSuccess = TRUE;
-            foreach($documents as $id => $data) {
+            $allSuccess = true;
+            foreach ($documents as $id => $data) {
                 $result = $this->save($data, $id, $tags, $specificLifetime, $priority);
                 if (!$result) {
-                    $allSuccess = FALSE;
+                    $allSuccess = false;
                 }
             }
 
@@ -104,17 +104,15 @@ class Fisdap_Cache_Core extends Zend_Cache_Core
         // if the backend does not support saving multiple, then just iterate to do it the old way
         if (!isset($this->_backendCapabilities['loadMultiple']) || !$this->_backendCapabilities['loadMultiple']) {
             $data = array();
-            foreach($ids as $id) {
+            foreach ($ids as $id) {
                 $data[$id] = $this->load($id, $doNotTestCacheValidity, $doNotUnserialize);
             }
-
         } else {
-
             if (!$this->_options['caching']) {
                 return false;
             }
 
-            foreach($ids as $key => $id) {
+            foreach ($ids as $key => $id) {
                 $ids[$key] = $this->_id($id); // cache id may need prefix
 
                 self::_validateIdOrTag($id);
@@ -128,7 +126,7 @@ class Fisdap_Cache_Core extends Zend_Cache_Core
             }
             if ((!$doNotUnserialize) && $this->_options['automatic_serialization']) {
                 // we need to unserialize before sending the result
-                foreach($data as $key => $value) {
+                foreach ($data as $key => $value) {
                     if ($value) {
                         $data[$key] = unserialize($value);
                     }
@@ -138,5 +136,4 @@ class Fisdap_Cache_Core extends Zend_Cache_Core
 
         return $data;
     }
-
 }

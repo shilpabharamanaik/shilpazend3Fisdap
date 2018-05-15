@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Shifts\PreceptorSignoffs\Http;
 
-
 use Doctrine\ORM\EntityManagerInterface;
 use Fisdap\Api\Http\Controllers\Controller;
 use Fisdap\Api\Shifts\PreceptorSignoffs\Transformation\PreceptorSignoffsTransformer;
@@ -90,10 +89,12 @@ final class PreceptorSignoffsController extends Controller
         $response = $this->respondWithItem($this->em->getRepository(PreceptorSignoff::class)->find($signoffId), $this->transformer);
 
         // Check if we found anything. If not, respond accordingly (404 Not Found)
-        if (sizeof($response->getData()->{'data'}) === 0) $response->setStatusCode(HttpResponse::HTTP_NOT_FOUND);
+        if (sizeof($response->getData()->{'data'}) === 0) {
+            $response->setStatusCode(HttpResponse::HTTP_NOT_FOUND);
+        }
 
         return $response;
-     }
+    }
 
     /**
      * @param $patientId
@@ -161,7 +162,5 @@ final class PreceptorSignoffsController extends Controller
             $this->setStatusCode(HttpResponse::HTTP_FORBIDDEN);
             return $this->respondWithArray(['error' => $e->getMessage()]);
         }
-
     }
 }
-

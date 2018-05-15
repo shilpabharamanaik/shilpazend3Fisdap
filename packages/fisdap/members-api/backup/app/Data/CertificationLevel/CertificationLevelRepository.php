@@ -3,7 +3,6 @@
 use Fisdap\Data\Repository\Repository;
 use Fisdap\Entity\CertificationLevel;
 
-
 /**
  * Interface CertificationLevelRepository
  *
@@ -18,4 +17,4 @@ interface CertificationLevelRepository extends Repository
      * @return CertificationLevel
      */
     public function getOneByName($name);
-} 
+}

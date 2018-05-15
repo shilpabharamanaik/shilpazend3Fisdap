@@ -7,13 +7,12 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface MessageDeliveryRepository
  *
  * @package Fisdap\Data\MessageDelivery
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface MessageDeliveryRepository extends Repository {
-
+interface MessageDeliveryRepository extends Repository
+{
 }

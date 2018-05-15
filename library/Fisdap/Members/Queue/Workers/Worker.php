@@ -13,7 +13,8 @@ use Illuminate\Queue\Jobs\Job;
  * @author jmortenson
  * @deprecated
  */
-class Worker {
+class Worker
+{
 
     /**
      * THe queue manager instance.
@@ -63,8 +64,7 @@ class Worker {
         // If we're able to pull a job off of the stack, we will process it and
         // then make sure we are not exceeding our memory limits for the run
         // which is to protect against run-away memory leakages from here.
-        if ( ! is_null($job))
-        {
+        if (! is_null($job)) {
             // Clear the Doctrine Entity Manager (detaches all entities so no data state is retained)
             \Fisdap\EntityUtils::getEntityManager()->clear();
             // clear the current logged in user (an exception where an entity is stored in Zend Registry)
@@ -72,7 +72,10 @@ class Worker {
 
             // process the job
             $this->process(
-                $this->manager->getName($connectionName), $job, $maxTries, $delay
+                $this->manager->getName($connectionName),
+                $job,
+                $maxTries,
+                $delay
             );
 
             // check to see if we are reaching maximum memory threshhold. Self-terminate if so
@@ -83,8 +86,7 @@ class Worker {
                 $this->logger->info('Queue worker self-terminated after processing a job because it got too close (' . round(memory_get_usage() / 1000 / 1000) . 'MB) to memory limit (' . $memory . 'MB).');
                 exit;
             }
-        }
-        else {
+        } else {
             $this->sleep($sleep);
         }
     }
@@ -98,11 +100,14 @@ class Worker {
      */
     protected function getNextJob($connection, $queue)
     {
-        if (is_null($queue)) return $connection->pop();
+        if (is_null($queue)) {
+            return $connection->pop();
+        }
 
-        foreach (explode(',', $queue) as $queue)
-        {
-            if ( ! is_null($job = $connection->pop($queue))) return $job;
+        foreach (explode(',', $queue) as $queue) {
+            if (! is_null($job = $connection->pop($queue))) {
+                return $job;
+            }
         }
     }
 
@@ -122,27 +127,26 @@ class Worker {
         // DEBUG ONLY DEBUG ONLY
         //return $this->logFailedJob($connection, $job);
 
-        if ($maxTries > 0 && $job->attempts() > $maxTries)
-        {
+        if ($maxTries > 0 && $job->attempts() > $maxTries) {
             return $this->logFailedJob($connection, $job);
         }
 
-        try
-        {
+        try {
             // First we will fire off the job. Once it is done we will see if it will
             // be auto-deleted after processing and if so we will go ahead and run
             // the delete method on the job. Otherwise we will just keep moving.
             $job->fire();
 
-            if ($job->autoDelete()) $job->delete();
-        }
-
-        catch (\Exception $e)
-        {
+            if ($job->autoDelete()) {
+                $job->delete();
+            }
+        } catch (\Exception $e) {
             // If we catch an exception, we will attempt to release the job back onto
             // the queue so it is not lost. This will let is be retried at a later
             // time by another listener (or the same one). We will do that here.
-            if ( ! $job->isDeleted()) $job->release($delay);
+            if (! $job->isDeleted()) {
+                $job->release($delay);
+            }
 
             throw $e;
         }

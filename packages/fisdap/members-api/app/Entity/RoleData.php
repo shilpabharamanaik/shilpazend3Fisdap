@@ -4,7 +4,6 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\OneToOne;
 
-
 /**
  * A base class for Role Data subclasses to extend from.
  *

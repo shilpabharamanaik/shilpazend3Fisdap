@@ -7,5 +7,3 @@
 class Fisdap_Exception_Exception extends Fisdap_Exception_Base
 {
 }
-
-?>

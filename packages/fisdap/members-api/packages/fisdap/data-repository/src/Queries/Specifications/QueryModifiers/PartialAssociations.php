@@ -4,7 +4,6 @@ use Doctrine\ORM\QueryBuilder;
 use Fisdap\Queries\Specifications\Partial;
 use Happyr\DoctrineSpecification\Query\QueryModifier;
 
-
 /**
  * Class PartialAssociations
  *
@@ -37,7 +36,7 @@ class PartialAssociations implements QueryModifier
     public function modify(QueryBuilder $qb, $dqlAlias)
     {
         foreach ($this->partials as $partial) {
-            if ( ! $partial instanceof Partial) {
+            if (! $partial instanceof Partial) {
                 throw new \Exception('Got a ' . gettype($partial) . ' when a Partial object was expected');
             }
 

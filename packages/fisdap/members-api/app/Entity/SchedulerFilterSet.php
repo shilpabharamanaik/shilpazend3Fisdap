@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
-
 /**
  * Entity Class for Scheduler Filter Sets
  *
@@ -144,13 +143,11 @@ class SchedulerFilterSet extends EntityBaseClass
 
         // first start with 'names'
         $names = "";
-        if($options['student_names']['value'] && $options['instructor_names']['value'] && $options['preceptor_names']['value']){
+        if ($options['student_names']['value'] && $options['instructor_names']['value'] && $options['preceptor_names']['value']) {
             $names = "All names turned on";
-        }
-        else if (!$options['student_names']['value'] && !$options['instructor_names']['value'] && !$options['preceptor_names']['value']){
+        } elseif (!$options['student_names']['value'] && !$options['instructor_names']['value'] && !$options['preceptor_names']['value']) {
             $names = "All names turned off";
-        }
-        else {
+        } else {
             $names .= "Student names turned " . $this->getOnOffText($options['student_names']['value']) . "; ";
             $names .= "Instructor names turned " . $this->getOnOffText($options['instructor_names']['value']) . "; ";
             $names .= "Preceptor names turned " . $this->getOnOffText($options['preceptor_names']['value']);
@@ -158,13 +155,11 @@ class SchedulerFilterSet extends EntityBaseClass
 
         // now deal with location
         $locations = "";
-        if($options['site_names']['value'] && $options['base_names']['value']){
+        if ($options['site_names']['value'] && $options['base_names']['value']) {
             $locations = "All location info turned on";
-        }
-        else if (!$options['site_names']['value'] && !$options['base_names']['value']){
+        } elseif (!$options['site_names']['value'] && !$options['base_names']['value']) {
             $locations = "All location info turned off";
-        }
-        else {
+        } else {
             $locations .= "Site names turned " . $this->getOnOffText($options['site_names']['value']) . "; ";
             $locations .= "Base names turned " . $this->getOnOffText($options['base_names']['value']);
         }
@@ -178,7 +173,6 @@ class SchedulerFilterSet extends EntityBaseClass
         $description = $names . "; " . $locations . "; " . $weebles . "; " . $totals . ".";
 
         return $description;
-
     }
 
     public function getOnOffText($on)
@@ -187,7 +181,8 @@ class SchedulerFilterSet extends EntityBaseClass
     }
 
     // returns all the relevant info about the filter
-    public function getInfoArray() {
+    public function getInfoArray()
+    {
         $filters = $this->filters;
 
         // get the program this filter is used for
@@ -200,7 +195,6 @@ class SchedulerFilterSet extends EntityBaseClass
         $program_id = $program->id;
 
         return SchedulerFilterSet::getInfoFromFilters($filters, $program_id);
-
     }
 
     /**
@@ -210,7 +204,8 @@ class SchedulerFilterSet extends EntityBaseClass
      * @param $program_id
      * @return array
      */
-    public static function getInfoFromFilters(array $filters, $program_id) {
+    public static function getInfoFromFilters(array $filters, $program_id)
+    {
         $info = array();
 
         // parse sites
@@ -218,7 +213,7 @@ class SchedulerFilterSet extends EntityBaseClass
             $sites = EntityUtils::getRepository("SiteLegacy")->getFormOptionsByProgram($program_id, null, null, null, true);
             $site_category = "All active sites";
             $type = null;
-        } else if (!is_numeric($filters['sites'][0])) {
+        } elseif (!is_numeric($filters['sites'][0])) {
             $type = lcfirst(substr($filters['sites'][0], 2));
             $sites[ucfirst($type)] = EntityUtils::getRepository("SiteLegacy")->getFormOptionsByProgram($program_id, $type, null, null, true);
             $site_category = "All active $type sites";
@@ -237,7 +232,7 @@ class SchedulerFilterSet extends EntityBaseClass
             $bases = EntityUtils::getRepository("BaseLegacy")->getFormOptionsByProgram($program_id, true, $type, null);
             $base_category = 'All active bases';
         } else {
-            if($filters['bases']){
+            if ($filters['bases']) {
                 $bases = EntityUtils::getRepository("BaseLegacy")->getFormOptionsByIds($filters['bases']);
                 $numPossibleBases = EntityUtils::getRepository("BaseLegacy")->getBaseCount($filters['sites'], $program_id);
             }
@@ -350,7 +345,8 @@ class SchedulerFilterSet extends EntityBaseClass
         return $info;
     }
 
-    public static function getGroupInfo($groups) {
+    public static function getGroupInfo($groups)
+    {
         $info = array();
         if (is_array($groups)) {
             foreach ($groups as $group_id) {
@@ -361,7 +357,8 @@ class SchedulerFilterSet extends EntityBaseClass
         return $info;
     }
 
-    public static function getLevelInfo($levels) {
+    public static function getLevelInfo($levels)
+    {
         $info = array();
         foreach ($levels as $level_id) {
             $level = EntityUtils::getEntity('CertificationLevel', $level_id);
@@ -370,7 +367,8 @@ class SchedulerFilterSet extends EntityBaseClass
         return $info;
     }
 
-    public static function getGradDate($gradYear, $gradMonth) {
+    public static function getGradDate($gradYear, $gradMonth)
+    {
         if ($gradYear == 'All years' && $gradMonth == 'All months') {
             return "All graduation dates";
         }
@@ -404,7 +402,7 @@ class SchedulerFilterSet extends EntityBaseClass
                          "chosen_students" => array($userContextId));
         }
 
-        if($user->getCurrentRoleName() == 'instructor'){
+        if ($user->getCurrentRoleName() == 'instructor') {
             $filters = array("sites" => "all",
                              "bases" => "all",
                              "preceptors" => "all",
@@ -463,7 +461,7 @@ class SchedulerFilterSet extends EntityBaseClass
 
             $students = EntityUtils::getRepository('ProgramLegacy')->getActiveStudentsByProgramOptimized($program_id, $cert_levels, $grad_year, $grad_month, $groups);
 
-            foreach($students as $student){
+            foreach ($students as $student) {
                 $userContextIds[] = $student['user_context']['id'];
             }
         }
@@ -486,7 +484,7 @@ class SchedulerFilterSet extends EntityBaseClass
 
         //Assemble site ids array
         $site_ids = [];
-        foreach($filterInfo['sites'] as $type => $sites) {
+        foreach ($filterInfo['sites'] as $type => $sites) {
             $site_ids = array_merge($site_ids, array_keys($sites));
         }
 

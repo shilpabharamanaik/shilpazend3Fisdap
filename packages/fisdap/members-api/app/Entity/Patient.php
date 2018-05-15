@@ -15,7 +15,6 @@ use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
-
 /**
  * Entity class for Patients.
  *
@@ -681,7 +680,8 @@ class Patient extends Timestampable
     /**
      * @return Ethnicity
      */
-    public function getEthnicity() {
+    public function getEthnicity()
+    {
         return $this->ethnicity;
     }
 
@@ -709,7 +709,9 @@ class Patient extends Timestampable
      */
     public function getVerificationArray()
     {
-        if ($this->verification == null) return [];
+        if ($this->verification == null) {
+            return [];
+        }
         return $this->verification->toArray();
     }
 
@@ -785,7 +787,8 @@ class Patient extends Timestampable
     /**
      * @return Gender
      */
-    public function getGender() {
+    public function getGender()
+    {
         return $this->gender;
     }
 
@@ -825,7 +828,7 @@ class Patient extends Timestampable
     {
         if (is_null($value)) {
             $value = array();
-        } else if (!is_array($value)) {
+        } elseif (!is_array($value)) {
             $value = array($value);
         }
 
@@ -933,7 +936,8 @@ class Patient extends Timestampable
         }
     }
 
-    public function getAge() {
+    public function getAge()
+    {
         return $this->age;
     }
 
@@ -946,7 +950,8 @@ class Patient extends Timestampable
         }
     }
 
-    public function getMonths() {
+    public function getMonths()
+    {
         return $this->months;
     }
 
@@ -1117,7 +1122,9 @@ class Patient extends Timestampable
      */
     public function getSignoffArray()
     {
-        if ($this->signoff == null) return [];
+        if ($this->signoff == null) {
+            return [];
+        }
         return $this->signoff->toArray();
     }
 
@@ -1220,7 +1227,7 @@ class Patient extends Timestampable
     {
         if (is_null($value)) {
             $value = array();
-        } else if (!is_array($value)) {
+        } elseif (!is_array($value)) {
             $value = array($value);
         }
 
@@ -1230,7 +1237,7 @@ class Patient extends Timestampable
             $complaint = self::id_or_entity_helper($id, 'Complaint');
             $this->complaints->add($complaint);
         }
-    } 
+    }
 
     /**
      * Get an array of Complaint IDs
@@ -1285,7 +1292,7 @@ class Patient extends Timestampable
     {
         if (is_null($value)) {
             $value = array();
-        } else if (!is_array($value)) {
+        } elseif (!is_array($value)) {
             $value = array($value);
         }
 
@@ -1364,7 +1371,7 @@ class Patient extends Timestampable
     {
         if (is_null($value)) {
             $value = array();
-        } else if (!is_array($value)) {
+        } elseif (!is_array($value)) {
             $value = array($value);
         }
 
@@ -1401,7 +1408,7 @@ class Patient extends Timestampable
     {
         if (is_null($value)) {
             $value = array();
-        } else if (!is_array($value)) {
+        } elseif (!is_array($value)) {
             $value = array($value);
         }
 
@@ -1884,7 +1891,6 @@ class Patient extends Timestampable
      */
     public function toArray()
     {
-
         $array = [
             'uuid' => $this->getUUID(),
             'id' => $this->getId(),

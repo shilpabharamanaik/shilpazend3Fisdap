@@ -17,25 +17,25 @@
 /**
  * @package Portfolio
  */
-class Portfolio_View_Helper_ComplianceHistoryModal extends Zend_View_Helper_Abstract 
+class Portfolio_View_Helper_ComplianceHistoryModal extends Zend_View_Helper_Abstract
 {
-	protected $_html;
-	
-	public function complianceHistoryModal($attachmentId)
-	{
-		$attachment = \Fisdap\EntityUtils::getEntity("RequirementAttachment", $attachmentId);
-		$historySummaries = $attachment->getHistorySummary();
-		
-		$this->_html = "<h3 class='section-header'>" . $attachment->requirement->name . "</h3>";
-		$this->_html .= "<table class='fisdap-table'>";
-		$this->_html .= "<thead><tr><td>Date</td><td>Action</td></tr></thead>";
-		$this->_html .= "<tbody>";
-		foreach($historySummaries as $history) {
-			$this->_html .= "<tr><td>" . $history['datetime']->format('M j, Y, H:i') ."</td><td>" . $history['summary'] . "</td></tr>";
-		}
-		$this->_html .= "</tbody>";
-		$this->_html .= "</table>";
-		
-		return $this->_html;
-	}
+    protected $_html;
+    
+    public function complianceHistoryModal($attachmentId)
+    {
+        $attachment = \Fisdap\EntityUtils::getEntity("RequirementAttachment", $attachmentId);
+        $historySummaries = $attachment->getHistorySummary();
+        
+        $this->_html = "<h3 class='section-header'>" . $attachment->requirement->name . "</h3>";
+        $this->_html .= "<table class='fisdap-table'>";
+        $this->_html .= "<thead><tr><td>Date</td><td>Action</td></tr></thead>";
+        $this->_html .= "<tbody>";
+        foreach ($historySummaries as $history) {
+            $this->_html .= "<tr><td>" . $history['datetime']->format('M j, Y, H:i') ."</td><td>" . $history['summary'] . "</td></tr>";
+        }
+        $this->_html .= "</tbody>";
+        $this->_html .= "</table>";
+        
+        return $this->_html;
+    }
 }

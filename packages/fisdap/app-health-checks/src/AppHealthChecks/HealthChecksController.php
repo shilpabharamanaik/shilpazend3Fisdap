@@ -10,7 +10,6 @@ use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Routing\Controller;
 use Psr\Log\LoggerInterface;
 
-
 /**
  * Handles HTTP transport for health check status route
  *
@@ -98,7 +97,6 @@ class HealthChecksController extends Controller
 
             return new JsonResponse($data, $httpStatus);
         } else {
-
             $data['completedChecks'] = $this->completedChecks;
 
             return response()->view('health-checks::status', $data)->setStatusCode($httpStatus);
@@ -117,7 +115,6 @@ class HealthChecksController extends Controller
 
         // resolve from IoC and run check()
         foreach ($enabledChecks as $enabledCheck) {
-
             try {
                 /** @var ChecksHealth $check */
                 $check = $this->container->make($enabledCheck);
@@ -131,4 +128,4 @@ class HealthChecksController extends Controller
             }
         }
     }
-} 
+}

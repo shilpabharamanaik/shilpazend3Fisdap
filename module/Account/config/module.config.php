@@ -36,7 +36,7 @@ return [
             'editinstructor' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/account/edit/instructor/instructorId/[/:instructorId]',
+                    'route'    => '/account/edit/instructor/instructorId/:instructorId',
                     'constraints' => [
                         'instructorId' => '[0-9]*',
                     ],
@@ -46,6 +46,12 @@ return [
                     ],
                 ],
             ],
+        ],
+    ],
+
+    'controllers' => [
+        'factories' => [
+            Controller\InstructorController::class => Controller\Factory\InstructorControllerFactory::class,
         ],
     ],
 

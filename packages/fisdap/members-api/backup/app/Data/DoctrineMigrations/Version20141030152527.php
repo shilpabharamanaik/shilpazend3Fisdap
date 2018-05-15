@@ -13,7 +13,6 @@ class Version20141030152527 extends AbstractMigration
     public function up(Schema $schema)
     {
         $this->addSql("ALTER TABLE fisdap2_scenarios MODIFY notes TEXT");
-
     }
 
     public function down(Schema $schema)

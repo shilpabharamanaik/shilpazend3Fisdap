@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Shifts\Patients\Skills;
 
-
 use Fisdap\Api\Jobs\Job;
 use Fisdap\Api\Jobs\RequestHydrated;
 use Fisdap\Entity\Patient;
@@ -95,16 +94,16 @@ abstract class AbstractSkills extends Job implements RequestHydrated
     /**
      * @param ShiftLegacy $shift
      */
-    public function setShift(ShiftLegacy $shift) {
+    public function setShift(ShiftLegacy $shift)
+    {
         $this->shift = $shift;
     }
 
     /**
      * @return ShiftLegacy
      */
-    public function getShift() {
+    public function getShift()
+    {
         return $this->shift;
     }
 }
-
-

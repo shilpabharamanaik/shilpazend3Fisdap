@@ -1,15 +1,15 @@
 <?php
 
 /****************************************************************************
-*                                                                           
-*         Copyright (C) 1996-2011.  This is an unpublished work of          
-*                          Headwaters Software, Inc.                        
-*                             ALL RIGHTS RESERVED                           
-*         This program is a trade secret of Headwaters Software, Inc.       
-*         and it is not to be copied, distributed, reproduced, published,   
-*         or adapted without prior authorization                            
-*         of Headwaters Software, Inc.                                      
-*                                                                           
+*
+*         Copyright (C) 1996-2011.  This is an unpublished work of
+*                          Headwaters Software, Inc.
+*                             ALL RIGHTS RESERVED
+*         This program is a trade secret of Headwaters Software, Inc.
+*         and it is not to be copied, distributed, reproduced, published,
+*         or adapted without prior authorization
+*         of Headwaters Software, Inc.
+*
 ****************************************************************************/
 
 /**
@@ -18,16 +18,16 @@
  */
 class Fisdap_View_Helper_Navigation_MainFooter extends Zend_View_Helper_Abstract
 {
-	/**
-	 * Default entry point for this class.  Returns the HTML to be used for the
-	 * primary site footer panel.  This panel shouldn't really vary too much
-	 * overall between pages, so shouldn't need any arguments/config settings.
-	 *
-	 * @return string HTML for the footer.
-	 */
-	public function mainFooter()
-	{
-		$html = "
+    /**
+     * Default entry point for this class.  Returns the HTML to be used for the
+     * primary site footer panel.  This panel shouldn't really vary too much
+     * overall between pages, so shouldn't need any arguments/config settings.
+     *
+     * @return string HTML for the footer.
+     */
+    public function mainFooter()
+    {
+        $html = "
 			
 			<div id='footer' class='footer'>
 				<div id='footer_text' class='footer_text'>
@@ -38,7 +38,7 @@ class Fisdap_View_Helper_Navigation_MainFooter extends Zend_View_Helper_Abstract
 				</div>
 			</div>
 		";
-		
-		return $html;
-	}
+        
+        return $html;
+    }
 }

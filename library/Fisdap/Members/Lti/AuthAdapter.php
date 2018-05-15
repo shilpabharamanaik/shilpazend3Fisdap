@@ -3,7 +3,6 @@
 use Zend_Auth_Adapter_Exception;
 use Zend_Auth_Result;
 
-
 /**
  * Zend_Auth Adapter for LTI launches
  *

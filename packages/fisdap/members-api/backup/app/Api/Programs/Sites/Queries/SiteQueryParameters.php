@@ -3,7 +3,6 @@
 use Fisdap\Api\Queries\Parameters\CommonQueryParameters;
 use Fisdap\Api\Queries\Parameters\IdentifiedByPrograms;
 
-
 /**
  * Encapsulates query parameter data for sites
  *

@@ -4,7 +4,6 @@ use Fisdap\Api\Commerce\OrderPermissions\Http\OrderPermissionsController;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
-
 /**
  * Enables commerce-related routes
  *
@@ -19,7 +18,7 @@ final class CommerceServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-		$router = app('router'); // Router Instance
+        $router = app('router'); // Router Instance
         parent::boot();
     }
 

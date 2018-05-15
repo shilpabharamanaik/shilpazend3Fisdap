@@ -1,10 +1,10 @@
 <?php
 
 /*
-	TAKE OUT WHAT YOU NEED OUT OF HERE AND PUT IT WITHIN APPROPRIATE
-	Util or Model file
-	- Change name to zend style
-	- Document source
+    TAKE OUT WHAT YOU NEED OUT OF HERE AND PUT IT WITHIN APPROPRIATE
+    Util or Model file
+    - Change name to zend style
+    - Document source
 */
 
 /**
@@ -169,12 +169,12 @@
 //	 */
 //	public static function isValidEmailAddress($email) {
 //        // This code was taken from webtoolkit.info/php-validate-email.html
-//        // This is NOT a complete validator, it misses some characters and 
+//        // This is NOT a complete validator, it misses some characters and
 //        // quoted strings...There is a complete validator on google and other
 //        // sites but they come with licenses.
 //        if (is_null($email)) return false;
 //
-//        $valid = eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$", 
+//        $valid = eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$",
 //            $email);
 //        return $valid;
 //	}
@@ -269,7 +269,7 @@
 //		return $screenDimension;
 //
 //	}
-//	
+//
 //	/**
 //	 * Recursive function to flatten an array of arrays
 //	 * @deprecated USE Util_Array::flatten
@@ -365,8 +365,8 @@
 //	 *
 //	 * I.E. ($prefix and $suffix are null)
 //	 * case                              returns
-//	 * --------------------------------  -------------------------------- 
-//	 * array("one")                      One Only 
+//	 * --------------------------------  --------------------------------
+//	 * array("one")                      One Only
 //	 * array("one","two")                One and Two
 //	 * array("one","two","three")        One, Two, and Three
 //	 * array("one","two","three","four") One, Two, Three, and Four
@@ -375,44 +375,44 @@
 //	 *           .
 //	 */
 //	public function generate_display_list_phrase($prefix, $show, $suffix) {
-//	
+//
 //		$show_phrase = "";
 //		$delimiter = "";
 //		$show_max = count($show);
-//		
+//
 //		for($i=0; $i < $show_max; $i++) {
 //			$show_phrase .= ucfirst($show[$i]);
 //			if($show_max > 1) {
 //				if ($i == $show_max-2) {
-//	
+//
 //					if ($show_max > 2) {
 //						$delimiter = ", and ";
 //					} else {
 //						$delimiter = " and ";
 //					}
-//					
+//
 //				} else {
-//	
+//
 //					if ($i <= $show_max-2) {
 //						$delimiter = ", ";
 //					} else {
 //						$delimiter = " ";
 //					}
-//					
+//
 //				}
 //			}
 //			$show_phrase .= $delimiter;
 //		}
-//	
+//
 //		$show_phrase = $show_phrase;
 //		$show_phrase .= " ".$suffix;
-//	
+//
 //		if (count($show) == 1) {
 //			$show_phrase .= " Only";
 //		}
-//	
+//
 //		return $prefix." ".$show_phrase;
-//	
+//
 //	}
 //
 //

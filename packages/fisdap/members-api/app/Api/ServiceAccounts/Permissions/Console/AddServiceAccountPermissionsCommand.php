@@ -4,7 +4,6 @@ use Fisdap\Api\ServiceAccounts\Permissions\Jobs\CreateServiceAccountPermissions;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Bus\Dispatcher;
 
-
 /**
  * Class AddServiceAccountPermissionsCommand
  *

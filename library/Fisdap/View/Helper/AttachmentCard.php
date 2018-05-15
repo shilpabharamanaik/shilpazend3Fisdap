@@ -28,7 +28,8 @@ class Fisdap_View_Helper_AttachmentCard extends Zend_View_Helper_Abstract
 {
     protected $_html;
 
-    public function attachmentCard($shiftAttachment, $shiftId, $shiftType) {
+    public function attachmentCard($shiftAttachment, $shiftId, $shiftType)
+    {
         $this->view->headScript()->appendFile("/js/library/Fisdap/View/Helper/attachment-card.js");
         $this->view->headLink()->appendStylesheet("/css/library/Fisdap/View/Helper/attachment-card.css");
 

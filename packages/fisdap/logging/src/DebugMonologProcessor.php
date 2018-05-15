@@ -2,7 +2,6 @@
 
 use Monolog\Handler\AbstractProcessingHandler;
 
-
 /**
  * Monolog Processor that captures all logs during a request for use in debugging output
  *

@@ -13,7 +13,7 @@ return [
                 'type'    => Segment::class,
                 'options' => [
                     'route' => '/skills-tracker[/:action[/:id]]',
-					'constraints' => [
+                    'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
                     ],

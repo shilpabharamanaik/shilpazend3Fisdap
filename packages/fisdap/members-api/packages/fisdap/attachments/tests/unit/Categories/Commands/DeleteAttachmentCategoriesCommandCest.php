@@ -3,10 +3,9 @@
 use Fisdap\Attachments\Categories\Commands\Deletion\DeleteAttachmentCategoriesCommand;
 use Fisdap\Attachments\Categories\Entity\AttachmentCategory;
 
-
 /**
  * Class DeleteAttachmentCategoriesCommandCest
- * 
+ *
  * @author  Ben Getsug <bgetsug@fisdap.net>
  */
 class DeleteAttachmentCategoriesCommandCest extends AttachmentCategoryCommandCestTemplate
@@ -80,7 +79,7 @@ class DeleteAttachmentCategoriesCommandCest extends AttachmentCategoryCommandCes
     {
         // assert
         $I->assertTrue(
-            $I->seeExceptionThrown(\Exception::class, function() {
+            $I->seeExceptionThrown(\Exception::class, function () {
                 // arrange/act
                 new DeleteAttachmentCategoriesCommand('fake');
             })

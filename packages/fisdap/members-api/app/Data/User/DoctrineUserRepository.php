@@ -8,7 +8,6 @@
 use Fisdap\Data\Repository\DoctrineRepository;
 use Fisdap\Entity\User;
 
-
 /**
  * Class DoctrineUserRepository
  *
@@ -19,28 +18,29 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
 {
     /*
      * This function takes a $qb and standard $filters input (ie, from MultiStudentPicker)
-	 * and finishes up a query. THis allows you to start a new repository query with custom select/join stuff
-	 * and still feed it in here to apply the standard student graduation year, class section, etc. filters
-	 *
-	 * It does requre that the StudentLegacy table is joined, that student.certification_level is joined as c,
-	 * and that UserContext.end_date is in the SELECT list as end_date
-	 */
-	private function completeStandardFilteredUserQuery($qb, $filters, $just_userContextId = false) {
+     * and finishes up a query. THis allows you to start a new repository query with custom select/join stuff
+     * and still feed it in here to apply the standard student graduation year, class section, etc. filters
+     *
+     * It does requre that the StudentLegacy table is joined, that student.certification_level is joined as c,
+     * and that UserContext.end_date is in the SELECT list as end_date
+     */
+    private function completeStandardFilteredUserQuery($qb, $filters, $just_userContextId = false)
+    {
         // Join Class Section tables if either of the section filters are active, otherwise omit
         // Join Class Section tables if either of the section filters are active, otherwise omit
         // joining class sections without a corresponding WHERE as a LEFT JOIN causes duplicates
-        if((array_key_exists('sectionYear', $filters) && $filters['sectionYear'] != 'all')
-            || (array_key_exists('section', $filters) && $filters['section'] > 0)){
+        if ((array_key_exists('sectionYear', $filters) && $filters['sectionYear'] != 'all')
+            || (array_key_exists('section', $filters) && $filters['section'] > 0)) {
             $qb->leftJoin('st.classSectionStudent', 'css');
             $qb->leftJoin('css.section', 'cs');
         }
 
-        if(array_key_exists('sectionYear', $filters) && $filters['sectionYear'] != 'all'){
+        if (array_key_exists('sectionYear', $filters) && $filters['sectionYear'] != 'all') {
             $qb->andWhere('cs.year = ?3');
             $qb->setParameter(3, $filters['sectionYear']);
         }
 
-        if(array_key_exists('section', $filters) && $filters['section'] > 0){
+        if (array_key_exists('section', $filters) && $filters['section'] > 0) {
             $qb->andWhere('cs.id = ?4');
             $qb->setParameter(4, $filters['section']);
         }
@@ -56,7 +56,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         }
 
         // Add in a check for certification levels...
-        if(array_key_exists('certificationLevels', $filters) && count($filters['certificationLevels']) > 0){
+        if (array_key_exists('certificationLevels', $filters) && count($filters['certificationLevels']) > 0) {
             //$qb->leftJoin('ur.certification_level', 'c');
             $qb->andWhere($qb->expr()->in('c.id', $filters['certificationLevels']));
         }
@@ -66,7 +66,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
             $searchTerms = preg_split("/\s+|,/", str_replace("'", "", $filters['searchString']));
 
             foreach ($searchTerms as $term) {
-                if(trim($term) != ''){
+                if (trim($term) != '') {
                     $term = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $term) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
                     $qb->andWhere("usr.first_name LIKE '%$term%' OR usr.last_name LIKE '%$term%' OR usr.username LIKE '%$term%' OR usr.email LIKE '%$term%'");
                 }
@@ -74,7 +74,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         }
 
         // Check for graduation status
-        if(array_key_exists('graduationStatus', $filters) && count($filters['graduationStatus']) > 0) {
+        if (array_key_exists('graduationStatus', $filters) && count($filters['graduationStatus']) > 0) {
             $qb->leftJoin('st.graduation_status', 'status');
 
             // if we have the value 1 in play, then we need to include an "OR graduation_status IS NULL"
@@ -127,11 +127,11 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         // We are no longer pulling entities in this query, so this is commented out
         //$qb->select('st, usr, css, cs, ur')
 
-        if($just_userContextId){
+        if ($just_userContextId) {
             $qb->select('ur.id, ur.end_date');
-        }
-        else {
-            $qb->select('st.id',
+        } else {
+            $qb->select(
+                'st.id',
                 'usr.first_name',
                 'usr.last_name',
                 'usr.id AS user_id',
@@ -146,7 +146,8 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
                 'st.graduation_month',
                 'st.graduation_year',
                 'st.field_shift_limit',
-                'st.clinical_shift_limit');
+                'st.clinical_shift_limit'
+            );
         }
 
         // instead get array-hydration of just three simple fields
@@ -164,7 +165,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
             ->setParameter(1, $programID)
             ->setParameter(2, "NotActiveYet");
 
-        if($only_active){
+        if ($only_active) {
             $qb->andWhere('ur.end_date > CURRENT_DATE()');
         }
 
@@ -173,8 +174,8 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         return $results;
     }
 
-	  // studentIds must be a flat array
-	public function getStudentNames($studentIds)
+    // studentIds must be a flat array
+    public function getStudentNames($studentIds)
     {
         $qb = $this->_em->createQueryBuilder();
 
@@ -211,11 +212,11 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
     }
 
 
-	/**
+    /**
      * Get all students that have exactly ONE shift on the given date
      * @return array containing student ID, user ID, first and last name
      */
-	public function getAllStudentsByShiftDate($programId, $shiftDate, $filters = array())
+    public function getAllStudentsByShiftDate($programId, $shiftDate, $filters = array())
     {
         $qb = $this->_em->createQueryBuilder();
 
@@ -242,7 +243,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         return $results;
     }
 
-	public function getAllStudentsByProgramWithProductData($programID, $filters = array())
+    public function getAllStudentsByProgramWithProductData($programID, $filters = array())
     {
         $qb = $this->_em->createQueryBuilder();
 
@@ -266,7 +267,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         $results = $this->completeStandardFilteredUserQuery($qb, $filters);
 
         $keyedResults = array();
-        foreach($results as $userInfo) {
+        foreach ($results as $userInfo) {
             $keyedResults[$userInfo['user_id']] = $userInfo;
         }
         unset($results);
@@ -274,7 +275,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         return $keyedResults;
     }
 
-	public function findStudents($program_id, $searchString = "", $limit=null)//, $certification_levels = array(), $graduation_date = array('month' => -1, 'year' => -1))
+    public function findStudents($program_id, $searchString = "", $limit=null)//, $certification_levels = array(), $graduation_date = array('month' => -1, 'year' => -1))
     {
         $qb = $this->_em->createQueryBuilder();
 
@@ -285,7 +286,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
             ->add('orderBy', 'usr.last_name ASC, usr.first_name ASC')
             ->setParameter(1, $program_id);
 
-        if($limit){
+        if ($limit) {
             $qb->setMaxResults($limit);
         }
 
@@ -294,7 +295,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
 
         if ($searchString) {
             foreach ($searchTerms as $term) {
-                if(trim($term) != ''){
+                if (trim($term) != '') {
                     $term = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $term) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
                     $qb->andWhere("usr.first_name LIKE '%$term%' OR usr.last_name LIKE '%$term%' OR usr.username LIKE '%$term%' OR usr.email LIKE '%$term%'");
                 }
@@ -304,14 +305,13 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         return $qb->getQuery()->getResult();
     }
 
-	public function getAllInstructorsByProgram($programID, $filters = array(), $just_userContextId = false)
+    public function getAllInstructorsByProgram($programID, $filters = array(), $just_userContextId = false)
     {
         $qb = $this->_em->createQueryBuilder();
 
-        if($just_userContextId){
+        if ($just_userContextId) {
             $qb->select('ur.id');
-        }
-        else {
+        } else {
             $qb->select('usr.first_name', 'usr.last_name', 'i.id', 'ur.id as userContextId');
         }
 
@@ -320,14 +320,14 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
             ->leftJoin('i.user_context', 'ur')
             ->where('ur.program = ?1')
             ->andWhere('usr.id IS NOT NULL')
-			->andWhere('usr.id NOT IN (\'SELECT user_id FROM staffData\')')
+            ->andWhere('usr.id NOT IN (\'SELECT user_id FROM staffData\')')
             ->orderBy('usr.last_name, usr.first_name', 'ASC')
             ->setParameter(1, $programID);
 
         return $qb->getQuery()->getResult();
     }
 
-	public function getAllPeopleFormOptions($program_id)
+    public function getAllPeopleFormOptions($program_id)
     {
         $instrutors = $this->getAllInstructorsByProgram($program_id);
         $students = $this->getAllStudentsByProgram($program_id);
@@ -335,16 +335,16 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
 
         $options = array();
 
-        if($instrutors){
+        if ($instrutors) {
             $options['Instructors'] = array();
-            foreach($instrutors as $instructor){
+            foreach ($instrutors as $instructor) {
                 $options['Instructors'][$instructor['userContextId']] = $instructor['first_name'] . " " . $instructor['last_name'] . ", Instructor";
             }
         }
 
-        if($students){
+        if ($students) {
             $options['Students'] = array();
-            foreach($students as $student){
+            foreach ($students as $student) {
                 $options['Students'][$student['userContextId']] = $student['first_name'] . " " . $student['last_name'] . ", " . $student['cert_description'];
             }
         }
@@ -352,7 +352,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         return $options;
     }
 
-	public function getStudentEntity($userId)
+    public function getStudentEntity($userId)
     {
         $qb = $this->_em->createQueryBuilder();
 
@@ -365,7 +365,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         return $qb->getQuery()->getResult();
     }
 
-	public function findInstructors($program_id, $searchString = "", $limit=null)
+    public function findInstructors($program_id, $searchString = "", $limit=null)
     {
         $qb = $this->_em->createQueryBuilder();
 
@@ -377,7 +377,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
             ->add('orderBy', 'usr.last_name ASC, usr.first_name ASC')
             ->setParameter(1, $program_id);
 
-        if($limit){
+        if ($limit) {
             $qb->setMaxResults($limit);
         }
 
@@ -386,7 +386,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
 
         if ($searchString) {
             foreach ($searchTerms as $term) {
-                if(trim($term) != ''){
+                if (trim($term) != '') {
                     $term = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $term) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
                     $qb->andWhere("usr.first_name LIKE '%$term%' OR usr.last_name LIKE '%$term%' OR usr.username LIKE '%$term%' OR usr.email LIKE '%$term%'");
                 }
@@ -396,7 +396,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         return $qb->getQuery()->getResult();
     }
 
-	public function getStudentsByEmail($email)
+    public function getStudentsByEmail($email)
     {
         $qb = $this->_em->createQueryBuilder();
 
@@ -418,7 +418,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
      * @codeCoverageIgnore
      * @deprecated
      */
-	public function getUsersByEmail($email)
+    public function getUsersByEmail($email)
     {
         $qb = $this->_em->createQueryBuilder();
 
@@ -432,7 +432,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         return $qb->getQuery()->getResult();
     }
 
-	public function getUserConfiguration($userId)
+    public function getUserConfiguration($userId)
     {
         $qb = $this->_em->createQueryBuilder();
 
@@ -445,11 +445,12 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         return array_pop($qb->getQuery()->getResult());
     }
 
-	/*
-	 * Searches for user accounts ($searchString = username). Not just students.
-	 * passing $selectFields causes arrays to be returned instead of entity objects!!
-	 */
-	public function findUsers($program_id = null, $searchString = "", $limit=null, $includeRoles = array('student', 'instructor', 'staff'), $selectFields = array()) {
+    /*
+     * Searches for user accounts ($searchString = username). Not just students.
+     * passing $selectFields causes arrays to be returned instead of entity objects!!
+     */
+    public function findUsers($program_id = null, $searchString = "", $limit=null, $includeRoles = array('student', 'instructor', 'staff'), $selectFields = array())
+    {
         $qb = $this->_em->createQueryBuilder();
 
         if (!empty($selectFields)) {
@@ -465,7 +466,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         $qb->leftJoin('u.userContexts', 'ur')
             ->leftJoin('ur.role', 'r');
 
-        $whereIsSet = FALSE;
+        $whereIsSet = false;
 
         if ($program_id) {
             $qb->where('ur.program = ?1');
@@ -482,15 +483,14 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
             // staff are ignored when program ID is set, because staff have no program
 
             $qb->setParameter(1, $program_id);
-
-        } else if (count($includeRoles) < 3) {  // assume there are three roles possible
+        } elseif (count($includeRoles) < 3) {  // assume there are three roles possible
             // limit by roles without a program ID being set
             if (in_array('student', $includeRoles)) {
                 if ($whereIsSet) {
                     $qb->orWhere('r.id = 1');
                 } else {
                     $qb->where('r.id = 1');
-                    $whereIsSet = TRUE;
+                    $whereIsSet = true;
                 }
             }
             if (in_array('instructor', $includeRoles)) {
@@ -498,7 +498,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
                     $qb->orWhere('r.id = 2');
                 } else {
                     $qb->where('r.id = 2');
-                    $whereIsSet = TRUE;
+                    $whereIsSet = true;
                 }
             }
             if (in_array('staff', $includeRoles)) {
@@ -507,12 +507,12 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
                     $qb->orWhere('staff.staffId > 0');
                 } else {
                     $qb->where('staff.staffId > 0');
-                    $whereIsSet = TRUE;
+                    $whereIsSet = true;
                 }
             }
         }
 
-        if($limit){
+        if ($limit) {
             $qb->setMaxResults($limit);
         }
 
@@ -521,7 +521,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
 
         if ($searchString) {
             foreach ($searchTerms as $term) {
-                if(trim($term) != ''){
+                if (trim($term) != '') {
                     $term = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $term) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
                     $qb->andWhere("u.username LIKE '%$term%'");
                 }
@@ -547,7 +547,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
      *
      * findOneByUsername() is equivalent to this method.
      */
-	public function getUserByUsername($username)
+    public function getUserByUsername($username)
     {
         $qb = $this->_em->createQueryBuilder();
 
@@ -558,14 +558,13 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
 
         $result = $qb->getQuery()->getResult();
 
-		return array_pop($result);
-
-
+        return array_pop($result);
     }
-	/*
-	 * Searches for user accounts by searchString
-	 */
-	public function searchUsers($searchString) {
+    /*
+     * Searches for user accounts by searchString
+     */
+    public function searchUsers($searchString)
+    {
         $qb = $this->_em->createQueryBuilder();
 
         $qb->select('u')
@@ -579,7 +578,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         $searchTerms = preg_split("/\s+|,/", str_replace("'", "", $searchString));
 
         foreach ($searchTerms as $term) {
-            if(trim($term) != ''){
+            if (trim($term) != '') {
                 $term = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $term) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
                 $clause = "(u.first_name LIKE '%$term%' OR ".
                     "u.last_name LIKE '%$term%' OR ".
@@ -605,17 +604,18 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         return $qb->getQuery()->getResult();
     }
 
-	/**
+    /**
      * Get certain fields for all users, return keyed array of the resulting data
      */
-	public function getAllUsers($fields = array('id')) {
+    public function getAllUsers($fields = array('id'))
+    {
         // if id is not included, add it to $fields
         if (!in_array('id', $fields)) {
             $fields[] = 'id';
         }
 
         // reformat fields so that they start with "u."
-        foreach($fields as $key => $name) {
+        foreach ($fields as $key => $name) {
             $fields[$key] = 'u.' . $name;
         }
 
@@ -627,7 +627,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         $result = $qb->getQuery()->getResult();
 
         $keyedResults = array();
-        foreach($result as $user) {
+        foreach ($result as $user) {
             $keyedResults[$user['id']] = $user;
         }
 
@@ -641,14 +641,15 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
      * @param array $criteria array of fieldname => value to filter by
      * @param array $fields array of fieldnames
      */
-    public function getCertainUsers($criteria = array(), $fields = array('id')) {
+    public function getCertainUsers($criteria = array(), $fields = array('id'))
+    {
         // if id is not included, add it to $fields
         if (!in_array('id', $fields)) {
             $fields[] = 'id';
         }
 
         // reformat fields so that they start with "u."
-        foreach($fields as $key => $name) {
+        foreach ($fields as $key => $name) {
             $fields[$key] = 'u.' . $name;
         }
 
@@ -661,7 +662,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
 
         // add criteria
         $count = 1;
-        foreach($criteria as $fieldName => $value) {
+        foreach ($criteria as $fieldName => $value) {
             if (is_array($value)) {
                 $qb->andWhere($qb->expr()->in('u.' . $fieldName, $value));
             } else {
@@ -674,29 +675,26 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         $result = $qb->getQuery()->getResult();
 
         $keyedResults = array();
-        foreach($result as $user) {
+        foreach ($result as $user) {
             $keyedResults[$user['id']] = $user;
         }
 
         return $keyedResults;
     }
 
-	/**
+    /**
      * Enroll a particular user into a moodle course
      * Lovely SQL since we only use it in one circumstance
      */
-	public function enrollInMoodleCourse($product, $username)
+    public function enrollInMoodleCourse($product, $username)
     {
-        if($product->id == 9){ // preceptor training
+        if ($product->id == 9) { // preceptor training
             $tableName = "moodle_PrecepTrainingEnroll";
-        }
-        else if($product->category->id == 3){ // study tools
+        } elseif ($product->category->id == 3) { // study tools
             $tableName = "moodle_StudyToolsEnroll";
-        }
-        else if($product->category->id == 2){ // secure testing
+        } elseif ($product->category->id == 2) { // secure testing
             $tableName = "moodle_SecureTestingEnroll";
-        }
-        else { // something is wrong
+        } else { // something is wrong
             return false;
         }
         $conn = $this->_em->getConnection();
@@ -725,23 +723,20 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
     }
 
 
-	/**
+    /**
      * DISenroll a particular user into a moodle course
      * Lovely SQL since we only use it in one circumstance
      * Keep in mind that disenrolling will remove the user's access to ALL courses within that context
      */
-	public function disenrollInMoodleCourse($product, $username)
+    public function disenrollInMoodleCourse($product, $username)
     {
-        if($product->id == 9){ // preceptor training
+        if ($product->id == 9) { // preceptor training
             $tableName = "moodle_PrecepTrainingEnroll";
-        }
-        else if($product->category->id == 3){ // study tools
+        } elseif ($product->category->id == 3) { // study tools
             $tableName = "moodle_StudyToolsEnroll";
-        }
-        else if($product->category->id == 2){ // secure testing
+        } elseif ($product->category->id == 2) { // secure testing
             $tableName = "moodle_SecureTestingEnroll";
-        }
-        else { // something is wrong
+        } else { // something is wrong
             return false;
         }
 
@@ -774,5 +769,4 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
     {
         return $this->findByUsername($usernames);
     }
-
 }

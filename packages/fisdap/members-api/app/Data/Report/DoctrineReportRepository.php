@@ -7,7 +7,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineReportRepository
  *
@@ -48,16 +47,17 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
         // sanity check IDs
         foreach ($students as $id) {
             if (!is_numeric($id)) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
-        $studentIds = implode(",", $students);;
+        $studentIds = implode(",", $students);
+        ;
         // figure out search criteria
         if ($sites) {
             // sanity check IDs
             foreach ($sites as $id) {
                 if (!is_numeric($id)) {
-                    return FALSE; // @todo probably should do some real error handling
+                    return false; // @todo probably should do some real error handling
                 }
             }
             $siteIds = implode(",", $sites);
@@ -69,7 +69,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check date
             $start_date = strtotime($start_date);
             if (!$start_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -77,7 +77,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check date
             $end_date = strtotime($end_date);
             if (!$end_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -142,12 +142,10 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
                     )
                 );
             }
-
         }
 
         /* Fill the students array with data */
         while ($row = $results->fetch()) {
-
             $student_id = $row['student_id'];
             $accepted = $row['accepted_id'];
             $approved = $row['approved_id'];
@@ -165,19 +163,18 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             }
         }
         return $data;
-
     }
 
     /**
      * MySQL to get skills info
      * Used in Skills Finder report
      */
-    public function getStudentSkillsFinderData($skill_type, $students, $sites = NULL, $start_date = null, $end_date = null)
+    public function getStudentSkillsFinderData($skill_type, $students, $sites = null, $start_date = null, $end_date = null)
     {
         // sanity check IDs
         foreach ($students as $id) {
             if (!is_numeric($id)) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
         $studentIds = implode(",", $students);
@@ -187,7 +184,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check IDs
             foreach ($sites as $id) {
                 if (!is_numeric($id)) {
-                    return FALSE; // @todo probably should do some real error handling
+                    return false; // @todo probably should do some real error handling
                 }
             }
             $siteIds = implode(",", $sites);
@@ -199,7 +196,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check date
             $start_date = strtotime($start_date);
             if (!$start_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -207,7 +204,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check date
             $end_date = strtotime($end_date);
             if (!$end_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -236,7 +233,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
                 $shift_info = $shift_summary_display_helper->shiftSummaryDisplayHelper($shift_data, null, null, $summary_options);
 
                 $subject_type = $row['SubjectType'];
-                if ($subject_type == NULL) {
+                if ($subject_type == null) {
                     $subject_type = 'Human - live';
                 }
                 $patient_id = $row['patient_id'];
@@ -263,8 +260,8 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
                     case "Vital":
                         $sys_bp = $row['systolic_bp'];
                         $dias_bp = $row['diastolic_bp'];
-                        if ($sys_bp < 0 || $dias_bp < 0 || $sys_bp == NULL || $dias_bp == NULL) {
-                            $bp = NULL;
+                        if ($sys_bp < 0 || $dias_bp < 0 || $sys_bp == null || $dias_bp == null) {
+                            $bp = null;
                         } else {
                             $bp = $sys_bp . '/' . $dias_bp;
                         }
@@ -285,7 +282,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
                         $row_data[] = array('data' => $this::value_or_na($row['attempts']), 'class' => 'center');
                         break;
                     case "CardiacIntervention":
-                        $treatmentOP = $this::value_or_na(($row['treatment_name']) ? $this::get_printable_01($row['treatment_performed_by'], 'O', 'P') : NULL);
+                        $treatmentOP = $this::value_or_na(($row['treatment_name']) ? $this::get_printable_01($row['treatment_performed_by'], 'O', 'P') : null);
                         $treatment = $this::value_or_na($row['treatment_name']);
                         $row_data[] = array('data' => $row['rhythm_name'], 'class' => 'center');
                         $row_data[] = array('data' => $this::get_printable_01($row['twelve_lead']), 'class' => 'center');
@@ -294,9 +291,9 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
                         break;
                     case "Iv":
                         $iv_site = $row['site_name'];
-                        if ($iv_site !== NULL) {
+                        if ($iv_site !== null) {
                             $side = $row['side'];
-                            if ($side !== NULL) {
+                            if ($side !== null) {
                                 $iv_site = $iv_site . " - " . $side;
                             }
                         } else {
@@ -327,8 +324,8 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
                         $row_data[] = array('data' => $this::get_printable_01($row['exam'], 'O', 'P'), 'class' => 'center');
                         $row_data[] = array('data' => $this::get_printable_01($row['interview'], 'O', 'P'), 'class' => 'center');
                         $row_data[] = array('data' => $this::get_printable_01($row['team_lead'], 'O', 'P'), 'class' => 'center');
-						break;
-					case "Impressions":                        
+                        break;
+                    case "Impressions":
                         $row_data[] = array('data' => $row['primary_impression_name'], 'class' => 'center');
                         $row_data[] = array('data' => $row['secondary_impression_name'], 'class' => 'center');
                         $row_data[] = array('data' => $this::get_printable_01($row['exam'], 'O', 'P'), 'class' => 'center');
@@ -794,10 +791,10 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
 
         return $results;
     }
-	
+    
     public function getImpressionsData($studentIds, $siteIds, $start_date, $end_date)
     {
-       $site_clause = $siteIds ? "AND S.AmbServ_id IN (" . $siteIds . ") " : "";
+        $site_clause = $siteIds ? "AND S.AmbServ_id IN (" . $siteIds . ") " : "";
         $start_date_clause = $start_date ? "AND S.start_datetime >= '" . date('Y-m-d', $start_date) . "' " : "";
         $end_date_clause = $end_date ? "AND S.start_datetime <= '" . date('Y-m-d', $end_date) . "' " : "";
 
@@ -808,20 +805,20 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             "ON P.run_id = R.id " .
             "LEFT JOIN fisdap2_ethnicity E ON E.id = P.ethnicity_id " .
             "LEFT JOIN fisdap2_gender G ON G.id = P.gender_id " .
-			"LEFT JOIN fisdap2_impression i1 ON i1.id = P.primary_impression_id " .
+            "LEFT JOIN fisdap2_impression i1 ON i1.id = P.primary_impression_id " .
             "LEFT JOIN fisdap2_impression i2 ON i2.id = P.secondary_impression_id " .
-            "LEFT JOIN fisdap2_subject ST " .			
+            "LEFT JOIN fisdap2_subject ST " .
             "ON P.subject_id = ST.id " .
             "WHERE P.shift_id = S.Shift_id " .
-			"AND P.primary_impression_id != '' " .
-			"AND P.age != '' " .
+            "AND P.primary_impression_id != '' " .
+            "AND P.age != '' " .
             "AND P.student_id IN ({$studentIds}) " .
             $start_date_clause .
             $end_date_clause .
             $site_clause .
             "AND S.soft_deleted = 0 " .
             "AND ((P.run_id IS NULL) OR (R.soft_deleted = 0)) " .
-			"GROUP BY P.id ".
+            "GROUP BY P.id ".
             "ORDER BY S.start_datetime ASC, P.id ASC";
 
         // run MySQL query
@@ -841,7 +838,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
     public static function get_printable_01($value, $value0 = 'N', $value1 = 'Y')
     {
         // return N/A if the value is not really there
-        if ($value === NULL) {
+        if ($value === null) {
             return 'N/A';
         }
 
@@ -856,7 +853,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
      */
     public static function value_or_na($value)
     {
-        if ($value === NULL) {
+        if ($value === null) {
             return "N/A";
         } else {
             return $value;
@@ -891,7 +888,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
         // sanity check IDs
         foreach ($students as $id) {
             if (!is_numeric($id)) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
         $studentIds = implode(",", $students);
@@ -902,7 +899,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check IDs
             foreach ($sites as $id) {
                 if (!is_numeric($id)) {
-                    return FALSE; // @todo probably should do some real error handling
+                    return false; // @todo probably should do some real error handling
                 }
             }
             $siteIds = implode(",", $sites);
@@ -915,7 +912,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check IDs
             foreach ($subjects as $id) {
                 if (!is_numeric($id)) {
-                    return FALSE; // @todo probably should do some real error handling
+                    return false; // @todo probably should do some real error handling
                 }
             }
             $subjectIds = implode(",", $subjects);
@@ -928,7 +925,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check date
             $start_date = strtotime($start_date);
             if (!$start_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -937,7 +934,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check date
             $end_date = strtotime($end_date);
             if (!$end_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -1029,12 +1026,12 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
 
         // sanity check IDs while formatting form data
         if (!is_numeric($site_id)) {
-            return FALSE; // @todo probably should do some real error handling
+            return false; // @todo probably should do some real error handling
         }
 
         foreach ($students as $id) {
             if (!is_numeric($id)) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
         $student_ids = implode(",", $students);
@@ -1043,7 +1040,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check date
             $start_date = strtotime($start_date);
             if (!$start_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -1051,7 +1048,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check date
             $end_date = strtotime($end_date);
             if (!$end_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -1102,12 +1099,12 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
 
         // sanity check IDs while formatting form data
         if (!is_numeric($site_id)) {
-            return FALSE; // @todo probably should do some real error handling
+            return false; // @todo probably should do some real error handling
         }
 
         foreach ($students as $id) {
             if (!is_numeric($id)) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
         $student_ids = implode(",", $students);
@@ -1116,7 +1113,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check date
             $start_date = strtotime($start_date);
             if (!$start_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -1124,7 +1121,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check date
             $end_date = strtotime($end_date);
             if (!$end_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -1180,12 +1177,12 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
 
         // sanity check IDs while formatting form data
         if (!is_numeric($site_id)) {
-            return FALSE; // @todo probably should do some real error handling
+            return false; // @todo probably should do some real error handling
         }
 
         foreach ($students as $id) {
             if (!is_numeric($id)) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
         $student_ids = implode(",", $students);
@@ -1194,7 +1191,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check date
             $start_date = strtotime($start_date);
             if (!$start_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -1202,7 +1199,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check date
             $end_date = strtotime($end_date);
             if (!$end_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -1319,7 +1316,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
 
         if ($procedure_type == "other") {
             $procedure_entity_name = "\\Fisdap\\Entity\\OtherIntervention";
-        } else if ($procedure_type == "iv") {
+        } elseif ($procedure_type == "iv") {
             $procedure_entity_name = "\\Fisdap\\Entity\\Iv";
         } else {
             $procedure_entity_name = "\\Fisdap\\Entity\\Airway";
@@ -1465,7 +1462,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
     {
         // sanity check IDs
         if (!is_numeric($studentId)) {
-            return FALSE; // @todo probably should do some real error handling
+            return false; // @todo probably should do some real error handling
         }
         $studentIds = $studentId;
 
@@ -1475,7 +1472,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check IDs
             foreach ($sites as $id) {
                 if (!is_numeric($id)) {
-                    return FALSE; // @todo probably should do some real error handling
+                    return false; // @todo probably should do some real error handling
                 }
             }
             $siteIds = implode(",", $sites);
@@ -1488,7 +1485,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check IDs
             foreach ($subjects as $id) {
                 if (!is_numeric($id)) {
-                    return FALSE; // @todo probably should do some real error handling
+                    return false; // @todo probably should do some real error handling
                 }
             }
             $subjectIds = implode(",", $subjects);
@@ -1501,7 +1498,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check date
             $start_date = strtotime($start_date);
             if (!$start_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -1510,7 +1507,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
             // sanity check date
             $end_date = strtotime($end_date);
             if (!$end_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -1546,7 +1543,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
                 $subject_clause .
                 $goal_clause .
                 "GROUP BY S.Student_id";
-        } else if ($category == "Hours") {
+        } elseif ($category == "Hours") {
             $sql =
                 "SELECT ".
                     "SUM(q1.Hours) as count " .
@@ -1603,9 +1600,8 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
     }
 
 
-    public function getSurgTechScrubRoleData($eval_ids, $student_id, $start_date, $end_date, $site_ids){
-
-
+    public function getSurgTechScrubRoleData($eval_ids, $student_id, $start_date, $end_date, $site_ids)
+    {
         $qb = $this->_em->createQueryBuilder();
 
         //get all eval_sessions that match our eval_ids for the student
@@ -1636,7 +1632,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
 
         //set our base values for all of the evals the user requested
         $data = array();
-        if(is_array($eval_ids)) {
+        if (is_array($eval_ids)) {
             foreach ($eval_ids as $eval_id) {
                 $data[$eval_id]['first'] = 0;
                 $data[$eval_id]['second'] = 0;
@@ -1644,7 +1640,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
                 $data[$eval_id]['total'] = 0;
                 $data[$eval_id]['eval_id'] = $eval_id;
             }
-        }else{
+        } else {
             $data[$eval_ids]['first'] = 0;
             $data[$eval_ids]['second'] = 0;
             $data[$eval_ids]['obs'] = 0;
@@ -1653,7 +1649,7 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
         }
 
         //get item sessions matching those eval sessions
-        foreach($eval_sessions as $eval_session){
+        foreach ($eval_sessions as $eval_session) {
             $sql = "SELECT score " .
                 "FROM Eval_ItemSessions " .
                 "WHERE Eval_ItemSessions.EvalSession_id = " . $eval_session['id'];
@@ -1668,8 +1664,8 @@ class DoctrineReportRepository extends DoctrineRepository implements ReportRepos
                 $resultArray[] = $row;
             }
             //all of these SurgTech evals have two questions. If the 'score' of the first one is 1, we want to count the value of the second question score.
-            if($resultArray[0]['score'] == 1){
-                switch($resultArray[1]['score']){
+            if ($resultArray[0]['score'] == 1) {
+                switch ($resultArray[1]['score']) {
                     case 1:
                         $data[$eval_session['eval_def_id']]['obs']++;
                         $data[$eval_session['eval_def_id']]['total']++;

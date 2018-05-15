@@ -3,7 +3,6 @@
 use Fisdap\Api\Jobs\Job;
 use Fisdap\Api\ServiceAccounts\Repository\ServiceAccountsRepository;
 
-
 /**
  * Class DeleteServiceAccounts
  *

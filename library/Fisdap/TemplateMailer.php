@@ -9,7 +9,7 @@ class Fisdap_TemplateMailer extends Zend_Mail
     /**
      * @var Zend_View
      */
-    static $_defaultView;
+    public static $_defaultView;
 
     /**
      * current instance of our Zend_View

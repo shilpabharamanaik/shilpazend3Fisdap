@@ -22,6 +22,9 @@ class Module implements ConfigProviderInterface
                 Controller\AccountController::class => function () {
                     return new Controller\AccountController();
                 },
+                Controller\InstructorController::class => function () {
+                    return new Controller\InstructorController();
+                },
                 Controller\StudentController::class => function () {
                     return new Controller\StudentController();
                 },

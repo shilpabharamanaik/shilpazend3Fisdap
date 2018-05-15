@@ -2,6 +2,7 @@
 
 
 namespace Fisdap\Logger;
+
 use Doctrine\DBAL\Logging\SQLLogger;
 
 /**
@@ -28,8 +29,8 @@ class SimpleSQLLogger implements SQLLogger
 //        }
 
         $backtrace = debug_backtrace();
-        foreach($backtrace as $bt){
-            if(strpos($bt['file'], 'Fisdap') !== false){
+        foreach ($backtrace as $bt) {
+            if (strpos($bt['file'], 'Fisdap') !== false) {
                 $query .= "Backtrace: " . $bt['file'] . " line " . $bt['line'] . " (best guess)" . PHP_EOL;
                 break;
             }

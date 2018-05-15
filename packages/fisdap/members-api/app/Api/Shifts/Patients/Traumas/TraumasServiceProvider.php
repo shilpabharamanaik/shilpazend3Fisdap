@@ -18,7 +18,7 @@ class TraumasServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-		$router = app('router'); // Router Instance
+        $router = app('router'); // Router Instance
         parent::boot();
     }
 
@@ -29,7 +29,7 @@ class TraumasServiceProvider extends ServiceProvider
      */
     public function map()
     {
-		$router = app('router'); // Router Instance
+        $router = app('router'); // Router Instance
         $router->group([
             'prefix'     => 'patients/traumas'
         ], function (Router $router) {
@@ -47,7 +47,6 @@ class TraumasServiceProvider extends ServiceProvider
                 'as'   => 'patients.traumas.mechanisms',
                 'uses' => TraumaController::class . '@getMechanisms'
             ]);
-
         });
     }
 }

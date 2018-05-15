@@ -18,21 +18,22 @@
  * @version    $id$
  *
  */
-class WURFL_Xml_Info {
-
-	const PERSISTENCE_KEY = "WURFL_XML_INFO";
-	private $version;
-	private $lastUpdated;
-	private $officialURL;
-	
-	public function __construct($version, $lastUpdated, $officialURL) {
-		$this->version = $version;
-		$this->lastUpdated = $lastUpdated;
-		$this->officialURL = $officialURL;		
-	}
-	
-	public function __get($name) {
-		return $this->$name;
-	} 
-	
+class WURFL_Xml_Info
+{
+    const PERSISTENCE_KEY = "WURFL_XML_INFO";
+    private $version;
+    private $lastUpdated;
+    private $officialURL;
+    
+    public function __construct($version, $lastUpdated, $officialURL)
+    {
+        $this->version = $version;
+        $this->lastUpdated = $lastUpdated;
+        $this->officialURL = $officialURL;
+    }
+    
+    public function __get($name)
+    {
+        return $this->$name;
+    }
 }

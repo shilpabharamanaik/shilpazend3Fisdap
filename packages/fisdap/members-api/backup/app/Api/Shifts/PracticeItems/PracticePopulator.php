@@ -8,7 +8,6 @@ use Fisdap\Entity\PracticeCategoryDefault;
 use Fisdap\Entity\PracticeDefinition;
 use Fisdap\Entity\ProgramLegacy;
 
-
 /**
  * Class PracticePopulator
  *
@@ -53,7 +52,7 @@ final class PracticePopulator implements PopulatesPracticeDefinitions
      * @param PracticeDefinitionRepository $practiceDefinitionRepository
      */
     public function __construct(
-        EntityManager $entityManager, 
+        EntityManager $entityManager,
         PracticeCategoryRepository $practiceCategoryRepository,
         PracticeDefinitionRepository $practiceDefinitionRepository
     ) {
@@ -165,7 +164,7 @@ final class PracticePopulator implements PopulatesPracticeDefinitions
             }
         }
         //If we didn't find any matching PPCP skillsheets, bail out.
-        if ( ! $continue) {
+        if (! $continue) {
             return;
         }
 
@@ -266,7 +265,6 @@ final class PracticePopulator implements PopulatesPracticeDefinitions
 
 
             if ($category instanceof PracticeCategory) {
-
                 $practiceDefinition = new PracticeDefinition;
                 $practiceDefinition->skillsheet = 1634;
                 $practiceDefinition->name = "Team Leader - Pediatric";

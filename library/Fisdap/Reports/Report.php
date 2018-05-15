@@ -121,7 +121,7 @@ class Fisdap_Reports_Report
         } else {
             $this->currentUser = Zend_Registry::get('container')->make(CurrentUser::class);
             $this->user = $this->currentUser->user();
-            $this->isStudent = ($this->user->getCurrentRoleName() == 'student') ? TRUE : FALSE;
+            $this->isStudent = ($this->user->getCurrentRoleName() == 'student') ? true : false;
 
             // Get the view
             $this->view = Zend_Controller_Front::getInstance()
@@ -186,12 +186,11 @@ class Fisdap_Reports_Report
                     } else {
                         $component['content'] = $this->{$method}($this->config);
                     }
-
-                } else if ((bool)$this->view->getPluginLoader('helper')->load($method, false)) {
+                } elseif ((bool)$this->view->getPluginLoader('helper')->load($method, false)) {
                     // or this might be a view helper
                     if ($method == "multistudentPicklist") {
                         $component['content'] = $this->view->{$method}($this->user, $this->config, $info['options']);
-                    } else if (isset($info['options'])) {
+                    } elseif (isset($info['options'])) {
                         $component['content'] = $this->view->{$method}($this->config, $info['options']);
                     } else {
                         $component['content'] = $this->view->{$method}($this->config);
@@ -206,7 +205,7 @@ class Fisdap_Reports_Report
                         $form = new $method($this->config);
                     }
                     $component['content'] = $form;
-                    $component['ZendForm'] = TRUE;
+                    $component['ZendForm'] = true;
                 }
 
                 $this->form[$method] = $component;
@@ -217,7 +216,7 @@ class Fisdap_Reports_Report
             $reportID->setValue($this->report_id);
             $this->form['report-id'] = array(
                 'title' => 'Report ID',
-                'hidden' => TRUE,
+                'hidden' => true,
                 'content' => $reportID,
             );
 
@@ -226,7 +225,7 @@ class Fisdap_Reports_Report
             $configID->setValue(0); // we're assuming no config id! @todo maybe this is wrong
             $this->form['config-id'] = array(
                 'title' => 'Config ID',
-                'hidden' => TRUE,
+                'hidden' => true,
                 'content' => $configID,
             );
 
@@ -235,12 +234,10 @@ class Fisdap_Reports_Report
             $reportClass->setValue(str_replace('Fisdap_Reports_', '', get_class($this)));
             $this->form['report-class'] = array(
                 'title' => 'Report Class',
-                'hidden' => TRUE,
+                'hidden' => true,
                 'content' => $reportClass,
             );
-
         }
-
     }
 
     /**
@@ -257,7 +254,7 @@ class Fisdap_Reports_Report
                 if (method_exists($this, $summaryMethod)) {
                     // this might be a custom method on the report class
                     $this->summaryParts += $this->{$summaryMethod}($info['options'], $this->config);
-                } else if ((bool)$this->view->getPluginLoader('helper')->load($method, false)) {
+                } elseif ((bool)$this->view->getPluginLoader('helper')->load($method, false)) {
                     // or this might be a view helper
                     $viewHelperObj = $this->view->getHelper($method);
                     $this->summaryParts += $viewHelperObj->{$summaryMethod}($info['options'], $this->config);
@@ -317,7 +314,7 @@ class Fisdap_Reports_Report
             if (method_exists($this, $validateMethod)) {
                 // look for a custom validation method corresponding to it
                 $this->{$validateMethod}($info);
-            } else if ((bool)$this->view->getPluginLoader('helper')->load($method, false)) {
+            } elseif ((bool)$this->view->getPluginLoader('helper')->load($method, false)) {
                 // or this might be a view helper
                 $viewHelperObj = $this->view->getHelper($method);
                 if (method_exists($viewHelperObj, $validateMethod)) {
@@ -328,8 +325,7 @@ class Fisdap_Reports_Report
                         $this->errors[] = $error;
                     }
                 }
-
-            } else if (class_exists($method)) { // we just assume it's a Zend Form
+            } elseif (class_exists($method)) { // we just assume it's a Zend Form
                 if (isset($info['arguments']) && is_array($info['arguments'])) {
                     $reflector = new ReflectionClass($method); // http://stackoverflow.com/questions/3395914/pass-arguments-from-array-in-php-to-constructor
                     $form = $reflector->newInstanceArgs($info['arguments']);
@@ -354,7 +350,6 @@ class Fisdap_Reports_Report
      */
     public function renderForm()
     {
-
         $output = array(); // structured output array, which viewscript can use/print
 
         // wrap form components in standard form wrappers
@@ -443,7 +438,7 @@ class Fisdap_Reports_Report
 
             // table 2
             array("type" => "table",
-                "options" => array("noSort" => TRUE, "noSearch" => TRUE),
+                "options" => array("noSort" => true, "noSearch" => true),
                 "content" => array('title' => "Colors",
                     'head' => array( // head row(s)
                         array(
@@ -676,7 +671,7 @@ class Fisdap_Reports_Report
             if ($student) {
                 $studentsLabel = $student->user->getName();
             }
-        } else if (isset($this->config['multistudent_picklist_selected'])) {
+        } elseif (isset($this->config['multistudent_picklist_selected'])) {
             $students = explode(",", $this->config['multistudent_picklist_selected']);
             if (count($students) > 1) {
                 $studentsLabel = count($students) . ' students';
@@ -778,7 +773,8 @@ class Fisdap_Reports_Report
     }
 
     // return an array formatted to be used as a shift query filter
-    protected function getShiftFilter() {
+    protected function getShiftFilter()
+    {
         // process report configuration to change filters
         $filter = array();
         if ($this->config['startDate'] != '') {

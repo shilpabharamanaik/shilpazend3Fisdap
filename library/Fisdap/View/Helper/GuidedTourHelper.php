@@ -59,11 +59,9 @@ class Fisdap_View_Helper_GuidedTourHelper extends Zend_View_Helper_Abstract
             $html .= $this->renderSteps();
             $html .= $this->renderTourGuideRobot();
             $html .= "</div>";
-
         }
 
         return $html;
-
     } // end guidedTourHelper()
 
 
@@ -83,7 +81,7 @@ class Fisdap_View_Helper_GuidedTourHelper extends Zend_View_Helper_Abstract
         if (isset($session->guided_tour_progress[$this->tour->id])) {
             $auto_open_modal = false;
             $starting_step_id = $session->guided_tour_progress[$this->tour->id];
-        } else if ($this->has_history) {
+        } elseif ($this->has_history) {
             $auto_open_modal = false;
         }
 
@@ -99,7 +97,6 @@ class Fisdap_View_Helper_GuidedTourHelper extends Zend_View_Helper_Abstract
         $html .= '</div>';
 
         return $html;
-
     } // end renderWelcomeModal()
 
 
@@ -111,7 +108,6 @@ class Fisdap_View_Helper_GuidedTourHelper extends Zend_View_Helper_Abstract
     */
     public function renderBottomNavigation()
     {
-
         $html = '<div id="tour_' . $this->tour->id . '_directions" class="tour_directions">';
 
         $html .= '<div class="guided_tour_navigation">';
@@ -131,7 +127,6 @@ class Fisdap_View_Helper_GuidedTourHelper extends Zend_View_Helper_Abstract
         $html .= '</div>';
 
         return $html;
-
     } // end renderBottomNavigation()
 
 
@@ -147,7 +142,6 @@ class Fisdap_View_Helper_GuidedTourHelper extends Zend_View_Helper_Abstract
         $html = '<ul id="guided_tour_' . $this->tour->id . '" data-roleType=' . $this->tour->role->id . ' user_has_history="' . $user_has_history_attribute . '">';
 
         foreach ($this->tour->steps as $step) {
-
             $html .= '<li ' . $this->getStepDataAttributes($step) . '>';
             $html .= '<span class="focus_element_selector" id="guided_tour_step_' . $step->id . '_focus_element_selector">';
             $html .= $step->focus_element;
@@ -156,13 +150,11 @@ class Fisdap_View_Helper_GuidedTourHelper extends Zend_View_Helper_Abstract
             $html .= $step->step_text;
             $html .= '</span>';
             $html .= '</li>';
-
         }
 
         $html .= "</ul>";
 
         return $html;
-
     } // end renderSteps()
 
 
@@ -185,7 +177,6 @@ class Fisdap_View_Helper_GuidedTourHelper extends Zend_View_Helper_Abstract
         $html .= "</div>";
 
         return $html;
-
     } // end renderTourGuideRobot()
 
 
@@ -198,7 +189,6 @@ class Fisdap_View_Helper_GuidedTourHelper extends Zend_View_Helper_Abstract
     public function setHasHistory()
     {
         $this->has_history = $this->tour->userHasCompleted($this->current_user->getCurrentUserContext()->id);
-
     } // end setHasHistory()
 
 
@@ -214,7 +204,6 @@ class Fisdap_View_Helper_GuidedTourHelper extends Zend_View_Helper_Abstract
      */
     public function canRenderTour()
     {
-
         $render_tour = false;
 
         // check for A)
@@ -226,7 +215,7 @@ class Fisdap_View_Helper_GuidedTourHelper extends Zend_View_Helper_Abstract
                     // check for D) -- Staff accounts DO NOT need the tour to be active to see it
                     if ($this->tour->active) {
                         $render_tour = true;
-                    } else if ($this->current_user->isStaff()) {
+                    } elseif ($this->current_user->isStaff()) {
                         $render_tour = true;
                     }
                 }
@@ -234,7 +223,6 @@ class Fisdap_View_Helper_GuidedTourHelper extends Zend_View_Helper_Abstract
         }
 
         return $render_tour;
-
     } // end can_render_tour()
 
 
@@ -254,7 +242,6 @@ class Fisdap_View_Helper_GuidedTourHelper extends Zend_View_Helper_Abstract
         $hidden_on_page_load = "data-hiddenonpageload='" . $step->hidden_on_page_load . "'";
 
         return $pointer . ' ' . $auto_xy_pos . ' ' . $manual_x_pos . ' ' . $manual_y_pos . ' ' . $hidden_on_page_load . ' data-stepdbid="' . $step->id . '"';
-
     } // end getStepDataAttributes()
 
 
@@ -279,8 +266,5 @@ class Fisdap_View_Helper_GuidedTourHelper extends Zend_View_Helper_Abstract
         $html .= '</div>';
 
         return $html;
-
     } // end getStepDataAttributes()
-
-
 } // end Fisdap_View_Helper_GuidedTourHelper

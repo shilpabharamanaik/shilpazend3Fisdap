@@ -7,13 +7,12 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface PracticeSkillRepository
  *
  * @package Fisdap\Data\Practice
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface PracticeSkillRepository extends Repository {
-
+interface PracticeSkillRepository extends Repository
+{
 }

@@ -18,9 +18,7 @@
  * @version    $id$
  */
 
-interface WURFL_Handlers_Matcher_Interface {
-	
-	public function match(&$collection, $needle, $tollerance);
+interface WURFL_Handlers_Matcher_Interface
+{
+    public function match(&$collection, $needle, $tollerance);
 }
-
-?>

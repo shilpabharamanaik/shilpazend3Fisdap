@@ -3,7 +3,6 @@
 use Illuminate\Cache\Repository;
 use Illuminate\Support\ServiceProvider;
 
-
 /**
  * Class CacheConsoleServiceProvider
  *

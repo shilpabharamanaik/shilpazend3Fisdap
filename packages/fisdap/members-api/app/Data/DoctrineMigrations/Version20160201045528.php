@@ -3,7 +3,6 @@
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
-
 /**
  * Correct unique index on StaffData table
  * @author  Ben Getsug <bgetsug@fisdap.net>

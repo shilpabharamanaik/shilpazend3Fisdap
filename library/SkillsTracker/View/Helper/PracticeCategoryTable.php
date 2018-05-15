@@ -83,5 +83,4 @@ class SkillsTracker_View_Helper_PracticeCategoryTable extends Zend_View_Helper_A
 
         return $returnContent;
     }
-
 }

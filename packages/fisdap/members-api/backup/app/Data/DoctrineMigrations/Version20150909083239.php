@@ -20,7 +20,6 @@ class Version20150909083239 extends AbstractMigration
 
         // update medrills marketing campaigns to end on 9/8/2015
         $this->addSql('UPDATE mktg_Campaign_Data SET EndDate="2015-09-08" WHERE Campaign_id IN (28, 29) LIMIT 2');
-
     }
 
     /**

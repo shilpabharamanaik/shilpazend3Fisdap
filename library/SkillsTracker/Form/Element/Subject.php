@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -27,7 +27,7 @@ class SkillsTracker_Form_Element_Subject extends Zend_Form_Element_Xhtml
     protected $_subjectName;
     
     /**
-     * @var sgring the type of subject 
+     * @var sgring the type of subject
      */
     protected $_type;
     
@@ -42,8 +42,8 @@ class SkillsTracker_Form_Element_Subject extends Zend_Form_Element_Xhtml
         if (!$this->_view) {
             $this->_view = $this->getView();
         }
-		
-		//add js file to do cool input masking
+        
+        //add js file to do cool input masking
         $this->_view->headScript()->appendFile("/js/library/SkillsTracker/Form/Element/subject.js");
     }
     

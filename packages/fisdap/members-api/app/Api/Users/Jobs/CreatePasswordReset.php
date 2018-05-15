@@ -35,11 +35,11 @@ final class CreatePasswordReset extends Job implements RequestHydrated
      */
     protected $userId;
     
-   /**
-    * Simple helper to use URL $userId
-    *
-    * @param $userId
-    */
+    /**
+     * Simple helper to use URL $userId
+     *
+     * @param $userId
+     */
     public function setUserId($userId)
     {
         $this->userId = $userId;

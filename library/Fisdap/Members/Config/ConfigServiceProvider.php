@@ -6,8 +6,6 @@ use Zend_Application;
 use Zend_Config;
 use Zend_Registry;
 
-
-
 /**
  * Class ConfigServiceProvider
  *

@@ -11,7 +11,7 @@ use Zend\InputFilter\InputFilter;
 class LoginForm extends Form
 {
     /**
-     * Constructor.     
+     * Constructor.
      */
     public function __construct()
     {
@@ -22,16 +22,16 @@ class LoginForm extends Form
         $this->setAttribute('method', 'post');
                 
         $this->addElements();
-        $this->addInputFilter();          
+        $this->addInputFilter();
     }
     
     /**
      * This method adds elements to form (input fields and submit button).
      */
-    protected function addElements() 
+    protected function addElements()
     {
         // Add "Username" field
-        $this->add([            
+        $this->add([
             'type'  => 'text',
             'name' => 'username',
             'options' => [
@@ -40,7 +40,7 @@ class LoginForm extends Form
         ]);
         
         // Add "password" field
-        $this->add([            
+        $this->add([
             'type'  => 'password',
             'name' => 'password',
             'options' => [
@@ -49,7 +49,7 @@ class LoginForm extends Form
         ]);
         
         // Add "remember_me" field
-        $this->add([            
+        $this->add([
             'type'  => 'checkbox',
             'name' => 'remember_me',
             'options' => [
@@ -58,7 +58,7 @@ class LoginForm extends Form
         ]);
         
         // Add "redirect_url" field
-        $this->add([            
+        $this->add([
             'type'  => 'hidden',
             'name' => 'redirect_url'
         ]);
@@ -78,7 +78,7 @@ class LoginForm extends Form
         $this->add([
             'type'  => 'submit',
             'name' => 'submit',
-            'attributes' => [                
+            'attributes' => [
                 'value' => 'Sign in',
                 'id' => 'submit',
             ],
@@ -88,10 +88,10 @@ class LoginForm extends Form
     /**
      * This method creates input filter (used for form filtering/validation).
      */
-    private function addInputFilter() 
+    private function addInputFilter()
     {
         // Create main input filter
-        $inputFilter = new InputFilter();        
+        $inputFilter = new InputFilter();
         $this->setInputFilter($inputFilter);
                 
         // Add input for "email" field
@@ -99,22 +99,22 @@ class LoginForm extends Form
                 'name'     => 'username',
                 'required' => true,
                 'filters'  => [
-                    ['name' => 'StringTrim'],                    
-                ],                
+                    ['name' => 'StringTrim'],
+                ],
                 'validators' => [
                     [
                         'name' => 'StringLength',
                         
                     ],
                 ],
-            ]);     
+            ]);
         
         // Add input for "password" field
         $inputFilter->add([
                 'name'     => 'password',
                 'required' => true,
-                'filters'  => [                    
-                ],                
+                'filters'  => [
+                ],
                 'validators' => [
                     [
                         'name'    => 'StringLength',
@@ -124,14 +124,14 @@ class LoginForm extends Form
                         ],
                     ],
                 ],
-            ]);     
+            ]);
         
         // Add input for "remember_me" field
         $inputFilter->add([
                 'name'     => 'remember_me',
                 'required' => false,
-                'filters'  => [                    
-                ],                
+                'filters'  => [
+                ],
                 'validators' => [
                     [
                         'name'    => 'InArray',
@@ -148,7 +148,7 @@ class LoginForm extends Form
                 'required' => false,
                 'filters'  => [
                     ['name'=>'StringTrim']
-                ],                
+                ],
                 'validators' => [
                     [
                         'name'    => 'StringLength',
@@ -159,6 +159,5 @@ class LoginForm extends Form
                     ],
                 ],
             ]);
-    }        
+    }
 }
-

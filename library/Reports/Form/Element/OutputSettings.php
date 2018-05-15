@@ -19,8 +19,8 @@
  */
 class Reports_Form_Element_OutputSettings extends Zend_Form_Element_Xhtml
 {
-	/**
-	 * @var string the view helper that will render this composite element
-	 */
-	public $helper = "outputSettingsElement";
+    /**
+     * @var string the view helper that will render this composite element
+     */
+    public $helper = "outputSettingsElement";
 }

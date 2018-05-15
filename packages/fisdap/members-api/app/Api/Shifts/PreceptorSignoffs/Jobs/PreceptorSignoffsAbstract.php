@@ -112,7 +112,6 @@ abstract class PreceptorSignoffsAbstract extends Job implements RequestHydrated
         BusDispatcher $busDispatcher,
         UpdateShift $updateShiftJob
     ) {
-
         if (!empty($this->patientId !== null)) {
             // This is a patient signoff
 

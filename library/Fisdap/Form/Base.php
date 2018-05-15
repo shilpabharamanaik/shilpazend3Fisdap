@@ -305,5 +305,4 @@ class Fisdap_Form_Base extends Zend_Form
 
         return $resultsArray;
     }
-
 }

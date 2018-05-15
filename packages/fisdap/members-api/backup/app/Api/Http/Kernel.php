@@ -23,7 +23,6 @@ use Fisdap\BuildMetadata\VersionRangeMiddleware;
 use Fisdap\ErrorHandling\PostMaxSizeMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
-
 class Kernel extends HttpKernel
 {
     /**

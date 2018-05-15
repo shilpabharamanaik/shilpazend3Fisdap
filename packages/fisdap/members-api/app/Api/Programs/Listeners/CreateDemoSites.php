@@ -10,7 +10,6 @@ use Fisdap\Entity\SiteLegacy;
 use Fisdap\Logging\Events\EventLogging;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-
 /**
  * Class CreateDemoSites
  *

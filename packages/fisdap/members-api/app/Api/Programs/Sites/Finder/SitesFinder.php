@@ -11,7 +11,6 @@ use Fisdap\Data\Site\SiteLegacyRepository;
 use Fisdap\Entity\SiteLegacy;
 use Happyr\DoctrineSpecification\Spec;
 
-
 /**
  * Service for retrieving sites
  *
@@ -93,7 +92,8 @@ final class SitesFinder extends ResourceFinder implements FindsSites
     public function findDistinctStudentShiftSites($studentId)
     {
         $distinctStudentShiftsSites = $this->repository->match(
-            new DistinctStudentShiftSites($studentId), Spec::asArray()
+            new DistinctStudentShiftSites($studentId),
+            Spec::asArray()
         );
 
         if (empty($distinctStudentShiftsSites)) {

@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Entity class for Site Staff members.
  *
@@ -125,14 +124,16 @@ class SiteStaffMember extends EntityBaseClass
      * Check to see if this staff member has any contact information
      * @return bool
      */
-    public function hasContactInfo() {
+    public function hasContactInfo()
+    {
         return ($this->phone || $this->email || $this->pager);
     }
 
     /**
      * @return array an array of associated base names, keyed by id
      */
-    public function getBases() {
+    public function getBases()
+    {
         $bases = array();
         foreach ($this->bases as $base) {
             $bases[$base->id] = $base->name;
@@ -144,7 +145,8 @@ class SiteStaffMember extends EntityBaseClass
      * Update all the base associations for this staff member to the bases given in the array
      * @param array $bases an array of BaseLegacy objects or base ids
      */
-    public function updateBases(array $bases) {
+    public function updateBases(array $bases)
+    {
         // first clear out the current associations
         $this->bases->clear();
 
@@ -157,5 +159,4 @@ class SiteStaffMember extends EntityBaseClass
 
         $this->save();
     }
-
 }

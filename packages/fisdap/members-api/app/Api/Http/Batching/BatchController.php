@@ -5,7 +5,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Swagger\Annotations as SWG;
 
-
 /**
  * Handles HTTP transport for batch requests
  *
@@ -74,8 +73,7 @@ class BatchController extends Controller
         $results = [];
 
         // todo - eventually use Gearman to enable parallel execution of these
-        foreach($requests as $request){
-
+        foreach ($requests as $request) {
             $name = $request['name'];
             $uri = $request['uri'];
 
@@ -130,8 +128,7 @@ class BatchController extends Controller
         $results = [];
 
         // todo - eventually use Gearman to enable parallel execution of these
-        foreach($requests as $request){
-
+        foreach ($requests as $request) {
             $name = $request['name'];
             $uri = $request['uri'];
 

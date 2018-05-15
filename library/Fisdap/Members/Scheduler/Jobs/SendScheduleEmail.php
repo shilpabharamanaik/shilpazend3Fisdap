@@ -16,7 +16,6 @@ use Zend_Layout;
 use Zend_Registry;
 use Zend_View_Interface;
 
-
 /**
  * Class SendScheduleEmail
  *

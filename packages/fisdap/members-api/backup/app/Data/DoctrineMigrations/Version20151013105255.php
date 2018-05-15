@@ -18,7 +18,6 @@ class Version20151013105255 extends AbstractMigration
         // add test type, update test name.
         $this->addSql('Update TestTypes set TestName = "National Registry Written" where TestType_id = 21 limit 1');
         $this->addSql('Insert into TestTypes (TestName, CertificationLevel) VALUES ("National Registry Practical", "aemt")');
-
     }
 
     /**
@@ -29,6 +28,5 @@ class Version20151013105255 extends AbstractMigration
         //remove test type, revert name
         $this->addSql('update TestTypes set TestName = "National Registry AEMT" where TestType_id = 21 limit 1');
         $this->addSql('delete from TestTypes where TestName = "National Registry Practical" and CertificationLevel = "aemt" limit 1');
-
     }
 }

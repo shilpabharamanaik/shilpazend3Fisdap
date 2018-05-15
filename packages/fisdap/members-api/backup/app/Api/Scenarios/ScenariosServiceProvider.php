@@ -4,7 +4,6 @@ use Fisdap\Api\Scenarios\Http\ScenariosController;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
-
 /**
  * Enables scenario-related routes, providing REST API endpoint documentation for each, and provides scenario-related services
  *

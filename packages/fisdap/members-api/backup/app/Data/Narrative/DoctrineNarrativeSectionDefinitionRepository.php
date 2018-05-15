@@ -7,7 +7,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineNarrativeSectionDefinitionRepository
  *
@@ -16,28 +15,28 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineNarrativeSectionDefinitionRepository extends DoctrineRepository implements NarrativeSectionDefinitionRepository
 {
-    	public function getNarrativeSectionsByProgram($programID, $activeOnly = FALSE)
-	{
-		$qb = $this->_em->createQueryBuilder();
+    public function getNarrativeSectionsByProgram($programID, $activeOnly = false)
+    {
+        $qb = $this->_em->createQueryBuilder();
 
-		$qb->select('sd')
-		   ->from('\Fisdap\Entity\NarrativeSectionDefinition', 'sd')
-		   ->where('sd.program_id = ?1')
-		   ->orderBy('sd.section_order, sd.id', 'ASC')
-		   ->setParameter(1, $programID);
+        $qb->select('sd')
+           ->from('\Fisdap\Entity\NarrativeSectionDefinition', 'sd')
+           ->where('sd.program_id = ?1')
+           ->orderBy('sd.section_order, sd.id', 'ASC')
+           ->setParameter(1, $programID);
 
-		if ($activeOnly) {
-		    $qb->andWhere('sd.active = 1');
-		}
+        if ($activeOnly) {
+            $qb->andWhere('sd.active = 1');
+        }
 
-		$results = $qb->getQuery()->getResult();
+        $results = $qb->getQuery()->getResult();
 
-		// re-key the array so it's keyed by section id
-		$sections = array();
-		foreach ($results as $section) {
-		    $sections[$section->id] = $section;
-		}
+        // re-key the array so it's keyed by section id
+        $sections = array();
+        foreach ($results as $section) {
+            $sections[$section->id] = $section;
+        }
 
-		return $sections;
-	}
+        return $sections;
+    }
 }

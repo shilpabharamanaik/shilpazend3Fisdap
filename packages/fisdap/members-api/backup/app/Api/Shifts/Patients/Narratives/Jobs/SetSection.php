@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Shifts\Patients\Narratives\Jobs;
 
-
 use Doctrine\ORM\EntityManagerInterface;
 use Fisdap\Api\Jobs\Job;
 use Fisdap\Api\Jobs\RequestHydrated;
@@ -45,8 +44,7 @@ final class SetSection extends Job implements RequestHydrated
 
     public function handle(
         EntityManagerInterface $em
-    )
-    {
+    ) {
         $this->em = $em;
 
         $narrativeSection = $this->em->getRepository(NarrativeSection::class)->findBy(['definition' => $this->getDefId(), 'narrative' => $this->getNarrativeId()]);
@@ -96,7 +94,7 @@ final class SetSection extends Job implements RequestHydrated
      */
     public function setNarrativeId($narrativeId)
     {
-        $this->narrativeId = $narrativeId;    
+        $this->narrativeId = $narrativeId;
     }
 
     /**
@@ -107,7 +105,3 @@ final class SetSection extends Job implements RequestHydrated
         return $this->narrativeId;
     }
 }
-
-
-
-

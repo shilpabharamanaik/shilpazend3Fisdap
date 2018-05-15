@@ -28,7 +28,7 @@ final class DeleteCardiacIntervention extends AbstractSkills implements RequestH
     public function handle(CardiacInterventionRepository $cardiacInterventionRepository)
     {
         $cardiac = $cardiacInterventionRepository->find($this->id);
-        if($cardiac) {
+        if ($cardiac) {
             $cardiacInterventionRepository->destroy($cardiac);
         }
 

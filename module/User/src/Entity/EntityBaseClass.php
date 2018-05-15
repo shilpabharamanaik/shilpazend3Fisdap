@@ -2,6 +2,7 @@
 
 use Doctrine\ORM\Proxy\Proxy;
 use Doctrine\ORM\QueryBuilder;
+
 //use Fisdap\EntityUtils;
 
 
@@ -132,9 +133,9 @@ class EntityBaseClass
      */
     public function __get($property)
     {
-			$getter = 'get_' . $property; //ucfirst($property);
-			if (method_exists($this, $getter)) {
-				return $this->$getter();
+        $getter = 'get_' . $property; //ucfirst($property);
+        if (method_exists($this, $getter)) {
+            return $this->$getter();
         } else {
             return $this->$property;
         }
@@ -317,7 +318,7 @@ class EntityBaseClass
      * @return EntityBaseClass
      * @throws \Exception
      * @codeCoverageIgnore
-     * @deprecated 
+     * @deprecated
      */
     public static function id_or_entity_helper($id, $entityName)
     {

@@ -17,7 +17,7 @@
 /**
  * @package Reports
  */
-class Reports_View_Helper_GoalSetList extends Zend_View_Helper_Abstract 
+class Reports_View_Helper_GoalSetList extends Zend_View_Helper_Abstract
 {
     protected $_html;
     

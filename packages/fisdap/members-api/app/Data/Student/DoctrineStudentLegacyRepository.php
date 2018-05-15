@@ -2,7 +2,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineStudentLegacyRepository
  *
@@ -27,7 +26,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
         if (is_array($studentIds)) {
             //$qb->where('st.id IN (?1)');
             $qb->add('where', $qb->expr()->in('st.id', $studentIds));
-        } else if (is_numeric($studentIds)) {
+        } elseif (is_numeric($studentIds)) {
             $qb->where('st.id = ?1');
             $qb->setParameter(1, $studentIds);
         }
@@ -83,11 +82,12 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
      * Gets similar data as $patientRepo->getSkillsByPatient() but by student IDs
      * Used in Skills report
      */
-    public function getStudentSkillData($studentIds) {
+    public function getStudentSkillData($studentIds)
+    {
         // sanity check IDs
-        foreach($studentIds as $id){
+        foreach ($studentIds as $id) {
             if (!is_numeric($id)) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
         $inCondition = implode(",", $studentIds);
@@ -160,7 +160,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
         $db = \Zend_Registry::get('db');
         $statement = $db->query($sql);
         $skillData = array();
-        while($row = $statement->fetch()) {
+        while ($row = $statement->fetch()) {
             $skillData[$row['skill_id']] = $row;
         }
 
@@ -171,12 +171,13 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
      * MySQL to get narrative info
      * Used in Narrative report
      */
-    public function getStudentNarrativeData($students, $sites = NULL, $start_date = null, $end_date = null) {
+    public function getStudentNarrativeData($students, $sites = null, $start_date = null, $end_date = null)
+    {
 
         // sanity check IDs
-        foreach($students as $id){
+        foreach ($students as $id) {
             if (!is_numeric($id)) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
         $studentIds = implode(",", $students);
@@ -184,9 +185,9 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
         // figure out search criteria
         if ($sites) {
             // sanity check IDs
-            foreach($sites as $id){
+            foreach ($sites as $id) {
                 if (!is_numeric($id)) {
-                    return FALSE; // @todo probably should do some real error handling
+                    return false; // @todo probably should do some real error handling
                 }
             }
             $siteIds = implode(",", $sites);
@@ -197,7 +198,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
             // sanity check date
             $start_date = strtotime($start_date);
             if (!$start_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
             $start_date_clause = "AND s.StartDate >= '".date('Y-m-d', $start_date)."' ";
         }
@@ -206,7 +207,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
             // sanity check date
             $end_date = strtotime($end_date);
             if (!$end_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
             $end_date_clause = "AND s.StartDate <= '".date('Y-m-d', $end_date)."' ";
         }
@@ -232,7 +233,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
         $db = \Zend_Registry::get('db');
         $statement = $db->query($sql);
         $narrativeData = array();
-        while($row = $statement->fetch()) {
+        while ($row = $statement->fetch()) {
             $narrativeData[$row['student_id']][$row['narrative_id']] = $row;
         }
 
@@ -243,12 +244,13 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
      * MySQL to get comment info
      * Used in Comments report
      */
-    public function getStudentCommentData($students, $sites = NULL, $start_date = null, $end_date = null) {
+    public function getStudentCommentData($students, $sites = null, $start_date = null, $end_date = null)
+    {
 
         // sanity check IDs
-        foreach($students as $id){
+        foreach ($students as $id) {
             if (!is_numeric($id)) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
         $studentIds = implode(",", $students);
@@ -256,9 +258,9 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
         // figure out search criteria
         if ($sites) {
             // sanity check IDs
-            foreach($sites as $id){
+            foreach ($sites as $id) {
                 if (!is_numeric($id)) {
-                    return FALSE; // @todo probably should do some real error handling
+                    return false; // @todo probably should do some real error handling
                 }
             }
             $siteIds = implode(",", $sites);
@@ -269,7 +271,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
             // sanity check date
             $start_date = strtotime($start_date);
             if (!$start_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
             $start_date_clause = "AND s.StartDate >= '".date('Y-m-d', $start_date)."' ";
         }
@@ -278,7 +280,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
             // sanity check date
             $end_date = strtotime($end_date);
             if (!$end_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
             $end_date_clause = "AND s.StartDate <= '".date('Y-m-d', $end_date)."' ";
         }
@@ -298,7 +300,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
         $db = \Zend_Registry::get('db');
         $statement = $db->query($sql);
         $commentData = array();
-        while($row = $statement->fetch()) {
+        while ($row = $statement->fetch()) {
             $commentData[$row['student_id']][$row['comment_id']] = $row;
         }
 
@@ -310,8 +312,9 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
      * matches that mask.
      * @param integer $config
      */
-    public function getStudentIdsByProductCodeConfig($config){
-        if(!is_numeric($config)){
+    public function getStudentIdsByProductCodeConfig($config)
+    {
+        if (!is_numeric($config)) {
             $config = 0;
         }
 
@@ -334,7 +337,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
         $res = $db->query($sql);
 
         $studentIds = array();
-        while($row = $res->fetch()) {
+        while ($row = $res->fetch()) {
             $studentIds[] = $row['Student_id'];
         }
 
@@ -347,12 +350,13 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
      * MySQL to get attendance info
      * Used in Attendance report
      */
-    public function getStudentAttendanceData($students, $sites = NULL, $start_date = null, $end_date = null) {
+    public function getStudentAttendanceData($students, $sites = null, $start_date = null, $end_date = null)
+    {
 
         // sanity check IDs
-        foreach($students as $id){
+        foreach ($students as $id) {
             if (!is_numeric($id)) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
         $studentIds = implode(",", $students);
@@ -360,9 +364,9 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
         // figure out search criteria
         if ($sites) {
             // sanity check IDs
-            foreach($sites as $id){
+            foreach ($sites as $id) {
                 if (!is_numeric($id)) {
-                    return FALSE; // @todo probably should do some real error handling
+                    return false; // @todo probably should do some real error handling
                 }
             }
             $siteIds = implode(",", $sites);
@@ -373,7 +377,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
             // sanity check date
             $start_date = strtotime($start_date);
             if (!$start_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
             $start_date_clause = "AND s.StartDate >= '".date('Y-m-d', $start_date)."' ";
         }
@@ -382,7 +386,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
             // sanity check date
             $end_date = strtotime($end_date);
             if (!$end_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
             $end_date_clause = "AND s.StartDate <= '".date('Y-m-d', $end_date)."' ";
         }
@@ -402,7 +406,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
         $db = \Zend_Registry::get('db');
         $statement = $db->query($sql);
         $attendanceData = array();
-        while($row = $statement->fetch()) {
+        while ($row = $statement->fetch()) {
             $attendanceData[$row['student_id']][$row['shift_id']] = $row;
         }
 
@@ -413,12 +417,13 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
      * MySQL to get Late data info
      * Used in LateData report
      */
-    public function getStudentLateData($students, $sites = NULL, $start_date = null, $end_date = null) {
+    public function getStudentLateData($students, $sites = null, $start_date = null, $end_date = null)
+    {
 
         // sanity check IDs
-        foreach($students as $id){
+        foreach ($students as $id) {
             if (!is_numeric($id)) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
         $studentIds = implode(",", $students);
@@ -426,9 +431,9 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
         // figure out search criteria
         if ($sites) {
             // sanity check IDs
-            foreach($sites as $id){
+            foreach ($sites as $id) {
                 if (!is_numeric($id)) {
-                    return FALSE; // @todo probably should do some real error handling
+                    return false; // @todo probably should do some real error handling
                 }
             }
             $siteIds = implode(",", $sites);
@@ -439,7 +444,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
             // sanity check date
             $start_date = strtotime($start_date);
             if (!$start_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
             $start_date_clause = "AND s.StartDate >= '".date('Y-m-d', $start_date)."' ";
         }
@@ -448,10 +453,10 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
             // sanity check date
             $end_date = strtotime($end_date);
             if (!$end_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
             $end_date_clause = "AND s.StartDate <= '".date('Y-m-d', $end_date)."' ";
-        }else{
+        } else {
             $end_date_clause = "AND s.StartDate <= '".date('Y-m-d')."' ";
         }
 
@@ -468,7 +473,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
         $db = \Zend_Registry::get('db');
         $statement = $db->query($sql);
         $attendanceData = array();
-        while($row = $statement->fetch()) {
+        while ($row = $statement->fetch()) {
             $attendanceData[$row['student_id']][$row['shift_id']] = $row;
         }
 
@@ -485,12 +490,13 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
      * @param null $end_date
      * @return array $acuityData - Multidimensional array of student's patient acuity data
      */
-    public function getStudentPatientAcuityData($students, $sites = NULL, $start_date = null, $end_date = null) {
+    public function getStudentPatientAcuityData($students, $sites = null, $start_date = null, $end_date = null)
+    {
 
         // sanity check IDs
-        foreach($students as $id){
+        foreach ($students as $id) {
             if (!is_numeric($id)) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
         $studentIds = implode(",", $students);
@@ -498,9 +504,9 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
         // figure out search criteria
         if ($sites) {
             // sanity check IDs
-            foreach($sites as $id){
+            foreach ($sites as $id) {
                 if (!is_numeric($id)) {
-                    return FALSE; // @todo probably should do some real error handling
+                    return false; // @todo probably should do some real error handling
                 }
             }
             $siteIds = implode(",", $sites);
@@ -511,7 +517,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
             // sanity check date
             $start_date = strtotime($start_date);
             if (!$start_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
             $start_date_clause = "AND s.start_datetime >= '".date('Y-m-d', $start_date)."' ";
         }
@@ -520,10 +526,10 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
             // sanity check date
             $end_date = strtotime($end_date);
             if (!$end_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
             $end_date_clause = "AND s.start_datetime <= '".date('Y-m-d', $end_date)."' ";
-        }else{
+        } else {
             $end_date_clause = "AND s.start_datetime <= '".date('Y-m-d')."' ";
         }
 
@@ -547,7 +553,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
         $db = \Zend_Registry::get('db');
         $statement = $db->query($sql);
         $acuityData = array();
-        while($row = $statement->fetch()) {
+        while ($row = $statement->fetch()) {
             $acuityData[$row['student_id']][$row['shift_id']] = $row;
         }
 
@@ -558,12 +564,13 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
      * MySQL to get narrative info
      * Used in Narrative report
      */
-    public function getStudentCertLevels($students) {
+    public function getStudentCertLevels($students)
+    {
 
         // sanity check IDs
-        foreach($students as $id){
+        foreach ($students as $id) {
             if (!is_numeric($id)) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
         $studentIds = implode(",", $students);
@@ -581,7 +588,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
         $db = \Zend_Registry::get('db');
         $statement = $db->query($sql);
         $certLevels = array();
-        while($row = $statement->fetch()) {
+        while ($row = $statement->fetch()) {
             $certLevels[$row['student_id']] = $row;
         }
 
@@ -657,7 +664,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
     {
         // sanity check IDs
         if (!is_numeric($studentId)) {
-            return FALSE; // @todo probably should do some real error handling
+            return false; // @todo probably should do some real error handling
         }
         $studentIds = $studentId;
 
@@ -667,7 +674,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
             // sanity check IDs
             foreach ($sites as $id) {
                 if (!is_numeric($id)) {
-                    return FALSE; // @todo probably should do some real error handling
+                    return false; // @todo probably should do some real error handling
                 }
             }
             $siteIds = implode(",", $sites);
@@ -680,7 +687,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
             // sanity check IDs
             foreach ($subjects as $id) {
                 if (!is_numeric($id)) {
-                    return FALSE; // @todo probably should do some real error handling
+                    return false; // @todo probably should do some real error handling
                 }
             }
             $subjectIds = implode(",", $subjects);
@@ -693,7 +700,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
             // sanity check date
             $start_date = strtotime($start_date);
             if (!$start_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 
@@ -702,7 +709,7 @@ class DoctrineStudentLegacyRepository extends DoctrineRepository implements Stud
             // sanity check date
             $end_date = strtotime($end_date);
             if (!$end_date) {
-                return FALSE; // @todo probably should do some real error handling
+                return false; // @todo probably should do some real error handling
             }
         }
 

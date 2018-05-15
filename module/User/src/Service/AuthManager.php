@@ -61,7 +61,6 @@ class AuthManager
         // config/global.php file).
 
         if ($result->getCode()==Result::SUCCESS && $rememberMe) {
-
             $userSession = new Container('user');
             $userSession->username = $this->authService->getIdentity();
             // Session cookie will expire in 1 month (30 days).
@@ -102,8 +101,9 @@ class AuthManager
         // access to it is permitted to anyone (even for not logged in users.
         // Restrictive mode is more secure and recommended to use.
         $mode = isset($this->config['options']['mode'])?$this->config['options']['mode']:'restrictive';
-        if ($mode!='restrictive' && $mode!='permissive')
+        if ($mode!='restrictive' && $mode!='permissive') {
             throw new \Exception('Invalid access filter mode (expected either restrictive or permissive mode');
+        }
 
         if (isset($this->config['controllers'][$controllerName])) {
             $items = $this->config['controllers'][$controllerName];
@@ -112,9 +112,10 @@ class AuthManager
                 $allow = $item['allow'];
                 if (is_array($actionList) && in_array($actionName, $actionList) ||
                     $actionList=='*') {
-                    if ($allow=='*')
-                        return true; // Anyone is allowed to see the page.
-                    else if ($allow=='@' && $this->authService->hasIdentity()) {
+                    if ($allow=='*') {
+                        return true;
+                    } // Anyone is allowed to see the page.
+                    elseif ($allow=='@' && $this->authService->hasIdentity()) {
                         return true; // Only authenticated user is allowed to see the page.
                     } else {
                         return false; // Access denied.
@@ -125,8 +126,9 @@ class AuthManager
 
         // In restrictive mode, we forbid access for unauthorized users to any
         // action not listed under 'access_filter' key (for security reasons).
-        if ($mode=='restrictive' && !$this->authService->hasIdentity())
+        if ($mode=='restrictive' && !$this->authService->hasIdentity()) {
             return false;
+        }
 
         // Permit access to this page.
         return true;

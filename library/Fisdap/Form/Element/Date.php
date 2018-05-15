@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -64,7 +64,7 @@ class Fisdap_Form_Element_Date extends Zend_Form_Element_Xhtml
     
     /**
      * returns the value of this form element
-     * 
+     *
      * @return mixed array
      */
     public function getValue()

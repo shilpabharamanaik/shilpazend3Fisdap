@@ -17,19 +17,19 @@ class AuthAdapter implements AdapterInterface
 {
     /**
      * User email.
-     * @var string 
+     * @var string
      */
     private $email;
     
     /**
      * Password
-     * @var string 
+     * @var string
      */
     private $password;
     
     /**
      * Entity manager.
-     * @var Doctrine\ORM\EntityManager 
+     * @var Doctrine\ORM\EntityManager
      */
     private $entityManager;
         
@@ -42,57 +42,58 @@ class AuthAdapter implements AdapterInterface
     }
     
     /**
-     * Sets user email.     
+     * Sets user email.
      */
-    public function setUsername($username) 
+    public function setUsername($username)
     {
-        $this->username = $username;        
+        $this->username = $username;
     }
     
     /**
-     * Sets password.     
+     * Sets password.
      */
-    public function setPassword($password) 
+    public function setPassword($password)
     {
-        $this->password = (string)$password;        
+        $this->password = (string)$password;
     }
     
     /**
      * Performs an authentication attempt.
      */
     public function authenticate()
-    {              
-	$username = $this->username;
-	//echo $username;
+    {
+        $username = $this->username;
+        //echo $username;
         // Check the database if there is a user with such email.
         $user = $this->entityManager->getRepository(User::class)->findOneByUsername($username);
         //echo "<pre>"; print_r($user); exit;
         // If there is no such user, return 'Identity Not Found' status.
         if ($user == null) {
             return new Result(
-                Result::FAILURE_IDENTITY_NOT_FOUND, 
-                null, 
-                ['Invalid credentials1.']);        
-        }   
+                Result::FAILURE_IDENTITY_NOT_FOUND,
+                null,
+                ['Invalid credentials1.']
+            );
+        }
         
        
        
         $passwordHash = $user->getPassword();
         $hashedpassword = $user->hashedpassword($this->password, $user->getPasswordSalt());
-		
+        
         if ($hashedpassword == $passwordHash) {
             return new Result(
-                    Result::SUCCESS, 
-                    $this->username, 
-                    ['Authenticated successfully.']);        
-        }             
+                    Result::SUCCESS,
+                    $this->username,
+                    ['Authenticated successfully.']
+            );
+        }
         
         // If password check didn't pass return 'Invalid Credential' failure status.
         return new Result(
-                Result::FAILURE_CREDENTIAL_INVALID, 
-                null, 
-                ['Invalid credentials.']);        
+                Result::FAILURE_CREDENTIAL_INVALID,
+                null,
+                ['Invalid credentials.']
+        );
     }
 }
-
-

@@ -10,12 +10,13 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
+
 //use Fisdap\EntityUtils;
 
 
 /**
  * Slot Assignment
- * 
+ *
  * @Entity(repositoryClass="Fisdap\Data\Slot\DoctrineSlotAssignmentRepository")
  * @Table(name="fisdap2_slot_assignments")
  */
@@ -126,7 +127,7 @@ class SlotAssignment extends EntityBaseClass
         $program_id = $this->user_context->program->id;
         $students = $this->slot->event->getAvailableUsers($program_id);
         $assigned_users = EntityUtils::getRepository("EventLegacy")->getAssignedUsersByEventOptimized($this->slot->event->id);
-        foreach($students as $id => $student) {
+        foreach ($students as $id => $student) {
             if (!in_array($id, $assigned_users)) {
                 $options[$id] = $student;
             }
@@ -217,5 +218,4 @@ class SlotAssignment extends EntityBaseClass
 
         return true;
     }
-    
 }

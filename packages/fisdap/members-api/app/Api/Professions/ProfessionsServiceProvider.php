@@ -4,7 +4,6 @@ use Fisdap\Api\Professions\Http\ProfessionsController;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
-
 /**
  * Enables profession-related routes
  *
@@ -19,7 +18,7 @@ final class ProfessionsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-		$router = app('router'); // Router Instance
+        $router = app('router'); // Router Instance
         parent::boot();
     }
 

@@ -17,12 +17,12 @@
 /**
  * @package SkillsTracker
  */
-class SkillsTracker_View_Helper_AuditShiftWidget extends Zend_View_Helper_Abstract 
+class SkillsTracker_View_Helper_AuditShiftWidget extends Zend_View_Helper_Abstract
 {
     /**
-	 * @var string the html to be rendered
-	 */
-	protected $_html;
+     * @var string the html to be rendered
+     */
+    protected $_html;
     
     public function auditShiftWidget($shiftId)
     {

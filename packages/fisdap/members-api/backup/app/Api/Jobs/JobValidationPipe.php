@@ -6,7 +6,6 @@ use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Contracts\Validation\Validator;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
-
 /**
  * Validates Jobs
  *
@@ -102,7 +101,6 @@ class JobValidationPipe
 
         foreach ($validator->getMessageBag()->getMessages() as $field => $fieldErrors) {
             $errors[] = "$field - " . implode(', ', $fieldErrors);
-
         }
 
         return 'Validation errors: ' . implode(', ', $errors);

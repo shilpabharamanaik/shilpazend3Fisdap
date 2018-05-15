@@ -10,7 +10,6 @@ use Zend_Registry;
 use Illuminate\Queue\Failed\FailedJobProviderInterface;
 use Illuminate\Contracts\Events\Dispatcher;
 
-
 /**
  * Configures/bootstraps job queue
  *
@@ -58,7 +57,7 @@ class QueueServiceProvider extends ServiceProvider
         });
 
         // register Worker
-        $this->app->singleton(Worker::class, function() use ($queue) {
+        $this->app->singleton(Worker::class, function () use ($queue) {
             return new Worker(
                 $queue->getQueueManager(),
                 $this->app->make(FailedJobProviderInterface::class),
@@ -81,11 +80,11 @@ class QueueServiceProvider extends ServiceProvider
 
     protected function bindCommands()
     {
-        $this->app->singleton(ListenCommand::class, function() {
+        $this->app->singleton(ListenCommand::class, function () {
             return new ListenCommand($this->app->make('queue.listener'));
         });
 
-        $this->app->singleton(WorkCommand::class, function() {
+        $this->app->singleton(WorkCommand::class, function () {
             return new WorkCommand($this->app->make('Illuminate\Queue\Worker'));
         });
     }

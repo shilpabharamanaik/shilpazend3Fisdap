@@ -43,7 +43,6 @@ class Version20150309145149 extends AbstractMigration
         // update product descriptions for nursing
         $this->addSql('UPDATE fisdap2_product SET description="Online documenting for patient care worksheets with graduation and goals reports." WHERE profession_id = 2 AND configuration = 1 LIMIT 1');
         $this->addSql('UPDATE fisdap2_product SET description="Schedule students\' clinical placements online where educators, hospital administrators, and students can all view and interact with the live calendar." WHERE profession_id = 2 AND configuration = 2 LIMIT 1');
-
     }
 
     public function down(Schema $schema)
@@ -75,6 +74,5 @@ class Version20150309145149 extends AbstractMigration
         // update product descriptions for nursing
         $this->addSql('UPDATE fisdap2_product SET description="Online shift reports and evaluations where students document the patient care data for their entire field and clinical internship. Skills Tracker includes access to reports, accreditation assistance and the portfolio." WHERE profession_id = 2 AND configuration = 1 LIMIT 1');
         $this->addSql('UPDATE fisdap2_product SET description="Schedule the students\' internship online where educators, clinicians, preceptors and students can all view and interact with the live calendar." WHERE profession_id = 2 AND configuration = 2 LIMIT 1');
-
     }
 }

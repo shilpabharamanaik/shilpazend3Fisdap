@@ -43,7 +43,6 @@ class Account_Validate_ActivationCode extends Zend_Validate_Abstract
 
         //If the fist char is numeric, it's a serial number
         if (is_numeric($value[0])) {
-
             if (!\Fisdap\Entity\SerialNumberLegacy::isSerialFormat($value, $matches)) {
                 $isValid = false;
                 $this->_error(self::INVALID_SERIAL);

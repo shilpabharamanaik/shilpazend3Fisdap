@@ -3,7 +3,6 @@
 use Fisdap\Entity\Verification;
 use Fisdap\Fractal\Transformer;
 
-
 /**
  * Prepares verification data for JSON output
  *

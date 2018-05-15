@@ -21,7 +21,8 @@
  */
 class Zend_View_Helper_AttachmentPicker extends Zend_View_Helper_Abstract
 {
-    public function attachmentPicker($attachmentID = 0, $width = 300, $height = 55) {
+    public function attachmentPicker($attachmentID = 0, $width = 300, $height = 55)
+    {
         // Generate something unique so that we can show more than one signature
         // per page.
         $hash = str_replace(".", "", microtime(true));

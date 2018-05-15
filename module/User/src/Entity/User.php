@@ -26,10 +26,9 @@ use Fisdap\Api\Users\Entity\Traits\Phones;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
-
 /**
  * Entity class for Users.
- * 
+ *
  * @Entity(repositoryClass="Fisdap\Data\User\DoctrineUserRepository")
  *
  * @Table(name="fisdap2_users")
@@ -51,7 +50,7 @@ class User
      * @var string
      * @Column(type="uuid", length=16, unique=true, nullable=true)
      */
- //   protected $psg_user_id;
+    //   protected $psg_user_id;
 
     /**
      * @var string
@@ -111,7 +110,7 @@ class User
      * @var UserContext
      * @OneToOne(targetEntity="UserContext", cascade={"persist", "remove", "detach"}, fetch="EAGER")
      */
-   // protected $current_user_context = null;
+    // protected $current_user_context = null;
 
     /**
      * @var bool
@@ -144,7 +143,7 @@ class User
      * @var Gender|null
      * @ManyToOne(targetEntity="Gender", fetch="EAGER")
      */
-  //  protected $gender = null;
+    //  protected $gender = null;
 
     /**
      * @var Ethnicity|null
@@ -162,7 +161,7 @@ class User
      * @var ArrayCollection|UserContext[]
      * @OneToMany(targetEntity="UserContext", mappedBy="user", cascade={"persist","remove","detach"}, fetch="EAGER")
      */
-   // protected $userContexts;
+    // protected $userContexts;
 
     /**
      * @var ArrayCollection|SerialNumberLegacy[]
@@ -173,13 +172,13 @@ class User
      * @codeCoverageIgnore
      * @deprecated
      */
-   // protected $serial_numbers;
+    // protected $serial_numbers;
 
     /**
      * @var Staff|null
      * @OneToOne(targetEntity="Staff", mappedBy="user", cascade={"persist","remove","detach"}, fetch="EAGER")
      */
-   // protected $staff = null;
+    // protected $staff = null;
 
     /**
      * @ManyToMany(targetEntity="MailingList")
@@ -211,10 +210,10 @@ class User
 
     public function __construct()
     {
-		$this->userContexts = new ArrayCollection();
-		$this->serial_numbers = new ArrayCollection();
-		$this->mailing_lists = new ArrayCollection();
-	}
+        $this->userContexts = new ArrayCollection();
+        $this->serial_numbers = new ArrayCollection();
+        $this->mailing_lists = new ArrayCollection();
+    }
 
 
     /**
@@ -412,20 +411,18 @@ class User
     {
         $this->password_salt = self::createPasswordSalt();
         $this->password = md5($password . $this->password_salt);
-		return $this->password;
-		
+        return $this->password;
     }
-	
-public function hashedpassword($password, $password_salt = '')
+
+    public function hashedpassword($password, $password_salt = '')
     {
         if (!empty($password_salt)) {
-			$this->password_salt = $password_salt;
-		} else {
-			$this->password_salt = self::createPasswordSalt();
-		}
+            $this->password_salt = $password_salt;
+        } else {
+            $this->password_salt = self::createPasswordSalt();
+        }
         $hashpass = md5($password . $this->password_salt);
-		return $hashpass;
-		
+        return $hashpass;
     }
 
     /**
@@ -608,7 +605,7 @@ public function hashedpassword($password, $password_salt = '')
     public function updateMailingLists($newEmail, $oldEmail)
     {
         $mailchimp = $this->getMailChimpWrapper();
-        foreach($this->mailing_lists as $list) {
+        foreach ($this->mailing_lists as $list) {
             $mailchimp->updateEmail($oldEmail, array('EMAIL' => $newEmail), $list->mailchimp_name);
         }
     }
@@ -735,7 +732,7 @@ public function hashedpassword($password, $password_salt = '')
      */
     public function getCurrentUserContext()
     {
-        if ( ! $this->current_user_context) {
+        if (! $this->current_user_context) {
             if ($this->userContexts->count() > 0) {
                 $this->current_user_context = $this->userContexts->first();
             } else {
@@ -942,7 +939,7 @@ public function hashedpassword($password, $password_salt = '')
             $instructor->email_event_flag = false;
 
             //Remove this instructor from all of his/her class sections
-            foreach($instructor->classSectionInstructors as $csi) {
+            foreach ($instructor->classSectionInstructors as $csi) {
                 $csi->section->removeInstructor($instructor);
             }
 
@@ -982,12 +979,12 @@ public function hashedpassword($password, $password_salt = '')
 
         if ($userName && \Zend_Registry::isRegistered('LoggedInUser')) {
             return \Zend_Registry::get('LoggedInUser');
-        } else if (is_null($userName)) {
+        } elseif (is_null($userName)) {
             return null;
         }
 
         $user = self::getByUsername($userName);
-        
+
         \Zend_Registry::set('LoggedInUser', $user);
 
         /** @var CurrentUser $currentUser */
@@ -1024,11 +1021,11 @@ public function hashedpassword($password, $password_salt = '')
         if ($userValue && $userValue!==true) {
             if (is_integer($userValue)) {	// user_id
                 return \Fisdap\EntityUtils::getEntity('User', $userValue);
-                //$repo = \Fisdap\EntityUtils::getEntityManager()->getRepository("\Fisdap\Entity\User");
+            //$repo = \Fisdap\EntityUtils::getEntityManager()->getRepository("\Fisdap\Entity\User");
                 //return $repo->find('\Fisdap\Entity\User', $userValue);
-            } else if (is_string($userValue)) {	// username
+            } elseif (is_string($userValue)) {	// username
                 return self::getByUsername($userValue);
-            } else if ($autoLogInUser) {
+            } elseif ($autoLogInUser) {
                 return $userValue; // user entity or other value
             } else {
                 return null;
@@ -1056,7 +1053,8 @@ public function hashedpassword($password, $password_salt = '')
      * @codeCoverageIgnore
      * @deprecated permissions should be determined with the PermissionsFinder
      */
-    public function hasPermission($permission){
+    public function hasPermission($permission)
+    {
         // a non-instructor is never going to have permissions, so always return false
         if (!$this->isInstructor()) {
             return false;
@@ -1066,19 +1064,19 @@ public function hashedpassword($password, $password_salt = '')
 
         $repos = \Fisdap\EntityUtils::getEntityManager()->getRepository('\Fisdap\Entity\Permission');
 
-        if(is_string($permission)){
+        if (is_string($permission)) {
             $permissionObject = $repos->findOneByName($permission);
-        }else if(is_int($permission)){
+        } elseif (is_int($permission)) {
             $permissionObject = $repos->findOneById($permission);
-        }else if(is_a($permission, '\Fisdap\Entity\Permission')){
+        } elseif (is_a($permission, '\Fisdap\Entity\Permission')) {
             $permissionObject = $permission;
-        }else{
+        } else {
             return false;
         }
 
         $hasPermission = false;
 
-        if(is_a($permissionObject, '\Fisdap\Entity\Permission')){
+        if (is_a($permissionObject, '\Fisdap\Entity\Permission')) {
             return ($this->getCurrentRoleData()->permissions & $permissionObject->bit_value);
         }
 
@@ -1335,7 +1333,7 @@ public function hashedpassword($password, $password_salt = '')
     public function removeFromAllMailingLists()
     {
         $mailchimp = $this->getMailChimpWrapper();
-        foreach($this->mailing_lists as $list) {
+        foreach ($this->mailing_lists as $list) {
             $this->removeMailingList($list);
         }
         return $this;
@@ -1401,7 +1399,7 @@ public function hashedpassword($password, $password_salt = '')
      * @param boolean $hashed has the password parameter already been hashed?
      * @return boolean
      */
-    public static function authenticate_password($username, $password, $hashed = FALSE)
+    public static function authenticate_password($username, $password, $hashed = false)
     {
         $user = self::getByUsername($username);
 
@@ -1432,7 +1430,6 @@ public function hashedpassword($password, $password_salt = '')
 
             return $password == $user->password;
         }
-
     }
 
 
@@ -1443,7 +1440,7 @@ public function hashedpassword($password, $password_salt = '')
      *
      * @return bool
      */
-    public static function authenticate_legacy_password($username, $password, $hashed = FALSE)
+    public static function authenticate_legacy_password($username, $password, $hashed = false)
     {
         $user = self::getByUsername($username);
 

@@ -1,8 +1,6 @@
 <?php
 namespace Fisdap\DebugBar\DataCollector\ZendDb;
 
-
-
 /**
  * Created by PhpStorm.
  * User: jmortenson
@@ -28,4 +26,3 @@ class ZendDbCollector extends \DebugBar\DataCollector\PDO\PDOCollector
         );
     }
 }
-

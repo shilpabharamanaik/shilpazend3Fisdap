@@ -10,7 +10,7 @@ use Zend\InputFilter\InputFilter;
 class PasswordResetForm extends Form
 {
     /**
-     * Constructor.     
+     * Constructor.
      */
     public function __construct()
     {
@@ -21,16 +21,16 @@ class PasswordResetForm extends Form
         $this->setAttribute('method', 'post');
                 
         $this->addElements();
-        $this->addInputFilter();          
+        $this->addInputFilter();
     }
     
     /**
      * This method adds elements to form (input fields and submit button).
      */
-    protected function addElements() 
+    protected function addElements()
     {
         // Add "email" field
-        $this->add([            
+        $this->add([
             'type'  => 'email',
             'name' => 'email',
             'options' => [
@@ -76,20 +76,20 @@ class PasswordResetForm extends Form
         $this->add([
             'type'  => 'submit',
             'name' => 'submit',
-            'attributes' => [                
+            'attributes' => [
                 'value' => 'Reset Password',
                 'id' => 'submit',
             ],
-        ]);       
+        ]);
     }
     
     /**
      * This method creates input filter (used for form filtering/validation).
      */
-    private function addInputFilter() 
+    private function addInputFilter()
     {
         // Create main input filter
-        $inputFilter = new InputFilter();        
+        $inputFilter = new InputFilter();
         $this->setInputFilter($inputFilter);
                 
         // Add input for "email" field
@@ -97,17 +97,17 @@ class PasswordResetForm extends Form
                 'name'     => 'email',
                 'required' => true,
                 'filters'  => [
-                    ['name' => 'StringTrim'],                    
-                ],                
+                    ['name' => 'StringTrim'],
+                ],
                 'validators' => [
                     [
                         'name' => 'EmailAddress',
                         'options' => [
                             'allow' => \Zend\Validator\Hostname::ALLOW_DNS,
-                            'useMxCheck'    => false,                            
+                            'useMxCheck'    => false,
                         ],
                     ],
                 ],
-            ]);                     
-    }        
+            ]);
+    }
 }

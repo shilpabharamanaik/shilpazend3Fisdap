@@ -143,7 +143,7 @@ class Account_Form_MergeAccounts extends Fisdap_Form_Base
             $delStudent = null;
             if ($studentId == $post['studentIdA']) {
                 $delStudent = EntityUtils::getEntity("StudentLegacy", $post['studentIdB']);
-            } else if ($studentId == $post['studentIdB']) {
+            } elseif ($studentId == $post['studentIdB']) {
                 $delStudent = EntityUtils::getEntity("StudentLegacy", $post['studentIdA']);
             }
 
@@ -156,7 +156,7 @@ class Account_Form_MergeAccounts extends Fisdap_Form_Base
             $delSerial = null;
             if ($delContext->getPrimarySerialNumber()->getNumber() == $snA->getNumber()) {
                 $delSerial = $snA;
-            } else if ($delContext->getPrimarySerialNumber()->getNumber() == $snB->getNumber()) {
+            } elseif ($delContext->getPrimarySerialNumber()->getNumber() == $snB->getNumber()) {
                 $delSerial = $snB;
             }
 
@@ -170,7 +170,7 @@ class Account_Form_MergeAccounts extends Fisdap_Form_Base
             $delUser = null;
             if ($studentId == $post['studentIdA']) {
                 $delUser = $userB;
-            } else if ($studentId == $post['studentIdB']) {
+            } elseif ($studentId == $post['studentIdB']) {
                 $delUser = $userA;
             }
 

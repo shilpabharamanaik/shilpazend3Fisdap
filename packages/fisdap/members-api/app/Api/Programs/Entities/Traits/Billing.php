@@ -2,7 +2,6 @@
 
 use Doctrine\ORM\Mapping\Column;
 
-
 /**
  * Class Billing
  *
@@ -308,7 +307,7 @@ trait Billing
         $namePieces = preg_split('/\s/', $this->billing_contact);
         if (count($namePieces) == 2) {
             return $namePieces[1];
-        } else if (count($namePieces) == 3) {
+        } elseif (count($namePieces) == 3) {
             return $namePieces[2];
         }
         return null;

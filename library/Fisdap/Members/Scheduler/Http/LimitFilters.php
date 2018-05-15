@@ -2,7 +2,6 @@
 
 use Fisdap\Entity\User;
 
-
 /**
  * Trait LimitFilters
  *
@@ -42,7 +41,7 @@ trait LimitFilters
             }
         }
 
-        if ( ! is_array($filters['chosen_students']) || is_null($filters['chosen_students'])
+        if (! is_array($filters['chosen_students']) || is_null($filters['chosen_students'])
             || empty($filters['chosen_students'])
         ) {
             $filters['chosen_students'] = 'all';

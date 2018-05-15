@@ -10,5 +10,4 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineIvRepository extends DoctrineRepository implements IvRepository
 {
-
 }

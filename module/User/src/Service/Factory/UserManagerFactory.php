@@ -11,10 +11,10 @@ use User\Service\UserManager;
 class UserManagerFactory
 {
     /**
-     * This method creates the UserManager service and returns its instance. 
+     * This method creates the UserManager service and returns its instance.
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
-    {        
+    {
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
                         
         return new UserManager($entityManager);

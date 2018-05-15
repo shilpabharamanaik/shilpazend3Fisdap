@@ -13,14 +13,13 @@
  */
 class Fisdap_Controller_Plugin_LayoutSwitcher extends Zend_Controller_Plugin_Abstract
 {
-
-	public function dispatchLoopStartup(
-        Zend_Controller_Request_Abstract $request)
-    {
+    public function dispatchLoopStartup(
+        Zend_Controller_Request_Abstract $request
+    ) {
         if ($request->getModuleName() == 'mobile') {
             Zend_Layout::getMvcInstance()->setLayout('mobile');
-			//$this->_response->setRedirect('https://www.fisdap.net/mobile/mobile_shift_list.php');
-			//return;
+            //$this->_response->setRedirect('https://www.fisdap.net/mobile/mobile_shift_list.php');
+            //return;
         }
     }
 }

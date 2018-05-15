@@ -4,7 +4,6 @@ use Fisdap\Api\Events\Event;
 use Fisdap\Api\Products\SerialNumbers\Jobs\Models\SerialNumber;
 use Fisdap\Entity\SerialNumberLegacy;
 
-
 /**
  * Event to fire when a collection of serial numbers (SerialNumberLegacy Entities) have been activated
  *

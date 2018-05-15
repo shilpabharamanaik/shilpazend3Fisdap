@@ -3,7 +3,6 @@
 use Doctrine\ORM\QueryBuilder;
 use Happyr\DoctrineSpecification\Query\QueryModifier;
 
-
 /**
  * Class WithPrograms
  *

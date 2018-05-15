@@ -15,12 +15,12 @@ class UserManager
      * Doctrine entity manager.
      * @var Doctrine\ORM\EntityManager
      */
-    private $entityManager;  
+    private $entityManager;
     
     /**
      * Constructs the service.
      */
-    public function __construct($entityManager) 
+    public function __construct($entityManager)
     {
         $this->entityManager = $entityManager;
     }
@@ -28,27 +28,27 @@ class UserManager
     /**
      * This method adds a new user.
      */
-    public function addUser($data) 
+    public function addUser($data)
     {
         // Do not allow several users with the same email address.
-        if($this->checkUserExists($data['email'])) {
+        if ($this->checkUserExists($data['email'])) {
             throw new \Exception("User with email address " . $data['$email'] . " already exists");
         }
         
         // Create new User entity.
         $user = new User();
         $user->setEmail($data['email']);
-        $user->setFullName($data['full_name']);        
+        $user->setFullName($data['full_name']);
 
         // Encrypt password and store the password in encrypted state.
         $bcrypt = new Bcrypt();
-        $passwordHash = $bcrypt->create($data['password']);        
+        $passwordHash = $bcrypt->create($data['password']);
         $user->setPassword($passwordHash);
         
         //$user->setStatus($data['status']);
         
         $currentDate = date('Y-m-d H:i:s');
-        $user->setDateCreated($currentDate);        
+        $user->setDateCreated($currentDate);
                 
         // Add the entity to the entity manager.
         $this->entityManager->persist($user);
@@ -62,16 +62,16 @@ class UserManager
     /**
      * This method updates data of an existing user.
      */
-    public function updateUser($user, $data) 
+    public function updateUser($user, $data)
     {
         // Do not allow to change user email if another user with such email already exits.
-        if($user->getEmail()!=$data['email'] && $this->checkUserExists($data['email'])) {
+        if ($user->getEmail()!=$data['email'] && $this->checkUserExists($data['email'])) {
             throw new \Exception("Another user with email address " . $data['email'] . " already exists");
         }
         
         $user->setEmail($data['email']);
-        $user->setFullName($data['full_name']);        
-        //$user->setStatus($data['status']);        
+        $user->setFullName($data['full_name']);
+        //$user->setStatus($data['status']);
         
         // Apply changes to database.
         $this->entityManager->flush();
@@ -80,8 +80,8 @@ class UserManager
     }
     
     /**
-     * This method checks if at least one user presents, and if not, creates 
-     * 'Admin' user with email 'admin@example.com' and password 'Secur1ty'. 
+     * This method checks if at least one user presents, and if not, creates
+     * 'Admin' user with email 'admin@example.com' and password 'Secur1ty'.
      */
     public function createAdminUserIfNotExists()
     {
@@ -91,9 +91,9 @@ class UserManager
             $user->setEmail('admin@example.com');
             $user->setFullName('Admin');
             $bcrypt = new Bcrypt();
-            $passwordHash = $bcrypt->create('user password');        
+            $passwordHash = $bcrypt->create('user password');
             $user->setPassword($passwordHash);
-           // $user->setStatus(User::STATUS_ACTIVE);
+            // $user->setStatus(User::STATUS_ACTIVE);
             $user->setDateCreated(date('Y-m-d H:i:s'));
             
             $this->entityManager->persist($user);
@@ -102,10 +102,10 @@ class UserManager
     }
     
     /**
-     * Checks whether an active user with given email address already exists in the database.     
+     * Checks whether an active user with given email address already exists in the database.
      */
-    public function checkUserExists($email) {
-        
+    public function checkUserExists($email)
+    {
         $user = $this->entityManager->getRepository(User::class)
                 ->findOneByEmail($email);
         
@@ -115,7 +115,7 @@ class UserManager
     /**
      * Checks that the given password is correct.
      */
-    public function validatePassword($user, $password) 
+    public function validatePassword($user, $password)
     {
         $bcrypt = new Bcrypt();
         $passwordHash = $user->getPassword();
@@ -128,8 +128,8 @@ class UserManager
     }
     
     /**
-     * Generates a password reset token for the user. This token is then stored in database and 
-     * sent to the user's E-mail address. When the user clicks the link in E-mail message, he is 
+     * Generates a password reset token for the user. This token is then stored in database and
+     * sent to the user's E-mail address. When the user clicks the link in E-mail message, he is
      * directed to the Set Password page.
      */
     public function generatePasswordResetToken($user)
@@ -139,7 +139,7 @@ class UserManager
         $user->setPasswordResetToken($token);
         
         $currentDate = date('Y-m-d H:i:s');
-        $user->setPasswordResetTokenCreationDate($currentDate);  
+        $user->setPasswordResetTokenCreationDate($currentDate);
         
         $this->entityManager->flush();
         
@@ -164,7 +164,7 @@ class UserManager
         $user = $this->entityManager->getRepository(User::class)
                 ->findOneByPasswordResetToken($passwordResetToken);
         
-        if($user==null) {
+        if ($user==null) {
             return false;
         }
         
@@ -186,7 +186,7 @@ class UserManager
     public function setNewPasswordByToken($passwordResetToken, $newPassword)
     {
         if (!$this->validatePasswordResetToken($passwordResetToken)) {
-           return false; 
+            return false;
         }
         
         $user = $this->entityManager->getRepository(User::class)
@@ -196,9 +196,9 @@ class UserManager
             return false;
         }
                 
-        // Set new password for user        
+        // Set new password for user
         $bcrypt = new Bcrypt();
-        $passwordHash = $bcrypt->create($newPassword);        
+        $passwordHash = $bcrypt->create($newPassword);
         $user->setPassword($passwordHash);
                 
         // Remove password reset token
@@ -221,7 +221,7 @@ class UserManager
         // Check that old password is correct
         if (!$this->validatePassword($user, $oldPassword)) {
             return false;
-        }                
+        }
         
         $newPassword = $data['new_password'];
         
@@ -230,7 +230,7 @@ class UserManager
             return false;
         }
         
-        // Set new password for user        
+        // Set new password for user
         $bcrypt = new Bcrypt();
         $passwordHash = $bcrypt->create($newPassword);
         $user->setPassword($passwordHash);
@@ -241,4 +241,3 @@ class UserManager
         return true;
     }
 }
-

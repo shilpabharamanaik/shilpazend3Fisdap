@@ -7,7 +7,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineTCMapStatesRepository
  *
@@ -16,33 +15,31 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineTCMapStatesRepository extends DoctrineRepository implements TCMapStatesRepository
 {
-
-	public function getStates()
+    public function getStates()
     {
-	    $results = $this->findAll();			
-		return $results;
+        $results = $this->findAll();
+        return $results;
     }
-	
-	public function getUsedColors()
-	{
-		$qb = $this->_em->createQueryBuilder();
-		
-		$qb->select('distinct state.color')
-		   ->from('\Fisdap\Entity\TCMapState', 'state');
-		   
-		
-		return $qb->getQuery()->getResult();
-	}
-	
-	public function getUsedStatuses()
-	{
-		$qb = $this->_em->createQueryBuilder();
-		
-		$qb->select('distinct state.status')
-		   ->from('\Fisdap\Entity\TCMapState', 'state');
-		   
-		
-		return $qb->getQuery()->getResult();
-	}
-
+    
+    public function getUsedColors()
+    {
+        $qb = $this->_em->createQueryBuilder();
+        
+        $qb->select('distinct state.color')
+           ->from('\Fisdap\Entity\TCMapState', 'state');
+           
+        
+        return $qb->getQuery()->getResult();
+    }
+    
+    public function getUsedStatuses()
+    {
+        $qb = $this->_em->createQueryBuilder();
+        
+        $qb->select('distinct state.status')
+           ->from('\Fisdap\Entity\TCMapState', 'state');
+           
+        
+        return $qb->getQuery()->getResult();
+    }
 }

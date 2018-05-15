@@ -28,25 +28,26 @@
  * @license
  * @version    $id$
  */
-class WURFL_Handlers_ChromeHandler extends WURFL_Handlers_Handler {
-	
-	protected $prefix = "CHROME";
-	
-	function __construct($wurflContext, $userAgentNormalizer = null) {
-		parent::__construct ( $wurflContext, $userAgentNormalizer );
-	}
-	
-	/**
-	 * Intercept all UAs Containing Chrome and are not mobile browsers
-	 *
-	 * @param string $userAgent
-	 * @return boolean
-	 */
-	public function canHandle($userAgent) {
-		if (WURFL_Handlers_Utils::isMobileBrowser ( $userAgent )) {
-			return false;
-		}
-		return WURFL_Handlers_Utils::checkIfContains ( $userAgent, "Chrome" );
-	}
-
+class WURFL_Handlers_ChromeHandler extends WURFL_Handlers_Handler
+{
+    protected $prefix = "CHROME";
+    
+    public function __construct($wurflContext, $userAgentNormalizer = null)
+    {
+        parent::__construct($wurflContext, $userAgentNormalizer);
+    }
+    
+    /**
+     * Intercept all UAs Containing Chrome and are not mobile browsers
+     *
+     * @param string $userAgent
+     * @return boolean
+     */
+    public function canHandle($userAgent)
+    {
+        if (WURFL_Handlers_Utils::isMobileBrowser($userAgent)) {
+            return false;
+        }
+        return WURFL_Handlers_Utils::checkIfContains($userAgent, "Chrome");
+    }
 }

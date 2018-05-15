@@ -63,7 +63,6 @@ class LtiServiceProvider extends ServiceProvider
     private function registerDataAccess()
     {
         $this->app->singleton(ToolProvider::class, function () {
-
             return new ToolProvider(
                 $this->app->make(DoctrineStorage::class),
                 $this->app->make($this->app['config']->get('lti.handlers.launch'))

@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Products\SerialNumbers\Events;
 
-
 /**
  * Event to fire when a serial number (SerialNumberLegacy Entity) has been activated
  *

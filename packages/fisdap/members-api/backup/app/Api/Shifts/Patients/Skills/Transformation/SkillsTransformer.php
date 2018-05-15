@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Shifts\Patients\Skills\Transformation;
 
-
 use Fisdap\Entity\Skill;
 use Fisdap\Fractal\Transformer;
 
@@ -32,4 +31,3 @@ final class SkillsTransformer extends Transformer
         return $skill;
     }
 }
-

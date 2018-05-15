@@ -23,7 +23,6 @@ class Fisdap_Form_Element_Attachment extends Zend_Form_Element_Text
 
     public function init()
     {
-
     }
 
     public function render()

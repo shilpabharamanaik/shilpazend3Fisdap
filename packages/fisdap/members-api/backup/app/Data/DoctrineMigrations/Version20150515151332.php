@@ -149,7 +149,6 @@ class Version20150515151332 extends AbstractMigration
         $this->addSql("INSERT INTO fisdap2_category_report SET report_id = 26, category_id = 78;");
         $this->addSql("INSERT INTO fisdap2_category_report SET report_id = 26, category_id = 83;");
         $this->addSql("INSERT INTO fisdap2_category_report SET report_id = 26, category_id = 84;");
-
     }
 
     public function down(Schema $schema)

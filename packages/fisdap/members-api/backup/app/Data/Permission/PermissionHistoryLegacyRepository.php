@@ -7,13 +7,12 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface PermissionHistoryLegacyRepository
  *
  * @package Fisdap\Data\Permission
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface PermissionHistoryLegacyRepository extends Repository {
-
+interface PermissionHistoryLegacyRepository extends Repository
+{
 }

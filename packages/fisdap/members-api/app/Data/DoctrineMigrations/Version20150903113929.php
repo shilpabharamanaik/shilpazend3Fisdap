@@ -33,8 +33,6 @@ class Version20150903113929 extends AbstractMigration
 
         // add a product package for the certification level
         $this->addSql('INSERT INTO fisdap2_product_package SET id=31, certification_id=27, name="Clinical Placement Package", description="With the Clinical Placement Package, you can manage students\' clinical placements and compliance, and they can document all of their skills practice and patient interactions.", configuration=3, price = 55.00, products_description="Scheduler, Skills Tracker", quickbooks_name="Clinical Placement Package-CDHC"');
-
-
     }
 
     /**
@@ -59,6 +57,5 @@ class Version20150903113929 extends AbstractMigration
 
         // remove product package
         $this->addSql('DELETE FROM fisdap2_product_package WHERE id=31 LIMIT 1');
-
     }
 }

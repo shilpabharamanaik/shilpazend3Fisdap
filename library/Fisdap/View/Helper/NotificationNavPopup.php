@@ -19,8 +19,8 @@
  */
 class Fisdap_View_Helper_NotificationNavPopup extends Zend_View_Helper_Abstract
 {
-    public function notificationNavPopup($notifications) {
-
+    public function notificationNavPopup($notifications)
+    {
         $this->view->addScriptPath(APPLICATION_PATH . "/views/scripts/");
 
         $popup = " | "
@@ -34,5 +34,4 @@ class Fisdap_View_Helper_NotificationNavPopup extends Zend_View_Helper_Abstract
 
         return $popup;
     }
-
 }

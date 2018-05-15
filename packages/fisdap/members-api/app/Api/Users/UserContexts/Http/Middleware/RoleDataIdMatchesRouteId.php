@@ -6,7 +6,6 @@ use Fisdap\Entity\User;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 
-
 /**
  * Ensures current user role data ID matches appropriate route parameter
  *
@@ -24,7 +23,8 @@ final class RoleDataIdMatchesRouteId
     /**
      * @param AuthManager $auth
      */
-    public function __construct(AuthManager $auth) {
+    public function __construct(AuthManager $auth)
+    {
         $this->user = $auth->guard()->user();
     }
 

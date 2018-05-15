@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Timestamps;
 
-
 /**
  * Contract for implementing created and updated timestamps
  *

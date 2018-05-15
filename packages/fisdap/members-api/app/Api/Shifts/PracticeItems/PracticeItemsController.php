@@ -5,7 +5,6 @@ use Fisdap\Fractal\CommonInputParameters;
 use Fisdap\Fractal\ResponseHelpers;
 use League\Fractal\Manager;
 
-
 /**
  * Class PracticeItemsController
  *
@@ -47,8 +46,10 @@ final class PracticeItemsController extends Controller
         return $this->respondWithCollection(
             $this->finder->getPracticeItems(
                 $shiftId,
-                $this->initAndGetIncludes(), $this->getIncludeIds(),
-                $this->getFirstResult(), $this->getMaxResults()
+                $this->initAndGetIncludes(),
+                $this->getIncludeIds(),
+                $this->getFirstResult(),
+                $this->getMaxResults()
             ),
             $this->transformer
         );

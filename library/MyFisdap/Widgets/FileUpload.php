@@ -2,42 +2,44 @@
 
 class MyFisdap_Widgets_FileUpload extends MyFisdap_Widgets_Base
 {
-	protected $registeredCallbacks = array('handleUpload', 'downloadFile', 'deleteFile');
-	
-	public function render(){
-		$fileList = $this->renderFileList();
-		$formElement = $this->renderFormElement();
-		
-		// Check to see if they're on ipad..
-		$device = Zend_Registry::get('device');
-		
-		if($device->getBrowser() == 'Safari Mobile'){
-			return "File downloads are not supported on the iPad. To view and download files, please log in on your computer.";
-		}else{
-			$html ="
+    protected $registeredCallbacks = array('handleUpload', 'downloadFile', 'deleteFile');
+    
+    public function render()
+    {
+        $fileList = $this->renderFileList();
+        $formElement = $this->renderFormElement();
+        
+        // Check to see if they're on ipad..
+        $device = Zend_Registry::get('device');
+        
+        if ($device->getBrowser() == 'Safari Mobile') {
+            return "File downloads are not supported on the iPad. To view and download files, please log in on your computer.";
+        } else {
+            $html ="
 				{$fileList}
 				
 				{$formElement}
 			";
-		}
-		
-		return $html;
-	}
-	
-	private function renderFileList(){
-		$user = $this->getWidgetUser();
-		
-		$uploads = \Fisdap\EntityUtils::getRepository('WidgetUploads')->getUploadedFilesForProgram($this->getWidgetProgram(), $this->getWidgetUser());
-		
-		$html = '';
-		
-		if(count($uploads) > 0){
-			$html .= "Click any of the files below to download them:";
-			
-			foreach($uploads as $upload){
-				$dlURL = "/my-fisdap/widget-ajax/reroute-ajax-request/wid/{$this->widgetData->id}/fcn/downloadFile/data/{$upload->id}";
-				
-				$html .= "
+        }
+        
+        return $html;
+    }
+    
+    private function renderFileList()
+    {
+        $user = $this->getWidgetUser();
+        
+        $uploads = \Fisdap\EntityUtils::getRepository('WidgetUploads')->getUploadedFilesForProgram($this->getWidgetProgram(), $this->getWidgetUser());
+        
+        $html = '';
+        
+        if (count($uploads) > 0) {
+            $html .= "Click any of the files below to download them:";
+            
+            foreach ($uploads as $upload) {
+                $dlURL = "/my-fisdap/widget-ajax/reroute-ajax-request/wid/{$this->widgetData->id}/fcn/downloadFile/data/{$upload->id}";
+                
+                $html .= "
 					<script>
 						var modalOptions = {
 							modal: true,
@@ -74,9 +76,9 @@ class MyFisdap_Widgets_FileUpload extends MyFisdap_Widgets_Base
 						};
 					</script>
 				";
-				
-				if($user->isInstructor() && $user->hasPermission('Edit Program Settings')){
-					$html .= "
+                
+                if ($user->isInstructor() && $user->hasPermission('Edit Program Settings')) {
+                    $html .= "
 						<div>
 							<a href='$dlURL'>
 								{$upload->original_name}
@@ -85,33 +87,33 @@ class MyFisdap_Widgets_FileUpload extends MyFisdap_Widgets_Base
 							<span style='position: relative; top: 5px;'><img src='/images/icons/delete.png' style='width: 20px; height: 20px;' onclick='confirmDelete({$upload->id}, \"{$upload->original_name}\");' /></span>
 						</div>
 					";
-				}else{
-					$html .= "<div><a href='$dlURL'>{$upload->original_name}</a></div>";
-				}
-			}
-			
-		}else{
-			if($user->isInstructor() && $user->hasPermission('Edit Program Settings')){
-				$html .= "<div>Upload files for your students and educators!</div>";
-			}else{
-				$html .= "<div>Your educator has not uploaded any files for you yet.</div>";
-			}
-		}
-		
-		return '<div class="file-list">' . $html . '</div>';
-	}
-	
-	private function renderFormElement(){
-		$user = $this->getWidgetUser();
-		$certOptions = \Fisdap\Entity\CertificationLevel::getFormOptions(false, true, "description", $user->getCurrentProgram()->profession->id);
-		
-		if($user->isInstructor() && $user->hasPermission('Edit Program Settings')){
-			$uploaderId = $this->getNamespacedName('file_uploader');
-			$formId = $this->getNamespacedName('file_uploader_form');
-			$uploadSpinner = $this->getNamespacedName('upload_spinner');
-			$buttonId = $this->getNamespacedName('upload_button');
-			
-			$html = <<< EOF
+                } else {
+                    $html .= "<div><a href='$dlURL'>{$upload->original_name}</a></div>";
+                }
+            }
+        } else {
+            if ($user->isInstructor() && $user->hasPermission('Edit Program Settings')) {
+                $html .= "<div>Upload files for your students and educators!</div>";
+            } else {
+                $html .= "<div>Your educator has not uploaded any files for you yet.</div>";
+            }
+        }
+        
+        return '<div class="file-list">' . $html . '</div>';
+    }
+    
+    private function renderFormElement()
+    {
+        $user = $this->getWidgetUser();
+        $certOptions = \Fisdap\Entity\CertificationLevel::getFormOptions(false, true, "description", $user->getCurrentProgram()->profession->id);
+        
+        if ($user->isInstructor() && $user->hasPermission('Edit Program Settings')) {
+            $uploaderId = $this->getNamespacedName('file_uploader');
+            $formId = $this->getNamespacedName('file_uploader_form');
+            $uploadSpinner = $this->getNamespacedName('upload_spinner');
+            $buttonId = $this->getNamespacedName('upload_button');
+            
+            $html = <<< EOF
 				<div class='file-upload-form'>
 					<script src='/js/jquery.iframe-post-form.js' type="text/javascript"></script>
 					
@@ -208,41 +210,45 @@ class MyFisdap_Widgets_FileUpload extends MyFisdap_Widgets_Base
 				</div>
 EOF;
 
-			return $html;
-		}else{
-			return '';
-		}
-	}
-	
-	public function getDefaultData(){
-		return array();
-	}
-	
-	public function deleteFile($data){
-		$upload = \Fisdap\EntityUtils::getEntity('WidgetUploads', $data['uploadId']);
-		$upload->delete();
-		
-		return true;
-	}
-	
-	public function downloadFile($data){
-		$upload = \Fisdap\EntityUtils::getEntity('WidgetUploads', $data);
-		$upload->getFile();
-	}
-	
-	public function handleUpload($data){
-		if($_FILES['upload']['tmp_name'] != ''){
-			$upload = new \Fisdap\Entity\WidgetUploads();
-			
-			$upload->educators_allowed = (array_key_exists('educators-allowed', $data) && $data['educators-allowed'] == 1);
-			$upload->setCertificationIds((array)$data['certificationLevels']);
-			$upload->program = $this->getWidgetProgram();
-			
-			$upload->processFile($_FILES['upload'], '');
-			
-			return 'true';
-		}else{
-			return 'false';
-		}
-	}
+            return $html;
+        } else {
+            return '';
+        }
+    }
+    
+    public function getDefaultData()
+    {
+        return array();
+    }
+    
+    public function deleteFile($data)
+    {
+        $upload = \Fisdap\EntityUtils::getEntity('WidgetUploads', $data['uploadId']);
+        $upload->delete();
+        
+        return true;
+    }
+    
+    public function downloadFile($data)
+    {
+        $upload = \Fisdap\EntityUtils::getEntity('WidgetUploads', $data);
+        $upload->getFile();
+    }
+    
+    public function handleUpload($data)
+    {
+        if ($_FILES['upload']['tmp_name'] != '') {
+            $upload = new \Fisdap\Entity\WidgetUploads();
+            
+            $upload->educators_allowed = (array_key_exists('educators-allowed', $data) && $data['educators-allowed'] == 1);
+            $upload->setCertificationIds((array)$data['certificationLevels']);
+            $upload->program = $this->getWidgetProgram();
+            
+            $upload->processFile($_FILES['upload'], '');
+            
+            return 'true';
+        } else {
+            return 'false';
+        }
+    }
 }

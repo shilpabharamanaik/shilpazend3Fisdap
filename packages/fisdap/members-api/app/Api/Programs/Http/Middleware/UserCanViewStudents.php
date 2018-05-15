@@ -12,7 +12,6 @@ use Fisdap\Entity\User;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 
-
 /**
  * Ensures current user has permissions to view reports for the provided student(s)
  *

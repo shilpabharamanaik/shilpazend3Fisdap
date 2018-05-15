@@ -8,7 +8,6 @@ use Fisdap\Entity\RequirementAttachment;
 use Fisdap\Entity\UserContext;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 
-
 /**
  * Assigns "Auto-Attach" (a.k.a. Default) Requirements to a UserContext
  *
@@ -52,7 +51,12 @@ final class AutoAttachRequirements extends Job
 
         foreach ($autoAttachmentRequirements as $autoAttachmentRequirement) {
             $requirementAttachments[] = $this->assignRequirement(
-                $this->userContext, $autoAttachmentRequirement->requirement, null, 0, null, "new account created"
+                $this->userContext,
+                $autoAttachmentRequirement->requirement,
+                null,
+                0,
+                null,
+                "new account created"
             );
         }
 

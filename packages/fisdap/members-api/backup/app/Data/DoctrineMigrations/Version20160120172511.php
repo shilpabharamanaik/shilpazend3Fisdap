@@ -16,7 +16,6 @@ class Version20160120172511 extends AbstractMigration
     public function up(Schema $schema)
     {
         $this->addSql('UPDATE fisdap2_orders SET accounting_processed = NULL WHERE accounting_processed = 0');
-
     }
 
     /**

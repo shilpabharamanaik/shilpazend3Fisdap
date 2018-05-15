@@ -7,7 +7,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineMoodleTestDataLegacyRepository
  *
@@ -17,16 +16,16 @@ use Fisdap\Data\Repository\DoctrineRepository;
 class DoctrineMoodleTestDataLegacyRepository extends DoctrineRepository implements MoodleTestDataLegacyRepository
 {
     /*
-	 * Gets a list of all currently available Moodle tests (MoodleTestDataLegacy)
-	 * as an array of moodle_quiz_id => test_name
-	 * criteria array can include:
-	 *   'active' => integer (set to 1 by default) or array of integers
-	 *   'context' => secure_testing | study_tools | pilot_testing
-	 *   'extraGroups' => Array containing the following strings:
-	 *   	'pilot_tests' | 'retired' | 'chum_bucket'
-	 * returnType = 'array' | 'entity' | 'productArray'
-	 * sort = array('field' => 'ASC|DESC')
-	 */
+     * Gets a list of all currently available Moodle tests (MoodleTestDataLegacy)
+     * as an array of moodle_quiz_id => test_name
+     * criteria array can include:
+     *   'active' => integer (set to 1 by default) or array of integers
+     *   'context' => secure_testing | study_tools | pilot_testing
+     *   'extraGroups' => Array containing the following strings:
+     *   	'pilot_tests' | 'retired' | 'chum_bucket'
+     * returnType = 'array' | 'entity' | 'productArray'
+     * sort = array('field' => 'ASC|DESC')
+     */
     public function getMoodleTestList(
         $criteria = array('active' => 1, 'extraGroups' => array('pilot_tests', 'retired')),
         $returnType = 'array',
@@ -46,7 +45,7 @@ class DoctrineMoodleTestDataLegacyRepository extends DoctrineRepository implemen
         if (is_numeric($criteria['active'])) {
             $qb->andWhere('m.active = ?1');
             $qb->setParameter(1, $criteria['active']);
-        }else if(is_array($criteria['active'])){
+        } elseif (is_array($criteria['active'])) {
             $qb->andWhere('m.active IN (?1)');
             $qb->setParameter(1, $criteria['active']);
         }
@@ -85,7 +84,6 @@ class DoctrineMoodleTestDataLegacyRepository extends DoctrineRepository implemen
                     return $this->sortTestsByProduct($results, $criteria);
                 } else {
                     if ($returnType == 'productArrayWithInfo') {
-
                         $productArray = $this->sortTestsByProduct($results, $criteria);
 
                         $infoArray = array();

@@ -25,9 +25,9 @@ class Mobile_Form_Narrative extends SkillsTracker_Form_Narrative
         parent::init();
         
         $this->setDecorators(array(
-			'PrepareElements',
-			array('ViewScript', array('viewScript' => "mobileNarrative.phtml")),
-			'Form',
-		));
+            'PrepareElements',
+            array('ViewScript', array('viewScript' => "mobileNarrative.phtml")),
+            'Form',
+        ));
     }
 }

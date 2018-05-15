@@ -3,7 +3,6 @@
 use Fisdap\Api\Queries\Exceptions\ResourceNotFound;
 use Fisdap\Api\ResourceFinder\FindsResources;
 
-
 /**
  * Contract for retrieving bases
  *

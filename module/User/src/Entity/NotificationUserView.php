@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * @Entity
  * @Table(name="fisdap2_notification_user_views")

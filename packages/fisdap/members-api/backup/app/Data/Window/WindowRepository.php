@@ -13,6 +13,6 @@ use Fisdap\Data\Repository\Repository;
  * @package Fisdap\Data\Window
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface WindowRepository extends Repository {
-
-} 
+interface WindowRepository extends Repository
+{
+}

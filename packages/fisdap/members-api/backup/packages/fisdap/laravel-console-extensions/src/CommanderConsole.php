@@ -4,7 +4,6 @@ use App;
 use InvalidArgumentException;
 use ReflectionClass;
 
-
 /**
  * Like CommanderTrait, this enables CommandBus functionality for Artisan/Symfony console commands
  *

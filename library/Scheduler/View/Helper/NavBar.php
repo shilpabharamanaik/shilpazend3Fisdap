@@ -77,7 +77,6 @@ class Scheduler_View_Helper_NavBar extends Zend_View_Helper_Abstract
 
         // render the student or instructor view
         return ($is_student) ? $this->getStudentHTML() : $this->getInstructorHTML();
-
     } // end navBar()
 
 
@@ -128,7 +127,6 @@ class Scheduler_View_Helper_NavBar extends Zend_View_Helper_Abstract
         $html .= "</ul>";
 
         return $html;
-
     } // end getInstructorHTML()
 
 
@@ -172,7 +170,6 @@ class Scheduler_View_Helper_NavBar extends Zend_View_Helper_Abstract
         $html .= "</ul>";
 
         return $html;
-
     } // end getStudentHTML()
 
 
@@ -191,8 +188,5 @@ class Scheduler_View_Helper_NavBar extends Zend_View_Helper_Abstract
         $requests = ($is_student) ? $shift_request_repo->getPendingRequestCountByOwner($repo_param) : $shift_request_repo->getPendingRequestCountByProgram($repo_param);
 
         return ($requests > 0) ? "<span class='request-count'>" . $requests . "</span>" : "";
-
     } // end getRequestCountHTML()
-
-
 } // end Scheduler_View_Helper_NavBar

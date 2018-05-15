@@ -3,7 +3,6 @@
 use Fisdap\Data\Repository\Repository;
 use Fisdap\Entity\Ethnicity;
 
-
 /**
  * Interface EthnicityRepository
  *

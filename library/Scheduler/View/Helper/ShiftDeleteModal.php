@@ -17,37 +17,37 @@
 /**
  * @package Scheduler
  */
-class Scheduler_View_Helper_ShiftDeleteModal extends Zend_View_Helper_Abstract 
+class Scheduler_View_Helper_ShiftDeleteModal extends Zend_View_Helper_Abstract
 {
-	
-	/**
-	 * @var string the html to be rendered
-	 */
-	protected $_html;
-	
-	// will create an empty modal
-	public function shiftDeleteModal()
-	{
-		// set up our modal
-		$this->view->headScript()->appendFile("/js/library/Scheduler/View/Helper/shift-delete-modal.js");
-		//$this->view->headLink()->appendStylesheet("/css/library/Scheduler/View/Helper/shift-delete-modal.css");
-		
-		$this->_html =  "<div id='shiftDeleteDialog'>";
-		$this->_html .= 	"<div id='shift-delete-modal-content'></div>";
-		$this->_html .= "</div>";
-		
-		return $this->_html;
-	}
-	
-	// generates the content for the modal
-	public function generateShiftDelete($shift_id)
-	{
-		$user = \Fisdap\Entity\User::getLoggedInUser();
-		$shift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $shift_id);
-		
-		// no shift?
-		if ($shift->id < 1) {
-			$returnContent = "<div>
+    
+    /**
+     * @var string the html to be rendered
+     */
+    protected $_html;
+    
+    // will create an empty modal
+    public function shiftDeleteModal()
+    {
+        // set up our modal
+        $this->view->headScript()->appendFile("/js/library/Scheduler/View/Helper/shift-delete-modal.js");
+        //$this->view->headLink()->appendStylesheet("/css/library/Scheduler/View/Helper/shift-delete-modal.css");
+        
+        $this->_html =  "<div id='shiftDeleteDialog'>";
+        $this->_html .= 	"<div id='shift-delete-modal-content'></div>";
+        $this->_html .= "</div>";
+        
+        return $this->_html;
+    }
+    
+    // generates the content for the modal
+    public function generateShiftDelete($shift_id)
+    {
+        $user = \Fisdap\Entity\User::getLoggedInUser();
+        $shift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $shift_id);
+        
+        // no shift?
+        if ($shift->id < 1) {
+            $returnContent = "<div>
 						Oops! We cannot find the requested shift.
 					</div>
 					<div class='delete-buttons'>
@@ -55,10 +55,10 @@ class Scheduler_View_Helper_ShiftDeleteModal extends Zend_View_Helper_Abstract
 							<a href='#' id='no-shift-btn'>Ok</a>
 						</div>
 					</div>";
-			return $returnContent;
-		}
-		
-		$returnContent = "<div id='main-delete-content'>
+            return $returnContent;
+        }
+        
+        $returnContent = "<div id='main-delete-content'>
 					<div>
 						You have chosen to delete this shift:
 					</div>
@@ -67,8 +67,8 @@ class Scheduler_View_Helper_ShiftDeleteModal extends Zend_View_Helper_Abstract
 						<h4 class='site-desc ".$shift->type."'>".$shift->getDetailViewDate()."</h4>
 						<h4 class='header' style='margin: 0 0 5px 30px'>".$shift->getLocation()."</h4>
 					</div>";
-				
-		$returnContent .= "</div>
+                
+        $returnContent .= "</div>
 				<div class='delete-buttons'>
 					<div id='cancelButtonWrapper' class='small gray-button'>
 						<a href='#' id='delete-cancel-btn'>Cancel</a>
@@ -76,9 +76,8 @@ class Scheduler_View_Helper_ShiftDeleteModal extends Zend_View_Helper_Abstract
 					<div id='deleteButtonWrapper' class='small green-buttons'>
 						<a href='#' id='delete-btn' data-shiftid=".$shift->id.">Confirm</a>
 					</div>
-				</div>";		
+				</div>";
 
-		return $returnContent;
-	}
-
+        return $returnContent;
+    }
 }

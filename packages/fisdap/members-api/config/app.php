@@ -227,7 +227,7 @@ return [
          ******************************/
 
         /*
-         * Doctrine 
+         * Doctrine
          */
         LaravelDoctrine\ORM\DoctrineServiceProvider::class,
         ZendRegistryServiceProvider::class,
@@ -243,13 +243,13 @@ return [
         /*
          * Application Service Providers...
          */
-	 
-		// App\Providers\AppServiceProvider::class,
+     
+        // App\Providers\AppServiceProvider::class,
         // App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         // App\Providers\EventServiceProvider::class,
         // App\Providers\RouteServiceProvider::class,
-		OAuth2ServiceProvider::class,
+        OAuth2ServiceProvider::class,
         Fisdap\Api\Providers\AppServiceProvider::class,
         Fisdap\Api\Providers\AuthServiceProvider::class,
         Fisdap\Api\Providers\EventServiceProvider::class,
@@ -322,7 +322,7 @@ return [
         UserContextEventsServiceProvider::class,
         VerificationTypesServiceProvider::class,
         Propaganistas\LaravelPhone\PhoneServiceProvider::class,
-		Sentry\SentryLaravel\SentryLaravelServiceProvider::class
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class
     ],
 
     /*
@@ -376,10 +376,10 @@ return [
         'Registry'      => LaravelDoctrine\ORM\Facades\Registry::class,
         'Doctrine'      => LaravelDoctrine\ORM\Facades\Doctrine::class,
  
-		'Bugsnag' => 	Bugsnag\BugsnagLaravel\Facades\Bugsnag::class,
+        'Bugsnag' => 	Bugsnag\BugsnagLaravel\Facades\Bugsnag::class,
         'Newrelic'    => \Intouch\LaravelNewrelic\Facades\Newrelic::class,
         'AWS'         => \Aws\Laravel\AwsFacade::class,
-		'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
+        'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
     ],
 
 ];

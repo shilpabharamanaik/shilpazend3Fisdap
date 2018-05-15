@@ -3,10 +3,9 @@
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
- * Entity for scenarios. 
- * 
+ * Entity for scenarios.
+ *
  * @Entity
  * @Table(name="fisdap2_scenario_states")
  *
@@ -14,4 +13,5 @@ use Doctrine\ORM\Mapping\Table;
  * @todo Write setters/getters and other core functionality
  */
 class ScenarioState extends Enumerated
-{}
+{
+}

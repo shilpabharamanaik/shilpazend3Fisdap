@@ -9,10 +9,9 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Entity class for Legacy Program Base Associations.
- * 
+ *
  * @Entity
  * @Table(name="ProgramBaseData")
  * @HasLifecycleCallbacks
@@ -25,7 +24,7 @@ class ProgramBaseLegacy extends EntityBaseClass
      * @GeneratedValue
      */
     protected $id;
-	
+    
     /**
      * @ManyToOne(targetEntity="ProgramLegacy", inversedBy="program_base_associations")
      * @JoinColumn(name="Program_id", referencedColumnName="Program_id")

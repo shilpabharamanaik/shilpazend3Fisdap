@@ -3,7 +3,6 @@
 use Fisdap\Api\Attachments\Listeners\StudentUserContextIdMatchesAttachmentUserContextId;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
-
 /**
  * Class ApiAttachmentEventsServiceProvider
  *

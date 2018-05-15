@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use JsonMapper;
 
-
 /**
  * Uses JsonMapper to map the body of a Request containing JSON to the properties of an object
  *

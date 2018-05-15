@@ -7,7 +7,6 @@ use Fisdap\Entity\User;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 
-
 /**
  * Ensures that instructor has 'view all data' permission
  *
@@ -47,7 +46,7 @@ final class InstructorCanViewAllData
     public function handle($request, Closure $next)
     {
         if ($this->user->context()->getRole()->getName() == 'instructor') {
-            if ( ! $this->viewAllData->permitted($this->user->context())) {
+            if (! $this->viewAllData->permitted($this->user->context())) {
                 throw new InvalidPermission("Instructor must have 'view all data' permission");
             }
         }

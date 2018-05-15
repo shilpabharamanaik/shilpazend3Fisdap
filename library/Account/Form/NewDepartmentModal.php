@@ -20,71 +20,69 @@
  */
 class Account_Form_NewDepartmentModal extends Fisdap_Form_BaseJQuery
 {
-
-	public static $gridElementDecorators = array(
-		'ViewHelper',
-		array(array('element' => 'HtmlTag'), array('tag' => 'div', 'class' => 'grid_3 mostInputs')),
+    public static $gridElementDecorators = array(
+        'ViewHelper',
+        array(array('element' => 'HtmlTag'), array('tag' => 'div', 'class' => 'grid_3 mostInputs')),
         array('Label', array('tag' => 'div', 'class' => 'grid_2 leftLabels', 'escape' => false)),
         
-	);
-	
-	public $site_id;
-	
-	public function __construct($siteId = null, $options = null)
-	{
-		$this->site_id = $siteId;
-		parent::__construct($options);
-	}
-	
-	public function init()
-	{
-
+    );
+    
+    public $site_id;
+    
+    public function __construct($siteId = null, $options = null)
+    {
+        $this->site_id = $siteId;
+        parent::__construct($options);
+    }
+    
+    public function init()
+    {
         parent::init();
-		$this->setAttrib('id', 'departmentForm');
-		
+        $this->setAttrib('id', 'departmentForm');
+        
 
-       $name = new Zend_Form_Element_Text('depart_name');
-		$name->setLabel('Department Name:')
-			 ->setRequired(true)
-			 ->addFilter('StripTags')
-			 ->addFilter('HtmlEntities')
-			 ->setAttrib('class', 'long baseName')
-			 ->addErrorMessage("Please enter a department name.");
-			 
-		$siteId = new Zend_Form_Element_Hidden('depart_siteId');
-		$siteId->setValue($this->site_id);
-		
-		$baseId = new Zend_Form_Element_Hidden('depart_id_input');
-		$baseId->setValue("noBase");
+        $name = new Zend_Form_Element_Text('depart_name');
+        $name->setLabel('Department Name:')
+             ->setRequired(true)
+             ->addFilter('StripTags')
+             ->addFilter('HtmlEntities')
+             ->setAttrib('class', 'long baseName')
+             ->addErrorMessage("Please enter a department name.");
+             
+        $siteId = new Zend_Form_Element_Hidden('depart_siteId');
+        $siteId->setValue($this->site_id);
+        
+        $baseId = new Zend_Form_Element_Hidden('depart_id_input');
+        $baseId->setValue("noBase");
 
-		
-		$this->addElements(array(
-			$name,
-			$siteId,
-			$baseId
-		));
+        
+        $this->addElements(array(
+            $name,
+            $siteId,
+            $baseId
+        ));
 
-		$this->setElementDecorators(self::$gridElementDecorators, array('depart_name'), true);
-		
-		$viewscript = newDepartmentModal.phtml;
+        $this->setElementDecorators(self::$gridElementDecorators, array('depart_name'), true);
+        
+        $viewscript = newDepartmentModal.phtml;
 
-		$this->setDecorators(array(
-			'PrepareElements',
-			array('ViewScript', array('viewScript' => "newDepartmentModal.phtml")),
-			'Form',
-			array('DialogContainer', array(
-				'id'          	=> 'newDepartDialog',
-				'class'         => 'newDepartDialog',
-				'jQueryParams' 	=> array(
-				'tabPosition' 	=> 'top',
-				'modal' 		=> true,
-				'autoOpen' 		=> false,
-				'resizable' 	=> false,
-				'width' 		=> 500,
-				'title' 		=> 'Add New Department',
-				'open' 			=> new Zend_Json_Expr("function(event, ui) { $('button').css('color', '#000000'); }"),
-				'buttons' 		=> array(array("text" => "Cancel", "className" => "gray-button", "click" => new Zend_Json_Expr("function() { $(this).dialog('close'); }")),array("text" => "Save", "id" => "save-btn", "class" => "gray-button small", "click" => new Zend_Json_Expr(
-						"function() {
+        $this->setDecorators(array(
+            'PrepareElements',
+            array('ViewScript', array('viewScript' => "newDepartmentModal.phtml")),
+            'Form',
+            array('DialogContainer', array(
+                'id'          	=> 'newDepartDialog',
+                'class'         => 'newDepartDialog',
+                'jQueryParams' 	=> array(
+                'tabPosition' 	=> 'top',
+                'modal' 		=> true,
+                'autoOpen' 		=> false,
+                'resizable' 	=> false,
+                'width' 		=> 500,
+                'title' 		=> 'Add New Department',
+                'open' 			=> new Zend_Json_Expr("function(event, ui) { $('button').css('color', '#000000'); }"),
+                'buttons' 		=> array(array("text" => "Cancel", "className" => "gray-button", "click" => new Zend_Json_Expr("function() { $(this).dialog('close'); }")),array("text" => "Save", "id" => "save-btn", "class" => "gray-button small", "click" => new Zend_Json_Expr(
+                        "function() {
 							var saveBtn = $('#newDepartDialog').parent().find('.ui-dialog-buttonpane').find('button').hide();
 							var throbber =  $(\"<img id='throbber' src='/images/throbber_small.gif'>\");
 							saveBtn.parent().append(throbber);
@@ -177,69 +175,59 @@ class Account_Form_NewDepartmentModal extends Fisdap_Form_BaseJQuery
 							
 							
 							
-						}"))),
-				),
-			)),
-		));
-		
-	}
-	
-	/**
-	 * Validate the form, if valid, save the Airway, if not, return the error msgs
-	 *
-	 * @param array $data the POSTed data
-	 * @return mixed either boolean true, or an array of error messages
-	 */
-	public function process($data)
-	{
-		if($this->isValid($data)){
-			$user = \Fisdap\Entity\User::getLoggedInUser();
-			$programId = $user->getProgramId();
-			$program = \Fisdap\EntityUtils::getEntity("ProgramLegacy", $programId);
-			
-			$site = \Fisdap\EntityUtils::getEntity("SiteLegacy", $data['depart_siteId']);
-			
-			$returnArray = array();
-	
-			if($data['depart_id_input'] == "noBase"){
-				$base = new \Fisdap\Entity\BaseLegacy;
-				$base->name = $data['depart_name'];
-				$base->site = $site;
-				$base->save();
-				$program->addBase($base, true);
-				
-				// if this is an admin program for this site, add this
-				// department to the other programs, too
-				if ($program->isAdmin($site->id)) {
-					foreach ($site->site_shares as $share) {
-						$share->program->addBase($base, true);
-					}
-				}
-			
-				$returnArray['newBase'] = true;
-				
-			}
-			else {
-				$base = \Fisdap\EntityUtils::getEntity("BaseLegacy", $data['depart_id_input']);
-				$base->name = $data['depart_name'];
-				$base->save();
-	
-				$returnArray['newBase'] = false;
-	
-			}
-			
-			$returnArray['optionText'] = "<option value='" . $base->id . "'>" . $base->name . "</option>";
-			$returnArray['baseId'] = $base->id;
-			return $returnArray;
-
-		}
-		else {
-			return $this->getMessages();
-		}
-
-		
-		
-	
-	}
-	
+						}"
+                ))),
+                ),
+            )),
+        ));
+    }
+    
+    /**
+     * Validate the form, if valid, save the Airway, if not, return the error msgs
+     *
+     * @param array $data the POSTed data
+     * @return mixed either boolean true, or an array of error messages
+     */
+    public function process($data)
+    {
+        if ($this->isValid($data)) {
+            $user = \Fisdap\Entity\User::getLoggedInUser();
+            $programId = $user->getProgramId();
+            $program = \Fisdap\EntityUtils::getEntity("ProgramLegacy", $programId);
+            
+            $site = \Fisdap\EntityUtils::getEntity("SiteLegacy", $data['depart_siteId']);
+            
+            $returnArray = array();
+    
+            if ($data['depart_id_input'] == "noBase") {
+                $base = new \Fisdap\Entity\BaseLegacy;
+                $base->name = $data['depart_name'];
+                $base->site = $site;
+                $base->save();
+                $program->addBase($base, true);
+                
+                // if this is an admin program for this site, add this
+                // department to the other programs, too
+                if ($program->isAdmin($site->id)) {
+                    foreach ($site->site_shares as $share) {
+                        $share->program->addBase($base, true);
+                    }
+                }
+            
+                $returnArray['newBase'] = true;
+            } else {
+                $base = \Fisdap\EntityUtils::getEntity("BaseLegacy", $data['depart_id_input']);
+                $base->name = $data['depart_name'];
+                $base->save();
+    
+                $returnArray['newBase'] = false;
+            }
+            
+            $returnArray['optionText'] = "<option value='" . $base->id . "'>" . $base->name . "</option>";
+            $returnArray['baseId'] = $base->id;
+            return $returnArray;
+        } else {
+            return $this->getMessages();
+        }
+    }
 }

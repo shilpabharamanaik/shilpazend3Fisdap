@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Practice Category Default
  * This entity will be used to store the default practice categories to be give to a new program
@@ -32,10 +31,10 @@ class PracticeCategoryDefault extends Enumerated
     protected $certification_level;
     
     /**
-	 * @var Profession
-	 * @ManyToOne(targetEntity="Profession")
-	 */
-	protected $profession;
+     * @var Profession
+     * @ManyToOne(targetEntity="Profession")
+     */
+    protected $profession;
     
     /**
      * @var ArrayCollection

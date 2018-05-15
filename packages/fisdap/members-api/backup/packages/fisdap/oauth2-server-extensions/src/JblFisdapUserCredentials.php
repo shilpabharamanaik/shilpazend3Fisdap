@@ -20,7 +20,7 @@ class JblFisdapUserCredentials implements UserCredentialsInterface
     /**
      * @var null|PDO
      */
-    protected  $pdo = null;
+    protected $pdo = null;
 
     /**
      * @var FisdapUserCredentials
@@ -46,13 +46,11 @@ class JblFisdapUserCredentials implements UserCredentialsInterface
      * @param FisdapUserCredentials $fisdapUserCredentials
      * @param EmailPasswordAuthenticator $jblAuthenticator
      */
-    public function __construct
-    (
+    public function __construct(
         PDO $pdo,
         FisdapUserCredentials $fisdapUserCredentials,
         EmailPasswordAuthenticator $jblAuthenticator
-    )
-    {
+    ) {
         $this->pdo = $pdo;
         $this->fisdapUserCredentials = $fisdapUserCredentials;
         $this->jblAuthenticator = $jblAuthenticator;
@@ -105,7 +103,6 @@ class JblFisdapUserCredentials implements UserCredentialsInterface
         $fisdapUserDetails = $this->fisdapUserCredentials->getUserDetails($username);
 
         if (!$fisdapUserDetails) {
-
             if (is_null($this->jblUserUuid)) {
                 throw new \Exception('JBL User UUID is not set in getUserDetails');
             }

@@ -3,7 +3,6 @@
 use Doctrine\ORM\QueryBuilder;
 use Happyr\DoctrineSpecification\Query\QueryModifier;
 
-
 /**
  * Modifies query to select partial rootEntity->student->program->id
  *

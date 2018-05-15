@@ -8,7 +8,6 @@ use Illuminate\Auth\GuardHelpers;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\UserProvider;
 
-
 /**
  * Class OAuth2Guard
  *
@@ -48,7 +47,7 @@ final class OAuth2Guard implements Guard
     {
         $user = null;
 
-        if ( ! is_null($this->user)) {
+        if (! is_null($this->user)) {
             $user = $this->user;
         }
 
@@ -96,7 +95,7 @@ final class OAuth2Guard implements Guard
         $userContextCriteria->where(Criteria::expr()->eq('id', $userContextId));
         $userContext = $user->getAllUserContexts()->matching($userContextCriteria)->first();
 
-        if ( ! $userContext instanceof UserContext) {
+        if (! $userContext instanceof UserContext) {
             $userContext = $user->getAllUserContexts()->first();
         }
 

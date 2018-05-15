@@ -12,10 +12,9 @@ use Fisdap\Entity\Product;
 use Fisdap\Members\Commerce\Exceptions\MissingSuccessfulBraintreeTransaction;
 use Fisdap\Members\Commerce\Exceptions\SalesItemMissingId;
 
-
 /**
  * Class SalesInvoiceTransformer
- * 
+ *
  * @package Fisdap\Members\Commerce\Services
  * @author Sam Tape <stape@fisdap.net>
  */
@@ -69,8 +68,9 @@ class SalesInvoiceTransformer
             $orderTransactions = $order->order_transactions;
             
             foreach ($orderTransactions as $orderTransaction) {
-
-                if ($orderTransaction->success === false) continue;
+                if ($orderTransaction->success === false) {
+                    continue;
+                }
                 
                 $transaction = $orderTransaction->getResponseObject()->transaction;
             }
@@ -109,7 +109,6 @@ class SalesInvoiceTransformer
 
                 //If the the package price is cheaper than the individual product sum, add it to the invoice/sales receipt
                 if ($individualPrice > $config->package->price) {
-
                     $lines[] = $this->generateSalesInvoiceLineArray($config->package->package_ISBN, $config->quantity, $config->package->getPrice());
 
                     //Subtract these products from the overall configuration so we don't list them twice
@@ -120,8 +119,7 @@ class SalesInvoiceTransformer
             //If there are still products left, add them to the invoice/sales receipt
             if ($configuration > 0) {
                 $products = $this->productRepository->getProducts($configuration, true, false, false, true, $order->program->profession->id);
-                foreach($products as $product) {
-
+                foreach ($products as $product) {
                     $salesInvoiceLine = $this->generateSalesInvoiceLineArray($product->ISBN, $config->quantity, $product->price);
 
                     //Determine if we need to add a discount line

@@ -3,7 +3,6 @@
 use Fisdap\Members\Commerce\Listeners\SendOrderToGreatPlains;
 use Fisdap\Members\Foundation\Support\Providers\EventServiceProvider;
 
-
 /**
  * Class OrdersServiceProvider
  * @package Fisdap\Members\Commerce

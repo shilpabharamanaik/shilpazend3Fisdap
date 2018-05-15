@@ -3,7 +3,6 @@
 use Fisdap\Entity\Enumerated;
 use League\Fractal\TransformerAbstract;
 
-
 /**
  * Class EnumeratedTransformer
  *
@@ -21,7 +20,7 @@ class EnumeratedTransformer extends TransformerAbstract
     {
         if ($enum instanceof Enumerated) {
             $enum = $enum->toArray();
-        } 
+        }
         
         return $enum;
     }

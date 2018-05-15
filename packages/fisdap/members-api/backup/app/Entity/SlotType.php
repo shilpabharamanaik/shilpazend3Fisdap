@@ -6,10 +6,9 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Slot Type
- * 
+ *
  * @Entity
  * @Table(name="fisdap2_slot_type")
  */

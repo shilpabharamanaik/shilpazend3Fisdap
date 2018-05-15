@@ -17,7 +17,6 @@
  * @license
  * @version    $id$
  */
-class WURFL_Xml_PersistenceProvider_Exception extends WURFL_WURFLException {
+class WURFL_Xml_PersistenceProvider_Exception extends WURFL_WURFLException
+{
 }
-
-?>

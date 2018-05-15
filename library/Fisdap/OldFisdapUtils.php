@@ -21,39 +21,40 @@ namespace Fisdap;
  */
 class OldFisdapUtils
 {
-	public static function getLegacyPage($baseURL, &$redirectionTracker=array()){
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    public static function getLegacyPage($baseURL, &$redirectionTracker=array())
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-		curl_setopt($ch, CURLOPT_URL, $baseURL);
-		$output = curl_exec($ch);
-		$info = curl_getinfo($ch);
+        curl_setopt($ch, CURLOPT_URL, $baseURL);
+        $output = curl_exec($ch);
+        $info = curl_getinfo($ch);
 
-		$redirects = 0;
+        $redirects = 0;
 
-		$redirectionTracker = array($baseURL);
+        $redirectionTracker = array($baseURL);
 
-		// Loop through redirects...  If the remote server returns a 302 code, call up the redirection location and try again.
-		// Limited to 10 attempts just so it doesn't murder the server if some crazy redirect loop happens.  Should only take 2-3.
-		while($info['http_code'] == 302 && $redirects <= 10){
-			curl_setopt($ch, CURLOPT_URL, $info['redirect_url']);
+        // Loop through redirects...  If the remote server returns a 302 code, call up the redirection location and try again.
+        // Limited to 10 attempts just so it doesn't murder the server if some crazy redirect loop happens.  Should only take 2-3.
+        while ($info['http_code'] == 302 && $redirects <= 10) {
+            curl_setopt($ch, CURLOPT_URL, $info['redirect_url']);
 
-			$redirectionTracker[] = $info['redirect_url'];
+            $redirectionTracker[] = $info['redirect_url'];
 
-			$output = curl_exec($ch);
-			$info = curl_getinfo($ch);
+            $output = curl_exec($ch);
+            $info = curl_getinfo($ch);
 
-			$redirects++;
-		}
+            $redirects++;
+        }
 
-		curl_close($ch);
+        curl_close($ch);
 
-		preg_match("/\<head.*?\>(.*)\<\/head\>/s", $output, $headMatches);
-		preg_match("/\<body.*?\>(.*)\<\/body\>/s", $output, $bodyMatches);
+        preg_match("/\<head.*?\>(.*)\<\/head\>/s", $output, $headMatches);
+        preg_match("/\<body.*?\>(.*)\<\/body\>/s", $output, $bodyMatches);
 
-		$headString = $headMatches[1];
-		$bodyString = $bodyMatches[1];
+        $headString = $headMatches[1];
+        $bodyString = $bodyMatches[1];
 
-		return array('head' => $headString, 'body' => $bodyString);
-	}
+        return array('head' => $headString, 'body' => $bodyString);
+    }
 }

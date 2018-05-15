@@ -6,10 +6,10 @@
  */
 class Fisdap_Controller_Plugin_CloseDbConnections extends Zend_Controller_Plugin_Abstract
 {
-	public function dispatchLoopShutdown()
-	{
-		\Fisdap\EntityUtils::getEntityManager()->getConnection()->close();
-		\Zend_Registry::get('db')->closeConnection();
+    public function dispatchLoopShutdown()
+    {
+        \Fisdap\EntityUtils::getEntityManager()->getConnection()->close();
+        \Zend_Registry::get('db')->closeConnection();
         return;
-	}
+    }
 }

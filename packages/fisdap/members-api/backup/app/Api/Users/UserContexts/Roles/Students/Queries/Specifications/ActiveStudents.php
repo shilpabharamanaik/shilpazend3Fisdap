@@ -4,7 +4,6 @@ use Carbon\Carbon;
 use Happyr\DoctrineSpecification\BaseSpecification;
 use Happyr\DoctrineSpecification\Spec;
 
-
 /**
  * Class ActiveStudents
  *

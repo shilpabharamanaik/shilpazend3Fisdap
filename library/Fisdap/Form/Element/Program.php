@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -19,11 +19,11 @@
  */
 class Fisdap_Form_Element_Program extends Zend_Form_Element_Select
 {
-	public function init()
-	{
+    public function init()
+    {
         $programs = \Fisdap\EntityUtils::getEntityManager()->createQuery("SELECT p.id, p.name FROM \Fisdap\Entity\ProgramLegacy p ORDER BY p.name")->getResult();
         foreach ($programs as $program) {
             $this->addMultiOption($program['id'], $program['name']);
         }
-	}
+    }
 }

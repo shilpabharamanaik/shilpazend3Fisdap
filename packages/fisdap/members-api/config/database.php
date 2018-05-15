@@ -116,12 +116,12 @@ return [
         ],
 
     ],
-	
-	'couchbase' => [
-		'driver' => 'couchbase',
-		'host' => 'http://127.0.0.1:8091',
-		'user' => 'Administrator', // optional administrator
-		'password' => 'ashok@123', // optional administrator
-	],
+    
+    'couchbase' => [
+        'driver' => 'couchbase',
+        'host' => 'http://127.0.0.1:8091',
+        'user' => 'Administrator', // optional administrator
+        'password' => 'ashok@123', // optional administrator
+    ],
 
 ];
