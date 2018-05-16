@@ -8,6 +8,7 @@ use Zend\View\Model\ViewModel;
 use Zend\Session\Container;
 use Zend\Mvc\MvcEvent;
 use User\Entity\User;
+use User\Entity\UserContext;
 
 class InstructorController extends AbstractActionController
 {
@@ -42,6 +43,9 @@ class InstructorController extends AbstractActionController
 
     public function editAction()
     {
+        $role = $this->entityManager->getRepository(UserContext::class)
+                    ->findOneByUserId($this->objUser->getId());
+        var_dump($role);
         return new ViewModel([
             'user' => print_r($this->objUser, true),
         ]);

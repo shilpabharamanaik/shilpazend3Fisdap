@@ -60,7 +60,9 @@ class AuthManager
         // one month. By default session expires in 1 hour (as specified in our
         // config/global.php file).
 
-        if ($result->getCode()==Result::SUCCESS && $rememberMe) {
+        //if ($result->getCode()==Result::SUCCESS && $rememberMe) {
+        if ($result->getCode()==Result::SUCCESS) {
+
             $userSession = new Container('user');
             $userSession->username = $this->authService->getIdentity();
             // Session cookie will expire in 1 month (30 days).
