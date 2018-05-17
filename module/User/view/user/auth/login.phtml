@@ -4,25 +4,34 @@
 //$this->mainMenu()->setActiveItemId('login');
 
 $form->get('username')->setAttributes([
-    'class'=>'form-control', 
-    'placeholder'=>'Username',
+    'id'=>'username', 
     'required' => true,
+	'size' => 15,
     'autofocus' => true
     ])
     ->setLabelAttributes([
-        
+        'class'=>'required'
     ]);
 
 $form->get('password')->setAttributes([
-    'class'=>'form-control', 
-    'placeholder'=>'Password',
+    'id'=>'password',
+	'size' => 15,
     'required' => true,
     ])
     ->setLabelAttributes([
-        
+        'class'=>'required'
+    ]);
+
+$form->get('remember_me')->setAttributes([
+    'id'=>'ImSecure', 
+    'class' => 'secure'
+    ])
+    ->setLabelAttributes([
     ]);
 ?>
 <html>
+<head>
+</head>
 <body>
 		<div style='width: 1000px; margin: auto;' class="login_page">
 			<div class='login_header'>
@@ -37,26 +46,36 @@ $form->get('password')->setAttributes([
 				<div class="row-container">
     <div id='login_area' class="area">
         <form class="form-signin" method="post">
-            
+            <d1 class ="zend_form">
             <?php if ($isLoginError): ?>
             <div class="alert alert-warning" role="alert">
                 Incorrect login and/or password. 
                 <a href="<?= $this->url('reset-password') ?>">Forgot password?</a>
             </div>
             <?php endif; ?>
+			<div class="login_prompts">
             <?= $this->formLabel($form->get('username')); ?>
             <?= $this->formElement($form->get('username')); ?>
+			</div></br>
+			<div class="login_prompts">
             <?= $this->formLabel($form->get('password')); ?>
             <?= $this->formElement($form->get('password')); ?>
+			</div>
+			<div id='my_secure_box_ff' class='form_field secure'> 
             <div class="checkbox">
-                <label>
-                    <?= $this->formElement($form->get('remember_me')); ?> Remember me
+                <label class="optional">
+                    <?= $this->formElement($form->get('remember_me')); ?>I'm secure. Don't ask for my password when I make changes
                 </label>
             </div>
+			</div>
             <?= $this->formElement($form->get('redirect_url')); ?>
             <?= $this->formElement($form->get('csrf')) ?>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form>
+            <div class="button_container green-buttons small">
+				<div class="grid_8"><a href="#">Forgot your login?</a></div>
+				<input name="submit" id="submit" value="Log in" class="ui-button ui-widget ui-state-default ui-corner-all" role="button" aria-disabled="false" type="submit">
+			</div>
+		</d1>
+		</form>
     </div>
 
     <div id='create_acct' class='area'>
@@ -88,13 +107,18 @@ $form->get('password')->setAttributes([
   .navbar{
 	display:none;
   }
-  .login_page h1 {
-    margin-top: 1em;
-}
+ 
 #main_header{
 display: none;
 }
   </style>
-    
+    <script>
+	$(function(){
+	var spans = $('.site');
+	var spans1 = $('#main-content');
+	spans.contents().unwrap();
+	spans1.contents().unwrap();
+});
+	</script>
     </body>
 </html>

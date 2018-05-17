@@ -36,11 +36,16 @@ div.login_prompts label {
 #main-content {
     display: table;
     border-collapse: separate;
-    border-spacing: 10px 0px;
+    border-spacing: 10px 2px;
 }
 
 .row-container {
     display: table-row;
+}
+
+.optional {
+margin-top: 10px;
+margin-bottom: 10px !important;
 }
 
 div.area {

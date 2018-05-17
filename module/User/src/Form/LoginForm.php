@@ -35,7 +35,7 @@ class LoginForm extends Form
             'type'  => 'text',
             'name' => 'username',
             'options' => [
-                'label' => 'Username',
+                'label' => 'Username:',
             ],
         ]);
         
@@ -44,7 +44,7 @@ class LoginForm extends Form
             'type'  => 'password',
             'name' => 'password',
             'options' => [
-                'label' => 'Password',
+                'label' => 'Password:',
             ],
         ]);
         
