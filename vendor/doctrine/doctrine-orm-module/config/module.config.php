@@ -25,11 +25,11 @@ return [
                 // connection parameters, see
                 // http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html
                 'params' => [
-                    'host'     => 'fisdapdb.dal01.fisdapdev.net',
+                    'host'     => 'localhost',
                     'port'     => '3306',
-                    'user'     => 'fisdap',
-                    'password' => '^f1$@p0$',
-                    'dbname'   => 'FISDAP',
+                    'user'     => 'root',
+                    'password' => '',
+                    'dbname'   => 'zf_fisdap',
                 ],
             ],
         ],
