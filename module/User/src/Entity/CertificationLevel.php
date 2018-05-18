@@ -4,7 +4,7 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
-use Fisdap\EntityUtils;
+use User\EntityUtils;
 
 /**
  * Entity class for Certification Levels.

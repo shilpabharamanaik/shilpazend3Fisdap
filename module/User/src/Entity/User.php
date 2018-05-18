@@ -110,7 +110,7 @@ class User
      * @var UserContext
      * @OneToOne(targetEntity="UserContext", cascade={"persist", "remove", "detach"}, fetch="EAGER")
      */
-    // protected $current_user_context = null;
+     protected $current_user_context = null;
 
     /**
      * @var bool
@@ -161,7 +161,7 @@ class User
      * @var ArrayCollection|UserContext[]
      * @OneToMany(targetEntity="UserContext", mappedBy="user", cascade={"persist","remove","detach"}, fetch="EAGER")
      */
-    // protected $userContexts;
+     protected $userContexts;
 
     /**
      * @var ArrayCollection|SerialNumberLegacy[]
@@ -178,7 +178,7 @@ class User
      * @var Staff|null
      * @OneToOne(targetEntity="Staff", mappedBy="user", cascade={"persist","remove","detach"}, fetch="EAGER")
      */
-    // protected $staff = null;
+     protected $staff = null;
 
     /**
      * @ManyToMany(targetEntity="MailingList")
@@ -1245,6 +1245,7 @@ class User
      */
     public function isStaff()
     {
+       // return true;
         return ! is_null($this->staff);
     }
 

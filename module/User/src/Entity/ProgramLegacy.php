@@ -28,7 +28,7 @@ use Fisdap\Api\Programs\Entities\Traits\ShiftDeadlines;
 use Fisdap\Api\Programs\Entities\Traits\Sites;
 use Fisdap\Api\Programs\Entities\Traits\StudentPermissions;
 use Fisdap\Api\Programs\Entities\Traits\Types;
-use Fisdap\EntityUtils;
+use User\EntityUtils;
 
 /**
  * Legacy Entity class for Programs.

@@ -1,10 +1,12 @@
 <?php namespace User\Entity;
 
+use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
-use Fisdap\EntityUtils;
+use User\EntityUtils;
 
 /**
  * Entity class for Permissions.
@@ -14,6 +16,13 @@ use Fisdap\EntityUtils;
  */
 class Permission extends Enumerated
 {
+	/**
+     * @var int
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
     /**
      * @var int
      * @Column(type="integer");

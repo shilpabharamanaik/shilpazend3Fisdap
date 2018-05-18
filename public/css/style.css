@@ -251,3 +251,29 @@ clear: both;
     padding-left: 10px;
     padding-right: 10px;
 }
+#accountLinks h3 {
+	margin-top:1.5em;
+}
+
+#accountLinks a, #accountLinksStudent a {
+	font-size:12pt;
+}
+
+
+#accountLinks {
+	margin-top:1.5em;
+}
+
+.needMargin {
+	margin-top:1em;
+}
+
+#topButtons {
+	float:right;
+	margin-top:-3em;
+	margin-right:-2em;
+}
+
+a#staffDirectory {
+
+}

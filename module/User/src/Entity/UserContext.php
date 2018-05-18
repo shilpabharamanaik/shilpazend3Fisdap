@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\OrderBy;
 use Fisdap\Data\Slot\SlotAssignmentRepository;
-use Fisdap\EntityUtils;
+use User\EntityUtils;
 
 /**
  * Entity class for User Roles.
@@ -885,6 +885,7 @@ class UserContext extends EntityBaseClass
      */
     public function hasPermission($permission)
     {
+		echo "1"; exit;
         // a non-instructor is never going to have permissions, so always return false
         if (! $this->isInstructor()) {
             return false;
@@ -892,7 +893,7 @@ class UserContext extends EntityBaseClass
 
         $permissionObject = null;
 
-        $repos = \Fisdap\EntityUtils::getEntityManager()->getRepository('\Fisdap\Entity\Permission');
+        $repos = \User\Entity\EntityUtils::getEntityManager()->getRepository('\User\Entity\Permission');
 
         if (is_string($permission)) {
             $permissionObject = $repos->findOneByName($permission);

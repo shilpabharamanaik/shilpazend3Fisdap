@@ -33,7 +33,7 @@ class ProgramPreceptorLegacy extends EntityBaseClass
      * @ManyToOne(targetEntity="PreceptorLegacy")
      * @JoinColumn(name="Preceptor_id", referencedColumnName="Preceptor_id")
      */
-    protected $preceptor;
+  //   protected $preceptor;
     
     /**
      * @Column(name="Active", type="boolean")

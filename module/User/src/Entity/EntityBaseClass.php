@@ -3,7 +3,7 @@
 use Doctrine\ORM\Proxy\Proxy;
 use Doctrine\ORM\QueryBuilder;
 
-//use Fisdap\EntityUtils;
+//use User\EntityUtils;
 
 
 /**

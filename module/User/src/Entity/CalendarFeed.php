@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
-use Fisdap\EntityUtils;
+use User\EntityUtils;
 
 /**
  * Calendar Feed

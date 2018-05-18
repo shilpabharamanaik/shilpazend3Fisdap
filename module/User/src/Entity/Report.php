@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\Table;
-use Fisdap\EntityUtils;
+use User\EntityUtils;
 
 /**
  * Entity class for Reports.

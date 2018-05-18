@@ -63,11 +63,9 @@ class AuthAdapter implements AdapterInterface
     public function authenticate()
     {
         $username = $this->username;
-        //echo $username;
-        // Check the database if there is a user with such email.
+        
         $user = $this->entityManager->getRepository(User::class)->findOneByUsername($username);
-        //echo "<pre>"; print_r($user); exit;
-        // If there is no such user, return 'Identity Not Found' status.
+		
         if ($user == null) {
             return new Result(
                 Result::FAILURE_IDENTITY_NOT_FOUND,
@@ -76,8 +74,6 @@ class AuthAdapter implements AdapterInterface
             );
         }
         
-       
-       
         $passwordHash = $user->getPassword();
         $hashedpassword = $user->hashedpassword($this->password, $user->getPasswordSalt());
         
