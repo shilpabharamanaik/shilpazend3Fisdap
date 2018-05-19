@@ -25,7 +25,11 @@ return [
             ],
         ],
     ],
-
+	 'controllers' => [
+        'factories' => [
+            Controller\SkillstrackerController::class => Controller\Factory\SkillstrackerControllerFactory::class,
+        ],
+    ],
     'view_manager' => [
         'template_path_stack' => [
             'skillstracker' => __DIR__ . '/../view',

@@ -1,121 +1,112 @@
-********************** hard coded role is student, need to configure it in controller ***************
-
-<?php
-    $title = 'Community';
-    $this->headTitle($title);
-    $this->roleName = "student" ;
-?>
-<h1><?= $this->escapeHtml($title); ?></h1>
+<h2 class='page-title' id='shift-list-title'>Community</h2>
 
 
 <div id="shift-list-container" class="grid_12 island">
 
 <!--  ----------------------------------------------------------------------------------------------------  -->
-<?php if ($this->roleName == "student"): ?>
-<!--  ----------------------------------------------------------------------------------------------------  -->
+<?php if ($this->roleName == "student"):        ?>
 
-    <div class="grid_6">
-        <h4 class="header" id='shift-list-title'>
-            <a href="<?= $this->ResourcesLink      ?>">Resources</a>
-        </h4>
-        <p>
-            Browse our paper forms for printable PCRs, evaluations for students and preceptors, and other resources.
-        </p>
-        <p>
-            <a href="<?= $this->ResourcesLink      ?>">Check out our library.</a>
-        </p>
-        <br />
 
-        <h4 class="header" id='shift-list-title'>
-            <a href="<?= $this->ResearchLink      ?>">Research</a>
-        </h4>
-        <p>
-            Your participation contributes to national EMS education research.
-        </p>
-        <p>
-            <a href="<?= $this->ResearchLink      ?>">Read more about what we've learned from Fisdap research.</a>
-        </p>
-        <br />
+	<div class="grid_6">
+		<h4 class="header" id='shift-list-title'>
+			<a href="<?= $this->ResourcesLink      ?>">Resources</a>
+		</h4>
+		<p>
+			Browse our paper forms for printable PCRs, evaluations for students and preceptors, and other resources.
+		</p>
+		<p>
+			<a href="<?= $this->ResourcesLink      ?>">Check out our library.</a>
+		</p>
+		<br />
 
-    </div>
+		<h4 class="header" id='shift-list-title'>
+			<a href="<?= $this->ResearchLink      ?>">Research</a>
+		</h4>
+		<p>
+			Your participation contributes to national EMS education research.
+		</p>
+		<p>
+			<a href="<?= $this->ResearchLink      ?>">Read more about what we've learned from Fisdap research.</a>
+		</p>
+		<br />
 
-    <div class="grid_6">
-        <h4 class="header" id='shift-list-title'>
-            <a href="/account/new/research-consent">Consent Form</a>
-        </h4>
-        <p>
-            Fisdap data is used for research that informs best practices for EMS education.  You can help!  Consent to let us use your data (it's always anonymous!), and you can improve education for the next generation of students.
-        </p>
-        <p>
-            <a href="/account/new/research-consent">View the consent form.</a>
-        </p>
-    </div>
+	</div>
 
-<!--  ----------------------------------------------------------------------------------------------------  -->
+
+	<div class="grid_6">
+		<h4 class="header" id='shift-list-title'>
+			<a href="/account/new/research-consent">Consent Form</a>
+		</h4>
+		<p>
+			Fisdap data is used for research that informs best practices for EMS education.  You can help!  Consent to let us use your data (it's always anonymous!), and you can improve education for the next generation of students.
+		</p>
+		<p>
+			<a href="/account/new/research-consent">View the consent form.</a>
+		</p>
+	</div>
+
 <?php elseif ($this->roleName == "instructor"): ?>
-<!--  ----------------------------------------------------------------------------------------------------  -->
 
-    <div class="grid_6">
 
-        <h4 class="header" id='shift-list-title'>
-            <a href="<?= $this->recourcesLink             ?>">Resources</a>
-        </h4>
-        <p>
-            Browse our paper forms for printable PCRs, evaluations for students and preceptors, and other resources.
-        </p>
-        <p>
-            <a href="<?= $this->recourcesLink             ?>">Check out our library.</a>
-        </p>
-        <br />
+	<div class="grid_6">
+	
+		<h4 class="header" id='shift-list-title'>
+			<a href="<?= $this->recourcesLink             ?>">Resources</a>
+		</h4>
+		<p>
+			Browse our paper forms for printable PCRs, evaluations for students and preceptors, and other resources.
+		</p>
+		<p>
+			<a href="<?= $this->recourcesLink             ?>">Check out our library.</a>
+		</p>
+		<br />
 
-        <h4 class="header" id='shift-list-title'>
-            <a href="<?= $this->researchLink              ?>">Research</a>
-        </h4>
-        <p>
-            Your participation contributes to national EMS education research.
-        </p>
-        <p>
-            <a href="<?= $this->researchLink              ?>">Read more about what we've learned from Fisdap research.</a>
-        </p>
-        <br />
+		<h4 class="header" id='shift-list-title'>
+			<a href="<?= $this->researchLink              ?>">Research</a>
+		</h4>
+		<p>
+			Your participation contributes to national EMS education research.
+		</p>
+		<p>
+			<a href="<?= $this->researchLink              ?>">Read more about what we've learned from Fisdap research.</a>
+		</p>
+		<br />
 
-        <h4 class="header" id='shift-list-title'>
-            <a href="<?= $this->whatIsNewLink             ?>">What's new</a>
-        </h4>
-        <p>
-            Check out what's happening at Fisdap: announcements, webinars, recently released features, and more.
-        </p>
-        <p>
-            <a href="<?= $this->whatIsNewLink             ?>">Read our news feed.</a>
-        <br />
+		<h4 class="header" id='shift-list-title'>
+			<a href="<?= $this->whatIsNewLink             ?>">What's new</a>
+		</h4>
+		<p>
+			Check out what's happening at Fisdap: announcements, webinars, recently released features, and more.
+		</p>
+		<p>
+			<a href="<?= $this->whatIsNewLink             ?>">Read our news feed.</a>
+		<br />
 
-    </div>
+	</div>
+	
+	<div class="grid_6">
+		<h4 class="header" id='shift-list-title'>
+			<a href="<?= $this->acreditationCentralLink   ?>">Accreditation Central</a>
+		</h4>
+		<p>Discover all the different ways Fisdap can help you gain and maintain your accreditation.</p>
+		<p><a href="<?= $this->acreditationCentralLink   ?>">Get started at Accreditation Central.</a></p>
+		<br />
 
-    <div class="grid_6">
-        <h4 class="header" id='shift-list-title'>
-            <a href="<?= $this->acreditationCentralLink   ?>">Accreditation Central</a>
-        </h4>
-        <p>Discover all the different ways Fisdap can help you gain and maintain your accreditation.</p>
-        <p><a href="<?= $this->acreditationCentralLink   ?>">Get started at Accreditation Central.</a></p>
-        <br />
+		<h4 class="header" id='shift-list-title'>
+			Get Involved
+		</h4>
+		<p>Become a test item writer or reviewer and earn Rewards points for discounts on Testing or Study Tools. Your participation is also an important component for CoAEMSP accreditation.</p>
+		<br />
+		<p style="padding-left:25px;"><a href="<?= $this->trainingVideoLink         ?>">Training Video</a> - Never submitted a test item to Fisdap before? Watch our online tutorial.</p>
+		<br />
+		<p style="padding-left:25px;"><a href="<?= $this->submitTestOnlineLink      ?>">Submit a Test Item online</a> - Please only submit original items that you authored.</p>
+		<br />
+		<p style="padding-left:25px;">Questions? Contact <?php //$this->questionContactListHelper() ?>.</p>
+	</div>
 
-        <h4 class="header" id='shift-list-title'>
-            Get Involved
-        </h4>
-        <p>Become a test item writer or reviewer and earn Rewards points for discounts on Testing or Study Tools. Your participation is also an important component for CoAEMSP accreditation.</p>
-        <br />
-        <p style="padding-left:25px;"><a href="<?= $this->trainingVideoLink         ?>">Training Video</a> - Never submitted a test item to Fisdap before? Watch our online tutorial.</p>
-        <br />
-        <p style="padding-left:25px;"><a href="<?= $this->submitTestOnlineLink      ?>">Submit a Test Item online</a> - Please only submit original items that you authored.</p>
-        <br />
-        <p style="padding-left:25px;">Questions? Contact <?php /* echo $this->questionContactListHelper()*/?>.</p>
-    </div>
 
-<!--  ----------------------------------------------------------------------------------------------------  -->
 <?php else:             ?>
-<!--  ----------------------------------------------------------------------------------------------------  -->
 
-<!--  ----------------------------------------------------------------------------------------------------  -->
 <?php endif;            ?>
-<!--  ----------------------------------------------------------------------------------------------------  -->
+
 </div>

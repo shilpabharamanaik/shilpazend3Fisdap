@@ -22,6 +22,11 @@ return [
             ],
         ],
     ],
+	  'controllers' => [
+        'factories' => [
+            Controller\LearningcenterController::class => Controller\Factory\LearningcenterControllerFactory::class,
+        ],
+    ],
 
     'view_manager' => [
         'template_path_stack' => [

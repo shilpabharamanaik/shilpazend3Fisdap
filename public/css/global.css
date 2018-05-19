@@ -209,7 +209,8 @@ a:hover {
 }
 
 hr {
-    color: #f0eeeb;
+    /* color: #f0eeeb; */
+border-top: 1px solid #000 !important;
 }
 
 .clickable {

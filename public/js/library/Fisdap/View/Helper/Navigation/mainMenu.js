@@ -22,11 +22,10 @@ $(function(){
 		maxX = $('.header_subnav').position().left + $('.header_subnav').width();
 		minX = 30;
 		
-		subNavYLocation = $('.header_subnav').position().top-13;
+		subNavYLocation = $('.header_subnav').position().top-7;
 		
 		subNavHeight = $('.header_subnav').height();
 		subNavWidth = $('.header_subnav').width();
-		
 		$('.main_navigation').children('li').each(function(index, el){
 			// Ok, now figure out where exactly to position the sub menu.
 			// Need to figure out what its width is, and
@@ -47,7 +46,7 @@ $(function(){
 			// not IE.  Probably Safari too because Safari hates me.
 			if($(el).children('ul').height() > subNavHeight){
 				while($(el).children('ul').height() > subNavHeight && newWidth < subNavWidth){
-					newWidth+=5;
+					newWidth+=7;
 					$(el).children('ul').css('text-align', 'center');
 					$(el).children('ul').css('width', newWidth + 'px');
 				}
@@ -141,5 +140,7 @@ $(function(){
 		positionNav();
 		removeActiveLinks();
 	}
+	
+	
 	
 });

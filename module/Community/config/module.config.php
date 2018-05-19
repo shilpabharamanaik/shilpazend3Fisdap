@@ -22,7 +22,11 @@ return [
             ],
         ],
     ],
-
+	'controllers' => [
+        'factories' => [
+            Controller\CommunityController::class => Controller\Factory\CommunityControllerFactory::class,
+        ],
+    ],
     'view_manager' => [
         'template_path_stack' => [
             'community' => __DIR__ . '/../view',

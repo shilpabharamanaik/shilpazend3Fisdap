@@ -27,8 +27,8 @@ class AccountController extends AbstractActionController
     private $entityManager;
 
     private $objUser;
-	//public $user;
-	  public function __construct($entityManager)
+	
+	public function __construct($entityManager)
     {
         $this->entityManager = $entityManager;
         $userSession = new Container('user');
@@ -55,7 +55,7 @@ class AccountController extends AbstractActionController
             $instructorId = $this->objUser->getCurrentRoleData()->id;
 
 		   $arrViewData = ['isStaff' => $this->objUser->isStaff(), 'canOrder' => $canOrder, 'canEditInstructors' => $canEditInstructors, 'canEditProgram' => $canEditProgram,'canEditEvals' => $canEditEvals, 'canEditStudents'=> $canEditStudents,'canEditCompliance' => $canEditCompliance, 'instructorId' => $instructorId] ;
-		   //$arrViewData = ['isStaff' => $this->objUser->isStaff(),'Instructor' => $canOrder		   ] ;
+		   
            $viewModel = new ViewModel($arrViewData);
 		   $viewModel->setTemplate('Account/account/account-instructor');
 		   return $viewModel;

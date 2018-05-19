@@ -1,0 +1,124 @@
+<?php
+    $title = 'Learning Center';
+    $this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title); ?></h1>
+
+<div id="shift-list-container" class="grid_12 island">
+
+        <div class="grid_7">
+            <h4 class="header">Tests & Scenarios</h4>
+            <br/>
+            <p><a href="/learning-center/index/schedule">Schedule a Secure Exam</a></p>
+            <br/>
+
+            <p><a href="<?= $this->reviewStudentScoreAndLearningPerscription ?>">Review Your Students' Scores and Learning Prescriptions</a></p>
+            <br/>
+
+            <p><a href="<?= $this->testItemAnalysisLink ?>">Perform an Advanced Statistical Test Item Analysis</a></p>
+            <br/>
+
+            <p><a href="<?= $this->recordNREMTResults ?>">Record Your Students' NREMT Results</a></p>
+            <br/>
+
+            <p><a href="<?= $this->testingFAQs ?>">Frequently Asked Questions</a></p>
+        </div>
+    <br/><br/><br/>
+        <div class="grid_4 island"
+             style="border-top: 1px solid #877F78; border-right: 1px solid #877F78; border-bottom: 1px solid #877F78; border-left: 1px solid #877F78;">
+        <p>Search for lab scenarios or test items donated by other instructors in the Fisdap community to create your own exams or quizzes.</p>
+            <br/>
+            <p></p><a href="/exchange/scenario/list">Access the Lab Scenario Bank</a></p><br/>
+            <p></p><a href="<?= $this->visitFisdapsTestBank ?>">Access the Test Bank</a></p>
+            <br/>
+        </div>
+    <br/>
+
+    <div class="grid_12">
+        <br/><br/>
+        <hr>
+        <br/>
+        <h4 class="header">Get Involved</h4>
+        <br/>
+        <p>Become a test item writer or scenario writer or reviewer and earn rewards points for discounts on Fisdap Testing or Study Tools products.
+            Your participation is also an important component for CoAEMSP accreditation.</p>
+        <br/>
+
+        <div class="grid_4">
+        <p align="left"><a href="<?= $this->submitATestOnLine ?>">Submit a Test Item</a></p>
+        <br/>
+
+        <p align="left"><a href="/exchange/scenario/list">Submit a Lab Scenario</a></p>
+        <br/>
+        </div>
+
+        <div class="grid_4">
+        <p align="left"><a href="<?= $this->trainingVideo ?>">Watch a Training Video</a></p>
+        <br/>
+
+        <p align="left"><a href="<?= $this->viewRewardsPointsBalance ?>">View Your Rewards Points Balance</a></p>
+        <br/>
+        </div>
+    </div>
+        <?php if ($this->hasPreceptorTraining) { ?>
+            <div class="grid_12">
+            <br/><br/>
+            <hr>
+            <br/>
+            <h4 class="header">Preceptor Training</a></h4>
+                <br/>
+                <p>This <a href="<?= $this->preceptorTrainingLink ?>">CAPCE-approved course</a> offers preceptors basic adult education training and 4 CEUs.</p>
+            </div>
+            <?php
+        } ?>
+
+        <?php // eventually put this back in, but until we write the individual instructor upgrade tool, this needs to be removed
+        /**
+         * <h4 class="header">Preceptor Training</h4>
+         * <p>This CECBEMS-approved online course gives preceptors basic adult education training and 4 CEUs.</p>
+         * <br />
+         * <p style="padding-left:25px;"><a href="http://www.fisdap.net/what_we_make/preceptor_training">Learn more.</a></p>
+         * <br />
+         * <p style="padding-left:25px;"><a href="<?= $this->preceptorTrainingLink ?>">Upgrade.</a></p>
+         **/
+        ?>
+        <br/>
+
+    <div class="grid_12">
+        <br/><br/>
+        <hr>
+        <br/>
+        <h4 class="header">Research 101</h4>
+        <br/>
+        <p>Watch the engaging <a href="<?= $this->research101Link ?>">4 hour video series</a> that teaches the importance of getting involved in EMS research &
+            how to get started.</p>
+
+        <br/><br/>
+        <hr>
+        <br/>
+        <h4 class="header">EMS Reference</h4>
+        <br/>
+        <p>Visit this <a href="<?= $this->emsReferenceLink ?>">online collection of peer-reviewed content</a>, created by and for the EMS community.</p>
+
+        <br/>
+
+
+
+        <?php if ($this->hasMedrills) { ?>
+            <br/>
+            <h4 class="header">
+                <?= $this->medrillsHeader ?>
+            </h4>
+
+            <p>Watch Archie MD’s collection of animated training videos. This
+                is a great educational resource that covers a variety of skills
+                and patient care topics.</p>
+            <?php if ($this->showAllMedrills) { ?>
+                <a href="/learning-center/medrills/index/product/41">EMT Medrills</a><br>
+                <a href="/learning-center/medrills/index/product/42">Paramedic Medrills</a>
+            <?php } ?>
+        <?php } ?>
+
+    </div>
+
+</div>
