@@ -36,7 +36,7 @@ class UserContext extends EntityBaseClass
 
     /**
      * @var int
-     * @Column(name="user_id", type="integer", nullable=true)
+     * @Column(name="user_id")
      */
     protected $userId;
 

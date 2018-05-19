@@ -1,7 +1,20 @@
+
+<?php if (isset($displayError)): ?>
+    <div id="sorry-page">
+        <h1>We're sorry.</h1>
+        <p class="error">
+            Students are not allowed to view this page.    </p>
+    </div>
+
+<?php else: ?>
+
 <?php
     $title = 'Edit Instructor Accounts';
     $this->headTitle($title);
 ?>
 <h1><?= $this->escapeHtml($title); ?></h1>
 
-<?=$user?>
+<?=var_dump($instructorId)?>
+<?=var_dump($instructor)?>
+
+<?php endif; ?>
