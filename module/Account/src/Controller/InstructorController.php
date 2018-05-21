@@ -7,14 +7,20 @@ use Zend\Session\SessionManager;
 use Zend\View\Model\ViewModel;
 use Zend\Session\Container;
 use Zend\Mvc\MvcEvent;
+use Zend\Http\Response;
 
 use User\Entity\User;
 use User\Entity\UserContext;
 use User\Entity\UserRole;
-use User\Entity\Instructor;
 
-use Fisdap\Entity\InstructorLegacy;
-use Fisdap\EntityUtils;
+use User\Entity\Instructor;
+use User\Form\InstructorForm;
+
+//use Fisdap\Entity\InstructorLegacy;
+//use Fisdap\EntityUtils;
+
+use User\Entity\ProgramLegacy;
+use User\Entity\InstructorLegacy;
 
 class InstructorController extends AbstractActionController
 {
@@ -33,6 +39,7 @@ class InstructorController extends AbstractActionController
 
     private $objUser;
     private $objUserRole;
+    private $username;
 
     /**
      * Constructs the service.
@@ -41,10 +48,11 @@ class InstructorController extends AbstractActionController
     {
         $this->entityManager = $entityManager;
         $userSession = new Container('user');
-        $username = $userSession->username;
+
+        $this->username = $userSession->username;
 
         $this->objUser = $this->entityManager->getRepository(User::class)
-                            ->findOneByUsername($username);
+                            ->findOneByUsername($this->username);
         $this->objUserRole = $this->entityManager->getRepository(UserRole::class)
                             ->findOneByUserId($this->objUser->getId());
     }
@@ -52,7 +60,6 @@ class InstructorController extends AbstractActionController
 
     public function editAction()
     {
-
         if (!$this->objUserRole->isInstructor()) {
             return new ViewModel([
                 'displayError' => true,
@@ -103,11 +110,14 @@ class InstructorController extends AbstractActionController
             }
         }*/
 
-        $form = new Account_Form_Instructor($instructorId);
+        // Create instructor form
+        $form = new InstructorForm('update', $this->entityManager, $objInstructor);
 
         return new ViewModel([
             'instructorId' => $instructorId,
             'instructor' => $objInstructor,
+            'form' => $form,
+            'username' => $this->username,
         ]);
     }
 

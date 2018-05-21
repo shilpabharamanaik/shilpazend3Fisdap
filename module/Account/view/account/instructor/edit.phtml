@@ -14,7 +14,188 @@
 ?>
 <h1><?= $this->escapeHtml($title); ?></h1>
 
-<?=var_dump($instructorId)?>
-<?=var_dump($instructor)?>
+<?php
+    $form->get('firstName')->setAttributes(['value'=>$instructor->getFirstName()]);
+    $form->get('lastName')->setAttributes(['value'=>$instructor->getLastName()]);
+    $form->get('email')->setAttributes(['value'=>$instructor->getEmail()]);
+
+?>
+
+<div class="grid_12 island">
+    <form id="instructorForm" enctype="application/x-www-form-urlencoded" method="post">
+        <h2 class="section-header"><?=$instructor->getFirstName()?> <?=$instructor->getLastName()?> (<?=$username?>)</h2>
+        <div class="grid_7">
+            <h3 class="section-header no-border">Contact Information</h3>
+            <div class="form-group">
+                <div class="form-prompt">
+                    <div id="firstName-label">
+                        <?= $this->formLabel($form->get('firstName')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('firstName')); ?>
+                        <?= $this->formElementErrors($form->get('firstName')); ?>
+                    </div>
+                </div>
+                <div class="form-prompt">
+                    <div id="lastName-label">
+                        <?= $this->formLabel($form->get('lastName')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('lastName')); ?>
+                        <?= $this->formElementErrors($form->get('lastName')); ?>
+                    </div>
+                </div>
+                <div class="form-prompt">
+                    <div id="email-label">
+                        <?= $this->formLabel($form->get('email')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('email')); ?>
+                        <?= $this->formElementErrors($form->get('email')); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group-title section-header no-border">Phone</div>
+                <div class="form-prompt">
+                    <div id="workPhone-label"><label for="workPhone" class="grid_3 optional">Work&nbsp;<span classrid_9">
+                        <input type="text" name="workPhone" id="workPhone" value="">
+                    </div>="form-desc">(optional)</span></label></div>
+                    <div class="g
+                </div>
+                <div class="form-prompt">
+                    <div id="cellPhone-label"><label for="cellPhone" class="grid_3 optional">Cell&nbsp;<span class="form-desc">(optional)</span></label></div>
+                    <div class="grid_9">
+                        <input type="text" name="cellPhone" id="cellPhone" value="">
+                    </div>
+                </div>
+                <div class="form-prompt">
+                    <div id="homePhone-label"><label for="homePhone" class="grid_3 optional">Home&nbsp;<span class="form-desc">(optional)</span></label></div>
+                    <div class="grid_9">
+                        <input type="text" name="homePhone" id="homePhone" value="">
+                    </div>
+                </div>
+            </div>
+            <button id="permissionsHistory">See permissions history</button>
+            <h3 class="section-header">Roles &amp; Permissions</h3>
+            <div class="form-group">
+                <h4 class="section-header no-border">
+                    Roles <a id="roles-help" rel="#roles-help-popup" href="#roles-help-popup" title="Roles"><img class="question-mark" src="/images/icons/question_mark.svg"></a>
+                    <div id="roles-help-popup" style="display: none;">Select a role for this account, and we will recommend a list of permissions. You can override this recommendation by customizing the permissions.</div>
+                </h4>
+                <div class="form-prompt">
+                    <label><input type="checkbox" name="subRoles[]" id="subRoles-1" value="1" checked="checked">Program Director</label><br><label><input type="checkbox" name="subRoles[]" id="subRoles-2" value="2">Medical Director</label><br><label><input type="checkbox" name="subRoles[]" id="subRoles-3" value="3">Clinical Coordinator</label><br><label><input type="checkbox" name="subRoles[]" id="subRoles-4" value="4" checked="checked">Instructor</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <h4 class="section-header no-border">
+                    Program
+                    Permissions <a id="program-permissions-help" rel="#program-permissions-help-popup" href="#program-permissions-help-popup" title="Program Permissions"><img class="question-mark" src="/images/icons/question_mark.svg"></a>
+                    <div id="program-permissions-help-popup" style="display: none;">Order Accounts: Order new accounts for students or preceptors.<br><br>Edit Student Accounts: Change student account information, passwords, and graduation status.<br><br>Administer Exams: Schedule exams, administer exams, and view exam scores.<br><br>Edit Instructor Accounts: Change instructor account information, including passwords, and create new instructor accounts. (Note: All instructors can edit their own information and change their own password, but cannot change their own permissions or edit other instructor accounts unless this setting is turned on.)<br><br>Edit Program Settings: Change program info, as well as Scheduler, Compliance, and Skills Tracker settings. This also permits management of the following: field, clinical, and lab sites (including site-sharing), requirements, and student groups.</div>
+                </h4>
+                <div class="form-prompt">
+                    <div style="float:left; width:50%;"><label for="programPermissions-1"><input type="checkbox" name="programPermissions[]" id="programPermissions-1" value="1" checked="checked" numcolumns="2" class="permission-checkbox">Order Accounts</label></div>
+                    <div style="float:left; width:50%;"><label for="programPermissions-2"><input type="checkbox" name="programPermissions[]" id="programPermissions-2" value="2" checked="checked" numcolumns="2" class="permission-checkbox">Edit Instructor Accounts</label></div>
+                    <div style="float:left; width:50%;"><label for="programPermissions-4"><input type="checkbox" name="programPermissions[]" id="programPermissions-4" value="4" checked="checked" numcolumns="2" class="permission-checkbox">Edit Student Accounts</label></div>
+                    <div style="float:left; width:50%;"><label for="programPermissions-1024"><input type="checkbox" name="programPermissions[]" id="programPermissions-1024" value="1024" checked="checked" numcolumns="2" class="permission-checkbox">Edit Program Settings</label></div>
+                    <div style="float:left; width:50%;"><label for="programPermissions-32768"><input type="checkbox" name="programPermissions[]" id="programPermissions-32768" value="32768" checked="checked" numcolumns="2" class="permission-checkbox">Admin Exams</label></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h4 class="section-header no-border">
+                    Skills Tracker Permissions
+                    <a id="st-permissions-help" rel="#st-permissions-help-popup" href="#st-permissions-help-popup" title="Skills Tracker Permissions"><img class="question-mark" src="/images/icons/question_mark.svg"></a>
+                    <div id="st-permissions-help-popup" style="display: none;">View All Data: View Field, Clinical, and Lab shift data. If you want an instructor to have view-only access to shift data, give them this permission, and do not give them Edit Data permissions.<br><br>Edit Field, Clinical, or Lab Data: Add, edit, and remove shift data of each type.<br><br>Edit Portfolio: Attach files and enter data related to Overall Competency in student portfolios.<br><br>Enter Evals: Enter evaluations and skill sheets.<br><br>Edit Evals: Edit evaluations and skill sheets after they have been entered.</div>
+                </h4>
+                <div class="form-prompt">
+                    <div style="float:left; width:50%;"><label for="skillsTrackerPermissions-8"><input type="checkbox" name="skillsTrackerPermissions[]" id="skillsTrackerPermissions-8" value="8" checked="checked" numcolumns="2" class="permission-checkbox">View All Data</label></div>
+                    <div style="float:left; width:50%;"><label for="skillsTrackerPermissions-64"><input type="checkbox" name="skillsTrackerPermissions[]" id="skillsTrackerPermissions-64" value="64" checked="checked" numcolumns="2" class="permission-checkbox">Edit Field Data</label></div>
+                    <div style="float:left; width:50%;"><label for="skillsTrackerPermissions-4096"><input type="checkbox" name="skillsTrackerPermissions[]" id="skillsTrackerPermissions-4096" value="4096" checked="checked" numcolumns="2" class="permission-checkbox">Edit Clinical Data</label></div>
+                    <div style="float:left; width:50%;"><label for="skillsTrackerPermissions-8192"><input type="checkbox" name="skillsTrackerPermissions[]" id="skillsTrackerPermissions-8192" value="8192" checked="checked" numcolumns="2" class="permission-checkbox">Edit Lab Data</label></div>
+                    <div style="float:left; width:50%;"><label for="skillsTrackerPermissions-65536"><input type="checkbox" name="skillsTrackerPermissions[]" id="skillsTrackerPermissions-65536" value="65536" checked="checked" numcolumns="2" class="permission-checkbox">Enter Evals</label></div>
+                    <div style="float:left; width:50%;"><label for="skillsTrackerPermissions-131072"><input type="checkbox" name="skillsTrackerPermissions[]" id="skillsTrackerPermissions-131072" value="131072" checked="checked" numcolumns="2" class="permission-checkbox">Edit Evals</label></div>
+                    <div style="float:left; width:50%;"><label for="skillsTrackerPermissions-262144"><input type="checkbox" name="skillsTrackerPermissions[]" id="skillsTrackerPermissions-262144" value="262144" checked="checked" numcolumns="2" class="permission-checkbox">Edit Portfolio</label></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h4 class="section-header no-border">
+                    Scheduler
+                    Permissions <a id="schedule-permissions-help" rel="#schedule-permissions-help-popup" href="#schedule-permissions-help-popup" title="Scheduler Permissions"><img class="question-mark" src="/images/icons/question_mark.svg"></a>
+                    <div id="schedule-permissions-help-popup" style="display: none;">View Schedules: See shifts on the Calendar. If you want an instructor to have view-only access to the Calendar, give them this permission, and do not give them Edit Schedules permissions.<br><br>Edit Field, Clinical, or Lab Schedules: Create, edit, and remove shifts of each type, and assign/remove students from shifts of each type.<br><br>Edit Compliance Status: View and edit compliance status for all students and instructors with requirements in your program.</div>
+                </h4>
+                <div class="form-prompt">
+                    <div style="float:left; width:50%;"><label for="schedulePermissions-128"><input type="checkbox" name="schedulePermissions[]" id="schedulePermissions-128" value="128" checked="checked" numcolumns="2" class="permission-checkbox">View Schedules</label></div>
+                    <div style="float:left; width:50%;"><label for="schedulePermissions-256"><input type="checkbox" name="schedulePermissions[]" id="schedulePermissions-256" value="256" checked="checked" numcolumns="2" class="permission-checkbox">Edit Field Schedules</label></div>
+                    <div style="float:left; width:50%;"><label for="schedulePermissions-512"><input type="checkbox" name="schedulePermissions[]" id="schedulePermissions-512" value="512" checked="checked" numcolumns="2" class="permission-checkbox">Edit Clinic Schedules</label></div>
+                    <div style="float:left; width:50%;"><label for="schedulePermissions-16384"><input type="checkbox" name="schedulePermissions[]" id="schedulePermissions-16384" value="16384" checked="checked" numcolumns="2" class="permission-checkbox">Edit Lab Schedules</label></div>
+                    <div style="float:left; width:50%;"><label for="schedulePermissions-524288"><input type="checkbox" name="schedulePermissions[]" id="schedulePermissions-524288" value="524288" checked="checked" numcolumns="2" class="permission-checkbox">Edit Compliance Status</label></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h4 class="section-header no-border">Reports Permissions</h4>
+                <div class="form-prompt">
+                    <div style="float:left; width:50%;"><label for="reportsPermissions-32"><input type="checkbox" name="reportsPermissions[]" id="reportsPermissions-32" value="32" checked="checked" numcolumns="2" class="permission-checkbox">View Reports</label></div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_5">
+            <div class="password-section">
+                <div class="gravatar-container"><img src="https://secure.gravatar.com/avatar/0faefa29be5ac2a32e3aacf1bf7d9b85?s=195&amp;d=mm&amp;r=g"><br><a target="_blank" href="https://en.gravatar.com/connect/?source=_signup&amp;email=bhavani.shankar@ascendlearning.com">Add a photo!</a></div>
+                <!-- The text and password here are to prevent FF from auto filling my login credentials because it ignores autocomplete="off"-->
+                <input type="text" class="hidden">
+                <input type="password" class="hidden">
+                <div class="form-group">
+                    <div class="form-group-title section-header no-border">Login Info</div>
+                    <div class="form-prompt"><label for="currentPassword" class="optional">Your Password</label>
+                        <br>
+                        <input type="password" name="currentPassword" id="currentPassword" value="" autocomplete="off">
+                    </div>
+                    <div class="form-prompt"><label for="newPassword" class="optional">New Password&nbsp;<span class="form-desc">(5+ characters)</span></label>
+                        <br>
+                        <input type="password" name="newPassword" id="newPassword" value="" autocomplete="off">
+                    </div>
+                    <div class="form-prompt"><label for="confirmPassword" class="optional">Confirm New Password</label>
+                        <br>
+                        <input type="password" name="confirmPassword" id="confirmPassword" value="" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group-title section-header no-border">
+                    Email Settings <a id="email-help" rel="#email-help-popup" href="#email-help-popup" title="Email Settings"><img class="question-mark" src="/images/icons/question_mark.svg"></a>
+                    <div id="email-help-popup" style="display: none;">Student Events: Receive copies of student narratives and your students' responses to critical thinking questions after they observe or perform a significant procedure or event (e.g. birth, chest decompression, intubation).<br><br>Late Patient Documentation Notices: Receive a daily summary email of which students have outstanding late shift data. Data is considered late until the student locks the shift.<br><br>Fisdap news and events: Subscribe to an email list to hear the latest about Fisdap, including quarterly newsletters and announcements about webinars, workshops, and feature upgrades.</div>
+                </div>
+                <div class="form-prompt">
+                    <input type="hidden" name="automatedEmails" value="0"><input type="checkbox" name="automatedEmails" id="automatedEmails" value="1">
+                    <label for="automatedEmails" class="optional">Student Events</label>
+                </div>
+                <div class="form-prompt">
+                    Late Patient Documentation Notices
+                    <div class="prefix_1 grid_11">
+                        <input type="hidden" name="labEmails" value="0"><input type="checkbox" name="labEmails" id="labEmails" value="1">
+                        <label for="labEmails" class="optional">Lab Shifts</label><br>
+                        <input type="hidden" name="clinicalEmails" value="0"><input type="checkbox" name="clinicalEmails" id="clinicalEmails" value="1">
+                        <label for="clinicalEmails" class="optional">Clinical Shifts</label><br>
+                        <input type="hidden" name="fieldEmails" value="0"><input type="checkbox" name="fieldEmails" id="fieldEmails" value="1">
+                        <label for="fieldEmails" class="optional">Field Shifts</label>
+                    </div>
+                </div>
+                <div class="form-prompt">
+                    <input type="hidden" name="mailingList" value="0"><input type="checkbox" name="mailingList" id="mailingList" value="1">
+                    <label for="mailingList" class="optional">Fisdap news and events</label>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_11">
+        </div>
+        <div class="grid_1 right green-buttons">
+            <input type="submit" name="save" id="save" value="Save" class="green-buttons ui-button ui-widget ui-state-default ui-corner-all" role="button" aria-disabled="false" style="padding: 3px 10px;">
+        </div>
+        <input type="hidden" name="instructorId" value="27732" id="instructorId">
+        <input type="hidden" name="snId" value="" id="snId">
+        <input type="hidden" name="programId" value="" id="programId">
+        <div class="clear"></div>
+    </form>
+</div>
+
 
 <?php endif; ?>

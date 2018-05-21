@@ -7,6 +7,7 @@ use Zend\Session\SessionManager;
 use Zend\View\Model\ViewModel;
 use Zend\Session\Container;
 use Zend\Mvc\MvcEvent;
+
 use User\Entity\User;
 use User\Entity\UserContext;
 use User\Entity\ProgramLegacy;
@@ -27,7 +28,7 @@ class AccountController extends AbstractActionController
     private $entityManager;
 
     private $objUser;
-	
+
 	public function __construct($entityManager)
     {
         $this->entityManager = $entityManager;
@@ -42,7 +43,7 @@ class AccountController extends AbstractActionController
 		$programCanOrder = ($this->objUser->isStaff() || $userContext->getProgram()->order_permission->id != 3) ? true : false;
 
         if ($userContext->isInstructor()) {
-			
+
             $instructor = $userContext->getRoleData();
             // deal with permissions
             $canOrder = ($instructor->hasPermission("Order Accounts",$this->entityManager)) ? true : false;
@@ -55,7 +56,7 @@ class AccountController extends AbstractActionController
             $instructorId = $this->objUser->getCurrentRoleData()->id;
 
 		   $arrViewData = ['isStaff' => $this->objUser->isStaff(), 'canOrder' => $canOrder, 'canEditInstructors' => $canEditInstructors, 'canEditProgram' => $canEditProgram,'canEditEvals' => $canEditEvals, 'canEditStudents'=> $canEditStudents,'canEditCompliance' => $canEditCompliance, 'instructorId' => $instructorId] ;
-		   
+
            $viewModel = new ViewModel($arrViewData);
 		   $viewModel->setTemplate('Account/account/account-instructor');
 		   return $viewModel;
@@ -63,7 +64,7 @@ class AccountController extends AbstractActionController
 		else{
 		echo "123";
 		}
-	   
-		
+
+
     }
 }

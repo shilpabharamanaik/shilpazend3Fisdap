@@ -56,6 +56,17 @@ return [
         ],
     ],
 
+    // The 'access_filter' key is used by the User module to restrict or permit
+    // access to certain controller actions for unauthorized visitors.
+    'access_filter' => [
+        'controllers' => [
+            Controller\InstructorController::class => [
+                // Give access to  "edit",  actions to authorized users only.
+                ['actions' => ['edit', ], 'allow' => '@']
+            ],
+        ]
+    ],
+
     'view_manager' => [
         'template_path_stack' => [
             'account' => __DIR__ . '/../view',
