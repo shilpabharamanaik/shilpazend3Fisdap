@@ -15,7 +15,7 @@ use User\Entity\InstructorLegacy;
 
 class AccountController extends AbstractActionController
 {
-	/**
+    /**
      * Session manager.
      * @var Zend\Session\SessionManager
      */
@@ -29,7 +29,7 @@ class AccountController extends AbstractActionController
 
     private $objUser;
 
-	public function __construct($entityManager)
+    public function __construct($entityManager)
     {
         $this->entityManager = $entityManager;
         $userSession = new Container('user');
@@ -39,32 +39,40 @@ class AccountController extends AbstractActionController
 
     public function indexAction()
     {
-		$userContext = $this->objUser->getCurrentUserContext();
-		$programCanOrder = ($this->objUser->isStaff() || $userContext->getProgram()->order_permission->id != 3) ? true : false;
+        $userContext = $this->objUser->getCurrentUserContext();
+        $programCanOrder
+            = (
+                $this->objUser->isStaff() ||
+                $userContext->getProgram()->order_permission->id != 3
+            ) ? true : false;
 
         if ($userContext->isInstructor()) {
-
             $instructor = $userContext->getRoleData();
             // deal with permissions
-            $canOrder = ($instructor->hasPermission("Order Accounts",$this->entityManager)) ? true : false;
-            $canEditInstructors = ($instructor->hasPermission("Edit Instructor Accounts",$this->entityManager)) ? true : false;
-            $canEditProgram = ($instructor->hasPermission("Edit Program Settings",$this->entityManager)) ? true : false;
-            $canEditEvals = ($instructor->hasPermission("Enter Evals",$this->entityManager)) ? true : false;
-            $canEditStudents = ($instructor->hasPermission("Edit Student Accounts",$this->entityManager)) ? true : false;
-            $canEditCompliance = ($instructor->hasPermission("Edit Compliance Status",$this->entityManager)) ? true : false;
+            $canOrder = ($instructor->hasPermission("Order Accounts", $this->entityManager)) ? true : false;
+            $canEditInstructors = ($instructor->hasPermission("Edit Instructor Accounts", $this->entityManager)) ? true : false;
+            $canEditProgram = ($instructor->hasPermission("Edit Program Settings", $this->entityManager)) ? true : false;
+            $canEditEvals = ($instructor->hasPermission("Enter Evals", $this->entityManager)) ? true : false;
+            $canEditStudents = ($instructor->hasPermission("Edit Student Accounts", $this->entityManager)) ? true : false;
+            $canEditCompliance = ($instructor->hasPermission("Edit Compliance Status", $this->entityManager)) ? true : false;
             $isStaff = ($this->objUser->isStaff()) ? true : false;
             $instructorId = $this->objUser->getCurrentRoleData()->id;
 
-		   $arrViewData = ['isStaff' => $this->objUser->isStaff(), 'canOrder' => $canOrder, 'canEditInstructors' => $canEditInstructors, 'canEditProgram' => $canEditProgram,'canEditEvals' => $canEditEvals, 'canEditStudents'=> $canEditStudents,'canEditCompliance' => $canEditCompliance, 'instructorId' => $instructorId] ;
+            $arrViewData = [
+                    'isStaff' => $this->objUser->isStaff(),
+                    'canOrder' => $canOrder,
+                    'canEditInstructors' => $canEditInstructors,
+                    'canEditProgram' => $canEditProgram,
+                    'canEditEvals' => $canEditEvals,
+                    'canEditStudents'=> $canEditStudents,
+                    'canEditCompliance' => $canEditCompliance,
+                    'instructorId' => $instructorId
+                ] ;
 
-           $viewModel = new ViewModel($arrViewData);
-		   $viewModel->setTemplate('Account/account/account-instructor');
-		   return $viewModel;
+            $viewModel = new ViewModel($arrViewData);
+            $viewModel->setTemplate('Account/account/account-instructor');
+            return $viewModel;
+        } else {
         }
-		else{
-		echo "123";
-		}
-
-
     }
 }

@@ -14,10 +14,10 @@ use User\Entity\InstructorLegacy;
 
 class CommunityController extends AbstractActionController
 {
-     /**
-     * Session manager.
-     * @var Zend\Session\SessionManager
-     */
+    /**
+    * Session manager.
+    * @var Zend\Session\SessionManager
+    */
     private $sessionManager;
 
     /**
@@ -27,8 +27,8 @@ class CommunityController extends AbstractActionController
     private $entityManager;
 
     private $objUser;
-	
-	public function __construct($entityManager)
+    
+    public function __construct($entityManager)
     {
         $this->entityManager = $entityManager;
         $userSession = new Container('user');
@@ -38,9 +38,9 @@ class CommunityController extends AbstractActionController
 
     public function indexAction()
     {
-		$userContext = $this->objUser->getCurrentUserContext();
-			$roleName = $userContext->getRole()->getName();
-		$arrViewData = ['roleName' => $roleName];
-		return new ViewModel($arrViewData);
-	}
+        $userContext = $this->objUser->getCurrentUserContext();
+        $roleName = $userContext->getRole()->getName();
+        $arrViewData = ['roleName' => $roleName];
+        return new ViewModel($arrViewData);
+    }
 }

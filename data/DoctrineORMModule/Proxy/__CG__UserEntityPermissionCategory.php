@@ -46,7 +46,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function __construct($initializer = null, $cloner = null)
     {
-
         $this->__initializer__ = $initializer;
         $this->__cloner__      = $cloner;
     }
@@ -77,7 +76,7 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
 
 
     /**
-     * 
+     *
      * @return array
      */
     public function __sleep()
@@ -90,11 +89,11 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
     }
 
     /**
-     * 
+     *
      */
     public function __wakeup()
     {
-        if ( ! $this->__isInitialized__) {
+        if (! $this->__isInitialized__) {
             $this->__initializer__ = function (PermissionCategory $proxy) {
                 $proxy->__setInitializer(null);
                 $proxy->__setCloner(null);
@@ -102,17 +101,16 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
                 $existingProperties = get_object_vars($proxy);
 
                 foreach ($proxy->__getLazyProperties() as $property => $defaultValue) {
-                    if ( ! array_key_exists($property, $existingProperties)) {
+                    if (! array_key_exists($property, $existingProperties)) {
                         $proxy->$property = $defaultValue;
                     }
                 }
             };
-
         }
     }
 
     /**
-     * 
+     *
      */
     public function __clone()
     {
@@ -197,7 +195,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function getColumn($column)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getColumn', [$column]);
 
         return parent::getColumn($column);
@@ -223,7 +220,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function getName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', []);
 
         return parent::getName();
@@ -234,7 +230,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function setName($name)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', [$name]);
 
         return parent::setName($name);
@@ -245,7 +240,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function toArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'toArray', []);
 
         return parent::toArray();
@@ -254,9 +248,8 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
     /**
      * {@inheritDoc}
      */
-    public function setUUID($uuid = NULL)
+    public function setUUID($uuid = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUUID', [$uuid]);
 
         return parent::setUUID($uuid);
@@ -267,7 +260,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function getUUID()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUUID', []);
 
         return parent::getUUID();
@@ -278,7 +270,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function getEntityRepository()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEntityRepository', []);
 
         return parent::getEntityRepository();
@@ -289,7 +280,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function save($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'save', [$flush]);
 
         return parent::save($flush);
@@ -300,7 +290,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function delete($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', [$flush]);
 
         return parent::delete($flush);
@@ -311,7 +300,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function flush()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'flush', []);
 
         return parent::flush();
@@ -322,7 +310,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function isDatabaseField($field)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDatabaseField', [$field]);
 
         return parent::isDatabaseField($field);
@@ -333,7 +320,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function getFieldmap()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFieldmap', []);
 
         return parent::getFieldmap();
@@ -344,7 +330,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function isUsingDNAD()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isUsingDNAD', []);
 
         return parent::isUsingDNAD();
@@ -355,7 +340,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function getQueryBuilder()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getQueryBuilder', []);
 
         return parent::getQueryBuilder();
@@ -366,7 +350,6 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function deleteGroup($group)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'deleteGroup', [$group]);
 
         return parent::deleteGroup($group);
@@ -377,10 +360,8 @@ class PermissionCategory extends \User\Entity\PermissionCategory implements \Doc
      */
     public function getShortName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getShortName', []);
 
         return parent::getShortName();
     }
-
 }

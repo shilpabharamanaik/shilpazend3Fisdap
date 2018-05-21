@@ -46,7 +46,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function __construct($initializer = null, $cloner = null)
     {
-
         $this->__initializer__ = $initializer;
         $this->__cloner__      = $cloner;
     }
@@ -77,7 +76,7 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
 
 
     /**
-     * 
+     *
      * @return array
      */
     public function __sleep()
@@ -90,11 +89,11 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
     }
 
     /**
-     * 
+     *
      */
     public function __wakeup()
     {
-        if ( ! $this->__isInitialized__) {
+        if (! $this->__isInitialized__) {
             $this->__initializer__ = function (Timezone $proxy) {
                 $proxy->__setInitializer(null);
                 $proxy->__setCloner(null);
@@ -102,17 +101,16 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
                 $existingProperties = get_object_vars($proxy);
 
                 foreach ($proxy->__getLazyProperties() as $property => $defaultValue) {
-                    if ( ! array_key_exists($property, $existingProperties)) {
+                    if (! array_key_exists($property, $existingProperties)) {
                         $proxy->$property = $defaultValue;
                     }
                 }
             };
-
         }
     }
 
     /**
-     * 
+     *
      */
     public function __clone()
     {
@@ -197,7 +195,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function get_standard_offset()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'get_standard_offset', []);
 
         return parent::get_standard_offset();
@@ -206,9 +203,8 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
     /**
      * {@inheritDoc}
      */
-    public function getLocalServerTime($timestamp = NULL)
+    public function getLocalServerTime($timestamp = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLocalServerTime', [$timestamp]);
 
         return parent::getLocalServerTime($timestamp);
@@ -219,7 +215,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function toArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'toArray', []);
 
         return parent::toArray();
@@ -230,7 +225,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function getColumn($column)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getColumn', [$column]);
 
         return parent::getColumn($column);
@@ -256,7 +250,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function getName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', []);
 
         return parent::getName();
@@ -267,7 +260,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function setName($name)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', [$name]);
 
         return parent::setName($name);
@@ -276,9 +268,8 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
     /**
      * {@inheritDoc}
      */
-    public function setUUID($uuid = NULL)
+    public function setUUID($uuid = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUUID', [$uuid]);
 
         return parent::setUUID($uuid);
@@ -289,7 +280,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function getUUID()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUUID', []);
 
         return parent::getUUID();
@@ -300,7 +290,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function getEntityRepository()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEntityRepository', []);
 
         return parent::getEntityRepository();
@@ -311,7 +300,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function save($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'save', [$flush]);
 
         return parent::save($flush);
@@ -322,7 +310,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function delete($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', [$flush]);
 
         return parent::delete($flush);
@@ -333,7 +320,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function flush()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'flush', []);
 
         return parent::flush();
@@ -344,7 +330,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function isDatabaseField($field)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDatabaseField', [$field]);
 
         return parent::isDatabaseField($field);
@@ -355,7 +340,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function getFieldmap()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFieldmap', []);
 
         return parent::getFieldmap();
@@ -366,7 +350,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function isUsingDNAD()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isUsingDNAD', []);
 
         return parent::isUsingDNAD();
@@ -377,7 +360,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function getQueryBuilder()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getQueryBuilder', []);
 
         return parent::getQueryBuilder();
@@ -388,7 +370,6 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function deleteGroup($group)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'deleteGroup', [$group]);
 
         return parent::deleteGroup($group);
@@ -399,10 +380,8 @@ class Timezone extends \User\Entity\Timezone implements \Doctrine\ORM\Proxy\Prox
      */
     public function getShortName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getShortName', []);
 
         return parent::getShortName();
     }
-
 }

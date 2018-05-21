@@ -1,4 +1,5 @@
 <?php namespace User\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -10,9 +11,8 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
- * Entity class for Medrill Videos 
+ * Entity class for Medrill Videos
  *
  * @Entity(repositoryClass="Fisdap\Data\Medrill\DoctrineMedrillVideoRepository")
  * @Table(name="fisdap2_medrill_video")

@@ -1,4 +1,5 @@
 <?php namespace User\Entity;
+
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -7,7 +8,6 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 use User\EntityUtils;
-
 
 /**
  * Entity class for Report Configurations. A report configuration is the set of input values
@@ -74,15 +74,18 @@ class ReportConfiguration
         $this->config = serialize($config);
     }
     
-    public function set_user_context($value) {
+    public function set_user_context($value)
+    {
         $this->user_context = self::id_or_entity_helper($value, 'UserContext');
     }
     
-    public function set_report($value) {
+    public function set_report($value)
+    {
         $this->report = self::id_or_entity_helper($value, 'Report');
     }
     
-    public function getDescription() {
+    public function getDescription()
+    {
         $report = EntityUtils::getEntity('Report', $this->report->id);
         $reportClass = "\\Fisdap_Reports_{$this->report->class}";
         
@@ -93,5 +96,4 @@ class ReportConfiguration
         
         return null;
     }
-    
 }

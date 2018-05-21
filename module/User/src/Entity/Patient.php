@@ -1,4 +1,5 @@
 <?php namespace User\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -13,7 +14,6 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 use User\EntityUtils;
-
 
 /**
  * Entity class for Patients.
@@ -680,7 +680,8 @@ class Patient
     /**
      * @return Ethnicity
      */
-    public function getEthnicity() {
+    public function getEthnicity()
+    {
         return $this->ethnicity;
     }
 
@@ -708,7 +709,9 @@ class Patient
      */
     public function getVerificationArray()
     {
-        if ($this->verification == null) return [];
+        if ($this->verification == null) {
+            return [];
+        }
         return $this->verification->toArray();
     }
 
@@ -784,7 +787,8 @@ class Patient
     /**
      * @return Gender
      */
-    public function getGender() {
+    public function getGender()
+    {
         return $this->gender;
     }
 
@@ -824,7 +828,7 @@ class Patient
     {
         if (is_null($value)) {
             $value = array();
-        } else if (!is_array($value)) {
+        } elseif (!is_array($value)) {
             $value = array($value);
         }
 
@@ -932,7 +936,8 @@ class Patient
         }
     }
 
-    public function getAge() {
+    public function getAge()
+    {
         return $this->age;
     }
 
@@ -945,7 +950,8 @@ class Patient
         }
     }
 
-    public function getMonths() {
+    public function getMonths()
+    {
         return $this->months;
     }
 
@@ -1116,7 +1122,9 @@ class Patient
      */
     public function getSignoffArray()
     {
-        if ($this->signoff == null) return [];
+        if ($this->signoff == null) {
+            return [];
+        }
         return $this->signoff->toArray();
     }
 
@@ -1219,7 +1227,7 @@ class Patient
     {
         if (is_null($value)) {
             $value = array();
-        } else if (!is_array($value)) {
+        } elseif (!is_array($value)) {
             $value = array($value);
         }
 
@@ -1229,7 +1237,7 @@ class Patient
             $complaint = self::id_or_entity_helper($id, 'Complaint');
             $this->complaints->add($complaint);
         }
-    } 
+    }
 
     /**
      * Get an array of Complaint IDs
@@ -1284,7 +1292,7 @@ class Patient
     {
         if (is_null($value)) {
             $value = array();
-        } else if (!is_array($value)) {
+        } elseif (!is_array($value)) {
             $value = array($value);
         }
 
@@ -1363,7 +1371,7 @@ class Patient
     {
         if (is_null($value)) {
             $value = array();
-        } else if (!is_array($value)) {
+        } elseif (!is_array($value)) {
             $value = array($value);
         }
 
@@ -1400,7 +1408,7 @@ class Patient
     {
         if (is_null($value)) {
             $value = array();
-        } else if (!is_array($value)) {
+        } elseif (!is_array($value)) {
             $value = array($value);
         }
 
@@ -1883,7 +1891,6 @@ class Patient
      */
     public function toArray()
     {
-
         $array = [
             'uuid' => $this->getUUID(),
             'id' => $this->getId(),

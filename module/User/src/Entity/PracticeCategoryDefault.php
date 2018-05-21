@@ -1,11 +1,11 @@
 <?php namespace User\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
-
 
 /**
  * Practice Category Default
@@ -31,10 +31,10 @@ class PracticeCategoryDefault extends Enumerated
     protected $certification_level;
     
     /**
-	 * @var Profession
-	 * @ManyToOne(targetEntity="Profession")
-	 */
-	protected $profession;
+     * @var Profession
+     * @ManyToOne(targetEntity="Profession")
+     */
+    protected $profession;
     
     /**
      * @var ArrayCollection

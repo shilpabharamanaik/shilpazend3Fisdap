@@ -15,7 +15,7 @@ class CommunityControllerFactory implements FactoryInterface
     {
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
 
-      // Instantiate the controller and inject dependencies
+        // Instantiate the controller and inject dependencies
         return new CommunityController($entityManager);
     }
 }

@@ -1,4 +1,5 @@
 <?php namespace User\Entity;
+
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -17,83 +18,84 @@ use User\EntityUtils;
  */
 class Med extends Skill
 {
-	const viewScriptName = "med";
-	
+    const viewScriptName = "med";
+    
     /**
-	 * @var integer
-	 * @Id
-	 * @Column(type="integer")
-	 * @GeneratedValue
-	 */
-	protected $id;
+     * @var integer
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
     
     /**
      * @ManyToOne(targetEntity="MedType")
      */
     protected $medication;
 
-	/**
-	 * @ManyToOne(targetEntity="MedRoute")
-	 */
-	protected $route;
-	
+    /**
+     * @ManyToOne(targetEntity="MedRoute")
+     */
+    protected $route;
+    
     /**
      * @Column(type="string")
      */
     protected $dose;
-	
-	public function init()
-	{
-		$this->subject = EntityUtils::getEntity('Subject', 1);
-	}
-	
-	public function set_medication($value)
-	{
-		$this->medication = self::id_or_entity_helper($value, 'MedType');
-	}
-	
-	public function set_route($value)
-	{
-		$this->route = self::id_or_entity_helper($value, 'MedRoute');
-	}
+    
+    public function init()
+    {
+        $this->subject = EntityUtils::getEntity('Subject', 1);
+    }
+    
+    public function set_medication($value)
+    {
+        $this->medication = self::id_or_entity_helper($value, 'MedType');
+    }
+    
+    public function set_route($value)
+    {
+        $this->route = self::id_or_entity_helper($value, 'MedRoute');
+    }
 
-	public function setMedication(MedType $medType)
-	{
-		$this->medication = $medType;
-	}
-	
-	public function getMedication()
-	{
-		return $this->medication;
-	}
+    public function setMedication(MedType $medType)
+    {
+        $this->medication = $medType;
+    }
+    
+    public function getMedication()
+    {
+        return $this->medication;
+    }
 
-	public function setRoute(MedRoute $medRoute)
-	{
-		$this->route = $medRoute;
-	}	
-	
-	public function getRoute()
-	{
-		return $this->route;
-	}
-	
-	public function setDose($dose) 
-	{
-		$this->dose = $dose;
-	}
-	
-	public function getDose()
-	{
-		return $this->dose;
-	}
-	
-	public function getViewScriptName()
-	{
-		return self::viewScriptName;
-	}
-	
-	public function getProcedureText($html=true){
-		$performedText = ($this->performed_by)?'Performed':'Observed';
+    public function setRoute(MedRoute $medRoute)
+    {
+        $this->route = $medRoute;
+    }
+    
+    public function getRoute()
+    {
+        return $this->route;
+    }
+    
+    public function setDose($dose)
+    {
+        $this->dose = $dose;
+    }
+    
+    public function getDose()
+    {
+        return $this->dose;
+    }
+    
+    public function getViewScriptName()
+    {
+        return self::viewScriptName;
+    }
+    
+    public function getProcedureText($html=true)
+    {
+        $performedText = ($this->performed_by)?'Performed':'Observed';
 
         $medName = "";
         if (!is_null($this->medication) && !is_null($this->medication->name)) {
@@ -110,70 +112,71 @@ class Med extends Skill
             $shiftType = $this->shift->type;
         }
 
-		if ($html) {
-			$line1 = "<span class='summary-header {$shiftType}'>{$medName} ($performedText)</span><br />";
+        if ($html) {
+            $line1 = "<span class='summary-header {$shiftType}'>{$medName} ($performedText)</span><br />";
 
-			$line2 = "<span class='summary-details'>{$this->dose}; {$routeName}</span>";
+            $line2 = "<span class='summary-details'>{$this->dose}; {$routeName}</span>";
 
-			return $line1 . $line2;
-		} else {
-			$line1 = "{$medName} ($performedText)\n";
+            return $line1 . $line2;
+        } else {
+            $line1 = "{$medName} ($performedText)\n";
 
-			$line2 = "{$this->dose}; {$routeName}\n";
+            $line2 = "{$this->dose}; {$routeName}\n";
 
-			return ucwords(self::viewScriptName) . "\n" . $line1 . $line2 . "\n";
-		}
-	}
-	
-	public function countsTowardGoal($dataReqs) {
-		// exclude oxygen to count toward goals
-		if ($this->medication->id == 25) {
-			return 0;
-		} else {
-			return parent::countsTowardGoal($dataReqs);
-		}
-	}
-	
-	public static function countsTowardGoalSQL($med, $dataReqs) {
-		// exclude oxygen to count toward goals
-		if ($med['medication_id'] == 25) {
-			return 0;
-		} else {
-			return parent::countsTowardGoalSQL($med, $dataReqs);
-		}
-	}
-	
-	public static function getAllByShiftSQL($shiftId)
-	{
-		$query = "SELECT * FROM fisdap2_meds WHERE shift_id = " . $shiftId;
-		return \Zend_Registry::get('db')->query($query)->fetchAll();
-	}
-	
-	public function getHookIds()
-	{
-		switch ($this->shift->type) {
-			case "field":
-				return array(37);
-			case "clinical":
-				return array(58);
-			case "lab":
-				return array(81);
-			default:
-				return array();
-		}
-	}
-	
-	/**
-	 * @return array
-	 */
-	public function toArray()
-	{
-		$med = parent::toArray(); // TODO: Change the autogenerated stub
-		$med['routeId'] = $this->getRoute() ? $this->getRoute()->id : null;
+            return ucwords(self::viewScriptName) . "\n" . $line1 . $line2 . "\n";
+        }
+    }
+    
+    public function countsTowardGoal($dataReqs)
+    {
+        // exclude oxygen to count toward goals
+        if ($this->medication->id == 25) {
+            return 0;
+        } else {
+            return parent::countsTowardGoal($dataReqs);
+        }
+    }
+    
+    public static function countsTowardGoalSQL($med, $dataReqs)
+    {
+        // exclude oxygen to count toward goals
+        if ($med['medication_id'] == 25) {
+            return 0;
+        } else {
+            return parent::countsTowardGoalSQL($med, $dataReqs);
+        }
+    }
+    
+    public static function getAllByShiftSQL($shiftId)
+    {
+        $query = "SELECT * FROM fisdap2_meds WHERE shift_id = " . $shiftId;
+        return \Zend_Registry::get('db')->query($query)->fetchAll();
+    }
+    
+    public function getHookIds()
+    {
+        switch ($this->shift->type) {
+            case "field":
+                return array(37);
+            case "clinical":
+                return array(58);
+            case "lab":
+                return array(81);
+            default:
+                return array();
+        }
+    }
+    
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        $med = parent::toArray(); // TODO: Change the autogenerated stub
+        $med['routeId'] = $this->getRoute() ? $this->getRoute()->id : null;
         $med['medicationId'] = $this->id;
-		$med['medicationTypeId'] = $this->getMedication() ? $this->getMedication()->id : null;
+        $med['medicationTypeId'] = $this->getMedication() ? $this->getMedication()->id : null;
 
-		return $med;
-	}
+        return $med;
+    }
 }
-

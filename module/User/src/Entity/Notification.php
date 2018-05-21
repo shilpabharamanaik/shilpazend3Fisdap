@@ -1,11 +1,11 @@
 <?php namespace User\Entity;
+
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
-
 
 /**
  * @Entity(repositoryClass="Fisdap\Data\Notification\DoctrineNotificationRepository")
@@ -49,5 +49,4 @@ class Notification extends EntityBaseClass
      * @Column(type="boolean")
      */
     protected $active = true;
-
 }

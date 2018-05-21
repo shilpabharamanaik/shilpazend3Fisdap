@@ -1,4 +1,5 @@
 <?php namespace User\Entity;
+
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -10,10 +11,9 @@ use Doctrine\ORM\Mapping\PrePersist;
 use Doctrine\ORM\Mapping\Table;
 use User\EntityUtils;
 
-
 /**
  * Message stores the title and body of a message.
- * 
+ *
  * @Entity(repositoryClass="Fisdap\Data\MessageDelivery\DoctrineMessageDeliveryRepository")
  * @Table(name="fisdap2_messages_delivered")
  * @HasLifecycleCallbacks
@@ -65,7 +65,7 @@ class MessageDelivery extends EntityBaseClass
      *
      * The message can have a Todo associated, allowing completed status and recipient notes
      */
-    protected $todo;    
+    protected $todo;
     
 
     /*
@@ -95,34 +95,40 @@ class MessageDelivery extends EntityBaseClass
     /**
      * Getters
      */
-    public function get_message() {
+    public function get_message()
+    {
         return $this->message;
     }
     
-    public function get_recipient() {
+    public function get_recipient()
+    {
         return $this->recipient;
     }
     
-    public function get_is_read() {
+    public function get_is_read()
+    {
         return $this->is_read;
     }
     
-    public function get_archived() {
+    public function get_archived()
+    {
         return $this->archived;
     }
     
-    public function get_priority() {
+    public function get_priority()
+    {
         return $this->priority;
     }
     
-    public function get_soft_delete() {
+    public function get_soft_delete()
+    {
         return $this->soft_delete;
     }
    
     
     /**
      * Setters
-     */    
+     */
     public function set_message($value)
     {
         $this->message = self::id_or_entity_helper($value, 'Message');
@@ -143,7 +149,8 @@ class MessageDelivery extends EntityBaseClass
         $this->archived = ($value) ? 1 : 0;
     }
     
-    public function set_priority($value) {
+    public function set_priority($value)
+    {
         $this->priority = intval($value);
     }
     
@@ -175,44 +182,45 @@ class MessageDelivery extends EntityBaseClass
      *
      * @return array Array of valid recipients
      */
-    static function getValidRecipients($recipients) {
-    	// get the user
-    	$user = User::getLoggedInUser();
-    	
-    	// This breaks (it's the filtering for beta-only users...).  Not gonna do it.
-    	/*
+    public static function getValidRecipients($recipients)
+    {
+        // get the user
+        $user = User::getLoggedInUser();
+        
+        // This breaks (it's the filtering for beta-only users...).  Not gonna do it.
+        /*
     	set_time_limit(0);
-    	
+
         // Making it so that the list of recipients is always filtered so that only beta users are sent
         // messages...
-        
+
         // cache the programs beta flag indexed by ID so we aren't constantly repinging the DB for the info...
         $programUseBetaCache = array();
         $cleanRecipients = array();
-        
+
         foreach($recipients['recipients'] as $id => $recipient){
         	$user = \Fisdap\EntityUtils::getEntity('UserLegacy', $id);
-        	
+
         	try{
         		$progId = $user->getProgramId();
-        		
+
         		if(!isset($programUseBetaCache[$progId])){
         			$programUseBetaCache[$progId] = \Fisdap\EntityUtils::getEntity('ProgramLegacy', $progId)->use_beta;
         		}
-        		
+
         	 	if($programUseBetaCache[$progId]){
         	 		$cleanRecipients[$id] = $recipient;
         	 	}
         	}catch(\Exception $e){
         	}
         }
-        
+
         $recipients['recipients'] = $cleanRecipients;
         */
         
         // staff are always allowed to deliver to ANYONE.
-        if ($user->staff != NULL && $user->staff->isStaff()) {
-    		$deliveryRepo = EntityUtils::getRepository('messageDelivery');
+        if ($user->staff != null && $user->staff->isStaff()) {
+            $deliveryRepo = EntityUtils::getRepository('messageDelivery');
             // check if the number of recipients is huge. If so, let's bypass doctrine
             if (count($recipients) > 1300) {
                 return $deliveryRepo->getValidRecipientsNoDoctrine($recipients);
@@ -225,7 +233,7 @@ class MessageDelivery extends EntityBaseClass
         if (count($recipients) == 1) {
             if (is_numeric($recipients[0]) && $recipients[0] == $user->id) {
                 return $recipients;
-            } else if ($recipients[0] instanceof User) {
+            } elseif ($recipients[0] instanceof User) {
                 if ($recipients[0]->id == $user->id) {
                     return $recipients;
                 }
@@ -238,7 +246,7 @@ class MessageDelivery extends EntityBaseClass
             $programId = $user->getProgramId();
             
             // the query only wants numeric IDs, so if these are objects we need to transform
-            foreach($recipients as $key => $recipient) {
+            foreach ($recipients as $key => $recipient) {
                 if ($recipient instanceof User) {
                     $recipients[$key] = $recipient->id;
                 }
@@ -261,25 +269,24 @@ class MessageDelivery extends EntityBaseClass
      *
      * @return boolean Either true for permission granted or false for permission denied
      */
-    public function checkPermission() {
+    public function checkPermission()
+    {
         $user = User::getLoggedInUser();
         
         if ($user->id) {
             // first, check if user is staff (grant all permissions)
-            if($user->staff != NULL && $user->staff->isStaff()) {
-                return TRUE;
+            if ($user->staff != null && $user->staff->isStaff()) {
+                return true;
             }
             
             // for regular users, only allowed to modify messages they have received
             if ($this->recipient->id == $user->id) {
-                return TRUE;
+                return true;
             } else {
-                return FALSE;
+                return false;
             }
-
-            
         } else {
-            return FALSE;
+            return false;
         }
     }
 }

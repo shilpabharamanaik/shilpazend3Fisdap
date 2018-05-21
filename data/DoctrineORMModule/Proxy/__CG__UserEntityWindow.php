@@ -46,7 +46,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function __construct($initializer = null, $cloner = null)
     {
-
         $this->__initializer__ = $initializer;
         $this->__cloner__      = $cloner;
     }
@@ -77,7 +76,7 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
 
 
     /**
-     * 
+     *
      * @return array
      */
     public function __sleep()
@@ -90,11 +89,11 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
     }
 
     /**
-     * 
+     *
      */
     public function __wakeup()
     {
-        if ( ! $this->__isInitialized__) {
+        if (! $this->__isInitialized__) {
             $this->__initializer__ = function (Window $proxy) {
                 $proxy->__setInitializer(null);
                 $proxy->__setCloner(null);
@@ -102,17 +101,16 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
                 $existingProperties = get_object_vars($proxy);
 
                 foreach ($proxy->__getLazyProperties() as $property => $defaultValue) {
-                    if ( ! array_key_exists($property, $existingProperties)) {
+                    if (! array_key_exists($property, $existingProperties)) {
                         $proxy->$property = $defaultValue;
                     }
                 }
             };
-
         }
     }
 
     /**
-     * 
+     *
      */
     public function __clone()
     {
@@ -197,7 +195,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function init()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'init', []);
 
         return parent::init();
@@ -208,7 +205,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_start_date($datetime)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_start_date', [$datetime]);
 
         return parent::set_start_date($datetime);
@@ -219,7 +215,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_end_date($datetime)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_end_date', [$datetime]);
 
         return parent::set_end_date($datetime);
@@ -230,7 +225,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_offset_type_start($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_offset_type_start', [$value]);
 
         return parent::set_offset_type_start($value);
@@ -241,7 +235,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_offset_type_end($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_offset_type_end', [$value]);
 
         return parent::set_offset_type_end($value);
@@ -252,7 +245,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function addConstraint(\User\Entity\WindowConstraint $constraint)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addConstraint', [$constraint]);
 
         return parent::addConstraint($constraint);
@@ -263,7 +255,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getWhenDescription()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getWhenDescription', []);
 
         return parent::getWhenDescription();
@@ -274,7 +265,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getStatus()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatus', []);
 
         return parent::getStatus();
@@ -285,7 +275,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getWhoDescription()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getWhoDescription', []);
 
         return parent::getWhoDescription();
@@ -296,7 +285,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getConstraintDescription($collection, $phrase)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getConstraintDescription', [$collection, $phrase]);
 
         return parent::getConstraintDescription($collection, $phrase);
@@ -307,7 +295,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function clearConstraints($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'clearConstraints', [$flush]);
 
         return parent::clearConstraints($flush);
@@ -318,7 +305,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function addConstraintsFromArray($constraint_type_id, $constraint_vals)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addConstraintsFromArray', [$constraint_type_id, $constraint_vals]);
 
         return parent::addConstraintsFromArray($constraint_type_id, $constraint_vals);
@@ -329,7 +315,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function calculateOffsetDate($type_id, $offset_value, $event_start)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'calculateOffsetDate', [$type_id, $offset_value, $event_start]);
 
         return parent::calculateOffsetDate($type_id, $offset_value, $event_start);
@@ -338,9 +323,8 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setUUID($uuid = NULL)
+    public function setUUID($uuid = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUUID', [$uuid]);
 
         return parent::setUUID($uuid);
@@ -351,7 +335,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getUUID()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUUID', []);
 
         return parent::getUUID();
@@ -362,7 +345,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getEntityRepository()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEntityRepository', []);
 
         return parent::getEntityRepository();
@@ -373,7 +355,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function save($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'save', [$flush]);
 
         return parent::save($flush);
@@ -384,7 +365,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function delete($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', [$flush]);
 
         return parent::delete($flush);
@@ -395,7 +375,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function flush()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'flush', []);
 
         return parent::flush();
@@ -406,7 +385,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function isDatabaseField($field)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDatabaseField', [$field]);
 
         return parent::isDatabaseField($field);
@@ -417,7 +395,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getFieldmap()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFieldmap', []);
 
         return parent::getFieldmap();
@@ -428,7 +405,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function isUsingDNAD()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isUsingDNAD', []);
 
         return parent::isUsingDNAD();
@@ -439,7 +415,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function toArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'toArray', []);
 
         return parent::toArray();
@@ -450,7 +425,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getQueryBuilder()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getQueryBuilder', []);
 
         return parent::getQueryBuilder();
@@ -461,7 +435,6 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function deleteGroup($group)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'deleteGroup', [$group]);
 
         return parent::deleteGroup($group);
@@ -472,10 +445,8 @@ class Window extends \User\Entity\Window implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getShortName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getShortName', []);
 
         return parent::getShortName();
     }
-
 }

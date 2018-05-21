@@ -1,4 +1,5 @@
 <?php namespace User\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -7,7 +8,6 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
-
 
 /**
  * @Entity
@@ -87,7 +87,7 @@ class EventSeries extends EntityBaseClass
     public function addEvent(EventLegacy $event)
     {
         // first remove the event from its current series (if it has one)
-        if($event->series){
+        if ($event->series) {
             $event->series->events->removeElement($event);
             $event->series = null;
         }
@@ -95,5 +95,4 @@ class EventSeries extends EntityBaseClass
         $this->events->add($event);
         $event->series = $this;
     }
-    
 }

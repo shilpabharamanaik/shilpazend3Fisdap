@@ -1,4 +1,5 @@
 <?php namespace User\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -12,9 +13,8 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 use User\EntityUtils;
 
-
 /**
- * Entity for scenarios. 
+ * Entity for scenarios.
  *
  * @Entity(repositoryClass="Fisdap\Data\Scenario\DoctrineScenarioRepository")
  * @Table(name="fisdap2_scenarios")
@@ -24,18 +24,18 @@ use User\EntityUtils;
  */
 class Scenario
 {
-	/**
-	 * @Id
-	 * @Column(type="integer")
-	 * @GeneratedValue
-	 */
-	protected $id;
+    /**
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
 
     /**
-	 * @ManyToOne(targetEntity="Patient")
-	 */
-	protected $patient;
-	
+     * @ManyToOne(targetEntity="Patient")
+     */
+    protected $patient;
+    
     /**
      * @Column(type="string", nullable=true)
      */
@@ -747,7 +747,7 @@ class Scenario
      * @Column(type="text")
      */
     protected $critical_failures;
-	
+    
     /**
      * @Column(type="text")
      */
@@ -789,19 +789,19 @@ class Scenario
      */
     protected $curveball;
     
-	public function init()
+    public function init()
     {
-    	$this->skills = new ArrayCollection();
-    	$this->assets = new ArrayCollection();
+        $this->skills = new ArrayCollection();
+        $this->assets = new ArrayCollection();
     }
     
     public function getDescription()
     {
-    	$description = "";
+        $description = "";
 
-    	$description .= $this->patient->age . "yo " . $this->patient->gender->name . ", " . $this->patient->getComplaintNames();
+        $description .= $this->patient->age . "yo " . $this->patient->gender->name . ", " . $this->patient->getComplaintNames();
 
-    	return $description;
+        return $description;
     }
     
     /**
@@ -811,18 +811,18 @@ class Scenario
      */
     public function setAssetIds($value)
     {
-    	if (is_null($value)) {
-    		$value = array();
-    	} else if (!is_array($value)) {
-    		$value = array($value);
-    	}
+        if (is_null($value)) {
+            $value = array();
+        } elseif (!is_array($value)) {
+            $value = array($value);
+        }
     
-    	$this->assets->clear();
+        $this->assets->clear();
     
-    	foreach($value as $id) {
-    		$asset = EntityUtils::getEntity('AssetLegacy', $id);
-    		$this->assets->add($asset);
-    	}
+        foreach ($value as $id) {
+            $asset = EntityUtils::getEntity('AssetLegacy', $id);
+            $this->assets->add($asset);
+        }
     }
     
     /**
@@ -832,12 +832,12 @@ class Scenario
      */
     public function getAssetIds()
     {
-    	$assets = array();
+        $assets = array();
     
-    	foreach($this->assets as $asset) {
-    		$assets[] = $asset->id;
-    	}
+        foreach ($this->assets as $asset) {
+            $assets[] = $asset->id;
+        }
     
-    	return $assets;
+        return $assets;
     }
 }

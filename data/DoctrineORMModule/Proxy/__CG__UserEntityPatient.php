@@ -46,7 +46,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function __construct($initializer = null, $cloner = null)
     {
-
         $this->__initializer__ = $initializer;
         $this->__cloner__      = $cloner;
     }
@@ -58,7 +57,7 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
 
 
     /**
-     * 
+     *
      * @return array
      */
     public function __sleep()
@@ -71,11 +70,11 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     }
 
     /**
-     * 
+     *
      */
     public function __wakeup()
     {
-        if ( ! $this->__isInitialized__) {
+        if (! $this->__isInitialized__) {
             $this->__initializer__ = function (Patient $proxy) {
                 $proxy->__setInitializer(null);
                 $proxy->__setCloner(null);
@@ -83,17 +82,16 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
                 $existingProperties = get_object_vars($proxy);
 
                 foreach ($proxy->__getLazyProperties() as $property => $defaultValue) {
-                    if ( ! array_key_exists($property, $existingProperties)) {
+                    if (! array_key_exists($property, $existingProperties)) {
                         $proxy->$property = $defaultValue;
                     }
                 }
             };
-
         }
     }
 
     /**
-     * 
+     *
      */
     public function __clone()
     {
@@ -178,7 +176,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function init()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'init', []);
 
         return parent::init();
@@ -189,7 +186,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function get_subject()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'get_subject', []);
 
         return parent::get_subject();
@@ -200,7 +196,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_subject($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_subject', [$value]);
 
         return parent::set_subject($value);
@@ -209,9 +204,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function set_verification(\User\Entity\Verification $ver = NULL)
+    public function set_verification(\User\Entity\Verification $ver = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_verification', [$ver]);
 
         return parent::set_verification($ver);
@@ -222,7 +216,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_ethnicity($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_ethnicity', [$value]);
 
         return parent::set_ethnicity($value);
@@ -233,7 +226,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_primary_impression($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_primary_impression', [$value]);
 
         return parent::set_primary_impression($value);
@@ -244,7 +236,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_secondary_impression($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_secondary_impression', [$value]);
 
         return parent::set_secondary_impression($value);
@@ -255,7 +246,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_gender($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_gender', [$value]);
 
         return parent::set_gender($value);
@@ -266,7 +256,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_preceptor($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_preceptor', [$value]);
 
         return parent::set_preceptor($value);
@@ -277,7 +266,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_response_mode($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_response_mode', [$value]);
 
         return parent::set_response_mode($value);
@@ -288,7 +276,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_msa_alertness($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_msa_alertness', [$value]);
 
         return parent::set_msa_alertness($value);
@@ -299,7 +286,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_cause($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_cause', [$value]);
 
         return parent::set_cause($value);
@@ -310,7 +296,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_intent($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_intent', [$value]);
 
         return parent::set_intent($value);
@@ -321,7 +306,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_patient_criticality($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_patient_criticality', [$value]);
 
         return parent::set_patient_criticality($value);
@@ -332,7 +316,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_patient_disposition($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_patient_disposition', [$value]);
 
         return parent::set_patient_disposition($value);
@@ -343,7 +326,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_transport_mode($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_transport_mode', [$value]);
 
         return parent::set_transport_mode($value);
@@ -354,7 +336,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_witness($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_witness', [$value]);
 
         return parent::set_witness($value);
@@ -365,7 +346,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_pulse_return($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_pulse_return', [$value]);
 
         return parent::set_pulse_return($value);
@@ -376,7 +356,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_age($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_age', [$value]);
 
         return parent::set_age($value);
@@ -387,7 +366,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_months($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_months', [$value]);
 
         return parent::set_months($value);
@@ -398,7 +376,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_narrative($narrative)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_narrative', [$narrative]);
 
         return parent::set_narrative($narrative);
@@ -409,7 +386,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_signoff($signoff)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_signoff', [$signoff]);
 
         return parent::set_signoff($signoff);
@@ -420,7 +396,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setId($patientId)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setId', [$patientId]);
 
         return parent::setId($patientId);
@@ -446,7 +421,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getRun()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRun', []);
 
         return parent::getRun();
@@ -457,7 +431,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setShift(\User\Entity\ShiftLegacy $shift)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setShift', [$shift]);
 
         return parent::setShift($shift);
@@ -468,7 +441,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getShift()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getShift', []);
 
         return parent::getShift();
@@ -479,7 +451,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setStudent(\User\Entity\StudentLegacy $student)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStudent', [$student]);
 
         return parent::setStudent($student);
@@ -490,7 +461,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getStudent()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStudent', []);
 
         return parent::getStudent();
@@ -501,7 +471,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setTeamLead($teamLead)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTeamLead', [$teamLead]);
 
         return parent::setTeamLead($teamLead);
@@ -512,7 +481,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getTeamLead()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTeamLead', []);
 
         return parent::getTeamLead();
@@ -523,7 +491,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setTeamSize($teamSize)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTeamSize', [$teamSize]);
 
         return parent::setTeamSize($teamSize);
@@ -534,7 +501,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getTeamSize()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTeamSize', []);
 
         return parent::getTeamSize();
@@ -545,7 +511,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setLocked($locked)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLocked', [$locked]);
 
         return parent::setLocked($locked);
@@ -556,7 +521,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getLocked()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLocked', []);
 
         return parent::getLocked();
@@ -565,9 +529,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setSubject(\User\Entity\Subject $subject = NULL)
+    public function setSubject(\User\Entity\Subject $subject = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSubject', [$subject]);
 
         return parent::setSubject($subject);
@@ -578,7 +541,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getSubject()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSubject', []);
 
         return parent::getSubject();
@@ -587,9 +549,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setEthnicity(\User\Entity\Ethnicity $ethnicity = NULL)
+    public function setEthnicity(\User\Entity\Ethnicity $ethnicity = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEthnicity', [$ethnicity]);
 
         return parent::setEthnicity($ethnicity);
@@ -600,7 +561,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getEthnicity()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEthnicity', []);
 
         return parent::getEthnicity();
@@ -609,9 +569,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setVerification(\User\Entity\Verification $ver = NULL)
+    public function setVerification(\User\Entity\Verification $ver = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setVerification', [$ver]);
 
         return parent::setVerification($ver);
@@ -622,7 +581,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getVerificationArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getVerificationArray', []);
 
         return parent::getVerificationArray();
@@ -633,7 +591,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function unsetVerification()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'unsetVerification', []);
 
         return parent::unsetVerification();
@@ -644,7 +601,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getVerification()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getVerification', []);
 
         return parent::getVerification();
@@ -655,7 +611,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setPrimaryImpression(\User\Entity\Impression $impression)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPrimaryImpression', [$impression]);
 
         return parent::setPrimaryImpression($impression);
@@ -664,9 +619,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setSecondaryImpression(\User\Entity\Impression $impression = NULL)
+    public function setSecondaryImpression(\User\Entity\Impression $impression = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSecondaryImpression', [$impression]);
 
         return parent::setSecondaryImpression($impression);
@@ -677,7 +631,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setGender(\User\Entity\Gender $gender)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setGender', [$gender]);
 
         return parent::setGender($gender);
@@ -688,7 +641,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getGender()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getGender', []);
 
         return parent::getGender();
@@ -697,9 +649,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setPreceptor(\User\Entity\PreceptorLegacy $preceptorLegacy = NULL)
+    public function setPreceptor(\User\Entity\PreceptorLegacy $preceptorLegacy = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPreceptor', [$preceptorLegacy]);
 
         return parent::setPreceptor($preceptorLegacy);
@@ -708,9 +659,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setResponseMode(\User\Entity\ResponseMode $responseMode = NULL)
+    public function setResponseMode(\User\Entity\ResponseMode $responseMode = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setResponseMode', [$responseMode]);
 
         return parent::setResponseMode($responseMode);
@@ -719,9 +669,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setMsaAlertness(\User\Entity\MentalAlertness $mentalAlertness = NULL)
+    public function setMsaAlertness(\User\Entity\MentalAlertness $mentalAlertness = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMsaAlertness', [$mentalAlertness]);
 
         return parent::setMsaAlertness($mentalAlertness);
@@ -732,7 +681,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setMsaOrientations($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMsaOrientations', [$value]);
 
         return parent::setMsaOrientations($value);
@@ -741,9 +689,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setCause(\User\Entity\Cause $cause = NULL)
+    public function setCause(\User\Entity\Cause $cause = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCause', [$cause]);
 
         return parent::setCause($cause);
@@ -752,9 +699,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setIntent(\User\Entity\Intent $intent = NULL)
+    public function setIntent(\User\Entity\Intent $intent = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIntent', [$intent]);
 
         return parent::setIntent($intent);
@@ -765,7 +711,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setInterview($interview)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInterview', [$interview]);
 
         return parent::setInterview($interview);
@@ -776,7 +721,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setExam($exam)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setExam', [$exam]);
 
         return parent::setExam($exam);
@@ -787,7 +731,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setAirwaySuccess($airwaySuccess)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAirwaySuccess', [$airwaySuccess]);
 
         return parent::setAirwaySuccess($airwaySuccess);
@@ -796,9 +739,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setPatientCriticality(\User\Entity\PatientCriticality $patientCriticality = NULL)
+    public function setPatientCriticality(\User\Entity\PatientCriticality $patientCriticality = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPatientCriticality', [$patientCriticality]);
 
         return parent::setPatientCriticality($patientCriticality);
@@ -807,9 +749,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setPatientDisposition(\User\Entity\PatientDisposition $patientDisposition = NULL)
+    public function setPatientDisposition(\User\Entity\PatientDisposition $patientDisposition = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPatientDisposition', [$patientDisposition]);
 
         return parent::setPatientDisposition($patientDisposition);
@@ -818,9 +759,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setTransportMode(\User\Entity\ResponseMode $responseMode = NULL)
+    public function setTransportMode(\User\Entity\ResponseMode $responseMode = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTransportMode', [$responseMode]);
 
         return parent::setTransportMode($responseMode);
@@ -829,9 +769,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setWitness(\User\Entity\Witness $witness = NULL)
+    public function setWitness(\User\Entity\Witness $witness = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWitness', [$witness]);
 
         return parent::setWitness($witness);
@@ -840,9 +779,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setPulseReturn(\User\Entity\PulseReturn $pulseReturn = NULL)
+    public function setPulseReturn(\User\Entity\PulseReturn $pulseReturn = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPulseReturn', [$pulseReturn]);
 
         return parent::setPulseReturn($pulseReturn);
@@ -853,7 +791,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setAge($age)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAge', [$age]);
 
         return parent::setAge($age);
@@ -864,7 +801,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getAge()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAge', []);
 
         return parent::getAge();
@@ -875,7 +811,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setMonths($month)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMonths', [$month]);
 
         return parent::setMonths($month);
@@ -886,7 +821,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getMonths()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMonths', []);
 
         return parent::getMonths();
@@ -897,7 +831,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setNarrative(\User\Entity\Narrative $narrative)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNarrative', [$narrative]);
 
         return parent::setNarrative($narrative);
@@ -908,7 +841,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getNarrative()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNarrative', []);
 
         return parent::getNarrative();
@@ -919,7 +851,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getVitals()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getVitals', []);
 
         return parent::getVitals();
@@ -930,7 +861,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setVitals($vitals)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setVitals', [$vitals]);
 
         return parent::setVitals($vitals);
@@ -941,7 +871,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getIvs()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIvs', []);
 
         return parent::getIvs();
@@ -952,7 +881,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setIvs($ivs)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIvs', [$ivs]);
 
         return parent::setIvs($ivs);
@@ -963,7 +891,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getAirways()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAirways', []);
 
         return parent::getAirways();
@@ -974,7 +901,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setAirways($airways)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAirways', [$airways]);
 
         return parent::setAirways($airways);
@@ -985,7 +911,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getCardiacInterventions()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCardiacInterventions', []);
 
         return parent::getCardiacInterventions();
@@ -996,7 +921,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setCardiacInterventions($cardiac_interventions)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCardiacInterventions', [$cardiac_interventions]);
 
         return parent::setCardiacInterventions($cardiac_interventions);
@@ -1007,7 +931,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getComplaints()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getComplaints', []);
 
         return parent::getComplaints();
@@ -1018,7 +941,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setComplaints($complaints)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setComplaints', [$complaints]);
 
         return parent::setComplaints($complaints);
@@ -1029,7 +951,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getAirwayManagement()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAirwayManagement', []);
 
         return parent::getAirwayManagement();
@@ -1040,7 +961,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setAirwayManagement($airway_management)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAirwayManagement', [$airway_management]);
 
         return parent::setAirwayManagement($airway_management);
@@ -1051,7 +971,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getMeds()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMeds', []);
 
         return parent::getMeds();
@@ -1062,7 +981,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setMeds($meds)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMeds', [$meds]);
 
         return parent::setMeds($meds);
@@ -1073,7 +991,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getOtherInterventions()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOtherInterventions', []);
 
         return parent::getOtherInterventions();
@@ -1084,7 +1001,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setOtherInterventions($other_interventions)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOtherInterventions', [$other_interventions]);
 
         return parent::setOtherInterventions($other_interventions);
@@ -1095,7 +1011,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setSignoff(\User\Entity\PreceptorSignoff $signoff)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSignoff', [$signoff]);
 
         return parent::setSignoff($signoff);
@@ -1106,7 +1021,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getSignoffArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSignoffArray', []);
 
         return parent::getSignoffArray();
@@ -1117,7 +1031,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function addMed(\User\Entity\Med $med)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addMed', [$med]);
 
         return parent::addMed($med);
@@ -1128,7 +1041,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function addOtherIntervention(\User\Entity\OtherIntervention $other)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addOtherIntervention', [$other]);
 
         return parent::addOtherIntervention($other);
@@ -1139,7 +1051,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function addCardiacIntervention(\User\Entity\CardiacIntervention $cardiac)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCardiacIntervention', [$cardiac]);
 
         return parent::addCardiacIntervention($cardiac);
@@ -1150,7 +1061,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function addAirway(\User\Entity\Airway $air)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addAirway', [$air]);
 
         return parent::addAirway($air);
@@ -1161,7 +1071,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function addIv(\User\Entity\Iv $iv)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addIv', [$iv]);
 
         return parent::addIv($iv);
@@ -1172,7 +1081,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function addVital(\User\Entity\Vital $vital)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addVital', [$vital]);
 
         return parent::addVital($vital);
@@ -1183,7 +1091,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setComplaintIds($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setComplaintIds', [$value]);
 
         return parent::setComplaintIds($value);
@@ -1194,7 +1101,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getComplaintIds()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getComplaintIds', []);
 
         return parent::getComplaintIds();
@@ -1205,7 +1111,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getComplaintNames($sortComplaints = true, $delimiter = ', ')
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getComplaintNames', [$sortComplaints, $delimiter]);
 
         return parent::getComplaintNames($sortComplaints, $delimiter);
@@ -1216,7 +1121,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_mechanisms($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_mechanisms', [$value]);
 
         return parent::set_mechanisms($value);
@@ -1227,7 +1131,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function get_mechanisms()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'get_mechanisms', []);
 
         return parent::get_mechanisms();
@@ -1238,7 +1141,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getMechanismIds()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMechanismIds', []);
 
         return parent::getMechanismIds();
@@ -1249,7 +1151,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getMechanismNames($sort = true, $delimiter = ', ')
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMechanismNames', [$sort, $delimiter]);
 
         return parent::getMechanismNames($sort, $delimiter);
@@ -1260,7 +1161,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_msa_orientations($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_msa_orientations', [$value]);
 
         return parent::set_msa_orientations($value);
@@ -1271,7 +1171,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function get_msa_orientations()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'get_msa_orientations', []);
 
         return parent::get_msa_orientations();
@@ -1282,7 +1181,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_msa_responses($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_msa_responses', [$value]);
 
         return parent::set_msa_responses($value);
@@ -1293,7 +1191,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function get_msa_responses()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'get_msa_responses', []);
 
         return parent::get_msa_responses();
@@ -1304,7 +1201,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getSummaryLine()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSummaryLine', []);
 
         return parent::getSummaryLine();
@@ -1315,7 +1211,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function generateSummarySeed()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'generateSummarySeed', []);
 
         return parent::generateSummarySeed();
@@ -1326,7 +1221,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function isValid()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isValid', []);
 
         return parent::isValid();
@@ -1337,7 +1231,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function isALSPatient()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isALSPatient', []);
 
         return parent::isALSPatient();
@@ -1348,7 +1241,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function isUnconscious()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isUnconscious', []);
 
         return parent::isUnconscious();
@@ -1359,7 +1251,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function isALSPatientTest()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isALSPatientTest', []);
 
         return parent::isALSPatientTest();
@@ -1370,7 +1261,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getInvalidFields()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInvalidFields', []);
 
         return parent::getInvalidFields();
@@ -1381,7 +1271,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getNarrativeArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNarrativeArray', []);
 
         return parent::getNarrativeArray();
@@ -1392,7 +1281,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getHookIds()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getHookIds', []);
 
         return parent::getHookIds();
@@ -1403,7 +1291,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function canBeLocked($shiftType = 'field')
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'canBeLocked', [$shiftType]);
 
         return parent::canBeLocked($shiftType);
@@ -1414,7 +1301,6 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getMissingFields()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMissingFields', []);
 
         return parent::getMissingFields();
@@ -1425,10 +1311,8 @@ class Patient extends \User\Entity\Patient implements \Doctrine\ORM\Proxy\Proxy
      */
     public function toArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'toArray', []);
 
         return parent::toArray();
     }
-
 }

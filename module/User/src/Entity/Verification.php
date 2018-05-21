@@ -1,4 +1,5 @@
 <?php namespace User\Entity;
+
 use DateTime;
 use DateTimeZone;
 use Doctrine\ORM\Mapping\Column;
@@ -15,7 +16,6 @@ use Fisdap\Api\Users\UserContexts\Roles\Instructors\Http\Exceptions\InvalidPermi
 use User\EntityUtils;
 use phpDocumentor\Reflection\Types\Boolean;
 use Zend_Registry;
-
 
 /**
  * Entity class for Verifications for Runs, Patients and skills
@@ -164,7 +164,8 @@ class Verification
      * @param ProgramSettings $programSettings
      * @return string
      */
-    public function getSignoffMessage(ProgramSettings $programSettings) {
+    public function getSignoffMessage(ProgramSettings $programSettings)
+    {
         $name = $this->getSignoffName();
 
         $signoffDTFormat = 'M j, Y \a\t Hi';
@@ -181,7 +182,7 @@ class Verification
             $signoffDTFormat = $signoffDT->format($signoffDTFormat);
         }
 
-        if($name) {
+        if ($name) {
             return 'This evaluation was verified by ' . $name . ' at ' . $signoffDTFormat . '.';
         } else {
             return "This evaluation was verified by attachment at " . $signoffDTFormat . ".";
@@ -230,7 +231,7 @@ class Verification
         if ($user && $requireInstructor) {
             if (!$user->isInstructor()) {
                 throw new InvalidPermission('This username does not belong to an educator.');
-            } else if ($patient && $patient->getStudent()->program->getId() != $user->getCurrentUserContext()->getProgram()->getId()) {
+            } elseif ($patient && $patient->getStudent()->program->getId() != $user->getCurrentUserContext()->getProgram()->getId()) {
                 throw new InvalidPermission('This educator does not belong to the same program as student.');
             }
         }
@@ -257,10 +258,18 @@ class Verification
             'updated' => $this->getUpdated()
         ];
 
-        if ($this->getUsername()) $rtv['username'] = $this->getUsername();
-        if ($this->getSignoffName()) $rtv['name'] = $this->getSignoffName();
-        if ($this->getSignature() && $this->getSignature()->getSignatureString()) $rtv['signatureString'] = $this->getSignature()->getSignatureString();
-        if ($this->getShiftAttachment()) $rtv['attachment'] = $this->getShiftAttachment()->toArray();
+        if ($this->getUsername()) {
+            $rtv['username'] = $this->getUsername();
+        }
+        if ($this->getSignoffName()) {
+            $rtv['name'] = $this->getSignoffName();
+        }
+        if ($this->getSignature() && $this->getSignature()->getSignatureString()) {
+            $rtv['signatureString'] = $this->getSignature()->getSignatureString();
+        }
+        if ($this->getShiftAttachment()) {
+            $rtv['attachment'] = $this->getShiftAttachment()->toArray();
+        }
 
         return $rtv;
     }

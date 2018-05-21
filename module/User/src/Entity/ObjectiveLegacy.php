@@ -1,25 +1,25 @@
 <?php namespace User\Entity;
+
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Legacy Entity class for Discounts.
- * 
+ *
  * @Entity(repositoryClass="Fisdap\Data\Objective\DoctrineObjectiveLegacyRepository")
  * @Table(name="Objective_def")
  */
 class ObjectiveLegacy extends EntityBaseClass
 {
-	/**
-	 * @Id
-	 * @Column(name="ObjectiveDef_id", type="integer")
-	 * @GeneratedValue
-	 */
-	protected $id;
+    /**
+     * @Id
+     * @Column(name="ObjectiveDef_id", type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
     
     /**
      * @var string

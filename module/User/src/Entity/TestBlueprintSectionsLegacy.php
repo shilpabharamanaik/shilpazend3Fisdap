@@ -1,4 +1,5 @@
 <?php namespace User\Entity;
+
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -7,22 +8,21 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Entity class for Legacy Marketing Billboards.
- * 
+ *
  * @Entity
  * @Table(name="TestBPSections")
  */
 class TestBlueprintSectionsLegacy extends EntityBaseClass
 {
-	/**
-	 * @Id
-	 * @Column(name="tbpSect_id", type="integer")
-	 * @GeneratedValue
-	 */
-	protected $id;
-	
+    /**
+     * @Id
+     * @Column(name="tbpSect_id", type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
+    
     /**
      * @Column(name="Name", type="string")
      */
@@ -30,7 +30,7 @@ class TestBlueprintSectionsLegacy extends EntityBaseClass
     
     /**
      * @ManyToOne(targetEntity="TestBlueprintsLegacy", inversedBy="section")
-	 * @JoinColumn(name="tbp_id", referencedColumnName="tbp_id")
+     * @JoinColumn(name="tbp_id", referencedColumnName="tbp_id")
      */
     protected $blueprint;
     

@@ -1,8 +1,8 @@
 <?php namespace User\Entity;
+
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Table;
 use User\EntityUtils;
-
 
 /**
  * Entity class for Shift History Change.
@@ -13,21 +13,20 @@ use User\EntityUtils;
 class ShiftAttendence extends Enumerated
 {
     public static function getFormOptions($na = false, $sort=true, $displayName = "name")
-	{
+    {
+        $options = array();
+        $repo = EntityUtils::getEntityManager()->getRepository('\Fisdap\Entity\ShiftAttendence');
+        $results = $repo->findAll();
         
-		$options = array();
-		$repo = EntityUtils::getEntityManager()->getRepository('\Fisdap\Entity\ShiftAttendence');
-		$results = $repo->findAll();
-		
-		foreach($results as $result) {
-			$options[$result->id] = $result->name;
-		}
+        foreach ($results as $result) {
+            $options[$result->id] = $result->name;
+        }
         
-		return $options;
-	}
+        return $options;
+    }
 
-    public static function getFormOptionsByProgram($programId) {
-
+    public static function getFormOptionsByProgram($programId)
+    {
         $options = self::getFormOptions();
 
         $program = EntityUtils::getEntity('ProgramLegacy', $programId);
@@ -50,12 +49,11 @@ class ShiftAttendence extends Enumerated
     
     public static function getFormOptionsInstructor()
     {
-        
         $options = array();
         $repo = EntityUtils::getEntityManager()->getRepository('\Fisdap\Entity\ShiftAttendence');
         $results = $repo->findAll();
         
-        foreach($results as $result) {
+        foreach ($results as $result) {
             $options[$result->id] = $result->name;
         }
         

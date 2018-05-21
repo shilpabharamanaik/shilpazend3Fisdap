@@ -16,8 +16,8 @@ use Doctrine\ORM\Mapping\Table;
  */
 class ProgramMedType
 {
-	
-	 /**
+    
+     /**
      * @var integer
      * @Id
      * @Column(type="integer")

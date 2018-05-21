@@ -73,7 +73,6 @@ class InstructorController extends AbstractActionController
 
         // If an instructor hasn't been set yet, choose the logged in instructor
         if (!$instructorId) {
-
             $objInstructor = $this->entityManager->getRepository(Instructor::class)
                                 ->findOneByUserId($this->objUser->getId());
             $instructorId = $objInstructor->getInstructorId();
@@ -90,7 +89,7 @@ class InstructorController extends AbstractActionController
                             ->findOneById($instructorId);
 
         // Check to make sure we can view the given instructor
-                            /*
+        /*
         if ($instructor->getUserContext()->getProgram()->getId() != $this->currentUser->context()->getProgram()->getId()) {
             unset($this->globalSession->instructorId);
             $this->view->instructorId = null;
@@ -120,5 +119,4 @@ class InstructorController extends AbstractActionController
             'username' => $this->username,
         ]);
     }
-
 }

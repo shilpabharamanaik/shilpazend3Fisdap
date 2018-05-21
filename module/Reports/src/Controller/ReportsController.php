@@ -14,7 +14,7 @@ use User\Entity\InstructorLegacy;
 
 class ReportsController extends AbstractActionController
 {
-    	/**
+    /**
      * Session manager.
      * @var Zend\Session\SessionManager
      */
@@ -27,8 +27,8 @@ class ReportsController extends AbstractActionController
     private $entityManager;
 
     private $objUser;
-	
-	public function __construct($entityManager)
+    
+    public function __construct($entityManager)
     {
         $this->entityManager = $entityManager;
         $userSession = new Container('user');

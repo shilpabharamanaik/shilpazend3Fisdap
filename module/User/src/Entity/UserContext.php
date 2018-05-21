@@ -885,7 +885,8 @@ class UserContext extends EntityBaseClass
      */
     public function hasPermission($permission)
     {
-		echo "1"; exit;
+        echo "1";
+        exit;
         // a non-instructor is never going to have permissions, so always return false
         if (! $this->isInstructor()) {
             return false;

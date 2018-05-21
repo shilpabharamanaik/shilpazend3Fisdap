@@ -46,7 +46,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function __construct($initializer = null, $cloner = null)
     {
-
         $this->__initializer__ = $initializer;
         $this->__cloner__      = $cloner;
     }
@@ -77,7 +76,7 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
 
 
     /**
-     * 
+     *
      * @return array
      */
     public function __sleep()
@@ -90,11 +89,11 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
     }
 
     /**
-     * 
+     *
      */
     public function __wakeup()
     {
-        if ( ! $this->__isInitialized__) {
+        if (! $this->__isInitialized__) {
             $this->__initializer__ = function (CertificationLevel $proxy) {
                 $proxy->__setInitializer(null);
                 $proxy->__setCloner(null);
@@ -102,17 +101,16 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
                 $existingProperties = get_object_vars($proxy);
 
                 foreach ($proxy->__getLazyProperties() as $property => $defaultValue) {
-                    if ( ! array_key_exists($property, $existingProperties)) {
+                    if (! array_key_exists($property, $existingProperties)) {
                         $proxy->$property = $defaultValue;
                     }
                 }
             };
-
         }
     }
 
     /**
-     * 
+     *
      */
     public function __clone()
     {
@@ -197,7 +195,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function getProfession()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProfession', []);
 
         return parent::getProfession();
@@ -208,7 +205,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function setProfession(\User\Entity\Profession $profession)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setProfession', [$profession]);
 
         return parent::setProfession($profession);
@@ -219,7 +215,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function getDefaultProgramLengthDays()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDefaultProgramLengthDays', []);
 
         return parent::getDefaultProgramLengthDays();
@@ -230,7 +225,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function setDefaultProgramLengthDays($default_program_length_days)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDefaultProgramLengthDays', [$default_program_length_days]);
 
         return parent::setDefaultProgramLengthDays($default_program_length_days);
@@ -241,7 +235,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function getColumn($column)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getColumn', [$column]);
 
         return parent::getColumn($column);
@@ -267,7 +260,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function getName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', []);
 
         return parent::getName();
@@ -278,7 +270,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function setName($name)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', [$name]);
 
         return parent::setName($name);
@@ -289,7 +280,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function toArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'toArray', []);
 
         return parent::toArray();
@@ -298,9 +288,8 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
     /**
      * {@inheritDoc}
      */
-    public function setUUID($uuid = NULL)
+    public function setUUID($uuid = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUUID', [$uuid]);
 
         return parent::setUUID($uuid);
@@ -311,7 +300,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function getUUID()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUUID', []);
 
         return parent::getUUID();
@@ -322,7 +310,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function getEntityRepository()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEntityRepository', []);
 
         return parent::getEntityRepository();
@@ -333,7 +320,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function save($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'save', [$flush]);
 
         return parent::save($flush);
@@ -344,7 +330,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function delete($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', [$flush]);
 
         return parent::delete($flush);
@@ -355,7 +340,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function flush()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'flush', []);
 
         return parent::flush();
@@ -366,7 +350,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function isDatabaseField($field)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDatabaseField', [$field]);
 
         return parent::isDatabaseField($field);
@@ -377,7 +360,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function getFieldmap()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFieldmap', []);
 
         return parent::getFieldmap();
@@ -388,7 +370,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function isUsingDNAD()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isUsingDNAD', []);
 
         return parent::isUsingDNAD();
@@ -399,7 +380,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function getQueryBuilder()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getQueryBuilder', []);
 
         return parent::getQueryBuilder();
@@ -410,7 +390,6 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function deleteGroup($group)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'deleteGroup', [$group]);
 
         return parent::deleteGroup($group);
@@ -421,10 +400,8 @@ class CertificationLevel extends \User\Entity\CertificationLevel implements \Doc
      */
     public function getShortName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getShortName', []);
 
         return parent::getShortName();
     }
-
 }

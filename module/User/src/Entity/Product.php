@@ -1,4 +1,5 @@
 <?php namespace User\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -279,7 +280,7 @@ class Product extends EntityBaseClass
             $tutorials[] = array(
                 "name" => "Scheduler for Students",
                 "url" => $urlroot . "scheduler/scheduler_students");
-        } else if ($this->id == 1 || $this->id == 10) {
+        } elseif ($this->id == 1 || $this->id == 10) {
             $tutorials[] = array(
                 "name" => "Skills Tracker",
                 "url" => "http://vimeo.com/39905485"
@@ -289,15 +290,15 @@ class Product extends EntityBaseClass
                 "name" => "Your Portfolio",
                 "url" => $urlroot . "skills_tracker/portfolio"
             );
-        } else if ($this->category->id == 2) {
+        } elseif ($this->category->id == 2) {
             $tutorials[] = array(
                 "name" => "Secure Testing",
                 "url" => $urlroot . "testing/secure_testing_0");
-        } else if ($this->category->id == 3) {
+        } elseif ($this->category->id == 3) {
             $tutorials[] = array(
                 "name" => "Study Tools",
                 "url" => $urlroot . "testing/study_tools_0");
-        } else if ($this->id == 9) {
+        } elseif ($this->id == 9) {
             $tutorials[] = array(
                 "name" => "Preceptor Training",
                 "url" => $urlroot . "accreditation/preceptor_training#log-in-to-preceptor-training"

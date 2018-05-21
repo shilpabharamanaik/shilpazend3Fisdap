@@ -46,7 +46,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function __construct($initializer = null, $cloner = null)
     {
-
         $this->__initializer__ = $initializer;
         $this->__cloner__      = $cloner;
     }
@@ -77,7 +76,7 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
 
 
     /**
-     * 
+     *
      * @return array
      */
     public function __sleep()
@@ -90,11 +89,11 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
     }
 
     /**
-     * 
+     *
      */
     public function __wakeup()
     {
-        if ( ! $this->__isInitialized__) {
+        if (! $this->__isInitialized__) {
             $this->__initializer__ = function (Order $proxy) {
                 $proxy->__setInitializer(null);
                 $proxy->__setCloner(null);
@@ -102,12 +101,11 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
                 $existingProperties = get_object_vars($proxy);
 
                 foreach ($proxy->__getLazyProperties() as $property => $defaultValue) {
-                    if ( ! array_key_exists($property, $existingProperties)) {
+                    if (! array_key_exists($property, $existingProperties)) {
                         $proxy->$property = $defaultValue;
                     }
                 }
             };
-
         }
     }
 
@@ -199,7 +197,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function init()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'init', []);
 
         return parent::init();
@@ -210,7 +207,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_order_type($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_order_type', [$value]);
 
         return parent::set_order_type($value);
@@ -221,7 +217,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_payment_method($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_payment_method', [$value]);
 
         return parent::set_payment_method($value);
@@ -232,7 +227,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_invoice_delivery_method($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_invoice_delivery_method', [$value]);
 
         return parent::set_invoice_delivery_method($value);
@@ -243,7 +237,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_user($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_user', [$value]);
 
         return parent::set_user($value);
@@ -254,7 +247,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_program($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_program', [$value]);
 
         return parent::set_program($value);
@@ -265,7 +257,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_staff_free_order($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_staff_free_order', [$value]);
 
         return parent::set_staff_free_order($value);
@@ -276,7 +267,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function isAccountingProcessed()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isAccountingProcessed', []);
 
         return parent::isAccountingProcessed();
@@ -287,7 +277,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setAccountingProcessed($accounting_processed)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAccountingProcessed', [$accounting_processed]);
 
         return parent::setAccountingProcessed($accounting_processed);
@@ -298,7 +287,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_order_configurations($configs)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_order_configurations', [$configs]);
 
         return parent::set_order_configurations($configs);
@@ -309,7 +297,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function addOrderConfiguration(\User\Entity\OrderConfiguration $config)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addOrderConfiguration', [$config]);
 
         return parent::addOrderConfiguration($config);
@@ -320,7 +307,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function removeOrderConfiguration(\User\Entity\OrderConfiguration $config)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeOrderConfiguration', [$config]);
 
         return parent::removeOrderConfiguration($config);
@@ -331,7 +317,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function applyCoupon($couponId)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'applyCoupon', [$couponId]);
 
         return parent::applyCoupon($couponId);
@@ -342,7 +327,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function removeCoupon()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeCoupon', []);
 
         return parent::removeCoupon();
@@ -353,7 +337,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getFullCost()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFullCost', []);
 
         return parent::getFullCost();
@@ -364,7 +347,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getSubtotal()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSubtotal', []);
 
         return parent::getSubtotal();
@@ -375,7 +357,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getTotalCost()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTotalCost', []);
 
         return parent::getTotalCost();
@@ -386,7 +367,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getTotalQuantity()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTotalQuantity', []);
 
         return parent::getTotalQuantity();
@@ -397,7 +377,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function hasUnactivatedAccounts()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'hasUnactivatedAccounts', []);
 
         return parent::hasUnactivatedAccounts();
@@ -408,7 +387,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function calculateTotal()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'calculateTotal', []);
 
         return parent::calculateTotal();
@@ -419,7 +397,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function addProductCode($code)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addProductCode', [$code]);
 
         return parent::addProductCode($code);
@@ -430,7 +407,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getBillingAddress($includeOrdererDetails = false)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingAddress', [$includeOrdererDetails]);
 
         return parent::getBillingAddress($includeOrdererDetails);
@@ -441,7 +417,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getFirstName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFirstName', []);
 
         return parent::getFirstName();
@@ -452,7 +427,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getMiddleName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMiddleName', []);
 
         return parent::getMiddleName();
@@ -463,7 +437,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getLastName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLastName', []);
 
         return parent::getLastName();
@@ -474,7 +447,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getOrdererName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOrdererName', []);
 
         return parent::getOrdererName();
@@ -483,9 +455,8 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function isViewable($user = NULL)
+    public function isViewable($user = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isViewable', [$user]);
 
         return parent::isViewable($user);
@@ -494,9 +465,8 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function isEditable($user = NULL)
+    public function isEditable($user = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isEditable', [$user]);
 
         return parent::isEditable($user);
@@ -507,7 +477,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function hasPilotTestingAccounts()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'hasPilotTestingAccounts', []);
 
         return parent::hasPilotTestingAccounts();
@@ -518,7 +487,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function addPreceptorTrainingConfig($quantity)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addPreceptorTrainingConfig', [$quantity]);
 
         return parent::addPreceptorTrainingConfig($quantity);
@@ -529,7 +497,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getBillingEmailArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingEmailArray', []);
 
         return parent::getBillingEmailArray();
@@ -540,7 +507,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function isFreeOrder()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isFreeOrder', []);
 
         return parent::isFreeOrder();
@@ -551,7 +517,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function process()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'process', []);
 
         return parent::process();
@@ -562,7 +527,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function emailInvoicePdf()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'emailInvoicePdf', []);
 
         return parent::emailInvoicePdf();
@@ -573,7 +537,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function processProductCodes()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'processProductCodes', []);
 
         return parent::processProductCodes();
@@ -584,7 +547,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getTransactionErrors()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTransactionErrors', []);
 
         return parent::getTransactionErrors();
@@ -595,7 +557,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function generateInvoiceNumber()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'generateInvoiceNumber', []);
 
         return parent::generateInvoiceNumber();
@@ -606,7 +567,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getInvoiceDueDate()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInvoiceDueDate', []);
 
         return parent::getInvoiceDueDate();
@@ -617,7 +577,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getStaffOrderDetails($lineBreak = '<br>')
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStaffOrderDetails', [$lineBreak]);
 
         return parent::getStaffOrderDetails($lineBreak);
@@ -628,7 +587,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getAssociatedDiscounts()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAssociatedDiscounts', []);
 
         return parent::getAssociatedDiscounts();
@@ -639,7 +597,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function isCreditCardPurchase()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isCreditCardPurchase', []);
 
         return parent::isCreditCardPurchase();
@@ -648,9 +605,8 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setUUID($uuid = NULL)
+    public function setUUID($uuid = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUUID', [$uuid]);
 
         return parent::setUUID($uuid);
@@ -661,7 +617,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getUUID()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUUID', []);
 
         return parent::getUUID();
@@ -672,7 +627,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getEntityRepository()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEntityRepository', []);
 
         return parent::getEntityRepository();
@@ -683,7 +637,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function save($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'save', [$flush]);
 
         return parent::save($flush);
@@ -694,7 +647,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function delete($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', [$flush]);
 
         return parent::delete($flush);
@@ -705,7 +657,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function flush()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'flush', []);
 
         return parent::flush();
@@ -716,7 +667,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function isDatabaseField($field)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDatabaseField', [$field]);
 
         return parent::isDatabaseField($field);
@@ -727,7 +677,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getFieldmap()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFieldmap', []);
 
         return parent::getFieldmap();
@@ -738,7 +687,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function isUsingDNAD()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isUsingDNAD', []);
 
         return parent::isUsingDNAD();
@@ -749,7 +697,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function toArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'toArray', []);
 
         return parent::toArray();
@@ -760,7 +707,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getQueryBuilder()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getQueryBuilder', []);
 
         return parent::getQueryBuilder();
@@ -771,7 +717,6 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function deleteGroup($group)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'deleteGroup', [$group]);
 
         return parent::deleteGroup($group);
@@ -782,10 +727,8 @@ class Order extends \User\Entity\Order implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getShortName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getShortName', []);
 
         return parent::getShortName();
     }
-
 }

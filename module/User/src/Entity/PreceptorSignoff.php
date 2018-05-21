@@ -1,4 +1,5 @@
 <?php namespace User\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -12,10 +13,9 @@ use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 use User\EntityUtils;
 
-
 /**
  * Entity class for Preceptor Signoffs
- * 
+ *
  * @Entity
  * @Table(name="fisdap2_preceptor_signoffs")
  * @HasLifecycleCallbacks
@@ -23,27 +23,27 @@ use User\EntityUtils;
 class PreceptorSignoff
 {
     /**
-	 * @var integer
-	 * @Id
-	 * @Column(type="integer")
-	 * @GeneratedValue
-	 */
-	protected $id;
+     * @var integer
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
     
     /**
-	 * @ManyToOne(targetEntity="StudentLegacy")
-	 * @JoinColumn(name="student_id", referencedColumnName="Student_id")
-	 */
-	protected $student;
+     * @ManyToOne(targetEntity="StudentLegacy")
+     * @JoinColumn(name="student_id", referencedColumnName="Student_id")
+     */
+    protected $student;
     
     /**
      * @OneToOne(targetEntity="Run", inversedBy="signoff")
      */
     protected $run;
-	
-	/**
+    
+    /**
      * @OneToOne(targetEntity="ShiftLegacy", inversedBy="signoff")
-	 * @JoinColumn(name="shift_id", referencedColumnName="Shift_id")
+     * @JoinColumn(name="shift_id", referencedColumnName="Shift_id")
      */
     protected $shift;
     
@@ -155,7 +155,7 @@ class PreceptorSignoff
     }
 
     /**
-     * 
+     *
      */
     public function setSummary($summary)
     {
@@ -226,7 +226,8 @@ class PreceptorSignoff
      * @param $plan
      * @deprecated
      */
-    public function set_plan($plan){
+    public function set_plan($plan)
+    {
         $this->plan = $plan;
     }
     
@@ -237,8 +238,8 @@ class PreceptorSignoff
      * @return \Fisdap\Entity\PreceptorSignoff
      */
     public function set_ratings($values)
-    {        
-        foreach($this->ratings as $rating) {
+    {
+        foreach ($this->ratings as $rating) {
             $this->ratings->removeElement($rating);
             $rating->delete(false);
         }
@@ -275,5 +276,3 @@ class PreceptorSignoff
         return $rtv;
     }
 }
-
-

@@ -22,7 +22,7 @@ return [
             ],
         ],
     ],
-	'controllers' => [
+    'controllers' => [
         'factories' => [
             Controller\CommunityController::class => Controller\Factory\CommunityControllerFactory::class,
         ],

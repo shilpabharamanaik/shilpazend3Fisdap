@@ -13,7 +13,7 @@ use User\Entity\InstructorLegacy;
 
 class SkillstrackerController extends AbstractActionController
 {
-	/**
+    /**
      * Session manager.
      * @var Zend\Session\SessionManager
      */
@@ -26,8 +26,8 @@ class SkillstrackerController extends AbstractActionController
     private $entityManager;
 
     private $objUser;
-	
-	public function __construct($entityManager)
+    
+    public function __construct($entityManager)
     {
         $this->entityManager = $entityManager;
         $userSession = new Container('user');
@@ -37,10 +37,10 @@ class SkillstrackerController extends AbstractActionController
 
     public function indexAction()
     {
-		$userContext = $this->objUser->getCurrentUserContext();
-		$roleName = $userContext->getRole()->getName();
-		$arrViewData = ['roleName' => $roleName, 'schedulerLink' => 'scheduler', 'skillsPatientCareLink' => '/skills-tracker/shifts'] ;
-		//$viewModelz = new ViewModel($arrViewData);
+        $userContext = $this->objUser->getCurrentUserContext();
+        $roleName = $userContext->getRole()->getName();
+        $arrViewData = ['roleName' => $roleName, 'schedulerLink' => 'scheduler', 'skillsPatientCareLink' => '/skills-tracker/shifts'] ;
+        //$viewModelz = new ViewModel($arrViewData);
         return new ViewModel($arrViewData);
     }
 }

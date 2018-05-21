@@ -62,7 +62,6 @@ class AuthManager
 
         //if ($result->getCode()==Result::SUCCESS && $rememberMe) {
         if ($result->getCode()==Result::SUCCESS) {
-
             $userSession = new Container('user');
             $userSession->username = $this->authService->getIdentity();
             // Session cookie will expire in 1 month (30 days).

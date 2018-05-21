@@ -16,7 +16,7 @@ use User\EntityUtils;
  */
 class Permission extends Enumerated
 {
-	/**
+    /**
      * @var int
      * @Id
      * @Column(type="integer")

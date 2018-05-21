@@ -46,7 +46,6 @@ class Run extends \User\Entity\Run implements \Doctrine\ORM\Proxy\Proxy
      */
     public function __construct($initializer = null, $cloner = null)
     {
-
         $this->__initializer__ = $initializer;
         $this->__cloner__      = $cloner;
     }
@@ -58,7 +57,7 @@ class Run extends \User\Entity\Run implements \Doctrine\ORM\Proxy\Proxy
 
 
     /**
-     * 
+     *
      * @return array
      */
     public function __sleep()
@@ -71,11 +70,11 @@ class Run extends \User\Entity\Run implements \Doctrine\ORM\Proxy\Proxy
     }
 
     /**
-     * 
+     *
      */
     public function __wakeup()
     {
-        if ( ! $this->__isInitialized__) {
+        if (! $this->__isInitialized__) {
             $this->__initializer__ = function (Run $proxy) {
                 $proxy->__setInitializer(null);
                 $proxy->__setCloner(null);
@@ -83,17 +82,16 @@ class Run extends \User\Entity\Run implements \Doctrine\ORM\Proxy\Proxy
                 $existingProperties = get_object_vars($proxy);
 
                 foreach ($proxy->__getLazyProperties() as $property => $defaultValue) {
-                    if ( ! array_key_exists($property, $existingProperties)) {
+                    if (! array_key_exists($property, $existingProperties)) {
                         $proxy->$property = $defaultValue;
                     }
                 }
             };
-
         }
     }
 
     /**
-     * 
+     *
      */
     public function __clone()
     {
@@ -178,7 +176,6 @@ class Run extends \User\Entity\Run implements \Doctrine\ORM\Proxy\Proxy
      */
     public function init()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'init', []);
 
         return parent::init();
@@ -189,7 +186,6 @@ class Run extends \User\Entity\Run implements \Doctrine\ORM\Proxy\Proxy
      */
     public function set_signoff($signoff)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_signoff', [$signoff]);
 
         return parent::set_signoff($signoff);
@@ -198,9 +194,8 @@ class Run extends \User\Entity\Run implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function set_verification(\User\Entity\Verification $ver = NULL)
+    public function set_verification(\User\Entity\Verification $ver = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_verification', [$ver]);
 
         return parent::set_verification($ver);
@@ -211,7 +206,6 @@ class Run extends \User\Entity\Run implements \Doctrine\ORM\Proxy\Proxy
      */
     public function addPatient(\User\Entity\Patient $patient)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addPatient', [$patient]);
 
         return parent::addPatient($patient);
@@ -222,7 +216,6 @@ class Run extends \User\Entity\Run implements \Doctrine\ORM\Proxy\Proxy
      */
     public function removePatient(\User\Entity\Patient $patient)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removePatient', [$patient]);
 
         return parent::removePatient($patient);
@@ -231,9 +224,8 @@ class Run extends \User\Entity\Run implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function isEditable($user = NULL)
+    public function isEditable($user = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isEditable', [$user]);
 
         return parent::isEditable($user);
@@ -244,7 +236,6 @@ class Run extends \User\Entity\Run implements \Doctrine\ORM\Proxy\Proxy
      */
     public function isValid()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isValid', []);
 
         return parent::isValid();
@@ -255,10 +246,8 @@ class Run extends \User\Entity\Run implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getInvalidPatients()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInvalidPatients', []);
 
         return parent::getInvalidPatients();
     }
-
 }

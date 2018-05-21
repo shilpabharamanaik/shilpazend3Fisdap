@@ -46,7 +46,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function __construct($initializer = null, $cloner = null)
     {
-
         $this->__initializer__ = $initializer;
         $this->__cloner__      = $cloner;
     }
@@ -77,7 +76,7 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
 
 
     /**
-     * 
+     *
      * @return array
      */
     public function __sleep()
@@ -90,11 +89,11 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
     }
 
     /**
-     * 
+     *
      */
     public function __wakeup()
     {
-        if ( ! $this->__isInitialized__) {
+        if (! $this->__isInitialized__) {
             $this->__initializer__ = function (Role $proxy) {
                 $proxy->__setInitializer(null);
                 $proxy->__setCloner(null);
@@ -102,17 +101,16 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
                 $existingProperties = get_object_vars($proxy);
 
                 foreach ($proxy->__getLazyProperties() as $property => $defaultValue) {
-                    if ( ! array_key_exists($property, $existingProperties)) {
+                    if (! array_key_exists($property, $existingProperties)) {
                         $proxy->$property = $defaultValue;
                     }
                 }
             };
-
         }
     }
 
     /**
-     * 
+     *
      */
     public function __clone()
     {
@@ -212,7 +210,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', []);
 
         return parent::getName();
@@ -223,7 +220,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setName($name)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', [$name]);
 
         return parent::setName($name);
@@ -234,7 +230,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getEntityName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEntityName', []);
 
         return parent::getEntityName();
@@ -245,7 +240,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function setEntityName($entity_name)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEntityName', [$entity_name]);
 
         return parent::setEntityName($entity_name);
@@ -256,7 +250,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getFullEntityClassName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFullEntityClassName', []);
 
         return parent::getFullEntityClassName();
@@ -265,9 +258,8 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setUUID($uuid = NULL)
+    public function setUUID($uuid = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUUID', [$uuid]);
 
         return parent::setUUID($uuid);
@@ -278,7 +270,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getUUID()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUUID', []);
 
         return parent::getUUID();
@@ -289,7 +280,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getEntityRepository()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEntityRepository', []);
 
         return parent::getEntityRepository();
@@ -300,7 +290,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function save($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'save', [$flush]);
 
         return parent::save($flush);
@@ -311,7 +300,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function delete($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', [$flush]);
 
         return parent::delete($flush);
@@ -322,7 +310,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function flush()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'flush', []);
 
         return parent::flush();
@@ -333,7 +320,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function isDatabaseField($field)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDatabaseField', [$field]);
 
         return parent::isDatabaseField($field);
@@ -344,7 +330,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getFieldmap()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFieldmap', []);
 
         return parent::getFieldmap();
@@ -355,7 +340,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function isUsingDNAD()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isUsingDNAD', []);
 
         return parent::isUsingDNAD();
@@ -366,7 +350,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function toArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'toArray', []);
 
         return parent::toArray();
@@ -377,7 +360,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getQueryBuilder()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getQueryBuilder', []);
 
         return parent::getQueryBuilder();
@@ -388,7 +370,6 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function deleteGroup($group)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'deleteGroup', [$group]);
 
         return parent::deleteGroup($group);
@@ -399,10 +380,8 @@ class Role extends \User\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
      */
     public function getShortName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getShortName', []);
 
         return parent::getShortName();
     }
-
 }

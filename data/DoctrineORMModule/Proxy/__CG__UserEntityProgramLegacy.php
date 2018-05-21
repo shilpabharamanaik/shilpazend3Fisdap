@@ -46,7 +46,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function __construct($initializer = null, $cloner = null)
     {
-
         $this->__initializer__ = $initializer;
         $this->__cloner__      = $cloner;
     }
@@ -77,7 +76,7 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
 
 
     /**
-     * 
+     *
      * @return array
      */
     public function __sleep()
@@ -90,11 +89,11 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
     }
 
     /**
-     * 
+     *
      */
     public function __wakeup()
     {
-        if ( ! $this->__isInitialized__) {
+        if (! $this->__isInitialized__) {
             $this->__initializer__ = function (ProgramLegacy $proxy) {
                 $proxy->__setInitializer(null);
                 $proxy->__setCloner(null);
@@ -102,17 +101,16 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
                 $existingProperties = get_object_vars($proxy);
 
                 foreach ($proxy->__getLazyProperties() as $property => $defaultValue) {
-                    if ( ! array_key_exists($property, $existingProperties)) {
+                    if (! array_key_exists($property, $existingProperties)) {
                         $proxy->$property = $defaultValue;
                     }
                 }
             };
-
         }
     }
 
     /**
-     * 
+     *
      */
     public function __clone()
     {
@@ -212,7 +210,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', []);
 
         return parent::getName();
@@ -223,7 +220,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setName($name)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', [$name]);
 
         return parent::setName($name);
@@ -234,7 +230,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getAbbreviation()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAbbreviation', []);
 
         return parent::getAbbreviation();
@@ -245,7 +240,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setAbbreviation($abbreviation)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAbbreviation', [$abbreviation]);
 
         return parent::setAbbreviation($abbreviation);
@@ -256,7 +250,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function generateAbbreviation()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'generateAbbreviation', []);
 
         return parent::generateAbbreviation();
@@ -267,7 +260,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getClassSize()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getClassSize', []);
 
         return parent::getClassSize();
@@ -278,7 +270,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setClassSize($class_size)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setClassSize', [$class_size]);
 
         return parent::setClassSize($class_size);
@@ -289,7 +280,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getWebsite()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getWebsite', []);
 
         return parent::getWebsite();
@@ -300,7 +290,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setWebsite($website)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWebsite', [$website]);
 
         return parent::setWebsite($website);
@@ -311,7 +300,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getActive()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getActive', []);
 
         return parent::getActive();
@@ -322,7 +310,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setActive($active)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setActive', [$active]);
 
         return parent::setActive($active);
@@ -333,7 +320,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function set_profession($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_profession', [$value]);
 
         return parent::set_profession($value);
@@ -344,7 +330,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getProfession()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProfession', []);
 
         return parent::getProfession();
@@ -355,7 +340,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setProfession(\User\Entity\Profession $profession)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setProfession', [$profession]);
 
         return parent::setProfession($profession);
@@ -366,7 +350,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setCreated()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreated', []);
 
         return parent::setCreated();
@@ -377,7 +360,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getProgramSettings()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProgramSettings', []);
 
         return parent::getProgramSettings();
@@ -388,7 +370,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function get_possible_graduation_years($null_value = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'get_possible_graduation_years', [$null_value]);
 
         return parent::get_possible_graduation_years($null_value);
@@ -399,7 +380,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function get_possible_graduations_years_from_sn($null_value = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'get_possible_graduations_years_from_sn', [$null_value]);
 
         return parent::get_possible_graduations_years_from_sn($null_value);
@@ -410,7 +390,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function createDemoAccount($instructor)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'createDemoAccount', [$instructor]);
 
         return parent::createDemoAccount($instructor);
@@ -421,7 +400,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function toArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'toArray', []);
 
         return parent::toArray();
@@ -430,9 +408,8 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
     /**
      * {@inheritDoc}
      */
-    public function setUUID($uuid = NULL)
+    public function setUUID($uuid = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUUID', [$uuid]);
 
         return parent::setUUID($uuid);
@@ -443,7 +420,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getUUID()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUUID', []);
 
         return parent::getUUID();
@@ -454,7 +430,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getEntityRepository()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEntityRepository', []);
 
         return parent::getEntityRepository();
@@ -465,7 +440,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function save($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'save', [$flush]);
 
         return parent::save($flush);
@@ -476,7 +450,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function delete($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', [$flush]);
 
         return parent::delete($flush);
@@ -487,7 +460,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function flush()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'flush', []);
 
         return parent::flush();
@@ -498,7 +470,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function isDatabaseField($field)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDatabaseField', [$field]);
 
         return parent::isDatabaseField($field);
@@ -509,7 +480,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getFieldmap()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFieldmap', []);
 
         return parent::getFieldmap();
@@ -520,7 +490,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function isUsingDNAD()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isUsingDNAD', []);
 
         return parent::isUsingDNAD();
@@ -531,7 +500,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getQueryBuilder()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getQueryBuilder', []);
 
         return parent::getQueryBuilder();
@@ -542,7 +510,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function deleteGroup($group)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'deleteGroup', [$group]);
 
         return parent::deleteGroup($group);
@@ -553,7 +520,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getShortName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getShortName', []);
 
         return parent::getShortName();
@@ -564,7 +530,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getAddress()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAddress', []);
 
         return parent::getAddress();
@@ -575,7 +540,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setAddress($address)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAddress', [$address]);
 
         return parent::setAddress($address);
@@ -586,7 +550,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getAddress2()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAddress2', []);
 
         return parent::getAddress2();
@@ -597,7 +560,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setAddress2($address2)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAddress2', [$address2]);
 
         return parent::setAddress2($address2);
@@ -608,7 +570,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getAddress3()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAddress3', []);
 
         return parent::getAddress3();
@@ -619,7 +580,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setAddress3($address3)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAddress3', [$address3]);
 
         return parent::setAddress3($address3);
@@ -630,7 +590,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getCity()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCity', []);
 
         return parent::getCity();
@@ -641,7 +600,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setCity($city)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCity', [$city]);
 
         return parent::setCity($city);
@@ -652,7 +610,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getState()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getState', []);
 
         return parent::getState();
@@ -663,7 +620,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setState($state)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setState', [$state]);
 
         return parent::setState($state);
@@ -674,7 +630,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getZip()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getZip', []);
 
         return parent::getZip();
@@ -685,7 +640,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setZip($zip)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setZip', [$zip]);
 
         return parent::setZip($zip);
@@ -696,7 +650,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getCountry()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCountry', []);
 
         return parent::getCountry();
@@ -707,7 +660,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setCountry($country)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCountry', [$country]);
 
         return parent::setCountry($country);
@@ -718,7 +670,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getPhone()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPhone', []);
 
         return parent::getPhone();
@@ -729,7 +680,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setPhone($phone)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhone', [$phone]);
 
         return parent::setPhone($phone);
@@ -740,7 +690,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getFax()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFax', []);
 
         return parent::getFax();
@@ -751,7 +700,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setFax($fax)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFax', [$fax]);
 
         return parent::setFax($fax);
@@ -762,7 +710,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getProgramContactName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProgramContactName', []);
 
         return parent::getProgramContactName();
@@ -773,7 +720,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getProgramContact()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProgramContact', []);
 
         return parent::getProgramContact();
@@ -784,7 +730,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getProgramContactUser()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProgramContactUser', []);
 
         return parent::getProgramContactUser();
@@ -795,7 +740,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getContactEmail()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getContactEmail', []);
 
         return parent::getContactEmail();
@@ -806,7 +750,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setContactEmail($contact_email)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setContactEmail', [$contact_email]);
 
         return parent::setContactEmail($contact_email);
@@ -817,7 +760,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getBillingEmail()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingEmail', []);
 
         return parent::getBillingEmail();
@@ -828,7 +770,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setBillingEmail($billing_email)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBillingEmail', [$billing_email]);
 
         return parent::setBillingEmail($billing_email);
@@ -839,7 +780,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getBillingContact()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingContact', []);
 
         return parent::getBillingContact();
@@ -850,7 +790,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setBillingContact($billing_contact)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBillingContact', [$billing_contact]);
 
         return parent::setBillingContact($billing_contact);
@@ -861,7 +800,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getBillingAddress()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingAddress', []);
 
         return parent::getBillingAddress();
@@ -872,7 +810,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setBillingAddress($billing_address)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBillingAddress', [$billing_address]);
 
         return parent::setBillingAddress($billing_address);
@@ -883,7 +820,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getBillingAddress2()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingAddress2', []);
 
         return parent::getBillingAddress2();
@@ -894,7 +830,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setBillingAddress2($billing_address2)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBillingAddress2', [$billing_address2]);
 
         return parent::setBillingAddress2($billing_address2);
@@ -905,7 +840,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getBillingAddress3()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingAddress3', []);
 
         return parent::getBillingAddress3();
@@ -916,7 +850,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setBillingAddress3($billing_address3)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBillingAddress3', [$billing_address3]);
 
         return parent::setBillingAddress3($billing_address3);
@@ -927,7 +860,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getBillingCity()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingCity', []);
 
         return parent::getBillingCity();
@@ -938,7 +870,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setBillingCity($billing_city)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBillingCity', [$billing_city]);
 
         return parent::setBillingCity($billing_city);
@@ -949,7 +880,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getBillingState()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingState', []);
 
         return parent::getBillingState();
@@ -960,7 +890,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setBillingState($billing_state)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBillingState', [$billing_state]);
 
         return parent::setBillingState($billing_state);
@@ -971,7 +900,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getBillingZip()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingZip', []);
 
         return parent::getBillingZip();
@@ -982,7 +910,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setBillingZip($billing_zip)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBillingZip', [$billing_zip]);
 
         return parent::setBillingZip($billing_zip);
@@ -993,7 +920,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getBillingCountry()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingCountry', []);
 
         return parent::getBillingCountry();
@@ -1004,7 +930,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setBillingCountry($billing_country)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBillingCountry', [$billing_country]);
 
         return parent::setBillingCountry($billing_country);
@@ -1015,7 +940,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getBillingPhone()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingPhone', []);
 
         return parent::getBillingPhone();
@@ -1026,7 +950,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setBillingPhone($billing_phone)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBillingPhone', [$billing_phone]);
 
         return parent::setBillingPhone($billing_phone);
@@ -1037,7 +960,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getBillingFax()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingFax', []);
 
         return parent::getBillingFax();
@@ -1048,7 +970,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setBillingFax($billing_fax)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBillingFax', [$billing_fax]);
 
         return parent::setBillingFax($billing_fax);
@@ -1059,7 +980,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function populateBillingAddress()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'populateBillingAddress', []);
 
         return parent::populateBillingAddress();
@@ -1070,7 +990,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getBillingFirstName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingFirstName', []);
 
         return parent::getBillingFirstName();
@@ -1081,7 +1000,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getBillingLastName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBillingLastName', []);
 
         return parent::getBillingLastName();
@@ -1092,7 +1010,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getReferral()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getReferral', []);
 
         return parent::getReferral();
@@ -1103,7 +1020,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setReferral($referral)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setReferral', [$referral]);
 
         return parent::setReferral($referral);
@@ -1114,7 +1030,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getRefDescription()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRefDescription', []);
 
         return parent::getRefDescription();
@@ -1125,7 +1040,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setRefDescription($ref_description)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setRefDescription', [$ref_description]);
 
         return parent::setRefDescription($ref_description);
@@ -1136,7 +1050,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function addProgramType(\Fisdap\Entity\ProgramTypeLegacy $programTypeLegacy)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addProgramType', [$programTypeLegacy]);
 
         return parent::addProgramType($programTypeLegacy);
@@ -1147,7 +1060,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function addProgramTypes(array $programTypes)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addProgramTypes', [$programTypes]);
 
         return parent::addProgramTypes($programTypes);
@@ -1158,7 +1070,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getProgramTypes()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProgramTypes', []);
 
         return parent::getProgramTypes();
@@ -1169,7 +1080,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setProgramTypeIds($ids)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setProgramTypeIds', [$ids]);
 
         return parent::setProgramTypeIds($ids);
@@ -1180,7 +1090,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getProgramTypeIds()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProgramTypeIds', []);
 
         return parent::getProgramTypeIds();
@@ -1191,7 +1100,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function isTrainingProgram()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isTrainingProgram', []);
 
         return parent::isTrainingProgram();
@@ -1202,7 +1110,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function isHospital()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isHospital', []);
 
         return parent::isHospital();
@@ -1213,7 +1120,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getAccredited()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAccredited', []);
 
         return parent::getAccredited();
@@ -1224,7 +1130,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setAccredited($accredited)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAccredited', [$accredited]);
 
         return parent::setAccredited($accredited);
@@ -1235,7 +1140,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getCoaemspProgramId()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCoaemspProgramId', []);
 
         return parent::getCoaemspProgramId();
@@ -1246,7 +1150,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setCoaemspProgramId($coaemsp_program_id)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCoaemspProgramId', [$coaemsp_program_id]);
 
         return parent::setCoaemspProgramId($coaemsp_program_id);
@@ -1257,7 +1160,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getYearAccredited()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getYearAccredited', []);
 
         return parent::getYearAccredited();
@@ -1268,7 +1170,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setYearAccredited($year_accredited)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setYearAccredited', [$year_accredited]);
 
         return parent::setYearAccredited($year_accredited);
@@ -1279,7 +1180,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function set_can_students_create_field($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_can_students_create_field', [$value]);
 
         return parent::set_can_students_create_field($value);
@@ -1290,7 +1190,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function get_can_students_create_field()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'get_can_students_create_field', []);
 
         return parent::get_can_students_create_field();
@@ -1301,7 +1200,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function set_can_students_create_clinical($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_can_students_create_clinical', [$value]);
 
         return parent::set_can_students_create_clinical($value);
@@ -1312,7 +1210,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function get_can_students_create_clinical()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'get_can_students_create_clinical', []);
 
         return parent::get_can_students_create_clinical();
@@ -1323,7 +1220,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function set_can_students_create_lab($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_can_students_create_lab', [$value]);
 
         return parent::set_can_students_create_lab($value);
@@ -1334,7 +1230,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function get_can_students_create_lab()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'get_can_students_create_lab', []);
 
         return parent::get_can_students_create_lab();
@@ -1345,7 +1240,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getStudentViewFullCalendar()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStudentViewFullCalendar', []);
 
         return parent::getStudentViewFullCalendar();
@@ -1356,7 +1250,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setStudentViewFullCalendar($student_view_full_calendar)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStudentViewFullCalendar', [$student_view_full_calendar]);
 
         return parent::setStudentViewFullCalendar($student_view_full_calendar);
@@ -1367,7 +1260,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getCanStudentsPickField()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCanStudentsPickField', []);
 
         return parent::getCanStudentsPickField();
@@ -1378,7 +1270,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setCanStudentsPickField($can_students_pick_field)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCanStudentsPickField', [$can_students_pick_field]);
 
         return parent::setCanStudentsPickField($can_students_pick_field);
@@ -1389,7 +1280,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getCanStudentsPickClinical()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCanStudentsPickClinical', []);
 
         return parent::getCanStudentsPickClinical();
@@ -1400,7 +1290,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setCanStudentsPickClinical($can_students_pick_clinical)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCanStudentsPickClinical', [$can_students_pick_clinical]);
 
         return parent::setCanStudentsPickClinical($can_students_pick_clinical);
@@ -1411,7 +1300,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getCanStudentsPickLab()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCanStudentsPickLab', []);
 
         return parent::getCanStudentsPickLab();
@@ -1422,7 +1310,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setCanStudentsPickLab($can_students_pick_lab)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCanStudentsPickLab', [$can_students_pick_lab]);
 
         return parent::setCanStudentsPickLab($can_students_pick_lab);
@@ -1433,7 +1320,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getAllowAbsentWithPermission()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAllowAbsentWithPermission', []);
 
         return parent::getAllowAbsentWithPermission();
@@ -1444,7 +1330,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setAllowAbsentWithPermission($allow_absent_with_permission)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAllowAbsentWithPermission', [$allow_absent_with_permission]);
 
         return parent::setAllowAbsentWithPermission($allow_absent_with_permission);
@@ -1455,7 +1340,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function isIncludeNarrative()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isIncludeNarrative', []);
 
         return parent::isIncludeNarrative();
@@ -1466,7 +1350,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setIncludeNarrative($include_narrative)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIncludeNarrative', [$include_narrative]);
 
         return parent::setIncludeNarrative($include_narrative);
@@ -1477,7 +1360,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getSendLateShiftEmails()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSendLateShiftEmails', []);
 
         return parent::getSendLateShiftEmails();
@@ -1488,7 +1370,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setSendLateShiftEmails($send_late_shift_emails)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSendLateShiftEmails', [$send_late_shift_emails]);
 
         return parent::setSendLateShiftEmails($send_late_shift_emails);
@@ -1499,7 +1380,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getSendCriticalThinkingEmails()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSendCriticalThinkingEmails', []);
 
         return parent::getSendCriticalThinkingEmails();
@@ -1510,7 +1390,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setSendCriticalThinkingEmails($send_critical_thinking_emails)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSendCriticalThinkingEmails', [$send_critical_thinking_emails]);
 
         return parent::setSendCriticalThinkingEmails($send_critical_thinking_emails);
@@ -1521,7 +1400,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getLateFieldDeadline()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLateFieldDeadline', []);
 
         return parent::getLateFieldDeadline();
@@ -1532,7 +1410,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setLateFieldDeadline($late_field_deadline)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLateFieldDeadline', [$late_field_deadline]);
 
         return parent::setLateFieldDeadline($late_field_deadline);
@@ -1543,7 +1420,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getLateClinicalDeadline()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLateClinicalDeadline', []);
 
         return parent::getLateClinicalDeadline();
@@ -1554,7 +1430,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setLateClinicalDeadline($late_clinical_deadline)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLateClinicalDeadline', [$late_clinical_deadline]);
 
         return parent::setLateClinicalDeadline($late_clinical_deadline);
@@ -1565,7 +1440,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getLateLabDeadline()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLateLabDeadline', []);
 
         return parent::getLateLabDeadline();
@@ -1576,7 +1450,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setLateLabDeadline($late_lab_deadline)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLateLabDeadline', [$late_lab_deadline]);
 
         return parent::setLateLabDeadline($late_lab_deadline);
@@ -1587,7 +1460,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function generateCustomerName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'generateCustomerName', []);
 
         return parent::generateCustomerName();
@@ -1598,7 +1470,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getCustomerName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCustomerName', []);
 
         return parent::getCustomerName();
@@ -1609,7 +1480,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getRequiresPo()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRequiresPo', []);
 
         return parent::getRequiresPo();
@@ -1620,7 +1490,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setRequiresPo($requires_po)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setRequiresPo', [$requires_po]);
 
         return parent::setRequiresPo($requires_po);
@@ -1631,7 +1500,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function generateProductCodeId()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'generateProductCodeId', []);
 
         return parent::generateProductCodeId();
@@ -1642,7 +1510,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getProductCodeId()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProductCodeId', []);
 
         return parent::getProductCodeId();
@@ -1653,7 +1520,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getOrderPermission()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOrderPermission', []);
 
         return parent::getOrderPermission();
@@ -1664,7 +1530,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function set_order_permission($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_order_permission', [$value]);
 
         return parent::set_order_permission($value);
@@ -1675,7 +1540,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setOrderPermission(\Fisdap\Entity\OrderPermission $orderPermission)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOrderPermission', [$orderPermission]);
 
         return parent::setOrderPermission($orderPermission);
@@ -1686,7 +1550,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getActiveReports()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getActiveReports', []);
 
         return parent::getActiveReports();
@@ -1697,7 +1560,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function isActiveReport($report_id)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isActiveReport', [$report_id]);
 
         return parent::isActiveReport($report_id);
@@ -1708,7 +1570,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function isAssociatedReport($report_id)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isAssociatedReport', [$report_id]);
 
         return parent::isAssociatedReport($report_id);
@@ -1719,7 +1580,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function addReport($report_id, $active = 1)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addReport', [$report_id, $active]);
 
         return parent::addReport($report_id, $active);
@@ -1730,7 +1590,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function toggleReport($report_id, $active)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'toggleReport', [$report_id, $active]);
 
         return parent::toggleReport($report_id, $active);
@@ -1741,7 +1600,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function createDemoSites()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'createDemoSites', []);
 
         return parent::createDemoSites();
@@ -1752,7 +1610,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function usesSharing()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'usesSharing', []);
 
         return parent::usesSharing();
@@ -1763,7 +1620,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function isActiveSite($site_id)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isActiveSite', [$site_id]);
 
         return parent::isActiveSite($site_id);
@@ -1774,7 +1630,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function sharesSite($site_id)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'sharesSite', [$site_id]);
 
         return parent::sharesSite($site_id);
@@ -1785,7 +1640,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getNetworkPrograms($site)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNetworkPrograms', [$site]);
 
         return parent::getNetworkPrograms($site);
@@ -1796,7 +1650,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function pendingApproval($site_id)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'pendingApproval', [$site_id]);
 
         return parent::pendingApproval($site_id);
@@ -1807,7 +1660,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function isAdmin($site_id)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isAdmin', [$site_id]);
 
         return parent::isAdmin($site_id);
@@ -1818,7 +1670,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function seesSharedStudents($site_id)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'seesSharedStudents', [$site_id]);
 
         return parent::seesSharedStudents($site_id);
@@ -1829,7 +1680,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function addSite(\Fisdap\Entity\SiteLegacy $site, $active = 1)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addSite', [$site, $active]);
 
         return parent::addSite($site, $active);
@@ -1840,7 +1690,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function hasSite(\Fisdap\Entity\SiteLegacy $site)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'hasSite', [$site]);
 
         return parent::hasSite($site);
@@ -1851,7 +1700,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function removeSite(\Fisdap\Entity\SiteLegacy $site)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeSite', [$site]);
 
         return parent::removeSite($site);
@@ -1862,7 +1710,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function toggleSite(\Fisdap\Entity\SiteLegacy $site, $active)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'toggleSite', [$site, $active]);
 
         return parent::toggleSite($site, $active);
@@ -1873,7 +1720,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getSharedStatus($site_id)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSharedStatus', [$site_id]);
 
         return parent::getSharedStatus($site_id);
@@ -1884,7 +1730,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function hasBase(\Fisdap\Entity\BaseLegacy $base)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'hasBase', [$base]);
 
         return parent::hasBase($base);
@@ -1895,7 +1740,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function addBase(\Fisdap\Entity\BaseLegacy $base, $active = 1)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addBase', [$base, $active]);
 
         return parent::addBase($base, $active);
@@ -1906,7 +1750,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function removeBase(\Fisdap\Entity\BaseLegacy $base)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeBase', [$base]);
 
         return parent::removeBase($base);
@@ -1917,7 +1760,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function toggleBase(\Fisdap\Entity\BaseLegacy $base, $active)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'toggleBase', [$base, $active]);
 
         return parent::toggleBase($base, $active);
@@ -1928,7 +1770,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function addPreceptor(\Fisdap\Entity\PreceptorLegacy $preceptor, $active = 1)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addPreceptor', [$preceptor, $active]);
 
         return parent::addPreceptor($preceptor, $active);
@@ -1939,7 +1780,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function togglePreceptor(\Fisdap\Entity\PreceptorLegacy $preceptor, $active)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'togglePreceptor', [$preceptor, $active]);
 
         return parent::togglePreceptor($preceptor, $active);
@@ -1950,7 +1790,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function hasSkillsPractice()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'hasSkillsPractice', []);
 
         return parent::hasSkillsPractice();
@@ -1961,7 +1800,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function createDefaultNarrativeSection()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'createDefaultNarrativeSection', []);
 
         return parent::createDefaultNarrativeSection();
@@ -1972,7 +1810,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function createDefaultPracticeDefinitions()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'createDefaultPracticeDefinitions', []);
 
         return parent::createDefaultPracticeDefinitions();
@@ -1983,7 +1820,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setAirwayProcedures(array $airway_procedures)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAirwayProcedures', [$airway_procedures]);
 
         return parent::setAirwayProcedures($airway_procedures);
@@ -1994,7 +1830,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setCardiacProcedures(array $cardiac_procedures)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCardiacProcedures', [$cardiac_procedures]);
 
         return parent::setCardiacProcedures($cardiac_procedures);
@@ -2005,7 +1840,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setIvProcedures(array $iv_procedures)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIvProcedures', [$iv_procedures]);
 
         return parent::setIvProcedures($iv_procedures);
@@ -2016,7 +1850,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setOtherProcedures(array $other_procedures)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOtherProcedures', [$other_procedures]);
 
         return parent::setOtherProcedures($other_procedures);
@@ -2027,7 +1860,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setMedTypes(array $med_types)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMedTypes', [$med_types]);
 
         return parent::setMedTypes($med_types);
@@ -2038,7 +1870,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function setLabAssessments(array $lab_assessments)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLabAssessments', [$lab_assessments]);
 
         return parent::setLabAssessments($lab_assessments);
@@ -2049,7 +1880,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getAirwayProcedures()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAirwayProcedures', []);
 
         return parent::getAirwayProcedures();
@@ -2060,7 +1890,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getCardiacProcedures()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCardiacProcedures', []);
 
         return parent::getCardiacProcedures();
@@ -2071,7 +1900,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getIvProcedures()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIvProcedures', []);
 
         return parent::getIvProcedures();
@@ -2082,7 +1910,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getOtherProcedures()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOtherProcedures', []);
 
         return parent::getOtherProcedures();
@@ -2093,7 +1920,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getMedTypes()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMedTypes', []);
 
         return parent::getMedTypes();
@@ -2104,7 +1930,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getLabAssessments()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLabAssessments', []);
 
         return parent::getLabAssessments();
@@ -2115,7 +1940,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function sendNewRequirementNotification($requirementId)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'sendNewRequirementNotification', [$requirementId]);
 
         return parent::sendNewRequirementNotification($requirementId);
@@ -2126,7 +1950,6 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function get_use_scheduler()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'get_use_scheduler', []);
 
         return parent::get_use_scheduler();
@@ -2137,10 +1960,8 @@ class ProgramLegacy extends \User\Entity\ProgramLegacy implements \Doctrine\ORM\
      */
     public function getSchedulerUrl()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSchedulerUrl', []);
 
         return parent::getSchedulerUrl();
     }
-
 }

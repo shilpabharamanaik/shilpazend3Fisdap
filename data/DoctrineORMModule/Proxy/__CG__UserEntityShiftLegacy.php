@@ -46,7 +46,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function __construct($initializer = null, $cloner = null)
     {
-
         $this->__initializer__ = $initializer;
         $this->__cloner__      = $cloner;
     }
@@ -58,7 +57,7 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
 
 
     /**
-     * 
+     *
      * @return array
      */
     public function __sleep()
@@ -71,11 +70,11 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
     }
 
     /**
-     * 
+     *
      */
     public function __wakeup()
     {
-        if ( ! $this->__isInitialized__) {
+        if (! $this->__isInitialized__) {
             $this->__initializer__ = function (ShiftLegacy $proxy) {
                 $proxy->__setInitializer(null);
                 $proxy->__setCloner(null);
@@ -83,17 +82,16 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
                 $existingProperties = get_object_vars($proxy);
 
                 foreach ($proxy->__getLazyProperties() as $property => $defaultValue) {
-                    if ( ! array_key_exists($property, $existingProperties)) {
+                    if (! array_key_exists($property, $existingProperties)) {
                         $proxy->$property = $defaultValue;
                     }
                 }
             };
-
         }
     }
 
     /**
-     * 
+     *
      */
     public function __clone()
     {
@@ -178,7 +176,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function setStart_datetime(\DateTime $dateTime)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStart_datetime', [$dateTime]);
 
         return parent::setStart_datetime($dateTime);
@@ -189,7 +186,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function set_start_datetime(\DateTime $dateTime)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_start_datetime', [$dateTime]);
 
         return parent::set_start_datetime($dateTime);
@@ -200,7 +196,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function get_start_datetime()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'get_start_datetime', []);
 
         return parent::get_start_datetime();
@@ -211,7 +206,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function setEnd_datetime(\DateTime $dateTime)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEnd_datetime', [$dateTime]);
 
         return parent::setEnd_datetime($dateTime);
@@ -222,7 +216,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function set_end_datetime(\DateTime $dateTime)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_end_datetime', [$dateTime]);
 
         return parent::set_end_datetime($dateTime);
@@ -233,7 +226,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function get_end_datetime()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'get_end_datetime', []);
 
         return parent::get_end_datetime();
@@ -244,7 +236,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function set_attendence($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_attendence', [$value]);
 
         return parent::set_attendence($value);
@@ -255,7 +246,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function set_student($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_student', [$value]);
 
         return parent::set_student($value);
@@ -266,7 +256,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function setStudent($student)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStudent', [$student]);
 
         return parent::setStudent($student);
@@ -277,7 +266,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getStudent()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStudent', []);
 
         return parent::getStudent();
@@ -288,7 +276,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function set_creator($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_creator', [$value]);
 
         return parent::set_creator($value);
@@ -299,7 +286,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getShortSummary()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getShortSummary', []);
 
         return parent::getShortSummary();
@@ -310,7 +296,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function setFirst_locked(\DateTime $dateTime)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFirst_locked', [$dateTime]);
 
         return parent::setFirst_locked($dateTime);
@@ -321,7 +306,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function setSite(\User\Entity\SiteLegacy $site)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSite', [$site]);
 
         return parent::setSite($site);
@@ -332,7 +316,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getSite()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSite', []);
 
         return parent::getSite();
@@ -343,7 +326,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function setBase(\User\Entity\BaseLegacy $base)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBase', [$base]);
 
         return parent::setBase($base);
@@ -354,7 +336,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getBase()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBase', []);
 
         return parent::getBase();
@@ -365,7 +346,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getHours()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getHours', []);
 
         return parent::getHours();
@@ -376,7 +356,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function setHours($hours)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setHours', [$hours]);
 
         return parent::setHours($hours);
@@ -387,7 +366,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getAttendanceComments()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAttendanceComments', []);
 
         return parent::getAttendanceComments();
@@ -398,7 +376,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function setAttendanceComments($comments)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAttendanceComments', [$comments]);
 
         return parent::setAttendanceComments($comments);
@@ -409,7 +386,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function setAttendance(\User\Entity\ShiftAttendence $attendance)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAttendance', [$attendance]);
 
         return parent::setAttendance($attendance);
@@ -420,7 +396,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getAttendance()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAttendance', []);
 
         return parent::getAttendance();
@@ -431,7 +406,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function lockShift($lock)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'lockShift', [$lock]);
 
         return parent::lockShift($lock);
@@ -442,7 +416,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function setLocked($locked)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLocked', [$locked]);
 
         return parent::setLocked($locked);
@@ -453,7 +426,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getLocked()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLocked', []);
 
         return parent::getLocked();
@@ -464,7 +436,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function addPatient(\User\Entity\Patient $patient)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addPatient', [$patient]);
 
         return parent::addPatient($patient);
@@ -475,7 +446,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function removePatient(\User\Entity\Patient $patient)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removePatient', [$patient]);
 
         return parent::removePatient($patient);
@@ -486,7 +456,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function addRun(\User\Entity\Run $run)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addRun', [$run]);
 
         return parent::addRun($run);
@@ -497,7 +466,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function removeRun(\User\Entity\Run $run)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeRun', [$run]);
 
         return parent::removeRun($run);
@@ -508,7 +476,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function addMed(\User\Entity\Med $med)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addMed', [$med]);
 
         return parent::addMed($med);
@@ -519,7 +486,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function addCardiacIntervention(\User\Entity\CardiacIntervention $cardiac)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCardiacIntervention', [$cardiac]);
 
         return parent::addCardiacIntervention($cardiac);
@@ -530,7 +496,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function addOtherIntervention(\User\Entity\OtherIntervention $other)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addOtherIntervention', [$other]);
 
         return parent::addOtherIntervention($other);
@@ -541,7 +506,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function addAirway(\User\Entity\Airway $air)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addAirway', [$air]);
 
         return parent::addAirway($air);
@@ -552,7 +516,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function addIv(\User\Entity\Iv $iv)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addIv', [$iv]);
 
         return parent::addIv($iv);
@@ -563,7 +526,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function addNarrative(\User\Entity\Narrative $narrative)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addNarrative', [$narrative]);
 
         return parent::addNarrative($narrative);
@@ -574,7 +536,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function addVital(\User\Entity\Vital $vital)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addVital', [$vital]);
 
         return parent::addVital($vital);
@@ -585,7 +546,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function addLabSkill(\User\Entity\LabSkill $labSkill)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addLabSkill', [$labSkill]);
 
         return parent::addLabSkill($labSkill);
@@ -596,7 +556,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function addPracticeItem(\User\Entity\PracticeItem $item)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addPracticeItem', [$item]);
 
         return parent::addPracticeItem($item);
@@ -607,7 +566,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function removePracticeItem(\User\Entity\PracticeItem $item)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removePracticeItem', [$item]);
 
         return parent::removePracticeItem($item);
@@ -618,7 +576,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function recordHistory($changeType)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'recordHistory', [$changeType]);
 
         return parent::recordHistory($changeType);
@@ -629,7 +586,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function calculateEndTime()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'calculateEndTime', []);
 
         return parent::calculateEndTime();
@@ -640,7 +596,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function convertShiftDates()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'convertShiftDates', []);
 
         return parent::convertShiftDates();
@@ -649,9 +604,8 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
     /**
      * {@inheritDoc}
      */
-    public function hasComments($viewingUserId = NULL)
+    public function hasComments($viewingUserId = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'hasComments', [$viewingUserId]);
 
         return parent::hasComments($viewingUserId);
@@ -662,7 +616,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function isQuickAdd()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isQuickAdd', []);
 
         return parent::isQuickAdd();
@@ -673,7 +626,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function isStudentCreated()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isStudentCreated', []);
 
         return parent::isStudentCreated();
@@ -684,7 +636,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getAssociatedSkills($studentID)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAssociatedSkills', [$studentID]);
 
         return parent::getAssociatedSkills($studentID);
@@ -695,7 +646,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function deleteQuickSkills()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'deleteQuickSkills', []);
 
         return parent::deleteQuickSkills();
@@ -706,7 +656,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getVerifiedRuns()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getVerifiedRuns', []);
 
         return parent::getVerifiedRuns();
@@ -715,9 +664,8 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
     /**
      * {@inheritDoc}
      */
-    public function setVerification(\User\Entity\Verification $ver = NULL)
+    public function setVerification(\User\Entity\Verification $ver = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setVerification', [$ver]);
 
         return parent::setVerification($ver);
@@ -728,7 +676,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getVerificationArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getVerificationArray', []);
 
         return parent::getVerificationArray();
@@ -739,7 +686,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function unsetVerification()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'unsetVerification', []);
 
         return parent::unsetVerification();
@@ -750,7 +696,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getVerification()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getVerification', []);
 
         return parent::getVerification();
@@ -761,7 +706,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getNumVerifiedRuns()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNumVerifiedRuns', []);
 
         return parent::getNumVerifiedRuns();
@@ -772,7 +716,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getNumRuns()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNumRuns', []);
 
         return parent::getNumRuns();
@@ -783,7 +726,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getCriticalThinkingTriggers()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCriticalThinkingTriggers', []);
 
         return parent::getCriticalThinkingTriggers();
@@ -794,7 +736,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function isFuture()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isFuture', []);
 
         return parent::isFuture();
@@ -803,9 +744,8 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
     /**
      * {@inheritDoc}
      */
-    public function isEditable($user = NULL)
+    public function isEditable($user = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isEditable', [$user]);
 
         return parent::isEditable($user);
@@ -814,9 +754,8 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
     /**
      * {@inheritDoc}
      */
-    public function isShiftScheduleEditable($user = NULL)
+    public function isShiftScheduleEditable($user = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isShiftScheduleEditable', [$user]);
 
         return parent::isShiftScheduleEditable($user);
@@ -825,9 +764,8 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
     /**
      * {@inheritDoc}
      */
-    public function isViewable($user = NULL)
+    public function isViewable($user = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isViewable', [$user]);
 
         return parent::isViewable($user);
@@ -838,7 +776,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getSkillCount()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSkillCount', []);
 
         return parent::getSkillCount();
@@ -849,7 +786,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function setType($type)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setType', [$type]);
 
         return parent::setType($type);
@@ -860,7 +796,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getType()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getType', []);
 
         return parent::getType();
@@ -871,7 +806,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getRunType()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRunType', []);
 
         return parent::getRunType();
@@ -882,7 +816,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function deleteEmptyRuns()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'deleteEmptyRuns', []);
 
         return parent::deleteEmptyRuns();
@@ -893,7 +826,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function isValid()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isValid', []);
 
         return parent::isValid();
@@ -904,7 +836,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getInvalidPatients()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInvalidPatients', []);
 
         return parent::getInvalidPatients();
@@ -915,7 +846,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getQuickAddedSkills()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getQuickAddedSkills', []);
 
         return parent::getQuickAddedSkills();
@@ -926,7 +856,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getHookIds()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getHookIds', []);
 
         return parent::getHookIds();
@@ -937,7 +866,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function copyShiftForLabPartner(\User\Entity\StudentLegacy $student)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'copyShiftForLabPartner', [$student]);
 
         return parent::copyShiftForLabPartner($student);
@@ -948,7 +876,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getTitleDateTime()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTitleDateTime', []);
 
         return parent::getTitleDateTime();
@@ -959,7 +886,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getLocation()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLocation', []);
 
         return parent::getLocation();
@@ -970,7 +896,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getZoomViewTitle()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getZoomViewTitle', []);
 
         return parent::getZoomViewTitle();
@@ -981,7 +906,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getDetailViewDate()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDetailViewDate', []);
 
         return parent::getDetailViewDate();
@@ -992,7 +916,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getDurationText()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDurationText', []);
 
         return parent::getDurationText();
@@ -1003,7 +926,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getParentEvent()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getParentEvent', []);
 
         return parent::getParentEvent();
@@ -1014,7 +936,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getInstructorList()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInstructorList', []);
 
         return parent::getInstructorList();
@@ -1025,7 +946,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getPreceptorList()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPreceptorList', []);
 
         return parent::getPreceptorList();
@@ -1036,7 +956,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getPreceptorText()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPreceptorText', []);
 
         return parent::getPreceptorText();
@@ -1047,7 +966,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function hasData()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'hasData', []);
 
         return parent::hasData();
@@ -1058,7 +976,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function removeFromEvent()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeFromEvent', []);
 
         return parent::removeFromEvent();
@@ -1069,7 +986,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function delete($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', [$flush]);
 
         return parent::delete($flush);
@@ -1080,7 +996,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function setEntry_time(\DateTime $entry_time)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEntry_time', [$entry_time]);
 
         return parent::setEntry_time($entry_time);
@@ -1091,7 +1006,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function toArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'toArray', []);
 
         return parent::toArray();
@@ -1102,7 +1016,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getId()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', []);
 
         return parent::getId();
@@ -1113,7 +1026,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getAttachments()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAttachments', []);
 
         return parent::getAttachments();
@@ -1124,7 +1036,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function getAttachmentById($attachmentId)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAttachmentById', [$attachmentId]);
 
         return parent::getAttachmentById($attachmentId);
@@ -1135,7 +1046,6 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function addAttachment(\Fisdap\Attachments\Entity\Attachment $attachment)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addAttachment', [$attachment]);
 
         return parent::addAttachment($attachment);
@@ -1146,10 +1056,8 @@ class ShiftLegacy extends \User\Entity\ShiftLegacy implements \Doctrine\ORM\Prox
      */
     public function removeAttachment(\Fisdap\Attachments\Entity\Attachment $attachment)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeAttachment', [$attachment]);
 
         return parent::removeAttachment($attachment);
     }
-
 }

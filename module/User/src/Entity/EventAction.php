@@ -1,4 +1,5 @@
 <?php namespace User\Entity;
+
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -6,7 +7,6 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
-
 
 /**
  * @Entity
@@ -106,7 +106,7 @@ class EventAction extends EntityBaseClass
     
     public function set_type($value)
     {
-	$this->action_type = self::id_or_entity_helper($value, 'ActionType');
+        $this->action_type = self::id_or_entity_helper($value, 'ActionType');
     }
    
     // this is only used to override the automatic timestamp when updating,
@@ -115,5 +115,4 @@ class EventAction extends EntityBaseClass
     {
         $this->time = self::string_or_datetime_helper($value);
     }
-
 }

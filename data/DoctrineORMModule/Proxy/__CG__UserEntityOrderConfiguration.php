@@ -46,7 +46,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function __construct($initializer = null, $cloner = null)
     {
-
         $this->__initializer__ = $initializer;
         $this->__cloner__      = $cloner;
     }
@@ -77,7 +76,7 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
 
 
     /**
-     * 
+     *
      * @return array
      */
     public function __sleep()
@@ -90,11 +89,11 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
     }
 
     /**
-     * 
+     *
      */
     public function __wakeup()
     {
-        if ( ! $this->__isInitialized__) {
+        if (! $this->__isInitialized__) {
             $this->__initializer__ = function (OrderConfiguration $proxy) {
                 $proxy->__setInitializer(null);
                 $proxy->__setCloner(null);
@@ -102,17 +101,16 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
                 $existingProperties = get_object_vars($proxy);
 
                 foreach ($proxy->__getLazyProperties() as $property => $defaultValue) {
-                    if ( ! array_key_exists($property, $existingProperties)) {
+                    if (! array_key_exists($property, $existingProperties)) {
                         $proxy->$property = $defaultValue;
                     }
                 }
             };
-
         }
     }
 
     /**
-     * 
+     *
      */
     public function __clone()
     {
@@ -197,7 +195,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function init()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'init', []);
 
         return parent::init();
@@ -208,7 +205,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function set_upgraded_user($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_upgraded_user', [$value]);
 
         return parent::set_upgraded_user($value);
@@ -219,7 +215,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function set_order($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_order', [$value]);
 
         return parent::set_order($value);
@@ -230,7 +225,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function set_certification_level($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_certification_level', [$value]);
 
         return parent::set_certification_level($value);
@@ -241,7 +235,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function set_group($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_group', [$value]);
 
         return parent::set_group($value);
@@ -252,7 +245,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function set_configuration($value)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'set_configuration', [$value]);
 
         return parent::set_configuration($value);
@@ -263,7 +255,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function generateProductCode()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'generateProductCode', []);
 
         return parent::generateProductCode();
@@ -274,7 +265,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function getProductSummary()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProductSummary', []);
 
         return parent::getProductSummary();
@@ -285,7 +275,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function onlyStudyTools()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'onlyStudyTools', []);
 
         return parent::onlyStudyTools();
@@ -296,7 +285,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function onlyTransitionCourse()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'onlyTransitionCourse', []);
 
         return parent::onlyTransitionCourse();
@@ -307,7 +295,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function onlyPreceptorTraining()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'onlyPreceptorTraining', []);
 
         return parent::onlyPreceptorTraining();
@@ -318,7 +305,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function compareToProductCode($productCode, $legacy = false)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'compareToProductCode', [$productCode, $legacy]);
 
         return parent::compareToProductCode($productCode, $legacy);
@@ -329,7 +315,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function getProductArray($idOnly = false)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProductArray', [$idOnly]);
 
         return parent::getProductArray($idOnly);
@@ -340,7 +325,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function hasMultipleProducts()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'hasMultipleProducts', []);
 
         return parent::hasMultipleProducts();
@@ -351,7 +335,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function getProductPrice()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProductPrice', []);
 
         return parent::getProductPrice();
@@ -362,7 +345,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function getSubtotalCost()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSubtotalCost', []);
 
         return parent::getSubtotalCost();
@@ -373,7 +355,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function isInstructorAccount()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isInstructorAccount', []);
 
         return parent::isInstructorAccount();
@@ -384,7 +365,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function getAccountSummary($includeGroup = true, $listSeparator = '<br>')
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAccountSummary', [$includeGroup, $listSeparator]);
 
         return parent::getAccountSummary($includeGroup, $listSeparator);
@@ -395,7 +375,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function getSummary($includeQuantity = true, $confirmationMessage = false)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSummary', [$includeQuantity, $confirmationMessage]);
 
         return parent::getSummary($includeQuantity, $confirmationMessage);
@@ -406,7 +385,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function getProductCode()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProductCode', []);
 
         return parent::getProductCode();
@@ -417,7 +395,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function getDiscounts()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDiscounts', []);
 
         return parent::getDiscounts();
@@ -428,7 +405,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function calculateFinalPrice()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'calculateFinalPrice', []);
 
         return parent::calculateFinalPrice();
@@ -439,7 +415,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function calculateSubtotal()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'calculateSubtotal', []);
 
         return parent::calculateSubtotal();
@@ -450,7 +425,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function generateSerialNumbers()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'generateSerialNumbers', []);
 
         return parent::generateSerialNumbers();
@@ -461,7 +435,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function addSerialNumber(\User\Entity\SerialNumberLegacy $serial)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addSerialNumber', [$serial]);
 
         return parent::addSerialNumber($serial);
@@ -472,7 +445,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function getInvoiceArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInvoiceArray', []);
 
         return parent::getInvoiceArray();
@@ -481,9 +453,8 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
     /**
      * {@inheritDoc}
      */
-    public function setUUID($uuid = NULL)
+    public function setUUID($uuid = null)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUUID', [$uuid]);
 
         return parent::setUUID($uuid);
@@ -494,7 +465,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function getUUID()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUUID', []);
 
         return parent::getUUID();
@@ -505,7 +475,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function getEntityRepository()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEntityRepository', []);
 
         return parent::getEntityRepository();
@@ -516,7 +485,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function save($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'save', [$flush]);
 
         return parent::save($flush);
@@ -527,7 +495,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function delete($flush = true)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'delete', [$flush]);
 
         return parent::delete($flush);
@@ -538,7 +505,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function flush()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'flush', []);
 
         return parent::flush();
@@ -549,7 +515,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function isDatabaseField($field)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isDatabaseField', [$field]);
 
         return parent::isDatabaseField($field);
@@ -560,7 +525,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function getFieldmap()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFieldmap', []);
 
         return parent::getFieldmap();
@@ -571,7 +535,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function isUsingDNAD()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isUsingDNAD', []);
 
         return parent::isUsingDNAD();
@@ -582,7 +545,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function toArray()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'toArray', []);
 
         return parent::toArray();
@@ -593,7 +555,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function getQueryBuilder()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getQueryBuilder', []);
 
         return parent::getQueryBuilder();
@@ -604,7 +565,6 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function deleteGroup($group)
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'deleteGroup', [$group]);
 
         return parent::deleteGroup($group);
@@ -615,10 +575,8 @@ class OrderConfiguration extends \User\Entity\OrderConfiguration implements \Doc
      */
     public function getShortName()
     {
-
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getShortName', []);
 
         return parent::getShortName();
     }
-
 }

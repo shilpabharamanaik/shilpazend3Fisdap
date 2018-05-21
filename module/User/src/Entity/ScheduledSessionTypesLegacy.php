@@ -1,10 +1,10 @@
 <?php namespace User\Entity;
+
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
-
 
 /**
  * @Entity
@@ -12,15 +12,15 @@ use Doctrine\ORM\Mapping\Table;
  */
 class ScheduledSessionTypesLegacy extends EntityBaseClass
 {
-	/**
-	 * @Id
-	 * @Column(name="type_id", type="integer")
-	 * @GeneratedValue
-	 */
-	protected $id;
-	
-	/**
-	 * @Column(name="type_name", type="string")
-	 */
-	protected $name;
+    /**
+     * @Id
+     * @Column(name="type_id", type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
+    
+    /**
+     * @Column(name="type_name", type="string")
+     */
+    protected $name;
 }

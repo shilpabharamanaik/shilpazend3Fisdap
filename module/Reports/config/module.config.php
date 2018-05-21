@@ -22,7 +22,7 @@ return [
             ],
         ],
     ],
-	'controllers' => [
+    'controllers' => [
         'factories' => [
             Controller\ReportsController::class => Controller\Factory\ReportsControllerFactory::class,
         ],

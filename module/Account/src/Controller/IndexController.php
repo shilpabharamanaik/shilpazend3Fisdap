@@ -6,8 +6,7 @@ use Zend\View\Model\ViewModel;
 
 class Account_IndexController extends AbstractActionController
 {
-
-   public function __construct()
+    public function __construct()
     {
     }
 
@@ -15,6 +14,4 @@ class Account_IndexController extends AbstractActionController
     {
         return new ViewModel();
     }
-
 }
-

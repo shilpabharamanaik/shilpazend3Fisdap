@@ -1,7 +1,7 @@
 <?php namespace User\Entity;
+
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Table;
-
 
 /**
  * SchedulerViewType
@@ -11,5 +11,4 @@ use Doctrine\ORM\Mapping\Table;
  */
 class SchedulerViewType extends Enumerated
 {
-
 }

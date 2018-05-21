@@ -1,4 +1,5 @@
 <?php namespace User\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -10,7 +11,6 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\Data\Slot\SlotAssignmentRepository;
 use User\EntityUtils;
-
 
 /**
  *
@@ -185,8 +185,9 @@ class ShiftRequest extends EntityBaseClass
         return $swap;
     }
 
-    public static function sortSwapsByDate($a, $b){
-        if($a->sent == $b->sent){
+    public static function sortSwapsByDate($a, $b)
+    {
+        if ($a->sent == $b->sent) {
             return ($a->id > $b->id ? -1 : 1);
         }
 
@@ -424,7 +425,7 @@ class ShiftRequest extends EntityBaseClass
             }
 
             // make sure the shift is available for the owner
-            if (!$assignment->slot->event->isAvailableTo($this->owner->certification_level->id,  $groups, $owner_program_id, false, $this->owner->user)) {
+            if (!$assignment->slot->event->isAvailableTo($this->owner->certification_level->id, $groups, $owner_program_id, false, $this->owner->user)) {
                 continue;
             }
 

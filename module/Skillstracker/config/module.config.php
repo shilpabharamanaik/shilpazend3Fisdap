@@ -25,7 +25,7 @@ return [
             ],
         ],
     ],
-	 'controllers' => [
+     'controllers' => [
         'factories' => [
             Controller\SkillstrackerController::class => Controller\Factory\SkillstrackerControllerFactory::class,
         ],
