@@ -16,11 +16,15 @@ use User\Entity\UserRole;
 use User\Entity\Instructor;
 use User\Form\InstructorForm;
 
-//use Fisdap\Entity\InstructorLegacy;
-//use Fisdap\EntityUtils;
+use Fisdap\Entity\InstructorLegacy;
+use Fisdap\Entity\ProgramLegacy;
+use Fisdap\EntityUtils;
 
-use User\Entity\ProgramLegacy;
-use User\Entity\InstructorLegacy;
+//use User\Entity\ProgramLegacy;
+//use User\Entity\InstructorLegacy;
+
+
+
 
 class InstructorController extends AbstractActionController
 {
@@ -111,6 +115,8 @@ class InstructorController extends AbstractActionController
 
         // Create instructor form
         $form = new InstructorForm('update', $this->entityManager, $objInstructor);
+
+        //$tmpForm = new Account_Form_Instructor($instructorId);
 
         return new ViewModel([
             'instructorId' => $instructorId,

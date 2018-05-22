@@ -65,7 +65,7 @@ class InstructorForm extends Form
             ],
             'options' => [
                 'label' => 'First Name',
-                'label_attributes' => array('class' => 'grid_3 required')
+                'label_attributes' => ['class' => 'grid_3 required']
             ],
         ]);
 
@@ -78,7 +78,7 @@ class InstructorForm extends Form
             ],
             'options' => [
                 'label' => 'Last Name',
-                'label_attributes' => array('class' => 'grid_3 required')
+                'label_attributes' => ['class' => 'grid_3 required']
             ],
         ]);
 
@@ -88,20 +88,39 @@ class InstructorForm extends Form
             'name' => 'email',
             'options' => [
                 'label' => 'E-mail',
-                'label_attributes' => array('class' => 'grid_3 required')
+                'label_attributes' => ['class' => 'grid_3 required']
             ],
         ]);
 
-
-        // Add "full_name" field
+        // Add "email" field
         $this->add([
             'type'  => 'text',
-            'name' => 'full_name',
+            'name' => 'workPhone',
             'options' => [
-                'label' => 'Full Name',
+                'label' => 'Work (optional)',
+                'label_attributes' => ['class' => 'grid_3 optional']
             ],
         ]);
 
+        // Add "email" field
+        $this->add([
+            'type'  => 'text',
+            'name' => 'cellPhone',
+            'options' => [
+                'label' => 'Cell (optional)',
+                'label_attributes' => ['class' => 'grid_3 optional']
+            ],
+        ]);
+
+        // Add "email" field
+        $this->add([
+            'type'  => 'text',
+            'name' => 'homePhone',
+            'options' => [
+                'label' => 'Home (optional)',
+                'label_attributes' => ['class' => 'grid_3 optional']
+            ],
+        ]);
 
 
         // Add "full_name" field
@@ -234,7 +253,23 @@ class InstructorForm extends Form
                 ],
             ]);
 
+        // Add input for "workPhone" field
+        $inputFilter->add([
+                'name'     => 'workPhone',
+                'required' => false,
+            ]);
 
+        // Add input for "cellPhone" field
+        $inputFilter->add([
+                'name'     => 'cellPhone',
+                'required' => false,
+            ]);
+
+        // Add input for "homePhone" field
+        $inputFilter->add([
+                'name'     => 'homePhone',
+                'required' => false,
+            ]);
 
         // Add input for "full_name" field
         $inputFilter->add([

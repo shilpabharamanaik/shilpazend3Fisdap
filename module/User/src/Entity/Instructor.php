@@ -148,4 +148,20 @@ class Instructor
     {
         return $this->email;
     }
+
+    public function getWorkPhone()
+    {
+        return $this->officePhone;
+    }
+
+    public function getCellPhone()
+    {
+        return $this->cellPhone;
+    }
+
+    public function getHomePhone()
+    {
+        return $this->pager;
+    }
+
 }

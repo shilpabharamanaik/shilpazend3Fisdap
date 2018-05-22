@@ -18,6 +18,9 @@
     $form->get('firstName')->setAttributes(['value'=>$instructor->getFirstName()]);
     $form->get('lastName')->setAttributes(['value'=>$instructor->getLastName()]);
     $form->get('email')->setAttributes(['value'=>$instructor->getEmail()]);
+    $form->get('workPhone')->setAttributes(['value'=>$instructor->getWorkPhone()]);
+    $form->get('cellPhone')->setAttributes(['value'=>$instructor->getCellPhone()]);
+    $form->get('homePhone')->setAttributes(['value'=>$instructor->getHomePhone()]);
 
 ?>
 
@@ -57,25 +60,38 @@
             </div>
             <div class="form-group">
                 <div class="form-group-title section-header no-border">Phone</div>
+
                 <div class="form-prompt">
-                    <div id="workPhone-label"><label for="workPhone" class="grid_3 optional">Work&nbsp;<span classrid_9">
-                        <input type="text" name="workPhone" id="workPhone" value="">
-                    </div>="form-desc">(optional)</span></label></div>
-                    <div class="g
-                </div>
-                <div class="form-prompt">
-                    <div id="cellPhone-label"><label for="cellPhone" class="grid_3 optional">Cell&nbsp;<span class="form-desc">(optional)</span></label></div>
+                    <div id="workPhone-label">
+                        <?= $this->formLabel($form->get('workPhone')); ?>
+                    </div>
                     <div class="grid_9">
-                        <input type="text" name="cellPhone" id="cellPhone" value="">
+                        <?= $this->formElement($form->get('workPhone')); ?>
+                        <?= $this->formElementErrors($form->get('workPhone')); ?>
                     </div>
                 </div>
+
                 <div class="form-prompt">
-                    <div id="homePhone-label"><label for="homePhone" class="grid_3 optional">Home&nbsp;<span class="form-desc">(optional)</span></label></div>
+                    <div id="cellPhone-label">
+                        <?= $this->formLabel($form->get('cellPhone')); ?>
+                    </div>
                     <div class="grid_9">
-                        <input type="text" name="homePhone" id="homePhone" value="">
+                        <?= $this->formElement($form->get('cellPhone')); ?>
+                        <?= $this->formElementErrors($form->get('cellPhone')); ?>
+                    </div>
+                </div>
+
+                <div class="form-prompt">
+                    <div id="homePhone-label">
+                        <?= $this->formLabel($form->get('homePhone')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('homePhone')); ?>
+                        <?= $this->formElementErrors($form->get('homePhone')); ?>
                     </div>
                 </div>
             </div>
+
             <button id="permissionsHistory">See permissions history</button>
             <h3 class="section-header">Roles &amp; Permissions</h3>
             <div class="form-group">
@@ -84,7 +100,10 @@
                     <div id="roles-help-popup" style="display: none;">Select a role for this account, and we will recommend a list of permissions. You can override this recommendation by customizing the permissions.</div>
                 </h4>
                 <div class="form-prompt">
-                    <label><input type="checkbox" name="subRoles[]" id="subRoles-1" value="1" checked="checked">Program Director</label><br><label><input type="checkbox" name="subRoles[]" id="subRoles-2" value="2">Medical Director</label><br><label><input type="checkbox" name="subRoles[]" id="subRoles-3" value="3">Clinical Coordinator</label><br><label><input type="checkbox" name="subRoles[]" id="subRoles-4" value="4" checked="checked">Instructor</label>
+                    <label><input type="checkbox" name="subRoles[]" id="subRoles-1" value="1" checked="checked">Program Director</label><br/>
+                    <label><input type="checkbox" name="subRoles[]" id="subRoles-2" value="2">Medical Director</label><br/>
+                    <label><input type="checkbox" name="subRoles[]" id="subRoles-3" value="3">Clinical Coordinator</label><br/>
+                    <label><input type="checkbox" name="subRoles[]" id="subRoles-4" value="4" checked="checked">Instructor</label>
                 </div>
             </div>
             <div class="form-group">
@@ -140,7 +159,10 @@
         </div>
         <div class="grid_5">
             <div class="password-section">
-                <div class="gravatar-container"><img src="https://secure.gravatar.com/avatar/0faefa29be5ac2a32e3aacf1bf7d9b85?s=195&amp;d=mm&amp;r=g"><br><a target="_blank" href="https://en.gravatar.com/connect/?source=_signup&amp;email=bhavani.shankar@ascendlearning.com">Add a photo!</a></div>
+                <div class="gravatar-container">
+                    <img src="https://secure.gravatar.com/avatar/0faefa29be5ac2a32e3aacf1bf7d9b85?s=195&amp;d=mm&amp;r=g"><br>
+                    <a target="_blank" href="https://en.gravatar.com/connect/?source=_signup&amp;email=bhavani.shankar@ascendlearning.com">Add a photo!</a>
+                </div>
                 <!-- The text and password here are to prevent FF from auto filling my login credentials because it ignores autocomplete="off"-->
                 <input type="text" class="hidden">
                 <input type="password" class="hidden">
