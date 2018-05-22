@@ -20,11 +20,22 @@ return [
                     ],
                 ],
             ],
+            'testschedule' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route' => '/learning-center/index/schedule',
+                    'defaults' => [
+                        'controller' => Controller\ScheduleController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
         ],
     ],
       'controllers' => [
         'factories' => [
             Controller\LearningcenterController::class => Controller\Factory\LearningcenterControllerFactory::class,
+            Controller\ScheduleController::class => Controller\Factory\ScheduleControllerFactory::class,
         ],
     ],
 

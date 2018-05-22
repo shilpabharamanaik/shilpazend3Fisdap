@@ -7,16 +7,14 @@ use Zend\Session\SessionManager;
 use Zend\View\Model\ViewModel;
 use Zend\Session\Container;
 use Zend\Mvc\MvcEvent;
-
+use User\Entity\User;
+use Fisdap\Entity\UserContext;
+use Fisdap\Entity\ProgramLegacy;
 use Fisdap\Entity\InstructorLegacy;
 use Fisdap\Entity\Product;
-use Fisdap\Entity\ProgramLegacy;
 use Fisdap\Entity\SerialNumberLegacy;
 
-use Fisdap\Entity\UserContext;
-use User\Entity\User;
-
-class LearningcenterController extends AbstractActionController
+class ScheduleController extends AbstractActionController
 {
     /**
      * Session manager.
