@@ -29,23 +29,23 @@ class ScheduledTestsLegacy extends EntityBaseClass
      * @GeneratedValue
      */
     protected $id;
-    
+
     /**
      * @ManyToOne(targetEntity="MoodleTestDataLegacy")
      * @JoinColumn(name="Test_id", referencedColumnName="MoodleQuiz_id")
      */
     protected $test;
-    
+
     /**
      * @Column(name="StartDate", type="date")
      */
     protected $start_date;
-    
+
     /**
      * @Column(name="EndDate", type="date")
      */
     protected $end_date;
-    
+
     /**
      * @Column(name="ContactName", type="string")
      */
@@ -58,19 +58,19 @@ class ScheduledTestsLegacy extends EntityBaseClass
      * @Column(name="ContactEmail", type="string")
      */
     protected $contact_email;
-    
+
     /**
      * @Column(name="TestNotes", type="string")
      */
     protected $test_notes;
-    
+
     /**
      * @Column(name="ScheduledStudents", type="string")
      * IMPORTANT! This column is legacy only. Superceded by doctrine relationship on $students
      * REPEAT: this column is DEPRECATED
      */
     protected $scheduled_students;
-    
+
     /**
      * @ManyToMany(targetEntity="StudentLegacy")
      * @JoinTable(name="fisdap2_test_scheduled_students",
@@ -78,37 +78,42 @@ class ScheduledTestsLegacy extends EntityBaseClass
      *  inverseJoinColumns={@JoinColumn(name="student_id",referencedColumnName="Student_id")})
      */
     protected $students;
-    
+
     /**
      * @Column(name="Program_id", type="integer")
      */
-    protected $program_id;
- 
+    //protected $program_id;
+
+    /**
+     * @Column(name="Program_id", type="integer")
+     */
+    protected $programId;
+
     /**
      * @Column(name="ClassYear", type="integer")
      */
     protected $class_year = -1;
-    
+
     /**
      * @Column(name="ClassMonth", type="string")
      */
     protected $class_month = -1;
-    
+
     /**
      * @Column(name="ClassSectionYear", type="integer")
      */
     protected $class_section_year = -1;
-    
+
     /**
      * @Column(name="ClassSection", type="string")
      */
     protected $class_section = -1;
-    
+
     /**
      * @Column(name="CertLevel", type="string")
      */
     protected $cert_level = '';
- 
+
     /**
      * @Column(name="Active", type="integer")
      */
@@ -133,17 +138,17 @@ class ScheduledTestsLegacy extends EntityBaseClass
      * @Column(name="PilotAgreedOn", type="datetime")
      */
     protected $pilot_agreed_on;
-    
-    
+
+
     // this is a stub function for returning an array of student IDs from the legacy column scheduled_students
     // instead you should use the relationship on $this->students
     public function get_scheduled_students()
     {
         $studentIds = unserialize($this->scheduled_students);
-        
+
         return $studentIds;
     }
-    
+
     // USE THIS FUNCTION instead of above
     public function get_students_array($fields = array('first_name', 'last_name', 'id'))
     {
@@ -156,11 +161,11 @@ class ScheduledTestsLegacy extends EntityBaseClass
                 }
             }
         }
-        
+
         return $students;
     }
-    
-    
+
+
     // Get the passwords assigned for the dates of this quiz
     public function get_passwords()
     {
@@ -168,7 +173,7 @@ class ScheduledTestsLegacy extends EntityBaseClass
         if ($moodleQuizId) {
             $em = EntityUtils::getEntityManager();
             $qb = $em->createQueryBuilder();
-        
+
             $qb->select('tp.password, tp.date')
                ->from('\Fisdap\Entity\TestPasswordDataLegacy', 'tp')
                ->innerJoin('tp.test', 'test')
@@ -176,13 +181,13 @@ class ScheduledTestsLegacy extends EntityBaseClass
                ->andWhere('tp.date >= ?2')
                ->setParameter(1, $moodleQuizId)
                ->setParameter(2, $this->start_date->format('Y-m-d'));
-               
+
             if ($this->end_date->format('Y-m-d') != '0000-00-00') {
                 $qb->andWhere('tp.date <= ?3')->setParameter(3, $this->end_date->format('Y-m-d'));
             }
 
             $r = $qb->getQuery()->getResult();
-            
+
             $passwords = array();
             foreach ($r as $key => $result) {
                 if (!array_key_exists($result['date']->format("Y-m-d"), $passwords)) {
@@ -194,12 +199,12 @@ class ScheduledTestsLegacy extends EntityBaseClass
             return array();
         }
     }
-    
-    
+
+
     /*
      * Lifecycle Callbacks
      */
-     
+
     /**
      * @PrePersist
      */
@@ -209,13 +214,13 @@ class ScheduledTestsLegacy extends EntityBaseClass
          * So the TestPasswordData table is weird: not directly tied to a ScheduledTest, because passwords are one-per-day-per-moodle-quiz, not one-per-scheduled-test-per-day
          * So we need to make sure passwords have been created, if not already existing.
          */
-        
+
         // how many passwords do we need?
         $interval = $this->start_date->diff($this->end_date);
-        
+
         // check for existing passwords on the date range
         $passwords = $this->get_passwords();
-            
+
         // create a working object for the date that we can increment
         $date = clone $this->start_date;
         while ($date <= $this->end_date) {
@@ -224,7 +229,7 @@ class ScheduledTestsLegacy extends EntityBaseClass
                 // let's create it. first select a password base from the database (status quo logic - I know it's weak)
                 $randId = rand(1, 2450);
                 $fetchedPassword = EntityUtils::getEntity('TestPasswordTableLegacy', $randId);
-                
+
                 // create password doctrine entity
                 $newPassword = new TestPasswordDataLegacy();
                 $newPassword->test = $this->test;
@@ -232,12 +237,12 @@ class ScheduledTestsLegacy extends EntityBaseClass
                 $newPassword->password = $fetchedPassword->password;
                 $newPassword->save(false);
             }
-            
+
             // increment the working date
             $date->modify('+1 day');
         }
     }
-    
+
     /*
      * Get information about the number of attempts remaining/used for students currently scheduled for this test
      */
@@ -247,13 +252,13 @@ class ScheduledTestsLegacy extends EntityBaseClass
         foreach ($this->students as $student) {
             $users[] = $student->user;
         }
-        
+
         $attemptInfo =  MoodleUtils::getUsersQuizAttemptLimitInfo($users, $this->test);
 
         return $attemptInfo;
     }
-    
-    
+
+
     /**
      * Send an email to the contact person on this test, confirming the test and its information
      */
@@ -261,15 +266,15 @@ class ScheduledTestsLegacy extends EntityBaseClass
     {
         // compile email basics
         $subject = 'Fisdap Test Administration Confirmed';
-        
+
         // compile passwords text
         $passwords = $this->get_passwords();
-        
+
         // Compile test name / date text
         $testName = $this->test->test_name;
         $testDate = $this->start_date->format('m/d/Y');
         $testDate .= ($this->end_date && $this->end_date->format('m/d/Y') != $testDate) ? ' - ' . $this->end_date->format('m/d/Y') : '';
-        
+
         // Send templated e-mail message
         $mail = new \Fisdap_TemplateMailer();
         $mail->addTo($this->contact_email)

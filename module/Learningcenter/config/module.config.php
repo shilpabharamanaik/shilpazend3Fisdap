@@ -26,7 +26,7 @@ return [
                     'route' => '/learning-center/index/schedule',
                     'defaults' => [
                         'controller' => Controller\ScheduleController::class,
-                        'action'     => 'index',
+                        'action'     => 'schedule',
                     ],
                 ],
             ],

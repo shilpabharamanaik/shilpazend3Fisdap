@@ -1,0 +1,30 @@
+
+<?php if (!$isInstructor): ?>
+
+    <div id="sorry-page">
+        <h1>We're sorry.</h1>
+        <p class="error">
+            Students are not allowed to view this page.
+        </p>
+    </div>
+
+<?php elseif (!$instructorPermission): ?>
+
+    <div id="sorry-page">
+        <h1>We're sorry.</h1>
+        <p class="error">
+            You do not have permission to schedule exams or retrieve scores.
+            Please contact <?=$programName?>  for more information.
+        </p>
+    </div>
+
+<?php else: ?>
+
+<?php
+    $title = 'Test Schedule';
+    $this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title); ?></h1>
+
+
+<?php endif; ?>

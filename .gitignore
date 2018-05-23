@@ -1,6 +1,7 @@
 .vagrant/
 config/development.config.php
 data/cache/*
+data/Doc*/*
 !data/cache/.gitkeep
 phpunit.xml
 .php_cs.cache
