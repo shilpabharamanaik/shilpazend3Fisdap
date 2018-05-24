@@ -1,0 +1,196 @@
+<?php
+    $title = 'Edit Student Accounts';
+    $this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title); ?></h1>
+
+
+<?php
+//$form = $this->form;
+    $form->get('firstName')->setAttributes(['value'=>$student->firstname]);
+    $form->get('lastName')->setAttributes(['value'=>$student->lastname]);
+    $form->get('email')->setAttributes(['value'=>$student->email]);
+    $form->get('homePhone')->setAttributes(['value'=>$student->homePhone]);
+    $form->get('workPhone')->setAttributes(['value'=>$student->workPhone]);
+    $form->get('cellPhone')->setAttributes(['value'=>$student->cellPhone]);
+    $form->get('address')->setAttributes(['value'=>$student->address]);
+    $form->get('city')->setAttributes(['value'=>$student->city]);
+    $form->get('country')->setAttributes(['value'=>$student->country]);
+    $form->get('zip')->setAttributes(['value'=>$student->zip]);
+    $form->get('contact_name')->setAttributes(['value'=>$student->contact_name]);
+    $form->get('contact_phone')->setAttributes(['value'=>$student->contact_phone]);
+    $form->get('contact_relation')->setAttributes(['value'=>$student->contact_relation]);
+?>
+<div class="grid_12 island">
+	 <form id="instructorForm" enctype="application/x-www-form-urlencoded" method="post">
+        <h2 class="section-header"><?=$student->firstname?> <?=$student->lastname?> (<?=$username?>)</h2>
+		<div class="grid_7">
+            <h3 class="section-header no-border">Contact Information</h3>
+			 <div class="form-group">
+                <div class="form-prompt">
+                    <div id="firstName-label">
+                        <?= $this->formLabel($form->get('firstName')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('firstName')); ?>
+                        <?= $this->formElementErrors($form->get('firstName')); ?>
+                    </div>
+                </div>
+                <div class="form-prompt">
+                    <div id="lastName-label">
+                        <?= $this->formLabel($form->get('lastName')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('lastName')); ?>
+                        <?= $this->formElementErrors($form->get('lastName')); ?>
+                    </div>
+                </div>
+                <div class="form-prompt">
+                    <div id="email-label">
+                        <?= $this->formLabel($form->get('email')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('email')); ?>
+                        <?= $this->formElementErrors($form->get('email')); ?>
+                    </div>
+                </div>
+			</div>
+			<div class="form-group">
+				<div class="form-group-title section-header no-border">Phone</div>
+				<div class="form-prompt">
+                    <div id="homephone-label">
+                        <?= $this->formLabel($form->get('homePhone')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('homePhone')); ?>
+                        <?= $this->formElementErrors($form->get('homePhone')); ?>
+                    </div>
+                </div>
+				<div class="form-prompt">
+                    <div id="workphone-label">
+                        <?= $this->formLabel($form->get('workPhone')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('workPhone')); ?>
+                        <?= $this->formElementErrors($form->get('workPhone')); ?>
+                    </div>
+                </div>
+				<div class="form-prompt">
+                    <div id="cellphone-label">
+                        <?= $this->formLabel($form->get('cellPhone')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('cellPhone')); ?>
+                        <?= $this->formElementErrors($form->get('cellPhone')); ?>
+                    </div>
+                </div>
+			</div>
+			<div class="form-group">
+				<div class="form-group-title section-header no-border">Address</div>
+				<div class="form-prompt">
+                    <div id="address-label">
+                        <?= $this->formLabel($form->get('address')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('address')); ?>
+                        <?= $this->formElementErrors($form->get('address')); ?>
+                    </div>
+                </div>
+				<div class="form-prompt">
+                    <div id="city-label">
+                        <?= $this->formLabel($form->get('city')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('city')); ?>
+                        <?= $this->formElementErrors($form->get('city')); ?>
+                    </div>
+                </div>
+				<div class="form-prompt">
+                    <div id="country-label">
+                        <?= $this->formLabel($form->get('country')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('country')); ?>
+                        <?= $this->formElementErrors($form->get('country')); ?>
+                    </div>
+                </div>
+				<div class="form-prompt">
+                    <div id="zip-label">
+                        <?= $this->formLabel($form->get('zip')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('zip')); ?>
+                        <?= $this->formElementErrors($form->get('zip')); ?>
+                    </div>
+                </div>
+			</div>
+			<h3 class="section-header no-border withTopMargin">Emergency Contact</h3>
+			<div class="form-group">
+				<div class="form-prompt">
+                    <div id="contactName-label">
+                        <?= $this->formLabel($form->get('contact_name')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('contact_name')); ?>
+                        <?= $this->formElementErrors($form->get('contact_name')); ?>
+                    </div>
+                </div>
+				<div class="form-prompt">
+                    <div id="contactPhone-label">
+                        <?= $this->formLabel($form->get('contact_phone')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('contact_phone')); ?>
+                        <?= $this->formElementErrors($form->get('contact_phone')); ?>
+                    </div>
+                </div>
+				<div class="form-prompt">
+                    <div id="contactRelation-label">
+                        <?= $this->formLabel($form->get('contact_relation')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('contact_relation')); ?>
+                        <?= $this->formElementErrors($form->get('contact_relation')); ?>
+                    </div>
+                </div>
+				
+			</div>
+		</div>
+		<div class="grid_5">
+		
+           
+                <div class="gravatar-container"><img src="https://secure.gravatar.com/avatar/0faefa29be5ac2a32e3aacf1bf7d9b85?s=195&amp;d=mm&amp;r=g"><br><a target="_blank" href="https://en.gravatar.com/connect/?source=_signup&amp;email=bhavani.shankar@ascendlearning.com">Add a photo!</a></div>
+                <!-- The text and password here are to prevent FF from auto filling my login credentials because it ignores autocomplete="off"-->
+				 <div class="password-section">
+                <input type="text" class="hidden">
+                <input type="password" class="hidden">
+                <div class="form-group">
+                    <div class="form-group-title section-header no-border">Login Info</div>
+                    <div class="form-prompt"><label for="currentPassword" class="optional">Your Password</label>
+                        <br>
+                        <input type="password" name="currentPassword" id="currentPassword" value="" autocomplete="off">
+                    </div>
+                    <div class="form-prompt"><label for="newPassword" class="optional">New Password&nbsp;<span class="form-desc">(5+ characters)</span></label>
+                        <br>
+                        <input type="password" name="newPassword" id="newPassword" value="" autocomplete="off">
+                    </div>
+                    <div class="form-prompt"><label for="confirmPassword" class="optional">Confirm New Password</label>
+                        <br>
+                        <input type="password" name="confirmPassword" id="confirmPassword" value="" autocomplete="off">
+                    </div>
+                </div>
+
+				</div>
+				</div>
+			
+		</div>
+		<div class="clear"></div>
+        <div class="grid_11">
+        </div>
+        <div class="grid_1 right green-buttons">
+            <input type="submit" name="save" id="save" value="Save" class="green-buttons ui-button ui-widget ui-state-default ui-corner-all" role="button" aria-disabled="false" style="padding: 3px 10px;">
+        </div>
+        <input type="hidden" name="studentId" value="<?php echo $student->id; ?>" id="studentId">
+        <div class="clear"></div>
+	</form>
+</div>

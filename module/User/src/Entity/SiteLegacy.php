@@ -51,7 +51,7 @@ class SiteLegacy extends EntityBaseClass
     /**
      * @Column(name="Address", type="string", nullable=true)
      */
-    protected $address;
+    public $address;
     
     /**
      * @Column(name="City", type="string", nullable=true)

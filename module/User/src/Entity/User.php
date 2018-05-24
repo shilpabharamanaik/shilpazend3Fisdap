@@ -62,13 +62,13 @@ class User
      * @var string
      * @Column(type="string")
      */
-    protected $first_name;
+    public $first_name;
 
     /**
      * @var string
      * @Column(type="string")
      */
-    protected $last_name;
+    public $last_name;
 
     /**
      * @var string
@@ -104,7 +104,7 @@ class User
      * @var string
      * @Column(type="string")
      */
-    protected $email;
+    public $email;
 
     /**
      * @var UserContext
@@ -172,7 +172,7 @@ class User
      * @codeCoverageIgnore
      * @deprecated
      */
-    // protected $serial_numbers;
+     public $serial_numbers;
 
     /**
      * @var Staff|null
