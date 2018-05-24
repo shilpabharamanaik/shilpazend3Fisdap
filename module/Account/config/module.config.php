@@ -29,7 +29,7 @@ return [
                     ],
                     'defaults' => [
                         'controller' => Controller\StudentController::class,
-                        'action'     => 'edit',
+                        'action'     => 'student',
                     ],
                 ],
             ],
@@ -46,6 +46,19 @@ return [
                     ],
                 ],
             ],
+			'research-consent' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route' => '/account/new/research-consent',
+                    'constraints' => [
+                        'studentId' => '[0-9]*',
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\StudentController::class,
+                        'action'     => 'researchconsent',
+                    ],
+                ],
+            ],
         ],
     ],
 
@@ -53,6 +66,7 @@ return [
         'factories' => [
             Controller\AccountController::class => Controller\Factory\AccountControllerFactory::class,
             Controller\InstructorController::class => Controller\Factory\InstructorControllerFactory::class,
+			Controller\StudentController::class => Controller\Factory\StudentControllerFactory::class,
         ],
     ],
 

@@ -57,7 +57,7 @@ class BaseLegacy extends EntityBaseClass
     /**
      * @Column(name="Address", type="string", nullable=true)
      */
-    protected $address;
+    public $address;
     
     /**
      * @Column(name="PostalCode", type="string", nullable=true)

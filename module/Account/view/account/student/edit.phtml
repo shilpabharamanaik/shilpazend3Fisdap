@@ -35,22 +35,20 @@
 
     <?= $this->element->contact ?>
 
-    <? if ($this->element->mailingList) {?>
+    <?php if ($this->element->mailingList) {?>
         <?= $this->element->mailingList ?>
-    <? } ?>
+    <?php } ?>
 
-    <? if ($this->element->staffOptions) {?>
+    <?php if ($this->element->staffOptions) {?>
         <h3 class="section-header no-border">Staff Only</h3>
         <?= $this->element->staffOptions ?>
-    <? } ?>
+    <?php } ?>
 </div>
 
 <div class="grid_5">
-    <?= $this->fisdapGravatar($this->element->student->email) ?>
-
-    <? if ($this->element->graduation) {?>
+    <?php if ($this->element->graduation) {?>
         <?= $this->element->graduation ?>
-    <? } ?>
+    <?php } ?>
 
     <!-- The text and password here are to prevent FF from auto filling my login credentials because it ignores autocomplete="off"-->
     <input type="text" class="hidden">

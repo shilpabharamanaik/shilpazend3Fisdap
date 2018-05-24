@@ -11,7 +11,9 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
-use User\EntityUtils;
+use Doctrine\ORM\Mapping as ORM;
+//use Fisdap\EntityUtils;
+
 
 /**
  * Entity class for Legacy Students.
@@ -22,7 +24,7 @@ use User\EntityUtils;
  */
 class StudentLegacy extends RoleData
 {
-    const STUDENT_MAILING_LIST_ID = 2;
+    CONST STUDENT_MAILING_LIST_ID = 2;
 
     /**
      * @Id
@@ -30,6 +32,25 @@ class StudentLegacy extends RoleData
      * @GeneratedValue
      */
     protected $id;
+	
+	 /**
+     * @var string
+     * @Column(type="string")
+     */
+    protected $firstname;
+	
+	/**
+     * @var string
+     * @Column(type="string")
+     */
+    protected $lastname;
+	
+	/**
+     * @var string
+     * @Column(type="string")
+     */
+    protected $username;
+	
 
     /**
      * @codeCoverageIgnore
@@ -62,17 +83,16 @@ class StudentLegacy extends RoleData
     protected $box_number;
 
     /**
-     * @codeCoverageIgnore
-     * @deprecated
-     * @Column(name="Address", type="string", nullable=true)
+     * @var string
+     * @Column(type="string")
      */
-    protected $address;
+    public $address;
 
     /**
      * @deprecated
      * @Column(name="City", type="string", nullable=true)
      */
-    protected $city;
+    public $city;
 
     /**
      * @codeCoverageIgnore
@@ -95,19 +115,14 @@ class StudentLegacy extends RoleData
      */
     protected $zip;
 
-    /**
-     * @codeCoverageIgnore
-     * @deprecated
-     * @Column(name="HomePhone", type="string", nullable=true)
-     */
-    protected $home_phone;
+    
 
     /**
      * @codeCoverageIgnore
      * @deprecated
      * @Column(name="WorkPhone", type="string", nullable=true)
      */
-    protected $work_phone;
+    protected $workPhone;
 
     /**
      * @deprecated
@@ -115,6 +130,11 @@ class StudentLegacy extends RoleData
      */
     protected $email;
 
+	/**
+     * @var string
+     * @Column(type="string")
+     */
+    public $homePhone;
     /**
      * @codeCoverageIgnore
      * @deprecated
@@ -200,7 +220,7 @@ class StudentLegacy extends RoleData
      * @deprecated
      * @Column(name="CellPhone", type="string", nullable=false)
      */
-    protected $cell_phone;
+    protected $cellPhone;
 
     /**
      * @codeCoverageIgnore
@@ -240,7 +260,7 @@ class StudentLegacy extends RoleData
     /**
      * @Column(type="boolean", nullable=true);
      */
-    protected $good_data = null;
+    protected $good_data = NULL;
 
     /**
      * @ManyToOne(targetEntity="GraduationStatus", cascade={"persist"})
@@ -324,7 +344,6 @@ class StudentLegacy extends RoleData
      */
     protected $vitals;
 
-
     /**
      * @todo move this to __construct()
      */
@@ -349,10 +368,13 @@ class StudentLegacy extends RoleData
 
     public function remove_groups($flush = false)
     {
+
         foreach ($this->classSectionStudent as $section) {
             $this->classSectionStudent->removeElement($section);
             $section->delete($flush);
         }
+
+
     }
 
 
@@ -737,11 +759,11 @@ class StudentLegacy extends RoleData
     /**
      * get the serial number for this student
      *
-     * @return \Fisdap\Entity\SerialNumber
+     * @return \User\Entity\SerialNumber
      */
     public function getSerialNumber()
     {
-        foreach ($this->user->serial_numbers as $serial_number) {
+		        foreach ($this->user->serial_numbers as $serial_number) {
             if ($serial_number->student_id == $this->id) {
                 return $serial_number;
             }
@@ -843,5 +865,36 @@ class StudentLegacy extends RoleData
         }
 
         return $filtered_classmates;
+    }
+	
+	public function exchangeArray(array $data)
+    {
+        $this->firstName = (!empty($data['firstName'])) ? $data['firstName'] : null;
+        $this->lastName = (!empty($data['lastName'])) ? $data['lastName'] : null;
+        $this->email  = (!empty($data['email'])) ? $data['email'] : null;
+        $this->homePhone  = (!empty($data['homePhone'])) ? $data['homePhone'] : null;
+        $this->cellPhone  = (!empty($data['cellPhone'])) ? $data['cellPhone'] : null;
+        $this->workPhone  = (!empty($data['workPhone'])) ? $data['workPhone'] : null;
+    }
+	public function saveStudent(Student $student)
+    {
+		echo "123";
+		print_r($student);
+        /*$data = [
+            'artist' => $album->artist,
+            'title'  => $album->title,
+        ];
+        $id = (int) $album->id;
+        if ($id === 0) {
+            $this->tableGateway->insert($data);
+            return;
+        }
+        if (!$this->getAlbum($id)) {
+            throw new RuntimeException(sprintf(
+                'Cannot update album with identifier %d; does not exist',
+                $id
+            ));
+        }
+        $this->tableGateway->update($data, ['id' => $id]);*/
     }
 }

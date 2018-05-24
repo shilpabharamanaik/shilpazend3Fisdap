@@ -1,0 +1,49 @@
+<?php
+    $title = 'Research Consent';
+    $this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title); ?></h1>
+
+<?php
+//$form = $this->form;
+    $form->get('dataUse')->setAttributes(['value'=>'test']);
+    $form->get('dataRelease')->setAttributes(['value'=>'test']);
+	?>
+<div class="grid_12 island"> 
+<form enctype="application/x-www-form-urlencoded" method="post">
+   <div id="researchConsent">
+	<p>Dear EMS student:</p>
+	
+	<p>The Field Internship Student Data Acquisition Project (Fisdap) is a computerized system that tracks your experiences during your internships and clinicals.
+	The data that you enter is meant to help measure your learning and provide your instructors with a better tool to assist you in improving and measuring your
+	clinicals and field experiences. The data that you enter is confidential and can only be viewed by your instructor(s) and preceptor(s).</p>
+	
+	<p>Inver Hills Community College would like your permission to anonymously use your data for research purposes. Your name and other identifying information will not
+	be linked in any way to your data, so your privacy is protected. Only the Fisdap computer programmer(s), your instructor(s), and preceptor(s) will know your name.</p>
+	
+	<p>Participation in this research will not cost you anything and does not pose any foreseeable risk to your physical or psychological safety, but will be critical in the
+	improvement of EMS education programs. There is a pressing need for more research in EMS education. Instructors are making decisions about your and future EMS education
+	programs without having good research to substantiate those choices.</p>
+	
+	<p>Your consent to allow us to use your anonymous data in this research is voluntary. Your refusal to allow us to use your data will involve no penalty or loss of any
+	privileges/benefits to which you are currently entitled. You are free to withdraw your consent at any time.</p>
+	
+	<div class="radioConsent"> <?= $this->formElement($form->get('dataUse')); ?></div>
+	
+	
+	<p>Inver Hills Community College would also like to obtain your permission to release your anonymous data to other person(s) or college(s) who may want to do research. The
+	release of this anonymous data would involve no cost to you or the researching person(s) or college(s).</p>
+	
+	<div class="radioConsent"> <?= $this->formElement($form->get('dataRelease')); ?></div>
+	
+	<div id="userDetailsWrapper">
+		<p>Student Name: <?= $this->studentname; ?></p>
+		<p>Date: <?= $this->date; ?></p>
+	</div>
+	
+	 <div class="grid_1 right green-buttons">
+            <input type="submit" name="save" id="save" value="Save" class="green-buttons ui-button ui-widget ui-state-default ui-corner-all" role="button" aria-disabled="false" style="padding: 3px 10px;">
+        </div>
+</div>
+</form>
+</div>
