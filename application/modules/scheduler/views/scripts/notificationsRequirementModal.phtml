@@ -1,0 +1,35 @@
+<div class='section'>
+	<h3 class="section-header">
+		<?= $this->element->title ?>
+	</h3>
+
+<?php if (count($this->element->requirements) > 1) { ?>
+	<a id='show-reqs-n'>see list</a>
+	<div id='req-list-n'>
+		<?php foreach ($this->element->requirements as $requirement) {
+			$names[] = $requirement->name;
+		}
+		echo implode(" | ", $names);
+		?>
+	</div>
+	<div class='info'>
+		Your selection below will override your current notifications settings for these requirements.
+	</div>
+<?php } ?>
+
+
+	<div id='notificationsForm' class='input-line'>
+		<?= $this->element->notificationsForm ?>
+		<?= $this->element->req_ids ?>
+	</div>	
+
+<div class='buttons'>
+	<div id='saveButtonWrapper-n' class='small green-buttons'>
+			<a href='#' id='save-btn-n'>Save</a>
+		</div>
+		<div id='cancelButtonWrapper-n' class='small gray-button'>
+			<a href='#' id='cancel-btn-n'>Cancel</a>
+		</div>
+	</div>
+
+</div>

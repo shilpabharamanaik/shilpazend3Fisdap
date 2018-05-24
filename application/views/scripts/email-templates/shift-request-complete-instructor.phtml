@@ -1,0 +1,35 @@
+<div>
+<?php 	switch ($this->request->request_type->name) {
+		case "drop":	?>
+			<p><?= $this->request->owner->user->getName() ?> has been dropped from the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+		case "cover": ?>
+			<p><?= $this->request->owner->user->getName() ?> has gotten coverage for the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+		case "swap": ?>
+			<p><?= $this->request->owner->user->getName() ?> has swapped the following <?= $this->request->event->type ?> shift with <?= $this->request->recipient->user->getName() ?></p>
+<?php			break;
+	} 	?>
+	
+	<div>
+		<?= $this->request->event->getDetailViewDate() ?><br>
+		<?= $this->request->event->getLocation() ?>
+	</div>
+	
+<?php 	switch ($this->request->request_type->name) {
+		case "drop":	?>
+			<p><?= $this->request->owner->user->first_name ?> is no longer responsible for this shift.</p>
+<?php			break;
+		case "cover": ?>
+			<p><?= $this->request->recipient->user->getName() ?> has accepted the shift and <?= $this->request->owner->user->first_name ?> is no longer responsible for it.</p>
+<?php			break;
+		case "swap":
+			$swap = $this->request->getCurrentSwap();	?>
+			<p>In return, <?= $this->request->owner->user->first_name ?> is now responsible for <?= $this->request->recipient->user->first_name ?>'s <?= $swap->offer->slot->event->type ?> shift:</p>
+			<div>
+				<?= $swap->offer->slot->event->getDetailViewDate() ?><br>
+				<?= $swap->offer->slot->event->getLocation() ?>
+			</div>
+<?php			break;
+	} 	?>
+</div>

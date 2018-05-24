@@ -1,0 +1,20 @@
+<a name='quick-added-skills'></a>
+<h3 class='<?php echo $this->shift->type ?>-header'>Quick Added Skills</h3>
+
+<? $shiftSkills = $this->shift->getQuickAddedSkills(); ?>
+
+<div class="grid_9">
+    <? if (count($shiftSkills) == 0) { ?>
+        <p>It doesn't look like any quick added skills have been recorded yet.</p>
+    <? } else { ?>
+        <table width='100%'>
+            <? foreach($shiftSkills as $skill) echo $this->partial('shiftDetailSkill.phtml', array('skill' => $skill)); ?>
+        </table>
+    <? } ?>
+</div>
+
+<div class="clear"></div>
+
+<div class='no-pdf back-to-top'>
+    <a href='#top'>back to top</a>
+</div>

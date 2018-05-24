@@ -7,6 +7,7 @@ use League\Fractal\TransformerAbstract;
 use Response;
 use Illuminate\Http\Response as HttpResponse;
 
+
 /**
  * Essential behavior for supporting Fractal, HTTP status codes, and general JSON responses
  *

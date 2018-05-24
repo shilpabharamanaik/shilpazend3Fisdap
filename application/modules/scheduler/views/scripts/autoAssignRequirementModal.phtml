@@ -1,0 +1,37 @@
+<div class='section'>
+	<h3 class="section-header">
+		<?= $this->element->title ?>
+	</h3>
+
+<?php if (count($this->element->requirements) > 1) { ?>
+	<a id='show-reqs-aa'>see list</a>
+	<div id='req-list-aa'>
+		<?php foreach ($this->element->requirements as $requirement) {
+			$names[] = $requirement->name;
+		}
+		echo implode(" | ", $names);
+		?>
+	</div>
+	<div class='info'>
+		Your selection below will override your current auto-assign settings for these requirements.
+	</div>
+<?php } ?>
+
+
+	<div id='autoAssignForm' class='input-line'>
+		<?= $this->element->autoAssignForm ?>
+	</div>	
+	<?= $this->element->req_ids ?>
+</div>
+
+
+<div class='buttons'>
+		<div id='saveButtonWrapper-aa' class='small green-buttons'>
+			<a href='#' id='save-btn-aa'>Save</a>
+		</div>
+		<div id='cancelButtonWrapper-aa' class='small gray-button'>
+			<a href='#' id='cancel-btn-aa'>Cancel</a>
+		</div>
+	</div>
+
+</div>

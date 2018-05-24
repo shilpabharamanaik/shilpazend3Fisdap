@@ -1,0 +1,132 @@
+<?= $this->pageTitleHelper() ?>
+
+<script type='text/javascript' src='/js/jquery.chosen.relative.js'></script>
+
+<h1>Edit Student Group</h1>
+<div class="grid_12 island">
+    <h3 class='section-header'>Group Details</h3>
+
+    <form action='/account/group/save' method='POST' id='group_form'>
+        <input type='hidden' id='hidden-group-id' name='hidden-group-id' value='<?php echo $this->group->id; ?>'/>
+        <input type='hidden' id='hidden-assignment-type' name='hidden-assignment-type' value=''/>
+
+        <div class='grid_12'>
+            <div class='grid_2'>
+                Group name:
+            </div>
+            <div class='grid_10'>
+                <input name='group_name' id='group_name' value="<?php echo $this->group->name; ?>" size='38'/>
+            </div>
+        </div>
+        <div class='grid_12'>
+            <div class='grid_2'>
+                Active from:
+            </div>
+            <div class='grid_10'>
+                <input name='group_start_date' id='group_start_date' class='selectDate'
+                       value='<?php echo($this->group->start_date ? $this->group->start_date->format('m/d/Y') : ''); ?>'/>
+                until
+                <input name='group_end_date' id='group_end_date' class='selectDate'
+                       value='<?php echo($this->group->end_date ? $this->group->end_date->format('m/d/Y') : ''); ?>'/>
+            </div>
+            <div class='clear'></div>
+            <div class='grid_12 error' id='error_message' style='display: none;'></div>
+        </div>
+        <div class='grid_12'>
+            <input type='checkbox' name='group_event_notifications'
+                   id='group_event_notifications' <?php echo($this->group->generate_emails ? 'checked="CHECKED"' : ''); ?>/>
+            Only send email notifications about this student group to the selected instructors.
+            <?= $this->helpBubble("eventNotificationHelp", "Event Notification Help", "By checking this box, emails regarding students in this Student Group will be sent only to the instructors who also belong to that Student Group. Otherwise, all instructors will receive these emails.") ?>
+        </div>
+
+        <span class='clear'></span>
+
+        <div class='grid_12 list_div'>
+            <div class='grid_4'>
+                <h3 class='section-header'>
+                    Students <?= $this->helpBubble("studentAssignmentHelp", "Student Assignment Help", "Select the students who belong in this group. This could be a class, a section of a class, or a group of lab partners.<br /><br />Students can be added to more than one group.") ?></h3>
+                <select id='group_students' name='group_students' class='user_list' size='15' disabled='disabled'>
+                    <?php
+                    foreach ($this->group->section_student_associations as $sa) {
+                        echo "<option value='" . $sa->student->id . "' data-lastname='" . $sa->student->last_name . "'>" . $sa->student->first_name . " " . $sa->student->last_name . "</option>";
+                    }
+                    ?>
+                </select>
+
+                <div class='grid_12'>
+                    <div class='grid_6 count-text'>
+                        Total: <span id='student_count'>0</span>
+                    </div>
+                    <div class='grid_6'>
+                        <div class='extra-small gray-button add-drop-button'>
+                            <a href='#' id='edit_students'>Add/Remove</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='grid_4'>
+                <h3 class='section-header'>
+                    Instructors <?= $this->helpBubble("instructorAssignmentHelp", "Instructor Assignment Help", "Choose which instructors belong to this group of students. This is particularly beneficial if you intend to limit the email notifications about these students to go only to their instructors.") ?></h3>
+                <select id='group_instructors' name='group_instructors' class='user_list' size='15' disabled='disabled'>
+                    <?php
+                    foreach ($this->group->section_instructor_associations as $sa) {
+                        echo "<option value='" . $sa->instructor->id . "' data-lastname='" . $sa->instructor->last_name . "'>" . $sa->instructor->first_name . " " . $sa->instructor->last_name . "</option>";
+                    }
+                    ?>
+                </select>
+
+                <div class='grid_12'>
+                    <div class='grid_6 count-text'>
+                        Total: <span id='instructor_count'>0</span>
+                    </div>
+                    <div class='grid_6'>
+                        <div class='extra-small gray-button add-drop-button'>
+                            <a href='#' id='edit_instructors'>Add/Remove</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='grid_4'>
+                <h3 class='section-header'>Teaching
+                    Assistants <?= $this->helpBubble("taAssignmentHelp", "Teaching Assistant Assignment Help", "You can select students to become teaching assistants (TAs) for their group. TAs are authorized to confirm evals or lab practice items for other students in their group.") ?></h3>
+                <select id='group_tas' name='group_tas' class='user_list' size='15' disabled='disabled'>
+                    <?php
+                    foreach ($this->group->section_ta_associations as $sa) {
+                        echo "<option value='" . $sa->ta_student->id . "' data-lastname='" . $sa->ta_student->last_name . "'>" . $sa->ta_student->first_name . " " . $sa->ta_student->last_name . "</option>";
+                    }
+                    ?>
+                </select>
+
+                <div class='grid_12'>
+                    <div class='grid_6 count-text'>
+                        Total: <span id='ta_count'>0</span>
+                    </div>
+
+                    <div class='grid_6'>
+                        <div class='extra-small gray-button add-drop-button'>
+                            <a href='#' id='edit_tas'>Add/Remove</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+    <div class='action-buttons-wrapper'>
+		<span class='small gray-button'>
+			<a href='/account/group/view' id='cancel_button'>Cancel</a>
+		</span>
+        &nbsp;
+		<span class='small green-buttons'>
+			<a href='#' id='save_button'>Save</a>
+		</span>
+    </div>
+
+    <div id='modal_student_list' style='display: none;'>
+
+        <?= $this->studentPicker ?>
+
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<?php echo $this->doctype(); ?>
+<html>
+    <head>
+    	<?php if($this->includeBase){ ?>
+    		<base href='<?php echo $this->serverUrl(); ?>' />
+    	<?
+		
+		}
+    	
+		echo $this->headTitle($this->headTitleHelper());
+		
+		$header = $this->mainHeader();
+		
+		echo $this->headMeta()
+				  ->appendHttpEquiv('Content-Language', 'en-US')
+				  ->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+				  
+		// use this for version control of cached js/css files
+		// NOTE: if you have made any changes to the @imports global.css uses, you need to update those additionally in global.css THIS WILL NOT DO IT
+		$last_modified = "01/29/2018";
+		
+		echo $this->partial('cssLinks.phtml', array('last_modified' => $last_modified));
+		echo $this->partial('jsLinks.phtml', array('last_modified' => $last_modified)); ?>
+        <script src="//d2wy8f7a9ursnm.cloudfront.net/bugsnag-2.min.js" data-apikey="4e73914fa6f549a7b2eab5390dfcde3d"></script>
+        <script type="text/javascript">Bugsnag.releaseStage = "<?= RELEASE_STAGE ?>";</script>
+
+        <?php if (isset($this->debugBarRenderer)) { echo $this->debugBarRenderer->renderHead(); } ?>
+    </head>
+
+    <?php
+        // if this browser doesn't support SVG, give the body a special class
+        $svgClass = (!\Util_Browser::supportsSVG()) ? "no-svg" : "";
+    ?>
+    <body class="<?= $svgClass ?>">
+		<div class='site<?php if ($this->fluidWidth) { ?> fluid-width<?php } ?>'>
+			<?php 
+				if(!$this->noHeader){
+					echo $header;
+				}
+            ?>
+			
+			<div id='main-content' class='container_12'>
+				
+				<?php
+					// echo the intrusive downtime warning
+					echo $this->downtimeWarning();
+				?>
+
+				<!--<div id='bread-crumbs'>
+					<?php 
+						// Make sure this is using the full navigation.xml, not
+						// the one that's been altered for the header switching
+						$config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'nav');
+						$container = new Zend_Navigation($config);
+						$this->navigation($container);
+						
+						//echo $this->navigation()->breadcrumbs(); 
+					?>
+				</div>-->
+				
+				<?php
+					if($this->pageTitleLinkURL && $this->pageTitleLinkText) {
+						echo "<a href='{$this->pageTitleLinkURL}' class='page-title-link'>{$this->pageTitleLinkText}</a><br /><br />";
+					}
+				?>
+				
+				<?php echo $this->layout()->content; ?>
+			</div>
+			
+			<?php 
+				if(!$this->noFooter){
+					echo $this->mainFooter();
+				}
+			?>
+		</div>
+		<div id='jquery-dialog-container'>
+			<?= $this->modalDialogs ?>
+		</div>
+	<?php echo $this->partial('googleAnalytics.phtml', array()); ?>
+
+    <?php
+		/*
+		 * Disabled in favor of Google Analytics.
+		 *
+		echo $this->partial(
+			'piwik.phtml',
+			array(
+				'currentUserId' => $this->currentUserId,
+				'piwikBaseUrl' => $this->piwikBaseUrl,
+				'piwikSiteId' => $this->piwikSiteId,
+			)
+		);
+		*/
+	?>
+
+    <?= $this->ethnioScreener() ?>
+    </body>
+</html>

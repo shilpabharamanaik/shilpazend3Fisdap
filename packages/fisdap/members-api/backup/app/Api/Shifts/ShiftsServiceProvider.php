@@ -15,6 +15,7 @@ use Fisdap\Api\Students\Http\StudentsController;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
+
 /**
  * Enables shift-related routes, providing REST API endpoint documentation for each, and provides shift-related services
  *
@@ -76,11 +77,10 @@ final class ShiftsServiceProvider extends ServiceProvider
         /**
          * Preceptor Rating Items
          */
-        $router->group(
-            [
+        $router->group([
             'prefix' => 'shifts'
         ],
-            function (Router $router) {
+            function(Router $router) {
                 $router->get('preceptor-rating-types', [
                     'as'   => 'preceptor-rating-types',
                     'uses' => PreceptorRatingsController::class . '@getPreceptorRatingTypes'
@@ -99,8 +99,7 @@ final class ShiftsServiceProvider extends ServiceProvider
                     'uses' => PreceptorSignoffsController::class . '@index'
                 ]);
 
-                $router->group(
-                    [
+                $router->group([
                     'prefix' => 'patients/{patientId}',
                     'middleware' => [
                         
@@ -108,7 +107,7 @@ final class ShiftsServiceProvider extends ServiceProvider
                 ],
                     // The following are for already created patients since they do not need a
                     // shift Id to find them in the database.
-                    function (Router $router) {
+                    function(Router $router) {
                         $router->get('/', [
                             'as'   => 'shifts.patients.patientId',
                             'uses' => PatientsController::class . '@getPatient'
@@ -125,10 +124,8 @@ final class ShiftsServiceProvider extends ServiceProvider
                             'as'   => 'shifts.patients.patientId.signoffs',
                             'uses' => PreceptorSignoffsController::class . '@setPatientSignoff'
                         ]);
-                    }
-                );
-            }
-        );
+                });
+            });
 
         /*
          * Programs
@@ -140,7 +137,7 @@ final class ShiftsServiceProvider extends ServiceProvider
             'middleware' => [
 
             ],
-        ], function (Router $router) {
+        ], function(Router $router) {
             $router->get('/', [
                 'middleware' => [
                     'instructorCanViewAllData',
@@ -159,12 +156,11 @@ final class ShiftsServiceProvider extends ServiceProvider
             ]);
 
 
-            $router->get('practice-items', [ // shifts/{shiftId}/practice-items
+            $router->get('practice-items',[ // shifts/{shiftId}/practice-items
                 'as' => 'shifts.practice-items',
                 'uses' => PracticeItemsController::class . '@getPracticeItems'
             ]);
-            $router->group(
-                [
+            $router->group([
                 'prefix' => 'patients',
             ],
                 function (Router $router) {
@@ -176,8 +172,7 @@ final class ShiftsServiceProvider extends ServiceProvider
                         'as'   => 'shifts.shiftId.patients',
                         'uses' => PatientsController::class . '@createPatient'
                     ]);
-                }
-            );
+                });
         });
 
 
@@ -229,3 +224,4 @@ final class ShiftsServiceProvider extends ServiceProvider
         });
     }
 }
+

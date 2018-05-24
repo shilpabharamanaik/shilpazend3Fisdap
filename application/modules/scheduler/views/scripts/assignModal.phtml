@@ -1,0 +1,77 @@
+<div id="assign-modal">
+	
+	<div class="grid_12" id="assign-modal-content">
+		
+		<br />
+		
+		<?
+		if($this->element->event_id) { ?>
+		
+			<div class="grid_1">
+				<img id='site-icon' class='icon' src='/images/icons/<?= $this->element->event->type ?>SiteIconColor.png'>
+			</div>
+			
+			<div class="grid_7">
+				<h4 class='table-label <?= $this->element->event->type ?>'><?= $this->element->date ?></h4>
+				<h4 class='header'><?= $this->element->location ?></h4>
+			</div>
+			
+		<? } ?>
+		
+		<div class="grid_4">
+			
+			<div class="weebles">
+				
+				<div class="text-slots">
+					This shift has <?= $this->element->total_slot_count ?> slot<?= ($this->element->total_slot_count == 1) ? "" : "s" ?>.
+				</div>
+
+				<div class="clear"></div>
+			
+			</div>
+			
+			<div class="clear"></div>
+			
+		</div>
+
+        <div class="clear"></div>
+		
+		<?
+		if(!is_null($this->element->limited_message)){ ?>
+			<div class="info">
+				<?= $this->element->limited_message; ?>
+			</div>
+		<? } ?>
+		
+		<?= $this->element->event_id; ?>
+		<?= $this->element->hidden_cert_levels; ?>
+		<?= $this->element->total_slots; ?>
+		<?= $this->element->conflict_check; ?>
+
+		<?= $this->element->multistudent_picklist; ?>
+		
+		<div class="clear"></div>
+
+        <? if(!$this->element->event_id) { ?>
+            <div class="info withTopMargin">
+                You can check your students' availability for <?= $this->element->total_shift_count > 1 ? "these shifts" : "this shift" ?> by assigning them from the calendar view.
+            </div>
+        <? } ?>
+
+	</div>
+
+	<div class="buttons">
+		
+		<div class="small green-buttons">
+			<a href="#" class="save-assign-modal"><?= ($this->element->event_id) ? "Save" : "Ok" ?></a>
+		</div>
+		
+		<div class="small gray-button">
+			<a href="#" class="close-assign-modal">Cancel</a>
+		</div>
+		
+	</div>
+
+    <div class="clear"></div>
+	
+</div>

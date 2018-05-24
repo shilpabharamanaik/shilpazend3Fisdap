@@ -1,0 +1,51 @@
+<?
+$el = $this->form_element;
+$empty_value = "N/A";
+
+if($el->preceptors){
+	foreach($el->preceptors as $preceptor){
+		$id = $preceptor['id']; ?>
+		
+		<div class="accordion_element">
+			
+			<div id="preceptor_accordion_<?= $preceptor['id']; ?>" class="accordion_element_header">
+				<div class="accordion_select_checkbox_wrapper"><?= $el->{'preceptor_select_checkbox_' . $id}; ?></div>
+				<div class="accordion_preceptor_name_wrapper"><?= $preceptor['name']; ?></div>
+				<div class="accordion_active_checkbox_wrapper"><?= $el->{'preceptor_active_checkbox_' . $id}; ?></div>
+				<div class="clear"></div>
+			</div>
+			
+			<div class="accordion_element_content">
+				<? if($preceptor['work_phone'] || $preceptor['home_phone'] || $preceptor['pager'] || $preceptor['email']) { ?>
+				
+					<div class="grid_5">
+						<div class="preceptor_work_phone">work phone: <?= ($preceptor['work_phone']) ? $this->phoneNumberHelper($preceptor['work_phone'], $this->country) : $empty_value; ?></div>
+						<div class="preceptor_home_phone">home phone: <?= ($preceptor['home_phone']) ? $this->phoneNumberHelper($preceptor['home_phone'], $this->country) : $empty_value; ?></div>
+					</div>
+					
+					<div class="grid_5">
+						<div class="preceptor_pager">pager: <?= ($preceptor['pager']) ? $this->phoneNumberHelper($preceptor['pager'], $this->country) : $empty_value; ?></div>
+						<div class="preceptor_email">email: <?= ($preceptor['email']) ? $preceptor['email'] : $empty_value; ?></div>
+					</div>
+					
+				<? } else { ?>
+					<div class="preceptor_empty_contact_info">No contact info has been entered for this preceptor.</div>
+				<? } ?>
+				
+				<div class="preceptor_edit"><a href="#" class="edit_preceptor" data-preceptorId="<?= $id ?>">edit</a></div>
+				<div class="clear"></div>
+				
+			</div> <? // close accordion_element_content ?>
+			
+		</div> <? // close accordion_element ?>
+		
+	<?
+	
+	} // end for each prceptors
+	
+}	
+else {
+	echo "No preceptors have been entered for " . $el->site->name . ".";
+}
+
+?>

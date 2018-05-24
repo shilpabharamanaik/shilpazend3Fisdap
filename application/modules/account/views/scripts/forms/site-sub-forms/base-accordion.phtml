@@ -1,0 +1,63 @@
+<?
+
+$el = $this->form_element;
+
+if($el->bases){
+	foreach($el->bases as $base){
+		$id = $base['id'];
+		$edit_link = '<div class="base_edit"><a href="#" class="edit_base" data-baseId="' . $id . '">edit</a></div>'; ?>
+		
+		<div class="accordion_element">
+			
+			<div id="base_accordion_<?= $base['id']; ?>" class="accordion_element_header <?= ($el->site_type == 'clinical') ? "deparment-accordion-header" : ""; ?>">
+				
+				<? if($base['is_default'] || !$el->show_merge) { ?>
+					<div class="default_select_checkbox_wrapper"></div>
+				<? } else { ?>
+					<div class="accordion_select_checkbox_wrapper">
+						<?= $el->{'select_checkbox_' . $id}; ?>
+					</div>
+				<? } ?>
+				
+				<div class="accordion_base_name_wrapper">
+					<?= $base['name']; ?>
+				</div>
+				
+				
+				<?
+				if($el->site_type == 'clinical' && $base['is_default']){
+					echo "<div class='department-edit-link-wrapper'><span class='standard-department'>(standard)</span></div>";
+				}
+				?>
+				
+				<div class="accordion_active_checkbox_wrapper">
+					<?= $el->{'active_checkbox_' . $id}; ?>
+				</div>
+				
+				<div class="clear"></div>
+				
+			</div>
+
+			<div class="accordion_element_content">
+
+				<? if($base['address'] || $base['city'] || $base['state'] || $base['zip']) { ?>
+					<div class="base_address"><?= $base['address']; ?></div>
+					<div class="base_city"><?= $base['city']; ?></div>
+					<div class="base_state"><?= $base['state']; ?></div>
+					<div class="base_zip"><?= $base['zip']; ?></div>
+				<? } else { ?>
+					<div class="base_empty_address">No address has been entered for this base.</div>
+				<? } ?>
+
+				<?= $edit_link ?>
+					
+				<div class="clear"></div>
+					
+			</div>
+			
+			
+		</div>
+	<?
+	}
+}
+?>

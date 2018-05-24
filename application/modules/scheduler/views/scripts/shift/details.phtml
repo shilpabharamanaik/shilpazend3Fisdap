@@ -1,0 +1,25 @@
+
+<?= $this->pageTitleHelper() ?>
+
+<a href="/scheduler" id="back-to-cal"><< Calendar</a>
+
+<div id="shift-details" class="grid_12 island">
+	
+	<?= $this->partial("event-details.phtml", array("event" => $this->event, "eventId" => $this->eventId, "current_user_data" => $this->current_user_data, "details_page" => TRUE)); ?>
+
+</div>
+	
+<? if($this->current_user_data['role_name'] == "student") { ?>
+	<?= $this->shiftRequestModal; ?>
+	<?= $this->studentShiftModal ?>
+	<?= $this->studentSignupModal; ?>
+	
+<? } else { ?>
+	<?= $this->shiftHistoryModal; ?>
+	<?= $this->studentDropModal; ?>
+	<?= $this->assignModal;	?>
+	<?= $this->eventDeleteModal; ?>
+	<?= $this->whichEventsModal; ?>
+<? } ?>
+	<?= $this->shiftDeleteModal; ?>
+	<?= $this->viewComplianceModal ?>

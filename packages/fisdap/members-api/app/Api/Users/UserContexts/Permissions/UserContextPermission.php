@@ -2,6 +2,7 @@
 
 use Fisdap\Entity\UserContext;
 
+
 /**
  * Contract for a UserContext-based permission
  *

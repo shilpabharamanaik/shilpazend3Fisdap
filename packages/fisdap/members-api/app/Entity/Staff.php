@@ -7,112 +7,105 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Entity class for Fisdap Staff members.
- *
+ * 
  * @Entity
  * @Table(name="StaffData")
  */
 class Staff extends EntityBaseClass
 {
-    /**
-     * @Id
-     * @Column(name="id",type="integer")
-     * @GeneratedValue
-     */
-    public $staffId;
-    
-    /**
-     * @Column(type="string")
-     */
-    protected $username;
+	/**
+	 * @Id
+	 * @Column(name="id",type="integer")
+	 * @GeneratedValue
+	 */
+	public $staffId;
+	
+	/**
+	 * @Column(type="string")
+	 */
+	protected $username;
 
     /**
-     * @var User
+	 * @var User
      * @OneToOne(targetEntity="User", inversedBy="staff")
      */
     protected $user;
 
-    /**
-     * @Column(name="is_dev", type="integer", nullable=true)
-     */
-    protected $isDeveloper = 0;
-    
-    /**
-     * @Column(name="is_tech", type="integer", nullable=true)
-     */
-    protected $isTechnology = 0;
-    
-    /**
-     * @Column(name="is_mgmt", type="integer", nullable=true)
-     */
-    protected $isManagement = 0;
+	/**
+	 * @Column(name="is_dev", type="integer", nullable=true)
+	 */
+	protected $isDeveloper = 0;
+	
+	/**
+	 * @Column(name="is_tech", type="integer", nullable=true)
+	 */
+	protected $isTechnology = 0;
+	
+	/**
+	 * @Column(name="is_mgmt", type="integer", nullable=true)
+	 */
+	protected $isManagement = 0;
 
-    
-    public function setUsername($username)
-    {
-        $this->username = $username;
-    }
-    
-    public function getDeveloperStatus()
-    {
-        return $this->isDeveloper;
-    }
-    
-    public function setDeveloperStatus($status)
-    {
-        if ($status) {
-            $this->isDeveloper = true;
-        } else {
-            $this->isDeveloper = false;
-        }
-    }
-    
-    public function getTechnologyStatus()
-    {
-        return $this->isTechnology;
-    }
-    
-    public function setTechnologyStatus($status)
-    {
-        if ($status) {
-            $this->isTechnology = true;
-        } else {
-            $this->isTechnology = false;
-        }
-    }
+	
+	public function setUsername($username) {
+		$this->username = $username;
+	}
+	
+	public function getDeveloperStatus() {
+		return $this->isDeveloper;
+	}
+	
+	public function setDeveloperStatus($status) {
+		if ($status) {
+			$this->isDeveloper = TRUE;
+		} else {
+			$this->isDeveloper = FALSE;
+		}
+	}
+	
+	public function getTechnologyStatus() {
+		return $this->isTechnology;
+	}
+	
+	public function setTechnologyStatus($status) {
+		if ($status) {
+			$this->isTechnology = TRUE;
+		} else {
+			$this->isTechnology = FALSE;
+		}
+	}
 
-    public function getManagementStatus()
-    {
-        return $this->isManagement;
-    }
-    
-    public function setManagementStatus($status)
-    {
-        if ($status) {
-            $this->isManagement = true;
-        } else {
-            $this->isManagement = false;
-        }
-    }
+	public function getManagementStatus() {
+		return $this->isManagement;
+	}
+	
+	public function setManagementStatus($status) {
+		if ($status) {
+			$this->isManagement = TRUE;
+		} else {
+			$this->isManagement = FALSE;
+		}
+	}
 
 
-    /**
-     * If there is an ID, the user exists in this table, and thus isStaff()
-     * @codeCoverageIgnore
-     * @deprecated
-     */
-    public function isStaff()
-    {
-        if ($this->staffId > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+	/**
+	 * If there is an ID, the user exists in this table, and thus isStaff()
+	 * @codeCoverageIgnore
+	 * @deprecated
+	 */
+	public function isStaff() {
+		if ($this->staffId > 0) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
 
 
-    //	/**
+//	/**
 //	 * @inheritdoc
 //	 */
 //	public function serialize()

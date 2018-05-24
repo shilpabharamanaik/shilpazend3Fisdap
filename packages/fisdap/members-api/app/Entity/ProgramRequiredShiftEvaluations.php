@@ -111,4 +111,5 @@ class ProgramRequiredShiftEvaluations
     {
         $this->shift_type = $shift_type;
     }
+    
 }

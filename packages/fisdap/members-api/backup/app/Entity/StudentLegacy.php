@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
+
 /**
  * Entity class for Legacy Students.
  *
@@ -22,7 +23,7 @@ use Fisdap\EntityUtils;
  */
 class StudentLegacy extends RoleData
 {
-    const STUDENT_MAILING_LIST_ID = 2;
+    CONST STUDENT_MAILING_LIST_ID = 2;
 
     /**
      * @Id
@@ -240,7 +241,7 @@ class StudentLegacy extends RoleData
     /**
      * @Column(type="boolean", nullable=true);
      */
-    protected $good_data = null;
+    protected $good_data = NULL;
 
     /**
      * @ManyToOne(targetEntity="GraduationStatus", cascade={"persist"})
@@ -349,10 +350,13 @@ class StudentLegacy extends RoleData
 
     public function remove_groups($flush = false)
     {
+
         foreach ($this->classSectionStudent as $section) {
             $this->classSectionStudent->removeElement($section);
             $section->delete($flush);
         }
+
+
     }
 
 

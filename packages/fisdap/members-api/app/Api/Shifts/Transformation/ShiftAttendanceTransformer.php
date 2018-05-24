@@ -2,6 +2,7 @@
 
 use League\Fractal\TransformerAbstract as Transformer;
 
+
 /**
  * Prepares shift attendance data for JSON output
  *

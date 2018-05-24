@@ -23,6 +23,7 @@ use Fisdap\BuildMetadata\VersionRangeMiddleware;
 use Fisdap\ErrorHandling\PostMaxSizeMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
+
 class Kernel extends HttpKernel
 {
     /**
@@ -33,7 +34,7 @@ class Kernel extends HttpKernel
     protected $bootstrappers = [
         \Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables::class,
         \Illuminate\Foundation\Bootstrap\LoadConfiguration::class,
-        ConfigureLogging::class,
+		ConfigureLogging::class,
         \Illuminate\Foundation\Bootstrap\HandleExceptions::class,
         \Illuminate\Foundation\Bootstrap\RegisterFacades::class,
         \Illuminate\Foundation\Bootstrap\SetRequestForConsole::class,

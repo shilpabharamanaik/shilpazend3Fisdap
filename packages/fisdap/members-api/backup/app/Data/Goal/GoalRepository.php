@@ -7,12 +7,13 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface GoalRepository
  *
  * @package Fisdap\Data\Goal
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface GoalRepository extends Repository
-{
-}
+interface GoalRepository extends Repository {
+
+} 

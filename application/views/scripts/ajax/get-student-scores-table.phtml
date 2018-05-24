@@ -1,0 +1,16 @@
+<?php
+foreach($this->results as $testId => $results){
+ echo $this->testScoresResults($this->sections[$testId], $results, $testId, $this->scheduledTestId, $this->sectionDisplayOptions[$testId], $this->overallDisplayOptions[$testId]);
+	
+	$tableId = 'student_test_results_' . $testId;
+	
+	echo "
+		<script>
+			$(function(){
+				$('#{$tableId}').tablesorter();
+			});
+		</script>
+	";
+	
+}
+?>

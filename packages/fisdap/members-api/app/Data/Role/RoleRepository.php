@@ -3,6 +3,7 @@
 use Fisdap\Data\Repository\Repository;
 use Fisdap\Entity\Role;
 
+
 /**
  * Interface RoleRepository
  *

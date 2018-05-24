@@ -1,0 +1,42 @@
+<?
+	$eureka_point_text = "The Eureka point is a fraction that reports the number of successful attempts over the number of total attempts. To customize your Eureka point, the first number must be less than or equal to the second number. Fisdap's standard Eureka point is 16/20.";
+?>
+
+
+<div id="preceptor_signoff_report_options_form">
+
+	<div class="grid_6 preceptor_signoff_form_left_column">
+		<div class="eurkea_options_label">Evaluation types:</div><div class="clear"></div>
+		<?= $this->element->preceptor_signoff_evaluation_types; ?>
+		<div class="clear"></div>
+	</div>
+
+	<div class="grid_6 preceptor_signoff_form_right_column">
+		
+		<div class="preceptor_signoff_goals_wrapper">
+			<div class="eurkea_options_label">
+				Eureka point:
+				<?= $this->helpBubble("eureka_point_elements", "Eureka point help", $eureka_point_text) ?>
+			</div>
+			<div class="clear"></div>
+			
+			<div class="grid_3">
+				<?= $this->element->eureka_goal; ?>
+				<div id='eureka_slash'>/</div>
+				<?= $this->element->eureka_window; ?>
+			</div>
+			
+			<div class="grid_5">
+				<span id="eureka_success_precentage_wrapper">(<span id="eureka_success_rate_precentage">80</span>% success rate)</span>
+			</div>
+			
+			<div class="clear"></div>
+			
+		</div>
+		
+		<div class="clear"></div>
+	</div>
+	
+	<div class="clear"></div>
+
+</div>

@@ -1,0 +1,14 @@
+<?php
+	if ($this->upcoming_event_id) {
+		$date = "next shift on ".$this->upcoming_event_date;
+		$link = "<a href='/scheduler/shift/details/event/".$this->upcoming_event_id."'>View shift details</a>";
+	}
+?>
+<tr>
+	<td class='req_col'>
+		<?= $this->global ? '<img src="/images/icons/shared-requirement.png" class="icon">' : "<img src='/images/icons/site-requirement.png' class='icon'>" ?>
+		<span class="req-location <?= $this->type ?>"><?= $this->name ?></span>
+	</td>
+	<td class='status_col next_date'><?= $date ?></td>
+	<td class='expiration_col next_link'><?= $link ?></td>
+</tr>

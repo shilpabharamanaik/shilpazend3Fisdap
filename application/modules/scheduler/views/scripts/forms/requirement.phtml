@@ -1,0 +1,187 @@
+<div class="grid_12 island">
+	
+	<? // -------------------- top wrapper: requirement title -------------------- ?>
+	<div class="top-wrapper">
+		
+		<?= $this->element->custom_requirement ?>
+		
+		<div class="grid_1">
+			<label class='title-label'>Title:</label>
+		</div>
+		
+		<div class="grid_5 title-wrapper">
+			<div id="requirement-name-wrapper">
+				<?= $this->element->default_list ?>
+				<?= $this->element->custom_title ?>
+				<?= $this->element->already_chosen_universal_requirements ?>
+				<div class="custom-title-default-text">Type requirement title here...</div>
+				<div class="clear"></div>
+			</div>
+			
+			<br /><a href="#" class='default-custom-toggle'>Create custom requirement</a>
+			
+			<?= $this->helpBubble("titleHelp", "Title Help", '<p>The standard list contains the most commonly-used requirements. We recommend that you choose from this list whenever
+								  possible in order both save you time and maintain consistency. This is especially important in sharing networks because it will reduce the duplication
+								  of requirements when new programs join.</p><br />
+								  <p>If you would like to create a requirement that is not available in the standard list, you can do so by clicking "Create a custom requirement".</p>') ?>
+		</div>
+		
+		<div class="grid_6 req-sum">
+			
+			<div class="static-req-sum">This requirement <span class='expiration'>does</span> expire. Category: <span class="category">Immunization</span></div>
+			
+			<div class="dynamic-req-sum">
+				
+				<div class="dynamic-req-sum-flippy-wrapper">
+					<div class='floater floater-no-max-width'>This requirement</div>
+					<div class='flip-container'><div id="expires_flippy" class="does-doesnot doesnot">does not</div>&nbsp;</div>
+					<div class='floater floater-no-max-width'>expire.</div>
+					<?= $this->element->expires ?>
+				</div>
+				
+				<div class="clear"></div>
+				
+				<div class="dynamic-req-sum-category-wrapper">
+					<div class="grid_2 category-label">Category:</div>
+					<div class="grid_8">
+						<?= $this->element->category; ?>
+					</div>
+					<div class="clear"></div>
+				</div>
+				
+				<div class="clear"></div>
+			
+			</div>
+			
+		</div>
+		
+		<div class="clear"></div>
+		
+	</div> <? // close top wrapper ?>
+	
+	
+	
+	<div class="clear"></div><div class="dotted-line with-bottom-margin"><hr /></div>
+	
+	
+	
+	<? // -------------------- middle wrapper: site attachments -------------------- ?>
+	<div class="middle-wrapper">
+		
+		<div class="grid_12 site-flippy-wrapper">
+			<div class='floater floater-no-max-width'>People need to fulfill this requirement</div>
+			<div class='flip-container long-flip-containter'><div id="regardlessofsite_flippy" class="regardlessof-forspecific regardlessof">regardless of</div>&nbsp;</div>
+			<div class='floater floater-no-max-width'>sites they are attending.</div>
+			<?= $this->element->regardlessofsite ?>
+		</div>
+		
+		<div class="dynamic-s-p"><img src="/images/icons/program-requirement.png"></div>
+		
+		<div class="grid_12 specific-site-content">
+			
+			<div class="grid_6 specific-sites-description">
+				
+				<div class="grid_8">
+					<span id="number-of-sites">0</span> site<span id="site-plural">s</span> selected
+				</div>
+				
+				<div class="grid_4">
+					<a href="#" id="edit-chosen-sites">Edit</a> | <a href="#" id="remove-chosen-sites">Remove all</a>
+				</div>
+				
+				<div class="clear"></div>
+				
+			</div>
+			
+			<div class="clear"></div>
+			
+			<div class="grid_2">
+				<?= $this->element->site_ids ?>
+				<a href="#" id="choose-sites">Choose sites</a>
+			</div>
+			
+			<div class="clear"></div>
+		</div>
+		
+		<div class="clear"></div>
+		
+	</div> <? // close middle wrapper ?>
+	
+	
+	<div class="clear"></div><div class="dotted-line"><hr /></div>
+	
+	
+	<? // -------------------- bottom wrapper: assignemnts/auto assign -------------------- ?>
+	<div class="bottom-wrapper">
+		
+		<div class="grid_12 assign-flippy-wrapper">
+			
+			<div class='flip-container long-flip-containter donotassign-flip-container'><div id="assign_flippy" class="assign-donotassign assign">Assign</div>&nbsp;</div>
+			<div class='floater floater-no-max-width this-requirement-wrapper'>this requirement<span class="requirement-period"> to any active students or instructors.</span></div>
+			
+			<div class="assign-complete-sentence">
+				<div class='floater floater-no-max-width assign-requirement-to'> to</div>
+				<div class='flip-container'><div id="all_flippy" class="all-specific all">all</div>&nbsp;</div>
+				<div class='floater floater-no-max-width'>active students and instructors.</div>
+				
+				<div class="all-due-date-wrapper">
+					<label class='all-due-date-label'>Due:</label><?= $this->element->all_due_date ?>
+				</div>
+				
+			</div>
+			
+			<?= $this->element->assign ?>
+			<?= $this->element->all ?>
+			
+			<div id="disable-assign-complete-sentence"></div>
+			
+		</div>
+		
+		<div class="grid_12 specific-people-content">
+			
+			<div class="specific-people-summary-wrapper">
+				
+			</div>
+			
+			<div class="clear"></div>
+			
+			<div class="grid_3">
+				<a href="#" id="choose-people">Choose people</a>
+			</div>
+			
+			<div class="hidden-form-elements">
+			
+				<?= $this->element->due_dates ?>
+				<?= $this->element->userContextIds ?>
+				
+			</div>
+			
+			<div class="clear"></div>
+			
+		</div>
+		
+		<div class="clear"></div>
+		
+		<div class="grid_12 auto-assign-wrapper"><?= $this->element->autoAssignForm ?></div>
+		<div class="clear"></div>
+		
+		<div class="clear"></div>
+		
+	</div> <? // close bottom wrapper ?>
+	
+	<div class="clear"></div><div class="dotted-line"><hr /></div>
+	
+	<h4 class='notifications-header'>Notifications</h4>
+	
+	<div id="req_notifications_wrapper">
+		<?= $this->element->notificationForm ?>
+	</div>
+	
+</div>
+
+<div class="buttons-wrapper">
+	<?= $this->element->save ?>
+	<div class="small gray-buttons">
+		<span class="cancel-button">Cancel</span>
+	</div>
+</div>

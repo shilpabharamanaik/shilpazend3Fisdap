@@ -1,0 +1,20 @@
+<?php $cellId = "Vital_" . $this->vital->id; ?>
+
+<tr id="<?= $cellId ?>">
+<?php
+if ($this->vital->soft_deleted) {
+    echo "<td colspan='4' class='undo'>Vital #" . $this->vital->id . " successfully deleted. <a id='undo-delete-$cellId' href='#' onclick='undoDeleteSkill(\"$cellId\"); return false;'>Undo!</a></td>";
+    $elementStyle = "style='display:none;'";
+}
+?>
+    <td <?= $elementStyle ?> class='procedure-grabby-column'><img src="/images/icons/wide_grabby.png" class='grabby-icon' title='Click and drag to reorder' /></td>
+    <td <?= $elementStyle ?> class='procedure-icon-column'><img class='small-skill-icon' src='/images/icons/vitals_gray.png'></td>
+    <td <?= $elementStyle ?> class='procedure-description-column' onclick="loadVitalModal(<?= $this->vital->id ?>);"><?= $this->vital->getProcedureText() ?></td>
+    <td <?= $elementStyle ?> class='procedure-tools-column'>
+        <?= $this->skillEvalHookHelper('vital', $this->vital) ?>
+        <a href="#" class="duplicate-skill" onclick="duplicateSkill(<?= $this->vital->id ?>, 'Vital'); return false;"><img class="small-icon" title="duplicate skill" src="/images/icons/duplicate.png"></a>
+        <a href="#" class="delete-skill" skillId="Vital_<?= $this->vital->id ?>" title="delete skill">
+            <img class="tiny-icon square" src="/images/icons/delete.svg" alt="delete skill">
+        </a>
+    </td>
+</tr>

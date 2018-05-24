@@ -1,0 +1,12 @@
+<script>
+	$(function(){
+		$.post('/ajax/get-student-scores-table', <?php echo $this->jsonPost; ?>, function(response){
+			$('#results_container').empty().append(response);
+		});
+		
+	});
+</script>
+
+<div id='results_container'>
+Loading... <img src='/images/transparent_throbber.gif' />
+</div>

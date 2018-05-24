@@ -10,4 +10,5 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineMentalAlertnessRepository extends DoctrineRepository implements MentalAlertnessRepository
 {
+
 }

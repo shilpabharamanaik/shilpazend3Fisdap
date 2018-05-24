@@ -1,0 +1,13 @@
+<div class="skill-list-container">
+	<div class="skill-container">
+		<div class="skill-summary">
+			<?= $this->patient->getSummaryLine() ?>
+		</div>
+		<? if ($this->patient->shift->isEditable()) { ?>
+			<div class="skill-summary-buttons orange-button">
+				<a href="/mobile/patients/patient/runId/<?= $this->patient->run->id ?>">Edit</a>
+				<?= $this->partialLoop()->view->mobileEvalButton($this->patient->getHookIds(), $this->patient->shift->id); ?>
+			</div>
+		<? } ?>
+	</div>
+</div>

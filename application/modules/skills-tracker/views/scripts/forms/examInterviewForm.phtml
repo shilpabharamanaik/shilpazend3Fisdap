@@ -1,0 +1,59 @@
+<div id="wrapper">
+    <div id="formContainer">
+
+        <?php if (count($this->element->patients) > 0) { ?>
+        <div id="exam-interview-instructions">
+            <p>
+                We are missing Patient Exam and Interview data for each of the following patients. Please consult your patient care documentation and update the records below.
+            </p>
+            <br>
+            <p>
+                For patients that you performed the Exam and/or Interview, fill the corresponding checkbox. Patients with an unchecked Exam/Interview will be recorded as "Observed".
+
+            </p>
+            <br>
+            <p>
+            <div id="bold-warning">Do not save this form if you are not ready to submit all of the records on this page.</div>
+            </p>
+            <br>
+            <br>
+        </div>
+
+        <table id="patients-table">
+            <tr>
+                <th class="grid_4"> Shift Date </th>
+                <th class="grid_3"> Patient </th>
+                <th class="grid_2"> Primary Impression </th>
+                <th class="grid_1"> <div>Exam</div><br><a href="#" id="exam-check-all">All</a> </th>
+                <th class="grid_1"> <div>Interview</div><br><a href="#" id="interview-check-all">All</a> </th>
+            </tr>
+
+            <?php foreach($this->element->patients as $patient) { ?>
+
+                <tr>
+                    <td class="grid_4">
+                        <a title="Go to Skills &amp; Pt. Care" href="/skills-tracker/shifts/detailed-shift-report/shiftId/<?php echo $patient->shift->id ?>" class="shift_summary_wrapper shift_summary_display_small" data-shiftid="<?= $patient->shift->id ?>">
+                        <div class=" <?php echo $patient->shift->type ?> shift_summary_date_display"> <?php echo $patient->shift->start_datetime->format('F d, Y') . " " . $patient->shift->start_time ?> </div>
+                        </a>
+                    </td>
+                    <td class="grid_3"><?php echo $patient->age . ' yo ' . $patient->ethnicity->name . ' ' . $patient->gender->name ?></td>
+                    <td class="grid_2"><?php echo $patient->primary_impression->name ?></td>
+                    <td class="grid_1"><div class="exam_checkbox"><?php echo $this->element->{'exam_'.$patient->id}; ?></div>
+                    </td>
+                    <td class="grid_1"><div class="interview_checkbox"><?php echo $this->element->{'interview_'.$patient->id}; ?></div>
+                    </td>
+                </tr>
+
+            <?php } ?>
+
+        </table>
+
+        <div class="clear"></div>
+        <div class="grid_12"><?= $this->element->save;?></div>
+
+        <?php } else { ?>
+            <p>It looks like your patient care records are complete. Nice!</p>
+
+        <?php } ?>
+    </div>
+</div>

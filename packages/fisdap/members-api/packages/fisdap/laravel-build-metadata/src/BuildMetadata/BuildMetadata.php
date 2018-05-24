@@ -1,5 +1,6 @@
 <?php namespace Fisdap\BuildMetadata;
 
+
 /**
  * Class BuildMetadata
  *
@@ -92,9 +93,7 @@ class BuildMetadata
     public function validate()
     {
         foreach (get_object_vars($this) as $propName => $prop) {
-            if (is_null($this->$propName)) {
-                throw new \RuntimeException("BuildMetadata::\$${propName} cannot be null");
-            }
+            if (is_null($this->$propName)) throw new \RuntimeException("BuildMetadata::\$${propName} cannot be null");
         }
     }
 }

@@ -1,0 +1,22 @@
+<?= $this->pageTitleHelper() ?>
+
+
+
+<?= $this->navBar("edit"); ?>
+
+<div class="grid_12 island" id="selection-form">
+	
+	 <?
+    	$video = $this->youtubeVideo("aSm2Y1-qTn8", "edit-compliance-status-video.phtml", 590, 315);
+		if($video){
+			echo '<div id="video-wrapper" class="grid_12 withTopMargin">';
+			echo $video;
+			echo '</div><div class="clear"></div><div class="dotted-line"><hr></div>';
+		}
+    ?>
+	
+	<?= $this->messageHelper() ?>
+	<?= $this->selectionForm; ?>	
+</div>
+
+<?= $this->editComplianceForm; ?>

@@ -1,0 +1,25 @@
+<h2 class='page-title'>Evaluations</h2>
+<div class="grid_12" id="choose-evals">
+    <h3 class='page-title'>Choose an eval to complete:</h3>
+    <ul>
+        <? foreach ($this->evalOptions as $id => $name) { ?>
+            <li><a href="/oldfisdap/redirect/?loc=mobile/eval_display.php?shift_id=<?= $this->shift->id ?>;EvalDef_id=<?= $id ?>;EvalHookDef_id=<?= $this->hook_id ?>;beta=true"><?= $name ?></a></li>
+        <? } ?>
+    </ul>
+</div>
+
+    <br>
+    <br>
+    <br>
+    
+<div class="grid_12" id="completed-evals">
+    <h3 class='page-title'>Completed Evals:</h3>
+    <ul>
+        <? foreach ($this->completedEvals as $id => $eval) { ?>
+            <li><?= $eval->eval_def->eval_title ?></li>
+        <? } ?>
+    </ul>
+</div>
+<!--
+https://members1.fisdap.net/mobile/eval_display.php?shift_id=4456696&run_id=-1&EvalDef_id=139&EvalHookDef_id=113&table=ShiftData&data_id=4456696
+-->

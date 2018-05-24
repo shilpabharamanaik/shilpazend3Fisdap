@@ -8,9 +8,10 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
+
 /**
  * Coupon for account ordering
- *
+ * 
  * @Entity(repositoryClass="Fisdap\Data\Coupon\DoctrineCouponRepository")
  * @Table(name="fisdap2_coupons")
  * @HasLifecycleCallbacks
@@ -18,12 +19,12 @@ use Fisdap\EntityUtils;
 class Coupon extends EntityBaseClass
 {
     /**
-     * @var integer
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
-     */
-    protected $id;
+	 * @var integer
+	 * @Id
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 */
+	protected $id;
     
     /**
      * @var string
@@ -68,16 +69,16 @@ class Coupon extends EntityBaseClass
     public function isValid()
     {
         $today = new \DateTime();
-        $endDate = $this->end_date;
-        $endDate->setTime(23, 59, 59);
+		$endDate = $this->end_date;
+		$endDate->setTime(23, 59, 59);
         return ($today >= $this->start_date && $today <= $endDate);
     }
     
-    public function getDiscountedPrice($originalPrice)
-    {
-        return round(($originalPrice - ($originalPrice * $this->discount_percent * .01)), 2, PHP_ROUND_HALF_DOWN);
-    }
-    
+	public function getDiscountedPrice($originalPrice)
+	{
+		return round(($originalPrice - ($originalPrice * $this->discount_percent * .01)), 2, PHP_ROUND_HALF_DOWN);
+	}
+	
     /**
      * Given a coupon code, determine if it's valid
      *

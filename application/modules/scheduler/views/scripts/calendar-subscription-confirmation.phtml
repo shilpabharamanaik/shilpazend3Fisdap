@@ -1,0 +1,41 @@
+<? $isInstructor = \Fisdap\Entity\User::getLoggedInUser()->isInstructor(); ?>
+
+<div class="success">
+    Your link has been successfully generated. <?= $isInstructor ? 'You can manage your subscription links <a href="/scheduler/settings/subscriptions">here</a>.' : "" ?>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12 withTopMargin">
+    Copy this link: <?= $this->formText("subscription_url", Util_HandyServerUtils::getCurrentServerRoot() . "subs/" . $this->auth_key, array("class" => "fancy-input", "readonly"=>"readonly")) ?>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12 withTopMargin">
+    <h3 class="section-header">Subscribe through your calendar</h3>
+    <p>
+        Once you have subscribed, changes made to these shifts in Fisdap will be pushed to your personal calendar during periodic updates defined by your calendar service (for example, Google calendar updates at least once every 8 hours).
+    </p>
+</div>
+<div class="clear"></div>
+
+<? $helpUrl = "http://www.fisdap.net/support/scheduler/scheduler" . ($isInstructor ? "" : "_students"); ?>
+
+<div class="grid_2 withTopMargin">
+    <a href="<?= $helpUrl ?>#subsgcal" target="_blank"><img src="/images/icons/calendar_google.png" class="calendar_icon"><div class="calendar_caption">Google</div></a>
+</div>
+<div class="grid_2 withTopMargin">
+    <a href="<?= $helpUrl ?>#subsical" target="_blank"><img src="/images/icons/calendar_apple.png" class="calendar_icon"><div class="calendar_caption">Apple</div></a>
+</div>
+<div class="grid_2 withTopMargin">
+    <a href="<?= $helpUrl ?>#subsycal" target="_blank"><img src="/images/icons/calendar_yahoo.png" class="calendar_icon"><div class="calendar_caption">Yahoo!</div></a>
+</div>
+<div class="grid_2 withTopMargin">
+    <a href="<?= $helpUrl ?>#subsout" target="_blank"><img src="/images/icons/calendar_outlook.png" class="calendar_icon"><div class="calendar_caption">Outlook</div></a>
+</div>
+<div class="clear"></div>
+
+<div class='modal-buttons'>
+    <div class="modal-button-wrapper small gray-button">
+        <a href='#' id='calendar-ok-btn'>Ok</a>
+    </div>
+</div>

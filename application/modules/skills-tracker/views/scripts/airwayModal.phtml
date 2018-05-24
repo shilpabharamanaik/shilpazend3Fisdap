@@ -1,0 +1,51 @@
+<div class="container_12">
+	
+	<div class="grid_12">
+		<?php echo $this->element->airwayPerformed ?>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div class="grid_8">
+		<?php echo $this->element->airwayProcedure ?>
+	</div>
+	
+	<div class="grid_4">
+		<?php echo $this->element->airwaySize ?>
+	</div>
+	
+	<div class="clear"></div>
+
+
+	
+	<div class="grid_6">
+		<?php echo $this->element->airwayAttempts ?>
+	</div>
+	
+	<div class="grid_6">
+		<?php echo $this->element->airwaySuccess ?>
+	</div>
+	
+	<div class="clear"></div>
+	
+			
+	<?
+	if($this->element->clinical_quick_add) {?>
+		<div class="grid_12 airway_management_credit_wrapper">
+			<div class="airway_management_icon_wrapper">
+				<img src="/images/icons/airway_management.png">
+			</div>
+			<?php echo $this->element->airway_management_credit ?>
+		</div>
+		
+	
+		<div class="clear"></div>
+	<? } ?>
+
+	
+	<?php echo $this->element->airwayId ?>
+	<?php echo $this->element->patientId ?>
+	<?php echo $this->element->shiftId ?>
+	<?php echo $this->element->clincal_quick_add_page ?>
+
+</div>

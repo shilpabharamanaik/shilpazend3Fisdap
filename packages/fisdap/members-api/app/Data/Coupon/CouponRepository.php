@@ -2,6 +2,7 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface CouponRepository
  *
@@ -9,4 +10,4 @@ use Fisdap\Data\Repository\Repository;
  */
 interface CouponRepository extends Repository
 {
-}
+} 

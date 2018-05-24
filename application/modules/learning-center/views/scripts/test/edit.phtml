@@ -1,0 +1,63 @@
+<?= $this->pageTitleHelper() ?>
+<?= $this->form ?>
+<!--
+
+<script>
+	$(function(){
+		$('#start_date, #end_date').datepicker();
+	});
+</script>
+
+<form action='/learning-center/test/edit' method='post' id='edit_test_form'>
+	<input type='hidden' name='stid' value='<?php echo $this->scheduledTest->id; ?>' />
+	<div class='grid_12'>
+		<div class='grid_4'>
+			Contact <input type='text' value='<?php echo $this->scheduledTest->contact_name ?>' name='contact_name'/>
+		</div>
+		
+		<div class='grid_4'>
+			Phone <input type='text' value='<?php echo $this->scheduledTest->contact_phone ?>' name='contact_phone'/>
+		</div>
+		
+		<div class='grid_4'>
+			Email <input type='text' value='<?php echo $this->scheduledTest->contact_email ?>' name='contact_email'/>
+		</div>
+	</div>
+	
+	<div class='clear'></div>
+	
+	<h3>Select a Test</h3>
+	
+	<div class='grid_12'>
+		<div>
+			Test <?php echo $this->tests; ?>
+		</div>
+		
+		<div class='grid_8'>
+			<div>
+				Date range 
+				<?php echo $this->startDate; ?>
+				to 
+				<?php echo $this->endDate; ?>
+			</div>
+			<div>
+				<textarea rows="3" cols="40" name='test_notes'><?php echo $this->scheduledTest->test_notes; ?></textarea>
+			</div>
+		</div>
+		
+		<div class='grid_4'>
+			Students 
+			<?php echo $this->published; ?>
+			view their scores
+		</div>
+	</div>
+	
+	<div class='clear'></div>
+
+	<div class='grid_12'>
+		<div class='prefix_10 grid_1'>
+			<a href='/learning-center/index/schedule'>Back</a>
+		</div>
+		<div class='grid_1'><input type='submit' value='Next >'/></div>
+	</div>
+</form>-->

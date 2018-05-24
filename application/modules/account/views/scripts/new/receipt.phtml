@@ -1,0 +1,45 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_12 island">
+	<h3 class="section-header">Thank You!</h3>
+	<p>Your order has been processed, and we've emailed you a receipt. Here are your order details:</p>
+	<table class="receipt-table">
+        <tr>
+            <td>Reference number</td>
+            <td><?= $this->order->paypal_transaction_id ?></td>
+        </tr>
+
+		<tr>
+			<td>Products</td>
+			<td>
+                <?php
+                foreach($this->order->order_configurations->first()->getProductArray() as $product){
+                    echo $product['name'] . "<br />";
+                }
+                ?>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>Total</td>
+			<td>$<?= number_format($this->order->total_cost, 2, ".", ",") ?></td>
+		</tr>
+		<tr>
+			<td>Bill to</td>
+			<td>
+				<div style="float:right; padding-right:10px;">
+					<?= $this->order->phone ?><br>
+					<?= $this->order->email ?>
+				</div>
+				<?= $this->order->name ?><br>
+				<?= $this->order->getBillingAddress() ?>
+			</td>
+		</tr>
+	</table>
+	
+	<p>Now you're ready to set up your Fisdap account!</p>
+	<div class="clear"></div>
+    
+	<div class="small green-buttons action-buttons">
+		<a id="createButton" href="/account/new/index/code/<?= $this->order->order_configurations->first()->serial_numbers->first()->number;   ?>">Create Your Account</a>
+	</div>
+</div>

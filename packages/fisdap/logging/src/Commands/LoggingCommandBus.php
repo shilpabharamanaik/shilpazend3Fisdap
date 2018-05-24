@@ -2,6 +2,7 @@
 
 use Laracasts\Commander\CommandBus;
 
+
 /**
  * Decorating command bus that logs execution of commands
  *

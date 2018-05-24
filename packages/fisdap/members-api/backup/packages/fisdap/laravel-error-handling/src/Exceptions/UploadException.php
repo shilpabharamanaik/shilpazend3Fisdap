@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
+
 /**
  * Class UploadException
  *
@@ -13,8 +14,7 @@ class UploadException extends BadRequestHttpException
     /**
      * @param int $code
      */
-    public function __construct($code)
-    {
+    public function __construct($code) {
         $message = $this->codeToMessage($code);
         parent::__construct($message, $code);
     }

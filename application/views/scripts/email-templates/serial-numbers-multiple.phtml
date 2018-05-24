@@ -1,0 +1,70 @@
+<?
+if ($this->salesEmail) {
+	echo $this->order->getStaffOrderDetails();
+}
+?>
+Hello <?= $this->order->user->first_name ?>,<br>
+
+<p>
+	Thank you for your order of:<br>
+	<?
+		foreach ($this->order->order_configurations as $config) {
+			echo $config->quantity . " " . $config->getAccountSummary(true, " ") . " accounts with " . $config->getProductSummary() . "<br>";
+		}
+	?>
+</p>
+
+<p>
+	<? if ($this->order->payment_method->id == 1) { ?>
+		<p>
+			<?= $this->order->po_number ? "Purchase Order: {$this->order->po_number}" : "You did not enter a PO Number for this purchase." ?>
+		</p>
+		
+		<p>
+			Fisdap Order #<?= $this->order->id ?>
+		</p>
+		
+		An invoice for $<?= $this->order->total_cost ?> will be sent to:<br>
+		<?= $this->order->email ?>
+		
+			<? if ($this->order->invoice_delivery_method->id == 2) { ?>		
+		
+			<p>And by mail to:</p>
+			<?= $this->order->getBillingAddress() ?>
+			
+			<? } ?>	
+		
+	<? } else { ?> 
+		<p>
+			This email will serve as your receipt. Here are the transaction details:<br>
+			Ordered by: <?= $this->order->name ?><br>
+			Fisdap Order #<?= $this->order->id ?><br>
+			Transaction Ref: <?= $this->order->paypal_transaction_id ?><br>
+			Amount: $<?= $this->order->getTotalCost() ?>
+		</p>
+	<? } ?>
+</p>
+
+<p>
+	Each activation code can only be used once. Assign one activation code (below) to each student, and give them the following directions for creating an account:
+	<ol>
+		<li>Go to https://www.fisdap.net.</li>
+		<li>Click the "Create an Account" button.</li>
+		<li>Enter the activation code into the field and follow the prompts to activate an account.</li>
+	</ol>
+</p>
+
+<?php
+	echo "Here are your activation codes:<br>";
+	
+	foreach ($this->order->order_configurations as $config) {
+		echo "<p>";
+		echo $config->getAccountSummary(true, " ") . " accounts with " . $config->getProductSummary();
+		echo "<ul>";
+		foreach ($config->serial_numbers as $number) {
+			echo "<li>" . $number->number . "</li>";
+		}
+		echo "</ul>";
+		echo "</p>";
+	}
+?>

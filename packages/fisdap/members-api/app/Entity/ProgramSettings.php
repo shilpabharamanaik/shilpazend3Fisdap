@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Entity for program settings
  *
@@ -865,6 +866,7 @@ class ProgramSettings extends EntityBaseClass
             $description .= $request_type->name;
             $description .= ($perm) ? " with " : " without ";
             $description .= ($can) ? "permission. " : ". ";
+
         }
 
         return $description;
@@ -878,7 +880,7 @@ class ProgramSettings extends EntityBaseClass
      *
      * @return ProgramSettings
      * @codeCoverageIgnore
-     * @deprecated
+     * @deprecated 
      */
     public function set_timezone($value)
     {

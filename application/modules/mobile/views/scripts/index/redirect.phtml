@@ -1,0 +1,25 @@
+
+
+<?php
+	echo "<link href='/mobile/index/direct.css' rel='stylesheet'>";
+	//echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>';
+	echo "<meta name='viewport' content='width=device-width; initial-scale=1.0; maximum-scale=1.0;'>";
+	echo "</head>";
+	echo "<body style='text-align:left;'>";
+
+	echo "<img src='/images/logo_shadow.png' alt='fisdap logo' style='height:40px; float:right;'>";
+
+	echo "<div style='margin: 0 3% 3% 3%; padding-top:3%;'>";
+	echo "<h1>Did you know...?</h1>";
+	echo "<p>FISDAP has a mobile-web version of the Skills Tracker. It does everything that the full Skills Tracker does, but it'll look better on your small screen.</p>";
+	echo "<h1>Want to check it out?</h1>";
+?>
+<a id="mobile_redirect" class='fancy_button light_gray' href="/mobile/index"><div class='img_container'><img class='icon' src='/images/iphone_icon.png'></div><div class='button_text'><span class='bold_gothic'>Yes!</span> Go to<br><span class='gray_url'>http://www.fisdap.net/</span><span class='blue_url'>mobile</span></div></a>
+<br>
+<a id='full-site-redirect' class='fancy_button light_gray' href="/skills-tracker/shifts/?redirected=true"><div class='img_container'><img class='icon' style='float:left;' src='/images/pc_icon.png'></div><div class='button_text'><span class='bold_gothic'>No, thanks.</span> Continue to<br><span class='gray_url'>regular FISDAP</div></a>
+<?php
+	echo "<div class='checkbox_container'>";
+        echo $this->formCheckbox('dont_show', 1) . "Don't ask me again.";
+	echo "</div>";
+
+?>

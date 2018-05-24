@@ -19,7 +19,7 @@ final class GenderServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $router = app('router'); // Router Instance
+		$router = app('router'); // Router Instance
         parent::boot();
     }
     
@@ -38,3 +38,4 @@ final class GenderServiceProvider extends ServiceProvider
         ]);
     }
 }
+

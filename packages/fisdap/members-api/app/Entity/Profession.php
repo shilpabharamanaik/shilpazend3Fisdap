@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Entity class for Professions
  *
@@ -17,24 +18,24 @@ use Doctrine\ORM\Mapping\Table;
 class Profession extends Enumerated
 {
     /**
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
-     */
-    protected $id;
+	 * @Id
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 */
+	protected $id;
 
-    /**
-     * @Column(type="string")
-     */
-    protected $name;
+	/**
+	 * @Column(type="string")
+	 */
+	protected $name;
 
     /**
      * @var ArrayCollection|CertificationLevel[]
      * @OneToMany(targetEntity="CertificationLevel", mappedBy="profession")
      */
     protected $certifications;
-    
-    /**
+	
+	/**
      * @var ArrayCollection
      * @OneToMany(targetEntity="ReportCategory", mappedBy="profession")
      */
@@ -43,15 +44,15 @@ class Profession extends Enumerated
     public function __construct()
     {
         $this->certifications = new ArrayCollection();
-        $this->report_categories = new ArrayCollection();
+		$this->report_categories = new ArrayCollection();
     }
 
 
-    /**
-     * @return ArrayCollection|CertificationLevel[]
-     */
-    public function getCertifications()
-    {
-        return $this->certifications;
-    }
+	/**
+	 * @return ArrayCollection|CertificationLevel[]
+	 */
+	public function getCertifications()
+	{
+		return $this->certifications;
+	}
 }

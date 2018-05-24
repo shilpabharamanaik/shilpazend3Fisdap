@@ -1,0 +1,84 @@
+ <?
+if ($this->run->soft_deleted) {
+    echo "<td colspan='7' class='undo'>Run #" . $this->run->id . " successfully deleted. <a id='undo-delete-{$this->run->id}' href='#' onclick='undoDeleteRun(\"{$this->run->id}\"); return false;'>Undo!</a></td></tr>";
+    $elementStyle = "style='display:none;'";
+}
+?>
+
+<tr id='<?php echo $this->run->id ?>' <?= $elementStyle ?> <? if ($this->run->locked) echo "class='locked-run'"; ?>>
+    <?php if(\Fisdap\Entity\User::getLoggedInUser()->getCurrentRoleData()->program->program_settings->allow_signoff_on_patient) { ?>
+        <td class="lock-column">
+            <?php
+            // If the patient is locked, show the lock icon.
+            if ($this->run->locked) { ?>
+                <img class="small-icon square svg" alt="locked patient" src="/images/icons/locked.svg" title="locked patient">
+            <?php } ?>
+        </td>
+    <?php } ?>
+
+    <td class="number-column">
+		<?php echo $this->partialCounter ?>
+	</td>
+	<td 
+	<?
+	if (!$this->run->locked) {
+		echo "class='clickable summary-column' onclick='window.location = \"/skills-tracker/patients/index/runId/" . $this->run->id . "\";'";
+	} else {
+		echo "class='clickable summary-column' onclick='window.location =\"/skills-tracker/shifts/detailed-shift-report/shiftId/" . $this->run->shift->id . "#run-" . $this->partialCounter . "\";'";
+	}
+	?>>
+		<?
+			foreach($this->patients as $patient) {
+				echo "<h4 class='" . $this->run->shift->type . "'>" . $patient->getSummaryLine() . "</h4>";
+				echo $patient->primary_impression->name;
+			}
+		?>
+	</td>
+	
+	<td class="interventions-column">
+		<?php
+			foreach ($this->patients as $patient) {
+				echo "<div class='intervention'>Airway: " . count($patient->airways) . "</div>";
+				echo "<div class='intervention'>Meds: " . count($patient->meds) . "</div>";
+				echo "<div class='intervention'>IV: " . count($patient->ivs) . "</div>";
+				echo "<div class='intervention'>Cardiac: " . count($patient->cardiac_interventions) . "</div>";
+				echo "<div class='intervention'>Vitals: " . count($patient->vitals) . "</div>";
+				echo "<div class='intervention'>Other: " . count($patient->other_interventions) . "</div>";
+			}
+		?>
+	</td>
+	
+	<td class="team-lead-column">
+		<?php
+			foreach ($this->patients as $patient) {
+				echo $patient->team_lead ? "<img width='15px' height='15px' src='/images/icons/checkmark.png'>" : "";		
+			}
+		?>
+	</td>
+	<?php if(\Fisdap\Entity\User::getLoggedInUser()->getCurrentRoleData()->program->program_settings->allow_signoff_on_patient): ?>
+        <td class="status-column">
+            <?php
+            if ($this->run->verification->verified) {
+                $checkmarkIcon = $this->run->shift->type . "-signoff.svg";
+            } else {
+                $checkmarkIcon = $this->run->shift->type . "-no-signoff.svg";
+            }
+            echo "<a href='/skills-tracker/patients/index/runId/" . $this->run->id . "#signoff'>
+			        <img title='sign off on patient' class='small-icon square svg' src='/images/icons/$checkmarkIcon'>
+                </a>";
+            ?>
+        </td>
+	<?php endif; ?>
+
+    <td class="actions-column">
+        <div class="action-cell">
+            <?
+            if (!$this->run->locked) {
+                echo "<a href='#' class='delete-run' title='delete patient' runid='" . $this->run->id . "'>
+			        <img class='tiny-icon square svg' src='/images/icons/delete.svg' alt='delete patient'>
+                </a>";
+            }
+            ?>
+        </div>
+    </td>
+</tr>

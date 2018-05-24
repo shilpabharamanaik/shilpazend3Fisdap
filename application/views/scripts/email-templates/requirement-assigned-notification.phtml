@@ -1,0 +1,8 @@
+Hello <?= $this->name ?>,<br><br>
+
+You have been assigned <?= $this->count ?> new requirement<?= $this->count > 1 ? "s" : "" ?>:<br>
+<? foreach ($this->requirements as $requirement) {
+	echo "- " . $requirement['requirementName'] . ": due " . $requirement['due_date'] . "<br>";
+} ?>
+<br><br>
+If you have any questions about how to fulfill <?= $this->count > 1 ? "these requirements" : "this requirement" ?>, please contact your instructor.

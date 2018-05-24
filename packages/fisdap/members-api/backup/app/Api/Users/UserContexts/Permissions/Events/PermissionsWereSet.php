@@ -5,6 +5,7 @@ use Fisdap\Entity\InstructorLegacy;
 use Fisdap\Entity\RoleData;
 use Fisdap\Entity\User;
 
+
 /**
  * Event to fire when role permissions have been set
  *

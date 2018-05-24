@@ -1,0 +1,97 @@
+<div id="labPracticeSummary">
+
+    <div class='lab-practice-report-wrapper'>
+
+        <div class='lab-practice-report-headers'>
+            <?= $this->pageTitleHelper() ?>
+
+            <div class="report-details">
+                <?= $this->certLevel; ?>, Attempts from <?= $this->dateRange; ?>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+
+        <?php echo $this->eurekaModal; ?>
+
+
+        <?php if ($this->detailedReport) { ?>
+            <div id='help-bubble-wrapper'>
+                <div class="grid_1 no-pdf">
+                    <a href='#' id='pdfLink'><img src='/images/icons/pdf_icon.png'/></a>
+                </div>
+            </div>
+            <br/><br/>
+
+            <div id='help-bubble-wrapper'>
+                <img class="question-mark" src="/images/icons/question_mark.svg"> <a href="3" id='helpBubbleTrigger'>What
+                    do the icons mean?</a>
+            </div>
+
+            <div id='key'>
+
+                <h2>Report Key
+                    <img id='closeHelp' src="/images/icons/delete.png">
+                </h2>
+
+                <div class="clear"></div>
+
+                <img class='checkmark' src='/images/icons/checkmark.png'>
+
+                <div class="right-justified">= Peer or instructor checkoff for a successful attempt <span
+                        class='leftMargin'>that counts towards the goal</span></div>
+
+                <div class="clear"></div>
+
+                <img class='incomplete' src='/images/icons/incomplete.png'> (incomplete)
+                <div class="right-justified">= Incomplete instructor checkoff for a successful <span class='leftMargin'>attempt (will count towards
+				goal once confirmed)</span></div>
+
+                <div class="clear"></div>
+
+                <div class="confirmAlert unconfirmKey">unconfirmed</div>
+                <div class="right-justified">= An attempt (pass or fail) with an unconfirmed <span class='leftMargin'>instructor checkoff (these attempts are not included</span>
+                    <span class='leftMargin'>in eureka data)</span></div>
+
+                <div class="clear"></div>
+
+
+                <div class='success' id="succesKey"></div>
+                <div class="right-justified">= When the goals (eureka/peer/instructor) were <span class='leftMargin'>achieved</span>
+                </div>
+
+            </div>
+        <?php } else { ?>
+
+            <div id='help-bubble-wrapper'>
+                <div class="grid_1 no-pdf">
+                    <a href='#' id='pdfLink'><img src='/images/icons/pdf_icon.png'/></a>
+                </div>
+            </div>
+
+            <div class="grid_12 island withTopMargin">
+                <h3 class="section-header">Summary</h3>
+                <?= $this->summary; ?>
+            </div>
+
+        <?php } ?>
+
+        <div class="grid_12 island withTopMargin">
+            <?php $sectionHeader = ($this->isInstructor) ? "Active Items" : "Lab Practice Items"; ?>
+            <h3 class="section-header"><?= $sectionHeader; ?></h3>
+            <?= $this->activeData; ?>
+        </div>
+
+
+        <?php
+        if ($this->isInstructor && $this->inactiveData) {
+            ?>
+            <div class="grid_12 island withTopMargin">
+                <h3 class="section-header">Inactive Items</h3>
+                <?= $this->inactiveData; ?>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+</div>

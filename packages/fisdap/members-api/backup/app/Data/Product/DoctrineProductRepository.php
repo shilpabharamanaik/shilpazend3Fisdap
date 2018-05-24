@@ -65,6 +65,7 @@ class DoctrineProductRepository extends DoctrineRepository implements ProductRep
                 return implode(",<br />", $includedResults);
             } else {
                 return $includedResults;
+
             }
         } else {
             return $results;
@@ -168,6 +169,7 @@ class DoctrineProductRepository extends DoctrineRepository implements ProductRep
             }
         }
         return $availablePackages;
+
     }
 
     /**
@@ -216,5 +218,6 @@ class DoctrineProductRepository extends DoctrineRepository implements ProductRep
             default:
                 return implode(", ", $list);
         }
+
     }
 }

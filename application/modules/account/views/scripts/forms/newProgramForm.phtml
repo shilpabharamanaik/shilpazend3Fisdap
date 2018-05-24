@@ -1,0 +1,117 @@
+<div class="grid_6">
+    <h4 class="section-header">Contact Info</h4>
+    <?= $this->element->name ?>
+    <div class="clear"></div>	  
+    <?= $this->element->programId ?>
+    <div class="clear"></div>
+    <?= $this->element->abbreviation ?>
+    <div class="clear"></div>
+    <?= $this->element->addressLineOne ?>
+    <div class="clear"></div>
+    <?= $this->element->addressLineTwo ?>
+    <div class="clear"></div>
+    <?= $this->element->addressLineThree ?>
+    <div class="clear"></div>
+    <?= $this->element->city ?>
+    <div class="clear"></div>
+    <?= $this->element->country ?>
+    <div class="clear"></div>
+    <?= $this->element->state ?>
+    <div class="clear"></div>
+    <?= $this->element->zip ?>
+    <div class="clear"></div>
+    <?= $this->element->phone ?>
+    <div class="clear"></div>
+    <?= $this->element->timezone ?>
+    <div class="clear"></div>
+
+    <? if ($this->element->program->id) { ?>
+        <?= $this->element->primaryContact ?>
+        <div class="clear"></div>
+        
+        <h4 class="section-header withTopMargin">Skills Tracker</h4>
+        <p class="section-body">
+            <a href="/skills-tracker/settings/">Manage</a> my Skills Tracker settings.
+        </p>
+        
+        <h4 class="section-header">Scheduler</h4>
+        <p class="section-body">
+            <a href="<?= $this->element->program->scheduler_beta ? "/scheduler/settings/" : Util_HandyServerUtils::get_fisdap_members1_url_root() . "index.html?target_pagename=scheduler/schedulerPrefs.html" ?>">Manage</a> my Scheduler settings.
+        </p>
+        
+    <? } ?>
+
+    
+  
+    <?= $this->element->professionId ?>
+</div>
+
+
+<div class="grid_6">
+    <? if ($this->element->program->id) { ?>
+        <h4 class="section-header">Billing Info</h4>
+        <p>
+            <?= $this->element->billingContact ?>
+            <div class="clear"></div>
+            <?= $this->element->billingEmail ?>
+            <div class="clear"></div>
+            <?= $this->element->billingAddressLineOne ?>
+            <div class="clear"></div>
+            <?= $this->element->billingAddressLineTwo ?>
+            <div class="clear"></div>
+            <?= $this->element->billingAddressLineThree ?>
+            <div class="clear"></div>
+            <?= $this->element->billingCity ?>
+            <div class="clear"></div>
+            <?= $this->element->billingCountry ?>
+            <div class="clear"></div>
+            <?= $this->element->billingState ?>
+            <div class="clear"></div>
+            <?= $this->element->billingZip ?>
+            <div class="clear"></div>
+            <?= $this->element->billingPhone ?>
+            <div class="clear"></div>
+        </p>
+    <? } ?>
+
+    <?php if ($this->element->user && $this->element->user->isStaff()) { ?>
+    <h4 class="section-header withTopMargin">Ordering Permissions</h4>
+    <p>
+        <?= $this->element->orderPermissions ?>
+    </p>
+    <?php } ?>
+
+    <div class="withTopMargin" id="emsInfo">
+        <? if ($this->element->emsInfo) {
+            echo $this->element->emsInfo;
+        } ?>
+        
+        <? if (!$this->element->program->id) { ?>
+        <div id="referralWrapper">
+            <?= $this->element->referral ?>
+        </div>
+        
+        <div class="clear"></div>
+        
+        <div id="descriptionWrapper">
+            <?= $this->element->description ?>    
+        </div>
+        <div class="clear"></div>
+        <? } ?>
+    </div>
+</div>
+    
+    
+
+<div class="clear"></div>
+
+
+<? if ($this->element->program->id) { ?>
+    <div class="prefix_11 grid_1 withTopMargin">
+        <?= $this->element->save ?>
+    </div>
+<? } else { ?>
+    <div class="prefix_9 grid_3 withTopMargin">
+        <a id="next-link" href="#">Next (About you) >></a>
+    </div>
+<? } ?>

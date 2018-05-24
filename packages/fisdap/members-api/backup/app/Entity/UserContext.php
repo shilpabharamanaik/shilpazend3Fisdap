@@ -17,6 +17,7 @@ use Doctrine\ORM\Mapping\OrderBy;
 use Fisdap\Data\Slot\SlotAssignmentRepository;
 use Fisdap\EntityUtils;
 
+
 /**
  * Entity class for User Roles.
  *
@@ -440,6 +441,7 @@ class UserContext extends EntityBaseClass
 
             // set the correct property for this entity type
             $this->studentRoleData = $roleDataEntity;
+
         } else {
             if ($this->role->name == "instructor") {
                 $roleDataEntity->cell_phone = $this->user->cell_phone;
@@ -466,12 +468,8 @@ class UserContext extends EntityBaseClass
     {
         /** @var SlotAssignmentRepository $slotAssignmentRepository */
         $slotAssignmentRepository = EntityUtils::getRepository("SlotAssignment");
-        $assignments = $slotAssignmentRepository->getUserContextAssignmentIdsByDate(
-            $this->id,
-            $startdate,
-            $enddate,
-            $shiftId
-        );
+        $assignments = $slotAssignmentRepository->getUserContextAssignmentIdsByDate($this->id, $startdate, $enddate,
+            $shiftId);
 
         if (count($assignments) > 0) {
             return true;
@@ -479,12 +477,8 @@ class UserContext extends EntityBaseClass
 
         // if this is a student, check their shifts, too
         if ($this->role->name == "student") {
-            $shifts = EntityUtils::getRepository("ShiftLegacy")->getShiftsByDateRange(
-                $this->id,
-                $startdate,
-                $enddate,
-                $shiftId
-            );
+            $shifts = EntityUtils::getRepository("ShiftLegacy")->getShiftsByDateRange($this->id, $startdate, $enddate,
+                $shiftId);
             if (count($shifts) > 0) {
                 return true;
             }
@@ -635,7 +629,7 @@ class UserContext extends EntityBaseClass
      */
     public function isCompliant($requirements = [])
     {
-        if (! is_array($requirements)) {
+        if ( ! is_array($requirements)) {
             $requirements = [$requirements];
         }
 
@@ -653,7 +647,7 @@ class UserContext extends EntityBaseClass
         //Loop over this user's attachments and figure out if he/she is out of compliance
         foreach ($this->requirement_attachments as $attachment) {
             if (in_array($attachment->requirement->id, $reqIds)) {
-                if (! $attachment->isCompliant()) {
+                if ( ! $attachment->isCompliant()) {
                     return false;
                 }
             }
@@ -880,7 +874,7 @@ class UserContext extends EntityBaseClass
     public function hasPermission($permission)
     {
         // a non-instructor is never going to have permissions, so always return false
-        if (! $this->isInstructor()) {
+        if ( ! $this->isInstructor()) {
             return false;
         }
 
@@ -919,15 +913,14 @@ class UserContext extends EntityBaseClass
      * @codeCoverageIgnore
      * @deprecated
      */
-    public function getIncludedTabs()
-    {
+    public function getIncludedTabs(){
         $includedTabs = [];
 
         if ($this->isInstructor()) {
             // Check to see if the instructor has permission to edit student data.
-            if ($this->hasPermission('View All Data') || ($this->hasPermission('View Schedules'))) {
+            if($this->hasPermission('View All Data') || ($this->hasPermission('View Schedules'))) {
                 $includedTabs['home'] = ["dashboard", "student_portfolios"];
-            } else {
+            }else{
                 $includedTabs['home'] = ["dashboard"];
             }
 
@@ -949,7 +942,7 @@ class UserContext extends EntityBaseClass
             $includedTabs['help'] = true;
 
             // if the student has scheduler, add the dashboard, schedule and reports tabs
-            if ($serial_number->hasScheduler()) {
+            if ($serial_number->hasScheduler()){
                 $includedTabs['home'] = ["dashboard"];
                 $includedTabs['shifts'] = ["schedule"];
                 $includedTabs['reports'] = true;
@@ -982,4 +975,5 @@ class UserContext extends EntityBaseClass
 
         return $includedTabs;
     }
+
 }

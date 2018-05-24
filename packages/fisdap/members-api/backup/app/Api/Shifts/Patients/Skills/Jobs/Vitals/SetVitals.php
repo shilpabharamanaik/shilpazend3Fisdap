@@ -154,8 +154,7 @@ final class SetVitals extends AbstractSkills
      */
     public $temperatureUnits;
 
-    public function setVitalId($vitalId)
-    {
+    public function setVitalId($vitalId) {
         $this->vitalId = $vitalId;
     }
 
@@ -167,7 +166,8 @@ final class SetVitals extends AbstractSkills
     public function handle(
         EntityManagerInterface $em,
         EventDispatcher $eventDispatcher
-    ) {
+    )
+    {
         $this->em = $em;
 
         // Try to grab an existing Vital. If not found, create a new one.
@@ -179,7 +179,7 @@ final class SetVitals extends AbstractSkills
 
         $this->pulseQuality = $this->validResourceEntityManager(VitalPulseQuality::class, $this->pulseQualityId);
         $this->respiratoryQuality = $this->validResourceEntityManager(VitalRespQuality::class, $this->respiratoryQualityId);
-        $vital->setVitalInfo($this);
+        $vital->setVitalInfo($this);     
         $vital->setDefaultSkills($this);
 
         /**
@@ -189,7 +189,7 @@ final class SetVitals extends AbstractSkills
 
         $eventDispatcher->fire($this->vitalId);
 
-        return $vital;
+        return $vital; 
     }
     
     public function rules()
@@ -204,3 +204,4 @@ final class SetVitals extends AbstractSkills
         ];
     }
 }
+

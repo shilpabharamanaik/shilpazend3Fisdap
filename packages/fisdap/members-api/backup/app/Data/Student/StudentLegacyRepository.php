@@ -7,12 +7,13 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface StudentLegacyRepository
  *
  * @package Fisdap\Data\Student
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface StudentLegacyRepository extends Repository
-{
+interface StudentLegacyRepository extends Repository {
+
 }

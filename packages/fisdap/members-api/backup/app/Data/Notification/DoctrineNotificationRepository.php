@@ -81,6 +81,7 @@ class DoctrineNotificationRepository extends DoctrineRepository implements Notif
         $results = $qb->getQuery()->getArrayResult();
 
         return $results;
+
     }
 
     /**
@@ -124,7 +125,7 @@ class DoctrineNotificationRepository extends DoctrineRepository implements Notif
 
             //Get results and stick ids into return array
             $results = $qb->getQuery()->getArrayResult();
-            foreach ($results as $result) {
+            foreach($results as $result) {
                 $recipients[] = $result['id'];
             }
         }
@@ -154,7 +155,7 @@ class DoctrineNotificationRepository extends DoctrineRepository implements Notif
 
             //Get results and stick ids into return array
             $results = $qb->getQuery()->getArrayResult();
-            foreach ($results as $result) {
+            foreach($results as $result) {
                 $recipients[] = $result['id'];
             }
         }
@@ -177,7 +178,7 @@ class DoctrineNotificationRepository extends DoctrineRepository implements Notif
 
             //Get results and stick ids into return array
             $results = $qb->getQuery()->getArrayResult();
-            foreach ($results as $result) {
+            foreach($results as $result) {
                 $recipients[] = $result['id'];
             }
         }
@@ -207,7 +208,7 @@ class DoctrineNotificationRepository extends DoctrineRepository implements Notif
 
         //Loop over recipients and create array of individual inserts to be added to our mass insert
         $insertValues = [];
-        foreach ($recipients as $recipient) {
+        foreach($recipients as $recipient) {
             $insertValues[] = '(' . $notificationId . ', ' . $recipient . ', 0)';
         }
 

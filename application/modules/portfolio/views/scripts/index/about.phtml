@@ -1,0 +1,90 @@
+<?php
+
+/* * **************************************************************************
+ *
+ *         Copyright (C) 1996-2011.  This is an unpublished work of
+ *                          Headwaters Software, Inc.
+ *                             ALL RIGHTS RESERVED
+ *         This program is a trade secret of Headwaters Software, Inc.
+ *         and it is not to be copied, distributed, reproduced, published,
+ *         or adapted without prior authorization
+ *         of Headwaters Software, Inc.
+ *
+ * ************************************************************************** */
+
+/**
+ * This is the about page for the portfolio, it gives an overview of the student and some very basic info on their internship progress
+ *
+ * @author khanson
+ */
+?>
+<? if (!$this->errorMessage) { ?>
+<?php if (!$this->contentOnly) { ?>
+
+	<h2 class="page-title"><?= $this->student->user->getFullName() ?>'s Portfolio</h2>
+
+	<?= $this->portfolioNavigation($this->skillstracker, $this->compliance); ?>
+
+	<div class='grid_9'>
+		<div id="portfolio-page-content" class="island">
+<?php } else { ?>
+	<div class='grid_12'>
+		<div class="island">
+<?php } ?>
+			<?= $this->aboutStudent(array(
+				'student' => $this->student->id,
+				'helpers' => array(
+					'profile-pic' => array(
+                        'options' => array(
+                            'size' => '265'
+                        )
+                    ),
+					'info',
+					'description',
+					'contact-info'
+				)
+			)); ?>
+			<div class='clear' style='margin-bottom:2em'></div>
+
+			<?php if ($this->skillstracker) { ?>
+			<div class='grid_6'>
+				<h3 class="section-header">Certifications</h3>
+				<?php
+					$seenCount = 0;
+					
+					foreach($this->student->studentCourseCertifications as $scc){
+						$curTime = time();
+						if($scc->certification_date && $scc->expires && ($curTime > $scc->certification_date->format('U') && $curTime < $scc->expires->format('U'))){
+							$seenCount++;
+							echo "<div class='certification-item'>";
+							echo "<span class='certification-name'>" . $scc->course_certification->name . "</span>";
+							echo "</div>";
+						}
+					}
+					
+					if($seenCount == 0){
+						echo "No certifications have been obtained yet.";
+					}
+				?>
+			</div>
+			<div class='grid_6'>
+				<h3 class="section-header">Internship Progress</h3>
+				<div>
+					<h4 class="header">Hours Completed</h4>
+					<p>Lab: <?= $this->lab_hours; ?></p>
+					<p>Clinical: <?= $this->clinical_hours; ?></p>
+					<p>Field: <?= $this->field_hours; ?></p>
+					<p>Total: <?= $this->total_hours; ?></p>
+				</div>	
+				<div>
+					<h4 class="header">Patient Contacts</h4>
+					<p>Clinical: <?= $this->clinical_patients; ?></p>
+					<p>Field: <?= $this->field_patients; ?></p>
+					<p>Total: <?= $this->total_patients; ?></p>
+				</div>
+			</div>
+			<?php } ?>
+			
+		</div>
+	</div>
+<?php } ?>

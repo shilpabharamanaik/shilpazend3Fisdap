@@ -4,9 +4,10 @@ use Fisdap\Attachments\Categories\Commands\Creation\CreateAttachmentCategoriesCo
 use Fisdap\Attachments\Categories\Commands\Exceptions\MissingAttachmentCategoryEntityClass;
 use Fisdap\Attachments\Categories\Entity\AttachmentCategory;
 
+
 /**
  * Class CreateAttachmentCategoriesCommandCest
- *
+ * 
  * @author  Ben Getsug <bgetsug@fisdap.net>
  */
 class CreateAttachmentCategoriesCommandCest extends AttachmentCategoryCommandCestTemplate
@@ -57,9 +58,8 @@ class CreateAttachmentCategoriesCommandCest extends AttachmentCategoryCommandCes
     {
         // assert
         $I->assertTrue(
-            $I->seeExceptionThrown(
-                MissingAttachmentCategoryEntityClass::class,
-                function () {
+            $I->seeExceptionThrown(MissingAttachmentCategoryEntityClass::class,
+                function() {
                     // arrange
                     $this->attachmentTypeMapperMock->shouldReceive('getAttachmentCategoryEntityClassName')->once()
                         ->with('fake')->andReturnNull();

@@ -1,0 +1,15 @@
+<div id="searchWrapper">
+    <p id="label">Looks like you have more than one Fisdap account. Pick the one that you would like to reset the password for.</p>
+    
+    <div id="radioButtons">
+        <?= $this->element->users;?>
+    </div>
+    
+    <div class="small gray-button">
+        <a id="backButton" href="/account/help/forgot">< Back</a>
+    </div>
+    
+    <?= $this->element->hiddenEmail;?>
+    <?= $this->element->save;?>
+</div>
+

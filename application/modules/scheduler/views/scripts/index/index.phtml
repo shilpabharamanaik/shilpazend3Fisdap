@@ -1,0 +1,99 @@
+<div id="scheduler-page-title"><?= $this->pageTitleHelper() ?></div>
+<?= $this->tour->guidedTourHelper($this->tour_id); ?>
+
+<? if($this->permissions['lab'] || $this->permissions['clinical'] || $this->permissions['field']) { ?>
+	<div id="cal-add-shift-btns">
+		
+		<? if($this->permissions['lab']) {
+			$href = ($this->isStudent) ? "#" : "/scheduler/shift/new/type/lab"; ?>
+			<a href="<?= $href ?>" title="add a lab shift" id="add-lab-scheduler-shift">+ Lab Practice</a>
+		<? } ?>
+		
+		<? if($this->permissions['clinical']) {
+			$href = ($this->isStudent) ? "#" : "/scheduler/shift/new/type/clinical"; ?>
+			<a href="<?= $href ?>" title="add a clinical shift" id="add-clinical-scheduler-shift">+ Clinical Shift</a>
+		<? } ?>
+		
+		<? if($this->permissions['field']) {
+			$href = ($this->isStudent) ? "#" : "/scheduler/shift/new/type/field"; ?>
+			<a href="<?= $href ?>" title="add a field shift" id="add-field-scheduler-shift">+ Field Shift</a>
+		<? } ?>
+		
+	</div>
+<? } ?>
+
+<div class="clear"></div>
+
+<?= $this->navBar("calendar"); ?>
+
+<?= $this->filters; ?>	
+
+
+<div id="cal-island" class="grid_12 island no-overflow">
+
+	<? if ($this->isStudent) {
+		echo $this->partial("student-presets.phtml", array("preset_data" => $this->preset_data));
+	}
+	?>
+
+	<div id="filters_place_holder"></div>
+
+	
+	<?= $this->calendarControls; ?>
+
+	
+	<img src="/images/throbber_small.gif" id="cal-throbber">
+		
+			
+		
+		
+	
+<? if($this->bad_browser) { ?>
+
+	<div class="grid_12 error" style='margin-left:-0.25em;'>
+		
+		Uh oh! You are using a web browser that we do not support. You can try using Fisdap, but you may find that things don't work or look quite right.
+		To enjoy the optimal Fisdap experience, we recommend using one of the following browsers: <br />
+		
+		<ul style='margin-top:1em;'>
+			<li><a href='https://www.google.com/chrome' target='new'>Google Chrome</a></li>
+			<li><a href='http://www.mozilla.org/en-US/firefox/new/' target='new'>Mozilla Firefox</a></li>
+			<li><a href='http://windows.microsoft.com/en-us/internet-explorer/products/ie/home' target='new'>Microsoft Internet Explorer 11</a></li>
+			<li><a href='http://www.apple.com/safari/' target='new'>Apple Safari</a></li>
+		</ul>
+		
+	</div>
+ <?
+} ?>
+
+	
+
+	<div id="calendar">
+		<?= $this->calendar; ?>
+	</div>
+	
+</div>
+
+<?= $this->partial("scheduler-legend.phtml", array("isStudent" => $this->isStudent)); ?>
+
+<? if($this->isStudent) { ?>
+	<?= $this->shiftRequestModal; ?>
+    <?= $this->studentSignupModal; ?>
+
+<? } else { ?>
+	<?= $this->shiftHistoryModal; ?>
+	<?= $this->studentDropModal; ?>
+	<?= $this->assignModal;	?>
+	<?= $this->eventDeleteModal; ?>
+	<?= $this->whichEventsModal; ?>
+<? } ?>
+
+    <?= $this->calendarSubscriptionModal; ?>
+	<?= $this->shiftDeleteModal; ?>
+	<?= $this->studentShiftModal; ?>
+	<?= $this->schedulerPdfModal; ?>
+	<?= $this->viewComplianceModal ?>
+	<?= $this->displayOptionsModal ?>
+	
+<div class="clear"></div>
+

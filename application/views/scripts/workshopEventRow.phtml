@@ -1,0 +1,44 @@
+<tr>
+    <td class='id'>
+        <?= $this->item->id ?>
+    </td>
+    
+    <td class='location'>
+        <?= $this->item->location ?>
+    </td>
+    
+    <td class='date'>
+        <?= $this->item->date->format('m-d Y') ?>
+    </td>
+
+    <td class='deadline'>
+        <?= $this->item->deadline->format('m-d Y') ?>
+    </td>    
+    
+    <td class='cost'>
+        <?= "$" . $this->item->cost ?>
+    </td>
+
+    <td class='id'>
+        <?= $this->item->duration ?>
+    </td>
+
+    <td class='id'>
+        <?= $this->item->email_subject ?>
+    </td>
+    
+    <td class='id'>
+        <?= $this->item->email_text ?>
+    </td>
+    
+     <td>
+        <a href="/events/update/workshopId/<?= $this->item->id; ?>" >
+        <img src="\images\icons\edit.png" alt="Edit Workshop"></a>
+    </td>
+    
+    <td>
+        <a href="/events/delete/workshopId/<?= $this->item->id; ?>" class="deleteWorkshop">
+        <img src="\images\icons\delete.png" alt="Delete Workshop" width="45" height="45"></a>
+    </td>    
+    
+</tr>    

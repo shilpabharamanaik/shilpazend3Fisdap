@@ -181,8 +181,7 @@ const COUCHBASE_REPLICA_SELECT = LCB_REPLICA_SELECT;
 /**
  * A class representing a connection to a Couchbase bucket.
  */
-class Couchbase
-{
+class Couchbase {
 
     /**
      * Constructs a new instance of a Couchbase object.
@@ -198,8 +197,8 @@ class Couchbase
      * @param string $bucket The name of the bucket to connect to
      * @param boolean $persistent If a persistent object should be used or not
      */
-    public function __construct($hosts = array("localhost"), $user = "", $password = "", $bucket = "default", $persistent = true)
-    {
+    function __construct($hosts = array("localhost"), $user = "", $password = "", $bucket = "default", $persistent = true) {
+
     }
 
     /**
@@ -218,8 +217,8 @@ class Couchbase
      * @return string the cas value of the object if success
      * @throws CouchbaseException if an error occurs
      */
-    public function add($id, $document, $expiry = 0, $persist_to = 0, $replicate_to = 0)
-    {
+    function add($id, $document, $expiry = 0, $persist_to = 0, $replicate_to = 0) {
+
     }
 
     /**
@@ -244,8 +243,8 @@ class Couchbase
      * @return string the cas value of the object if success
      * @throws CouchbaseException if an error occurs
      */
-    public function set($id, $document, $expiry = 0, $cas = "", $persist_to = 0, $replicate_to = 0)
-    {
+    function set($id, $document, $expiry = 0, $cas = "", $persist_to = 0, $replicate_to = 0) {
+
     }
 
     /**
@@ -260,8 +259,8 @@ class Couchbase
      * @return array list of CAS's for stored values
      * @throws CouchbaseException if an error occurs
      */
-    public function setMulti($documents, $expiry = 0, $persist_to = 0, $replicate_to = 0)
-    {
+    function setMulti($documents, $expiry = 0, $persist_to = 0, $replicate_to = 0) {
+
     }
 
     /**
@@ -286,8 +285,8 @@ class Couchbase
      * @return string the cas value of the object if success
      * @throws CouchbaseException if an error occurs
      */
-    public function replace($id, $document, $expiry = 0, $cas = "", $persist_to = 0, $replicate_to = 0)
-    {
+    function replace($id, $document, $expiry = 0, $cas = "", $persist_to = 0, $replicate_to = 0) {
+
     }
 
     /**
@@ -311,8 +310,8 @@ class Couchbase
      * @return string the cas value of the object if success
      * @throws CouchbaseException if an error occurs
      */
-    public function prepend($id, $document, $expiry = 0, $cas = "", $persist_to = 0, $replicate_to = 0)
-    {
+    function prepend($id, $document, $expiry = 0, $cas = "", $persist_to = 0, $replicate_to = 0) {
+
     }
 
     /**
@@ -336,15 +335,15 @@ class Couchbase
      * @return string the cas value of the object if success
      * @throws CouchbaseException if an error occurs
      */
-    public function append($id, $document, $expiry = 0, $cas = "", $persist_to = 0, $replicate_to = 0)
-    {
+    function append($id, $document, $expiry = 0, $cas = "", $persist_to = 0, $replicate_to = 0) {
+
     }
 
     /**
      * Please use replace with the $cas field specified.
      */
-    public function cas($cas, $id, $document, $expiry)
-    {
+    function cas($cas, $id, $document, $expiry) {
+
     }
 
     /**
@@ -361,8 +360,8 @@ class Couchbase
      * @return object The document from the cluster
      * @throws CouchbaseException if an error occurs
      */
-    public function get($id, $callback = null, &$cas = "")
-    {
+    function get($id, $callback = NULL, &$cas = "") {
+
     }
 
     /**
@@ -374,8 +373,8 @@ class Couchbase
      * @return array an array containing the documents
      * @throws CouchbaseException if an error occurs
      */
-    public function getMulti($ids, &$cas = array(), $flags = 0)
-    {
+    function getMulti($ids, &$cas = array(), $flags = 0) {
+
     }
 
     /**
@@ -416,8 +415,8 @@ class Couchbase
      * @return object The document from the cluster
      * @throws CouchbaseException if an error occurs
      */
-    public function getReplica($id, $strategy = COUCHBASE_REPLICA_FIRST)
-    {
+    function getReplica($id, $strategy = COUCHBASE_REPLICA_FIRST) {
+
     }
 
     /**
@@ -436,8 +435,8 @@ class Couchbase
      * @return object The requested document from the cluster
      * @throws CouchbaseException if an error occurs
      */
-    public function getAndLock($id, &$cas = "", $expiry = 0)
-    {
+    function getAndLock($id, &$cas = "", $expiry = 0) {
+
     }
 
     /**
@@ -460,8 +459,8 @@ class Couchbase
      * @return array an array containint the requested documents
      * @throws CouchbaseException if an error occurs
      */
-    public function getAndLockMulti($ids, &$cas = array(), $flags = 0, $expiry = 0)
-    {
+    function getAndLockMulti($ids, &$cas = array(), $flags = 0, $expiry = 0) {
+
     }
 
     /**
@@ -473,8 +472,8 @@ class Couchbase
      * @return object The requested document from the cluster
      * @throws CouchbaseException if an error occurs
      */
-    public function getAndTouch($id, $expiry = 0, &$cas = "")
-    {
+    function getAndTouch($id, $expiry = 0, &$cas = "") {
+
     }
 
     /**
@@ -486,8 +485,8 @@ class Couchbase
      * @return array an array containing the requested documents
      * @throws CouchbaseException if an error occurs
      */
-    public function getAndTouchMulti($ids, $expiry = 0, &$cas = array())
-    {
+    function getAndTouchMulti($ids, $expiry = 0, &$cas = array()) {
+
     }
 
     /**
@@ -498,8 +497,8 @@ class Couchbase
      * @return boolean true upon success
      * @throws CouchbaseException if an error occurs
      */
-    public function unlock($id, $cas)
-    {
+    function unlock($id, $cas) {
+
     }
 
     /**
@@ -511,8 +510,8 @@ class Couchbase
      *                will always return "0" for the cas value)
      * @throws CouchbaseException if an error occurs
      */
-    public function touch($id, $expiry)
-    {
+    function touch($id, $expiry) {
+
     }
 
     /**
@@ -523,8 +522,8 @@ class Couchbase
      * @return boolean true upon success
      * @throws CouchbaseException if an error occurs
      */
-    public function touchMulti($ids, $expiry)
-    {
+    function touchMulti($ids, $expiry) {
+
     }
 
     /**
@@ -539,8 +538,8 @@ class Couchbase
      * @return string the cas value representing the delete document if success
      * @throws CouchbaseException if an error occurs
      */
-    public function delete($id, $cas = "", $persist_to = 0, $replicate_to = 0)
-    {
+    function delete($id, $cas = "", $persist_to = 0, $replicate_to = 0) {
+
     }
 
     /**
@@ -560,8 +559,8 @@ class Couchbase
      * @return integer the new value upon success
      * @throws CouchbaseException if an error occurs
      */
-    public function increment($id, $delta = 1, $create = false, $expire = 0, $initial = 0)
-    {
+    function increment($id, $delta = 1, $create = false, $expire = 0, $initial = 0) {
+
     }
 
     /**
@@ -581,8 +580,8 @@ class Couchbase
      * @return integer the new value upon success
      * @throws CouchbaseException if an error occurs
      */
-    public function decrement($id, $delta = 1, $create = false, $expire = 0, $initial = 0)
-    {
+    function decrement($id, $delta = 1, $create = false, $expire = 0, $initial = 0) {
+
     }
 
     /**
@@ -596,8 +595,8 @@ class Couchbase
      * @return boolean true upon success
      * @throws CouchbaseException if an error occurs
      */
-    public function flush()
-    {
+    function flush() {
+
     }
 
     /**
@@ -611,8 +610,8 @@ class Couchbase
      * @return boolean true upon success, false otherwise
      * @throws CouchbaseException if an error occurs
      */
-    public function getDelayed($ids, $with_cas = false, $callback = null, $expiry = 0, $lock = false)
-    {
+    function getDelayed($ids, $with_cas = false, $callback = null, $expiry = 0, $lock = false) {
+
     }
 
     /**
@@ -622,8 +621,8 @@ class Couchbase
      *               or NULL if there are no more documents.
      * @throws CouchbaseException if an error occurs
      */
-    public function fetch()
-    {
+    function fetch() {
+
     }
 
     /**
@@ -633,8 +632,8 @@ class Couchbase
      *               or NULL if there are no more documents.
      * @throws CouchbaseException if an error occurs
      */
-    public function fetchAll()
-    {
+    function fetchAll() {
+
     }
 
     /**
@@ -672,8 +671,8 @@ class Couchbase
      *               or an array containing an error message
      * @throws CouchbaseException if an error occurs
      */
-    public function view($document, $view = "", $options = array(), $return_errors = false)
-    {
+    function view($document, $view = "", $options = array(), $return_errors = false) {
+
     }
 
     /**
@@ -687,8 +686,8 @@ class Couchbase
      * @return string generated view request in format: "/_design/$doc/_view/$view?stale=ok&..."
      * @throws CouchbaseException if an error occurs
      */
-    public function viewGenQuery($document, $view = "", $options = array(), $return_errors = false)
-    {
+    function viewGenQuery($document, $view = "", $options = array(), $return_errors = false) {
+
     }
 
     /**
@@ -697,8 +696,8 @@ class Couchbase
      * @return array an array containing all "key" =&gt; "value" pairs upon success
      * @throws CouchbaseException if an error occurs
      */
-    public function getStats()
-    {
+    function getStats() {
+
     }
 
     /**
@@ -707,8 +706,8 @@ class Couchbase
      * @return integer An error code representing the last error code as
      *         seen by libcouchbase
      */
-    public function getResultCode()
-    {
+    function getResultCode() {
+
     }
 
     /**
@@ -718,8 +717,8 @@ class Couchbase
      * @return string An textual string describing last error code as
      *         seen by libcouchbase
      */
-    public function getResultMessage()
-    {
+    function getResultMessage() {
+
     }
 
     /**
@@ -749,8 +748,8 @@ class Couchbase
      * @param integer $value the new value for the option
      * @throws CouchbaseException if an error occurs (e.g illegal option / value)
      */
-    public function setOption($option, $value)
-    {
+    function setOption($option, $value) {
+
     }
 
     /**
@@ -761,8 +760,8 @@ class Couchbase
      *               description of the legal options to retrieve.
      * @throws CouchbaseException if an error occurs (e.g illegal option)
      */
-    public function getOption($option)
-    {
+    function getOption($option) {
+
     }
 
     /**
@@ -787,8 +786,8 @@ class Couchbase
      * @return array an array containing the memcached version on each node
      * @throws CouchbaseException if an error occurs
      */
-    public function getVersion()
-    {
+    function getVersion() {
+
     }
 
     /**
@@ -796,8 +795,8 @@ class Couchbase
      *
      * @return string client library version number
      */
-    public function getClientVersion()
-    {
+    function getClientVersion() {
+
     }
 
     /**
@@ -811,8 +810,8 @@ class Couchbase
      * @return integer The number of replicas for the bucket
      * @throws CouchbaseException if an error occurs
      */
-    public function getNumReplicas()
-    {
+    function getNumReplicas() {
+
     }
 
     /**
@@ -821,8 +820,8 @@ class Couchbase
      * @return array an array containing all of the servers in the cluster
      * @throws CouchbaseException if an error occurs
      */
-    public function getServers()
-    {
+    function getServers() {
+
     }
 
     /**
@@ -835,8 +834,8 @@ class Couchbase
      * @return bool true on success, false otherwise
      * @throws CouchbaseException if an error occurs
      */
-    public function observe($id, $cas, &$details = array())
-    {
+    function observe($id, $cas, &$details = array()) {
+
     }
 
     /**
@@ -847,8 +846,8 @@ class Couchbase
      * @return array with the keys with true on success, false otherwise
      * @throws CouchbaseException if an error occurs
      */
-    public function observeMulti($ids, &$details = array())
-    {
+    function observeMulti($ids, &$details = array()) {
+
     }
 
     /**
@@ -872,8 +871,8 @@ class Couchbase
      * @return bool true on success, false otherwise
      * @throws CouchbaseException if an error occurs
      */
-    public function keyDurability($id, $cas, $details = array())
-    {
+    function keyDurability($id, $cas, $details = array()) {
+
     }
 
     /**
@@ -885,8 +884,8 @@ class Couchbase
      * @return array with the keys with true on success, false otherwise
      * @throws CouchbaseException if an error occurs
      */
-    public function keyDurabilityMulti($ids, $details = array())
-    {
+    function keyDurabilityMulti($ids, $details = array()) {
+
     }
 
     /**
@@ -894,8 +893,8 @@ class Couchbase
      *
      * @return integer The currently used timeout specified in usec
      */
-    public function getTimeout()
-    {
+    function getTimeout() {
+
     }
 
     /**
@@ -906,8 +905,8 @@ class Couchbase
      *
      * @param integer $timeout the new operation timeout specified in usec
      */
-    public function setTimeout($timeout)
-    {
+    function setTimeout($timeout) {
+
     }
 
     /**
@@ -917,8 +916,8 @@ class Couchbase
      * @return string the content of the document if success
      * @throws CouchbaseException if an error occurs
      */
-    public function getDesignDoc($name)
-    {
+    function getDesignDoc($name) {
+
     }
 
     /**
@@ -932,8 +931,8 @@ class Couchbase
      * @return bool true on success
      * @throws CouchbaseException if an error occurs
      */
-    public function setDesignDoc($name, $document)
-    {
+    function setDesignDoc($name, $document) {
+
     }
 
     /**
@@ -943,8 +942,8 @@ class Couchbase
      * @return bool true on success
      * @throws CouchbaseException if an error occurs
      */
-    public function deleteDesignDoc($name)
-    {
+    function deleteDesignDoc($name) {
+
     }
 
     /**
@@ -954,9 +953,10 @@ class Couchbase
      *                the design documents
      * @throws CouchbaseException if an error occurs
      */
-    public function listDesignDocs()
-    {
+    function listDesignDocs() {
+
     }
+
 }
 
 /**
@@ -965,8 +965,7 @@ class Couchbase
  * Provides APIs for managing a Couchbase cluster, including the creation,
  * deletion and modification of buckets.
  */
-class CouchbaseClusterManager
-{
+class CouchbaseClusterManager {
 
     /**
      * Create a new instance of the CouchbaseClusterManager.
@@ -980,8 +979,8 @@ class CouchbaseClusterManager
      * @param string $password This is the password used to authenticate towards
      *                       the cluster
      */
-    public function __construct($hosts, $user, $password)
-    {
+    function __construct($hosts, $user, $password) {
+
     }
 
     /**
@@ -990,8 +989,8 @@ class CouchbaseClusterManager
      * @return string a JSON encoded string containing information of the
      *                cluster.
      */
-    public function getInfo()
-    {
+    function getInfo() {
+
     }
 
     /**
@@ -1002,8 +1001,8 @@ class CouchbaseClusterManager
      * @return string A JSON encoded string containing all information about
      *                the requested bucket(s).
      */
-    public function getBucketInfo($name = "")
-    {
+    function getBucketInfo($name = "") {
+
     }
 
     /**
@@ -1043,8 +1042,8 @@ class CouchbaseClusterManager
      *                          bucket to create.
      */
 
-    public function createBucket($name, $attributes)
-    {
+    function createBucket($name, $attributes) {
+
     }
 
     /**
@@ -1062,8 +1061,8 @@ class CouchbaseClusterManager
      *                          the bucket
      */
 
-    public function modifyBucket($name, $attributes)
-    {
+    function modifyBucket($name, $attributes) {
+
     }
 
     /**
@@ -1071,8 +1070,8 @@ class CouchbaseClusterManager
      *
      * @param string $name the bucket to delete
      */
-    public function deleteBucket($name)
-    {
+    function deleteBucket($name) {
+
     }
 
     /**
@@ -1080,8 +1079,8 @@ class CouchbaseClusterManager
      *
      * @param string $name the bucket to flush
      */
-    public function flushBucket($name)
-    {
+    function flushBucket($name) {
+
     }
 }
 
@@ -1095,59 +1094,59 @@ class CouchbaseClusterManager
  * The base Couchbase Exception class which all Couchbase Exceptions
  * inherit from.
  */
-class CouchbaseException extends Exception
-{
+class CouchbaseException extends Exception {
+
 }
 
 /**
  * Exception thrown when an invalid key is passed
  */
-class CouchbaseIllegalKeyException extends CouchbaseException
-{
+class CouchbaseIllegalKeyException extends CouchbaseException {
+
 }
 
 /**
  * Exception thrown when the server determines the requested key does not
  * exist.
  */
-class CouchbaseNoSuchKeyException extends CouchbaseException
-{
+class CouchbaseNoSuchKeyException extends CouchbaseException {
+
 }
 
 /**
  * Exception thrown when authentication with the server fails.
  */
-class CouchbaseAuthenticationException extends CouchbaseException
-{
+class CouchbaseAuthenticationException extends CouchbaseException {
+
 }
 
 /**
  * Exception thrown on internal libcouchbase errors.
  */
-class CouchbaseLibcouchbaseException extends CouchbaseException
-{
+class CouchbaseLibcouchbaseException extends CouchbaseException {
+
 }
 
 /**
  * Exception thrown when the server encounters an error.
  */
-class CouchbaseServerException extends CouchbaseException
-{
+class CouchbaseServerException extends CouchbaseException {
+
 }
 
 /**
  * Exception thrown when the CAS value you passed does not match the servers
  * current value.
  */
-class CouchbaseKeyMutatedException extends CouchbaseException
-{
+class CouchbaseKeyMutatedException extends CouchbaseException {
+
 }
 
 /**
  * Exception thrown when an operation times out.
  */
-class CouchbaseTimeoutException extends CouchbaseException
-{
+class CouchbaseTimeoutException extends CouchbaseException {
+
 }
 
 /**
@@ -1155,20 +1154,20 @@ class CouchbaseTimeoutException extends CouchbaseException
  * particular operation.  Generally occurs due to invalid durability
  * requirements
  */
-class CouchbaseNotEnoughNodesException extends CouchbaseException
-{
+class CouchbaseNotEnoughNodesException extends CouchbaseException {
+
 }
 
 /**
  * Exception thrown when an illegal option is passed to a method.
  */
-class CouchbaseIllegalOptionException extends CouchbaseException
-{
+class CouchbaseIllegalOptionException extends CouchbaseException {
+
 }
 
 /**
  * Exception thrown when an illegal value is passed to a method.
  */
-class CouchbaseIllegalValueException extends CouchbaseException
-{
+class CouchbaseIllegalValueException extends CouchbaseException {
+
 }

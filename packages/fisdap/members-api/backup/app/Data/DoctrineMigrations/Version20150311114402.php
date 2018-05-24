@@ -38,5 +38,6 @@ class Version20150311114402 extends AbstractMigration
 
         $this->addSql("UPDATE fisdap2_product set name = 'EMT Medrills', description = 'Unlimited access to the Archie MD&#0153; collection of skills and patient care training videos, which are a great study aid for your students.' where id = 41 limit 1");
         $this->addSql("UPDATE fisdap2_product set name = 'Paramedic Medrills', description = 'Unlimited access to the Archie MD&#0153; collection of skills and patient care training videos, which are a great study aid for your students.' where id = 42 limit 1");
+
     }
 }

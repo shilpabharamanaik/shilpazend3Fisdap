@@ -1,0 +1,46 @@
+<?php
+    $runId = $this->run->id;
+    $shiftType = $this->run->shift->type;
+
+    $locked = $this->run->locked;
+    $lockIcon = ($locked) ? "/images/icons/locked.svg" : "/images/icons/unlocked.svg";
+
+    if ($locked) {
+        $location = "/skills-tracker/shifts/detailed-shift-report/shiftId/" . $this->run->shift->id . "#run-" . $this->partialCounter;
+    } else {
+        $location = "/skills-tracker/patients/index/runId/" . $this->run->id;
+    }
+
+    $verified = $this->run->verification->verified;
+    $signoffIcon = ($verified) ? $shiftType.'-signoff.svg' : $shiftType.'-no-signoff.svg';
+    $signoffTitle = ($verified) ? 'signed off' : 'not yet signed off';
+
+?>
+
+<tr id='<?php echo $runId ?>' <?= $elementStyle ?> <? if ($locked) echo "class='locked-run'"; ?>>
+
+    <td class="unlock-column">
+        <a href="#" class="lock-run-btn" id="lock-run-btn-<?= $runId ?>" data-runid="<?= $runId ?>" data-verified="<?= $verified ?>">
+            <img class="small-icon square" src="<?= $lockIcon ?>">
+        </a>
+    </td>
+
+    <td class="number-column">
+        <?= $this->partialCounter ?>
+    </td>
+
+    <td class='clickable summary-column' onclick='window.location = "<?= $location ?>";'>
+        <?php
+        foreach ($this->patients as $patient) {
+            echo "<h4 class='" . $shiftType . "'>" . $patient->getSummaryLine() . "</h4>";
+            echo $patient->primary_impression->name;
+        }
+        ?>
+    </td>
+
+    <td class="status-column">
+        <?php if (!$locked) { echo "<a href='/skills-tracker/patients/index/runId/" . $this->run->id . "#signoff'>"; } ?>
+            <img class='small-icon svg square' src='/images/icons/<?= $signoffIcon ?>' data-runid='<?= $this->run->id ?>'  title="<?= $signoffTitle ?>">
+        <?php if (!$locked) { echo "</a>"; } ?>
+    </td>
+</tr>

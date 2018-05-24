@@ -1,0 +1,11 @@
+<h1><?= $this->pageTitle ?></h1>
+
+<div class="grid_8">
+	<div id="shift-summary">
+		<h4><?php echo $this->shift->site->name ?>, <?php echo $this->shift->base->name ?></h4>
+		<?php echo $this->shift->start_datetime->format("m-d-Y") ?>, <?php if(strlen($this->shift->start_time) < 4){ echo "0"; } echo $this->shift->start_time ?> - <?php if(strlen($this->shift->end_time) < 4){ echo "0"; } echo $this->shift->end_time ?><br>
+	</div>
+
+
+	<div id="commenting-dialog-container" class="grid_12"></div>
+</div>

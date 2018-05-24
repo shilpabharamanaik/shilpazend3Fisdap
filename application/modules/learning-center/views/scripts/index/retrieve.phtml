@@ -1,0 +1,89 @@
+<script>
+	$(function(){
+		//$('#test_id').accordionSelect(<?php echo (($this->testId)?"{selected: '" . $this->testId . "'}":"") ?>);
+		$('#start_date, #end_date').datepicker();
+	});
+</script>
+
+<?= $this->pageTitleHelper() ?>
+<form action='/learning-center/index/retrieve' method='post' id='retrieve_scores_form'>
+
+	<div class="grid_12 island">
+	
+		<h3 class="section-header">Select Tests</h3>
+		<div id="selectTestsWrapper">
+			<div id="testAccordian" class='grid_7'>
+
+
+			</div>
+			
+			<div style="display:none;"><?php echo $this->tests; ?></div>
+
+			
+			<div class='grid_4'>
+				<div class="dateRange">
+					<h2>Date Range</h2>
+					<input name='start_date' id='start_date' class="selectDate" />
+					to
+					<input name='end_date' id='end_date' class="selectDate" />
+				</div>
+				
+				<div class="proTip">
+					<h3>Pro Tip</h3>
+					<p>To view your class's scores for a specific scheduled exam, click on the Scores icon on the <a href="/learning-center/index/schedule">Test Schedule</a> page.</p>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<div class="clear"></div>
+		
+		<div id="currentlySelectedTests">
+			No tests have been selected yet. Use the box above to select one or more.
+		</div>
+		
+	</div>
+	
+	<div class="grid_12 island" style="margin-top:1em">
+		<h3 class="section-header">Select Students</h3>
+		<div class="grid_12">
+			<?php 
+				echo $this->multiStudentPicker(
+					array(
+						'targetFormId' => 'retrieve_scores_form', 
+						'isAjaxPost' => true, 
+						'ajaxPostURL' => '/ajax/get-student-scores-table', 
+						'ajaxResultsContainer' => 'test_results',
+						'selectedStudents' => $this->students,
+						'useSessionSettings' => false,
+						'canViewStudentNames' => true,
+						'postLoadCallback' => new Zend_Json_Expr('checkForPresetStudent'),
+						'blockUi' => 1
+					)
+				); 
+			?>
+		<br />
+		</div>
+	</div>
+	
+	<div class="clear"></div>
+
+			
+	<div class='extra-small green-buttons retrieveWrapper'>
+		<button id="retrieve">Retrieve Scores</button>
+		<img id="retrieveThrobber" src="/images/throbber_small.gif">
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div class="error" id="errorWrapper">
+		
+	</div>
+		
+</form>
+		
+<br />
+	
+<div class='test_results' id='test_results'>
+</div>

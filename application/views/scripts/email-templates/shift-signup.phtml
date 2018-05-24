@@ -1,0 +1,13 @@
+Hello, <?= $this->initiator->user->getName() ?>!
+<div>
+		<p>You are now scheduled for the following <?= $this->event->type ?> shift:</p>
+		<div>
+			<?= $this->event->getDetailViewDate() ?><br>
+			<?= $this->event->getLocation() ?>
+			<div><?= $this->event->notes ?></div>
+			<div><?= $this->event->getPreceptorText(); ?></div>
+			<div><?= $this->event->getInstructorText(); ?></div>
+			<?= $this->event->getStudentSlotText(); ?>
+		</div>
+
+</div>

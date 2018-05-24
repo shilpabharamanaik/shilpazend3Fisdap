@@ -12,11 +12,12 @@ use Doctrine\ORM\Mapping\PreRemove;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
+
 /**
  * Message
  *
  * Message stores the title and body of a message.
- *
+ * 
  * @Entity
  * @Table(name="fisdap2_messages")
  * @HasLifecycleCallbacks
@@ -67,7 +68,7 @@ class Message extends Timestampable
      * @ManyToOne(targetEntity="Event", cascade={"persist","remove"})
      * @JoinColumn(name="event_event_id", referencedColumnName="event_id")
      */
-    protected $event;
+    protected $event;    
  
     /*
      * Lifecycle callbacks
@@ -82,46 +83,40 @@ class Message extends Timestampable
             $this->soft_delete = 0;
         }
 
-        if (!isset($this->created)) {
-            $this->created = $this->updated = new \DateTime("now");
+       if (!isset($this->created)) {
+                $this->created = $this->updated = new \DateTime("now");
         }
     }
     
     /**
      * @PreRemove
      */
-    public function deleted()
-    {
+    public function deleted() {
         // if the message is being deleted, we need to delete all associated deliveries
-        $this->deleteDeliveries(false); // FALSE means a hard delete
+        $this->deleteDeliveries(FALSE); // FALSE means a hard delete
     }
    
     
     /**
      * Getters
      */
-    public function get_title()
-    {
+    public function get_title() {
         return $this->title;
     }
     
-    public function get_body()
-    {
+    public function get_body() {
         return $this->body;
     }
     
-    public function get_soft_delete()
-    {
+    public function get_soft_delete() {
         return $this->soft_delete;
     }
     
-    public function get_author_type()
-    {
+    public function get_author_type() {
         return $this->author_type;
     }
     
-    public function get_author()
-    {
+    public function get_author() {
         return $this->author;
     }
 
@@ -184,7 +179,7 @@ class Message extends Timestampable
             $this->deleteDeliveries();
         } else {
             // undelete the deliveries
-            $this->deleteDeliveries(true, true);
+            $this->deleteDeliveries(TRUE, TRUE);
         }
     }
     
@@ -195,15 +190,14 @@ class Message extends Timestampable
     /**
      * Establish delivery to specified recipient users
      * Can be used to set enhance delivery with a sub-type, such as Todo by using the keyed array $subTypes argument
-     *
+     * 
      * @param array() $recipients An array of user IDs or User entities
      * @param boolean $read Should the delivered message be marked as read (1) or unread(0)
      * @param integer $priority Should the delivered message be set to priority (1) or normal (0)
      *
      * @return array Array of user IDs to whom delivery was successful
      */
-    public function deliver($recipients = array(), $read = 0, $priority = 0, $subTypes = array())
-    {
+    public function deliver($recipients = array(), $read = 0, $priority = 0, $subTypes = array()) {
         $successfulDeliveries = array();
 
         // Save the message entity at this point, because it is needed by the MessageDelivery entites we will create
@@ -224,7 +218,7 @@ class Message extends Timestampable
             // @todo subtypes
             // format a long INSERT query
             $insertQuery = 'INSERT INTO fisdap2_messages_delivered (message_id, user_id, is_read, archived, priority, soft_delete) VALUES ';
-            foreach ($validRecipients as $key => $recipient) {
+            foreach($validRecipients as $key => $recipient) {
                 // add to the query string
                 if ($key > 0) {
                     $insertQuery .= ', (';
@@ -247,7 +241,7 @@ class Message extends Timestampable
                 $insertQuery .= implode(', ', $data) . ')';
                 
                 // let's just put this feller in successfulDeliveries without any real checking
-                $successfulDeliveries[$recipient] = true;
+                $successfulDeliveries[$recipient] = TRUE;
             }
 
             //  run with Zend's $db adapter for mysql
@@ -255,29 +249,31 @@ class Message extends Timestampable
             
             // insert
             $db->query($insertQuery);
+            
         } else {
-            foreach ($validRecipients as $recipient) {
+            foreach($validRecipients as $recipient) {
+                
                 $delivery = new MessageDelivery();
                 $delivery->set_message($this);
                 $delivery->set_recipient($recipient);
                 $delivery->set_is_read($read);
                 $delivery->set_priority($priority);
     
-                // Should we add sub-types to this delivery?
-                // This assumes that cascaded persistence is set on these property/relationships on MessageDelivery
-                if (!empty($subTypes)) {
-                    foreach ($subTypes as $prop => $typeEntity) {
-                        // test to see if the setter method for this entity type exists on MessageDelivery
-                        $setMethod = 'set_' . $prop;
-                        if (method_exists($delivery, $setMethod)) {
-                            // clone the typeEntity, since each MessageDelivery gets its own unique
-                            $deliveredTypeEntity = clone $typeEntity;
-                            $delivery->{$setMethod}($deliveredTypeEntity);
+                    // Should we add sub-types to this delivery?
+                    // This assumes that cascaded persistence is set on these property/relationships on MessageDelivery
+                    if (!empty($subTypes)) {
+                        foreach($subTypes as $prop => $typeEntity) {
+                            // test to see if the setter method for this entity type exists on MessageDelivery
+                            $setMethod = 'set_' . $prop;
+                            if (method_exists($delivery, $setMethod)) {
+                                // clone the typeEntity, since each MessageDelivery gets its own unique
+                                $deliveredTypeEntity = clone $typeEntity;
+                                $delivery->{$setMethod}($deliveredTypeEntity);
+                            }
                         }
                     }
-                }
                 
-                $delivery->save(false); // persist the entity, but don't flush yet
+                $delivery->save(FALSE); // persist the entity, but don't flush yet
                 
                 $recipientId = ($recipient instanceof User) ? $recipient->id : $recipient;
                 $successfulDeliveries[$recipientId] = $delivery;
@@ -296,12 +292,11 @@ class Message extends Timestampable
      * @param boolean $soft Should deliveries be soft-deleted (TRUE) or actually deleted (FALSE)?
      * @param boolean $undelete Should deliveries actually be undeleted (TRUE) rather than deleted (FALSE)? Only works with soft_delete status.
      */
-    public function deleteDeliveries($soft = true, $undelete = false)
-    {
+    public function deleteDeliveries($soft = TRUE, $undelete = FALSE) {
         $deliveryRepo = EntityUtils::getRepository('MessageDelivery');
         $deliveries = $deliveryRepo->getByMessage($this->id);
         
-        foreach ($deliveries as $delivery) {
+        foreach($deliveries as $delivery) {
             if ($soft) {
                 if ($undelete) {
                     $delivery->set_soft_delete(0);
@@ -324,8 +319,7 @@ class Message extends Timestampable
      *
      * @return boolean Either true for permission granted or false for permission denied
      */
-    public static function checkPermission($action, $messageType = null, $message = null, $user = null)
-    {
+    static function checkPermission($action, $messageType = null, $message = null, $user = null) {
         if ($user == null) {
             $user = User::getLoggedInUser();
         }
@@ -333,20 +327,20 @@ class Message extends Timestampable
         if ($user->id) {
             
             // check based on action and message type
-            switch ($action) {
+            switch($action) {
                 case 'create':
                     if ($user->isStaff()) {
                         // staff can always create everything
-                        return true;
-                    } elseif ($user->getCurrentRoleName() == 'instructor') {
+                        return TRUE;
+                    } else if ($user->getCurrentRoleName() == 'instructor') {
                         // instructors can create all types
-                        return true;
+                        return TRUE;
                     } else {
                         // students can only create todo items
                         if ($messageType == 'todo') {
-                            return true;
+                            return TRUE;
                         } else {
-                            return false;
+                            return FALSE;
                         }
                     }
                     break;
@@ -354,23 +348,24 @@ class Message extends Timestampable
                 case 'modify':
                     // we need to examine the relevant message. Don't rely on supplied $messageType option
                     if ($message == null) {
-                        return false;
+                        return FALSE;
                     }
                     
                     // only authors can modify their messages
                     // only todo items can be modifeid (except when staff)
                     $author = $message->get_author();
                     if ($author->id == $user->id && $messageType == 'todo') {
-                        return true;
-                    } elseif ($author->id == $user->id && $user->isStaff()) {
-                        return true;
+                        return TRUE;
+                    } else if ($author->id == $user->id && $user->isStaff()) {
+                        return TRUE;
                     } else {
-                        return false;
+                        return FALSE;
                     }
                     break;
             }
+            
         } else {
-            return false;
+            return FALSE;
         }
     }
 }

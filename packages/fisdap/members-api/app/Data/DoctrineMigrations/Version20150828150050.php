@@ -23,6 +23,7 @@ class Version20150828150050 extends AbstractMigration
 
         // add limited scheduler to the configuration blacklist for LPNs and AASNs
         $this->addSql('UPDATE fisdap2_certification_levels SET configuration_blacklist=8192 WHERE id in (9, 7) LIMIT 2');
+
     }
 
     /**

@@ -3,6 +3,7 @@
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
+
 /**
  * psg_user_id should be a unique string
  *

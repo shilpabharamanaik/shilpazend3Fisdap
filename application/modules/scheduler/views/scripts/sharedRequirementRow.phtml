@@ -1,0 +1,98 @@
+<div class="manage-requirement-row">
+	<div class="requirement-row-header clickable">
+		<div class="grid_5">
+			<img class="arrow-toggle" src="/images/accordion_arrow_right.png">
+			<span class="requirement-title"><?= $this->requirement->name ?></span>
+		</div>
+		<div class="grid_7">
+			<?= $this->requirement->expires ? "expires" : "does not expire" ?>
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+	<div class="attachment-info-container">
+		<table class="attachment-info">
+			<tr>			
+				<td class="attachment-summary grid_4">
+				<?
+					$attachmentInfo = $this->attachmentInfo;
+					$attachmentTotal = 0;
+					$attachmentList = "<table class='fisdap-table'>";
+					foreach ($attachmentInfo['current_attachments'] as $cert => $people) {
+						if (count($people) > 0) {
+							$attachmentTotal += count($people);
+							$attachmentList .= "<tr><td class='clickable'>";
+							if (is_array($people)) {
+								$plural = (count($people) == 1) ? '' : 's';
+								$attachmentList .= count($people) . " " . $cert . $plural . " <img src='/images/icons/plus.png' class='show-specific-attachments'>";
+								$attachmentList .= "<ul class='attachment-specific'>";
+								foreach($people as $user) {
+									if ($user['role'] == 1) {
+										$attachmentList .= "<li><a href='/portfolio/index/about/userContextId/{$user['userContextId']}' title='Go to portfolio'>{$user['name']}</a></li>";
+									} else {
+										$attachmentList .= "<li>{$user['name']}</li>";
+									}
+								}
+								$attachmentList .= "</ul>";
+							} else {
+								$attachmentList .= $people;
+							}
+							$attachmentList .= "</td></tr>";
+						}
+					}
+					$attachmentList .= "</table>";
+					
+					echo "<h6 class='dark-gray'>" . ($attachmentTotal > 0 ? "Assigned to:" : "No one is currently assigned.") . "</h6>";
+					echo $attachmentList;
+				?>
+				</td>
+			
+				<td class="attachment-summary grid_7">
+				<?
+					// put together the html for the sites table
+					$siteList = "<table class='fisdap-table'>";
+					if (count($this->attachmentInfo['associations']['sitesById'])) {
+						foreach ($this->attachmentInfo['associations']['sitesById'] as $site_id => $siteInfo) {
+							$name = $siteInfo['name'];
+							$type = $siteInfo['type'];
+							$programs = $siteInfo['programs'];
+							
+							// if more than one program shared this requirement with this site
+							if (count($programs) > 1) {
+								$siteList .=	"<tr><td class='clickable'>".
+												"<span class='$type'>$name</span> ".
+												"<span class='dark-gray'>(shared by ".count($programs)." programs)</span>".
+												"<img src='/images/icons/plus.png' class='show-specific-attachments clickable'>";
+								// add collapsible list of programs
+								$siteList .= "<ul class='attachment-specific'>";
+								foreach($programs as $program) {
+									$siteList .= "<li>$program</li>";
+								}
+								$siteList .= "</ul>";
+							
+							// if only one program shared this requirement with this site
+							} else {
+								$siteList .=	"<tr><td>".
+												"<span class='$type'>$name</span> ".
+												"<span class='dark-gray'>(shared by ".$programs[0].")</span>";
+							}
+							
+							$siteList .= "</td></tr>";
+						}
+					}
+					$siteList .= "</table>";
+					
+					
+					// now that we made the site list, spit it out
+					echo "<h6 class='dark-gray'>" .
+						 (count($this->attachmentInfo['associations']['sitesById']) > 0 ? "Site Requirement at:" : "All sites that require are currently inactive.") .
+						 "</h6>";
+					echo $siteList;
+				?>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="clear"></div>

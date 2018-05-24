@@ -1,0 +1,138 @@
+<div id="legend" <?= $this->pdf ? '' : 'class="grid_12"' ?>>
+
+    <div class="grid_2 legend_col">
+
+        <div class="grid_2"><img src="/images/icons/labSiteIconColor.png"></div>
+        <div class="grid_10">Lab shift</div>
+
+        <div class="clear"></div>
+
+        <div class="grid_2"><img src="/images/icons/clinicalSiteIconColor.png"></div>
+        <div class="grid_10">Clinical shift</div>
+
+        <div class="clear"></div>
+
+        <div class="grid_2"><img src="/images/icons/fieldSiteIconColor.png"></div>
+        <div class="grid_10">Field shift</div>
+
+    </div>
+
+    <div class="grid_2 has-borders legend_col">
+
+        <div class="grid_2">
+            <div class="bar lab-bar"></div>
+            <div class="bar clinical-bar"></div>
+            <div class="bar field-bar"></div>
+        </div>
+        <div class="grid_10">Open shift</div>
+
+        <div class="clear"></div>
+
+        <div class="grid_2">
+            <div class="bar event-filled lab-bar"></div>
+            <div class="bar event-filled clinical-bar"></div>
+            <div class="bar event-filled field-bar"></div>
+        </div>
+        <div class="grid_10">Full shift</div>
+
+        <div class="clear"></div>
+
+        <div class="grid_2 clinical"><img class="small-img" src="/images/icons/clinicalSiteIconColor.png"> 4</div>
+        <div class="grid_10">Number of shifts</div>
+
+        <div class="grid_2"><img class='shield' src="/images/product-icons/product-icon-1.svg"></div>
+        <div class="grid_10 st_shield_description">
+            <?= $this->pdf ? "Student uses Skills Tracker" : "Go to Skills & Pt. Care" ?>
+        </div>
+
+    </div>
+
+    <div class="grid_2 has-borders legend_col no-left-border">
+
+        <? if ($this->isStudent) { ?>
+
+            <div class="grid_2"><img src="/images/icons/my-shift.png"></div>
+            <div class="grid_10">My shift</div>
+
+        <?php
+        } else {
+            ?>
+            <div class="grid_2"><img src="/images/icons/sharing.png"></div>
+            <div class="grid_10">Shared shift</div>
+
+            <div class="clear"></div>
+
+            <div class="grid_2"><img src="/images/icons/previously-shared.png"></div>
+            <div class="grid_10">No longer shared shift
+                <br/><span class="tiny-font">students still assigned</span>
+            </div>
+        <?
+        }
+        ?>
+
+        <div class="clear"></div>
+
+        <div class="grid_2"><img src="/images/icons/student-created-shift.png"></div>
+        <div class="grid_10">
+            Quick add shift
+            <br/><span class="tiny-font">created by a student</span>
+        </div>
+
+
+        <div class="clear"></div>
+
+        <div class="grid_2"><img src="/images/icons/instructor-quick-add-shift.png"></div>
+        <div class="grid_10">
+            Quick add shift
+            <br/><span class="tiny-font">created by an instructor</span>
+        </div>
+
+
+    </div>
+
+    <div class="grid_2 legend_col" id="scheduler-legened-weeble-col">
+
+        <div class="grid_2"><img id="filled-weeble" src="/images/icons/student-weeble.svg"></div>
+        <div class="grid_10">
+            Filled slot
+            <br/><span class="tiny-font">compliant student</span>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="grid_2"><img id="red-weeble" src="/images/icons/student-weeble-red.svg"></div>
+        <div class="grid_10">
+            Filled slot
+            <br/><span class="tiny-font">non-compliant student</span>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="grid_2"><img id="open-weeble" src="/images/icons/student-weeble-outline.svg"></div>
+        <div class="grid_10">
+            Open slot
+            <? if (!$this->isStudent) { ?>
+                <br/><span class="tiny-font">visible to students</span>
+            <? } ?>
+        </div>
+
+        <div class="clear"></div>
+
+        <? if (!$this->isStudent) { ?>
+            <div class="grid_2"><img id="seatbelt-weeble" src="/images/icons/student-weeble-invisible.svg"></div>
+            <div class="grid_10">Open slot<br/><span class="tiny-font">invisible to students</span></div>
+
+            <div class="clear"></div>
+            <? if (!$this->pdf) { ?>
+                <div class='drop-legend'>
+                    <div class="grid_2"><img id="drop" src="/images/icons/drop-weeble.png"></div>
+                    <div class="grid_10">Drop student</div>
+                </div>
+            <? } ?>
+        <? } ?>
+
+    </div>
+
+    <div class="clear"></div>
+
+</div>

@@ -1,0 +1,60 @@
+<div class="ms-picklist-wrapper">
+	<?= $this->helpText ?>
+
+<?php if ($this->studentVersion) { ?>
+	<input id="student" type="hidden" value="<?= $this->user->getCurrentRoleData()->id?>" name="student">
+<?php } else { ?>
+
+	<?php if ($this->filters) { ?>
+	<div id="picklist-fancy-filter">
+
+		<?= $this->filters ?>
+
+	</div>
+	<?php } ?>
+
+	<div class='picklist-ms-select'>
+		<select id="available-list" name="student" class="available-list">
+		<?php
+			if (!empty($this->students) && !empty($this->students['selectable'])) {
+				// add a "Choose from X students" default choice
+				if (count($this->students['selectable']) > 0) {
+					print '<option value="" data-studentId="">Choose from ' . count($this->students['selectable']) . ' students</option>';
+				} else {
+					print '<option value="" data-studentId="">No students available</option>';
+				}
+				foreach($this->students['selectable'] as $id => $label){
+					$selected = '';
+					if (array_key_exists($id, $this->students['selected'])) {
+						$selected = 'selected="selected"';
+					}
+		?>
+					<option value="<?= $id ?>" data-studentId="<?= $id ?>" <?= $selected ?>><?= $label ?></option>
+		<?php
+				}
+			}
+		?>
+		</select>
+		<input type="hidden" id="longLabel" name="longLabel" value="<?= $this->longLabel ?>">
+
+		<div class="clear">	</div>
+
+	</div>
+<?php } ?>
+</div>
+
+
+<?php if ($this->includeSubmit) { ?>
+	<div class='grid_12'>
+		<div class="picklist-ms-submit">
+			<span class='small gray-button'>
+				<a href='#' id='cancel_modal'>Cancel</a>
+			</span>
+			&nbsp;
+			<span class='small green-buttons'>
+				<a href='#' id='submit_button'>Confirm</a>
+			</span>
+		</div>
+	
+	</div>
+<?php } ?>

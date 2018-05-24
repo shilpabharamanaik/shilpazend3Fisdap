@@ -11,4 +11,5 @@ use Doctrine\ORM\Mapping\Table;
  */
 class MentalOrientation extends Enumerated
 {
+
 }

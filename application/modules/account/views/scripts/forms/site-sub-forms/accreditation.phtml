@@ -1,0 +1,62 @@
+<? $buttonset_class = "accreditation_buttonset_wrapper"; ?>
+
+<div id="accreditation_submit_messages" class="hidden"></div>
+
+<div class="accreditation_element_row">
+	<div class="grid_7"><?= $this->element->accreditation_cao; ?></div>
+	<div class="grid_4"><?= $this->element->accreditation_phone; ?></div>
+	<div class="clear"></div>
+</div>
+
+<div class="clear"></div>
+
+<div class="accreditation_element_row distance_from_program_element_row">
+	<?= $this->element->accreditation_distance_from_program; ?><div class="subtle-label miles-label">(miles)</div>
+</div>
+
+<div class="clear"></div>
+
+<div class="<?= $buttonset_class; ?>"><?= $this->element->accreditation_signed_agreement; ?></div><div class="clear"></div>
+
+<div class="dotted-line"><hr></div>
+
+<div class="<?= $buttonset_class; ?>"><?= $this->element->accreditation_student_supervision_type; ?></div><div class="clear"></div>
+<div class="<?= $buttonset_class; ?>"><?= $this->element->accreditation_written_policies; ?></div><div class="clear"></div>
+
+<div class="preceptor_wrapper">
+	<div class="grid_7">
+		<div class="<?= $buttonset_class; ?>"><?= $this->element->accreditation_formally_trained_preceptors; ?></div>
+		<div class='clear'></div>
+	</div>
+	
+	<div id="accreditation_preceptor_hours_wrapper" class="grid_5 <?= ($this->element->accreditation_info->formally_trained_preceptors) ? '' : 'disabled-preceptor-hours'; ?>">
+		<?= $this->element->accreditation_preceptor_training_hours; ?>
+		<div class='clear'></div>
+	</div>
+	
+	<div class='clear'></div>
+</div>
+
+<div class='clear'></div>
+
+<? if($this->element->site->type != "clinical"){
+	echo '<div class="' . $buttonset_class . '">' . $this->element->accreditation_online_medical_direction . "</div><div class='clear'></div>";
+	echo '<div class="' . $buttonset_class . '">' . $this->element->accreditation_advanced_life_support . "</div><div class='clear'></div>";
+	echo '<div class="' . $buttonset_class . '">' . $this->element->accreditation_quality_improvement_program . "</div><div class='clear'></div>";
+
+	echo '<div class="dotted-line"><hr></div>';
+
+	echo '<div class="accreditation_element_row">' . $this->element->accreditation_number_of_runs . "</div><div class=\"clear\"></div>";
+	echo '<div class="accreditation_element_row">' . $this->element->accreditation_active_ems_units . "</div><div class=\"clear\"></div>";
+	echo '<div class="accreditation_element_row">' . $this->element->accreditation_number_of_trauma_calls . "</div><div class=\"clear\"></div>";
+	echo '<div class="accreditation_element_row">' . $this->element->accreditation_number_of_critical_trauma_calls . "</div><div class=\"clear\"></div>";
+	echo '<div class="accreditation_element_row">' . $this->element->accreditation_number_of_pediatric_calls . "</div><div class=\"clear\"></div>";
+	echo '<div class="accreditation_element_row">' . $this->element->accreditation_number_of_cardiac_arrest_calls . "</div><div class=\"clear\"></div>";
+	echo '<div class="accreditation_element_row">' . $this->element->accreditation_number_of_cardiac_calls . "</div><div class=\"clear\"></div>";
+
+	echo "<div class='clear'></div>";
+} ?>
+
+<?= $this->element->save_accreditation ?>
+
+<a id="clear-accreditation-form" href="#">clear form</a>

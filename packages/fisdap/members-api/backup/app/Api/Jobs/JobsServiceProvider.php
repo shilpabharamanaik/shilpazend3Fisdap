@@ -5,6 +5,7 @@ use Fisdap\Logging\Commands\CommandLoggingPipe;
 use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
 use Illuminate\Support\ServiceProvider;
 
+
 /**
  * Provides additional functionality for Job classes
  *

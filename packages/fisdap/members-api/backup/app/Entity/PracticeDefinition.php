@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
+
 /**
  * Practice Definition
  *
@@ -22,19 +23,19 @@ use Fisdap\EntityUtils;
 class PracticeDefinition extends EntityBaseClass
 {
     /**
-     * @var integer
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
-     */
-    protected $id;
+	 * @var integer
+	 * @Id
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 */
+	protected $id;
     
     /**
-     * @var ProgramLegacy
-     * @ManyToOne(targetEntity="ProgramLegacy", inversedBy="practice_definitions")
-     * @JoinColumn(name="program_id", referencedColumnName="Program_id")
-     */
-    protected $program;
+	 * @var ProgramLegacy
+	 * @ManyToOne(targetEntity="ProgramLegacy", inversedBy="practice_definitions")
+	 * @JoinColumn(name="program_id", referencedColumnName="Program_id")
+	 */
+	protected $program;
     
     /**
      * @var PracticeCategory
@@ -59,12 +60,12 @@ class PracticeDefinition extends EntityBaseClass
     
     /**
      * @var ArrayCollection
-     * @ManyToMany(targetEntity="PracticeSkill")
+	 * @ManyToMany(targetEntity="PracticeSkill")
      * @JoinTable(name="fisdap2_practice_definitions_skills",
      *  joinColumns={@JoinColumn(name="practice_definition_id", referencedColumnName="id")},
      *  inverseJoinColumns={@JoinColumn(name="practice_skill_id",referencedColumnName="id")})
      */
-    protected $practice_skills;
+	protected $practice_skills;
     
     /**
      * @var string the name of this practice definition
@@ -101,18 +102,18 @@ class PracticeDefinition extends EntityBaseClass
      * @Column(type="integer")
      */
     protected $eureka_goal = 0;
-    
-    /**
+	
+	/**
      * @Column(type="boolean", nullable=true)
      */
     protected $airway_management_credit;
     
-    /**
-     * @var ArrayCollection
-     * @OneToMany(targetEntity="PracticeItem", mappedBy="practice_definition", cascade={"persist","remove"}, fetch="EXTRA_LAZY")
-     */
-    protected $practice_items;
-    
+	/**
+	 * @var ArrayCollection
+	 * @OneToMany(targetEntity="PracticeItem", mappedBy="practice_definition", cascade={"persist","remove"}, fetch="EXTRA_LAZY")
+	 */
+	protected $practice_items;
+	
     public function init()
     {
         $this->practice_skills = new ArrayCollection();
@@ -173,7 +174,7 @@ class PracticeDefinition extends EntityBaseClass
             $ids = array($ids);
         }
         
-        foreach ($ids as $id) {
+        foreach($ids as $id) {
             $this->practice_skills->add(EntityUtils::getEntity("PracticeSkill", $id));
         }
         
@@ -192,23 +193,25 @@ class PracticeDefinition extends EntityBaseClass
         $return = array();
         $definitions = EntityUtils::getRepository("PracticeDefinition")->findBy(array("certification_level" => $certificationId, "program" => $programId, "active" => 1));
 
-        
-        foreach ($definitions as $def) {
-            if ($categories) {
-                if (!$return[$def->category->id]) {
-                    $return[$def->category->id] = array();
-                }
+		
+        foreach($definitions as $def) {
+			if($categories){
+				if(!$return[$def->category->id]){
+					$return[$def->category->id] = array();
+				}
 
-                $return[$def->category->id][$def->id] = $def->name;
-            } else {
-                $return[$def->id] = $def->name;
-            }
+				$return[$def->category->id][$def->id] = $def->name;
+			}
+			else {
+				$return[$def->id] = $def->name;
+			}
         }
-        
-        
-        if ($categories) {
-            ksort($return);
-        }
+		
+		
+		if($categories){
+			ksort($return);
+	
+		}
         
         return $return;
     }

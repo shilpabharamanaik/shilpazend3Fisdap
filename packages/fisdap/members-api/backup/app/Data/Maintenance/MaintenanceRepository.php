@@ -7,12 +7,13 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface MaintenanceRepository
  *
  * @package Fisdap\Data\Maintenance
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface MaintenanceRepository extends Repository
-{
-}
+interface MaintenanceRepository extends Repository {
+
+} 

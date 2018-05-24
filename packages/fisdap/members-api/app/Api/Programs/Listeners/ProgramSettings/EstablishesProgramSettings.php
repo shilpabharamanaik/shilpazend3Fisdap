@@ -3,6 +3,7 @@
 use Fisdap\Api\Programs\Events\ProgramWasCreated;
 use Fisdap\Entity\ProgramLegacy;
 
+
 /**
  * Event listener contract for establishing program settings when a program (ProgramLegacy Entity) was created
  *

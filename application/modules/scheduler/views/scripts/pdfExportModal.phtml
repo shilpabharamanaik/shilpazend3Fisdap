@@ -1,0 +1,164 @@
+<?php
+	$frequencyHelpText = '
+			Determine when the email with the schedule will be automatically sent.
+			Essentially, how far in advance does the recipient need the schedule?
+		<br><br>
+			Here are a couple things to keep in mind and examples:<br>
+			1. If you are sending a week-long schedule, the start of the week is Sunday.<br>
+			Example - You are sending a recurring email of a week-long schedule to Hospital A,
+			and they want it on the Friday before the following week. To do this,
+			set it up to send the schedule 2 days before the start of each week.
+		<br><br>
+			2. The start of each month is, of course, the first day of a new month.<br>
+			Example - You are sending a recurring email of a month-long schedule to Hospital B,
+			and they need it a week in advance of the first day of the month. To do this,
+			set it up to send the schedule 1 week before the start of each month.';
+			
+	$filter_summary_text = '<div id="pdf-help">You are generating a PDF of the current state of your calendar - this includes the view you are on
+								 (Month/Week/Day/List) and any filters you have chosen. If you would like to change any of these settings,
+								 just click <b>Cancel</b> to return to the calendar, set up your view and filters the way you want, and click the
+								 <b>Export PDF/Email</b> link to return here.</div>';
+?>
+
+<div id='mainFormContent'>
+	
+	<?= $this->helpBubble("filter_summary", "Export Help", $filter_summary_text) ?>
+
+	<div class="pdf-modal-filter-description">
+	</div>
+	
+	<h3 class='section-header'>Formatting Options</h3>
+
+	<div class='container_12 pdfLink'>
+		<div class="grid_6" id="form_div">
+			
+			<div id='name-div' class='input-line'>
+				<span id="name-label">
+					<label class="section-header no-border optional" openonly="1" for="name">Name:</label>
+				</span>
+				<?php echo $this->element->name ?>
+			</div>
+			
+			<div id="export_type" class='cupertino input-line'>
+				<input type="radio" id="pdf" name="type" checked="checked"/><label for="pdf">PDF only</label>
+				<input type="radio" id="email" name="type"/><label for="email">One-time email</label>
+				<? if ($this->element->is_inst) { ?>
+                    <input type="radio" id="recurring" name="type"/><label for="recurring">Recurring email</label>
+				<? } ?>
+			</div>
+
+			<div class='input-line' id='date-range'>
+				<div id='start-div'>
+					<?php echo $this->element->start_date ?>
+				</div>
+				<div id='end-div'>
+					<?php echo $this->element->end_date ?>
+				</div>
+				<div class='clear'></div>
+			</div>
+			
+			<div id='pdf-options'>
+				<div id="recurring_type">
+					<input type="radio" id="month" name="recurring_type" checked="checked"><label for="month">Month-long</label>
+					<input type="radio" id="week" name="recurring_type"><label for="week">Week-long</label>
+				</div>		
+						
+				<div class='clear'></div>
+				<div id="orientation_type">
+					<input type="radio" id="portrait" name="orientation_type" checked="checked"><label for="portrait">Portrait</label>
+					<input type="radio" id="landscape" name="orientation_type"><label for="landscape">Landscape</label>
+				</div>		
+						
+				<div class='clear'></div>
+						
+				<div id="color_type">
+					<input type="radio" id="color" name="color_type" checked="checked"><label for="color">Color</label>
+					<input type="radio" id="b-and-w" name="color_type"><label for="b-and-w">Black & White</label>
+				</div>		
+			</div>
+			
+			<div class='clear'></div>
+			
+			<div id='legend-div' class='input-line'>
+				<div id='legend-text' class="section-header no-border optional" openonly="1">Legend</div>
+				<div><?= $this->element->legend_switch ?></div>
+			</div>
+		
+		</div>
+		
+		<div class="grid_6" id="preview-div">
+			<img id='preview-image' src='/images/previews/week-portrait-color-nolegend.png'>
+			<div id='preview-title'>
+				sample format
+			</div>
+		</div>
+		
+		<div class='clear'></div>
+	</div>
+	
+	<div class='container_12' id='email_options'>
+		<h3 class='section-header'>Emailing Options</h3>
+		<div class="grid_6" id="form_div">
+			<div class='input-line' id='subject-div'>
+				<?= $this->element->email_subject ?>
+			</div>
+			<div class='input-line'>
+				<?= $this->element->email_recipients ?>
+			</div>
+		</div>
+		<div class="grid_6" id="form_div">
+			<?= $this->element->email_note ?>
+		</div>
+		
+		<div class='clear'></div>
+		
+		<div class="grid_12" id="recurring_options" class='input-line'>
+			<div id="freq-inputs" class="dark-gray">
+				<div>Send the schedule </div>
+				<?= $this->element->email_frequency_offset ?>
+				<div id="email_frequency_offset_type">
+					<input type="radio" id="freq_day" data-dbid="1" name="email_frequency_offset_type" checked="checked"><label for="freq_day">Day</label>
+					<input type="radio" id="freq_week" data-dbid="2" name="email_frequency_offset_type"><label for="freq_week">Week</label>
+					<input type="radio" id="freq_month" data-dbid="3" name="email_frequency_offset_type"><label for="freq_month">Month</label>
+				</div>
+				<div>before the start of each <span id='frequency'>month</span>.<?= $this->helpBubble("frequencyHelp", "Recurring Email Frequency Help", $frequencyHelpText) ?></div>
+			</div>
+		</div>
+	</div>
+    <div id="scheduler_export_instructor">
+        <?= $this->element->scheduler_export_instructor ?>
+    </div>
+	
+	<div style='display:none;'>
+		<?= $this->element->pdf_export_type ?>
+		<?= $this->element->pdf_recurring_type ?>
+		<?= $this->element->pdf_orientation_type ?>
+		<?= $this->element->pdf_color_type ?>
+		<?= $this->element->email_template ?>
+		<?= $this->element->pdf_email_frequency_offset_type ?>
+		<?= $this->element->email_id ?>
+	</div>
+
+</div>
+
+<div id='emailSuccess' class='success'>
+	Your email has been sent.
+</div>
+
+<div id='recurringSuccess' class='success'>
+	Your recurring email has been set up. You can manage your recurring emails
+	<a href='/scheduler/emails'>here</a>.
+</div>
+
+<div id='fail' class='error'>
+	Something has gone wrong...
+</div>
+
+<div class='pdf-export-buttons'>
+	<div id="cancelButtonWrapper" class="small gray-button">
+		<a href='#' id='export-cancel-btn'>Cancel</a>
+	</div>
+	<div id="saveButtonWrapper" class="small green-buttons">
+		<a href='#' id='export-btn'>Export PDF</a>
+	</div>
+</div>

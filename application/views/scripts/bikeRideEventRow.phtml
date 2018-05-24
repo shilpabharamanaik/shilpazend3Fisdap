@@ -1,0 +1,55 @@
+<tr>
+    <td class='id'>
+        <?= $this->item->id ?>
+    </td>
+    
+    <td class='region'>
+        <?= $this->item->region ?>
+    </td>
+    
+    <td class='origin'>
+        <?= $this->item->origin ?>
+    </td>
+    
+    <td class='destination'>
+        <?= $this->item->destination ?>
+    </td>
+    
+    <td class='roles'>
+        <?php
+            foreach($this->item->roles as $role) {
+                echo $role->getSummary() . "<br>";
+            }
+        ?>
+    </td>
+    
+    <td class='start'>
+        <?= $this->item->start_date->format('m-d Y') ?>
+    </td>
+    
+    <td class='end'>
+        <?= $this->item->end_date->format('m-d Y') ?>
+    </td>
+    
+    <td class='notes'>    
+        <?= $this->item->notes ?>
+    </td>
+    
+    <td>
+        <a href="/bike-ride/event/eventId/<?= $this->item->id; ?>" >
+        <img src="\images\icons\edit.png" alt="Edit Event"></a>
+    </td>
+    
+    <td>
+        <a href="/bike-ride/delete/eventId/<?= $this->item->id; ?>" class="deleteEvent">
+        <img src="\images\icons\delete.png" alt="Delete Event" width="45" height="45"></a>
+    </td>
+    
+    <td>
+        <a href='/bike-ride/?eventId=<?= $this->item->id ?>'>Registration</a><br />
+        <a href='/bike-ride/report/?passcode=<?= $this->item->passcode ?>'>Report</a><br />
+        <a href='/bike-ride/duplicate-event/?eventId=<?= $this->item->id ?>'>Duplicate</a><br />
+    </td>
+    
+</tr>
+    

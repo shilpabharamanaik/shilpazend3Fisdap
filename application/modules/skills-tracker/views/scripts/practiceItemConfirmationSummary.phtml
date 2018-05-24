@@ -1,0 +1,26 @@
+<div class="practice-item-shift-summary withTopMargin">
+    <h4 class="date-summary <?= $this->shiftType ?>"><?= $this->dateSummary ?></h4> <h4 class="dark-gray location-summary"><?= $this->locationSummary ?></h4>
+    <div class="clear"></div>
+    <table class="practice-item-confirmation">
+        <colgroup>
+            <col class="checkbox-col">
+            <col class="name-col">
+            <col class="time-col">
+            <col class="success-col">
+            <col class="patient-type-col">
+            <col class="evaluator-col">
+        </colgroup>
+
+        <? foreach($this->items as $item) { ?>
+            <tr class="clickable">
+                <td><?= $this->formCheckbox('confirm_' . $item['id'], $item['id'], ['class' => 'confirm-toggle', 'data-confirmed' => (int)$item['confirmed'], 'data-itemid' => $item['id']]) ?></td>
+                <td><?= $item['name'] ?></td>
+                <td><?= $item['time']->format('Hi') ?></td>
+                <td class="success-cell"><?= $item['passed'] ? "Pass" : "Fail" ?></td>
+                <td><?= $item['subject_name'] . "-" . $item['subject_type'] ?></td>
+                <td><?= $item['evaluator'] ?></td>
+            </tr>
+
+        <? } ?>
+    </table>
+</div>

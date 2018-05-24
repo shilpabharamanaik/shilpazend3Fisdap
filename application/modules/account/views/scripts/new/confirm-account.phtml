@@ -1,0 +1,13 @@
+<?= $this->pageTitleHelper() ?>
+<?= $this->messageHelper() ?>
+
+<div class="grid_12 island">
+	
+    <p style="margin-bottom:1em">Please review the account information below. If any of the information is incorrect, please contact your instructor.</p>
+    
+    <?= $this->orderSummaryStudent($this->accountDetails, $this->couponId); ?>
+    
+    <a id="prev" href="/account/new/"><< Previous (Enter your code)</a>
+	<a id="next" href="/account/new/create-order-from-product-code?code=<?= $this->accountDetails['code']?>">Next (Billing information) >></a>
+
+</div>

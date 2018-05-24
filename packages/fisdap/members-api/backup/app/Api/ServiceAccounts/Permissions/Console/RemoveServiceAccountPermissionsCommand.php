@@ -7,6 +7,7 @@ use Illuminate\Console\Command;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Collection;
 
+
 /**
  * Class RemoveServiceAccountPermissionsCommand
  *
@@ -63,9 +64,7 @@ final class RemoveServiceAccountPermissionsCommand extends Command
 
         $this->dispatcher->dispatch(new DeleteServiceAccountPermissions($permissionsIds));
 
-        $this->info('Deleted service account permissions for routes named: ' . implode(
-            ', ',
-                $this->argument('permission-route-names')
-        ));
+        $this->info('Deleted service account permissions for routes named: ' . implode(', ',
+                $this->argument('permission-route-names')));
     }
 }

@@ -1,0 +1,47 @@
+<div class="zoom-view" id="zoom-view-<?= $this->dayNum ?>" data-day-number="<?= $this->dayNum ?>">
+
+	<?= $this->totals ?>
+	
+	<div class="zoom-view-content">
+		
+		<?php
+		if($this->events){
+			$shift_add = '';
+			foreach($this->events as $baseId => $event) {
+				foreach($event as $eventId => $event) { 
+				$shifts = \Fisdap\EntityUtils::getEntity('ShiftLegacy', $eventId);
+						if($shifts){							
+							$shift_add = $shifts->site->getMapAddress($shifts);							
+						}
+						?>
+					<div id="zoom-event-<?= $eventId ?>" data-sortby="<?= $event['sort_by'] ?>" class="zoom-event" data-eventid="<?= $eventId ?>" data-startTime="<?= $event['start_datetime']->format("Hi") ?>">
+						
+						<?= $event['event_title'] ?>
+						
+						<div class="clear"></div>
+						
+						<?= $event['preceptor_list'] ?>
+						<?= $event['closed_weebles'] ?>
+						<?= $event['open_weebles'] ?>
+						<?= $event['special_icons'] ?>
+						
+						<div class="clear"></div>
+						
+					</div>
+					<div class="details_map_address" style="display:none;">
+							<?= $shift_add; ?>
+						</div>
+					
+					<?= $this->partial("event-details.phtml", array("event" => $event, "eventId" => $eventId, "current_user_data" => $this->current_user_data)); ?>
+					
+				<?
+				}
+			}
+		}
+		else {
+			echo "<br />" . $this->noShiftsMsg;
+		}
+		?>
+	</div>
+	
+</div>

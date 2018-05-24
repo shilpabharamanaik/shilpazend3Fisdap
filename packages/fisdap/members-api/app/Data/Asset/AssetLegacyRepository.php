@@ -2,6 +2,7 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface AssetLegacyRepository
  *

@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Products\SerialNumbers\Exception;
 
+
 /**
  * Class InvalidSerialNumber
  *

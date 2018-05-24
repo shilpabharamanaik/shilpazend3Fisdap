@@ -1,0 +1,20 @@
+<? if ($notEditable = !$this->shift->isEditable()) echo "<a href='/mobile/shifts/my-shift/shiftId/{$this->shift->id}/'>"; ?>
+<div class="shift-container" id="<?= $this->shift->id ?>">
+    <div class="shift-summary">
+        <? if ($this->shift->locked) echo '<img src="/images/icons/lock.png" style="float:right;">'; ?>
+        <h4 class="<?= $this->shift->type ?>"><?= $this->shift->start_datetime->format("Y-m-d") ?>, <?= $this->shift->start_datetime->format("Hi") ?></h4>
+        <?= $this->shift->site->abbreviation ?>, <?= $this->shift->base->name ?>
+    </div>
+    <? if (!$notEditable) { ?>
+        <div id="shift-buttons-<?= $this->shift->id ?>" class="shift-buttons orange-button">
+            <? if ($this->shift->isFuture()) { ?>
+                <p>This shift is in the future. You can add skills and patient care information after you've gone on the shift.</p>
+            <? } else { ?>
+                <a class="" href="/mobile/shifts/my-shift/shiftId/<?= $this->shift->id ?>"> <?= ucfirst($this->shift->getRunType() . "s") ?></a>
+                <a class="lock-shift" href="/mobile/shifts/lock-shift/shiftId/<?= $this->shift->id ?>"><?= $this->shift->locked ? "Unlock Shift" : "Lock Shift" ?></a>
+                <?= $this->partialLoop()->view->mobileEvalButton($this->shift->getHookIds(), $this->shift->id); ?>
+            <? } ?>
+        </div>
+    <? } ?>
+</div>
+<? if ($notEditable) echo "</a>"; ?>

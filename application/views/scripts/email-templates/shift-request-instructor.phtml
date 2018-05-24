@@ -1,0 +1,31 @@
+<div>
+<?php 	switch ($this->request->request_type->name) {
+		case "drop":	?>
+			<p><?= $this->request->owner->user->getName() ?> would like to drop the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+		case "cover": ?>
+			<p><?= $this->request->owner->user->getName() ?> would like for <?= $this->request->recipient->user->getName() ?> to cover the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+		case "swap": ?>
+			<p><?= $this->request->owner->user->getName() ?> would like to swap the following <?= $this->request->event->type ?> shift with <?= $this->request->recipient->user->getName() ?></p>
+<?php			break;
+	} 	?>
+	
+	<div>
+		<?= $this->request->event->getDetailViewDate() ?><br>
+		<?= $this->request->event->getLocation() ?>
+	</div>
+	
+<?php 	if ($this->request->request_type->name == 'swap') {
+			$swap = $this->request->getCurrentSwap();	?>
+			<p>in exchange for <?= $this->request->recipient->user->first_name ?>'s <?= $swap->offer->slot->event->type ?> shift:</p>
+			<div>
+				<?= $swap->offer->slot->event->getDetailViewDate() ?><br>
+				<?= $swap->offer->slot->event->getLocation() ?>
+			</div>
+<?php	} 	?>
+	
+	<p>
+		To respond to this request, visit your <a href='<?= $this->url ?>'>shift request page</a>.
+	</p>
+</div>

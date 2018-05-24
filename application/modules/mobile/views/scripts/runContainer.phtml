@@ -1,0 +1,15 @@
+<? $patient = $this->run->patients->first() ?>
+
+<? if ($notEditable = !$this->run->shift->isEditable()) echo "<a href='/mobile/patients/index/runId/{$this->run->id}'>"; ?>
+<div class="run-container" id="<?= $this->run->id ?>">
+    <div class="run-summary">
+        <h4 class="<?= $this->run->shift->type ?>"><?= $patient->age ?>, yo <?= $patient->gender->name ?> - <?= $patient->primary_impression->name ?></h4>
+    </div>
+    <? if (!$notEditable) { ?>
+        <div id="run-buttons-<?= $this->run->id ?>" class="run-buttons orange-button">
+            <a href="/mobile/patients/index/runId/<?= $this->run->id ?>"> Skills & Pt. Care</a><br />
+            <a class="delete-run" href="/mobile/shifts/delete-run/runId/<?= $this->run->id ?>">Delete</a>    
+        </div>
+    <? } ?>
+</div>
+<? if ($notEditable) echo "</a>"; ?>

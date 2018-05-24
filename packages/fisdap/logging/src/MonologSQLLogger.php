@@ -3,6 +3,7 @@
 use Doctrine\DBAL\Logging\SQLLogger;
 use Log;
 
+
 /**
  * Doctrine SQL logger for use with Monolog
  *

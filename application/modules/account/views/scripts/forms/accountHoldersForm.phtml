@@ -1,0 +1,61 @@
+<h2 class="section-header">What type of accounts do you want to order?</h2>
+<p>Note: You order one account type at a time, but will be able to order additional account types later.</p>
+
+<div class="education-section">
+    <h3 class="solid-section-header">Initial education</h3>
+    <table class='account-holders-table'>
+        <tr>
+            <td class="account-type-cell">
+                <?= $this->element->students ?>
+            </td>
+
+            <td class="quantity">
+                <?= $this->element->quantity_students ?>
+            </td>
+
+            <td>
+                <?= $this->element->certification ?>
+            </td>
+
+            <td>
+                <?= $this->element->gradDate ?>
+                <?= $this->element->group ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<? if ($this->element->professionId == 1) { ?>
+<div class="education-section">
+    <h3 class="solid-section-header">Continuing education</h3>
+    <table class="account-holders-table">
+        <tr>
+            <td class="account-type-cell">
+                <?= $this->element->preceptors ?>
+            </td>
+
+            <td colspan="2">
+                <?= $this->element->quantity_preceptors ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="account-type-cell">
+                <?= $this->element->providers ?>
+            </td>
+            <td class="quantity">
+                <?= $this->element->quantity_providers ?>
+            </td>
+            <td>
+                <?= $this->element->provider_certification ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<? } ?>
+
+
+<? if (!$this->element->order->id) { ?>
+        <h3 class="sub-heading">Who will be paying?</h3>
+        <?= $this->element->payment ?>
+<? } ?>

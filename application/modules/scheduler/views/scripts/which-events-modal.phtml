@@ -1,0 +1,78 @@
+
+<?
+	$event = $this->event;
+	$today = new \DateTime();
+	$relevant_events = \Fisdap\EntityUtils::getRepository("EventLegacy")->getAllBySeries($this->series_id);
+
+?>
+
+<div class='event-title-txt'>
+	<div class="grid_1">
+	<img id='site-icon' class='icon' src='/images/icons/<?= $event->type ?>SiteIconColor.png'>
+</div>
+
+<div class="grid_7">
+	<h4 class='table-label <?= $event->type ?>'><?= $event->start_datetime->format("M j Y, Hi")?></h4>
+	<h4 class='header'><?= $event->getLocation() ?></h4>
+</div>
+
+<div class="clear"></div>
+
+
+<div id='description' class="info">This shift is part of series. Which shifts would you like to <?= $this->event_action ?>?</div>
+
+<div class="clear"></div>
+
+<div id="just-this-event-option" class="series-option selected-series-option">
+	Just this shift.
+</div>
+
+<div id="multiple-shifts-option" class="series-option">
+	Multiple shifts in the series.
+</div>
+
+<div id="multiple-shifts-multipick-cal">
+
+	<select id="series_days" multiple="multiple">
+
+		<?
+		foreach($relevant_events as $e){
+			if($today <= $e['start_datetime']) {
+				echo "<option value='{$e['id']}' selected='selected'>{$e['start_datetime']->format("Y-m-d")}</option>";
+			}
+		}
+		//Grab the last date in the array to use later on
+		$endDate = $e['start_datetime'];
+		?>
+
+	</select>
+
+	<select id="selected_days" multiple="multiple">
+
+
+	</select>
+
+	<a href="#" id="prev-months"><< Previous <span class="month-count-display">3</span> months</a>
+	<a href="#" id="next-months">Next <span class="month-count-display">3</span> months >></a>
+
+	<div class="clear"></div>
+
+	<div id="multipick-cal-home">
+
+	</div>
+
+	<div id="date-range-selector">
+		Select shifts in this series from <?= $this->formText("startDateRange", $event->start_datetime->format("m/d/Y"), array("class" => "selectDate", "size" => 30)) ?> to <?= $this->formText("endDateRange", $endDate->format("m/d/Y"), array("class" => "selectDate", "size" => 30)) ?>. (<span class='total-selected-days'></span> shifts selected)
+
+	</div>
+
+</div>
+
+<div class="which-events-btns">
+	<div id='cancel-which-events-btn' class="small gray-button">
+		<a href="#" id="cancel-which-events-modal">Cancel</a>
+	</div>
+	<div id='continue-which-events-btn' class="small blue-button">
+		<a href="#" id="continue-which-events-modal"><?= ucfirst($this->event_action) ?> <span class='total-selected-days'>1</span> shift<span class="total-selected-days-plural"></span></a>
+	</div>
+</div>

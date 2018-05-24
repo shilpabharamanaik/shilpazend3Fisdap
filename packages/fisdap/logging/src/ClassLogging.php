@@ -3,6 +3,7 @@
 use Log;
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Utility Trait for logging actions/messages with class/method info
  *

@@ -1,0 +1,26 @@
+<button id="editGroupsButton">Edit Group<img id='opened' src='/images/arrow_down.png'></button>
+<div id="editGroupsWrapper">
+    <?= $this->element->edit_groups;?>
+    <div class="resetMessage" id="groupsReset">Selecting this value will remove any groups associated with the selected activation codes.</div>
+</div>
+
+<div style="clear:both;"></div>
+
+
+<button id="editGradButton">Edit Graduation Date<img id='opened' src='/images/arrow_down.png'></button>
+<div id="editGradWrapper">
+    <?= $this->element->edit_grad;?>
+    <div class="resetMessage" id="gradReset">Selecting this value will remove all graduation dates for the selected actiavtion codes. Please note that both
+    a month and a year need to be selected.</div>
+</div>
+
+<div style="clear:both;"></div>
+
+<div id="editGradGroupButtonWrapper" class="small green-buttons">
+    <div id="editGradGroupButtonThrobber"><img src="/images/throbber_small.gif"></p></div>
+    <button id="updateGradGroup">Update</button>
+</div>
+
+<div class="small gray-button">
+    <button id="editGradGroupCloseButton">Cancel</button>
+</div>

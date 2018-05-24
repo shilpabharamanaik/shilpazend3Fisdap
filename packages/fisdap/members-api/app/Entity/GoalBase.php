@@ -3,6 +3,7 @@
 /**
  * Goals base class
  */
-class GoalBase extends EntityBaseClass
-{
+class GoalBase extends EntityBaseClass {
+
+
 }

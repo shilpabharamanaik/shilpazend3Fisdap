@@ -19,6 +19,7 @@ class DoctrineProgramRequiredShiftEvaluationsRepository extends DoctrineReposito
 
     public function getByProgram($program_id, $shift_type = null, $eval_def_id = null)
     {
+
         $qb = $this->_em->createQueryBuilder();
 
         $qb->select('re')
@@ -26,16 +27,18 @@ class DoctrineProgramRequiredShiftEvaluationsRepository extends DoctrineReposito
             ->where('re.program = ?1')
             ->setParameter(1, $program_id);
 
-        if (!is_null($shift_type)) {
+        if(!is_null($shift_type)){
             $qb->andWhere('re.shift_type = ?2')
-                ->setParameter(2, $shift_type);
+                ->setParameter(2,$shift_type);
         }
 
-        if (!is_null($eval_def_id)) {
+        if(!is_null($eval_def_id)){
             $qb->andWhere('re.eval_def = ?3')
-                ->setParameter(3, $eval_def_id);
+                ->setParameter(3,$eval_def_id);
         }
 
         return $qb->getQuery()->getResult();
+
     }
+
 }

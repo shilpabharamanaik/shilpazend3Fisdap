@@ -1,0 +1,18 @@
+<tr class="<?= $this->class ?>">
+    <td class="notification-date">
+        <?= $this->date_posted->format("M j, Y H:i") ?>
+        <div class="active-toggle-container">
+            <?= $this->formCheckbox("toggle_" . $this->id, 1, array("class" => "active-toggle"), array($this->active)) ?>
+        </div>
+    </td>
+    <td class="notification-type" >
+        <img src="/images/notification-<?= $this->class ?>-shadow.png" width="30px" title="<?= $this->type ?>"/>
+    </td>
+    <td>
+        <div class="notification-title"><?= $this->title ?></div>
+        <div class="notification-message"><?= $this->message ?></div>
+    </td>
+    <td class="notification-recipients">
+        <?= $this->notificationRecipientSummary($this->recipient_params, $this->view_data) ?>
+    </td>
+</tr>

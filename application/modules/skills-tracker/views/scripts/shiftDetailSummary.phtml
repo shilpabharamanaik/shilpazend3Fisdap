@@ -1,0 +1,177 @@
+<a name='run-<?php echo $this->runNumber; ?>'></a>
+<h3 class='<?php echo $this->type ?>-header'>
+	Patient <?php echo $this->runNumber; ?> - <?php echo $this->patient->getSummaryLine(); ?>
+	<?
+	if (\Fisdap\Entity\Run::canEditData($this->patient->run->id, $this->user) && $this->patient->run->shift->isEditable()) {
+		echo "<a class='no-pdf editLink' href='/skills-tracker/patients/index/shiftId/" . $this->patient->shift->id . "/runId/" . $this->patient->run->id . "/patientId/" . $this->patient->id . "'>edit</a>";
+	}
+	?>
+</h3>
+
+<div class='grid_12'>
+	<!-- <?php echo $this->patient->student->user->first_name . ' ' . $this->patient->student->user->last_name; ?>  performed... <br /> -->
+	<div class='gray-header'>Assessment and Leadership</div>
+	<div class='grid_3'>Patient interview: <?php echo ($this->patient->interview)?"<img width='15px' height='15px' src='/images/icons/checkmark.png'/>":''?></div>
+	<div class='grid_3'>Patient exam: <?php echo ($this->patient->exam)?"<img width='15px' height='15px' src='/images/icons/checkmark.png'/>":''?></div>
+	<div class='grid_3'>Team lead: <?php echo ($this->patient->team_lead)?"<img width='15px' height='15px' src='/images/icons/checkmark.png'/>":''?></div>
+	<div class='grid_3'>Airway Management: <?php echo ($this->patient->airway_success)?"<img width='15px' height='15px' src='/images/icons/checkmark.png'/>":''?></div>
+	
+	<br />
+	
+	<div class='grid_12'>
+		<table width='100%'>
+			<tr class='detail-table-top'>
+				<td align='left' width='50%' class='left-table-td'><div class='gray-header'>Team</div></td>
+				<td width='50%' class='right-table-td'></td>
+			</tr>
+			<tr>
+				<td align='right' width='50%' class='left-table-td'>Size</td>
+				<td align='left' width='50%' class='right-table-td'><?php echo $this->ifNullOutput($this->patient->team_size, '--'); ?> people</td>
+			</tr>
+			<tr>
+				<td align='right' width='50%' class='left-table-td'>Preceptor</td>
+				<td align='left' width='50%' class='right-table-td'>
+					<?php echo $this->ifNullOutput($this->patient->preceptor->first_name . ' ' . $this->patient->preceptor->last_name, '--'); ?>
+				</td>
+			</tr>
+			
+			<tr class='detail-table-top'>
+				<td align='left' width='50%' class='left-table-td'><div class='gray-header'>Dispatch</div></td>
+				<td width='50%' class='right-table-td'></td>
+			</tr>
+			<tr>
+				<td align='right' width='50%' class='left-table-td'>Response mode to scene:</td>
+				<td align='left' width='50%' class='right-table-td'><?php echo $this->ifNullOutput($this->patient->response_mode->name, 'N/A'); ?></td>
+			</tr>
+			
+			<tr class='detail-table-top'>
+				<td align='left' width='50%' class='left-table-td'><div class='gray-header'>Patient</div></td>
+				<td width='50%' class='right-table-td'></td>
+			</tr>
+			<tr>
+				<td align='right' width='50%' class='left-table-td'>Age/Gender/Ethnicity:</td>
+				<td align='left' width='50%' class='right-table-td'>
+					<?php echo $this->patient->age;?> year old <?php echo $this->patient->ethnicity->name; ?> <?php echo $this->patient->gender->name; ?> 
+				</td>
+			</tr>
+			<tr>
+				<td align='right' width='50%' class='left-table-td'>Complaints:</td>
+				<td align='left' width='50%' class='right-table-td'><?php echo $this->ifNullOutput($this->patient->getComplaintNames(), '--'); ?></td>
+			</tr>
+			<tr>
+				<td align='right' width='50%' class='left-table-td'>Primary Impression:</td>
+				<td align='left' width='50%' class='right-table-td'><?php echo $this->ifNullOutput($this->patient->primary_impression->name, '--'); ?></td>
+			</tr>
+			<tr>
+				<td align='right' width='50%' class='left-table-td'>Secondary Impression:</td>
+				<td align='left' width='50%' class='right-table-td'><?php echo $this->ifNullOutput($this->patient->secondary_impression->name, '--'); ?></td>
+			</tr>
+			<tr>
+				<td align='right' width='50%' class='left-table-td'>Arrest witnessed by:</td>
+				<td align='left' width='50%' class='right-table-td'><?php echo $this->ifNullOutput($this->patient->witness->name, '--'); ?></td>
+			</tr>
+			<tr>
+				<td align='right' width='50%' class='left-table-td'>Return of Pulse:</td>
+				<td align='left' width='50%' class='right-table-td'><?php echo $this->ifNullOutput($this->patient->pulse_return->name, '--');?></td>
+			</tr>
+			<tr>
+				<td align='right' width='50%' class='left-table-td'>Mechanism of Injury:</td>
+				<td align='left' width='50%' class='right-table-td'><?php echo $this->ifNullOutput($this->patient->getMechanismNames(), '--');?></td>
+			</tr>
+			<tr>
+				<td align='right' width='50%' class='left-table-td'>Cause of Injury:</td>
+				<td align='left' width='50%' class='right-table-td'><?php echo $this->ifNullOutput($this->patient->cause->name, '--');?></td>
+			</tr>
+			<tr>
+				<td align='right' width='50%' class='left-table-td'>Intent of Injury:</td>
+				<td align='left' width='50%' class='right-table-td'><?php echo $this->ifNullOutput($this->patient->intent->name, '--');?></td>
+			</tr>
+			<tr>
+				<td align='right' width='50%' class='left-table-td'>Criticality:</td>
+				<td align='left' width='50%' class='right-table-td'><?php echo $this->ifNullOutput($this->patient->patient_criticality->name, '--');?></td>
+			</tr>
+			
+			<tr class='detail-table-top'>
+				<td align='left' width='50%' class='left-table-td'><div class='gray-header'>Treatment</div></td>
+				<td width='50%' class='right-table-td'></td>
+			</tr>
+			<?php 
+				$patientRepository = \Fisdap\EntityUtils::getEntityManager()->getRepository('Fisdap\Entity\Patient');
+				$patientSkills = $patientRepository->getSkillsByPatient($this->patient->id);
+				foreach($patientSkills as $skill){
+					echo $this->partial('shiftDetailSkill.phtml', array('skill' => $skill));
+				}
+			?>
+			<tr class='detail-table-top'>
+				<td colspan='2' align='left' width='50%'>
+					<div class='gray-header'>Narrative</div>
+			        <?
+                        if($this->patient->narrative != null && !$this->patient->narrative->isBlank()) {
+						        echo $this->patient->narrative->getProcedureText();
+					        } else {
+						        echo "No narrative entered.";
+                        }
+                    ?>
+				</td>
+			</tr>
+            <? if ($this->patient->run->verification->verified || $this->hasPatientSignoff) { ?>
+                <tr class='detail-table-top'>
+                    <td colspan='2' align='left' width='50%'>
+                        <div class='gray-header'>Sign off</div>
+                        <?
+                            if ($this->patient->run->verification->verified) {
+                                echo $this->patient->run->verification->getSignoffMessage($this->patient->student->program->program_settings)."<br />";
+
+                                if ($sig = $this->patient->run->verification->signature) {
+                                    echo "<div class=''>" . $this->signatureHelper($sig->id, 300, 55, 'php') . "</div>";
+                                }
+
+                                if ($this->patient->run->verification->type->id == 4 && $this->patient->run->verification->verified) {
+                                    echo "<div class='attachment-signoff-container'>" . $this->attachmentCard($this->shiftAttachment, $this->patient->run->shift->id, $this->patient->run->shift->type) . "</div>";
+                                }
+
+                                if ($this->patient->run->isEditable() && $this->patient->student->program->program_settings->allow_signoff_on_patient) {
+                                    echo '<a href="/skills-tracker/patients/index/runId/' . $this->patient->run->id . '#signoff">view preceptor feedback</a>';
+                                }
+                            } else if ($this->patient->student->program->program_settings->allow_signoff_on_patient) {
+                                echo 'This patient has not yet been verified. <a href="/skills-tracker/patients/index/runId/' . $this->patient->run->id . '#signoff">Sign off on this patient</a>.';
+                            }
+                        ?>
+                    </td>
+                </tr>
+            <? } ?>
+
+            <? if ($this->patient->run->signoff->id || $this->hasPatientSignoff) { ?>
+                <tr class='detail-table-top'>
+                    <td colspan='2' align='left' width='50%'>
+                        <div class='gray-header'>Preceptor Feedback</div>
+                        <?
+                            if ($this->patient->run->signoff->id) {
+                                echo "<h4 class='header'>Shift Summary</h4>";
+                                echo "<div class='section-body'>" . nl2br($this->patient->run->signoff->summary) . "</div>";
+                                echo "<h4 class='withTopMargin header'>Plan of Action</h4>";
+                                echo "<div class='section-body'>" . nl2br($this->patient->run->signoff->plan) . "</div>";
+                                echo new \SkillsTracker_Form_RatingsSubForm($this->patient->run->signoff->id);
+                            } else {
+                                echo "No preceptor feedback entered.";
+                            }
+                        ?>
+                    </td>
+                </tr>
+            <? } ?>
+		</table>
+	</div>
+</div>
+
+<div class='clear'></div>
+
+<div class='no-pdf back-to-top'>
+    <?
+    if (\Fisdap\Entity\Run::canEditData($this->patient->run->id, $this->user) && $this->patient->shift->isEditable()) {
+        echo "<a class='edit-link' href='/skills-tracker/patients/index/shiftId/" . $this->patient->shift->id . "/runId/" . $this->patient->run->id . "/patientId/" . $this->patient->id . "'>edit patient</a>";
+    }
+    ?>
+	<a href='#top'>back to top</a>
+</div>
+
+<div class='clear'></div>

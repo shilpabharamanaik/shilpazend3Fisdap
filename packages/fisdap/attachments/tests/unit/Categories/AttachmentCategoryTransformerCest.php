@@ -3,6 +3,7 @@
 use Fisdap\Attachments\Categories\AttachmentCategoryTransformer;
 use Fisdap\Attachments\Categories\Entity\AttachmentCategory;
 
+
 class AttachmentCategoryTransformerCest
 {
     /**

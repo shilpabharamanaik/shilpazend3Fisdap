@@ -2,12 +2,13 @@
 
 use Swagger\Annotations as SWG;
 
+
 /**
  * Class Referral
  *
  * @package Fisdap\Api\Programs\Jobs\Models
  * @author  Ben Getsug <bgetsug@fisdap.net>
- *
+ *          
  * @SWG\Definition(definition="ProgramReferral", required={"source"})
  */
 final class Referral

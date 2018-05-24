@@ -1,0 +1,17 @@
+Hi <?= $this->recipient->user->first_name ?>,
+<div>
+		<p>
+				We wanted you to know that a change has been made to your schedule, and you are no longer
+				scheduled to attend the following <?= $this->event->type ?> shift:
+		</p>
+		<div>
+			<?= $this->event->getDetailViewDate() ?><br>
+			<?= $this->event->getLocation() ?>
+		    <?= ($this->event->notes) ? "<br />Notes: " . $this->event->notes : ""; ?>
+		</div>
+		<p>
+				If you have any questions about your schedule, please contact the instructor who made
+				this change, <?= $this->initiator->getName() ?> at <?= $this->initiator->email ?>.
+		</p>
+
+</div>

@@ -1,8 +1,10 @@
 <?php namespace Fisdap\Api\Shifts\Patients\Jobs;
 
+
 use Fisdap\Api\Jobs\RequestHydrated;
 use Fisdap\Data\Patient\PatientRepository;
 use Fisdap\Data\Run\RunRepository;
+
 
 /**
  * A Job command for deleting a patient associated with a given shift.
@@ -26,9 +28,7 @@ final class DestroyPatient extends PatientAbstract implements RequestHydrated
     ) {
         $patient = $patientRepository->find($this->id);
 
-        if ($patient === null) {
-            return null;
-        }  // No patient, no problem.
+        if ($patient === null) return null;  // No patient, no problem.
 
         $patient->set_verification(null);
 
@@ -56,18 +56,14 @@ final class DestroyPatient extends PatientAbstract implements RequestHydrated
             $patientRepository->destroy($vital);
         }
 
-        if ($patient->signoff) {
-            $patientRepository->destroy($patient->signoff);
-        }
+        if ($patient->signoff) $patientRepository->destroy($patient->signoff);
 
         if ($patient->narrative) {
             $patientRepository->destroyCollection($patient->narrative->sections->toArray());
             $patientRepository->destroy($patient->narrative);
         }
 
-        if ($patient->run) {
-            $patient->run->removePatient($patient);
-        }
+        if ($patient->run) $patient->run->removePatient($patient);
 
         // TODO: delete pieces of Patient, then the full object.
         $patientRepository->destroy($patient);
@@ -83,4 +79,5 @@ final class DestroyPatient extends PatientAbstract implements RequestHydrated
     {
         return null;
     }
+
 }

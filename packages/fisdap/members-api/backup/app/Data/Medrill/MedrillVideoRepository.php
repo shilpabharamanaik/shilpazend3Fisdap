@@ -7,14 +7,14 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface MedrillVideoRepository
  *
  * @package Fisdap\Data\Medrill
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface MedrillVideoRepository extends Repository
-{
+interface MedrillVideoRepository extends Repository {
     /**
      * Get all the Medrill video entities for a given product
      *

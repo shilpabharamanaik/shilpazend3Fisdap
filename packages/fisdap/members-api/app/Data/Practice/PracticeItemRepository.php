@@ -7,14 +7,14 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface PracticeItemRepository
  *
  * @package Fisdap\Data\Practice
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface PracticeItemRepository extends Repository
-{
+interface PracticeItemRepository extends Repository {
 
     /**
      * Get a list of practice items (evaluated by an instructor) for a given student at given shift types (i.e. field, clinical, lab).

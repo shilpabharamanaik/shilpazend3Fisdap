@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 
+
 /**
  * Provides additional Artisan commands for route filters
  *
@@ -9,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
  */
 final class RouteFiltersConsoleServiceProvider extends ServiceProvider
 {
+
     public function boot()
     {
         $this->commands('command.routes.filters.detail');

@@ -1,0 +1,26 @@
+<?= $this->pageTitleHelper() ?>
+
+
+<div class="grid_10 program-name">
+	<?= $this->programName; ?>
+	
+
+</div>
+
+<div class="grid_2">
+	<a id='add-test-btn' href='/learning-center/test/edit'>New Test</a>
+</div>
+
+<div class="clear"></div>
+
+
+<div class="grid_12 island" style="margin-top:0.7em; padding-bottom:4em">
+	
+	<div id='test-filters'>
+	<?= $this->filtersForm ?>
+	</div>
+
+	<div id="scheduled-test-list-container">
+		<?= $this->scheduledTestList($this->filters) ?>		
+	</div>
+</div>

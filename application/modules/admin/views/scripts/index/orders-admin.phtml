@@ -1,0 +1,21 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_12 island">
+    <table class="fisdap-table">
+        <thead>
+            <tr>
+                <td>Order #</td>
+                <td>Payment</td>
+                <td>Ref #</td>
+                <td>PO</td>
+                <td>QB Status</td>
+                <td>Program</td>
+                <td>Total</td>
+                <td>Staff Order</td>
+                <td>Date</td>
+            </tr>
+        </thead>
+        <tbody>
+            <?= $this->partialLoop("orderRow.phtml", $this->orderPartials) ?>        
+        </tbody>
+    </table>
+</div>

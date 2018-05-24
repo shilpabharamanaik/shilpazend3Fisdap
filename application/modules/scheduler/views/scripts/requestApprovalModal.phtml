@@ -1,0 +1,46 @@
+<div class="container_12" id="form_div">
+	
+	<div class='header'>
+		Please approve or deny the following <?= $this->element->request->request_type->name ?> request:
+	</div>
+	
+	<div class='shift-div'>	
+                <div><?= $this->element->data['description'] ?>:</div>
+		<img id='site-icon' class='icon' src='/images/icons/<?= $this->element->event->type ?>SiteIconColor.png'>
+		<h4 class='table-label <?= $this->element->event->type ?>'><?= $this->element->data['date'] ?></h4>
+		<h4 class='header' style='margin: 0 0 5px 30px'><?= $this->element->data['location'] ?></h4>
+	</div>
+
+<?php if ($this->element->data['has_swap']) { ?>
+        <div id='swap-div'>
+                <div>in exchange for <?= $this->element->data['swap_owner'] ?>'s shift:</div>
+                <img id='site-icon' class='icon' src='/images/icons/<?= $this->element->swap_event->type ?>SiteIconColor.png'>
+                <h4 class='site-desc <?= $this->element->swap_event->type ?>'><?= $this->element->data['swap_date'] ?></h4>
+                <h4 class='header' style='margin: 0 0 5px 30px'><?= $this->element->data['swap_location'] ?></h4>
+        </div>
+<?php } ?>
+
+<?php if (count($this->element->data['conflicts']) > 0) { ?>
+	<div id='conflict-div' class='notice'>
+		<?php foreach ($this->element->data['conflicts'] as $conflict) { ?>
+			<p><?= $conflict ?></p>
+		<?php } ?>
+	</div>
+<?php } ?>
+	
+	<?php echo $this->element->request_id ?>
+	<?php echo $this->element->state_id ?>
+	<?php echo $this->element->title ?>
+	
+	<div class='buttons'>
+		<div id="cancelButtonWrapper" class="small gray-button">
+			<a href='#' id='cancel-btn'>Cancel</a>
+		</div>
+		<div id="denyButtonWrapper" class="small green-buttons">
+			<a href='#' id='deny-btn'>Deny</a>
+		</div>
+		<div id="approveButtonWrapper" class="small green-buttons">
+			<a href='#' id='approve-btn'>Approve</a>
+		</div>
+	</div>
+</div>

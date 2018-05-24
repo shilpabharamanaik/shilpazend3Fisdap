@@ -1,0 +1,130 @@
+
+<? // -------- how does the user want to enter data buttonset? -------- ?>
+<div class="cupertino small" id="selection-by-options">
+	<? $check_by_requirements = ($this->element->selection_by != "by-people"); ?>
+	<input type="radio" name="selection-by" id="by-requirements" <?= ($check_by_requirements) ? 'checked="checked"' : '' ?> data-list='requirement'>
+	<label for="by-requirements">By requirements</label>
+	<input type="radio" name="selection-by" id="by-people" <?= ($check_by_requirements) ? '' : 'checked="checked"' ?> data-list="people">
+	<label for="by-people">By people</label>	
+</div>
+
+<? // ------------- enter data "by requirements" content ------------- ?>
+<div id="by-requirements-content" class="selection-by-content">
+	<h3 class="section-header">Select requirements</h3>
+	<div class="grid_11">
+		
+		<div class="grid_6">
+			<?= $this->element->requirement_search; ?>
+		</div>
+		
+		<div class="grid_5" style="margin-left: 12px;">
+			<div id="requirement-list-filters" class="extra-small">
+				<input type="radio" name="requirement-list-filters" id="all-requirements" checked="checked">
+				<label for="all-requirements">All</label>
+				
+				<input type="radio" name="requirement-list-filters" id="program-requirements">
+				<label for="program-requirements"><img src='/images/icons/program-requirement.png'>Program</label>
+				
+				<input type="radio" name="requirement-list-filters" id="site-requirements">
+				<label for="site-requirements"><img src='/images/icons/site-requirement.png'>Site</label>
+				
+				<input type="radio" name="requirement-list-filters" id="shared-requirements">
+				<label for="shared-requirements"><img id='ssl-icon' src="/images/icons/shared-requirement.png">Shared</label>
+			</div>
+		</div>
+		
+		<div class="clear"></div>
+		
+		<div id='selection-info'>
+			<span id='requirement-num-selected'></span> of <span id='requirement-num-total'></span> selected.
+			<a href="#" class="select-aller" data-mode="all" data-list="requirement">select all</a> |
+			<a href="#" class="select-aller" data-mode="none" data-list="requirement">select none</a>
+		</div>
+		
+		<?= $this->element->requirements; ?>
+		
+		<div id="requirement-fancy-element"></div>
+		
+		<div class="dotted-line"><hr /></div>
+		
+		<div id="by-requirement-people-description">
+			<div class='floater floater-no-max-width assign-requirement-to'>Edit compliance status for</div>
+			<div class='flip-container'><div id="all_flippy" class="all-specific all">all</div>&nbsp;</div>
+			<div class='floater floater-no-max-width'><span id='by-requirement-people-text'>active students and instructors</span> who have been assigned the selected requirements.</div>
+		</div>
+		
+		<div id="people-subfilter" class="grid_12" data-defaultBlankState="<?= $this->element->default_blank_state ?>">
+			<?= $this->element->all ?>
+
+			<div class="grid_5">
+				<?= $this->element->cert_levels; ?>
+				<?= $this->element->groups; ?>
+			</div>
+			
+			<div class="grid_5">
+				<?= $this->element->grad; ?>
+				<?= $this->element->status; ?>
+			</div>
+			
+			<div class="grid_2" id="show_instructors_wrapper">
+				<?= $this->element->show_instructors; ?>
+				<div id="show_instructors_label">Show instructors</div>
+			</div>
+			
+			<div class="clear"></div>
+				
+		</div>
+		
+		<div class="clear"></div>
+		
+		
+	</div>
+</div>
+
+<? // ----------------- enter data "by people" content ----------------- ?>
+<div id="by-people-content" class="selection-by-content">
+	<h3 class="section-header">Select people</h3>
+	
+	<div class="grid_9">
+		
+		<div class="grid_5">
+			<?= $this->element->people_search; ?>
+		</div>
+		
+		<div class="grid_6">
+			<div id="people-list-filters" class="extra-small">
+				<input type="radio" name="people-list-filters" id="all-people" checked="checked">
+				<label for="all-people">All</label>
+				
+				<input type="radio" name="people-list-filters" id="instructors-people">
+				<label for="instructors-people"><img src='/images/icons/lab-skills-instructor-icon.svg'>Instructors</label>
+				
+				<input type="radio" name="people-list-filters" id="students-people">
+				<label for="students-people"><img id="sw-icon" src='/images/icons/student-weeble.svg'>Students</label>
+			</div>
+		</div>
+		
+		<div class="clear"></div>
+		
+		<div id='selection-info'>
+			<span id='people-num-selected'></span> of <span id='people-num-total'></span> selected.
+			<a href="#" class="select-aller" data-mode="all" data-list="people">select all</a> |
+			<a href="#" class="select-aller" data-mode="none" data-list="people">select none</a>
+		</div>
+		
+		<?= $this->element->people; ?>
+		<div id="people-fancy-element"></div>
+		
+		<div class="dotted-line"><hr /></div>
+		
+		Edit compliance status for all active requirements that are assigned to the selected people.
+	</div>
+</div>
+
+<div class="clear"></div>
+<div id="button-spacer"></div>
+			
+<div class="green-buttons small">
+	<img src="/images/throbber_small.gif" id="submit-selection-throbber">
+	<a href="#" id="submit-selection">Go</a>
+</div>

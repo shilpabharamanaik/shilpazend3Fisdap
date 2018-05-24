@@ -1,0 +1,72 @@
+<tr>
+    <td class='firstName'>
+        <?= $this->item->first_name ?>
+    </td>
+	
+    <td class='lastName'>
+        <?= $this->item->last_name ?>
+    </td>
+	
+    <td class='email'>
+        <?= $this->item->email ?>
+    </td>
+	
+	<td class='email'>
+        <?= $this->item->event->region ?>
+    </td>
+		
+    <td class='paid green-buttons extra-small'>
+        <?php
+		
+		if($this->item->paid)
+			$buttonText = "Paid";
+		else
+			$buttonText = "Not paid";
+		?>
+		
+		<a href= "#" class="togglePaidButton" data-riderid="<?= $this->item->id ?>"><?= $buttonText ?></a>
+		
+    </td>
+	
+    <td class='paid green-buttons extra-small'>
+        <?php
+
+			$buttonText = "More Info";
+		?>
+		
+		<a href= "#" class="moreInfoButton" data-riderid="<?= $this->item->id ?>"><?= $buttonText ?></a>
+		
+    </td>
+	
+	<div id="<?= $this->item->id ?>" data-riderid="<?= $this->item->id ?>" style="display: none;" title="More Info">
+		<p> Name: <?= $this->item->first_name ?>, <?= $this->item->last_name ?> </p>
+		<p> Address Line 1: <?= $this->item->address1 ?></p>
+		<p> Address Line 2: <?= $this->item->address2 ?></p>
+		<p> City: <?= $this->item->city ?></p>
+		<p> State: <?= $this->item->state ?></p>
+		<p> Zipcode: <?= $this->item->zipcode ?></p>
+		<p> Email: <?= $this->item->email ?></p>
+		<p> Home Phone: <?= $this->item->home_phone ?></p>
+		<p> Work Phone: <?= $this->item->work_phone ?></p>
+		<p> Cell Phone: <?= $this->item->cell_phone ?></p>
+		<p> Emergency Contact: <?= $this->item->emergency_contact ?></p>
+		<p> Emergency Relation: <?= $this->item->emergency_relation ?></p>
+		<p> Emergency Phone: <?= $this->item->emergency_phone ?></p>
+		<p> Role: <?= $this->item->role->name ?></p>
+		<p> Days: <?= $this->item->days ?></p>
+		<p> Guests: <?= $this->item->estimate_guest_count ?></p>
+		<p> Jersey Size: <?= $this->item->jersey_size ?></p>
+		<p> Shirt Size: <?= $this->item->shirt_size ?></p>
+		<p> Special Needs: <?= $this->item->special_needs ?></p>
+		<p> Why Ride: <?= $this->item->why_ride ?></p>
+		<p> Suggestions: <?= $this->item->suggestions ?></p>
+		<p> Liability:
+		<?php
+		if($this->item->liability)
+			echo "Yes";
+		else
+			echo "No";
+		?></p>		
+	</div>
+	
+</tr>	

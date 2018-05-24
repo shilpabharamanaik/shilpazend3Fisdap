@@ -1,0 +1,98 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_12 island">
+	<h3 class="section-header">Thank You!</h3>
+	<p>
+		Your order has been processed, and we've emailed you a receipt.
+	</p>
+	<table class="receipt-table">
+		<tr>
+			<td>
+				Ordered by
+			</td>
+			
+			<td>
+				<?= $this->order->user->getName() . " on " . $this->order->order_date->format("m-d-Y") ?>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				Order #
+			</td>
+			
+			<td>
+				<?= $this->order->id ?>
+			</td>
+		</tr>
+		
+		<? if ($this->order->payment_method->id == 2 && $this->order->paypal_transaction_id) { ?>
+			<tr>
+				<td>
+					Transaction Reference #
+				</td>
+				
+				<td>
+					<?= $this->order->paypal_transaction_id ?>
+				</td>
+			</tr>
+		<? } ?>
+		
+		<tr>
+			<td>
+				Description
+			</td>
+			
+			<td>
+				<? foreach ($this->order->order_configurations as $config) {
+					echo $config->getSummary() . "<br>";
+				} ?>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				Total
+			</td>
+			<td>
+				$<?= number_format($this->order->total_cost, 2, ".", ",") ?>
+			</td>
+		</tr>
+		<? if ($this->order->total_cost > 0) { ?>
+			<tr>
+				<td>
+					Bill to
+				</td>
+				
+				<td>
+					<div style="float:right">
+						<?= $this->order->phone ?><br>
+						<?= $this->order->email ?>
+					</div>
+					<?= $this->order->name ?><br>
+					<?= $this->order->getBillingAddress() ?>
+				</td>
+			</tr>	
+		<? } ?>
+		
+	</table>
+	
+	<? if(!$this->order->upgrade_purchase) { ?>
+		<div class="grid_12" style="margin-bottom: 20px;">
+			Your activation codes were emailed to <?= $this->order->user->email ?>.<br \>
+            Your invoice was emailed to <?= $this->order->email ?>.
+		</div>
+	<? } ?>
+	
+	<div class="clear"></div>
+	<? if (!$this->order->individual_purchase) { ?>
+		<div class="grid_5 suffix_2">
+			<a href="/account/orders/">&lt;&lt; Return to Order Accounts</a>
+		</div>
+	<? } ?>
+	
+	<? if(!$this->order->upgrade_purchase) { ?>
+		<div class="grid_5">
+			<a href="/account/new/activate-accounts-options/orderId/<?= $this->order->id ?>">Next (How to activate Fisdap Accounts) &gt;&gt;</a>
+		</div>
+	<? } ?>
+</div>

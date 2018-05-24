@@ -1,0 +1,50 @@
+<?
+	$eureka_point_text = "The Eureka point is a fraction that reports the number of successful attempts over the number of total attempts. To customize your Eureka point, the first number must be less than or equal to the second number. Fisdap's standard Eureka point is 16/20. ";
+?>
+
+
+<div id="eureka_report_options_form">
+
+	<div class="grid_6 eureka_form_left_column">
+		<div class="eurkea_options_label">Skills:</div><div class="clear"></div>
+		<?= $this->element->eureka_skills; ?>
+		
+		<div class="clear"></div>
+		
+		<div id="combine_erueka_graphs_wrapper">
+			<?= $this->element->eureka_combine_graphs; ?>
+			<div class="combine_eureka_graphs_label">Combine skills into single graph</div>
+		</div>
+		
+		<div class="clear"></div>
+	</div>
+
+	<div class="grid_6 eureka_form_right_column">
+		
+		<div class="eureka_goals_wrapper">
+			<div class="eurkea_options_label">
+				Eureka point:
+				<?= $this->helpBubble("eureka_point_elements", "Eureka point help", $eureka_point_text) ?>
+			</div>
+			<div class="clear"></div>
+			
+			<div class="grid_3">
+				<?= $this->element->eureka_goal; ?>
+				<div id='eureka_slash'>/</div>
+				<?= $this->element->eureka_window; ?>
+			</div>
+			
+			<div class="grid_5">
+				<span id="eureka_success_precentage_wrapper">(<span id="eureka_success_rate_precentage">80</span>% success rate)</span>
+			</div>
+			
+			<div class="clear"></div>
+			
+		</div>
+		
+		<div class="clear"></div>
+	</div>
+	
+	<div class="clear"></div>
+
+</div>

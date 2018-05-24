@@ -13,4 +13,5 @@ use Fisdap\Ascend\Greatplains\Contracts\Repositories\CustomerRepository as Custo
  */
 class CustomerRepository extends Repository implements CustomerRepositoryInterface
 {
+
 }

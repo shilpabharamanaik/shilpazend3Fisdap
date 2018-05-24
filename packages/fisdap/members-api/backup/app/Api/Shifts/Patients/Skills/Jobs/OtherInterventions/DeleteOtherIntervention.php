@@ -25,7 +25,7 @@ final class DeleteOtherIntervention extends AbstractSkills implements RequestHyd
     public function handle(OtherInterventionRepository $otherInterventionRepository)
     {
         $other = $otherInterventionRepository->find($this->id);
-        if ($other) {
+        if($other) {
             $otherInterventionRepository->destroy($other);
         }
 

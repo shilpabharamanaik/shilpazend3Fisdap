@@ -1,0 +1,22 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_12 island">
+	<div class="grid_12">
+		<p>Fisdap began storing order histories on October 3, 2012. We can only show you orders placed after this date.</p>
+		<div class="order-filters" style="margin-top:1em">
+			Search for orders placed between:
+			<?= $this->datePicker("startDate", '', array()) ?> and <?= $this->datePicker("endDate", '', array()) ?>
+		</div>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div class="grid_9">
+		<div class="order-history-container">
+			<?= $this->orderHistoryList($this->user->getProgramId()) ?>		
+		</div>
+	</div>
+	
+	<div class="grid_3">
+		For more information about the status of your activation codes, visit your <a href='/account/orders/inventory'>Inventory</a>.
+	</div>
+</div>

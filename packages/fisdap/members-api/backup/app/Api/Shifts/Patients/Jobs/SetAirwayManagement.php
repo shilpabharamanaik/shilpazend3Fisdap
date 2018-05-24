@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Shifts\Patients\Jobs;
 
+
 use Doctrine\ORM\EntityManagerInterface;
 use Fisdap\Api\Jobs\Job;
 use Fisdap\Api\Jobs\RequestHydrated;
@@ -51,7 +52,7 @@ final class SetAirwayManagement extends Job implements RequestHydrated
      * @See PracticeItem
      * This is not the same as Subject
      * @SWG\Property(type="integer")
-     */
+     */    
     public $practiceItemId;
 
     /**
@@ -94,16 +95,17 @@ final class SetAirwayManagement extends Job implements RequestHydrated
         EntityManagerInterface $em,
         EventDispatcher $eventDispatcher,
         AirwayManagementRepository $airwayManagementRepository
-    ) {
+    )
+    {
         $this->em = $em;
 
         /**
          * This check here allows us to make this into a PUT transaction,
          * thus we only need one Job class to handle Create/Update
          */
-        if ($this->patient) {
+        if($this->patient) {
             $airwayManagement = $airwayManagementRepository->findOneBy(['patient' => $this->patient->getId()]);
-        } elseif ($this->airway) {
+        } else if($this->airway) {
             $airwayManagement = $airwayManagementRepository->findOneBy(['airway' => $this->airway->id]);
         }
         $airwayManagement = $airwayManagement ? $airwayManagement : new AirwayManagement;
@@ -146,13 +148,12 @@ final class SetAirwayManagement extends Job implements RequestHydrated
         $this->patient = $patient;
     }
 
-    public function setShift(ShiftLegacy $shift)
-    {
+    public function setShift(ShiftLegacy $shift) {
         $this->shift = $shift;
     }
 
-    public function setAirway(Airway $airway)
-    {
+    public function setAirway(Airway $airway) {
         $this->airway = $airway;
     }
 }
+

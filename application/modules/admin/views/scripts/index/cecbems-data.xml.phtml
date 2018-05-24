@@ -1,0 +1,63 @@
+<?= '<?xml version="1.0" standalone="yes"?>' ?>
+<dsXmlSummary xmlns="http://www.tempuri.org/dsXmlSummary.xsd">
+    <xs:schema id="dsXmlSummary" targetNamespace="http://www.tempuri.org/dsXmlSummary.xsd" xmlns:mstns="http://www.tempuri.org/dsXmlSummary.xsd" xmlns="http://www.tempuri.org/dsXmlSummary.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:element name="dsXmlSummary" msdata:IsDataSet="true">
+	    <xs:complexType>
+		<xs:choice maxOccurs="unbounded">
+		    <xs:element name="admin_reports_xmlReports">
+			<xs:complexType>
+			    <xs:sequence>
+				<xs:element name="emailAddress" type="xs:string" minOccurs="0"/>
+				<xs:element name="licenseType" type="xs:string" minOccurs="0"/>
+				<xs:element name="stateIssued" type="xs:string" minOccurs="0"/>
+				<xs:element name="licenseNo" type="xs:string" minOccurs="0"/>
+				<xs:element name="expiration" type="xs:string" minOccurs="0"/>
+				<xs:element name="dateOfCompletion" type="xs:string" minOccurs="0"/>
+				<xs:element name="provider" type="xs:string" minOccurs="0"/>
+				<xs:element name="city" type="xs:string" minOccurs="0"/>
+				<xs:element name="nameLast" type="xs:string" minOccurs="0"/>
+				<xs:element name="nameFirst" type="xs:string" minOccurs="0"/>
+				<xs:element name="nameMiddle" type="xs:string" minOccurs="0"/>
+				<xs:element name="street" type="xs:string" minOccurs="0"/>
+				<xs:element name="nremtReReg" type="xs:string" minOccurs="0"/>
+				<xs:element name="state" type="xs:string" minOccurs="0"/>
+				<xs:element name="zip" type="xs:string" minOccurs="0"/>
+				<xs:element name="nremtNo" type="xs:string" minOccurs="0"/>
+				<xs:element name="phone" type="xs:string" minOccurs="0"/>
+				<xs:element name="courseNo" type="xs:string" minOccurs="0"/>
+				<xs:element name="units" type="xs:string" minOccurs="0"/>
+				<xs:element name="Type" type="xs:string" minOccurs="0"/>
+			    </xs:sequence>
+			</xs:complexType>
+		    </xs:element>
+		</xs:choice>
+	    </xs:complexType>
+	</xs:element>
+    </xs:schema>
+	<?php foreach($this->cecbemsData as $data) { ?>
+		<admin_reports_xmlReports>
+			<emailAddress><?= htmlspecialchars($data['email'], 16) ?></emailAddress>
+			<licenseType><?= htmlspecialchars($data['certificationLevel'], 16) ?></licenseType>
+			<stateIssued><?= htmlspecialchars($data['licenseState'], 16) ?></stateIssued>
+			<licenseNo><?= htmlspecialchars($data['stateLicenseNumber'], 16) ?></licenseNo>
+			<expiration><?= htmlspecialchars($data['stateLicenseExpirationDate'], 16) ?></expiration>
+			<dateOfCompletion><?= htmlspecialchars($data['completitionDate'], 16) ?></dateOfCompletion>
+			<provider><?= htmlspecialchars($data['provider'], 16) ?></provider>
+			<city><?= htmlspecialchars($data['city'], 16) ?></city>
+			<nameLast><?= htmlspecialchars($data['lastName'], 16) ?></nameLast>
+			<nameFirst><?= htmlspecialchars($data['firstName'], 16) ?></nameFirst>
+			<nameMiddle></nameMiddle>
+			<street><?= htmlspecialchars($data['address'], 16) ?></street>
+			<nremtReReg><?= htmlspecialchars($data['licenseExpirationDate'], 16) ?></nremtReReg>
+			<state><?= htmlspecialchars($data['state'], 16) ?></state>
+			<zip><?= htmlspecialchars($data['zip'], 16) ?></zip>
+			<nremtNo><?= htmlspecialchars($data['licenseNumber'], 16) ?></nremtNo>
+			<phone><?= htmlspecialchars($data['phone'], 16) ?></phone>
+			<courseNo><?= htmlspecialchars($data['courseNumber'], 16) ?></courseNo>
+			<units><?= htmlspecialchars($data['courseHours'], 16) ?></units>
+			<Type><?= htmlspecialchars($data['courseType'], 16) ?></Type>
+		</admin_reports_xmlReports>
+	
+	<? } ?>
+	
+</dsXmlSummary>

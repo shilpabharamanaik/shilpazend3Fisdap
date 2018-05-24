@@ -1,0 +1,61 @@
+<?php
+	$eventId = $this->eventId;
+	$event = $this->event;
+	$user = $this->current_user_data['user'];
+	$userContextId = $this->current_user_data['userContextId'];
+	$edit = $this->current_user_data['scheduler_permissions'][$event['event_type']];
+	$isInstructor = true;
+	$detailsPage = $this->details_page;
+	if($this->current_user_data['role_name'] == "student"){
+		$edit = 0;
+		$isInstructor = false;
+	}
+?>
+
+<div class="event-details-popup" id="event-details-popup-<?= $eventId ?>">
+
+	<div class="popup-content" data-event-type="<?= $event['event_type'] ?>" data-clickable-event-title="<?= ($detailsPage || $event['quick_add_shift'] === true) ? "" : "clickable-event-title"; ?>">
+	
+		<?
+		// if this isn't the details page - we're going to limit the number of DOM elements to be printed and allow JS to handle it.
+		// only print this content for the details page.
+		if ($detailsPage || ($this->display_options && (!$this->display_options['site_names']['value'] || !$this->display_options['base_names']['value']))){ ?>
+			
+			<img class="site-icon" src="/images/icons/<?= $event['event_type'] ?>SiteIconColor.png">
+		
+			<h3 data-eventid="<?= $eventId ?>" class="event-title <?= $event['event_type'] ?> <? echo ($detailsPage || $event['quick_add_shift'] === true) ? "" : "clickable-event-title"; ?>">
+				<?php if(is_numeric( $event['duration'] ) && floor( $event['duration'] ) != $event['duration']){$durationPrint = $event['duration'];}
+				else {$durationPrint = intval($event['duration']);}?>
+				<?= $event['start_datetime']->format("M j Y, Hi") ?>
+				(<?= $durationPrint ?>hr<? echo ($durationPrint != 1)? "s":""; ?>)
+			</h3>
+			<h2 class="event-subtitle"><?= ($event['event_name'] != "") ? $event['event_name'] . "," : "";  ?> <?= $event['site_name'] ?>: <?= $event['base_name']; ?></h2>
+			
+		<?
+		}?>
+	
+		<?= (!strstr($event['special_icons'], "special-icon")) ? "<div class='special-icon'>" : "" ?>
+		<?= $event['special_icons'] ?>
+		<?= (!strstr($event['special_icons'], "special-icon")) ? "</div>" : "" ?>
+		
+		<div class="clear"></div>
+		
+		<?= ($event['preceptor_list']) ? $event['preceptor_list'] . "<div class='clear'></div>" : "" ?>
+		
+		<? if($event['notes']){ ?> <p class="event-notes">Notes: <?= $event['notes'] ?></p><div class="clear"></div><? } ?>
+		
+		<?= $this->partial("filled-slots-table.phtml", array("event" => $event, "isInstructor" => $isInstructor, "edit" => $edit, "user_program_id" => $this->current_user_data['program_id'], "dayView" => false, "current_user_data" => $this->current_user_data)); ?>
+		
+		<?= $event['drop_swap_cover_display'] ?>
+		
+		<div class="clear"></div>
+		<? if(!$event['quick_add_shift']){ ?>
+			<?= $this->partial("open-slots-table.phtml", array("event" => $event, "isInstructor" => $isInstructor, "dayView" => false)); ?>
+			<div class="clear"></div>
+		<? } ?>
+		
+		<?= $this->partial("event-action-buttons.phtml", array("eventId" => $eventId,
+															   "event" => $event,
+															   "current_user_data" => $this->current_user_data)); ?>
+	</div> 
+</div>

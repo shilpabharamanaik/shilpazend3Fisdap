@@ -1,0 +1,14 @@
+<script>
+	var isIpad = navigator.userAgent.match(/iPad/i) != null;
+	var isKindle = navigator.userAgent.match(/Silk/i) != null;
+	
+	if(isIpad || isKindle){
+		// Build up a path back to the page that launched the eval initially...
+		window.location = window.location.protocol + '//' + window.location.hostname + "/skills-tracker/shifts/my-shift/shiftId/<?php echo $_GET['psid']; ?>";
+	}else{
+		// Close down the modal/reload the practice item widget.
+		window.top.postSave(<?php echo $_GET['sid']; ?>);
+	}
+</script>
+
+Please wait while the evaluation is saved.

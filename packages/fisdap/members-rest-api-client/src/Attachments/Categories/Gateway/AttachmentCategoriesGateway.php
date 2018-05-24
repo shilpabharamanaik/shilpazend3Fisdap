@@ -2,6 +2,7 @@
 
 use Fisdap\Api\Client\Gateway\Gateway;
 
+
 /**
  * Contract for attachment categories gateways
  *

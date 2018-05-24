@@ -7,6 +7,7 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
+
 /**
  * Class DoctrinePermissionHistoryLegacyRepository
  *
@@ -15,18 +16,18 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrinePermissionHistoryLegacyRepository extends DoctrineRepository implements PermissionHistoryLegacyRepository
 {
-    public function getAllByInstructor($instructorId)
-    {
-        $qb = $this->_em->createQueryBuilder();
+	public function getAllByInstructor($instructorId)
+	{
+		$qb = $this->_em->createQueryBuilder();
 
-        $instructor = \Fisdap\EntityUtils::getEntity("InstructorLegacy", $instructorId);
-        
-        $qb->select('record')
-           ->from('\Fisdap\Entity\PermissionHistoryLegacy', 'record')
-           ->where('record.changed_instructor = ?1')
-           ->add('orderBy', 'record.entry_time DESC')
-           ->setParameter(1, $instructor);
-        
-        return $qb->getQuery()->getResult();
-    }
+		$instructor = \Fisdap\EntityUtils::getEntity("InstructorLegacy", $instructorId);
+		
+		$qb->select('record')
+		   ->from('\Fisdap\Entity\PermissionHistoryLegacy', 'record')
+		   ->where('record.changed_instructor = ?1')
+		   ->add('orderBy', 'record.entry_time DESC')
+		   ->setParameter(1, $instructor);
+		
+		return $qb->getQuery()->getResult();
+	}
 }

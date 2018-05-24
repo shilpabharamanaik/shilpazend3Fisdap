@@ -7,6 +7,7 @@ use Fisdap\Attachments\Transformation\AttachmentTransformerFactory;
 use Fisdap\Attachments\Transformation\TransformsAttachments;
 use Illuminate\Container\Container;
 
+
 class AttachmentTransformerFactoryCest
 {
     /**
@@ -31,8 +32,7 @@ class AttachmentTransformerFactoryCest
         $this->attachmentsKernelMock = Mockery::mock(AttachmentsKernel::class);
 
         $this->attachmentTransformerFactory = new AttachmentTransformerFactory(
-            $this->containerMock,
-            $this->attachmentsKernelMock
+            $this->containerMock, $this->attachmentsKernelMock
         );
     }
 
@@ -77,4 +77,5 @@ class AttachmentTransformerFactoryCest
         // assert
         $I->assertTrue($transformer instanceof TransformsAttachments);
     }
+
 }

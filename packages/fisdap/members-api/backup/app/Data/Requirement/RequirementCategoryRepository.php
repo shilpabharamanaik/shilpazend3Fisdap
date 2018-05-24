@@ -7,12 +7,13 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface RequirementCategoryRepository
  *
  * @package Fisdap\Data\Requirement
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface RequirementCategoryRepository extends Repository
-{
+interface RequirementCategoryRepository extends Repository {
+
 }

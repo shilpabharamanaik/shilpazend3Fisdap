@@ -1,0 +1,143 @@
+<div class="ms-picklist-wrapper">
+
+	<?= $this->helpText ?>
+	<?= $this->formHidden("picklist_mode", "multiple") ?>
+	
+<?php if ($this->studentVersion) { ?>
+	<input id="multistudent_picklist_selected" type="hidden" value="<?= $this->user->getCurrentRoleData()->id?>" name="multistudent_picklist_selected">
+	<?= $this->formHidden("student", $this->user->getCurrentRoleData()->id) ?>
+	<div class='anon-checkbox-container'>
+		<input id="anonymous" type="checkbox" value="1" name="anonymous" <?= $this->anonChecked ?>>
+		<label class="optional" for="anonymous">Include your graduation class (anonymized)</label>
+	</div>
+<?php } else { ?>
+
+	<?php if ($this->filters) { ?>
+	<div id="picklist-fancy-filter">
+
+		<?= $this->filters ?>
+
+	</div>
+	<?php } ?>
+	
+	<div class='picklist-ms-select hybrid'>
+		<select id="available-list" name="student" class="available-list">
+		<?php
+			if (!empty($this->students) && !empty($this->students['selectable'])) {
+				// add a "Choose from X students" default choice
+				if (count($this->students['selectable']) > 0) {
+					print '<option value="" data-studentId="">Choose from ' . count($this->students['selectable']) . ' students</option>';
+				} else {
+					print '<option value="" data-studentId="">No students available</option>';
+				}
+				foreach($this->students['selectable'] as $id => $label){
+					$selected = '';
+					if (array_key_exists($id, $this->students['selected'])) {
+						$selected = 'selected="selected"';
+					}
+		?>
+					<option value="<?= $id ?>" data-studentId="<?= $id ?>" <?= $selected ?>><?= $label ?></option>
+		<?php
+				}
+			}
+		?>
+		</select>
+
+		<div class="clear">	</div>
+
+	</div>
+	
+	<div class='picklist-ms-picker'>
+
+		<div class="grid_5">
+
+			<div class="search-available-list">
+				<img class="magnifying-glass-icon" src="/images/icons/magnifying-glass.png">
+				<input class="search-list" data-listToSearch="available-list">
+			</div>
+
+
+			<h2 id='available-header'>Available Students</h2>
+			<select id="available-list" class="available-list" multiple>
+
+				<?php
+					if (!empty($this->students) && !empty($this->students['selectable'])) {
+						foreach($this->students['selectable'] as $id => $name){
+							$disabled = '';
+							if (array_key_exists($id, $this->students['selected'])) {
+								$disabled = 'disabled="disabled"';
+							}
+						?>
+							<option value="<?= $id ?>" data-studentId="<?= $id ?>" href="#" <?= $disabled ?>><?= $name ?></option>
+						<?php
+						}
+					}
+				?>
+
+			</select>
+
+		</div>
+
+		<div class="grid_2">
+			<div class="picklist-control-buttons extra-small gray-button">
+
+				<a href="#" data-controlFunction="add" title="Add">&gt;</a>
+				<a href="#" data-controlFunction="remove" title="Remove">&lt;</a>
+				<a href="#" data-controlFunction="addAll" title="Add all">&gt;&gt;</a>
+				<a href="#" data-controlFunction="removeAll" title="Remove all">&lt;&lt;</a>
+
+			</div>
+		</div>
+
+
+		<div class="grid_5">
+			<h2 id="chosen-header">Selected Students</h2>
+			<select class="chosen-list" id="chosen-list" multiple>
+
+				<?php
+					if (!empty($this->students) && !empty($this->students['selected'])) {
+						foreach($this->students['selected'] as $id => $name){
+							?>
+							<option value="<?= $id ?>" data-studentId="<?= $id ?>" href="#"><?= $name ?></option>
+						<?php
+						}
+					}
+				?>
+
+			</select>
+			
+			<?php if ($this->showTotal) { ?>
+				<div class='count-text'>Total students selected: <span id='current_assigned_count'>0</span></div>
+			<?php } ?>
+			
+		</div>
+
+		<div class="clear">	</div>
+
+	</div>
+	
+<?php if ($this->includeAnon) { ?>
+	<input id="anonymous" type="checkbox" value="1" name="anonymous" <?= $this->anonChecked ?>>
+	<label class="optional" for="anonymous">Anonymize data</label>
+<?php } ?>
+
+<input type="hidden" id="longLabel" name="longLabel" value="<?= $this->longLabel ?>">
+
+<?php
+// output a hidden element that contains the selected students. This is useful if the form must submit, or values collected via jquery's form.serialize()
+$selectedList = (!empty($this->students['selected'])) ? array_keys($this->students['selected']) : array(); ?>
+<input type="hidden" name="multistudent_picklist_selected" data-legible-value="<?php echo count($selectedList); ?>" data-legible-label="Students" value="<?php echo implode(",", $selectedList); ?>" />
+<?php } ?>
+</div>
+
+<?php if ($this->includeSubmit) { ?>
+	<div class='picklist-ms-submit'>
+		<span class='small gray-button'>
+			<a href='#' id='cancel_modal'>Cancel</a>
+		</span>
+		&nbsp;
+		<span class='small green-buttons'>
+			<a href='#' id='submit_button'>Confirm</a>
+		</span>
+	</div>
+<?php } ?>

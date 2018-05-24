@@ -1,0 +1,25 @@
+<h3 class='section-header'>
+	<img class="icon" src="/images/icons/<?= $this->site->type?>SiteIconColor.png">
+	<?= $this->site->name ?> - <?= $this->site->abbreviation ?>
+</h3>
+
+<div id='info'>
+	<div class="grid_1"><span class='spacer'>spacer</span></div>
+
+	<div class="grid_5">
+		<h4><?= $this->site->address ?></h4>
+		<?= $this->site->city ?>, <?= $this->site->state ?> <?= $this->site->zipcode ?>
+	</div>
+	    
+	<div class="grid_5">
+<?	if ($this->site->contact_name || $this->site->phone || $this->site->fax || $this->site->contact_email) { ?>
+		<h4><?= $this->site->contact_name ?><?= ($this->site->contact_name && $this->site->contact_title) ? ", ".$this->site->contact_title : "" ?></h4>
+		<?= ($this->site->phone) ? "phone: ".$this->site->phone : "" ?><?= ($this->site->phone && $this->site->fax) ? ", " : "" ?><?= ($this->site->fax) ? "fax: ".$this->site->fax : "" ?><?= ($this->site->phone || $this->site->fax) ? "<br>" : "" ?>
+		<?= ($this->site->contact_email) ? "email: ".$this->site->contact_email : "" ?>
+<?	} else { ?>
+		No contact information entered.
+<?	} ?>
+	</div>
+	
+	<div class="clear"></div>
+</div>

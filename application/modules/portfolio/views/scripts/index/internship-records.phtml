@@ -1,0 +1,154 @@
+<?php
+
+/* * **************************************************************************
+ *
+ *         Copyright (C) 1996-2011.  This is an unpublished work of
+ *                          Headwaters Software, Inc.
+ *                             ALL RIGHTS RESERVED
+ *         This program is a trade secret of Headwaters Software, Inc.
+ *         and it is not to be copied, distributed, reproduced, published,
+ *         or adapted without prior authorization
+ *         of Headwaters Software, Inc.
+ *
+ * ************************************************************************** */
+
+/**
+ * Description of index
+ *
+ * @author astevenson
+ */
+?>
+<script>
+    $(function () {
+        baseOptions = {
+            activation: 'click',
+            local: true,
+            cursor: 'pointer',
+            width: 650,
+            cluetipClass: 'jtip',
+            sticky: true,
+            closePosition: 'title',
+            closeText: '<img width="25" height="25" src="/images/icons/delete.png" alt="close" />'
+        }
+
+        $('#twelve-lead-help').cluetip(baseOptions);
+    });
+</script>
+
+<?php if (!$this->contentOnly) { ?>
+
+<h2 class="page-title"><?= $this->student->user->getFullName() ?>'s Portfolio</h2>
+
+<?php echo $this->portfolioNavigation($this->skillstracker, $this->compliance); ?>
+
+<div class='grid_9'>
+    <div id="portfolio-page-content" class="island">
+        <?php } else { ?>
+        <div class='grid_12'>
+            <div class="island">
+                <?php } ?>
+                <div class='grid_7'>
+                    <h2 class="section-header">Internship Records</h2>
+
+                    <div class='intro-text'>
+                        <?= ucfirst($this->subject); ?> successfully performed or interpreted the following skills on
+                        live humans. Note that this list does not include skills that were attempted and failed.
+                    </div>
+
+                    <div class='skill_block'>
+                        <span class='left'>Ventilations</span>
+                        <span class='right'><?php echo $this->ventilations; ?></span>
+
+                        <div class='clear'></div>
+                    </div>
+
+                    <div class='skill_block'>
+                        <span class='left'>ET Intubations</span>
+                        <span class='right'><?php echo $this->ets; ?></span>
+
+                        <div class='clear'></div>
+                    </div>
+
+                    <div class='skill_block'>
+                        <span class='left'>IVs</span>
+                        <span class='right'><?php echo $this->ivs; ?></span>
+
+                        <div class='clear'></div>
+                    </div>
+
+                    <div class='skill_block'>
+                        <span class='left'>Medication Administration via IV</span>
+                        <span class='right'><?php echo $this->medIvs; ?></span>
+
+                        <div class='clear'></div>
+                    </div>
+
+                    <div class='skill_block'>
+                        <span class='left'>Medication Administration via IM or SC</span>
+                        <span class='right'><?php echo $this->medImSc; ?></span>
+
+                        <div class='clear'></div>
+                    </div>
+
+                    <div class='skill_block'>
+                        <span class='left'>Blood Glucose</span>
+                        <span class='right'><?php echo $this->bloodGlucose; ?></span>
+
+                        <div class='clear'></div>
+                    </div>
+
+                    <div class='skill_block'>
+                        <span class='left'>12 lead</span>
+				<span class='right'>
+					<?php
+                    if (\Fisdap\Entity\CardiacIntervention::hasLegacyData($this->student->id)) {
+                        ?>
+                        <a id='twelve-lead-help' rel="#twelve-lead-popup" href='#twelve-lead-popup'
+                           title="12 Lead Notice"><img class="question-mark" src="/images/icons/question_mark.svg"></a>
+                        <div id='twelve-lead-popup' style='display: none;'>
+                            Sorry. We are unable to calculate the number of 12 leads that you performed. Some of your
+                            legacy data is incompatible with the new portfolio. To fix it, please edit any shifts where
+                            you performed a 12 lead and indicate whether you interpreted the cardiac rhythm. Please call
+                            651.690.9241 if you need help
+                        </div>
+                    <?php
+                    } else {
+                        echo $this->twelveLead;
+                    }
+                    ?>
+				</span>
+
+                        <div class='clear'></div>
+                    </div>
+                </div>
+                <div class='grid_5'>
+                    <h3 class="section-header">Shifts</h3>
+
+                    <div class="content"><?= ucfirst($this->subject); ?> attended <span
+                            style='font-weight: 700;'><?= $this->clinical_hours ?></span> clincial hours, <span
+                            style='font-weight: 700;'><?= $this->field_hours ?></span> field hours, and <span
+                            style='font-weight: 700;'><?= $this->lab_hours ?></span> hours of lab practice.
+                    </div>
+                    <div class="content">View all of <?= $this->possessive; ?> shifts in the <a
+                            href='/skills-tracker/shifts/index/studentId/<?php echo $this->student->id; ?>'>Skills and
+                            Patient Care</a> section of Fisdap.
+                    </div>
+
+                    <h3 class="section-header">Progress</h3>
+
+                    <div class="content">Visit the <a href='#' class='launch-report-config'
+                                                      data-studentid='<?= $this->student_id ?>'
+                                                      data-reporttype='GraduationRequirements'>Graduation Requirements
+                            report</a> to see whether <?= $this->subject . " " . $this->is; ?> meeting the program's
+                        skill, patient, and evaluation requirements.
+                    </div>
+                    <div class="content">For a detailed list of all skills
+                        that <?= $this->subject . " " . $this->has; ?> performed, check out the <a href='#'
+                                                                                                   class='launch-report-config'
+                                                                                                   data-studentid='<?= $this->student_id ?>'
+                                                                                                   data-reporttype='Skills'>Skills
+                            Report</a>.
+                    </div>
+                </div>
+            </div>
+        </div>

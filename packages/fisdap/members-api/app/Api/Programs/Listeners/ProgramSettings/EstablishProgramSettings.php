@@ -13,6 +13,7 @@ use Fisdap\Entity\ProgramLegacy;
 use Fisdap\Logging\Events\EventLogging;
 use Illuminate\Pipeline\Pipeline;
 
+
 /**
  * Event listener for establishing program settings when a program (ProgramLegacy Entity) was created
  *

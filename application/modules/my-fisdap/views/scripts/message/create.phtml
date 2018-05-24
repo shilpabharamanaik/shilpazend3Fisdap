@@ -1,0 +1,76 @@
+<div class=''><a href='/my-fisdap'><< Return to Dashboard</a></div> <br />
+<h2 class="page-title">Post an Announcement</h2>
+
+<div class='grid_12 island'>
+	<?php if($this->errorMessage != ''){ ?>
+		<div class='message_error'>
+			<?php echo $this->errorMessage; ?>
+		</div>
+	<?php } ?>
+        <?php if ($this->recipientCount && !$this->success) { ?>
+            <div id="message_preview_area" class="grid_12 area">
+                <div id="message_preview_recipients">
+                    <p>
+                    	Please review your announcement.  To make changes, click the "edit announcement" link.  If you're happy with your message, click the "post" button at
+                    	the bottom of the page.
+                    </p>
+                    <br />
+                    <p>
+                    	<?php
+                            if (is_array($this->selectedRoles)) {
+	                    		if(in_array('instructor', $this->selectedRoles) && in_array('student', $this->selectedRoles)){
+                    		    $toText = "instructors and students";
+                    		}elseif(in_array('instructor', $this->selectedRoles)){
+                    		    $toText = "instructors";
+	                    		}elseif(in_array('student', $this->selectedRoles)){
+                    		    $toText = "students";
+	                    		}else{
+                    		    $toText = "no one";
+	                    		}
+                            } else if ($this->userIdsSpecified) {
+                                $toText = 'certain users specified by ID';
+                            } else {
+                                $toText = 'everyone';
+                            }
+                    	?>
+                    	<?php if($this->userIsStaff){ ?>
+                    		Please note- this count does NOT include the send-only-to-beta-users filter.  That will happen on the actual send. <br /><br />
+                    	<?php }?>
+                    	Your announcement will be posted to <strong><?php echo $this->recipientCount; ?></strong> <?php echo $toText; ?>!
+                    </p>
+                    <!-- 
+	                    <?php if ($this->recipientCount < 250) { ?>
+	                        <div id="message_preview_recipients_list"><?php echo implode(', ', $this->recipientList); ?></div>
+	                    <?php } else { ?>
+	                        <div id="message_preview_recipients_list" class="no_display">Can't preview recipient list when longer than 250</div>
+	                    <?php } ?>
+	                 -->
+                </div>
+                
+                <hr />
+                
+                <div id="message_preview_contents">
+                    <div id="message_preview_subject"><strong>Subject</strong>: <?php echo $this->messageSubject; ?></div> <br />
+                    <div id="message_preview_body"><?php echo $this->messageBody; ?></div>
+                </div>
+            </div>
+        <?php } ?>
+        
+        <?php if ($this->success) { ?>
+            <div id="message_success">
+                <?php echo $this->success; ?>
+            </div>
+            
+            <?php if ($this->error) { ?>
+                <div id="message_error">
+                    <?php echo $this->error; ?>
+                </div>
+            <?php } ?>
+            
+            <p><a href="/my-fisdap/message/create">Create another message</a></p>
+        <?php } else { ?>
+            <div id='create_message_area' class='grid_12 area'>
+                    <?php echo $this->form; ?>
+            </div>
+        <?php } ?>
+</div>

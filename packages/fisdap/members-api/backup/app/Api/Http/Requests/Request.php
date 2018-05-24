@@ -3,6 +3,7 @@
 use Fisdap\ErrorHandling\CapturableValidationErrors;
 use Illuminate\Foundation\Http\FormRequest;
 
+
 /**
  * Class Request
  *

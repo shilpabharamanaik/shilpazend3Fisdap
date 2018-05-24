@@ -1,0 +1,20 @@
+<!-- Piwik -->
+<script type="text/javascript">
+(function(){
+    /* Load piwik asynchronously so that we don't block the render */
+    var piwikBaseUrl = (("https:" == document.location.protocol) ? "https://<?php echo $this->piwikBaseUrl; ?>" : "http://<?php echo $this->piwikBaseUrl; ?>");
+    var piwik = document.createElement("script");
+    piwik.async = true;
+    piwik.src = piwikBaseUrl + 'piwik.js';
+    piwik.onload= function() {
+            var piwikTracker = Piwik.getTracker(piwikBaseUrl + "piwik.php", <?php echo $this->piwikSiteId; ?>);
+            piwikTracker.setCustomVariable(1, "userid", "<?php echo $this->currentUserId; ?>", "visit");
+            piwikTracker.trackPageView();
+            piwikTracker.enableLinkTracking();
+    };
+    var s0 = document.getElementsByTagName('script')[0];
+    s0.parentNode.insertBefore(piwik, s0);
+})();
+</script>
+<noscript><p><img src="https://<?php echo $this->piwikBaseUrl; ?>piwik.php?idsite=<?php echo $this->piwikSiteId; ?>" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Tag -->

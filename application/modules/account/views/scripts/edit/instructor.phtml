@@ -1,0 +1,11 @@
+<?= $this->pageTitleHelper() ?>
+<?= $this->messageHelper() ?>
+<?= $this->user->hasPermission('Edit Instructor Accounts') ? $this->instructorPicker($this->instructorId, '/account/edit/instructor/instructorId/') : null ?>
+
+<!-- Display form if the user has chosen an instructor -->
+<? if ($this->instructorId) { ?>
+	<div class="grid_12 island">
+		<?= $this->form ?>
+		<?= $this->permissionsHistory($this->instructorId); ?>
+	</div>
+<? } ?>

@@ -26,3 +26,4 @@ class Enumerated
      */
     public $name;
 }
+

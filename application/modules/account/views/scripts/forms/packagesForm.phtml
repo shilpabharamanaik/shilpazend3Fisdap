@@ -1,0 +1,31 @@
+<table class="packages-table">
+    <? foreach ($this->element->packages as $package) { ?>
+        <tr>
+            <td class="name">
+                <?= $this->element->{"packages_" . $package->id} ?>
+            </td>
+            <td class="options">
+                <span class="package-title">Includes:</span><br>
+                <?= $package->products_description ?>
+                <?= $package->products_sub_description ?>
+                <?= $this->element->{"packageOptions_" . $package->id} ?>
+            </td>
+            <td class="cost">
+                <?
+                if (($newPrice = $package->getDiscountedPrice()) < ($oldPrice = $package->getFullPrice())) {
+                    echo "<div class='old-price'>$" . number_format($oldPrice, 2, ".", ",") . "</div>";
+                    echo "<div class='new-price'>$" . number_format($newPrice, 2, ".", ",") . " " . $this->helpBubble("help_" . $package->id, "Discount", $package->getDiscountMessagesText()) . "</div>";
+                } else {
+                    echo "$" . number_format($newPrice, 2, ".", ",");
+                }
+                ?>
+            </td>
+        </tr>
+    <? } ?>
+    <tfoot>
+        <tr>
+            <td colspan=3><a href="#" class="unselect">Unselect package</a></td>
+        </tr>
+    </tfoot>
+</table>
+<?= $this->element->packageId ?>

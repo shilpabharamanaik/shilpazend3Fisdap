@@ -1,0 +1,26 @@
+<?= $this->pageTitleHelper() ?>
+<?= $this->messageHelper(); ?>
+
+<div class='grid_12 island'>
+    
+    <div class="grid_9" id="dateRange">
+            <?= $this->formLabel("startDate", "Display coupons in effect from from:"); ?>
+            <?= $this->formText("startDate") ?>
+            <?= $this->formLabel("endDate", "To:"); ?>
+            <?= $this->formText("endDate") ?>
+            <a href="#" id="searchButton">Search</a>
+    </div>
+
+    <div class="grid_3 extra-small blue-button" id="createNew">
+        <a href="/admin/coupon/new" id="newLink">New Coupon</a>
+    </div> 
+     
+</div>
+
+<div class="grid_12 island withTopMargin" id="results">
+
+    <div id='results_area'>
+        <?= $this->couponTable($this->filters) ?>
+    </div>
+    
+</div>    

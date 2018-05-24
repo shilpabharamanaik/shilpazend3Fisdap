@@ -3,6 +3,7 @@
 use Fisdap\Entity\User;
 use Fisdap\Entity\UserContext;
 
+
 /**
  * Interface CurrentUser
  *

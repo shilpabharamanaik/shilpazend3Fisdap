@@ -7,6 +7,7 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
+
 /**
  * Class DoctrineRequirementCategoryRepository
  *
@@ -15,19 +16,19 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineRequirementCategoryRepository extends DoctrineRepository implements RequirementCategoryRepository
 {
-    public function getFormOptions()
-    {
-        $qb = $this->_em->createQueryBuilder();
-        
-        $qb->select("c")
-           ->from("\Fisdap\Entity\RequirementCategory", "c");
-           
-        $data = $qb->getQuery()->getArrayResult();
-        $return_vals = array();
-        foreach ($data as $cat) {
-            $return_vals[$cat['id']] = $cat['name'];
-        }
+	public function getFormOptions()
+	{
+		$qb = $this->_em->createQueryBuilder();
+		
+		$qb->select("c")
+		   ->from("\Fisdap\Entity\RequirementCategory", "c");
+		   
+		$data = $qb->getQuery()->getArrayResult();
+		$return_vals = array();
+		foreach($data as $cat){
+			$return_vals[$cat['id']] = $cat['name'];
+		}
 
-        return $return_vals;
-    }
+		return $return_vals;
+	}
 }

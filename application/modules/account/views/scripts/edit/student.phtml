@@ -1,0 +1,17 @@
+<?= $this->pageTitleHelper() ?>
+<?= $this->messageHelper() ?>
+
+<!-- Display student picker if the user is an instructor -->
+<? if ($this->user->isInstructor()) { ?>
+<div class="find-student-container island grid_12">
+	<h3 class='section-header'>Select a student</h3>
+	<?= $this->studentPicker ?>
+</div>
+<? } ?>
+
+<!-- Display form if the user has chosen a student -->
+<? if ($this->studentId) { ?>
+	<div class="grid_12 island">
+		<?= $this->form ?>			
+	</div>
+<? } ?>

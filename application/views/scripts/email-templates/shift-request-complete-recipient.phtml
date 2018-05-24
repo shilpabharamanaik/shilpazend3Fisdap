@@ -1,0 +1,27 @@
+Hello, <?= $this->request->recipient->user->first_name ?>!
+<div>
+<?php 	switch ($this->request->request_type->name) {
+		case "cover": ?>
+			<p>You have chosen to cover the following <?= $this->request->event->type ?> shift for <?= $this->request->owner->user->getName() ?>:</p>
+<?php			break;
+		case "swap":
+		        $swap = $this->request->getCurrentSwap();	?>
+			<p>You have swapped the following <?= $swap->offer->slot->event->type ?> shift with <?= $this->request->owner->user->getName() ?></p>
+			<div>
+				<?= $swap->offer->slot->event->getDetailViewDate() ?><br>
+				<?= $swap->offer->slot->event->getLocation() ?>
+			</div>
+			<p>In return, you are now responsible for <?= $this->request->owner->user->first_name ?>'s <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+	} 	?>
+	
+	<div>
+		<?= $this->request->event->getDetailViewDate() ?><br>
+		<?= $this->request->event->getLocation() ?>
+	</div>
+	
+<?php 	if ($this->request->request_type->name == 'cover') {	?>
+			<p>You are now responsible for this shift.</p>
+<?php
+	} 	?>
+</div>

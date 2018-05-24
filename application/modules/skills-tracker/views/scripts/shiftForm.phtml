@@ -1,0 +1,133 @@
+<?
+
+    $siteType = $this->element->shift_type;
+
+    if($this->element->shift->id){
+        $siteType = $this->element->shift->type;
+    }
+
+
+    if (count($this->element->site->getMultiOptions()) == 0) {
+
+        // ---------- The program doesn't have any active sites of this type ----------
+
+        if ($this->element->user->isInstructor()) { ?>
+
+            <p>
+                This program has no <?= $siteType ?> sites yet.<br>
+                If you have permission, you may go to the "Account section" and click on <?= ucfirst($siteType); ?> sites to add one.
+            </p>
+
+        <? } else { ?>
+
+            <p>
+                This program has no <?= $siteType ?> sites yet.<br>
+                Your instructor must add some before you can schedule shifts.
+            </p>
+
+        <? }
+
+    } else if (!$this->element->user->isInstructor() && $this->element->shift->locked) { ?>
+
+        <? // ---------- The shift is locked ---------- ?>
+        <div id='is_locked'>
+            We're sorry! This shift is locked and you are no longer allowed to edit it.
+        </div>
+
+    <?
+    } else if (!$this->element->user->isInstructor() && $siteType && $this->element->user->getCurrentRoleData()->atLimit($siteType)) { ?>
+
+        <? // ---------- The student has reached their shift limit ---------- ?>
+        <div id='at-limit'>
+            You have a limited scheduler account and cannot create any more <?= $siteType ?> shifts.
+        </div>
+
+    <?
+    } else {
+
+        // ---------- Alright, we're actually going to display the form, here we go! ----------
+
+        if ($this->element->user->isInstructor() && $this->element->has_scheduler) { ?>
+
+            <? // ---------- Do you need to explain quick add shifts? ---------- ?>
+
+            <div class='quick-add-notice'>
+                You are creating a Quick Add shift, which is ideal for adding one shift for one student.<br>
+                To share or repeat this shift, go to the <a href='<?= $this->element->schedulerUrl ?>'>Scheduler</a> instead.
+            </div>
+
+        <?
+        } ?>
+
+        <? // --- Shift conflicts? Hidden till its not, don't show if we're editing a shift --- ?>
+        <div class="shift-conflicts-msg notice" style="display:none;">
+            Note: <?= $this->element->user->isInstructor() ? $this->element->student->first_name . " " . $this->element->student->last_name . " already has" : "You already have" ?> a shift scheduled during this time.
+        </div>
+
+        <? // --- Site select box --- ?>
+        <div class="grid_6">
+            <?php echo $this->element->site ?>
+        </div>
+
+
+        <? // --- Base select box --- ?>
+        <div class="grid_6">
+            <?php echo $this->element->base ?>
+        </div>
+
+
+        <div class="clear"></div>
+
+        <? // --- Date element --- ?>
+        <div class="grid_12">
+            <?php echo $this->element->date ?>
+        </div>
+
+
+        <div class="clear"></div>
+
+        <? // --- Start time element --- ?>
+        <div class="grid_6">
+            <?= $this->element->time ?>
+            <? if ($this->element->show_attendence) { echo $this->element->attendence; } ?>
+        </div>
+
+
+        <? // --- Attendence stuff --- ?>
+        <? if ($this->element->show_attendence) {
+            echo '<div class="grid_6">';
+            echo    $this->element->attendenceComments;
+            echo '</div>';
+        } ?>
+
+        <div class="clear"></div>
+
+
+        <? // --- Duration element --- ?>
+        <div class="grid_12">
+            <?= $this->element->hours ?>
+        </div>
+
+        <div class="clear"></div>
+
+    <?
+
+    } // end form echo stuff
+
+    ?>
+
+    <? // ---------- echo out all of our hidden elements ---------- ?>
+    <?= $this->element->shiftId ?>
+    <?= $this->element->locked ?>
+    <?= $this->element->studentId ?>
+    <?= $this->element->hasSites ?>
+
+    <? // And finally, the modal buttons ?>
+    <div class='edit-buttons modal-buttons'>
+        <div id="cancelButtonWrapper" class="small gray-button modal-button-wrapper">
+            <a href='#' id='cancel-edit-btn'>Cancel</a>
+        </div>
+        <div id="saveButtonWrapper" class="small green-buttons modal-button-wrapper">
+            <a href='#' id='save-edit-btn'>Save</a>
+        </div>
+    </div>

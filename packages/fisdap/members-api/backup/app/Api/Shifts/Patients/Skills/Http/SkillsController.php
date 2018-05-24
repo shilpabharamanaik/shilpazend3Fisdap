@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Shifts\Patients\Skills\Http;
 
+
 use Doctrine\ORM\EntityManagerInterface;
 use Fisdap\Api\Http\Controllers\Controller;
 use Fisdap\Api\Queries\Exceptions\ResourceNotFound;
@@ -797,4 +798,6 @@ final class SkillsController extends Controller
 
         return $this->respondWithArray([]);
     }
+
 }
+

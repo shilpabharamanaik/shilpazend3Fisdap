@@ -1,0 +1,13 @@
+<? $teamLead = $this->goalset->getGoalByName("Team Lead Total"); ?>
+To get credit for team lead, the student must:
+<ul>
+    <li>indicate that they were the team lead</li>
+    <?= ($teamLead->exam) ? "<li>perform the patient exam</li>" : "" ?>
+    <?= ($teamLead->exam) ? "<li>perform the patient interview</li>" : "" ?>
+</ul>
+
+Ages:
+<ul>
+    <li>Adult starts at <?= $this->goalset->adult_start_age ?></li>
+    <li>Geriatric starts at <?= $this->goalset->geriatric_start_age ?></li>
+</ul>

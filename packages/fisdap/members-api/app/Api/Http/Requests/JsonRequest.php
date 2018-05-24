@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Http\Requests;
 
+
 /**
  * Class JsonRequest
  *

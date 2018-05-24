@@ -6,6 +6,7 @@ use Doctrine\Common\Cache\RedisCache;
 use Doctrine\ORM\EntityManager;
 use Illuminate\Support\ServiceProvider;
 
+
 /**
  * Configures Doctrine Cache
  *
@@ -17,9 +18,7 @@ final class DoctrineCacheServiceProvider extends ServiceProvider
 {
     public function boot(EntityManager $em)
     {
-        if (env('MRAPI_DOCTRINE_DEVMODE') === true) {
-            return;
-        }
+        if (env('MRAPI_DOCTRINE_DEVMODE') === true) return;
 
         // use redis for metadata cache
         $redisConfig = $this->app['config']['doctrine.cache.redis'];

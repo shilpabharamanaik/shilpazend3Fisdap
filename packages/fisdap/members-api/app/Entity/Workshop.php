@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Class defining entities representing workshops for workshop events
  *
@@ -16,56 +17,56 @@ use Doctrine\ORM\Mapping\Table;
  */
 class Workshop extends EntityBaseClass
 {
-    /**
+	/**
      * @Id
      * @Column(type="integer")
      * @GeneratedValue
      */
-    protected $id;
-    
-    /**
+	protected $id;
+	
+	/**
      * @Column(type="decimal")
      */
-    protected $cost;
-    
-    /**
+	protected $cost;
+	
+	/**
      * @Column(type="date")
      */
-    protected $deadline;
-    
-    /**
+	protected $deadline;
+	
+	/**
      * @Column(type="string")
      */
-    protected $duration;
-    
-    /**
+	protected $duration;
+	
+	/**
      * @Column(type="string")
      */
-    protected $email_subject;
-    
-    /**
+	protected $email_subject;
+	
+	/**
      * @Column(type="text")
      */
-    protected $email_text;
-    
-    /**
+	protected $email_text;
+	
+	/**
      * @Column(type="string")
      */
-    protected $location;
-    
-    /**
+	protected $location;
+	
+	/**
      * @Column(type="date")
      */
-    protected $date;
-    
-    /**
+	protected $date;
+	
+	/**
      * @OneToMany(targetEntity="Attendee", mappedBy="workshop", cascade={"persist","remove"})
      **/
     protected $attendees;
 
 
-    public function __construct()
-    {
+	public function __construct() {
         $this->attendees = new ArrayCollection();
     }
+	
 }

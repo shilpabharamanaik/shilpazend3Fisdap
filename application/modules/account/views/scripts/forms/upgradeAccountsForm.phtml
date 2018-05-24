@@ -1,0 +1,6 @@
+<?= $this->multiStudentPicker(array(
+									'targetFormId' => $this->element->getAttrib('id'),
+									'selectedStudents' => $this->element->students,
+									"sourceLink" => "/account/orders/get-upgrade-student-list/configuration/" . $this->element->configuration,
+									'useSessionSettings' => false,
+									'canViewStudentNames' => true)) ?>

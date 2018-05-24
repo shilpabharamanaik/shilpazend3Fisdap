@@ -1,0 +1,659 @@
+<?
+$customNameHelpText = '<p>If you like, give this shift a name, e.g. ' .
+    '<span style="font-weight:bold">A shift</span> or <span style="font-weight:bold">B shift</span>. ' .
+    'For repeating shifts, this name will apply to the whole group.</p>';
+
+$repeatHelpText = "<p>If your shift is recurring and has a repeating pattern, such as a daily shift, a " .
+    "shift that occurs every Monday and Wednesday each week, or a shift that happens once " .
+    "every first day of the month, you can use the calendar in conjunction with the repeating " .
+    "options below it.<br><br>" .
+    "For example, to create a daily shift, select the date the shift starts from the calendar " .
+    "and then set the shift to repeat every 1 day.<br><br>" .
+    "The start date will default to the earliest shift on the calendar and you can extend the " .
+    "repeating shift out by selecting the \"until\" date from the date picker.<br><br>" .
+    "If you want the shifts to repeat, be sure that the <span style='font-weight:bold'>Repeats</span> " .
+    "option is turned to <span style='font-weight:bold'>On</span>.";
+
+$datePickHelpText = "Enter a <span style='font-weight:bold'>start time</span> in military time, e.g. 0800, and " .
+    "<span style='font-weight:bold'>duration</span> (length of the shift) in whole numbers or with " .
+    "decimals, e.g. 8 or 9.5.<br><br>" .
+    "Use the calendars to select the date or dates of your shift.<br><br>" .
+    "You can change your calendar options to see 3 months at a time, or expand to 6 or 12 months.<br><br>" .
+    "If your shift is recurring and has a repeating pattern, such as a daily shift, a shift that " .
+    "occurs every Monday and Wednesday each week, or a shift that happens once every first day of the " .
+    "month, you can use the calendar in conjunction with the repeating options below it.";
+
+$windowsHelpText = "If you allow students to sign up for shifts, you can use signup windows to control " .
+    "<span style='font-style:italic'>when</span> students can sign up and <span style='font-style:italic'>who</span> " .
+    "can sign up.<br><br>" .
+    "You have several options for setting the <span style='font-style:italic'>when</span>. Click the " .
+    "<span style='font-weight:bold'>from</span> or <span style='font-weight:bold'>until</span> buttons to " .
+    "select the paramaters of the signup window date range. You can select a specific date (the default), " .
+    "a fixed monthly date, or rolling dates.<br><br>" .
+    "Under <span style='font-weight:bold'>Which students can sign up?</span> you can limit the " .
+    "shift by certification level and/or student group. By adding additional signup windows (by clicking " .
+    "the <span style='font-weight:bold'>New Window</span> button) you can, for example, set up " .
+    "the shift signup availability so that Paramedic students get first dibs, and then after a " .
+    "certain date, the EMT students can sign up as well.<br><br>" .
+    "Keep in mind, students ONLY see shifts that are available for signup. In other words, shifts " .
+    "that are not available (either because signup is turned off or the signup window dates are " .
+    "in the future or past) are hidden, or invisible, to students.";
+
+$emailListHelpText = "Students, instructors and preceptors who are associated with this shift will receive emails " .
+    "about any changes made to the shift. You can use the Email list tool to add email addresses " .
+    "for anyone else who should be notified of a change. For example, this could be a clinical " .
+    "coordinator at the site.<br><br>" .
+    "For multiple email addresses, please type them in a comma-separated list.";
+
+$sharingHelpText = "If you wish to make this shift available to other programs in this site's sharing network, " .
+    "be sure that sharing is turned to <span style='font-weight:bold'>On</span>.<br><br>" .
+    "You will automatically be sharing with everyone in the sharing network, but, if necessary, " .
+    "you can manage that list of programs.<br><br>" .
+    "Also, you can select which students (by certification level) can attend the shift. This " .
+    "setting will override any other signup permissions designated by other programs."
+?>
+
+<div id="too-many-units-msg" class="error">
+    <p>That's a lot of shifts! In fact, that's more data than Fisdap can handle right now.</p>
+
+    <p>
+        To be able to add these shifts to your schedule, please reduce one or more of the following variables:
+    <ul>
+        <li>the total number of shifts</li>
+        <li>how many students are assigned</li>
+        <li>how many other programs you're sharing this shift with</li>
+    </ul>
+    </p>
+
+</div>
+
+<div id="event-tabs">
+
+    <div class="tab selected-tab" data-tabContentId="shift-details" id="shift_details_tab">
+        <div class="circle-number">1</div>
+        <span class="tab-text">Shift Details</span>
+    </div>
+
+    <div class="tab" data-tabContentId="assign-allocate" id="assign_tab">
+        <div class="circle-number">2</div>
+        <span class="tab-text">Assign/Signup</span>
+    </div>
+
+    <div class="tab" data-tabContentId="notifications" id="notes_tab">
+        <div class="circle-number">3</div>
+        <span class="tab-text">Notes & Notifications</span>
+    </div>
+
+
+</div>
+
+<?= $this->element->save ?>
+
+
+<div id="cancel-btn" class="gray-button">
+    <a href="/scheduler/">Cancel</a>
+</div>
+
+<?= $this->element->site_change_warning ?>
+<?= $this->element->start_date ?>
+<?= $this->element->shift_type ?>
+<?= $this->element->edit_event_session_id ?>
+
+<div class="clear"></div>
+
+<div id="ticker-wrapper">
+    <img src="/images/ticker.png">
+</div>
+
+<div class="grid_12 island" id="event-form-island"
+     data-eventid="<?= ($this->element->using_session_events) ? "" : $this->element->event->id; ?>">
+
+<div id="shift-details">
+
+<div id="site_change_warning_display" class="notice">
+    You are changing the site. As a result, sharing will be removed
+    for <?= (count($this->element->multiple_events) > 1) ? "these shifts" : "this shift" ?>, and any students attending
+    from a different program will be dropped.
+</div>
+
+<div id="details-basics">
+
+    <div class="grid_3 no-dd-margin">
+        <?= $this->element->custom_name ?>
+        <?= $this->helpBubble("customNameHelp", "Custom Name Help", $customNameHelpText) ?>
+    </div>
+
+    <div class="grid_6 no-dd-margin site-wrapper">
+        <?= $this->element->site ?>
+    </div>
+
+    <div class="grid_3 no-dd-margin">
+        <?= $this->element->base ?>
+    </div>
+
+    <div class="clear"></div>
+
+    <hr/>
+    <?= $this->helpBubble("datePickHelp", "Time and Date Help", $datePickHelpText) ?>
+
+    <div class="grid_3 start-time-wrapper">
+        <?= $this->element->start_time ?>
+    </div>
+
+    <div class="grid_3 start-time-wrapper">
+        <?= $this->element->duration ?>
+        <div id="hours-label">hrs.</div>
+    </div>
+
+    <div id="slots-wrapper" class="grid_3">
+        <?= $this->element->slots ?>
+        <div class="label-helper"><img src="/images/icons/student-weeble-outline.svg"> x</div>
+    </div>
+    <div class="clear"></div>
+
+</div>
+
+<? if (!$this->element->event) { ?>
+    <div class="grid_12">
+        <label class="required" for="dates">Date(s): <span class="description">(required)</span></label>
+
+        <div class="clear"></div>
+        <div>Use the calendars below to select a start date.</div>
+    </div>
+<? } ?>
+
+<div id="calendar">
+
+
+    <?= $this->element->selected_days ?>
+    <?= $this->element->echoed_days ?>
+
+    <div class="clear"></div>
+
+    <a href="#" id="prev-months"><< Previous <span class="month-count-display">3</span> months</a>
+    <a href="#" id="next-months">Next <span class="month-count-display">3</span> months >></a>
+
+    <div class="clear"></div>
+
+    <div id="calendar-home">
+
+    </div>
+
+    <div class="clear"></div>
+
+</div>
+
+<a id="clear-cal" href="#">Clear calendar selections.</a>
+
+<div id="expand-cal">
+    Show
+    <a href="#" id="expand-cal-3" class="selected-month-count">3</a> |
+    <a href="#" id="expand-cal-6">6</a> |
+    <a href="#" id="expand-cal-12">12</a>
+    months
+</div>
+
+<div class="clear"></div>
+
+<div id="repeat-info">
+
+    <div id='repeat-help' class='info'>
+        Please pick a date or group of dates (e.g, Monday, Wednesday, Friday) on the calendar above to set up a
+        repeating series.
+    </div>
+
+    <?= $this->element->repeat ?>
+    <div id="repeat-text">Repeats <?= $this->helpBubble("repeatHelp", "Repeating Shifts Help", $repeatHelpText) ?></div>
+    <div class="clear"></div>
+
+    <div id="repeat-options">
+
+        <div id="repeat-disable-screen"></div>
+
+        <div class="clear"></div>
+
+        <p class="every">Every</p>
+
+        <?= $this->element->repeat_frequency ?>
+
+        <div id="day-disable"></div>
+        <div id="week-disable"></div>
+        <div id="month-disable"></div>
+
+        <div id="repeat_frequency_type">
+            <input type="radio" id="day" data-dbid="1" name="repeat_frequency_type" checked="checked"><label for="day">Day</label>
+            <input type="radio" id="week" data-dbid="2" name="repeat_frequency_type"><label for="week">Week</label>
+            <input type="radio" id="month" data-dbid="3" name="repeat_frequency_type"><label for="month">Month</label>
+        </div>
+
+        <div style='display:none;'>
+            <?= $this->element->repeat_frequency_type_radios ?>
+        </div>
+
+        <p>from</p>
+
+        <span id="repeat_from">today</span>
+
+        <p>until</p>
+
+        <?= $this->element->repeat_until ?>
+
+        <div class="clear"></div>
+
+    </div>
+
+
+</div>
+
+<div id="shift-summary">
+
+    <div id="shift_summary_txt">
+        <?= ($this->element->event) ? "Editing" : "Scheduling" ?> <span id="shift_count">0</span> shift<span
+            id="shift_count_plural">s</span><?= ($this->element->event) ? " on " : "."; ?>
+
+        <? if ($this->element->event) { ?>
+            <?= ($this->element->single_shift_date) ? "this date:" : "these dates:"; ?>
+        <? } ?>
+
+        <a href="#" id="see-shift-list" <?= ($this->element->event) ? "style='display:none;'" : ""; ?>">See list</a>
+
+    </div>
+
+    <?
+    $shift_list_class = "";
+
+    if ($this->element->single_shift_date || $this->element->extend_series_date) {
+        $shift_list_class .= "dynamic_shift_dates_shift_list";
+
+        if ($this->element->extend_series_date) {
+            $shift_list_class .= " extend_series_shift_list";
+        }
+    }
+    ?>
+
+    <div id="shift-list" class="<?= $shift_list_class ?>"></div>
+
+    <? if ($this->element->single_shift_date) { ?>
+
+        <div id="edit_single_shift_date_btn_wrapper" class="extra-small">
+            <a href="#" id="edit_Single_shift_date_trigger">Edit<img src="/images/icons/calendar.gif"></a>
+        </div>
+
+        <div id="edit_single_shift_date_modal_wrapper">
+            <div id="edit_single_shift_date_modal">
+                <div id="single_shift_date_label">This shift occurs on</div><?= $this->element->single_shift_date; ?>
+
+                <div class="edit_single_shift_date_popup_buttons extra-small">
+
+
+                            <span class="gray-button">
+                                <a href="#" id="cancel_single_shift_date_popup">Cancel</a>
+                            </span>
+
+                            <span class="blue-button">
+                                <a href="#" id="update_single_shift_date_popup">Apply</a>
+                            </span>
+
+                </div>
+
+            </div>
+
+            <img src="/images/ticker.png" id="edit_single_shift_date_modal_ticker">
+
+        </div>
+
+    <?
+    } else if ($this->element->extend_series_date) {
+        ?>
+
+        <?= $this->element->adding_dates; ?>
+
+        <div id="extend_series_btn_wrapper" class="extra-small">
+            <a href="#" id="extend_series_trigger">Extend<img src="/images/icons/calendar.gif"></a>
+        </div>
+
+        <div id="extend_series_modal_wrapper">
+            <div id="extend_series_modal">
+
+                <div id="extend_series_label">
+                    The current series
+                    repeats <?= ($this->element->series_data['frequency_type'] != 'day') ? "on " : ""; ?><b
+                        id="extend_series_pattern"></b>every
+                    <b id='extend_series_frequency'><?= $this->element->series_data['frequency'] ?></b>
+                    <b id='extend_series_frequency_type'><?= $this->element->series_data['frequency_type']; ?><?= ($this->element->series_data['frequency'] == 1) ? "" : "s"; ?></b>
+                    <br/>
+
+                    <div style="float:left;line-height:40px;">from
+                        <b><?= $this->element->series_data['first_event_date']; ?></b> until
+                    </div>
+
+                    <?= $this->element->extend_series_date; ?>
+
+                    <div class="clear"></div>
+
+                </div>
+
+
+                <div class="clear"></div>
+
+                <div class="extend_series_popup_buttons extra-small">
+
+
+                            <span class="gray-button">
+                                <a href="#" id="cancel_extend_series_popup">Cancel</a>
+                            </span>
+
+                            <span class="blue-button">
+                                <a href="#" id="update_extend_series_popup">Apply</a>
+                            </span>
+
+
+                </div>
+
+                <div class="clear"></div>
+
+
+            </div>
+
+            <img src="/images/ticker.png" id="extend_series_modal_ticker">
+
+        </div>
+
+    <?
+    } ?>
+
+
+</div>
+
+<div class="clear"></div>
+
+<div id="sharing-options-wrapper">
+    <h4>Shared Scheduler Options <?= $this->helpBubble("sharingHelp", "Shared Scheduler Help", $sharingHelpText) ?></h4>
+
+    <div id="shared-flag">
+        <?= $this->element->share_flag ?> Share shifts
+    </div>
+
+    <div class="clear"></div>
+
+    <div id="sharing-off-blocker"></div>
+
+    <div id="sharing-on-options">
+
+        <div id="sharing-description">
+            Sharing shifts with <span id="program_count">0</span> other program<span id="program_plural">s</span>. <a
+                href="#" id="edit-sharing-programs">Edit</a>
+        </div>
+
+        <div id="all-checker-wrapper">
+            <a href="#" id="program-all-checker">Select none</a>
+        </div>
+
+        <div id="sharing-programs-list">
+            <table id='program-list-table'>
+
+            </table>
+        </div>
+
+        <div class="clear"></div>
+
+        <?= $this->element->sharing_programs ?>
+        <?= $this->element->sharing_cert_levels ?>
+
+        <div class="clear"></div>
+
+    </div>
+
+    <div id="drop-students-options" class="info">
+
+        <label id='drop-students-label'>You're removing programs who currently receive this shift. Drop their scheduled
+            students from these shifts?</label>
+        <?= $this->element->drop_previously_shared_students ?>
+
+        <div class="clear"></div>
+
+    </div>
+
+</div>
+
+<a href="#" class="next-tab" data-tabContentId="assign-allocate">Next (assign/signup) >></a>
+
+</div>
+
+<div id="assign-allocate">
+
+    <h3 class='section-header'>Assign preceptors/instructors</h3>
+
+    <div id="disable-preceptors-instructors"></div>
+
+    <div class="grid_6 preceptor_element_wrapper">
+        <?= $this->element->preceptors ?>
+    </div>
+
+    <div class="grid_6 instructor_element_wrapper">
+        <?= $this->element->instructors ?>
+    </div>
+
+    <div class="clear"></div>
+
+    <hr id='assign-dotted-line'/>
+
+    <h3 class='section-header'>Assign students</h3>
+
+    <?= $this->element->assigned_students ?>
+
+    <div class="extra-small gray-button">
+        <a href="#" id="assign">Assign/Drop</a>
+    </div>
+
+    <div id="assigned-summary">
+
+        <? if ($this->element->student_conflicts) { ?>
+            <div id="student-conflicts">
+                Various students are signed up for the group of shifts you're editing. To assign or drop students from
+                any of these shifts, do this step later by using the Assign/Drop option for the indivdual shifts.
+            </div>
+        <? } ?>
+
+        <div id="assigning-details">
+            <div id="assign-message">
+                Please enter the number of students who can go (on the first tab).
+            </div>
+
+            Assigning <span id="assigned_count">0</span> student<span id="assigned_plural">s</span> to <span
+                id="assigned_shift_count">0 shifts</span>.
+            <a href="#" id="see-assigned-list">See list</a>
+
+            <div id="assigned-list">
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clear"></div>
+
+    <hr/>
+
+    <h3 class='section-header' id="student-signup-header">Student signup</h3>
+
+    <? if ($this->element->show_limited_interface_msg) { ?>
+
+        <div class="info">
+            Since you are not the admin for this shared shift, you can only edit your signup windows if you choose to
+            edit all future shifts in this series.
+        </div>
+
+    <? } ?>
+
+    <div id="signup-perm-wrapper">
+
+        <div id="super-limited-bob-blocker"></div>
+
+        <br/>
+
+        <div class='signup-settings-line'>
+            <div class='floater floater-no-max-width'>Students</div>
+            <div class='flip-container'>
+                <div id="students_can_sign_up_flippy" class="can-cannot"></div>
+                &nbsp;</div>
+            <div class='floater floater-no-max-width'>sign up for this shift.</div>
+            <?= $this->element->students_can_sign_up ?>
+        </div>
+
+        <div class='clear'></div>
+
+        <div id="signup-warnings">
+
+            <div id="no-active-windows-notice" class="notice">
+                The current signup window settings will make this shift invisible to all students.
+            </div>
+
+            <div id="breaker-cannot-sign-up-notice" class="notice">
+                Signup for <?= $this->element->type ?> shifts is turned off at your program. You can manage permissions
+                like this from the Scheduler Settings page.
+            </div>
+
+        </div>
+
+        <div class="clear"></div>
+        <br/>
+
+        <div id="windows">
+
+            <?= $this->element->existing_windows ?>
+
+            <div class="clear"></div>
+
+            <div id="windows-header">
+                Signup windows
+                <?= $this->helpBubble("windowsHelp", "Signup Windows Help", $windowsHelpText) ?>
+            </div>
+
+            <div class="clear"></div>
+
+            <div id="window-table-header">
+                <div class="active">On/Off</div>
+                <div class="when">When can students sign up?</div>
+                <div class="who">Which students can sign up?</div>
+                <div class="clear"></div>
+            </div>
+
+            <table id="windows-table">
+                <div id="loading-windows">
+                    <img src="/images/throbber_small.gif">
+                </div>
+            </table>
+
+            <div class="clear"></div>
+
+            <a href="#" id="add-window" title='add a signup window'>Add window.</a>
+
+        </div>
+
+        <div class="clear"></div>
+
+        <hr/>
+
+        <div id="offset-type-options-wrapper">
+
+            <div class="offset-types">
+                <img id='close-offset-types' src="/images/icons/delete.png">
+
+                <div class="offset-type-option" data-offsetType="static" data-offsetTypeId="1">
+                    <span class="ot-description">Specific date</span>
+                    <span class="input-example"><img src="/images/static-date-offset-example.png"></span>
+                </div>
+
+                <div class="offset-type-option" data-offsetType="prevMonth" data-offsetTypeId="3">
+                    <span class="ot-description monthly">Monthly date</span>
+                    <span class="input-example"><img src="/images/month-date-example.png"></span>
+                </div>
+
+                <div class="offset-type-option" data-offsetType="interval" data-offsetTypeId="2">
+                    <span class="ot-description rolling">Rolling</span>
+                    <span class="input-example"><img src='/images/rolling-offset-example.png'></span>
+                </div>
+
+                <img src="/images/ticker.png" id="offset-types-ticker">
+            </div>
+
+        </div>
+
+
+        <div id="permissions-wrapper">
+
+            <div id="permissions-sum">
+
+                <div class="permission" id="drop"><img src="/images/icons/approved.png">Drop<span
+                        class="permission-needed">(permission)</span></div>
+                <div class="permission" id="cover"><img src="/images/icons/approved.png">Cover<span
+                        class="permission-needed">(permission)</span></div>
+                <div class="permission" id="swap"><img src="/images/icons/approved.png">Swap<span
+                        class="permission-needed">(permission)</span></div>
+
+                <a href="#" id="edit-permissions">Edit</a>
+
+                <div class="clear"></div>
+
+            </div>
+
+            <div class="clear"></div>
+
+            <div id="edit-change-permissions-wrapper">
+                <? foreach ($this->element->request_types as $request_type) {
+                    $switch = $request_type->name; ?>
+                    <div class='settings-line'>
+                        <div class='floater floater-no-max-width'>Students</div>
+                        <div class='flip-container'>
+                            <div id="can_<?= $this->element->type ?>_<?= $switch ?>" class="can-cannot"></div>
+                            &nbsp;</div>
+                        <div class='floater floater-no-max-width'><?= $switch ?> this shift<span class='period'></span>
+                        </div>
+                        <div class='permission_phrase'>
+                            <div class='flip-container'>
+                                <div id="with_<?= $this->element->type ?>_<?= $switch ?>_permission"
+                                     class="with-without"></div>
+                                &nbsp;</div>
+                            <div class='floater floater-no-max-width'>permission.</div>
+                        </div>
+                        <?php echo $this->element->{$this->element->type . '_' . $switch} ?>
+                        <?php echo $this->element->{$this->element->type . '_' . $switch . '_permission'} ?>
+                    </div>
+                    <div class='clear'></div>
+                <? } ?>
+            </div>
+
+        </div>
+
+    </div>
+
+    <a href="#" class="next-tab prev" data-tabContentId="shift-details"><< Prev (shift details)</a>
+    <a href="#" class="next-tab" data-tabContentId="notifications">Next (notes & notifications) >></a>
+
+</div>
+
+
+<div id="notifications">
+
+    <div id="notifications-elements-wrapper">
+
+        <?= $this->element->notes ?>
+
+        <div class="clear"></div>
+
+        <hr/>
+
+
+    </div>
+
+    <?= $this->helpBubble("emailListHelp", "Email List Help", $emailListHelpText) ?>
+    <?= $this->element->email_list ?>
+
+    <a href="#" class="next-tab prev" data-tabContentId="assign-allocate"><< Prev (assign/signup)</a>
+
+</div>
+
+</div>
+
+<?= $this->element->assignModal; ?>

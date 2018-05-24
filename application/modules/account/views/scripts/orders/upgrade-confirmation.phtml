@@ -1,0 +1,25 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_12 island">
+    <?php if ($this->error) { ?>
+        <div class="error">
+            There has been an error processing your request.
+        </div>
+    <?php } else { ?>
+        <h3 class="section-header">Thank You!</h3>
+
+        <div class="section">
+            Your upgrade has been processed, and we've emailed you a confirmation.
+        </div>
+
+        <div class="section">
+            Upgraded by <?= $this->user->getName() . " on " . date("m-d-Y") ?>.
+        </div>
+
+        <div class="section">
+            Your account now includes:
+        </div>
+
+        <?= $this->productSummary($this->products, true) ?>
+
+    <?php } ?>
+</div>

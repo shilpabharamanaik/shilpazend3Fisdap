@@ -3,6 +3,7 @@
 use App;
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Utility Trait for logging event activity
  *

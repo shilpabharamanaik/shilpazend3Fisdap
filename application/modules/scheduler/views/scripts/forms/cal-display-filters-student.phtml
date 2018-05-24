@@ -1,0 +1,49 @@
+<div id="cd-filters-wrapper">
+	
+	<div class="where">
+		
+		<h2 class="section-header">Locations</h2>
+		
+		<?= $this->element->sites_filters ?>
+		<?= $this->element->bases_filters ?>
+		<?= $this->element->preceptors_filters ?>
+		
+		<div class="section-header"><?= $this->element->available_filters ?> Available Shifts</div>
+		<div class="clear"></div>
+		<dt>Show shifts available for sign up.</dt>
+		
+	</div>
+		
+	<div class="chosen">
+		
+		<div class="section-header"><?= $this->element->chosen_filters ?> Chosen/Assigned Shifts</div>
+		<div class="clear"></div>
+		
+		<div id="chosen-blocker"></div>
+		
+		<div class="chosen-filters-elements">
+			<dt>Show shifts chosen by/assigned to:</dt>
+			<?= $this->element->chosen_cert_filters ?>
+			<div class="clear"></div>
+			
+			<?= $this->element->chosen_group_filters ?>
+			<?= $this->element->grad_filters ?>
+			
+			<?= $this->element->students_filters ?>
+			
+		</div>
+		
+	</div>
+	
+	<div class="action-buttons">
+		<div class="go extra-small green-buttons">
+			<a href="#" id="submit-filters-btn">Go</a>
+		</div>
+		
+		<div class="reset extra-small gray-button">
+			<a href="#" id="reset-filters-btn">Reset Filters</a>
+		</div>
+		
+	</div>
+		
+</div>

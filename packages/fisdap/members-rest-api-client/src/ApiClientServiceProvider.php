@@ -4,6 +4,7 @@ use Fisdap\Api\Client\Auth\UserAuthorization;
 use Fisdap\Api\Client\HttpClient\HttpClient;
 use Illuminate\Support\ServiceProvider;
 
+
 /**
  * Registers Members REST API HttpClient and Gateways
  *
@@ -54,6 +55,7 @@ final class ApiClientServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('Fisdap\Api\Client\HttpClient\HttpClientInterface', function () {
+
             $config = ApiClientConfig::getInstance();
 
             /** @var UserAuthorization $userAuthorization */

@@ -7,9 +7,10 @@ use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Entity class for Goal definitions
- *
+ * 
  * @Entity(repositoryClass="Fisdap\Data\Goal\DoctrineGoalRepository")
  * *InheritanceType("SINGLE_TABLE")
  * *DiscriminatorColumn(name="goal_type", type="string")
@@ -19,27 +20,29 @@ use Doctrine\ORM\Mapping\Table;
  */
 class GoalDefinition extends GoalBase
 {
-    /**
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
-     */
-    protected $id;
-    
-    /**
-     * @Column(type="string")
-     */
-    protected $name='';
-    
-    /**
-     * @Column(type="string")
-     */
-    protected $category='';
-    
-    protected $goal_type;
-    
-    public function set_goal_type($type)
-    {
-        $this->goal_type=$type;
-    }
+	/**
+	 * @Id
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 */
+	protected $id;
+	
+	/**
+	 * @Column(type="string")
+	 */
+	protected $name='';
+	
+	/**
+	 * @Column(type="string")
+	 */
+	protected $category='';
+	
+	protected $goal_type;
+	
+	public function set_goal_type($type)
+	{
+		$this->goal_type=$type;
+	}
+
+	
 }

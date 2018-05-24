@@ -9,6 +9,7 @@ use Fisdap\Api\Queries\Parameters\IdentifiedByStudents;
 use Fisdap\Api\Shifts\Exceptions\InvalidShiftState;
 use Fisdap\Api\Shifts\Exceptions\InvalidShiftType;
 
+
 /**
  * Encapsulates and validates query parameter data for shifts
  *
@@ -169,9 +170,7 @@ class ShiftQueryParameters extends CommonQueryParameters
      */
     public function setStartingBetween(array $startingBetween = null)
     {
-        if ($startingBetween === null) {
-            return $this;
-        }
+        if ($startingBetween === null) return $this;
 
         if (count($startingBetween) !== 2) {
             throw new \InvalidArgumentException('startingBetween must be an array of exactly two \DateTime values');
@@ -211,12 +210,10 @@ class ShiftQueryParameters extends CommonQueryParameters
      */
     public function setStates(array $states = null)
     {
-        if ($states === null) {
-            return $this;
-        }
+        if ($states === null) return $this;
 
         foreach ($states as $state) {
-            if (! in_array($state, self::$possibleStates)) {
+            if ( ! in_array($state, self::$possibleStates)) {
                 throw new InvalidShiftState(
                     "'$state' is not a valid shift state.  Valid states are: " . implode(
                         ', ',
@@ -259,11 +256,9 @@ class ShiftQueryParameters extends CommonQueryParameters
      */
     public function setType($type = null)
     {
-        if ($type === null) {
-            return $this;
-        }
+        if ($type === null) return $this;
 
-        if (! in_array($type, self::$possibleTypes)) {
+        if ( ! in_array($type, self::$possibleTypes)) {
             throw new InvalidShiftType(
                 "'$type' is not a valid shift type.  Valid types are: " . implode(
                     ', ',

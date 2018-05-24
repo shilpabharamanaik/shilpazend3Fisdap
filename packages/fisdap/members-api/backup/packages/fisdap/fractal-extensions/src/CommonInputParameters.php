@@ -2,6 +2,7 @@
 
 use Request;
 
+
 /**
  * Enables handling of common request input parameters
  *
@@ -17,9 +18,7 @@ trait CommonInputParameters
     {
         $includes = null;
 
-        if (! Request::has('includes')) {
-            return $includes;
-        }
+        if ( ! Request::has('includes')) return $includes;
 
         $includes = Request::get('includes');
 

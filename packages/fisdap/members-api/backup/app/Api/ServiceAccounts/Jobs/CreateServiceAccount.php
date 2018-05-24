@@ -6,6 +6,7 @@ use Fisdap\Api\ServiceAccounts\Entities\ServiceAccountPermission;
 use Fisdap\Api\ServiceAccounts\Permissions\Repository\ServiceAccountPermissionsRepository;
 use Fisdap\Api\ServiceAccounts\Repository\ServiceAccountsRepository;
 
+
 /**
  * Class CreateServiceAccount
  *

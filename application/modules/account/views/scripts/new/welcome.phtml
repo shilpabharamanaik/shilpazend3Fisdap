@@ -1,0 +1,22 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_12 island" id="welcome">
+    <p>Great! Your username is <b><?= $this->user->username;?></b>. From now on, you will use the username and password that you
+    created to log in to Fisdap.</p>
+    
+    <h3 class="section-header" id="gettingStartedHeader">Getting Started</h3>
+    <p>Before you get going, you may want to watch some of our tutorials.</p>
+    <ul id="tutorials">
+            <li><a target="_new" href="http://www.fisdap.net/support/getting_started/logging_in">Logging In</a></li>
+        <?php
+        foreach($this->tutorials as $tutorial){?>
+            <li><a target="_new" href="<?= $tutorial['url'];?>"><?= $tutorial['name'];?></a></li>
+        <?php
+        }?>
+    </ul>
+    
+    <p>If you're ready to start using Fisdap now, you can continue to your Fisdap dashboard...</p>
+    
+    <div class="small green-buttons action-buttons">
+        <a id="continueButton" href="/my-fisdap/">Continue to MyFisdap</a>
+    </div>
+</div>

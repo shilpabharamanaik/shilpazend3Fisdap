@@ -1,0 +1,122 @@
+<?php
+
+if ($this->pendingEdits) {
+    $rowClass = $headerClass = "pending";
+    $pendingThrobber = "<img src='/images/icons/queueThrobber.gif' title='Running background task' class='pendingThrobber'>";
+    $disabled = true;
+} else {
+    $headerClass = "clickable";
+    $disabled = false;
+}
+
+?>
+
+<div id="requirement-<?= $this->requirement->id ?>" class="manage-requirement-row <?= $rowClass ?>" data-req-id="<?= $this->requirement->id ?>">
+    <?= $pendingThrobber ?>
+	<div class="requirement-row-header <?= $headerClass ?>">
+		<div class="grid_5">
+            <?= $this->formCheckbox(
+                "edit_" . $this->requirement->id,
+                $this->requirement->id,
+                array("name" =>"requirements[]", "class" => "requirement-checkbox", "disable" => $disabled))
+            ?>
+            <img class="arrow-toggle" src="/images/accordion_arrow_right.png">
+            <span class="requirement-title"><?= $this->requirement->name ?></span>
+        </div>
+		<div class="grid_3"><?= $this->requirement->expires ? "expires" : "does not expire" ?></div>
+		<div class="grid_3"><?= $this->formCheckbox(
+                "toggle_" . $this->requirement->id,
+                1,
+                array("class" => "active-toggle", "disable" => $disabled),
+                array($this->attachmentInfo['associations']['active']))
+            ?></div>
+		<div class="grid_1">
+			<img class="type-icon" src="/images/icons/<?= $this->attachmentInfo['associations']['program'] === true ? "program" : "site" ?>-requirement.png">
+			<?= $this->attachmentInfo['associations']['global'] === true ? "<img class='type-icon' src='/images/icons/shared-requirement.png'>" : "" ?>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="attachment-info-container">
+	<table class="attachment-info">
+		<tr>			
+		<td class="attachment-summary">
+				<?
+				$attachmentInfo = $this->attachmentInfo;
+				$attachmentTotal = 0;
+                $attachmentList = "<table class='fisdap-table'>";
+
+				foreach ($attachmentInfo['current_attachments'] as $cert => $people) {
+					if (count($people) > 0) {
+						$attachmentTotal += count($people);
+						$attachmentList .= "<tr><td class='clickable'>";
+						if (is_array($people)) {
+							$plural = (count($people) == 1) ? '' : 's';
+							$attachmentList .= count($people) . " Active " . $cert . $plural . " <img src='/images/icons/plus.png' class='show-specific-attachments'>";
+							$attachmentList .= "<ul class='attachment-specific'>";
+							foreach($people as $user) {
+								if ($user['role'] == 1) {
+									$attachmentList .= "<li><a href='/portfolio/index/about/userContextId/{$user['userContextId']}' title='Go to portfolio'>{$user['name']}</a></li>";
+								} else {
+									$attachmentList .= "<li>{$user['name']}</li>";
+								}
+							}
+							$attachmentList .= "</ul>";
+						} else {
+							$attachmentList .= $people;
+						}
+						$attachmentList .= "</td></tr>";
+					}
+				}
+				$attachmentList .= "</table>";
+				
+				echo "<h6 class='dark-gray'>" . ($attachmentTotal > 0 ? "Assigned to:" : "No one is currently assigned.") . "</h6>";
+				echo $attachmentList;
+				?>
+		</td>
+		<td class="attachment-summary">
+			<h6 class="dark-gray"><?= count($attachmentInfo['auto_attachments']) > 0 ? "Auto-assign to:" : "Auto-assign is turned off." ?></h6>
+			<table class="fisdap-table">
+			<?
+				foreach ($attachmentInfo['auto_attachments'] as $cert) {
+					echo "<tr><td>$cert</td></tr>";
+				}
+			?>
+			</table>
+		</td>
+		<td class="attachment-summary">
+			<? if ($this->attachmentInfo['associations']['program'] === true) { ?>
+				<h6 class="dark-gray">Program Requirement:</h6>
+				People need to fulfill regardless of sites.
+			<? } else {
+				$siteTotal = 0;
+				$siteList = "<table class='fisdap-table'>";
+				if (count($this->attachmentInfo['associations']['sites'])) {
+					foreach ($this->attachmentInfo['associations']['sites'] as $type => $sites) {
+						$siteTotal++;
+						$siteList .= "<tr><td class='clickable'>";
+						if (is_array($sites)) {
+							$plural = (count($sites) == 1) ? '' : 's';
+							$siteList .= count($sites) . " " . ucfirst($type) . " site" . $plural . " <img src='/images/icons/plus.png' class='show-specific-attachments clickable'>";
+							$siteList .= "<ul class='attachment-specific'>";
+							foreach($sites as $site) {
+								$siteList .= "<li class='$type'>" . $site['name'] . ($site['global'] === true ? "<img class='global-icon' src='/images/icons/shared-requirement.png'>" : "") . "</li>";
+							}
+							$siteList .= "</ul>";
+						} else {
+							$siteList .= $sites;
+						}
+						$siteList .= "</td></tr>";
+					}
+				}
+				$siteList .= "</table>";
+				
+				echo "<h6 class='dark-gray'>" . ($siteTotal > 0 ? "Site Requirement at:" : "All sites that require are currently inactive.") . "</h6>";
+				echo $siteList;
+				} ?>
+		</td>
+		</tr>
+	</table>
+	<div class='assigned_user_count' data-userCount='<?= $attachmentTotal ?>'></div>
+	</div>
+</div>
+<div class="clear"></div>

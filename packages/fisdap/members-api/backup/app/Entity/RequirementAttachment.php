@@ -13,9 +13,10 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
+
 /**
  * Requirement Attachment
- *
+ * 
  * @Entity
  * @Table(name="fisdap2_requirement_attachments")
  */
@@ -147,8 +148,7 @@ class RequirementAttachment extends EntityBaseClass
     public function set_user_context($value)
     {
         // If there was no value for user role, record the history of this requirement being attached
-        $this->user_context = self::id_or_entity_helper($value, "UserContext");
-        ;
+        $this->user_context = self::id_or_entity_helper($value, "UserContext");;
 
         return $this;
     }
@@ -206,18 +206,16 @@ class RequirementAttachment extends EntityBaseClass
         return $this;
     }
 
-    public function getExpirationDate($format)
-    {
+    public function getExpirationDate($format) {
         if ($this->expiration_date) {
             return $this->expiration_date->format($format);
         }
 
-        return null;
+        return NULL;
     }
 
 
-    public function getStatus()
-    {
+    public function getStatus() {
         // archived
         if ($this->archived) {
             return "archived";
@@ -234,6 +232,7 @@ class RequirementAttachment extends EntityBaseClass
         } else {
             return "non-compliant";
         }
+
     }
 
     public function getSite($association_program_id)
@@ -262,7 +261,7 @@ class RequirementAttachment extends EntityBaseClass
         // Only record the logged in user if there's someone logged in and the Fisdap Robot was not explicitly used
         if ($userContextId != "Fisdap Robot" && User::getLoggedInUser()) {
             $history->user_context = User::getLoggedInUser()->getCurrentUserContext();
-        } elseif ($userContextId != "Fisdap Robot" && $userContextId) {
+        } else if ($userContextId != "Fisdap Robot" && $userContextId) {
             // otherwise, if there is no logged in user but a user role has been specified, use that
             $history->user_context = EntityUtils::getEntity('UserContext', $userContextId);
         }
@@ -277,11 +276,11 @@ class RequirementAttachment extends EntityBaseClass
 
         $userContext = User::getLoggedInUser()->getCurrentUserContext();
 
-        foreach ($histories as $history) {
+        foreach($histories as $history) {
             //Set the user for the history record
             if (is_null($history->user_context->id)) {
                 $user = "Fisdap Robot";
-            } elseif ($userContext->id == $history->user_context->id) {
+            } else if ($userContext->id == $history->user_context->id) {
                 $user = "You";
             } else {
                 $user = $history->user_context->user->getName();
@@ -290,7 +289,7 @@ class RequirementAttachment extends EntityBaseClass
             //Set the subject for the history record
             $subject = $userContext->id == $this->user_context->id ? "you" : $this->user_context->user->getName();
 
-            switch ($history->change->id) {
+            switch($history->change->id) {
                 case 1:
                     $summary = $user . " marked " . $subject . " compliant" . ($history->notes ? " (" . $history->notes . ")" : "") . ".";
                     break;

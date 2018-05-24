@@ -1,0 +1,22 @@
+<fieldset>
+    <div class="grid_8">I'm looking for ...</div>
+    
+    <div class="grid_4" style="text-align:right;">
+        <a id="advanced_search_toggle" href="#">Advanced Search</a>
+    </div>
+    
+    <div id="advanced_search_content">
+        <?php echo $this->element->userType ?>
+        
+        <?php echo $this->element->certification ?>
+        
+        <?php echo $this->element->graduationDate ?>
+        
+        <?php echo $this->element->toggle ?>
+        
+        <div class="grid_12" style="text-align:right;">
+            <?php echo $this->element->cancelButton ?>
+            <?php echo $this->element->searchButton ?>
+        </div>
+    </div>
+</fieldset>

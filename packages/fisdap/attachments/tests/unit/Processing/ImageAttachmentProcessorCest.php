@@ -10,6 +10,7 @@ use Fisdap\Attachments\Processing\ImageFilters\ThumbnailFilter;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
 
+
 class ImageAttachmentProcessorCest
 {
     /**
@@ -76,9 +77,7 @@ class ImageAttachmentProcessorCest
         $this->attachmentsLoggerMock->shouldReceive('info')->once();
 
         $imageAttachmentProcessor = new ImageAttachmentProcessor(
-            $this->imageManagerMock,
-            $this->attachmentsKernelMock,
-            $this->attachmentsLoggerMock
+            $this->imageManagerMock, $this->attachmentsKernelMock, $this->attachmentsLoggerMock
         );
 
         // act

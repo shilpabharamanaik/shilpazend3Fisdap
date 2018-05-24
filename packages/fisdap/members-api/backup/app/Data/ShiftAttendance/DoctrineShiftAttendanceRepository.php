@@ -7,6 +7,7 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
+
 /**
  * Class DoctrineShiftAttendanceRepository
  *

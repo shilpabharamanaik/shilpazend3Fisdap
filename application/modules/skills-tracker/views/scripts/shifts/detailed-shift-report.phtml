@@ -1,0 +1,131 @@
+<?php $this->headLink()->appendStylesheet("/css/skills-tracker/shifts/my-shift.css"); ?>
+<div id="pdfContents">
+    <h1>
+        <div id="breadcrumb">
+            <a href="/skills-tracker/shifts"><?= $this->shiftListLinkText ?></a>
+        </div>
+        <?php echo $this->student->user->first_name . ' ' . $this->student->user->last_name; ?>'s Shift
+    </h1>
+
+    <div class="grid_8">
+        <?php echo $this->partial('shiftSummary.phtml', array('shift' => $this->shift, 'page' => "detailed-shift-report")) ?>
+    </div>
+    <div class="grid_4 no-pdf">
+        <div id="shift-buttons-container">
+            <?php if ($this->shift->isEditable()) { ?>
+                <div class='orange-button small'>
+                    <div class='button lock-shift-btn icon-button'>
+                        <img class="icon square" src="/images/icons/<?= ($this->element->shift->locked) ? "unlocked" : "locked" ?>-white.svg">
+                        <div class='text'><?= ($this->shift->locked) ? "Unlock shift" : "Lock shift" ?></div>
+                    </div>
+                </div>
+            <?php }
+
+            if ($this->shift->student->program->program_settings->allow_educator_shift_audit) {
+                if ($this->isInstructor && $this->shift->isEditable()) {
+                    echo $this->auditShiftWidget($this->shift->id);
+                } else {
+                    echo($this->shift->audited ? 'Audited' : 'Not Audited');
+                }
+            }
+
+            ?>
+        </div>
+    </div>
+
+
+    <div class="clear"></div>
+
+    <a name='top'></a>
+
+    <div class='grid_12 island withTopMargin'>
+        <?= $this->exportButtons(array("pdf"), "export-shift-details-links") ?>
+        <h2 class="page-sub-title">
+            Detailed Shift Report <?= $this->shift->locked ? '<img id="lock-icon" class="tiny-icon square" src="/images/icons/locked.svg">' : ''; ?>
+        </h2>
+        <?php if ($this->allowShiftSignoff || $this->shift->verification->verified) { ?>
+            <div class="detailed-shift-signoff">
+                <?php if ($this->shift->verification->verified) { ?>
+                    <h3>Sign Off</h3>
+                    <?= $this->shift->verification->getSignoffMessage($this->shift->student->program->program_settings) ?>
+                    <?
+                    if (($sig = $this->shift->verification->signature) && $this->shift->verification->type->id == 2) {
+                        echo "<div class=''>" . $this->signatureHelper(
+                                $sig->id, 300, 55, 'php'
+                            ) . "</div>";
+                    }
+
+                    if ($this->shift->verification->shiftAttachment && $this->shift->verification->type->id == 4) {
+                        echo "<div class='attachment-signoff-container'>" . $this->attachmentCard($this->shiftAttachment, $this->shift->id, $this->shift->type) . "</div>";
+                    }
+
+                    if ($this->shift->isEditable() && $this->allowShiftSignoff) echo '<a class="no-pdf" href="/skills-tracker/signoff/shift-signoff/shiftId/' . $this->shift->id . '">view preceptor feedback</a>'; ?>
+                <?php } else if ($this->isInstructor || !$this->shift->locked) { ?>
+                    <a href="/skills-tracker/signoff/shift-signoff/shiftId/<?php echo $this->shift->id; ?>">Sign off on
+                        this shift</a>
+                <?php } else { ?>
+                    This shift has not received signoff.
+                <?php } ?>
+            </div>
+        <?php } ?>
+
+        <?php
+        // if there's any data associated with this shift, give the summaries
+        if (count($this->patientPartials) ||
+            count($this->shift->getQuickAddedSkills() || count($this->shift->practice_items))
+        ) { ?>
+
+            <div class="table-of-contents no-pdf">
+                <div>Skip to...</div>
+                <?= $this->staggeredList($this->tableOfContents) ?>
+            </div>
+
+            <?php
+            // add the patients
+            echo $this->partialLoop('shiftDetailSummary.phtml', $this->patientPartials);
+
+            // add skills practice
+            if (count($this->shift->practice_items)) {
+                echo $this->partial('practiceItemsSummary.phtml', array('shift' => $this->shift));
+            }
+
+            // add quick added skills
+            if (count($this->shift->getQuickAddedSkills())) {
+                echo $this->partial('quickAddedSkillsSummary.phtml', array('shift' => $this->shift));
+            }
+
+            // add attachment table
+            ?>
+            <div class="clear"></div>
+            <h3 class='<?= $this->shift->type ?>-header'>Attachments</h3>
+            <div class="section-content">
+                <?= $this->shiftAttachmentList($this->shift, $this->attachments, $this->isInstructor, $this->attachmentsRemaining, $this->shift->isEditable()) ?>
+            </div>
+            <div class='no-pdf back-to-top'>
+                <a href='#top'>back to top</a>
+            </div>
+
+            <?php
+            // add evals
+            echo $this->partial('shiftEvalsSummary.phtml', array('shift' => $this->shift, 'evalList' => $this->evalList));
+
+            // Include the preceptor sign off for this shift
+            if ($this->shiftSignoff) {
+                echo $this->partial('shiftSignoffSummary.phtml', array('shift' => $this->shift, 'signoff' => $this->shiftSignoff));
+            }
+        } else {
+            echo "<br />"
+                . "<p>It doesn't look like any skills or experiences have been recorded yet. ";
+            if ($this->isInstructor || !$this->shift->locked) {
+                echo "You can document skills and patient care from the My Shift page.";
+            }
+            echo "</p>";
+        }
+        ?>
+    </div>
+</div>
+
+<div class="no-pdf">
+    <?= $this->shiftModal ?>
+    <?= $this->shiftLockModal ?>
+</div>

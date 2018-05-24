@@ -1,0 +1,130 @@
+<?php // todo - remove this file when enabling new LTI links ?>
+<?= $this->pageTitleHelper() ?>
+
+<div id="shift-list-container" class="grid_12 island">
+
+    <div class="grid_6">
+        <?php if ($this->hasSecureTesting): ?>
+            <h4 class="header">
+                <div class="product">
+                    <a href="<?= $this->secureTestingLink ?>">
+                        <img class='product-shield' src="<?= $this->secureTestingIcon ?>" alt="Testing">
+
+                        <div class="shield-label">Secure Testing</div>
+                    </a>
+                </div>
+            </h4>
+
+            This is where you'll go to take one of Fisdap's secure exams. These exams must be proctored.
+            Your instructor will need to set up the test with Fisdap before you can get started. <a
+                href="<?= $this->secureTestingLink ?>">Take a test</a>.
+
+            <br/>
+            <br/>
+        <?php endif;
+            if ($this->hasSecureTesting || $this->hasStudyTools):
+        ?>
+
+            <h4 class="header">
+                <a href="<?= $this->studentScoresLink ?>">Scores</a>
+            </h4>
+
+            Check out your test results and be sure to review your Learning Prescription for custom learning guide.
+            <br/><a href="<?= $this->studentScoresLink ?>">Review your scores.</a>
+
+            <br/>
+            <br/>
+        <?php endif; ?>
+
+        <h4 class="header">
+            <a href="<?= $this->howToSucceedLink ?>">Improve Your Scores</a>
+        </h4>
+
+        Head <a href="<?= $this->howToSucceedLink ?>">here</a> for helpful tips on how to prepare for and improve
+        your score on FISDAP exams!<br/><br/><br/>
+
+        <? if ($this->hasPilotTesting): ?>
+            <h4 class="header">
+                <a href="<?= $this->pilotTestingLink ?>">Pilot Testing</a>
+            </h4>
+
+            This is where you'll go to take one of Fisdap's Pilot Exams. These exams must be proctored. Your instructor will need to set up the test with Fisdap before you can get started.
+            <a href="<?= $this->pilotTestingLink ?>">Take a test</a>.
+        <? endif; ?>
+
+        <? if ($this->hasTransitionCourse): ?>
+            <h4 class="header" id='shift-list-title' style='display: inline'>
+                Continuing Education
+            </h4>
+            <hr/>
+            <h4 class="header">
+                <a href="<?= $this->transitionCourseLink ?>">Transition Course</a>
+            </h4>
+
+            This CECBEMS-approved online course contains the training material to transition from the National Standard Curriculum to the 2009 National Education Standards.
+            <a href="<?= $this->transitionCourseLink ?>">Start now</a>.
+        <? endif; ?>
+
+        <? if ($this->hasMedrills): ?>
+            <br/>
+            <h4 class="header">
+                <?= $this->medrillsHeader ?>
+            </h4>
+
+            <p>Watch Archie MD’s collection of animated training videos. This
+                is a great educational resource that covers a variety of skills
+                and patient care topics.</p>
+            <? if ($this->showAllMedrills): ?>
+                <a href="/learning-center/medrills/index/product/41">EMT Medrills</a><br>
+                <a href="/learning-center/medrills/index/product/42">Paramedic Medrills</a>
+            <? endif; ?>
+        <? endif; ?>
+    </div>
+
+    <div class="grid_6">
+        <? if ($this->hasStudyTools || !$this->hasTransitionCourse): ?>
+            <h4 class="header">
+                <div class="product">
+                    <a href="<?= $this->studyToolsLink ?>">
+                        <img class='product-shield' src="<?= $this->studyToolsIcon ?>" alt="Study Tools">
+
+                        <div class="shield-label">Study Tools</div>
+                    </a>
+                </div>
+            </h4>
+
+            <? if ($this->hasStudyTools): ?>
+                Visit <a href="<?= $this->studyToolsLink ?>">Study
+                    Tools</a> and challenge yourself with our practice quizzes and test.  Unlike the secure exams, you can use Study Tools on your own, any time.
+            <? else: ?>
+                Want to take a Fisdap test on your own for extra practice? <a href="<?= $this->studyToolsLink ?>">
+                    Learn
+                    more</a>.
+            <? endif; ?>
+
+            <br/>
+            <br/>
+            <br/>
+        <? endif; ?>
+
+        <h4 class="header">
+            <a href="<?= $this->openAirWaysLink ?>"> Open Airways</a>
+        </h4>
+
+        Listen to stories from EMS veterans about their most memorable calls and what they took away from some
+        powerful teachable moments.
+        <br/>
+        <a href="<?= $this->openAirWaysLink ?>">Visit the Open Airways website.</a>
+
+        <br/>
+        <br/>
+
+        <h4 class="header">
+            <a href="<?= $this->research101Link ?>"> Research 101</a>
+        </h4>
+        Watch the engaging 4 hour video series that teaches the importance of getting involved in EMS research & how
+        to get started.
+
+    </div>
+
+</div>

@@ -1,0 +1,85 @@
+<div id="pick-sites-modal">
+	<div id="pick-sites-modal-content">
+		
+		<div id="filter_sites">
+			<input type="radio" id="all" name="filter_sites" checked="checked"><label for="all">All</label>
+			<input type="radio" id="clinical" name="filter_sites"><label for="clinical">Clinical</label>
+			<input type="radio" id="field" name="filter_sites"><label for="field">Field</label>
+			<input type="radio" id="lab" name="filter_sites"><label for="lab">Lab</label>
+		</div>
+		
+		<h3 id='req_name' class='section-header'><?= $this->element->req_name ?></h3>
+		
+		<div class="clear"></div>
+
+		<div id='picklist-site-picker' class='container_12'>
+		
+			<div class="grid_5">
+				
+				<div class="search-available-list">
+					<img class="magnifying-glass-icon" src="/images/icons/magnifying-glass.png">
+					<input class="search-list" data-listToSearch="available-list">
+				</div>
+				
+				<select id="all-sites" multiple>
+				</select>
+				
+				<h2>Available Sites</h2>
+				<select id="available-list" multiple>
+					
+					<?php
+						foreach($this->element->sites as $site) {
+							$selected = array_search($site['id'], $this->element->selected_sites) > -1 ? 'selected' : null; ?>
+							<option class="<?= $site['type'] ?>" value="<?= $site['id'] ?>" data-siteId="<?= $site['id'] ?>" href="#" <?= $selected ?>>
+								<?= $site['name']; ?>
+							</option>
+						<?php
+						}
+						
+					?>
+					
+				</select>
+				
+			</div>
+			
+			<div class="grid_2">
+				<div id="picklist-control-buttons"  class="extra-small gray-button">
+					
+					<a href="#" id='add-selected' data-controlFunction="add" title="Add">></a>
+					<a href="#" id='remove-selected' data-controlFunction="remove" title="Remove"><</a>
+					<a href="#" id='add-all' data-controlFunction="addAll" title="Add all">>></a>
+					<a href="#" id='remove-all' data-controlFunction="removeAll" title="Remove all"><<</a>
+					
+				</div>
+			</div>
+			
+			
+			<div class="grid_5">
+				<h2>Chosen Sites</h2>
+				<select id="chosen-list" multiple>
+					
+				</select>
+				
+				<div id='selected_count'>
+					<span id='num_selected'>0</span> sites selected
+				</div>
+				
+			</div>
+			
+			<div class="clear">	</div>
+			
+		</div>		
+	</div>
+	
+	<div class="buttons">
+			
+		<div class="small blue-button">
+			<a href="#" id="save-site-modal">Choose</a>
+		</div>
+			
+		<div class="small gray-button">
+			<a href="#" id="close-site-modal">Cancel</a>
+		</div>
+			
+	</div>
+</div>

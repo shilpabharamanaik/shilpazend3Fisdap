@@ -1,0 +1,30 @@
+Hello and welcome to Fisdap!<br>
+
+<p>
+    <?= $this->orderer->getName() ?> would like you to purchase a Fisdap account.
+</p>
+
+<p>
+    Don't have a Fisdap account yet?
+    <a href="<?= $this->urlRoot . "account/new/confirm-account?productCode=" . $this->productCode->code ?>">Create an account</a>.
+</p>
+
+<? if ($this->upgradeable) { ?>
+    <p>
+        Already have a Fisdap account?
+        <a href="<?= $this->urlRoot . "account/orders/upgrade-individual/code/" . $this->productCode->code ?>">Upgrade your existing account</a>.
+    </p>
+<? } ?>
+
+<p>
+    Your account will have access to the following
+    product<?= $this->productCode->order_configuration->hasMultipleProducts() ? "s" : null ?>:<br>
+    <?= $this->productCode->order_configuration->getProductSummary() ?>
+</p>
+
+<?= $this->message ? "<p>" . $this->message . "</p>" : null ?>
+
+<p>
+    For your records, your product code is:<br>
+    <?= $this->productCode->code ?>
+</p>

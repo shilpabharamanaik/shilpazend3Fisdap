@@ -1,0 +1,106 @@
+<? if (($this->element->shift->id && $this->element->shift->isValid()) || $this->element->shift->locked) { ?>
+
+
+    <?php
+    $histories = $this->element->shift->histories;
+
+    if (count($histories) > 0) {
+        echo "<div id='shift-history'>";
+        echo "<div>Shift history:</div>";
+        echo "<ul class='fisdap-list'>";
+        foreach ($histories as $history) {
+            echo "<li>" . $history->getSummary() . "</li>";
+        }
+        echo "</ul>";
+        echo "</div>";
+    } else if (!$this->element->shift->locked) {
+        echo "<div id='shift-history'>";
+        echo "This shift has never been locked.";
+        echo "</div>";
+    }
+    ?>
+
+    <?php
+    if ($this->element->shift->locked && $this->element->shift->student->program->program_settings->allow_signoff_on_patient == true) {
+        echo '<div class="notice" id="patient-unlock-notice">Unlocking a patient that has already been verified by a preceptor will require the preceptor to verify the patient again.</div>';
+    } else if ($this->element->shift->locked && $this->element->shift->student->program->program_settings->allow_signoff_on_shift == true && $this->element->shift->verification->verified == true) {
+        echo '<div class="notice">This shift has been signed off by a preceptor.  Unlocking this shift will require the preceptor to sign off on the shift again.</div>';
+    }
+    ?>
+
+
+    <?php
+    if ($this->element->shift->locked && $this->element->shift->student->program->program_settings->allow_signoff_on_patient == true) {
+        echo '<div class="table-box">';
+        echo $this->shortRunList($this->element->shift);
+        echo "</div>";
+    }
+    ?>
+
+    <?= ($this->element->shift->locked && $this->element->shift->audited) ? "<div class='notice'>You are unlocking an audited shift. You will need to re-audit this shift.</div>" : null ?>
+
+    <? if ($this->element->shift->locked) { ?>
+        <div id='email-container' class="input">
+            <?= $this->element->sendEmail ?>
+            <?= $this->element->emailText ?>
+        </div>
+
+        <div class="clear"></div>
+    <? } ?>
+
+    <div id="lock-shift-btn-container" class="modal-buttons">
+        <div class='gray-button small modal-button-wrapper'>
+            <div class='button closeModal'>Cancel</div>
+        </div>
+        <div class='orange-button small modal-button-wrapper'>
+            <div class='button lock-shift-btn icon-button'>
+                <img class="icon" src="/images/icons/<?= ($this->element->shift->locked) ? "unlocked" : "locked" ?>-white.svg">
+                <div class='text'><?= ($this->element->shift->locked) ? "Unlock shift" : "Lock shift" ?></div>
+            </div>
+        </div>
+    </div>
+
+<? } else if ($this->element->shift->id) { ?>
+    <? if (count($this->element->shift->getInvalidPatients()) > 0) { ?>
+            <div id="shift-history">
+                The following patients are missing some required information that must be entered before this shift can be
+                locked:
+            </div>
+            <ul class="fisdap-list">
+                <?
+                foreach ($this->element->shift->getInvalidPatients() as $patient) {
+                    echo "<li><a href='{$this->element->patientCareUrl}" . $patient->run->id . "'>" . $patient->getSummaryLine() . "</a> (Missing: " . implode(', ', $patient->getInvalidFields()) . ")</li>";
+                }
+                ?>
+            </ul>
+    <? } ?>
+    <? if (count($this->element->shift->missingEvals) > 0) { ?>
+            <div id="shift-history">
+                The following required shift evaluations are missing:
+            </div>
+            <ul class="fisdap-list">
+                <?
+                foreach ($this->element->shift->missingEvals as $eval) {
+                    echo "<li> ". $eval ." </li>";
+                }
+                ?>
+            </ul>
+    <? } ?>
+            <div id="lock-shift-btn-container" class="modal-buttons">
+            <div class='gray-button small modal-button-wrapper'>
+                <div class='button closeModal'>Ok</div>
+            </div>
+            </div>
+<? } ?>
+
+<?= $this->element->lockshift_shiftId ?>
+<?= $this->element->validShift ?>
+<?= $this->element->currentLockedStatus ?>
+
+<?
+if (count($this->element->shift->runs) > 0) {
+    foreach ($this->element->shift->runs as $run) {
+        echo $this->element->{"run_lock_switch_" . $run->id};
+    }
+}
+?>

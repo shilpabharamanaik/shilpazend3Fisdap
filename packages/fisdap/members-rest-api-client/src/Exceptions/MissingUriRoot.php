@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Client\Exceptions;
 
+
 /**
  * Class MissingUriRoot
  *

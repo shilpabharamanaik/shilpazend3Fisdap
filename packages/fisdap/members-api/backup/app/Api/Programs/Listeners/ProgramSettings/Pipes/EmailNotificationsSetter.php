@@ -2,6 +2,7 @@
 
 use Fisdap\Api\Programs\Listeners\ProgramSettings\EstablishesProgramSettings;
 
+
 /**
  * Class EmailNotificationsSetter
  *

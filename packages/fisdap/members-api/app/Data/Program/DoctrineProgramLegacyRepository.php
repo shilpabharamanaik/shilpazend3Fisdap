@@ -7,6 +7,7 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
+
 /**
  * Class DoctrineProgramLegacyRepository
  *
@@ -111,6 +112,7 @@ class DoctrineProgramLegacyRepository extends DoctrineRepository implements Prog
             ->setParameter(2, $end->format('Y-m-d H:i:s'));
 
         return $qb->getQuery()->getResult();
+
     }
 
     public function getAssociationCountByPreceptor($preceptor_id, $program_id)
@@ -183,6 +185,7 @@ class DoctrineProgramLegacyRepository extends DoctrineRepository implements Prog
         foreach ($students as $student) {
             $userContext = $student['user_context'];
             if ($userContext['id']) {
+
                 $include_user = false;
 
                 if ($active_and_recent_grads) {
@@ -269,6 +272,7 @@ class DoctrineProgramLegacyRepository extends DoctrineRepository implements Prog
     //Returns user role IDs like getActiveStudentsByProgramOptimized().
     public function getReasonableStudentsByProgram($program_id, $cert_levels = null, $grad_year = null, $grad_month = null, $groups = null)
     {
+
         $qb = $this->_em->createQueryBuilder();
 
         $qb->select('partial s.{id, graduation_year, graduation_month}, partial grad_status.{id}, partial p.{id}, partial ur.{id,end_date}, partial c.{id,description}, partial u.{id,first_name,last_name}, partial css.{id}, partial sect.{id}')
@@ -433,5 +437,8 @@ class DoctrineProgramLegacyRepository extends DoctrineRepository implements Prog
         $result = $qb->getQuery()->getSingleResult();
 
         return array_pop($result);
+
     }
+
+
 }

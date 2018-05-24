@@ -1,0 +1,68 @@
+<div class="container_12" id="form_div">
+		
+	<div>
+<?php 	if (count($this->element->events) == 1) { ?>
+		<div>
+			You have chosen to delete the following shift:
+		</div>
+		<div id='shift-div'>	
+			<img id='site-icon' class='icon' src='/images/icons/<?= $this->element->event->type ?>SiteIconColor.png'>
+			<h4 class='site-desc <?= $this->element->event->type ?>'><?= $this->element->event->getDetailViewDate() ?></h4>
+			<h4 class='header' style='margin: 0 0 5px 30px'><?= $this->element->event->getLocation() ?></h4>
+		</div>
+
+<?php	} else { ?>
+		<div id='shift-div'>
+			You have chosen to delete <?= count($this->element->events) ?> shifts.
+		</div>
+		
+<?php 	} ?>
+
+<?php 	if ($this->element->student_count > 0) { ?>
+		<div>
+			You'll be dropping <?= $this->element->student_count ?> <?= $this->element->student_count > 1 ? "students" : "student" ?> from <?= count($this->element->events) > 1 ? "these shifts" : "this shift" ?>:
+			<div  class='dropped-students'>
+<?php
+		foreach ($this->element->students as $program_name => $students) {
+			if (is_array($students) && count($students) > 0) {
+?>
+				<p><?= $program_name ?></p>
+				<ul class='student-list'>
+<?php					foreach ($students as $student) { echo "<li>$student</li>";	} ?>
+				</ul>
+			
+<?php			} else if (!is_array($students)) { ?>
+			
+				<p><?= $program_name ?>: <?= $students ?> <?= $students > 1 ? "students" : "student" ?></p>
+<?php			}
+		}
+?>	
+			</div>
+		</div>
+<?php 	} ?>
+
+<?php 	if (count($this->element->students_lose_data) > 0) { ?>
+		<div class='data-students notice'>
+			The following <?= count($this->element->students_lose_data) > 1 ? "students" : "student" ?> will also lose skills tracker data:
+			<ul class='student-list'>
+<?php				foreach ($this->element->students_lose_data as $student) { echo "<li>$student</li>";	} ?>
+			</ul>
+		</div>
+		
+<?php 	} ?>
+		
+	</div>
+	
+	<?php echo $this->element->event_ids ?>
+	<?php echo $this->element->event_count ?>
+	<div class="hidden"><input id="student_count" type="hidden" value="<?= $this->element->student_count ?>" name="student_count"></div>	
+	<div class='delete-buttons'>
+		<div id='cancelButtonWrapper' class='small gray-button'>
+			<a href='#' id='delete-event-cancel-btn'>Cancel</a>
+		</div>
+		<div id='deleteButtonWrapper' class='small green-buttons'>
+			<a href='#' id='delete-event-btn' data-eventid=".$event->id.">Confirm</a>
+		</div>
+	</div>
+
+</div>

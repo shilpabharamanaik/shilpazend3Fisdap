@@ -1,0 +1,869 @@
+<?php echo $this->doctype(); ?>
+<html>
+    <head>
+		<?php
+			echo $this->headMeta()
+					  ->appendHttpEquiv('Content-Language', 'en-US')
+					  ->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+		?>
+		
+		<link href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/cupertino/jquery-ui.css' media="screen" rel="stylesheet" type="text/css">
+		
+		<script type="text/javascript" src="/js/jquery-1.5.2.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui-1.8.12.custom.min.js"></script>
+		
+		<link href="/css/jquery_buttons.css" media="screen" rel="stylesheet" type="text/css" >	
+		
+		<link href="/css/library/SkillsTracker/Form/signoff.css" media="screen" rel="stylesheet" type="text/css" >
+		
+		<script type="text/javascript" src="/js/jquery-1.5.2.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui-1.8.12.custom.min.js"></script>
+		
+		<script type="text/javascript" src="/js/signaturePad/assets/jquery.signaturepad.min.js"></script>
+		<script type="text/javascript" src="/js/signaturePad/assets/json2.min.js"></script>
+		<!--[if lt IE 9]> <script type="text/javascript" src="/js/signaturePad/assets/flashcanvas.js"></script><![endif]-->
+		
+		<style>
+			.main-content{
+				width: 850px;
+				font-family: 'tahoma';
+			}
+			
+			.content-block{
+				width: 100%;
+			}
+			
+			.gray-content{
+				overflow: auto;
+				background-color: #f0eeeb;
+				color: black;
+				border-bottom: 2px solid #877f78;
+				padding: 7px;
+			}
+			/* Medium gray: #c6c1bc; */
+			.gray-content-header{
+				color: #655d57;
+				border-right: 2px solid #877f78;
+				font-size: 1.5em;
+				margin-left: 3px;
+				margin-top: 3px;
+				padding-right: 7px;
+				margin-right: 7px;
+				font-family: Century Gothic, Arial, Helvetica, sans-serif;
+			}
+			
+			
+			/* White Stuff */
+			.white-content{
+				overflow: auto;
+				width: 100%;
+				background-color: #ffffff;
+				padding: 7px;
+				border-bottom: 2px solid #877f78;
+			}
+			
+			.white-content-header{
+				overflow: auto;
+				font-size: 1.3em;
+				color: #877f78;
+				border-bottom: 1px solid #877f78;
+				margin-left: 10px;
+				margin-right: 10px;
+				margin-bottom: 5px;
+				font-family: Century Gothic, Arial, Helvetica, sans-serif;
+			}
+			
+			.white-content-content{
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+			
+			
+			/* Generic Stuff */
+			.large-bold{
+				font-weight: 900;
+				font-size: 1.2em;
+			}
+			
+			.left{
+				float: left;
+			}
+			
+			.right{
+				float: right;
+			}
+			
+			.clear{
+				clear: both;
+			}
+			
+			.bold{
+				font-weight: 900;
+			}
+			
+			.bottom-border{
+				overflow: auto;
+				width: 100%;
+				border-bottom: 2px solid #877f78;
+			}
+			
+			a {
+				color: #a94612;
+			}
+			
+			/* Eval Stuff */
+			.eval-header{
+				color: #FFFFFF;
+				font-weight: 900;
+				background-color: #655d57;
+				
+				overflow: auto;
+				
+				padding: 10px 5px 10px 20px;
+				
+				font-family: Century Gothic, Arial, Helvetica, sans-serif;
+			}
+			
+			.eval-block{
+				width: 600px;
+			}
+			
+			.eval-item{
+				overflow: auto;
+				padding: 5px 5px 5px 20px;
+				border-bottom: 1px solid #877F78;
+				
+				margin: 5px 0px 10px 0px;
+			}
+			
+			.no-border{
+				border: 0px solid white;
+			}
+			
+			.eval-item-description{
+				width: 360px;
+				margin-bottom: 5px;
+			}
+			.eval-item-options{
+				width: 205px;
+			}
+			
+			.eval-criteria-block{
+				background-color: #FFFCB3;
+				border-left: 1px solid yellow;
+				border-right: 1px solid yellow;
+				border-bottom: 1px solid yellow;
+			}
+			
+			.critical-criteria-item{
+				overflow: auto;
+				padding: 5px;
+				margin-bottom: 5px;
+			}
+			
+			.eval-score-content{
+				width: 45%;
+			}
+			
+			.eval-score{
+				padding-left: 10px;
+				font-size: 1.2em;
+				font-weight: 900;
+			}
+			
+			.eval-results-content{
+				width: 45%;
+			}
+			
+			.detail-item{
+				text-align: right;
+				width: 175px;
+			}
+			
+			.detail-value{
+				text-align: right;
+				width: 50px;
+			}
+			
+			.signoff-tab{
+				overflow: auto;
+				height: 85px;
+			}
+			
+			/* Stopwatch stuff */
+			.floating-timer-block{
+				padding: 0px;
+				margin: 0px;
+				width: 245px;
+				border: 1px solid black;
+				box-shadow: -5px 5px 5px #666666;
+			}
+			
+			.stopwatch-header{
+				color: white;
+				font-weight: 900;
+				background-color: #707070;
+				font-family: Century Gothic, Arial, Helvetica, sans-serif;
+				padding-left: 15px;
+				padding-right: 15px;
+				padding-bottom: 3px;
+			}
+			
+			.stopwatch-body{
+				text-align: center;
+				color: white;
+				font-size: 1.4em;
+				font-weight: 900;
+				
+				background-color: #909090;
+			}
+		</style>
+	</head>
+	
+    <body>
+		<script>
+			// Set up the tabs and buttonsets...
+			$(function(){
+				$('#tabs').tabs();
+				$('.eval-item-options').buttonset();
+			});
+			
+			// Set up the scroll positioning of the stopwatch...
+			$(function(){
+				topDiv = $('#stopwatch-top');
+				bottomDiv = $('#stopwatch-bottom');
+				
+				stopwatchDiv = $('#stopwatch');
+				
+				// Figure out what the absolute maximum and minimum heights are for the stopwatch.
+				maxTop = topDiv.offset().top + topDiv.height();
+				maxBottom = bottomDiv.offset().top + bottomDiv.height() - stopwatchDiv.height();
+				
+				// Default it to the top of the div
+				stopwatchDiv.offset({top: maxTop, left: stopwatchDiv.left});
+				
+				// When the user scrolls, set up the stopwatch div to lock to the top of the screen.
+				$(document).scroll(function(e){
+					// Update these here just in case the heights change between scrolls (user can adjust
+					// the height of the textarea in some browsers).
+					maxTop = topDiv.offset().top + topDiv.height();
+					maxBottom = bottomDiv.offset().top + bottomDiv.height() - stopwatchDiv.height();
+					
+					stopwatchPos = stopwatchDiv.offset();
+					
+					if(window.pageYOffset > topDiv.offset().top){
+						stopwatchDiv.offset({top: Math.min(window.pageYOffset, maxBottom), left: stopwatchDiv.left});
+					}else{
+						stopwatchDiv.offset({top: maxTop, left: stopwatchDiv.left});
+					}
+				});
+			});
+			
+			var startTime = null;
+			var endTime = null;
+				
+			function updateTotalTimeDisplay(){
+				if(startTime != null && endTime != null && startTime.getTime() < endTime.getTime()){
+					secondsTaken = Math.floor(((endTime.getTime() - startTime.getTime()) / 1000));
+					
+					hasHours = false;
+					
+					hours = Math.floor(secondsTaken/3600);
+					if(hours > 0){
+						hasHours = true;
+					}
+					if(hours <= 9){ hours = '0' + hours;}
+					secondsTaken = secondsTaken - (hours*3600);
+					
+					minutes = Math.floor(secondsTaken/60);
+					if(minutes <= 9){ minutes = '0' + minutes; }
+					secondsTaken = secondsTaken - (minutes*60);
+					
+					seconds = secondsTaken;
+					if(seconds <= 9){ seconds = '0' + seconds; }
+					
+					if(hasHours){
+						$('#total-time').text(hours + 'h ' + minutes + 'm ' + seconds + 's');
+					}else{
+						$('#total-time').text(minutes + 'm ' + seconds + 's');
+					}
+				}else{
+					$('#total-time').text('00m 00s');
+				}
+			}
+			
+			function updateTime(element){
+				curTime = new Date();
+
+				hourTime = curTime.getHours();
+				if(hourTime <= 9){ hourTime = '0' + hourTime; }
+
+				minTime = curTime.getMinutes();
+				if(minTime <= 9){ minTime = '0' + minTime; }
+				
+				$('#' + element).val(hourTime + '' + minTime);
+				
+				updateTotalTimeDisplay();
+			}
+			
+			// Set up the start/end time boxes.
+			$(function(){
+				$("#datepicker").datepicker();
+				
+				$("#set-current-start-time").click(function(){
+					startTime = new Date();
+					updateTime('time_start');
+				});
+				$("#set-current-end-time").click(function(){
+					endTime = new Date();
+					updateTime('time_end');
+				});
+				
+				startTime = new Date();
+				updateTime('time_start');
+			});
+			
+			// Set up the end time button
+			$(function(){
+				var timerId = null;
+				
+				toggleTimer = function(){
+					if(timerId == null){
+						timerId = setInterval(function(){
+							endTime = new Date();
+							updateTime('time_end');
+						}, 1000);
+						
+						document.getElementById("time_end").disabled = true;
+						document.getElementById("timerToggleButton").value = 'Turn Timer Off';
+					}else{
+						clearInterval(timerId);
+						timerId = null;
+						document.getElementById("time_end").disabled = false;
+						document.getElementById("timerToggleButton").value = 'Turn Timer On';
+					}
+				}
+			});
+			
+			// Set up the logic to handle the radio button clicks...
+			$(function(){
+				// Set the cutscore to be a static 70%
+				var cutscore = 70;
+				$('#cutscore').text(cutscore);
+				$('#current-score').text(0).css('color', '#FF0000');
+				
+				var pointCount = 0;
+				
+				updateEarnedPoints = function(){
+					var earnedPoints = 0;
+					$('.eval-item-options').each(function(index, el){
+						$(el).children().each(function(index, radioEl){
+							if($(radioEl).is("input")){
+								if($(radioEl).is(':checked') && $(radioEl).val() >= 0){
+									earnedPoints += parseInt($(radioEl).val());
+								}
+							}
+						});	
+					});
+					
+					earnedScore = Math.floor((earnedPoints/pointCount*100));
+					
+					$('#current-score').text(earnedScore);
+					
+					if(earnedScore >= cutscore){
+						$('#current-score').css('color', '#00FF00');	
+					}else{
+						$('#current-score').css('color', '#FF0000');	
+					}					
+					
+					$('#earned-points').text(earnedPoints);
+					$('#earned-points-2').text(earnedPoints);
+				}
+				
+				$('.eval-item-options').each(function(index, el){
+					$(el).children().each(function(index, radioEl){
+						if($(radioEl).is("input")){
+							if($(radioEl).val() >= 0){
+								// Set up a click handler on each to recalculate the current number of earned points...
+								$(radioEl).click(updateEarnedPoints);
+								pointCount++;
+							}
+						}
+					});	
+				});
+				
+				$('#possible-points').text(pointCount);
+				$('#possible-points-2').text(pointCount);
+			});
+			
+			// Make the pretty pretty buttons...
+			$(function(){
+				$('#submitButton').button().addClass('green-button medium');
+				$('#set-current-start-time').button().addClass('small');
+				$('#set-current-end-time').button().addClass('small');
+				
+				$('#stopwatch-start-button').button().addClass('green-button small');
+				$('#stopwatch-pause-button').button().addClass('small');
+				$('#stopwatch-stop-button').button().addClass('dark-gray-button small');
+				
+				$('#timerToggleButton').button().addClass('small');
+			});
+		</script>
+		<div class='main-content'>
+			
+			<div class='content-block gray-content'>
+				<div class='left' style='width: 60%; padding-bottom: 5px'>
+					<span class='gray-content-header'>Evaluation</span><span class='large-bold'>Skill Lab - Spinal Immobilization</span> <br />
+					<br />
+					Subject: <span class='bold'>Claire Lynn (clynne)</span> <a href='#' onclick='return false;'>change</a> <br />
+					Evaluator: <span class='bold'>Marshall Hines (mhines911)</span> <a href='#' onclick='return false;'>change</a> <br />
+				</div>
+				<div class='right' style='width: 40%'>
+					<div style='margin-top: 50px; font-align: right'>
+						Date (MM/DD/YYYY): <input type='text' id='datepicker' />
+					</div>
+				</div>
+			</div>
+			
+			<div class='content-block white-content'>
+				<div class='left white-content-content' style='width: 45%'>
+					<div class='white-content-header'>Patient Information</div>
+					<div class='white-content-content'>
+						Please list the patient age, gender and MOI/chief complaint if applicable:<br />
+						<textarea cols='43' rows='6'></textarea>
+					</div>
+				</div>
+				<div class='right' style='width: 45%'>
+					<div class='white-content-header'>Directions</div>
+					<div class='white-content-content'>
+						Use the following standard for evaluation: <br /><br />
+						<div style='margin-left: 15px; margin-bottom: 10px;'><span class='bold' style='margin-right: 10px;'>N/A</span>Not Applicable; Not needed or expected</div>
+						<div style='margin-left: 15px; margin-bottom: 10px;'><span class='bold' style='margin-right: 10px;'>0</span>Unsuccessful; required excessive or critical prmpting</div>
+						<div style='margin-left: 15px; margin-bottom: 10px;'><span class='bold' style='margin-right: 10px;'>1</span>Successful; competent; no prompting necessary</div>
+					</div>
+				</div>
+			</div>
+			<div class='content-block white-content'><br />
+				<span id='stopwatch-top'></span>
+				<div class='eval-block left'>
+					<span>Started at: <input type='text' id='time_start' size='4' maxlength='4'/> <input type='button' value='Current' id='set-current-start-time' /><br /> <br />
+					
+					<div class='eval-header'>Selects, checks, and assembles equipment</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Long spine immobilization device with straps</span>
+						<span class='eval-item-options right' id='eval-options1-1'>
+							<input type='radio' name='eval-options1-1' id='radio1-1-1' value='1'/> <label for='radio1-1-1'>1</label>
+							<input type='radio' name='eval-options1-1' id='radio1-1-2' value='2'/> <label for='radio1-1-2'>2</label>
+							<input type='radio' name='eval-options1-1' id='radio1-1-3' value='3'/> <label for='radio1-1-3'>3</label>
+							<input type='radio' name='eval-options1-1' id='radio1-1-0' value='-1' checked="checked"/><label for='radio1-1-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Cervical collar</span>
+						<span class='eval-item-options right' id='eval-options1-2'>
+							<input type='radio' name='eval-options1-2' id='radio1-2-1' value='1'/> <label for='radio1-2-1'>1</label>
+							<input type='radio' name='eval-options1-2' id='radio1-2-2' value='2'/> <label for='radio1-2-2'>2</label>
+							<input type='radio' name='eval-options1-2' id='radio1-2-3' value='3'/> <label for='radio1-2-3'>3</label>
+							<input type='radio' name='eval-options1-2' id='radio1-2-0' value='-1' checked="checked"/><label for='radio1-2-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Head immobilizer (commercial or improvised)</span>
+						<span class='eval-item-options right' id='eval-options1-3'>
+							<input type='radio' name='eval-options1-3' id='radio1-3-1' value='1'/> <label for='radio1-3-1'>1</label>
+							<input type='radio' name='eval-options1-3' id='radio1-3-2' value='2'/> <label for='radio1-3-2'>2</label>
+							<input type='radio' name='eval-options1-3' id='radio1-3-3' value='3'/> <label for='radio1-3-3'>3</label>
+							<input type='radio' name='eval-options1-3' id='radio1-3-0' value='-1' checked="checked"/><label for='radio1-3-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item no-border'>
+						<span class='eval-item-description left'>Padding material</span>
+						<span class='eval-item-options right' id='eval-options1-4'>
+							<input type='radio' name='eval-options1-4' id='radio1-4-1' value='1'/> <label for='radio1-4-1'>1</label>
+							<input type='radio' name='eval-options1-4' id='radio1-4-2' value='2'/> <label for='radio1-4-2'>2</label>
+							<input type='radio' name='eval-options1-4' id='radio1-4-3' value='3'/> <label for='radio1-4-3'>3</label>
+							<input type='radio' name='eval-options1-4' id='radio1-4-0' value='-1' checked="checked"/><label for='radio1-4-0'>N/A</label>
+						</span>
+					</div>
+					
+					<div class='eval-header'>Immobilizes Patient</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Takes or verbalizes appropriate PPE precautions </span>
+						<span class='eval-item-options right' id='eval-options2-1'>
+							<input type='radio' name='eval-options2-1' id='radio2-1-1' value='1'/> <label for='radio2-1-1'>1</label>
+							<input type='radio' name='eval-options2-1' id='radio2-1-2' value='2'/> <label for='radio2-1-2'>2</label>
+							<input type='radio' name='eval-options2-1' id='radio2-1-3' value='3'/> <label for='radio2-1-3'>3</label>
+							<input type='radio' name='eval-options2-1' id='radio2-1-0' value='-1' checked="checked"/><label for='radio2-1-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Directs assistant to place/maintain head in the neutral, in-line position </span>
+						<span class='eval-item-options right' id='eval-options2-2'>
+							<input type='radio' name='eval-options2-2' id='radio2-2-1' value='1'/> <label for='radio2-2-1'>1</label>
+							<input type='radio' name='eval-options2-2' id='radio2-2-2' value='2'/> <label for='radio2-2-2'>2</label>
+							<input type='radio' name='eval-options2-2' id='radio2-2-3' value='3'/> <label for='radio2-2-3'>3</label>
+							<input type='radio' name='eval-options2-2' id='radio2-2-0' value='-1' checked="checked"/><label for='radio2-2-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Directs assistant to maintain manual stabilization of the head </span>
+						<span class='eval-item-options right' id='eval-options2-3'>
+							<input type='radio' name='eval-options2-3' id='radio2-3-1' value='1'/> <label for='radio2-3-1'>1</label>
+							<input type='radio' name='eval-options2-3' id='radio2-3-2' value='2'/> <label for='radio2-3-2'>2</label>
+							<input type='radio' name='eval-options2-3' id='radio2-3-3' value='3'/> <label for='radio2-3-3'>3</label>
+							<input type='radio' name='eval-options2-3' id='radio2-3-0' value='-1' checked="checked"/><label for='radio2-3-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Assures that patient is a reliable historian (sensorium not currently altered by drugs or alcohol; no recent loss of consciousness) </span>
+						<span class='eval-item-options right' id='eval-options2-4'>
+							<input type='radio' name='eval-options2-4' id='radio2-4-1' value='1'/> <label for='radio2-4-1'>1</label>
+							<input type='radio' name='eval-options2-4' id='radio2-4-2' value='2'/> <label for='radio2-4-2'>2</label>
+							<input type='radio' name='eval-options2-4' id='radio2-4-3' value='3'/> <label for='radio2-4-3'>3</label>
+							<input type='radio' name='eval-options2-4' id='radio2-4-0' value='-1' checked="checked"/><label for='radio2-4-0'>N/A</label>
+						</span>
+					</div>
+					
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Assesses motor, sensory, and circulatory functions in each extremity </span>
+						<span class='eval-item-options right' id='eval-options2-5'>
+							<input type='radio' name='eval-options2-5' id='radio2-5-1' value='1'/> <label for='radio2-5-1'>1</label>
+							<input type='radio' name='eval-options2-5' id='radio2-5-2' value='2'/> <label for='radio2-5-2'>2</label>
+							<input type='radio' name='eval-options2-5' id='radio2-5-3' value='3'/> <label for='radio2-5-3'>3</label>
+							<input type='radio' name='eval-options2-5' id='radio2-5-0' value='-1' checked="checked"/><label for='radio2-5-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Applies appropriately sized extrication collar </span>
+						<span class='eval-item-options right' id='eval-options2-6'>
+							<input type='radio' name='eval-options2-6' id='radio2-6-1' value='1'/> <label for='radio2-6-1'>1</label>
+							<input type='radio' name='eval-options2-6' id='radio2-6-2' value='2'/> <label for='radio2-6-2'>2</label>
+							<input type='radio' name='eval-options2-6' id='radio2-6-3' value='3'/> <label for='radio2-6-3'>3</label>
+							<input type='radio' name='eval-options2-6' id='radio2-6-0' value='-1' checked="checked"/><label for='radio2-6-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Positions the immobilization device appropriately </span>
+						<span class='eval-item-options right' id='eval-options2-7'>
+							<input type='radio' name='eval-options2-7' id='radio2-7-1' value='1'/> <label for='radio2-7-1'>1</label>
+							<input type='radio' name='eval-options2-7' id='radio2-7-2' value='2'/> <label for='radio2-7-2'>2</label>
+							<input type='radio' name='eval-options2-7' id='radio2-7-3' value='3'/> <label for='radio2-7-3'>3</label>
+							<input type='radio' name='eval-options2-7' id='radio2-7-0' value='-1' checked="checked"/><label for='radio2-7-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Directs movement of the patient onto the device without compromising the integrity of the spine </span>
+						<span class='eval-item-options right' id='eval-options2-8'>
+							<input type='radio' name='eval-options2-8' id='radio2-8-1' value='1'/> <label for='radio2-8-1'>1</label>
+							<input type='radio' name='eval-options2-8' id='radio2-8-2' value='2'/> <label for='radio2-8-2'>2</label>
+							<input type='radio' name='eval-options2-8' id='radio2-8-3' value='3'/> <label for='radio2-8-3'>3</label>
+							<input type='radio' name='eval-options2-8' id='radio2-8-0' value='-1' checked="checked"/><label for='radio2-8-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Applies padding to voids between the torso and the device as necessary </span>
+						<span class='eval-item-options right' id='eval-options2-9'>
+							<input type='radio' name='eval-options2-9' id='radio2-9-1' value='1'/> <label for='radio2-9-1'>1</label>
+							<input type='radio' name='eval-options2-9' id='radio2-9-2' value='2'/> <label for='radio2-9-2'>2</label>
+							<input type='radio' name='eval-options2-9' id='radio2-9-3' value='3'/> <label for='radio2-9-3'>3</label>
+							<input type='radio' name='eval-options2-9' id='radio2-9-0' value='-1' checked="checked"/><label for='radio2-9-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Secures the patient's torso to the device </span>
+						<span class='eval-item-options right' id='eval-options2-10'>
+							<input type='radio' name='eval-options2-10' id='radio2-10-1' value='1'/> <label for='radio2-10-1'>1</label>
+							<input type='radio' name='eval-options2-10' id='radio2-10-2' value='2'/> <label for='radio2-10-2'>2</label>
+							<input type='radio' name='eval-options2-10' id='radio2-10-3' value='3'/> <label for='radio2-10-3'>3</label>
+							<input type='radio' name='eval-options2-10' id='radio2-10-0' value='-1' checked="checked"/><label for='radio2-10-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Evaluates and pads behind the patient's head as necessary </span>
+						<span class='eval-item-options right' id='eval-options2-11'>
+							<input type='radio' name='eval-options2-11' id='radio2-11-1' value='1'/> <label for='radio2-11-1'>1</label>
+							<input type='radio' name='eval-options2-11' id='radio2-11-2' value='2'/> <label for='radio2-11-2'>2</label>
+							<input type='radio' name='eval-options2-11' id='radio2-11-3' value='3'/> <label for='radio2-11-3'>3</label>
+							<input type='radio' name='eval-options2-11' id='radio2-11-0' value='-1' checked="checked"/><label for='radio2-11-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Immobilizes the patient's head to the device </span>
+						<span class='eval-item-options right' id='eval-options2-12'>
+							<input type='radio' name='eval-options2-12' id='radio2-12-1' value='1'/> <label for='radio2-12-1'>1</label>
+							<input type='radio' name='eval-options2-12' id='radio2-12-2' value='2'/> <label for='radio2-12-2'>2</label>
+							<input type='radio' name='eval-options2-12' id='radio2-12-3' value='3'/> <label for='radio2-12-3'>3</label>
+							<input type='radio' name='eval-options2-12' id='radio2-12-0' value='-1' checked="checked"/><label for='radio2-12-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Secures the patient's legs to the device </span>
+						<span class='eval-item-options right' id='eval-options2-13'>
+							<input type='radio' name='eval-options2-13' id='radio2-13-1' value='1'/> <label for='radio2-13-1'>1</label>
+							<input type='radio' name='eval-options2-13' id='radio2-13-2' value='2'/> <label for='radio2-13-2'>2</label>
+							<input type='radio' name='eval-options2-13' id='radio2-13-3' value='3'/> <label for='radio2-13-3'>3</label>
+							<input type='radio' name='eval-options2-13' id='radio2-13-0' value='-1' checked="checked"/><label for='radio2-13-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Secures the patient's arms </span>
+						<span class='eval-item-options right' id='eval-options2-14'>
+							<input type='radio' name='eval-options2-14' id='radio2-14-1' value='1'/> <label for='radio2-14-1'>1</label>
+							<input type='radio' name='eval-options2-14' id='radio2-14-2' value='2'/> <label for='radio2-14-2'>2</label>
+							<input type='radio' name='eval-options2-14' id='radio2-14-3' value='3'/> <label for='radio2-14-3'>3</label>
+							<input type='radio' name='eval-options2-14' id='radio2-14-0' value='-1' checked="checked"/><label for='radio2-14-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item no-border'>
+						<span class='eval-item-description left'>Reassesses motor, sensory, and circulatory function in each extremity </span>
+						<span class='eval-item-options right' id='eval-options2-15'>
+							<input type='radio' name='eval-options2-15' id='radio2-15-1' value='1'/> <label for='radio2-15-1'>1</label>
+							<input type='radio' name='eval-options2-15' id='radio2-15-2' value='2'/> <label for='radio2-15-2'>2</label>
+							<input type='radio' name='eval-options2-15' id='radio2-15-3' value='3'/> <label for='radio2-15-3'>3</label>
+							<input type='radio' name='eval-options2-15' id='radio2-15-0' value='-1' checked="checked"/><label for='radio2-15-0'>N/A</label>
+						</span>
+					</div>
+					
+					<div class='eval-header'>Affective</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Accepts evaluation and criticism professionally </span>
+						<span class='eval-item-options right' id='eval-options3-1'>
+							<input type='radio' name='eval-options3-1' id='radio3-1-1' value='1'/> <label for='radio3-1-1'>1</label>
+							<input type='radio' name='eval-options3-1' id='radio3-1-2' value='2'/> <label for='radio3-1-2'>2</label>
+							<input type='radio' name='eval-options3-1' id='radio3-1-3' value='3'/> <label for='radio3-1-3'>3</label>
+							<input type='radio' name='eval-options3-1' id='radio3-1-0' value='-1' checked="checked"/><label for='radio3-1-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item'>
+						<span class='eval-item-description left'>Shows willingness to learn </span>
+						<span class='eval-item-options right' id='eval-options3-2'>
+							<input type='radio' name='eval-options3-2' id='radio3-2-1' value='1'/> <label for='radio3-2-1'>1</label>
+							<input type='radio' name='eval-options3-2' id='radio3-2-2' value='2'/> <label for='radio3-2-2'>2</label>
+							<input type='radio' name='eval-options3-2' id='radio3-2-3' value='3'/> <label for='radio3-2-3'>3</label>
+							<input type='radio' name='eval-options3-2' id='radio3-2-0' value='-1' checked="checked"/><label for='radio3-2-0'>N/A</label>
+						</span>
+					</div>
+					<div class='eval-item no-border'>
+						<span class='eval-item-description left'>Interacts with simulated patient and other personnel in professional manner </span>
+						<span class='eval-item-options right' id='eval-options3-3'>
+							<input type='radio' name='eval-options3-3' id='radio3-3-1' value='1'/> <label for='radio3-3-1'>1</label>
+							<input type='radio' name='eval-options3-3' id='radio3-3-2' value='2'/> <label for='radio3-3-2'>2</label>
+							<input type='radio' name='eval-options3-3' id='radio3-3-3' value='3'/> <label for='radio3-3-3'>3</label>
+							<input type='radio' name='eval-options3-3' id='radio3-3-0' value='-1' checked="checked"/><label for='radio3-3-0'>N/A</label>
+						</span>
+					</div>
+					
+					<div class='eval-header'>Critical Criteria</div>
+					<div class='eval-criteria-block'>
+						<div class='critical-criteria-item'>
+							<div style='width: 25px;' class='left'>
+								<input type='checkbox' />
+							</div>
+							<div style='margin-left: 10px; width: 550px' class='right'>
+								Did not immediately direct or take manual stabilization of the head
+							</div>
+						</div>
+						<div class='clear'></div>
+						<div class='critical-criteria-item'>
+							<div style='width: 25px;' class='left'>
+								<input type='checkbox' />
+							</div>
+							<div style='margin-left: 10px; width: 550px' class='right'>
+								Did not properly apply appropriately sized cervical collar before ordering release of manual stabilization
+							</div>
+						</div>
+						<div class='clear'></div>
+						<div class='critical-criteria-item'>
+							<div style='width: 25px;' class='left'>
+								<input type='checkbox' />
+							</div>
+							<div style='margin-left: 10px; width: 550px' class='right'>
+								Released or ordered release of manual stabilization before it was maintained mechanically
+							</div>
+						</div>
+						<div class='clear'></div>
+						<div class='critical-criteria-item'>
+							<div style='width: 25px;' class='left'>
+								<input type='checkbox' />
+							</div>
+							<div style='margin-left: 10px; width: 550px' class='right'>
+								Manipulated or moved the patient excessively causing potential for spinal compromise
+							</div>
+						</div>
+						<div class='clear'></div>
+					</div>
+					<br />
+					
+					<span class='left'>
+						Ended at: 
+						<input type='text' id='time_end' size='4' maxlength='4'/> 
+						<input type='button' value='Current' id='set-current-end-time' />
+						<input type='button' id='timerToggleButton' onclick='toggleTimer()' value='Turn Timer On' />
+					</span>
+					<span class='right'>
+						Total Time: <span id='total-time'>00h 00m 00s</span><br /> <br />
+					</span>
+					<div id='stopwatch-bottom'></div>
+				</div>
+				
+				<div class='floating-timer-block right' id='stopwatch'>
+					<div class='stopwatch-header'>Stopwatch</div>
+					<div class='stopwatch-body'>
+						<br />
+						<span id='stopwatch-time'>00:00:00</span>
+						<br />
+						<input type='button' value='Start' id='stopwatch-start-button' onclick='startStopwatch()' />
+						<input type='button' value='Pause' id='stopwatch-pause-button' onclick='pauseStopwatch()' />
+						<input type='button' value='Reset' id='stopwatch-stop-button' onclick='resetStopwatch()' /><br />
+						<br />
+					</div>
+					<script>
+						var stopwatchIntervalId = null;
+						
+						var secondsSpent = 0;
+
+						var isPaused = false;
+						
+						document.getElementById("stopwatch-pause-button").style.display = 'none';
+
+						function renderStopwatchTime(){
+							tmpTime = secondsSpent;
+							
+							hours = Math.floor(tmpTime/3600);
+							if(hours <= 9){ hours = '0' + hours; }
+							tmpTime = tmpTime - (hours*3600);
+							
+							minutes = Math.floor(tmpTime/60);
+							if(minutes <= 9){ minutes = '0' + minutes; }
+							tmpTime = tmpTime - (minutes*60);
+							
+							seconds = tmpTime;
+							if(seconds <= 9){ seconds = '0' + seconds; }
+
+							document.getElementById("stopwatch-time").innerHTML = hours + ':' + minutes + ':' + seconds;
+						}
+
+						function startStopwatch(){
+							document.getElementById("stopwatch-start-button").style.display = 'none';
+							document.getElementById("stopwatch-pause-button").style.display = 'inline';
+							stopwatchIntervalId = setInterval(function(){
+								secondsSpent++;
+								renderStopwatchTime();
+								isPaused = false;
+							}, 1000);
+						}
+						
+						function pauseStopwatch(){
+							if(isPaused){
+								startStopwatch();
+								document.getElementById("stopwatch-pause-button").value = 'Pause';
+								$('#stopwatch-pause-button').removeClass('green-button');
+								isPaused = false;
+							}else{
+								isPaused = true;
+								document.getElementById("stopwatch-pause-button").value = 'Resume';
+								$('#stopwatch-pause-button').addClass('green-button');
+								clearInterval(stopwatchIntervalId);
+							}
+						}
+						
+						function resetStopwatch(){
+							document.getElementById("stopwatch-start-button").style.display = 'inline';
+							document.getElementById("stopwatch-pause-button").style.display = 'none';
+							clearInterval(stopwatchIntervalId);
+							secondsSpent = 0;
+							
+							renderStopwatchTime();
+
+							stopwatchIntervalId = null;
+						}
+					</script>
+					<div class='stopwatch-header'>Notes</div>
+					<div class='stopwatch-body'>
+						<textarea cols='27' rows='15'></textarea>
+					</div>
+				</div>
+				<div class='clear'></div>
+			</div>
+			<div class='content-block white-content no-border'><br />
+				<div class='left white-content-content' style='width: 45%'>
+					<div class='white-content-header'>Comments</div>
+					<div class='white-content-content'>
+						<textarea cols='43' rows='7'></textarea>
+					</div>
+				</div>
+				<div class='right' style='width: 45%'>
+					<div class='white-content-header'>Student Self-Evaluation</div>
+					<div class='white-content-content'>
+						Do you think you were successful or unsuccessful in performing this skill?<br /><br />
+						<input type='radio' name='successful' id='successful-0' value='0'/> <label for='successful-0'>Successful</label> <br />
+						<input type='radio' name='successful' id='successful-1' value='1'/> <label for='successful-1'>Unsuccessful</label>
+					</div>
+				</div>
+			</div>
+			
+			<div class='content-block white-content no-border'><br />
+				<div class='left white-content-content' style='width: 45%'>
+					<div class='white-content-header'>Score</div>
+					<div class='left' class='eval-score-content' id='eval-score'>
+						<div class='eval-score'>
+							<span id='current-score'>00</span>%
+						</div><br />
+						<div style='padding-left: 10px;'>
+							Evaluator override:<br />
+							<select>
+								<option></option>
+								<option>Pass</option>
+								<option>Fail</option>
+							</select>
+						</div>
+					</div>
+					<div class='right' class='eval-results-content' id='eval-results-detail'>
+						<div class='bold' style='color: #877F78'>Details</div><br />
+						<span class='left detail-item'>Cut Score:</span><span class='right detail-value'><span id='cutscore'>00</span>%</span><br />
+						<span class='left detail-item'>Total Points Possible:</span><span class='right detail-value' id='possible-points'>0</span><br /><br />
+						<span class='left detail-item'>Points Awarded:</span><span class='right detail-value' id='earned-points'>0</span><br />
+						<span class='left detail-item' style='border-bottom: 1px solid #d0d0d0'>Prompts Deducted:</span><span class='right detail-value' style='border-bottom: 1px solid #d0d0d0'>0</span><br /><br />
+						
+						<span class='left detail-item'>Total:</span><span class='right detail-value'><span id='earned-points-2'>0</span>/<span id='possible-points-2'>0</span></span><br />
+					</div>
+				</div>
+				<div class='right' style='width: 45%'>
+					<div class='white-content-header'>Evaluator Sign Off</div>
+					The evaluator should choose <span class='bold'>one</span> of the methods below to verify the accuracy of this evaluation. <br /><br />
+					
+					<div id="tabs">
+						<ul>
+							<li><a href="#password">Password</a></li>
+							<li><a href="#signature">Signature</a></li>
+						</ul>
+						<div id="password" class="signoff-tab">
+							<div class='white-content-content'>
+								Username: <input type='text' /> <br />
+								Password: <input type='text' /> <br />
+							</div>
+						</div>
+						<div id="signature" class="signoff-tab">
+							<div class="sigPad" style="width: 302px">
+								<div class="sig sigWrapper">
+									<canvas class="pad" width="300" height="55" style='border: 1px solid black'></canvas>
+									<input type="hidden" id="signature" name="$name" class="output">
+								</div>
+								<a href="#clear" onclick='resetFcn();'>Clear</a>
+							</div>
+							<script>
+								resetFcn = function() {
+									$('.sigPad').signaturePad({drawOnly: true, validateFields: false});
+								}
+								$(document).ready(resetFcn);
+							</script>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='right'>
+				<input type='button' id='submitButton' value='Submit' onclick='window.top.postSave(false, 0)'/>
+			</div>
+		</div>
+    </body>
+</html>

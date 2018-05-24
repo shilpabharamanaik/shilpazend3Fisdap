@@ -21,6 +21,7 @@ class Version20150922140637 extends AbstractMigration
         $this->addSql('UPDATE fisdap2_product SET name = "Scheduler (Limited)" WHERE name = "Scheduler - Limited"');
         $this->addSql('UPDATE fisdap2_product SET name = "Scheduler (Unlimited)" WHERE name = "Scheduler - Unlimited"');
         $this->addSql('UPDATE fisdap2_product SET name = "Paramedic Entrance Exam" WHERE name = "Entrance Exam"');
+
     }
 
     /**
@@ -34,5 +35,6 @@ class Version20150922140637 extends AbstractMigration
         $this->addSql('UPDATE fisdap2_product SET name = "Scheduler - Limited" WHERE name = "Scheduler (Limited)"');
         $this->addSql('UPDATE fisdap2_product SET name = "Scheduler - Unlimited" WHERE name = "Scheduler (Unlimited)"');
         $this->addSql('UPDATE fisdap2_product SET name = "Entrance Exam" WHERE name = "Paramedic Entrance Exam"');
+
     }
 }

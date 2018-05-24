@@ -2,6 +2,7 @@
 
 use GuzzleHttp\ClientInterface;
 
+
 /**
  * Extension of Guzzle HTTP client contract
  *

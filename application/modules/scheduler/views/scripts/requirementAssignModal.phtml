@@ -1,0 +1,65 @@
+
+<div id="assign-modal">
+	
+	<div class="grid_12 account-type-wrapper">
+		
+		<div class="assignment-type-flippy-wrapper">
+			<div class='floater floater-no-max-width'>Select from a list of</div>
+			<div class='flip-container'><div id="accountType_flippy" class="students-instructors students">students</div>&nbsp;</div>
+			<div class='floater floater-no-max-width account-type-period-wrapper'>.</div>
+			<?= $this->element->accountType ?>
+		</div>
+		
+	</div>
+	
+	<div class="grid_12" id="assign-modal-content">
+		
+		<?= $this->element->multistudent_picklist; ?>
+		
+		<div class="clear"></div>
+		
+		<div id="asterisks-msg" class="grid_4">
+			* These people have already been assigned to at least 1 of the selected requirements. <a href="#" id="asterisks-msg-details-trigger">Details</a>
+			<div id="asterisks-msg-details"></div>
+		</div>
+		
+		<div class="assign-selected-totals">
+			
+			<div class="grid_3">
+				<?= $this->element->due_date; ?>
+			</div>
+			
+			<div class="grid_4">
+				Due for these
+				<span class="number-selected">0</span>
+				<span class="account-type">student</span><span class="assign-modal-plural">s</span>
+			</div>
+			
+			<div class="clear"></div>
+			
+			<? if($this->element->requirement_ids){
+				foreach($this->element->requirement_ids as $req_id){
+					if($this->element->{"hidden_" . $req_id . "_attachments"}){
+						echo $this->element->{"hidden_" . $req_id . "_attachments"};
+					}
+				}
+			} ?>
+			
+		</div>
+		
+		
+	</div>
+	
+	<div class="buttons">
+		
+		<div class="small green-buttons">
+			<a href="#" class="save-assign-modal">Ok</a>
+		</div>
+		
+		<div class="small gray-button">
+			<a href="#" class="close-assign-modal">Cancel</a>
+		</div>
+		
+	</div>
+	
+</div>

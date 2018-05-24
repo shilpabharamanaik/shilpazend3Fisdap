@@ -10,6 +10,7 @@ use Fisdap\Entity\User;
 use Fisdap\Queries\Specifications\CommonSpec;
 use Happyr\DoctrineSpecification\Spec;
 
+
 /**
  * Service for retrieving one or more users by various criteria
  *

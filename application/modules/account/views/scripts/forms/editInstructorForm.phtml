@@ -1,0 +1,194 @@
+<?php
+// Edit instructor help bubble text
+$rolesHelp = "Select a role for this account, and we will recommend a list of permissions. You can override " .
+    "this recommendation by customizing the permissions.";
+
+$programPermissionsHelp = "Order Accounts: Order new accounts for students or preceptors." .
+    "<br><br>" .
+    "Edit Student Accounts: Change student account information, passwords, and graduation status." .
+    "<br><br>" .
+    "Administer Exams: Schedule exams, administer exams, and view exam scores." .
+    "<br><br>" .
+    "Edit Instructor Accounts: Change instructor account information, including passwords, and create new " .
+    "instructor accounts. (Note: All instructors can edit their own information and change their own password, " .
+    "but cannot change their own permissions or edit other instructor accounts unless this setting is turned on.)" .
+    "<br><br>" .
+    "Edit Program Settings: Change program info, as well as Scheduler, Compliance, and Skills Tracker settings. " .
+    "This also permits management of the following: field, clinical, and lab sites (including site-sharing), " .
+    "requirements, and student groups.";
+
+$skillsTrackerPermissionsHelp = "View All Data: View Field, Clinical, and Lab shift data. If you want an " .
+    "instructor to have view-only access to shift data, give them this permission, and do not give them " .
+    "Edit Data permissions." .
+    "<br><br>" .
+    "Edit Field, Clinical, or Lab Data: Add, edit, and remove shift data of each type." .
+    "<br><br>" .
+    "Edit Portfolio: Attach files and enter data related to Overall Competency in student portfolios." .
+    "<br><br>" .
+    "Enter Evals: Enter evaluations and skill sheets." .
+    "<br><br>" .
+    "Edit Evals: Edit evaluations and skill sheets after they have been entered.";
+
+$schedulerPermissionsHelp = "View Schedules: See shifts on the Calendar. If you want an instructor to have " .
+    "view-only access to the Calendar, give them this permission, and do not give them Edit Schedules permissions." .
+    "<br><br>" .
+    "Edit Field, Clinical, or Lab Schedules: Create, edit, and remove shifts of each type, and assign/remove " .
+    "students from shifts of each type." .
+    "<br><br>" .
+    "Edit Compliance Status: View and edit compliance status for all students and instructors with requirements " .
+    "in your program.";
+
+$emailHelp = "Student Events: Receive copies of student narratives and your students' responses to critical " .
+    "thinking questions after they observe or perform a significant procedure or event (e.g. birth, " .
+    "chest decompression, intubation)." .
+    "<br><br>" .
+    "Late Patient Documentation Notices: Receive a daily summary email of which students have outstanding late " .
+    "shift data. Data is considered late until the student locks the shift." .
+    "<br><br>" .
+    "Fisdap news and events: Subscribe to an email list to hear the latest about Fisdap, including quarterly " .
+    "newsletters and announcements about webinars, workshops, and feature upgrades.";
+?>
+
+<? if ($this->element->instructor->id) { ?>
+    <h2 class="section-header"><?= $this->element->instructor->user->first_name . " " . $this->element->instructor->user->last_name . " (" . $this->element->instructor->user->username . ")" ?></h2>
+<? } ?>
+
+<div class="grid_7">
+    <h3 class="section-header no-border">Contact Information</h3>
+    <?= $this->element->general ?>
+
+    <?= $this->element->phoneNumbers ?>
+
+    <?= $this->element->contactAddress ?>
+
+    <? if ($this->element->canChangePermissions) { ?>
+        <? if ($this->element->instructor->id) { ?>
+            <button id="permissionsHistory">See permissions history</button><?php } ?>
+        <h3 class="section-header">Roles & Permissions</h3>
+
+        <div class="form-group">
+            <h4 class="section-header no-border">Roles <?= $this->helpBubble("roles-help", "Roles", $rolesHelp) ?></h4>
+            <?= $this->element->subRoles ?>
+        </div>
+
+        <div class="form-group">
+            <h4 class="section-header no-border">Program
+                Permissions <?= $this->helpBubble("program-permissions-help", "Program Permissions", $programPermissionsHelp) ?></h4>
+            <?= $this->element->programPermissions ?>
+        </div>
+
+        <div class="form-group">
+            <h4 class="section-header no-border">Skills Tracker Permissions
+                <?= $this->helpBubble("st-permissions-help", "Skills Tracker Permissions", $skillsTrackerPermissionsHelp) ?></h4>
+            <?= $this->element->skillsTrackerPermissions ?>
+
+        </div>
+
+        <div class="form-group">
+            <h4 class="section-header no-border">Scheduler
+                Permissions <?= $this->helpBubble("schedule-permissions-help", "Scheduler Permissions", $schedulerPermissionsHelp) ?></h4>
+            <?= $this->element->schedulePermissions ?>
+
+        </div>
+
+        <div class="form-group">
+            <h4 class="section-header no-border">Reports Permissions</h4>
+            <?= $this->element->reportsPermissions ?>
+        </div>
+    <? } ?>
+</div>
+
+<div class="grid_5">
+    <div class="password-section">
+        <? if ($this->element->instructor->id) { ?>
+            <?= $this->fisdapGravatar($this->element->instructor->user->email) ?>
+        <? } ?>
+
+        <!-- The text and password here are to prevent FF from auto filling my login credentials because it ignores autocomplete="off"-->
+        <input type="text" class="hidden">
+        <input type="password" class="hidden">
+
+        <?= $this->element->passwords ?>
+
+        <div class="form-group-title section-header no-border">
+            Email Settings <?= $this->helpBubble("email-help", "Email Settings", $emailHelp) ?>
+        </div>
+
+        <div class="form-prompt">
+            <?= $this->element->automatedEmails ?>
+        </div>
+
+        <div class="form-prompt">
+            Late Patient Documentation Notices
+            <div class="prefix_1 grid_11">
+                <?= $this->element->labEmails ?><br>
+                <?= $this->element->clinicalEmails ?><br>
+                <?= $this->element->fieldEmails ?>
+            </div>
+        </div>
+
+        <? if ($this->element->isSelf) { ?>
+            <div class="form-prompt">
+                <?= $this->element->mailingList ?>
+            </div>
+        <? } ?>
+    </div>
+    <? 
+	echo "PHP: ". phpversion()."</br>";
+	print "MySql: " . mysql_get_client_info()."</br>";
+	print "Zend: " . zend_version();
+	if(!($this->element->isSelf)){
+		if ($this->element->instructor->id && $this->element->canChangePermissions) { ?>
+        <a id="delete-account" href="/account/edit/delete-account/userId/<?= $this->element->instructor->user->id ?>">Delete
+            this account</a>
+    <? }
+	}?>
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_11">
+    <?= $this->element->emailNewAccount ?>
+</div>
+
+<div class="grid_1 right">
+    <?= $this->element->save ?>
+</div>
+
+<?= $this->element->instructorId ?>
+<?= $this->element->snId ?>
+<?= $this->element->programId ?>
+
+<div class="clear"></div>
+
+<div id="dialog-confirm-permissions">
+    <div id="leftFloater">
+        <p>The following permissions will be added:</p>
+        <ul>
+            <div id="addedPermissions"></div>
+        </ul>
+    </div>
+
+    <div id="rightFloater">
+        <p>The following permissions will be removed:</p>
+        <ul>
+            <div id="removedPermissions"></div>
+        </ul>
+    </div>
+
+    <div style="clear:both;"></div>
+    <div id="buttonFix"></div>
+
+    <div id="buttons">
+        <div class="small gray-button">
+            <button id="cancelPC">Cancel</button>
+        </div>
+        <div class="small green-buttons">
+            <button id="continuePC">Continue</button>
+        </div>
+    </div>
+</div>
+
+<div id="dialog-confirm-delete">
+    Are you sure you want to delete this instructor account?
+</div>

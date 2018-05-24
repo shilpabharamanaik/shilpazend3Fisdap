@@ -1,0 +1,35 @@
+<style>
+	#medDialog .ui-button { margin-left: -1px; height: 2.34em; }
+	#medDialog .ui-button-icon-only .ui-button-text { padding: 0.35em; } 
+	#medDialog .ui-autocomplete-input { margin: 0; padding: 0.48em 0 0.47em 0.45em; width:18em; border: 1px solid black;}
+</style>
+
+<div class="container_12">
+	
+	<div class="grid_12">
+		<?php echo $this->element->medPerformed ?>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div class="grid_12">
+		<?php echo $this->element->medication ?>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div class="grid_6">
+		<?php echo $this->element->dose ?>
+	</div>
+	
+	<div class="grid_6">
+		<?php echo $this->element->route ?>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<?php echo $this->element->medId ?>
+	<?php echo $this->element->patientId ?>
+	<?php echo $this->element->shiftId ?>
+
+</div>

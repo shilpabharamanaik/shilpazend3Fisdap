@@ -44,6 +44,7 @@ class Version20150414121229 extends AbstractMigration
         $this->addSql('INSERT INTO fisdap2_product_package SET id=25, certification_id=21, name="OZ Package", description="Everything Fisdap has to offer-- with a savings of $35!", configuration=2097155, price = 175.00, products_description="Scheduler, Skills Tracker, Comprehensive Exams", quickbooks_name="OZ Package"');
         $this->addSql('INSERT INTO fisdap2_product_package SET id=26, certification_id=22, name="OZ Package", description="Everything Fisdap has to offer-- with a savings of $35!", configuration=2097155, price = 175.00, products_description="Scheduler, Skills Tracker, Comprehensive Exams", quickbooks_name="OZ Package"');
         $this->addSql('INSERT INTO fisdap2_product_package SET id=27, certification_id=23, name="OZ Package", description="Everything Fisdap has to offer-- with a savings of $35!", configuration=2097155, price = 175.00, products_description="Scheduler, Skills Tracker, Comprehensive Exams", quickbooks_name="OZ Package"');
+
     }
 
     /**
@@ -73,5 +74,7 @@ class Version20150414121229 extends AbstractMigration
         $this->addSql('DELETE FROM fisdap2_product_package WHERE id=25 LIMIT 1');
         $this->addSql('DELETE FROM fisdap2_product_package WHERE id=26 LIMIT 1');
         $this->addSql('DELETE FROM fisdap2_product_package WHERE id=27 LIMIT 1');
+
+
     }
 }

@@ -4,6 +4,7 @@ use Fisdap\Api\Programs\Sites\Bases\BaseTransformer;
 use Fisdap\Entity\SiteLegacy;
 use Fisdap\Fractal\Transformer;
 
+
 /**
  * Prepares site data for JSON output
  *
@@ -67,4 +68,4 @@ final class SiteTransformer extends Transformer
 
         return $this->collection($bases, new BaseTransformer);
     }
-}
+} 

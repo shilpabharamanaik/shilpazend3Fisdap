@@ -1,0 +1,67 @@
+<div class="container_12" id="form_div">
+	
+	<div class='header'>
+		<?= $this->element->data['description'] ?>
+	</div>
+	
+	<div id='shift-div'>	
+		<img id='site-icon' class='icon' src='/images/icons/<?= $this->element->event->type ?>SiteIconColor.png'>
+		<h4 class='site-desc <?= $this->element->event->type ?>'><?= $this->element->data['date'] ?></h4>
+		<h4 class='header' style='margin: 0 0 5px 30px'><?= $this->element->data['location'] ?></h4>
+	</div>
+	
+<?php if ($this->element->data['has_swap']) { ?>
+	<div id='swap-div'>
+		<div>In exchange for:</div>
+		<img id='site-icon' class='icon' src='/images/icons/<?= $this->element->swap_event->type ?>SiteIconColor.png'>
+		<h4 class='site-desc <?= $this->element->swap_event->type ?>'><?= $this->element->data['swap_date'] ?></h4>
+		<h4 class='header' style='margin: 0 0 5px 30px'><?= $this->element->data['swap_location'] ?></h4>
+	</div>
+<?php } ?>
+
+<?php if ($this->element->data['has_conflict']) { ?>
+	<div id='conflict-div' class='notice'>
+		Note: You already have a shift scheduled during this time.
+	</div>
+<?php } ?>
+
+<?php if ($this->element->data['has_terms']) { ?>
+	<div id='terms-div'>
+		<?= $this->element->data['owner'] ?> would prefer the following type of shift:
+		<ul id='terms-list'>
+			<?php foreach ($this->element->data['terms'] as $term_statement) { ?>
+			<li><?= $term_statement ?></li>
+			<?php } ?>
+		</ul>
+	</div>
+<?php } ?>
+
+<?php if ($this->element->data['make_offer']) { ?>
+	<div id='offer-div'>
+		<?php echo $this->element->assignment ?>
+		<div id='directions-div'>
+			You will be notified once your offer is accepted or declined.
+		</div>
+	</div>
+<?php } ?>
+	
+<?php if ($this->element->data['needs_permission']) { ?>
+	<div class='header permissions'>
+		Your instructor will need to approve this request.
+	</div>
+<?php } ?>
+	
+	<?php echo $this->element->request_id ?>
+	<?php echo $this->element->state_id ?>
+	<?php echo $this->element->title ?>
+	
+	<div class='buttons'>
+		<div id="cancelButtonWrapper" class="small gray-button">
+			<a href='#' id='cancel-btn'>Cancel</a>
+		</div>
+		<div id="saveButtonWrapper" class="small green-buttons">
+			<a href='#' id='save-btn'>Ok</a>
+		</div>
+	</div>
+	
+</div>

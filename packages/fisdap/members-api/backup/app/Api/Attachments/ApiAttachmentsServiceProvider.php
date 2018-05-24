@@ -5,6 +5,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Swagger\Annotations as SWG;
 
+
 /**
  * Class ApiAttachmentsServiceProvider
  *

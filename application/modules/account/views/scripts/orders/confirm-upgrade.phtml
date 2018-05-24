@@ -1,0 +1,42 @@
+<?= $this->pageTitleHelper() ?>
+<?= $this->messageHelper() ?>
+<div class="grid_12 island">
+    <?php
+    if ($this->warningText) {
+        echo '<div class="notice">' . $this->warningText . '</div>';
+    } ?>
+
+    <?php
+    if($this->instructor){
+        echo $this->orderSummary($this->orderId);
+    }
+    else { ?>
+        <?= $this->orderSummaryStudent($this->orderId);?>
+        <a href="/account/orders/upgrade-individual/">&lt;&lt; Previous (Upgrade options)</a>
+        <?php
+    }?>
+
+    <?php if ($this->enableInstantOrderCompletion) { ?>
+        <div class="grid_8 prefix_4" id="staff-order-completion">
+            <a href="/account/orders/staff-completion">Instantly complete this order</a>
+            <div class="warning">Staff only: instant completion makes changes without creating charges, sending notification e-mails, or adding to the program's order history.</div>
+        </div>
+    <?php } ?>
+
+
+    <?
+		$orderd_cost = floatval(str_replace(",","",$this->order->getTotalCost()));
+        if($orderd_cost >= 150 || $this->is_staff) { ?>
+		<div class="grid_2"style='float:right;'><a href="/account/orders/billing/">Next (Billing) &gt;&gt;</a></div>
+        <?php }
+        else { 
+       ?>
+       <form method="post">
+       <input type="hidden" name="orderId" value="<?php echo $this->orderId ?> " id="orderId">
+       <input type="hidden" name="paymentMethod" value="2" >
+       </form>
+       <div class="grid_2" style='float:right;' ><a href="#" id="confirmPayment">Next (payment) &gt;&gt;</a></div>
+       <?php
+        }?>
+      
+    

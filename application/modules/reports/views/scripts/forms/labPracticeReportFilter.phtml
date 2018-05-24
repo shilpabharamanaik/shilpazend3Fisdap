@@ -1,0 +1,77 @@
+<div class="grid_12 island withTopMargin">
+	
+
+	<h3 class="section-header" id="report-settings">Choose your report settings</h3>
+	
+	<?php
+	
+	if($this->element->isInstructor) {
+		echo $this->element->certLevel;
+	}
+	
+	?>
+	
+	<div class="clear"></div>
+	
+	<?php
+	if($this->element->user->hasPermission('View Reports') || !$this->element->isInstructor){
+		echo $this->element->reportType;
+	}
+	?>
+	
+	<div class="clear"></div>
+
+	<?php
+	if(!$this->element->isInstructor){?>
+	
+		<div class="grid_6" id="include-classmates">
+			<?= $this->element->includeClassmates; ?>
+		</div>
+		
+	<?php
+	}
+	?>
+	
+	<div class="clear"></div>
+	
+	<div class="grid_3">
+		<span class='date-range-label'>Date Range</span>
+	</div>
+	
+	<div class="grid_9 date-range">
+		<div class="grid_2">
+			<?= $this->element->start_date; ?>
+		</div>
+		<div class="grid_2">
+			<?= $this->element->end_date; ?>
+		</div>
+	</div>
+	
+	<div class="clear"></div>
+	
+</div>
+
+<?= $this->element->studentIds; ?>
+
+<?php 
+if ($this->element->isInstructor) { ?>
+	<div class="grid_12 island withTopMargin">
+		<div class="report-block">
+			<h3 class="section-header">Choose one or more students</h3>
+			
+			<div class="grid_8 report-body">
+				<?= $this->multiStudentPicker(array('sourceLink' => '/ajax/get-filtered-student-list',
+													'selectedStudents' => array($this->element->selectedStudentIds),
+													'targetFormId' => 'lab-practice-report-form')); ?>
+			</div>
+		</div>
+	</div>
+	
+<?php
+}
+
+?>
+
+<div class="prefix_11 grid_1 withTopMargin green-buttons">
+	<?= $this->element->Submit?>
+</div>

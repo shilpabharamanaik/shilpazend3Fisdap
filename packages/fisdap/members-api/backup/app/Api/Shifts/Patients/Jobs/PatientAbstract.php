@@ -562,7 +562,7 @@ abstract class PatientAbstract extends Job implements RequestHydrated
             $this->airwayManagement->setPatient($patient);
             $airMan = $busDispatcher->dispatch($this->airwayManagement);
             $patient->setAirwayManagement($airMan);
-        } elseif (is_null($this->airwayManagement) || is_null($this->airwaySuccess)) {
+        } else if (is_null($this->airwayManagement) || is_null($this->airwaySuccess)) {
             $airwayManagement = $airwayManagementRepository->findOneBy(['patient' => $this->id]);
             if (!is_null($airwayManagement)) {
                 $airwayManagementRepository->destroy($airwayManagement);
@@ -598,6 +598,7 @@ abstract class PatientAbstract extends Job implements RequestHydrated
             $airway->setPatient($patient);
             $air = $busDispatcher->dispatch($airway);
             $patient->addAirway($air);
+
         }
 
         foreach ($this->ivs as $iv) {
@@ -620,6 +621,7 @@ abstract class PatientAbstract extends Job implements RequestHydrated
             if ($narrative !== null) {
                 $patient->setNarrative($narrative);
             }
+
         }
 
         if (isset($this->signoff)) {
@@ -710,8 +712,7 @@ abstract class PatientAbstract extends Job implements RequestHydrated
         return $rules;
     }
 
-    private function lockupPatient(ShiftLegacyRepository $shiftLegacyRepository)
-    {
+    private function lockupPatient(ShiftLegacyRepository $shiftLegacyRepository) {
         // This check MUST happen here.
         // Since Entities are persisted, any change is instant, so this has to happen first!
         if ($this->locked == true) {

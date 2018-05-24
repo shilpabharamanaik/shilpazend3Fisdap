@@ -5,6 +5,7 @@ use Doctrine\Common\Persistence\ObjectRepository;
 use Happyr\DoctrineSpecification\Specification\Specification;
 use Happyr\DoctrineSpecification\Result\ResultModifier;
 
+
 /**
  * Interface Repository
  *
@@ -76,4 +77,4 @@ interface Repository extends ObjectRepository, Selectable
      * @return mixed
      */
     public function match(Specification $specification, ResultModifier $modifier = null, $firstResult = null, $maxResults = null);
-}
+} 

@@ -1,0 +1,81 @@
+<div id="practiceDialog">
+	<div class="container_12">
+		<div id="practice-modal-wrapper">
+			
+			<div class="grid_12 time-element">
+				<?php echo $this->element->time ?>
+			</div>
+			
+			<div class="clear"></div>
+			
+			<div class="grid_12">
+				<?php echo $this->element->evaluatorType ?>
+			</div>
+			
+			<div class="clear"></div>
+			
+			<div class="grid_12">
+				<?php echo $this->element->evaluatorId ?> 
+			</div>
+			
+			<? if (!$this->element->canConfirmEvals && !$this->element->item->confirmed) { ?>
+				<div class="grid_12">
+					<div class="form-prompt">
+						<div class="prefix_3 grid_9">
+							<a href="#" id="confirm-toggle">Confirm</a>
+						</div>
+					</div>
+				</div>
+			<? } else if ($this->element->canConfirmEvals && $this->element->item->confirmed) { ?>
+				<div class="grid_12">
+					<div class="form-prompt">
+						<div class="prefix_3 grid_9">
+							<a href="#" id="unconfirm-toggle">Unconfirm</a>
+						</div>
+					</div>
+				</div>
+			<? } ?>
+			
+			<div id="confirmCredentials">
+				<div class="grid_12">
+					<?= $this->element->usernameConfirm ?>
+				</div>
+				
+				<div class="clear"></div>
+				
+				<div class="grid_12">
+					<?= $this->element->passwordConfirm ?>
+				</div>
+			</div>
+			
+			<div class="clear"></div>
+			
+			<div class="grid_12 passFail">
+				<?php echo $this->element->passed ?>
+			</div>
+		
+		</div>
+		
+		<?php echo $this->element->shiftId ?>
+		<?php echo $this->element->practiceDefinitionId ?>
+		<?php echo $this->element->practiceItemId ?>
+		<?php echo $this->element->confirmed ?>
+        <?php echo $this->element->confirmToggle ?>
+		<?php echo $this->element->canConfirmEvalsElement ?>
+	</div>
+	<div class="clear"></div>
+	
+	
+	<div id="practice-modal-btn-spacer"></div>
+	
+	<div id="practice-modal-buttons" class="grid_12">
+		<div class="small green-buttons">
+			<img class="throbber" src="/images/throbber_small.gif">
+			<a href="#" id="add-practice-item-save-btn"><?= ($this->element->canConfirmEvals && ($this->element->evaluatorType->getValue() == 1)) ? "Save & Confirm" : "Save" ?></a>
+		</div>
+		
+		<div class="small gray-button">
+			<a href="#" id="add-practice-item-cancel-btn">Cancel</a>
+		</div>
+	</div>	
+</div>

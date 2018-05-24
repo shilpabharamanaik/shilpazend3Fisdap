@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
+
 /**
  * Exception to be thrown when a user does not have permission to initiate a command/activity
  *

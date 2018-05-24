@@ -1,0 +1,26 @@
+<? if ($this->shift->isFuture()) { ?>
+    <div class='grid_12 island withTopMargin'>
+        You can't document skills or patient care for a shift that hasn't happened yet. Check back on the day of the shift.
+    </div>
+<? } else { ?>
+    <? if ($this->isBlankState && $video = $this->youtubeVideo("Cg57SWM3bwY", "my-shift-blank-state.phtml", 500, 300)) {
+        echo "<div class='grid_12 island withTopMargin'>$video</div>";
+    } ?>
+
+    <? if ($this->showPracticeSkills) {
+        if (!$this->isInstructor) {
+            echo '<div class="grid_12 island withTopMargin" style="overflow:visible;">';
+            echo '<div id="lab-skills-widgets">' . $this->sectionHelper('lab-skills-widgets', 450) . '</div>';
+            echo '</div>';
+        }
+        echo $this->practiceSkillWidget($this->shift, $this->labPartnerShifts);
+    } ?>
+
+    <div class='grid_12 island withTopMargin'>
+        <?= $this->runList($this->shift, $this->runs, $this->isInstructor, $this->shift->type) ?>
+    </div>
+
+    <div class='grid_12 island withTopMargin'>
+        <?= $this->shiftAttachmentList($this->shift, $this->attachments, $this->isInstructor, $this->attachmentsRemaining) ?>
+    </div>
+<? } ?>

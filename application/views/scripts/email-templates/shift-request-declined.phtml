@@ -1,0 +1,19 @@
+Hello, <?= $this->request->owner->user->first_name ?>!
+<div>
+<?php 	switch ($this->request->request_type->name) {
+		case "cover": ?>
+			<p>You requested coverage from <?= $this->request->recipient->user->getName() ?> for the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+		case "swap": ?>
+			<p>You requested to swap the following <?= $this->request->event->type ?> shift with <?= $this->request->recipient->user->getName() ?>:</p>
+<?php			break;
+	} 	?>
+	
+	<div>
+		<?= $this->request->event->getDetailViewDate() ?><br>
+		<?= $this->request->event->getLocation() ?>
+	</div>
+	
+	<p><?= $this->request->recipient->user->first_name ?> has declined this request. You are still responsible for this shift.
+	
+</div>

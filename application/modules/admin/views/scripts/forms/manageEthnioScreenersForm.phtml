@@ -1,0 +1,25 @@
+<div class="grid_2 prefix_3 withTopMargin">
+    <h4 class="dark-gray">Screener #</h4>
+</div>
+
+<div class="clear"></div>
+
+<?php foreach($this->element->screeners as $screener) { ?>
+    <div class="withTopMargin">
+        <div class="grid_3" style="text-align: right;">
+            <?= $screener->name ?>
+        </div>
+        <div class="grid_2">
+            <?= $this->element->{"screenerId_" . $screener->id} ?>
+        </div>
+        <div class="grid_2">
+            <?= $this->element->{"screenerActive_" . $screener->id} ?>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+<?php } ?>
+
+<div style="float:right;">
+    <?= $this->element->saveBtn ?>
+</div>

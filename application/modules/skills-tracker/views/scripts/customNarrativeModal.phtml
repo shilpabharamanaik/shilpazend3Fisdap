@@ -1,0 +1,69 @@
+<style>
+	#customNarrativeDialog .ui-button { margin-left: -1px; height: 2.34em; }
+	#customNarrativeDialog .ui-button-icon-only .ui-button-text { padding: 0.35em; } 
+	#customNarrativeDialog .ui-autocomplete-input { margin: 0; padding: 0.48em 0 0.47em 0.45em; width:18em; border: 1px solid black;}
+	#customNarrativeDialog { overflow: visible; }
+	#form_div a { color: #A94612; }
+</style>
+
+<!--[if lte IE 8]>
+<style>
+.buttons div label input { display: inline; }
+.buttons div { font-weight: normal; border: none; }
+.selected_btn, .unselected_btn { background: none; color: black; }
+.unselected_btn:hover { background: none; color: black; font-weight: normal; border: none; }
+.grabby-icon { display: none; }
+#preview_link { display: none; }
+</style>
+<![endif]-->
+
+<?php
+	$customNarrativeHelpText = "Use this tool to customize the page for the narrative portion of the patient care report. ".
+				"For example, you can use this tool to arrange the narrative into a SOAP format.<br /><br />".
+				"When you're finished, be sure to click the <span style='font-weight:bold'>Preview</span> link to see how the narrative you built ".
+				"will look to your students.<br /><br />".
+				"<ul>".
+				"<li><span style='font-weight:bold'>Section title</span> - give each section a name. You can reorder the sections with the ".
+				"drag and drop icon.</li>".
+				"<li><span style='font-weight:bold'>Section size</span> - choose how much space you give your students to fill out each ".
+				"section. You can use the size of the textbox to suggest to your students how much information ".
+				"they need to input.</li>".
+				"<li><span style='font-weight:bold'>Seed pt. info</span> - Seeding the narrative will automatically populate the narrative ".
+				"page with text from the patient care report. Select which section(s) should be seeded, if at all. The entirety of the ".
+				"patient info will be repeated each time you check this box.</li>".
+				"</ul>";
+?>
+
+<?= $this->helpBubble("customNarrativeHelp", "Build a custom narrative format", $customNarrativeHelpText) ?>
+
+<div class="container_12" id="form_div">
+	
+	<table id="narrative_sections" class='fisdap-table'>
+		<thead id='header'>
+			<th></th>
+			<th>Section title</th>
+			<th>Section size</th>
+			<th>Seed pt. info</th>
+			<th>Delete</th>
+		</thead>
+		
+		
+<?php foreach ($this->element->sections as $id => $section) { ?>
+		<tr id="row_<?= $id ?>">
+			<td class='handle'><img src="/images/icons/wide_grabby.png" class='grabby-icon' title='Click and drag to reorder' /></td>
+			<td><?php echo $this->element->{$id.'_name'} ?></td>
+			<td class='buttons'><?php echo $this->element->{$id.'_size'} ?></td>
+			<td class='seed_checkbox'><?php echo $this->element->{$id.'_seed'} ?></td>
+			<td><a href="#" class="delete-section" onClick="deleteSection('<?= $id ?>')" title="delete section"><img class="small-icon" src="/images/icons/delete.png"></a></td>
+			<?php echo $this->element->{$id.'_active'} ?>
+			<?php echo $this->element->{$id.'_order'} ?>
+		</tr>
+<?php }?>
+	</table>
+	<div id='section-button'><a class="add-new-section" href="#" onClick="addNarrativeSection()">Add new section</a></div>
+	<a id="preview_link" href="#" onClick="openPreview()">Preview</a>
+
+<?php echo $this->element->section_ids ?>
+<?php echo $this->element->section_count ?>
+
+</div>

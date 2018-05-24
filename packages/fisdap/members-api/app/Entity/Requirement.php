@@ -11,9 +11,10 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
+
 /**
  * Requirement
- *
+ * 
  * @Entity(repositoryClass="Fisdap\Data\Requirement\DoctrineRequirementRepository")
  * @Table(name="fisdap2_requirements")
  */
@@ -58,12 +59,12 @@ class Requirement extends Enumerated
      */
     protected $requirement_associations;
     
-    /**
-    * @var ArrayCollection
-    * @OneToMany(targetEntity="RequirementAttachment", mappedBy="user_context", cascade={"persist","remove"})
-    */
+	 /**
+     * @var ArrayCollection
+     * @OneToMany(targetEntity="RequirementAttachment", mappedBy="user_context", cascade={"persist","remove"})
+     */
     protected $requirement_attachments;
-    
+	
     /**
      * @var ArrayCollection
      * @OneToMany(targetEntity="RequirementHistory", mappedBy="requirement", cascade={"persist","remove"})
@@ -144,37 +145,39 @@ class Requirement extends Enumerated
 
     public function getAssocationByProgram($program_id)
     {
-        if ($this->requirement_associations) {
-            foreach ($this->requirement_associations as $assoc) {
-                if ($assoc->program->id == $program_id) {
+        if($this->requirement_associations){
+            foreach($this->requirement_associations as $assoc){
+                if($assoc->program->id == $program_id){
                     return $assoc;
                 }
             }
         }
 
         return false;
+
     }
 
     public function getAllAssociationsByProgram($program_id)
     {
         $associations = array();
-        if ($this->requirement_associations) {
-            foreach ($this->requirement_associations as $assoc) {
-                if ($assoc->program->id == $program_id) {
+        if($this->requirement_associations){
+            foreach($this->requirement_associations as $assoc){
+                if($assoc->program->id == $program_id){
                     $associations[] = $assoc;
                 }
             }
         }
 
         return $associations;
+
     }
 
     public function getProgramLevelAssocByProgram($program_id)
     {
         $assocations = $this->getAllAssociationsByProgram($program_id);
 
-        foreach ($assocations as $assoc) {
-            if (!$assoc->site) {
+        foreach($assocations as $assoc){
+            if(!$assoc->site){
                 return $assoc;
             }
         }
@@ -186,8 +189,8 @@ class Requirement extends Enumerated
     {
         $assocations = $this->getAllAssociationsByProgram($program_id);
 
-        foreach ($assocations as $assoc) {
-            if ($assoc->site->id == $site_id) {
+        foreach ($assocations as $assoc){
+            if($assoc->site->id == $site_id){
                 return $assoc;
             }
         }
@@ -204,15 +207,14 @@ class Requirement extends Enumerated
 
         if (User::getLoggedInUser()) {
             $history->user_context = User::getLoggedInUser()->getCurrentUserContext();
-        } elseif ($userContextId) {
+        } else if ($userContextId) {
             $history->user_context = EntityUtils::getEntity('UserContext', $userContextId);
         }
 
         $this->requirement_histories->add($history);
     }
 
-    public function getType()
-    {
+    public function getType() {
         $type = "program";
 
         foreach ($this->requirement_associations as $association) {
@@ -235,7 +237,7 @@ class Requirement extends Enumerated
      */
     public function createSiteAssociations($site_ids, $program, $global = false)
     {
-        foreach ($site_ids as $site_id) {
+        foreach($site_ids as $site_id){
             $requirement_association = EntityUtils::getEntity('RequirementAssociation');
             $requirement_association->set_program($program);
             $requirement_association->set_site($site_id);
@@ -275,7 +277,7 @@ class Requirement extends Enumerated
     {
         // Our user has grouped user_contexts and due dates.
         // We'll need to step through each selected due date option and get its respective list of user role ids
-        foreach ($due_dates as $temp_group_id => $due_date) {
+        foreach($due_dates as $temp_group_id => $due_date){
             // the user role ids are in another select box (each option is a comma separated list) and have corresponding indexes (the temp group id)
             $userContextIds = explode(",", $userContextId_csl[$temp_group_id]);
             $compute_compliance_userContextIds = $this->assignRequirementToUserContexts($userContextIds, $due_date, $compute_compliance_userContextIds, $sendNotification, $assigner_userContextId);
@@ -297,12 +299,12 @@ class Requirement extends Enumerated
     public function assignRequirementToUserContexts($userContextIds, $due_date, $compute_compliance_userContextIds, $sendNotification = false, $assigner_userContextId = null)
     {
         // make our due date string a date time
-        if (!($due_date instanceof \DateTime)) {
+        if(!($due_date instanceof \DateTime)){
             $due_date = new \DateTime($due_date . " 23:59:59");
         }
 
         // For each user role, assign the requirement to them
-        foreach ($userContextIds as $userContextId) {
+        foreach ($userContextIds as $userContextId){
             // this could already be the user role entity
             $user_context = (is_int($userContextId) || is_string($userContextId)) ? EntityUtils::getEntity('UserContext', $userContextId) : $userContextId;
             $user_context->assignRequirement($this, null, 0, $due_date, null, $assigner_userContextId, $sendNotification);
@@ -310,8 +312,10 @@ class Requirement extends Enumerated
             // compute compliance for ALL users going to this site, regardless of whether they had the
             // attachment before or not
             $compute_compliance_userContextIds[] = $user_context->id;
+
         }
 
         return $compute_compliance_userContextIds;
     }
+
 }

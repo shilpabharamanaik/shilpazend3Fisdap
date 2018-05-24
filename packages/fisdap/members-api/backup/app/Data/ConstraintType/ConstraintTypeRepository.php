@@ -2,6 +2,7 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface ConstraintTypeRepository
  *
@@ -9,4 +10,4 @@ use Fisdap\Data\Repository\Repository;
  */
 interface ConstraintTypeRepository extends Repository
 {
-}
+} 

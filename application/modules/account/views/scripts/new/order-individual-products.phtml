@@ -1,0 +1,11 @@
+<?php
+if($this->showBack) {
+    $breadcrumb = '<a href="/account/new/study-tools"><< Back</a>';
+}
+?>
+
+<?= $this->pageTitleHelper("", null, $breadcrumb) ?>
+
+<div class="grid_12 island">
+    <?= $this->form ?>
+</div>

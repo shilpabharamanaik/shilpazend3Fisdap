@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Shifts\Patients\Skills\Jobs\CardiacInterventions;
 
+
 use Doctrine\ORM\EntityManagerInterface;
 use Fisdap\Api\Shifts\Patients\Skills\AbstractSkills;
 use Fisdap\Entity\CardiacIntervention;
@@ -78,8 +79,7 @@ final class SetCardiacInterventions extends AbstractSkills
      */
     public $ectopyIds;
 
-    public function setCardiacId($cardiacId)
-    {
+    public function setCardiacId($cardiacId) {
         $this->cardiacId = $cardiacId;
     }
 
@@ -91,8 +91,8 @@ final class SetCardiacInterventions extends AbstractSkills
      */
     public function handle(
         EntityManagerInterface $em,
-        EventDispatcher $eventDispatcher
-    ) {
+        EventDispatcher $eventDispatcher)
+    {
         $this->em = $em;
 
         // Try to grab an existing Cardiac Intervention. If not found, create a new one.
@@ -119,3 +119,4 @@ final class SetCardiacInterventions extends AbstractSkills
         return $cardiacIntervention;
     }
 }
+

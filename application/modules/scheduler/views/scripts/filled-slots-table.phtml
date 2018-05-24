@@ -1,0 +1,87 @@
+<?
+$event = $this->event;
+$isInstructor = $this->isInstructor;
+$edit = $this->edit;
+$program_id = $this->user_program_id;
+$skills_tracker_url = "/skills-tracker/shifts/my-shift/";
+$skills_tracker_perm = $this->current_user_data['skills_tracker_permissions']['view'];
+
+$shared_perm_check = false;
+
+if ($event['shared_event']) {
+    // are they an admin? or do we need to take away some abilities?
+    $shared_perm_check = $this->event['is_site_admin'];
+}
+
+?>
+
+<h3 class="slot-heading">Filled Slots <? echo ($this->dayView) ? $event['closed_weebles'] : "" ?></h3>
+
+<div class="slots-wrapper">
+
+	<table class="slots-table filled-slots-table">
+		<? if($event['slot_assignments']){
+			foreach($event['slot_assignments'] as $assignment) {
+				if(!$event['quick_add_shift']) {
+					$compliance_class = ($assignment['compliance_modal']) ? "view-compliance" : "";
+				} ?>
+				<tr <?= ($assignment['red']) ? "class='non-compliant-row'" : "" ?>>
+					<? if(!$this->dayView){?>
+						<td class="weeble-cell" data-assignmentId="<?= $assignment['id'] ?>">
+							<? $img_src = ($assignment['red']) ? "/images/icons/student-weeble-red.svg" : "/images/icons/student-weeble.svg"; ?>
+							<img class='weeble' src="<?= $img_src ?>" data-assignmentred="<?= $assignment['red'] ?>">
+						</td>
+					<? } ?>
+					
+					<td class="<?= $compliance_class ?>" data-assignmentId="<?= $assignment['id'] ?>">
+                        <b><?= $assignment['name'] ?></b> <?= $assignment['certLevel'] ?>
+					</td>
+					
+					<td class="shift-action-cell">
+						
+						<?
+						$can_drop = false;
+						
+						// do you have permission to edit this type of shift?
+						// is this not a student created shift?
+						// is this html (not pdf)?
+						// is this your student?
+						// are you an admin for sharing at this site?
+						if($isInstructor && $edit && !$event['quick_add_shift'] && !$this->pdf){
+							if(($assignment['program_id'] == $program_id) || ($shared_perm_check)){
+								$can_drop = true;
+							}
+						}
+						
+						if($can_drop) { ?>
+							<img class="slot-table-drop-icon drop-student" src="/images/icons/drop-weeble.png" data-tooltip="Drop student" data-assignmentId="<?= $assignment['id'] ?>">
+						<?
+						}
+						
+						// is it an instructor?
+						// does the assigned student have skills tracker?
+						// does this student belong to the same program as the current logged in instructor (or is it a quick-add-shift)?
+						// does this instructor have permission to view skills tracker data
+						if(	$isInstructor
+						    && $assignment['has_skills_tracker']
+							&& ($program_id == $assignment['program_id'] || $event['quick_add_shift'])
+							&& $skills_tracker_perm
+						  ) {
+							$params = ($event['quick_add_shift']) ? "shiftId/" . $event['shift_id'] : "assignmentId/" . $assignment['id']; ?>
+							<a href="<?= $skills_tracker_url . $params ?>" class="link-to-skills-tracker" data-tooltip="Go to Skills & Pt. Care"></a>
+						<?
+						}
+						?>
+						
+					</td>
+					
+				</tr>
+			<?php
+			}
+        } else {
+            echo "<tr class='no-hover'><td>No one is scheduled for this shift yet.</td></tr>";
+        }
+        ?>
+	</table>
+
+</div>

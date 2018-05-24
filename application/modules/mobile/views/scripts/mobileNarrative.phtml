@@ -1,0 +1,23 @@
+<!--<div class="grid_4">
+	<a id='reseedNarrative' href='#'>Re-seed the narrative</a>
+</div>-->
+
+<div class="clear"></div>
+<?php
+	$section_ids = $this->element->sections;
+	foreach ($section_ids as $id) {
+?>
+		<div class="grid_12" id="div_freeform">
+			<?php echo $this->element->{$id."_text"} ?>
+		</div>
+<?php
+	}
+?>
+
+<div style="float:right;">
+	<?= $this->element->save ?>
+</div>
+
+<?php echo $this->element->narrativeId ?>
+<?php echo $this->element->patientId ?>
+<?php echo $this->element->formName ?>

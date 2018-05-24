@@ -1,0 +1,39 @@
+<?= $this->pageTitleHelper() ?>
+
+<?php
+/** @var \Fisdap\Entity\UserContext[] $instructorContexts */
+$instructorContexts = $this->instructorContexts;
+?>
+
+<div class="grid_12 island">
+    <div class="section-body">
+        <p>Your new instructor account currently has a limited set of permissions. You can view schedules, shifts, and reports, but cannot edit student data or change any of the administrative settings for your program.</p>
+
+        <?php if (is_array($instructorContexts)): ?>
+        <p style="margin-top: 1.5em;">If you need your permission level increased, contact one of the following instructors in your program:</p>
+
+            <ul style="margin-top: 1.5em; margin-left: 2em;">
+                <?php foreach ($instructorContexts as $userContext):
+                    $email = $userContext->getEmail() ?: $userContext->getUser()->getEmail();
+                    ?>
+                    <li><?= $userContext->getUser()->getFullName() ?>, <a href="mailto:<?= $email ?>"><?= $email ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+
+        <p style="margin-top: 1.5em;">If you’d like some general Fisdap training, contact <a href="mailto:support@fisdap.net">support@fisdap.net</a> or give us a call at 651-690-9241.</p>
+        <?php else: ?>
+            <p style="margin-top: 1.5em;">If you need your permission level increased, contact <a href="mailto:support@fisdap.net">support@fisdap.net</a> or give us a call at 651-690-9241.</p>
+        <?php endif; ?>
+    </div>
+
+    <form id="intro-form" method="post" enctype="application/x-www-form-urlencoded">
+        
+        <div class="button-container small green-buttons">
+            <input type="submit" id="submit" name="submit" value="Continue"/>
+        </div>
+
+        <div class="clear"></div>
+
+    </form>
+
+</div>

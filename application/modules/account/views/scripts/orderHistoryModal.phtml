@@ -1,0 +1,47 @@
+<div class="order-history-modal container_12">
+	<div class="grid_4">
+		<div>Order # <?= $this->order->id ?></div>
+		<div>Cost: $<?= $this->order->getTotalCost() ?></div>
+        <?
+        if ($this->order->payment_method->id == 1 && !$this->order->isFreeOrder()) {
+            echo "<div><a target='_new' href='/account/orders/view-invoice/orderId/" . $this->order->id . "'>View Invoice</a></div>";
+        } ?>
+	</div>
+	
+	<div class="grid_4">
+		<div>Date: <?= $this->order->order_date->format("M j, Y") ?></div>
+		<div>Ordered by: <?= $this->order->getOrdererName() ?></div>
+	</div>
+	
+	<div class="grid_4">
+		<a class="fisdap-link" href="/account/orders/duplicate-order/orderId/<?= $this->order->id ?>" tabindex="-1"><img class="small-icon duplicate-order" src="/images/icons/duplicate.png"> Repeat this order.</a>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div class="grid_12">
+		<ul class="account-summary">
+			<? foreach ($this->order->order_configurations as $config) { ?>
+				<li>
+					<div class="grid_10">
+						<?= $config->getSummary() ?>
+					</div>
+					
+					<div class="grid_2">
+						$<?= $config->getSubtotalCost() ?>
+					</div>
+				</li>
+			<? } ?>
+		</ul>
+		<div class="price-summary">
+			<div class="grid_12">
+				Total: $<?= $this->order->getTotalCost() ?>				
+			</div>
+		</div>
+	</div>
+	
+	<div class="grid_12">
+		<?= $this->order->hasUnactivatedAccounts() ? "<a target='_new' href='/account/new/activate-accounts-options/orderId/" . $this->order->id . "'>Activate accounts from this order.</a>" : null ?>
+	</div>
+</div>
+

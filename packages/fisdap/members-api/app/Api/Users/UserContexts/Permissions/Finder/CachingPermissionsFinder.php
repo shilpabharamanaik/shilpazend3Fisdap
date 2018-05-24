@@ -8,6 +8,7 @@ use Illuminate\Contracts\Cache\Store as CacheStore;
 use Illuminate\Cache\TaggableStore;
 use Illuminate\Config\Repository as Config;
 
+
 /**
  * Decorator for PermissionsFinder that enables caching
  *
@@ -95,8 +96,7 @@ class CachingPermissionsFinder implements FindsPermissions
             $permissions = $this->cacheStore->tags(self::PERMISSIONS_CACHE_TAG)->get($cacheKey);
             $this->classLogDebug(
                 "Instructor permissions for instructorId '$instructorId' are cached in tag '"
-                . self::PERMISSIONS_CACHE_TAG . "' with key '$cacheKey'",
-                $permissions
+                . self::PERMISSIONS_CACHE_TAG . "' with key '$cacheKey'", $permissions
             );
 
             return $permissions;
@@ -104,9 +104,7 @@ class CachingPermissionsFinder implements FindsPermissions
             $permissions = $this->permissionsFinder->getInstructorPermissions($instructorId);
             $this->classLogDebug("Permissions for instructorId '$instructorId' were NOT cached", $permissions);
             $this->cacheStore->tags(self::PERMISSIONS_CACHE_TAG)->put(
-                $cacheKey,
-                $permissions,
-                $this->config->get('cache.instructor_permissions_lifetime')
+                $cacheKey, $permissions, $this->config->get('cache.instructor_permissions_lifetime')
             );
 
             return $permissions;
@@ -125,8 +123,7 @@ class CachingPermissionsFinder implements FindsPermissions
             $permissionNames = $this->cacheStore->tags(self::PERMISSION_NAMES_CACHE_TAG)->get($cacheKey);
             $this->classLogDebug(
                 "Permission names for instructorId '$instructorId' are cached in tag '"
-                . self::PERMISSION_NAMES_CACHE_TAG ."' with key '$cacheKey'",
-                $permissionNames
+                . self::PERMISSION_NAMES_CACHE_TAG ."' with key '$cacheKey'", $permissionNames
             );
 
             return $permissionNames;
@@ -134,9 +131,7 @@ class CachingPermissionsFinder implements FindsPermissions
             $permissionNames = $this->permissionsFinder->getInstructorPermissionNames($instructorId);
             $this->classLogDebug("Permission names for instructorId '$instructorId' were NOT cached", $permissionNames);
             $this->cacheStore->tags(self::PERMISSION_NAMES_CACHE_TAG)->put(
-                $cacheKey,
-                $permissionNames,
-                $this->config->get('cache.instructor_permission_names_lifetime')
+                $cacheKey, $permissionNames, $this->config->get('cache.instructor_permission_names_lifetime')
             );
 
             return $permissionNames;

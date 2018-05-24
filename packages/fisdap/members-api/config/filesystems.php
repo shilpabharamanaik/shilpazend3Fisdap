@@ -42,7 +42,7 @@ return [
     */
 
     'disks' => [
-    'attachments-s3' => [
+	'attachments-s3' => [
             'driver'     => 's3',
             'key'        => env('MRAPI_AWS_KEY'),
             'secret'     => env('MRAPI_AWS_SECRET'),

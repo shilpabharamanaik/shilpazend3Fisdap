@@ -1,0 +1,98 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//fisdap//NONSGML v1.0//EN
+X-WR-CALNAME:<?= $this->calendarFeed->name . "\r\n" ?>
+CALSCALE:GREGORIAN
+<?= str_replace("\n", "\r\n", $this->vtimezone_definition) . "\r\n" ?>
+<?
+$eventRepo = \Fisdap\EntityUtils::getRepository('EventLegacy');
+
+//First loop over events
+foreach ($this->events as $event) {
+    $eventTitle = ($event['name'] ? $event['name'] . ", " : "") . ucfirst($event['type']) . " shift at " . $event['site']['name'] . ": " . $event['base']['name'];
+    $uid = $event['id'];
+    $studentsWithCertProgramInfo = [];
+    $students = [];
+    foreach ($event['slots'][0]['assignments'] as $assignment) {
+        //@todo We need to check if the school has permission to see other students names
+        $studentName = $assignment['user_context']['user']['first_name'] . " " . $assignment['user_context']['user']['last_name'];
+        $studentsWithCertProgramInfo[] = $studentName . ", " . $assignment['user_context']['certification_level']['description'] . ", " . $assignment['user_context']['program']['name'];
+        $students[] = $studentName;
+    }
+
+    //Use student info to determine the "name" of the event
+    if (count($students) > 5) {
+        $firstStudents = implode(", ", array_slice($students, 0, 5));
+        $eventTitle .= " with students: " . $firstStudents . " and " . (count($students) - 5) . " more";
+    } else if (count($students) > 1) {
+        $firstStudents = implode(", ", $students);
+        $eventTitle .= " with students: " . $firstStudents;
+    } else if (count($students) == 1) {
+        $eventTitle .= " with student: " . $students[0];
+    }
+
+    $eventSummaryPieces = [];
+    $instructors = $eventRepo->getEventInstructorList($event['id']);
+
+    if (count($instructors) > 0){
+        $eventSummaryPieces[] = "Instructor" . (count($instructors) > 1 ? "s" : "") . ": " . implode(", ", $instructors);
+    }
+    if (count($event['preceptor_associations']) > 0){
+        $preceptors = [];
+        foreach($event['preceptor_associations'] as $preceptor_association) {
+            $preceptors[] = $preceptor_association['preceptor']['first_name'] . ' ' . $preceptor_association['preceptor']['last_name'];
+        }
+        $eventSummaryPieces[] = "Preceptor" . (count($preceptors) > 1 ? "s" : "") . ": " . implode(", ", $preceptors);
+    }
+    if (count($studentsWithCertProgramInfo) > 1){
+        $eventSummaryPieces[] = "Students:\\n" . implode("\\n", $studentsWithCertProgramInfo);
+    } else if (count($studentsWithCertProgramInfo) == 1) {
+        $eventSummaryPieces[] = "Student:" . implode("\\n", $studentsWithCertProgramInfo);
+    }
+    if ($event['notes']) {
+        $eventSummaryPieces[] = "Notes: " . $event['notes'];
+    }
+
+    $eventUrl = Util_HandyServerUtils::getCurrentServerRoot() . "scheduler/shift/details/event/" . $event['id'];
+    $eventSummaryPieces[] = "View in Fisdap: " . $eventUrl;
+    ?>
+BEGIN:VEVENT
+DTEND;TZID=<?= $this->tzid ?>:<?= $event['end_datetime']->format('Ymd\THis') . "\r\n" ?>
+UID:<?= $uid . "\r\n"  ?>
+DTSTAMP:<?= date('Ymd\THis\Z') . "\r\n"  ?>
+LOCATION:<?= preg_replace('/([\,;])/','\\\$1', $this->baseAddresses[$event['base']['id']]) . "\r\n"  ?>
+DESCRIPTION:<?= preg_replace('/([\,;])/','\\\$1', implode("\\n", $eventSummaryPieces)) . "\r\n"  ?>
+URL;VALUE=URI:<?= preg_replace('/([\,;])/','\\\$1', $eventUrl) . "\r\n"  ?>
+SUMMARY:<?= preg_replace('/([\,;])/','\\\$1', $eventTitle) . "\r\n"  ?>
+DTSTART;TZID=<?= $this->tzid ?>:<?= $event['start_datetime']->format('Ymd\THis') . "\r\n"  ?>
+END:VEVENT
+
+<?
+}//endforeach
+
+
+//Now loop over quick add shifts
+foreach ($this->quickAddShifts as $event) {
+    $uid = $event['id'] . 1;
+    $studentName = $event['student']['user_context']['user']['first_name'] . ' ' . $event['student']['user_context']['user']['last_name'];
+    $eventTitle = ucfirst($event['type']) . " shift at " . $event['site']['name'] . ": " . $event['base']['name'] . " with student: " . $studentName;
+    $eventSummaryPieces = [];
+    $eventUrl = Util_HandyServerUtils::getCurrentServerRoot() . "skills-tracker/shifts/my-shift/shiftId/" . $event['id'];
+    $eventSummaryPieces[] = "View in Fisdap: " . $eventUrl;
+    ?>
+BEGIN:VEVENT
+DTEND;TZID=<?= $this->tzid ?>:<?= $event['end_datetime']->format('Ymd\THis') . "\r\n" ?>
+UID:<?= $uid . "\r\n"  ?>
+DTSTAMP:<?= date('Ymd\THis\Z') . "\r\n"  ?>
+LOCATION:<?= preg_replace('/([\,;])/','\\\$1', $this->baseAddresses[$event['base']['id']]) . "\r\n"  ?>
+DESCRIPTION:<?= preg_replace('/([\,;])/','\\\$1', implode("\\n", $eventSummaryPieces)) . "\r\n"  ?>
+URL;VALUE=URI:<?= preg_replace('/([\,;])/','\\\$1', $eventUrl) . "\r\n"  ?>
+SUMMARY:<?= preg_replace('/([\,;])/','\\\$1', $eventTitle) . "\r\n"  ?>
+DTSTART;TZID=<?= $this->tzid ?>:<?= $event['start_datetime']->format('Ymd\THis') . "\r\n"  ?>
+END:VEVENT
+
+
+<?
+}//endforeach quick add shifts
+?>
+END:VCALENDAR

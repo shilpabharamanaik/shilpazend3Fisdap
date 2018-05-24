@@ -1,0 +1,47 @@
+<div id="noneSelectedError" class="error">
+	<p>Please select at least one account to upgrade.</p>
+</div>
+
+<div id="instructors">
+	
+	<table class="fisdap-table">
+        <thead>
+            <tr>
+                <th class="names">Educator</th>
+                <? foreach($this->element->products as $product) { ?>
+                    <th class="checkboxes"><?= $product->name ?></th>
+                <? } ?>
+            </tr>
+        </thead>
+        <tbody>
+
+            <? foreach($this->element->instructors as $instructor){?>
+                <tr>
+                <td class="names"><?= $instructor->first_name;?> <?= $instructor->last_name;?></td>
+                    <?
+                        foreach($this->element->products as $product) {
+                            if($element = $this->element->{"instructors_" . $instructor->id . "_products_" . $product->id}){
+                                echo "<td class='checkboxes'>" . $element . "</td>";
+                            }
+                            else {
+                                echo "<td class='checkboxes'><img class='checkmark' src='/images/check.png'></td>";
+                            }
+
+                        }
+                    ?>
+                </tr>
+            <? } ?>
+        </tbody>
+	</table>
+	
+</div>
+
+<div id="orderSummary">
+	<h3>Summary</h3>
+    <?
+    foreach($this->element->products as $product) {
+        echo "<span class='num_accounts' id='num_accounts_{$product->id}'>0</span> {$product->name} - \${$product->price} each <br />";
+    }
+    ?>
+    <p style="margin-top:.5em">Total cost: $<span id="totalCost">0.00</span></p>
+</div>

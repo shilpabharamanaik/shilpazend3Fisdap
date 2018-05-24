@@ -1,0 +1,25 @@
+<div style="overflow:auto; margin: 1em;">
+    <style>
+		.welcome-header{
+			font-family: tahoma;
+			font-size: 14pt;
+			font-weight: 900;
+			color: #707070;
+		}
+	</style>
+    <div class="grid_4">
+        <p style='font-size: 11pt; color:black;'>Hi! It looks like you're ready to record some patient care information.</p>
+		<p style='font-size: 11pt; color:black;'>Watch this video for a tutorial or start adding patient contacts below.</p>
+        <style>
+            a#hideVideo {
+                font-size:80%;
+            }
+        </style>
+        <?= $this->link ?>
+    </div>
+    <div class="grid_8">
+        <div style="text-align:center; margin: 0 auto;">
+            <?= $this->video ?>
+        </div>
+    </div>
+</div>

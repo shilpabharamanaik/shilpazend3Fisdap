@@ -11,6 +11,7 @@ use Fisdap\Queries\Specifications\CommonSpec;
 use Happyr\DoctrineSpecification\Logic\AndX;
 use Happyr\DoctrineSpecification\Spec;
 
+
 /**
  * Class Shifts
  *

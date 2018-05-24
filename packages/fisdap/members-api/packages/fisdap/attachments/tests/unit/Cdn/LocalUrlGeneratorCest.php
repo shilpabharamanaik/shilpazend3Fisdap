@@ -3,6 +3,7 @@
 use Fisdap\Attachments\Cdn\LocalUrlGenerator;
 use Fisdap\Attachments\Core\Kernel\AttachmentsKernel;
 
+
 class LocalUrlGeneratorCest
 {
     public function _before(UnitTester $I)

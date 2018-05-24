@@ -8,6 +8,7 @@ use Fisdap\Entity\RoleData;
 use Fisdap\Entity\StudentLegacy;
 use Fisdap\Entity\UserContext;
 
+
 /**
  * A factory for creating RoleData Entities
  *

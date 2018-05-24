@@ -1,0 +1,37 @@
+<?= $this->pageTitleHelper() ?>
+<div id="welcomeWrapper" class="grid_12 island">
+    <h3 class="sub-heading">Welcome to Fisdap!</h3>
+    
+    <div class="grid_8">
+        <div id="code-container">
+            <h3 class="dark-gray">Enter your code to activate your Fisdap account.
+            <?= $this->helpBubble("code-help", "Code Help", "An activation code is a unique string of letters and numbers that unlocks your Fisdap account. An activation code can either be a pre-paid account or a product code that tells Fisdap exactly what you are supposed to buy and which program you belong to. If you haven't been given an activation code yet, please contact your instructor.<br><br>If you don't belong to a school using Fisdap and would like to buy Study Tools, click the Purchase Fisdap Study Tools link on the page.") ?></h3>
+            <?= $this->form ?>
+        </div>
+
+        <h3 class="sub-heading">Don't have an activation code?</h3>
+        <p>Even if you don’t belong to a school that uses Fisdap, you can still use our
+            educational and training resources, including:</p>
+        <ul class="product-list">
+            <li><span>Study Tools</span></li>
+            <li><span>Transition Course</span></li>
+            <li><span>Preceptor Training</span></li>
+            <li><span>Research 101</span></li>
+        </ul>
+        <div class="extra-small green-buttons">
+            <a href="https://www.<?php echo Util_HandyServerUtils::get_server(); ?>.net/what_we_make/marketplace">Browse the Marketplace</a>
+        </div>
+    </div>
+    
+    <div class="grid_4">
+        <div id="instructor-info">
+            <h4 class="sub-heading">Are you an instructor?</h4>
+            <p id='instructor-blurb'>If you're an educator who wants to use Fisdap in your classroom, give us a call to get started!</p>
+            <h3 class="dark-gray">651.690.9241</h3> 
+        </div>
+    </div>
+</div>
+
+
+    
+    

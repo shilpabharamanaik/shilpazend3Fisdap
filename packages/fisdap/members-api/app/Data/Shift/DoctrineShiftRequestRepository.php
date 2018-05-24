@@ -7,6 +7,7 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
+
 /**
  * Class DoctrineShiftRequestRepository
  *
@@ -23,7 +24,7 @@ class DoctrineShiftRequestRepository extends DoctrineRepository implements Shift
      * @param string $end_date upper bound of date constraint
      * @return array
      */
-    public function getRequestsByProgram($programID, $pendingApprovalOnly = true, $completedAlso = false, $start_date = null, $end_date = null)
+    public function getRequestsByProgram($programID, $pendingApprovalOnly = TRUE, $completedAlso = FALSE, $start_date = NULL, $end_date = NULL)
     {
         $qb = $this->_em->createQueryBuilder();
 
@@ -66,9 +67,9 @@ class DoctrineShiftRequestRepository extends DoctrineRepository implements Shift
         }
 
         if ($pendingApprovalOnly) {
-            if (!$completedAlso) {
+            if(!$completedAlso) {
                 return array('pending' => $pending);
-            } else {
+            }else{
                 return array('pending' => $pending, 'completed' => $completed);
             }
         }

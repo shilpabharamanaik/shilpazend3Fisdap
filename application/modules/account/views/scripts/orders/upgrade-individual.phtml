@@ -1,0 +1,92 @@
+<?= $this->pageTitleHelper() ?>
+
+<div id="noneSelectedError" class="error hidden">
+    Please select a product or package.
+</div>
+
+<div class="grid_12 island">
+    <div class="owned-products grid_6">
+        <h3 class="section-header">Purchased products</h3>
+        <?= $this->productSummary($this->purchasedProducts, true) ?>
+    </div>
+
+    <div class="upgradable-products grid_6">
+        <form method="post">
+            <h3 class="section-header">Products available for upgrade</h3>
+            <a id="productDescriptionsLink" href="#">Product info</a>
+
+            <? if (count($this->upgradeableProducts) > 0) { ?>
+                <div id='upgrade-mode' class="extra-small cupertino">
+                    <input type='radio' id='choose' value='choose' name='upgrade_mode'>
+                    <label for='choose'>Choose products</label>
+                    <input type='radio' id='code' value='code' name='upgrade_mode'>
+                    <label for='code'>Use activation code</label>
+                </div>
+
+                <div id="choose-products">
+                    <div class="products-container">
+                        <?= $this->partial("upgradeIndividualProductsTable.phtml",
+                            array("availableProducts" => $this->upgradeableProducts)) ?>
+                    </div>
+
+                    <? if (count($this->availablePackages) > 0) { ?>
+                        <div class="packages-container">
+                            <?= $this->partial("upgradeIndividualPackagesTable.phtml",
+                                array("availablePackages" => $this->availablePackages)) ?>
+                        </div>
+                    <? } ?>
+                </div>
+
+                <div id="enter-code" class="hidden">
+                    <div class="form-desc">
+                        If your instructor gave you a code, enter it here and we'll find the products they chose for
+                        you.
+                    </div>
+                    <div id="enterCode">
+                        <input id="upgradeCode" class="fancy-input" type="text" value="<?= $this->activationCode ?>" name="upgradeCode">
+                        <input id="upgradeCodeType" type="hidden" value="" name="upgradeCodeType">
+
+                        <div class='extra-small gray-button'>
+                            <a href='#' id='applyCode'>Apply</a>
+                        </div>
+                    </div>
+                    <div id="invalidCode" class="error hidden"></div>
+                    <div id="codeInfo" class=""></div>
+                </div>
+
+                <div id="purchaseInfo">
+                    <div id="couponContainer" class="grid_12">
+                        <a id="showCouponInput">
+                            Enter a coupon code
+                        </a>
+
+                        <div id="enterCoupon" class="hidden">
+                            <input id="upgradeCoupon" class="fancy-input" type="text" value="" name="upgradeCoupon">
+
+                            <div class='extra-small gray-button'>
+                                <a href='#' id='applyCoupon'>Apply</a>
+                            </div>
+                        </div>
+                        <div id="invalidCoupon" class="error hidden">
+                            Oops! That coupon isn't valid.
+                        </div>
+                        <div id="couponDescription"></div>
+                        <input type="hidden" id="appliedCoupon" name="appliedCoupon" value="0" data-couponConfig="0"
+                               data-discountPercent="0">
+                    </div>
+
+                    <?= $this->costContainer($this->order) ?>
+
+                    <div class="bottom-link">
+                        <a href="#" id="next-link">Continue to checkout &gt;&gt;</a>
+                    </div>
+                    <input id="upgradeConfig" type="hidden" value="" name="upgradeConfig">
+                </div>
+            <? } else { ?>
+                <div>There are no upgrades available.</div>
+            <? } ?>
+        </form>
+    </div>
+</div>
+
+<?= $this->productDescriptionModal($this->availableProducts) ?>

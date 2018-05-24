@@ -5,6 +5,7 @@ use Fisdap\Api\Users\UserContexts\Permissions\Events\PermissionsWereSet;
 use Fisdap\Api\Users\UserContexts\Permissions\Listeners\RecordPermissionsHistory;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
+
 /**
  * Registers events related to user contexts (UserContext Entity)
  *

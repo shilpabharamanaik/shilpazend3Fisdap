@@ -1,0 +1,44 @@
+<?= ($this->prod) ? "" : "*** NOTE: This email was sent from dev or qa ****<br /><br />"; ?>
+
+
+Hello CX!<br />
+
+
+<p>This reports bug was submitted on <?= date('l M j, Y'); ?> at <?= date('h:i:s A'); ?> by:<br />
+<b>Name:</b> <?= $this->user->first_name ?> <?= $this->user->last_name ?> (<?= $this->user->username; ?>)<br />
+<b>Email:</b> <?= $this->user->email ?><br />
+<b>Program:</b> <?= $this->user->getCurrentRoleData()->program->name ?><br />
+<b>Role:</b> <?= $this->user->getCurrentRoleName() ?><br />
+<b>User ID:</b> <?= $this->user->id ?><br />
+<b>Browser:</b> <?= $this->browser ?><br />
+</p>
+
+
+<p>------------------------------------------------------------------------------------------</p>
+<p>Request response:</p>
+
+<?= $this->config['error_response']; ?>
+
+
+<p>------------------------------------------------------------------------------------------</p>
+<p>AJAX details:</p>
+
+<?
+foreach($this->config as $config_key => $config_value){
+	
+	if($config_key != 'error_response'){
+		echo $config_key . ": ";
+		
+		if(is_array($config_value)){
+			echo "<ul>";
+			foreach($config_value as $val){
+				echo "<li>" . $val . "</li>";
+			}
+			echo "</ul>";
+		}
+		else {
+			echo $config_value . "<br />";
+		}
+	}
+}
+?>

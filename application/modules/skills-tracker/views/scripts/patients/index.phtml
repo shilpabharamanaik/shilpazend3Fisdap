@@ -1,0 +1,80 @@
+<?php //echo $this->pageTitleHelper() ?>
+<script>
+	$(function(){
+		$('#form-holder').addClass('label_text');
+	});
+</script>
+<?php
+echo $this->cssHelper();
+
+// This is used to keep track of how many "tickers" are included...
+$ticker = 1;
+?>
+<div class="grid_8">
+	<a id="shift-overview-link" href="<?= $this->shiftUrl ?>"><< Back to "My Shift" page</a>
+</div>
+
+<div class='clear'></div>
+
+	<div class="grid_7 island withTopMargin">
+		<?= $this->shiftInfo ?>
+	</div>
+
+<div class='grid_12'>
+	<div id='custom-tabs' class='tab-block'>
+		<span style='width: 175px; float: left;' id='tab1'> <a class='tab-link' href='#patientCare'><span class='tab-text'>Patient Care</span></a></span>
+		<?php if($this->program->include_narrative): ?>
+			<span style='width: 140px; float: left;' id='tab2'> <a class='tab-link' href='#narrative'><span class='tab-text'>Narrative</span></a></span>
+		<?php endif; ?>
+		<?php if($this->program->program_settings->allow_signoff_on_patient): ?>
+			<span style='width: 230px; float: left;' id='tab3'> <a class='tab-link' href='#signoff'><span class='tab-text'>Preceptor Signoff</span></a></span>
+		<?php endif; ?>
+		
+		<span style='float: right; margin-top: 10px;' id='save-button-container'></span>
+		<span style='float: right; margin-top: 5px;' id='autosave-text-container'></span>
+	</div>
+	<div class='clear'></div>
+	<div id='ticker-box'>
+		<div class='ticker-image-holder' style='width: 175px; float: left;'>
+			<img id='ticker_<?php echo $ticker++; ?>' style='width:3em' src="/images/ticker.png" class="ticker-image" />
+			&nbsp;
+		</div>
+		<?php if($this->program->include_narrative): ?>
+			<div class='ticker-image-holder' style='width: 140px; float: left;'>
+				<img id='ticker_<?php echo $ticker++; ?>' style='width:3em' src="/images/ticker.png" class="ticker-image" />
+				&nbsp;
+			</div>
+		<?php endif; ?>
+		<?php if($this->program->program_settings->allow_signoff_on_patient): ?>
+			<div class='ticker-image-holder' style='width: 230px; float: left;'>
+				<img id='ticker_<?php echo $ticker++; ?>' style='width:3em' src="/images/ticker.png" class="ticker-image" />
+				&nbsp;
+			</div>
+		<?php endif; ?>
+	</div>
+</div>
+<div class="grid_12 island">
+	<div id="tabs" class='tab-holder'>
+		<div id="patientCare">
+			<?php echo $this->patientForm ?>
+		</div>
+		<?php if($this->program->include_narrative): ?>
+			<div id="narrative">
+				<?php echo $this->narrativeForm ?>
+			</div>
+		<?php endif; ?>
+		<?php if($this->program->program_settings->allow_signoff_on_patient): ?>
+			<div id="signoff">
+				<?php echo $this->signoffForm ?>
+			</div>
+		<?php endif; ?>
+	</div>
+</div>
+
+<?= $this->preceptorWidget ?>
+<?= $this->airwayModal ?>
+<?= $this->cardiacModal ?>
+<?= $this->ivModal ?>
+<?= $this->medModal ?>
+<?= $this->otherModal ?>
+<?= $this->vitalModal ?>

@@ -1,0 +1,27 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_12 island">
+	<h2 class="sub-heading">Thank you!</h2>
+	<div class="thank-you-msg">
+		Each of your students will need an activation code to set up a Fisdap account.
+	</div>
+	
+	<h2 class="sub-heading">Activating your accounts</h2>
+	<div class="activation-options">
+		<h4 class="dark-gray">Option 1</h4>
+		<p>
+			If you know your students' email addresses, you can send them an email with information about how to set up their Fisdap accounts.
+			<?= $this->fancyButton("invite-students", "Invite students to activate accounts", "/account/new/invite/", 'blue-button') ?>
+		</p>
+		
+		<h4 class="dark-gray">Option 2</h4>
+		<p>
+			If you want to set up your students' accounts for them, you can go ahead and activate them now.
+			<?= $this->fancyButton("activate-students", "Activate accounts for students", "/account/new/activate-accounts/", 'blue-button') ?>
+		</p>
+		
+		<h4 class="dark-gray">Option 3</h4>
+		<p>
+			A list of activation codes has been emailed to <?= $this->order->user->email ?>. Please forward the email to an instructor who can distribute an activation code to each student.
+		</p>
+	</div>
+</div>

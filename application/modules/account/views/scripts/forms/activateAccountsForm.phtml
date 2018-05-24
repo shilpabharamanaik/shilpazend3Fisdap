@@ -1,0 +1,19 @@
+<?
+$subforms = $this->element->getSubForms();
+
+foreach($subforms as $subform) {
+	echo $subform;
+}
+?>
+
+<div class="grid_12">
+	<?= $this->element->emailEveryone ?>
+</div>
+
+<div class="clear"></div>
+
+<div class="prefix_10 grid_2">
+	<?= $this->element->saveButton ?>
+</div>
+
+<?= $this->element->orderId ?>

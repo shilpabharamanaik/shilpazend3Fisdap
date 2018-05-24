@@ -2,6 +2,7 @@
 
 use JsonMapper as NetresearchJsonMapper;
 
+
 /**
  * Class JsonMapper
  *

@@ -1,0 +1,95 @@
+<div class="grid_12 withTopMargin">
+    <div class="grid_2 notification-type">Type:</div>
+    <div class="grid_10 notification-type-button">
+        <?= $this->element->type ?>
+    </div>
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_12">
+    <div class="grid_2 notification-title">Title:
+        <div class="form-desc">(80 characters max)</div>
+    </div>
+    <div class="grid_10">
+        <?= $this->element->title ?>
+    </div>
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_12">
+    <div class="grid_2 notification-message">Message:</div>
+    <div class="grid_10 notification-message-box">
+        <?= $this->element->message ?>
+        <a id="preview-notification" href="#">Preview notification</a>
+    </div>
+</div>
+
+<div class="clear"></div>
+
+<h3 class="section-header withTopMargin">Send to</h3>
+
+<div class="grid_12 withTopMargin">
+    <div class="grid_2 notification-professions">Professions: </div>
+    <div class="grid_10 notification-professions-chosen">
+        <?= $this->element->professions ?>
+    </div>
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_1">
+    <?= $this->element->students ?>
+</div>
+<div class="grid_11 slider-labels">
+    <p>Active students</p>
+</div>
+
+<div class="grid_12 notification-chosen" id="students-section">
+    <div class="grid_6">
+        <?= $this->element->certlevel ?>
+    </div>
+    <div class="grid_6">
+        <?= $this->element->product ?>
+    </div>
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_1">
+    <?= $this->element->instructors ?>
+</div>
+<div class="grid_11 slider-labels">
+    <p>Instructors</p>
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_12 notification-chosen" id="instructors-section">
+    <div class="grid_6">
+        <?= $this->element->permissions ?>
+    </div>
+    <div class="grid_6">
+    </div>
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_1">
+    <?= $this->element->preceptors ?>
+</div>
+<div class="grid_11 slider-labels">
+    <p>Preceptor Training Accounts <span class="form-desc">(regardless of permission)</span></p>
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_12" id="control-buttons">
+    <span class="small green-buttons">
+        <a href="#" id="post-button">Post</a>
+    </span>
+    <span class="small gray-button">
+        <a href='/admin/notifications/history' id="cancel-button">Cancel</a>
+    </span>
+</div>

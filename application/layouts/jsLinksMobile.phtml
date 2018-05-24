@@ -1,0 +1,20 @@
+<?php
+// jQuery plugins...
+echo $this->jQuery()
+		  ->setVersion('1.10.0')
+		  ->setUiVersion('1.10.3')
+		  ->enable()
+		  ->uiEnable()
+		  ->setLocalPath('/js/jquery-1.10.0.min.js?lastModified=' . $this->last_modified)
+		  ->setUiLocalPath('/js/jquery-ui-1.8.12.custom.min.js?lastModified=' . $this->last_modified);
+
+$this->headScript()
+	 ->appendFile("/js/jquery-migrate-1.2.1.js")
+     ->appendFile("/js/jquery.blockUI.js")
+     ->appendFile("/js/jquery.FisdapBlockUI.js")
+     ->appendFile("/js/jquery.cookie.js")
+     ->appendFile("/js/FisdapUtils.js");
+
+$this->javascriptHelper();
+
+echo $this->headScript();

@@ -1,0 +1,38 @@
+<?php
+
+echo $this->jQuery()
+		  ->setVersion('1.10.0')
+		  ->setUiVersion('1.10.3')
+		  ->enable()
+		  ->uiEnable()
+		  ->setLocalPath('/js/jquery-1.10.0.min.js?lastModified=' . $this->last_modified)
+		  ->setUiLocalPath('/js/jquery-ui-1.8.12.custom.min.js?lastModified=' . $this->last_modified);
+
+// jQuery plugins...
+$this->headScript()
+	 ->prependFile("/js/jquery-migrate-1.2.1.js")
+	 ->appendFile("/js/jquery.urldecoder.min.js")
+     ->appendFile("/js/jquery.blockUI.js")
+     ->appendFile("/js/jquery.form.js")
+     ->appendFile("/js/jquery.FisdapBlockUI.js")
+     ->appendFile("/js/countdown.js")
+	 ->appendFile("/js/jquery.cookie.js")
+	 ->appendFile("/js/library/Fisdap/View/Helper/Navigation/mainMenu.js")
+	 ->appendFile("/js/jquery.chosen.relative.js")
+     ->appendFile("/js/FisdapUtils.js");
+
+$this->javascriptHelper();
+
+// print out the <script> tags for js files using the headscript and verisons
+$js_files = "" . $this->headScript();
+$js= explode('<script type="text/javascript" src="', $js_files);
+
+echo "\n";
+echo "\n";
+
+foreach($js as $src){
+	if(strlen($src) != 0){
+		echo '<script type="text/javascript" src="' . substr($src, 0, strrpos($src, ".js")) . '.js?lastModified=' . $this->last_modified . '"' . '></script>';
+		echo "\n";
+	}
+}

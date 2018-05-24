@@ -3,6 +3,7 @@
 use Fisdap\Entity\PermissionCategory;
 use League\Fractal\TransformerAbstract;
 
+
 /**
  * Prepares permission category data for JSON output
  *

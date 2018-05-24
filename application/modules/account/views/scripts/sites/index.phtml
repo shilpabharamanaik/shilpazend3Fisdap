@@ -1,0 +1,30 @@
+<?= $this->pageTitleHelper("", '<div class="add-site-nav extra-small orange-button"><a id="add-new-site" href="/account/sites/add">Add Site</a></div>') ?>
+
+<div class="grid_12 island">
+
+	<h3 class="section-header"><?= $this->program->name; ?>'s Sites</h3>
+
+	<?= $this->filterForm ?>
+	
+	<div id="sitesContainer">
+		<div id="siteListContainer">
+			<div id='site-list'>
+				<?= $this->listSites(false); ?>
+			</div>
+			
+			<div class="extra-small orange-button">
+				<a href="/account/sites/edit" id="editMySiteButton">Edit</a>
+			<?php if ($this->isStaff) {
+				$oldURL = "/oldfisdap/redirect?loc=" . urlencode("admin/internal_precepList.html?siteId=");
+			?>
+				<a href="<?= $oldURL; ?>" id="internalPercepMergeButton">Internal Preceptor Merge</a>
+			<?php } ?>
+			
+				<div class="clear"></div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<?= $this->partial("sites-legend.phtml"); ?>

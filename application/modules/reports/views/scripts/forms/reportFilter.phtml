@@ -1,0 +1,21 @@
+<?php
+print '<div class="grid_12 island">' . $this->element->goal . '</div>';
+
+print '<div class="grid_12 island withTopMargin">' . $this->element->educational_setting . $this->element->advanced_settings . '</div>';
+
+print $this->element->studentIds;
+	
+if ($this->element->isInstructor && $this->element->user->hasPermission('View Reports')) {
+	print '<div class="grid_12 island withTopMargin">';
+	print '<div class="report-block"><h3 class="section-header">Choose one or more students</h3>';
+	print '<div class="grid_8 report-body">' . $this->multiStudentPicker(array('sourceLink' => '/ajax/get-filtered-student-list', 'selectedStudents' => array($this->element->selectedStudentIds), 'targetFormId' => 'goal-report-form', 'useSessionSettings' => false)) . '</div>';
+	print '</div></div>';
+}
+	
+if ($this->element->classmatesFilter) {
+	print '<div class="grid_12 island withTopMargin">' . $this->element->classmatesFilter . '</div>';
+}
+
+print '<div class="prefix_11 grid_1 withTopMargin green-buttons">' . $this->element->Submit . '</div>';
+
+?>

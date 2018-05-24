@@ -1,0 +1,5 @@
+<tr id='<?= $this->goalSet->id ?>'>
+    <td class='name-col'><?= $this->goalSet->name ?></td>
+    <td class='cert-col'><?= $this->goalSet->getCertificationLevel() ?><?= $this->goalSet->default_goalset ? "<br><span class='form-desc'>(default)</span>" : "" ?></td>
+    <td class='actions-col'><a href='#' class='delete-goals' goalId='<?= $this->goalSet->id ?>'><img class='small-icon' src='/images/icons/delete.png'></a></td>
+</tr>

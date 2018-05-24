@@ -1,0 +1,59 @@
+<?= $this->pageTitleHelper() ?>
+
+<?php if ($this->has_site) { ?>
+
+<div id="inactive-warning" class="info grid_12">
+	<h3 class='section-header no-border'>Inactive site</h3>
+	Deactivating a site hides it from your Schedule. Shifts already scheduled here will no longer be 
+	displayed on your calendar, and new shifts cannot be scheduled. However, if your students use Skills Tracker, 
+	past and future shifts at this site will remain in their shift lists.	
+</div>
+
+<div id="site-info" class="grid_12 island">
+	<div id="toggle-site-active">
+		<input id="toggle-active" type="checkbox" class='slider-checkbox' data-siteId="<?= $this->site_id ?>" <?= ($this->isActive) ? "checked" : "" ?>>
+	</div>
+	<div id='simple-info'>
+		<a id="edit-site-info" href='#'>
+			<img id="edit-icon" alt="Edit site info" src="/images/icons/edit-pencil.png" title="Edit site info">
+		</a>
+		<div id='siteInfoHelper'>
+			<?= $this->partial('site-info.phtml', array("site" => $this->site)) ?>
+		</div>
+	</div>
+	<div id="edit-form">
+		<?= $this->siteInfoForm ?>
+	</div>
+</div>
+
+<div class="clear"></div>
+
+<div id="site-form-wrapper" data-siteid="<?= $this->site_id; ?>">
+	<div class="grid_3" id="tabs">
+		<? foreach($this->forms as $tab_name => $form){
+			$unformatted_name = strtolower(preg_replace('/\s+/', '', $tab_name));
+			$selected_class = ($this->opened_tab == $unformatted_name) ? "class='selected-tab'" : "";
+			echo "<a href='#' " . $selected_class . " data-contentdiv='" . $unformatted_name . "'>" . $tab_name . "</a>";
+		} ?>
+	</div>
+	
+	<div class="grid_9 island" id="tab-content">
+		<? foreach($this->forms as $tab_name => $form){
+			echo "<div class='hidden-form-content' id='" . strtolower(preg_replace('/\s+/', '', $tab_name)) . "'>";
+			echo 	"<h3 class='section-header'>" . $this->site_name . " - " . $tab_name . "</h3>";
+			echo 	$form;
+			echo "</div>";
+		} ?>
+	</div>
+	
+	<div class="clear"></div>
+</div>
+
+<?php } else { ?>
+
+<div class='error'>
+	Your program is not currently using this site.
+	You need to add <?= $this->site_name ?> to your program before you can edit it.
+</div>
+
+<?php } ?>

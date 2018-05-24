@@ -10,4 +10,5 @@ use Fisdap\Data\Repository\Repository;
  */
 interface MentalAlertnessRepository extends Repository
 {
+
 }

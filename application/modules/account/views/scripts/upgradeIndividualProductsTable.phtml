@@ -1,0 +1,21 @@
+<?php foreach ($this->availableProducts as $productCategory) {
+        $categoryInfo = $productCategory['categoryInfo'];
+    ?>
+    <div class="category">
+        <img class='product-shield' src='<?= $categoryInfo['icon'] ?>'>
+        <h4 class='shield-label section-header no-border'><?= $categoryInfo['name'] ?></h4>
+        <div class='shield-desc form-desc'><?= $categoryInfo['description'] ?></div>
+    </div>
+
+    <table class="upgrade-table product">
+        <?php foreach ($productCategory['products'] as $productInfo) {
+            echo $this->productCheckboxRow($productInfo['product'], $productInfo['attempts']);
+        } ?>
+    </table>
+<?php }
+
+    if (count ($this->availableProducts) == 0) { ?>
+        <div>There are no upgrades available.</div>
+<? } ?>
+
+	

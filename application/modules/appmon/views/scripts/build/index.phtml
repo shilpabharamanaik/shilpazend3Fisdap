@@ -1,0 +1,32 @@
+
+<?php echo $this->doctype() . PHP_EOL; ?>
+<html>
+    <head>
+        <?php
+        echo $this->headMeta()
+            ->appendHttpEquiv('Content-Language', 'en-US')
+            ->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8') . PHP_EOL;
+        $this->headTitle()->prepend('Fisdap Members :: ');
+        echo $this->headTitle() . PHP_EOL;
+        echo $this->headLink()
+            ->headLink(
+            array('rel'  => 'shortcut icon',
+                  'href' => '/images/favicon.ico')
+        )
+        ?>
+    </head>
+    <body>
+        <div>
+            <code>
+                <strong>Project Name:</strong> <?= $this->projectName ?><br/>
+                <strong>Project Version:</strong> <?= $this->projectVersion ?><br/>
+                <strong>VCS Branch:</strong> <?= $this->vcsBranch ?><br/>
+                <strong>VCS Revision:</strong> <?= $this->vcsRevision ?><br/>
+                <strong>Build Number:</strong> <?= $this->buildNumber ?><br/>
+                <strong>Build Timestamp:</strong> <?= $this->buildTimestamp ?>
+            </code>
+        </div>
+    </body>
+</html>
+
+

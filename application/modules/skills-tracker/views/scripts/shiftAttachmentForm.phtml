@@ -1,0 +1,52 @@
+<?php if ($this->element->shiftAttachmentsRemaining <= 0 && !$this->element->attachmentId) { ?>
+    <div class="notice">
+        <?php if ($this->element->isInstructor) { ?>
+            <?= $this->element->shift->student->user->getName() ?> has hit the maximum number of shift attachments.
+        <?php } else { ?>
+            You've hit the maximum number of shift attachments.
+        <?php } ?>
+    </div>
+<?php return; } ?>
+
+<?php if ($this->element->shiftAttachmentsRemaining <= 10 && !$this->element->attachmentId) { ?>
+    <div class="notice">
+        <?php if ($this->element->isInstructor) { ?>
+            <?= $this->element->shift->student->user->getName() ?> is approaching the maximum number of shift attachments:
+        <?php } else { ?>
+            You're approaching the maximum number of shift attachments:
+        <?php } ?>
+        <?= $this->element->shiftAttachmentsRemaining ?> remaining.
+    </div>
+<?php } ?>
+
+<div class="info">
+    Avoid including patient information that could violate HIPAA.
+</div>
+
+<div class="form-prompt">
+    <label class="label" for="uploadButton">File:</label>
+    <div class="input">
+        <?php if (!$this->element->attachmentId) { ?>
+            <span class="gray-button extra-small">
+                <label for="upload" class="button" id="uploadButton">
+                    Choose file
+                </label>
+            </span>
+        <? } ?>
+        <span class="form-desc" id="upload-name">(no file chosen)</span>
+        <?= (!$this->element->attachmentId) ? $this->progressBar() : "" ?>
+        <?= $this->element->upload ?>
+    </div>
+</div>
+<?= $this->modalFormElement($this->element->name) ?>
+<?= $this->modalFormElement($this->element->category) ?>
+<?= $this->modalFormElement($this->element->notes) ?>
+<div class="note-limit form-desc">1024 character limit</div>
+
+<?= $this->element->attachmentType ?>
+
+<?= $this->element->shiftId ?>
+
+<?= $this->element->attachmentId ?>
+<?= $this->element->fileName ?>
+<?= $this->element->tableType ?>

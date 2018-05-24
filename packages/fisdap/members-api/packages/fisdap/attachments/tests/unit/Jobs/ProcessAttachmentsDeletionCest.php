@@ -6,6 +6,7 @@ use Fisdap\Attachments\Jobs\ProcessAttachmentsDeletion;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 use League\Flysystem\FilesystemInterface;
 
+
 class ProcessAttachmentsDeletionCest
 {
     /**

@@ -1,0 +1,31 @@
+Hello <?= $this->order->user->first_name ?>,<br>
+
+<p>
+	Thank you for your support! Here's your confirmation email with details about
+	your product code<?= (count($this->order->order_configurations) > 1) ? "s" : null ?>.
+</p>
+
+	
+<p style="margin-top:2em">
+    Fisdap Order #<?= $this->order->id ?>
+
+	<?
+		foreach ($this->order->order_configurations as $config) {
+			echo "<p>";
+			echo $config->getAccountSummary(true, " ") . " accounts with " . $config->getProductSummary() . "<br>";
+			echo "Product Code: " . $config->getProductCode() . "<br>";
+			echo "Purchase link: " . $this->urlRoot . "account/new/index?code=" . $config->getProductCode();
+			echo "</p>";
+		}
+	?>
+	
+</p>
+
+<p style="margin-top:2em">
+	Give each student the product code and the following instructions to pay for and set up an account:
+	<ol style="list-style-type:decimal;">
+		<li>Go to https://www.fisdap.net.</li>
+		<li>Click the "Create an Account" button.</li>
+		<li>Enter the product code into the field and follow the prompts to purchase an account.</li>
+	</ol>
+</p>

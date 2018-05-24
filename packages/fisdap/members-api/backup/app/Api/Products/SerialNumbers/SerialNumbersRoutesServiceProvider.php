@@ -4,6 +4,7 @@ use Fisdap\Api\Products\SerialNumbers\Http\SerialNumbersController;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
+
 /**
  * Registers routes for serial numbers
  *

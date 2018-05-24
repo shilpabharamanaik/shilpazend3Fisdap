@@ -4,6 +4,7 @@ use Doctrine\ORM\QueryBuilder;
 use Fisdap\Entity\InstructorLegacy;
 use Happyr\DoctrineSpecification\Query\QueryModifier;
 
+
 /**
  * Class ByInstructor
  *
@@ -18,11 +19,7 @@ class ByInstructor implements QueryModifier
      */
     public function modify(QueryBuilder $qb, $dqlAlias)
     {
-        $qb->innerJoin(
-            InstructorLegacy::class,
-            'instructor',
-            'WITH',
-            sprintf('BIT_AND(instructor.permissions, %s.bit_value) > 0', $dqlAlias)
-        );
+        $qb->innerJoin(InstructorLegacy::class, 'instructor', 'WITH',
+            sprintf('BIT_AND(instructor.permissions, %s.bit_value) > 0', $dqlAlias));
     }
 }

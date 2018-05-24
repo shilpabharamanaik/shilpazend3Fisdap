@@ -1,0 +1,18 @@
+Hello, <?= $this->request->owner->user->first_name ?>!
+<div>
+		<p><?= $this->request->recipient->user->getName() ?> is offering to swap the following <?= $this->swap->offer->slot->event->type ?> shift:</p>
+		<div>
+				<?= $this->swap->offer->slot->event->getDetailViewDate() ?><br>
+				<?= $this->swap->offer->slot->event->getLocation() ?>
+		</div>
+		<p>in exchange for your <?= $this->request->event->type ?> shift:</p>
+		<div>
+				<?= $this->request->event->getDetailViewDate() ?><br>
+				<?= $this->request->event->getLocation() ?>
+		</div>
+		
+		<p>
+		You can accept or decline this offer at your <a href='<?= $this->url ?>'>shift request page</a>.
+		</p>
+	
+</div>

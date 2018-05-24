@@ -7,12 +7,13 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface VerificationRepository
  *
  * @package Fisdap\Data\Shift
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface VerificationRepository extends Repository
-{
+interface VerificationRepository extends Repository {
+
 }

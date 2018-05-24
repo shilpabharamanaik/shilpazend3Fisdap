@@ -1,0 +1,44 @@
+Hello!
+<div>
+	<div>
+		The following people from your program have been assigned to <?= count($this->events)." ".$this->events[0]->type ?> shifts
+		at:
+	</div>
+	<div style='margin: 1em 0em'>
+		<?= $this->events[0]->getLocation() ?><br>
+		<?= $this->events[0]->start_datetime->format("Hi") . " (" . $this->events[0]->getDurationText() . ") " ?>
+		<?= ($this->events[0]->notes) ? "<br />Notes: " . $this->events[0]->notes : ""; ?>
+	</div>
+	
+	<?php if (count($this->assignees['instructors']) > 0) { ?>
+	<h3>Instructors</h3>
+	<ul>
+		<?php foreach ($this->assignees['instructors'] as $instructor) { ?>
+		<li><?= $instructor ?></li>
+		<?php } ?>
+	</ul>
+	<?php } ?>
+
+	<?php if (count($this->assignees['students']) > 0) { ?>
+	<h3>Students</h3>
+        <?= $this->events[0]->getStudentSlotText(true) ?>
+	<?php } ?>
+	
+	<?php if (count($this->assignees['preceptors']) > 0) { ?>
+	<h3>Preceptors</h3>
+	<ul>
+		<?php foreach ($this->assignees['preceptors'] as $preceptor) { ?>
+		<li><?= $preceptor ?></li>
+		<?php } ?>
+	</ul>
+	<?php } ?>
+	
+	<div>
+		These shifts will occur on the following dates:
+		<ul>
+			<?php foreach ($this->events as $event) { ?>
+			<li><?= $event->start_datetime->format('l, M j, Y') ?></li>
+			<?php } ?>
+		</ul>
+	</div>
+</div>

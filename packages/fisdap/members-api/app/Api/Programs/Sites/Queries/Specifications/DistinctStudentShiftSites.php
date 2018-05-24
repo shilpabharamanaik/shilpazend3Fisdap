@@ -4,6 +4,7 @@ use Fisdap\Queries\Specifications\Distinct;
 use Happyr\DoctrineSpecification\BaseSpecification;
 use Happyr\DoctrineSpecification\Spec;
 
+
 /**
  * Class DistinctStudentShiftSites
  *

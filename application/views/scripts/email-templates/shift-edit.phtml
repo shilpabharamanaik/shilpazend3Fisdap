@@ -1,0 +1,58 @@
+Hello!
+
+<div>
+
+	<div>
+        <?= (count($this->events) == 1) ? "The following shift has been edited." : "The following shifts have been edited."; ?>
+	</div>
+
+    <?= $this->shift_info; ?>
+
+    <? if (count($this->events) == 1) { ?>
+        <br />
+        <a style="margin-top:0.5em;color:#a94612;" href="<?= $this->urlRoot . "scheduler/shift/details/event/" . $this->events[0]->id; ?>">View</a> the full shift information in Fisdap.
+    <?
+    }
+    else { ?>
+        <div style="margin-top:0.5em;">
+            <?= count($this->events); ?> shifts were affected:
+            <ul style="margin-top:0.25em;">
+                <?php foreach ($this->events as $event) { ?>
+
+                    <li style="margin-bottom:0.25em;color:#666;">
+
+                        <a style="color:#a94612;" href="<?= $this->urlRoot . "scheduler/shift/details/event/" . $event->id; ?>">
+                        <?= $event->start_datetime->format('l, M j, Y') ?>
+                        </a>
+
+                        <?= $event->getStudentSlotText(true); ?>
+
+
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+
+        <? if(count($this->added_events) > 0){ ?>
+
+            <?= count($this->added_events); ?> shifts were added:
+            <ul style="margin-top:0.25em;">
+                <?php foreach ($this->added_events as $added_event) { ?>
+
+                    <li style="margin-bottom:0.25em;color:#666;">
+
+                        <a style="color:#a94612;" href="<?= $this->urlRoot . "scheduler/shift/details/event/" . $added_event->id; ?>">
+                            <?= $added_event->start_datetime->format('l, M j, Y') ?>
+                        </a>
+
+                        <?= $added_event->getStudentSlotText(true); ?>
+
+                    </li>
+                <?php } ?>
+            </ul>
+
+        <?
+        }
+    } ?>
+
+</div>

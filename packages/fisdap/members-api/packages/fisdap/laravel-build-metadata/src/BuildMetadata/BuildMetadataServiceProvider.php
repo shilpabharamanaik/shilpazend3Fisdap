@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 
+
 /**
  * Provides support for version validation based on build metadata
  *
@@ -33,7 +34,7 @@ class BuildMetadataServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(BuildMetadataMakeCommand::class, function () {
+        $this->app->singleton(BuildMetadataMakeCommand::class, function() {
             return new BuildMetadataMakeCommand();
         });
     }

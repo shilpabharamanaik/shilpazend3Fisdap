@@ -1,0 +1,195 @@
+<div id="wrapper">
+    <div id="formContainer">
+
+        <div id="merge-account-error" class="error"></div>
+        <div id="merge-account-instructions">
+            <p>
+                Welcome to the merge account tool! The username you select will become the account that is "kept". ALL
+                DATA belonging to the other account (patients, shifts, etc) will no longer be accessible. If you're not
+                sure what you're doing, don't do it!.
+            </p>
+            <br/>
+        </div>
+        <table id="merge-account-table">
+            <tr>
+                <th class="grid_2"> &nbsp; </th>
+                <th class="grid_3">
+                    <div>
+                        <?= $this->element->studentIdA;?>
+                        <img id="throbberA" src="/images/throbber_small.gif">
+                    </div>
+                </th>
+                <th class="grid_3">
+                    <div>
+                        <?= $this->element->studentIdB;?>
+                        <img id="throbberB" src="/images/throbber_small.gif">
+                    </div>
+                </th>
+                <th class="grid_3">
+                    <div id="result-div">
+                        Result
+                    </div>
+                </th>
+            </tr>
+
+            <tr>
+                <td class="grid_2 row-label">
+                    <span>Username:</span>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="usernameGroup" value="" id="usernameRadioA" />
+                    <label class="radio" for="usernameRadioA"><span id="usernameLabelA"></span></label>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="usernameGroup" value="" id="usernameRadioB" />
+                    <label class="radio" for="usernameRadioB"><span id="usernameLabelB"></span></label>
+                </td>
+                <td class="grid_3">
+                    <span id="usernameResult"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="grid_2 row-label">
+                    <span>Program:</span>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="programGroup" value="" id="programRadioA" />
+                    <label class="radio" for="programRadioA"><span id="programLabelA"></span></label>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="programGroup" value="" id="programRadioB" />
+                    <label class="radio" for="programRadioB"><span id="programLabelB"></span></label>
+                </td>
+                <td class="grid_3">
+                    <span id="programResult"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="grid_2 row-label">
+                    <span>Name:</span>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="userGroup" value="" id="userRadioA" />
+                    <label class="radio" for="userRadioA"><span id="userLabelA"></span></label>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="userGroup" value="" id="userRadioB" />
+                    <label class="radio" for="userRadioB"><span id="userLabelB"></span></label>
+                </td>
+                <td class="grid_3">
+                    <span id="userResult"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="grid_2 row-label">
+                    <span>Email:</span>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="emailGroup" value="" id="emailRadioA" />
+                    <label class="radio" for="emailRadioA"><span id="emailLabelA"></span></label>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="emailGroup" value="" id="emailRadioB" />
+                    <label class="radio" for="emailRadioB"><span id="emailLabelB"></span></label>
+                </td>
+                <td class="grid_3">
+                    <span id="emailResult"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="grid_2 row-label">
+                    <span>Certification:</span>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="certGroup" value="" id="certRadioA" />
+                    <label class="radio" for="certRadioA"><span id="certLabelA"></span></label>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="certGroup" value="" id="certRadioB" />
+                    <label class="radio" for="certRadioB"><span id="certLabelB"></span></label>
+                </td>
+                <td class="grid_3">
+                    <span id="certResult"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="grid_2 row-label">
+                    <span>Grad Date:</span>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="gradGroup" value="" id="gradRadioA" />
+                    <label class="radio" for="gradRadioA"><span id="gradLabelA"></span></label>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="gradGroup" value="" id="gradRadioB" />
+                    <label class="radio" for="gradRadioB"><span id="gradLabelB"></span></label>
+                </td>
+                <td class="grid_3">
+                    <span id="gradResult"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="grid_2 row-label">
+                    <span>Products:</span>
+                </td>
+                <td class="grid_3">
+                    <input type="hidden" name="snA" value="" id="snA" />
+                    <input type="radio" name="productsGroup" value="" id="productsRadioA" disabled="disabled" />
+                    <label class="radio" for="productsRadioA"><span id="productsLabelA"></span></label>
+                </td>
+                <td class="grid_3">
+                    <input type="hidden" name="snB" value="" id="snB" />
+                    <input type="radio" name="productsGroup" value="" id="productsRadioB" disabled="disabled" />
+                    <label class="radio" for="productsRadioB"><span id="productsLabelB"></span></label>
+                </td>
+                <td class="grid_3">
+                    <span id="productsResult"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="grid_2 row-label">
+                    <span>Shifts:</span>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="shiftsGroup" value="" id="shiftsRadioA" disabled="disabled" />
+                    <label class="radio" for="shiftsRadioA"><span id="shiftsLabelA"></span></label>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="shiftsGroup" value="" id="shiftsRadioB" disabled="disabled" />
+                    <label class="radio" for="shiftsRadioB"><span id="shiftsLabelB"></span></label>
+                </td>
+                <td class="grid_3">
+                    <span id="shiftsResult"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="grid_2 row-label">
+                    <span>Test Data:</span>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="testsGroup" value="" id="testsRadioA" disabled="disabled" />
+                    <label class="radio" for="testsRadioA"><span id="testsLabelA"></span></label>
+                </td>
+                <td class="grid_3">
+                    <input type="radio" name="testsGroup" value="" id="testsRadioB" disabled="disabled" />
+                    <label class="radio" for="testsRadioB"><span id="testsLabelB"></span></label>
+                </td>
+                <td class="grid_3">
+                    <span id="testsResult"></span>
+                </td>
+            </tr>
+        </table>
+
+        <div class="clear"></div>
+        <div class="grid_12"><?= $this->element->save;?></div>
+    </div>
+</div>
+

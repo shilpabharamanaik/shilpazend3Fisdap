@@ -19,6 +19,7 @@ use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
+
 /**
  * Class CreateDemoStudent
  *
@@ -149,12 +150,7 @@ final class CreateDemoStudent implements ShouldQueue
 
         // Get all products and assign any applicable products to this account
         $products = $this->productRepository->getProducts(
-            $certificationLevel->configuration_blacklist,
-            false,
-            false,
-            true,
-            false,
-            $program->getProfession()->getId()
+            $certificationLevel->configuration_blacklist, false, false, true, false, $program->getProfession()->getId()
         );
 
         $createSerialNumberJob->productIds = array_map(function (Product $product) {

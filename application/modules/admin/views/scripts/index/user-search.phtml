@@ -1,0 +1,49 @@
+<?= $this->pageTitleHelper() ?>
+
+<div class='grid_12 island'>
+	<div id='search_area' class='grid_8 area'>
+		<?php echo $this->form; ?>
+		<img id="searchThrobber" src="/images/throbber_small.gif">
+	</div>
+	
+	<div class="extra-small blue-button">
+		<button id="displayOptionsTrigger">Result Display Options</button>
+	</div>
+
+
+</div>
+
+
+<div id="displayOptions">
+	
+	<div class="grid_6" style="margin-right:2em">
+		<input type="checkbox" name="options-id" id="options-id" value="id" checked="checked"><label for="options-id">User ID</label><br />
+		<input type="checkbox" name="options-username" id="options-username" value="username" checked="checked"><label for="options-username">Username</label><br />
+		<input type="checkbox" name="options-ac" id="options-ac" value="ac" checked="checked"><label for="options-ac">Activation Code</label><br />
+		<input type="checkbox" name="options-name" id="options-name" value="name" checked="checked"><label for="options-name">First/Last Name</label><br />
+		<input type="checkbox" name="options-email" id="options-email" value="email" checked="checked"><label for="options-email">Email Address</label><br />
+		<input type="checkbox" name="options-program" id="options-program" value="program" checked="checked"><label for="options-program">Program ID/Name</label><br />
+		<input type="checkbox" name="options-home" id="options-home" value="home"><label for="options-home">Home Number</label><br />
+	</div>
+	
+	<div class="grid_6">
+		<input type="checkbox" name="options-cell" id="options-cell" value="cell"><label for="options-cell">Cell Number</label><br />
+		<input type="checkbox" name="options-po" id="options-po" value="po"><label for="options-po">PO Number</label><br />
+		<input type="checkbox" name="options-dist" id="options-dist" value="dist"><label for="options-dist">Dist Method</label><br />
+		<input type="checkbox" name="options-products" id="options-products" value="products" checked="checked"><label for="options-products">Products</label><br />
+		<input type="checkbox" name="options-grad" id="options-grad" value="grad" checked="checked"><label for="options-grad">Graduation Date (students only)</label><br />
+		<input type="checkbox" name="options-customer" id="options-customer" value="customer"><label for="options-customer">Customer ID</label>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div class="small gray-button" id="doSave">
+		<a href="#" id="updateDisplay">Update List</a>
+	</div>
+	
+</div>
+
+
+<div id='results_area'>
+</div>
+

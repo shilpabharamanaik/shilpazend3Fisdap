@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Fisdap\Entity\ProgramTypeLegacy;
 use Fisdap\EntityUtils;
 
+
 /**
  * Class Types
  *
@@ -40,9 +41,7 @@ trait Types
     public function addProgramTypes(array $programTypes)
     {
         foreach ($programTypes as $programType) {
-            if (! $programType instanceof ProgramTypeLegacy) {
-                continue;
-            }
+            if ( ! $programType instanceof ProgramTypeLegacy) continue;
             
             $this->program_types->add($programType);
         }
@@ -63,7 +62,7 @@ trait Types
      * Program clearing previously set ones
      * @param array $ids the ProgramType IDs to add
      * @return \Fisdap\Entity\ProgramLegacy
-     *
+     * 
      * @codeCoverageIgnore
      * @deprecated
      */
@@ -86,7 +85,7 @@ trait Types
     public function getProgramTypeIds()
     {
         $ids = [];
-        foreach ($this->program_types as $type) {
+        foreach($this->program_types as $type) {
             $ids[] = $type->id;
         }
 
@@ -122,7 +121,7 @@ trait Types
 
         $hospital = false;
 
-        if ($program_types) {
+        if($program_types) {
             foreach ($program_types as $type_id => $type_description) {
                 if ($type_id == 2) {
                     $hospital = true;
@@ -131,5 +130,6 @@ trait Types
         }
 
         return $hospital;
+
     }
 }

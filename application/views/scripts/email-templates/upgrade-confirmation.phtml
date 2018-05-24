@@ -1,0 +1,43 @@
+<?
+if ($this->salesEmail) {
+	echo $this->order->getStaffOrderDetails();
+}
+?>
+Hello <?= $this->order->user->first_name ?>,<br>
+
+<p>Thank you for your order!</p>
+
+<p>------------------------------------------</p>
+	
+	<p>Order details:</p>
+	<p><b>Fisdap Order #:</b> <?= $this->order->id ?></p>
+	
+<p><b>Upgraded account<?php if(count($this->order->order_configurations) != 1){ echo "s"; }?>:</b></p>
+	
+<ol>
+	<?
+		foreach ($this->order->order_configurations as $config) {
+			if($this->order->upgrade_purchase){
+				echo "<li>" . $config->getSummary(true, true) . "</li>";
+			}
+		}
+	?>
+</ol>
+
+<? if ($this->order->payment_method->id == 1) { ?>
+
+	<p><b>An invoice for $<?= $this->order->total_cost ?> will be sent to:</b><br />
+	<?= $this->order->getBillingAddress() ?></p>
+
+<? } else { ?> 
+	<p>
+		This email will serve as your receipt. Here are the transaction details:<br>
+		Ordered by: <?= $this->order->name ?><br>
+		Transaction Ref: <?= $this->order->paypal_transaction_id ?><br>
+		Amount: $<?= $this->order->getTotalCost() ?>
+	</p>
+<? } ?>
+
+<p><b>PO #: </b><?= $this->order->po_number ? "{$this->order->po_number}" : "None entered." ?></p>
+
+<p>------------------------------------------</p>

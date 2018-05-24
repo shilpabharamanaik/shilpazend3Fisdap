@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Program Type Legacy
  *
@@ -15,12 +16,12 @@ use Doctrine\ORM\Mapping\Table;
 class ProgramTypeLegacy extends Enumerated
 {
     /**
-     * @var integer
-     * @Id
-     * @Column(name="ProgramType_id", type="integer")
-     * @GeneratedValue
-     */
-    protected $id;
+	 * @var integer
+	 * @Id
+	 * @Column(name="ProgramType_id", type="integer")
+	 * @GeneratedValue
+	 */
+	protected $id;
 
     /**
      * @var string

@@ -4,6 +4,7 @@ use Fisdap\Api\Programs\Sites\Queries\SiteQueryParameters;
 use Fisdap\Api\Queries\Exceptions\ResourceNotFound;
 use Fisdap\Api\ResourceFinder\FindsResources;
 
+
 /**
  * Contract for retrieving sites
  *

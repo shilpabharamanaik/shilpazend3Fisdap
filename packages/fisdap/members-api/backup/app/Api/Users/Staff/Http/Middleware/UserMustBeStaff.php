@@ -5,6 +5,7 @@ use Fisdap\Entity\User;
 use Illuminate\Auth\AuthManager;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
+
 /**
  * Ensures current user is a Fisdap employee
  *
@@ -22,8 +23,7 @@ final class UserMustBeStaff
     /**
      * @param AuthManager $auth
      */
-    public function __construct(AuthManager $auth)
-    {
+    public function __construct(AuthManager $auth) {
         $this->auth = $auth;
     }
 
@@ -33,7 +33,7 @@ final class UserMustBeStaff
         /** @var User $user */
         $user = $this->auth->guard()->user();
         
-        if (! $user->isStaff()) {
+        if ( ! $user->isStaff()) {
             throw new AccessDeniedHttpException('User must be Fisdap employee');
         }
 

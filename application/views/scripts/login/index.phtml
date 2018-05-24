@@ -1,0 +1,16 @@
+<h1>Member Login</h1>
+<?= $this->messageHelper() ?>
+<div class="row-container">
+    <div id='login_area' class="area">
+        <?php echo $this->form; ?>
+    </div>
+
+    <div id='create_acct' class='area'>
+        <h3 class="section-header no-border">Not a member yet?</h3>
+        <a href="/account/new/">Create an Account</a>
+
+        <h3 class="section-header no-border">Questions?</h3>
+        <a href="https://www.<?php echo Util_HandyServerUtils::get_server(); ?>.net/contact_us">Contact Us</a>
+
+    </div>
+</div>

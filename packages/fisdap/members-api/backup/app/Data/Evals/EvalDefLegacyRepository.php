@@ -13,6 +13,6 @@ use Fisdap\Data\Repository\Repository;
  * @package Fisdap\Data\Evals
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface EvalDefLegacyRepository extends Repository
-{
-}
+interface EvalDefLegacyRepository extends Repository {
+
+} 

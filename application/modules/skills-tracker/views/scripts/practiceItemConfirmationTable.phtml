@@ -1,0 +1,33 @@
+<h3 class="section-header"><?= $this->student->user->getName() ?>'s practice items</h3>
+<div class="grid_4">
+    <a id="checkbox-selector" href="#"><img src="/images/icons/arrow_down_with_checkbox.png"></a> <span class="green-buttons small"><a id="confirm-items" href="#" data-stateid="2">Confirm item</a></span>
+    <div id="checkbox-selector-menu" class="island" style="display: none;">
+        <ul class="clickable">
+            <li>All</li>
+            <li>None</li>
+            <li>Pass</li>
+            <li>Fail</li>
+        </ul>
+    </div>
+</div>
+<div class="grid_5 prefix_3">
+    View: <?= $this->confirmButtonset ?>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+    <? foreach ($this->items as $shift => $items) {
+        $dateSummary = $items[0]['start_datetime']->format('M j, Y | Hi') . " (" . $items[0]['hours'] . "hrs)";
+        $locationSummary = $items[0]['site_name'] . ": " . $items[0]['base_name'];
+
+        echo $this->partial('practiceItemConfirmationSummary.phtml',[
+                'items' => $items,
+                'shiftType' => $items[0]['shift_type'],
+                'dateSummary' => $dateSummary,
+                'locationSummary' => $locationSummary
+            ]);
+    } ?>
+
+    <div id="practice-item-null-message" class="notice" style="display: none;">For the selected evaluator, <span id="confirm-descriptor">all</span> of <?= $this->student->user->first_name ?>'s practice <?= count($this->shiftTypes) < 3 ? Util_String::addAndToList(implode(", ", $this->shiftTypes)) : "" ?> items have been confirmed.</div>
+</div>
+

@@ -1,0 +1,56 @@
+<div id="add-staff-member-wrapper">
+    <?= ($this->element->site_admin) ? "<a id='add-staff-member-btn' class='add-staff-member add-staff-member-".$this->element->site->type."' href='#'></a>" : ""; ?>
+</div>
+
+<div id="site-staff-buttons" class="extra-small">
+    <div class="grid_12">
+        <?= $this->element->search_staff_members ?>
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+<div id="site-staff-accordion-container">
+    <div class="all-action-links-site-staff hide-when-no-accordion">
+        <div class="grid_6"><a href="#" id="expand-all-staff-members">expand all</a> | <a href="#" id="collapse-all-staff-members">collapse all</a></div>
+        <div class="clear"></div>
+    </div>
+
+    <div id="site-staff-accordion" class="accordion">
+        <? foreach ($this->element->staff_members as $staff_member) {
+            $info = array();
+            $info["staff_member"] = $staff_member;
+            $info["country"] = $this->element->program->country;
+            $info["site_admin"] = $this->element->site_admin; ?>
+            <?= $this->partial("forms/site-sub-forms/site-staff-accordion-row.phtml", $info); ?>
+        <? } ?>
+    </div>
+
+    <div class="show-when-no-accordion no-staff">
+        No additional staff members have been entered for <?=  $this->element->site->name ?>.
+    </div>
+
+</div>
+
+<div id="delete-staff-member-modal">
+    <div class='hidden'>
+        <input id="delete_staff_member_id" type="hidden">
+    </div>
+
+    <div class="confirmation-msg">
+        Deleting this staff member will permanently remove them from the list.
+    </div>
+    <div class="clear"></div>
+
+    <div id="delete-staff-member-modal-buttons" class="small modal-buttons">
+
+        <div class="green-buttons">
+            <a href="#" id="delete-staff-member">Confirm</a>
+        </div>
+
+        <a href="#" id="cancel-delete-staff-member-modal">Cancel</a>
+
+    </div>
+</div>
+
+<div id="staff-member-modal"><?= $this->element->staff_member_modal; ?></div>

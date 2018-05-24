@@ -1,0 +1,28 @@
+<?= $this->pageTitleHelper() ?>
+
+<?php
+// Browser checking
+$device = Zend_Registry::get('device');
+$browser = $device->getBrowser();
+$version = $device->getBrowserVersion();
+
+if (!in_array($browser, array('Chrome', 'Firefox', 'Safari', 'Android Webkit', 'Safari Mobile')) && !($browser == 'Internet Explorer' && $version >= 9)) {
+    echo "<div class='alert' style='width:900px;'>Uh oh! You are using a web browser that we do not support. You can try using Fisdap 2.0, but you may find that things don't work or look quite right. To enjoy the optimal Fisdap experience, we recommend using one of the following browsers:";
+    echo "<br /><br />";
+    echo "<ul>";
+    echo "<li><a href='https://www.google.com/chrome' target='new'>Google Chrome</a></li>";
+    echo "<li><a href='http://www.mozilla.org/en-US/firefox/new/' target='new'>Mozilla Firefox</a></li>";
+    echo "<li><a href='http://windows.microsoft.com/en-us/internet-explorer/products/ie/home' target='new'>Microsoft Internet Explorer 9</a></li>";
+    echo "<li><a href='http://www.apple.com/safari/' target='new'>Apple Safari</a></li>";
+    echo "</ul>";
+    echo "</div>";
+}
+?>
+
+<div class="grid_8">
+    <?php echo $this->sectionHelper('my_fisdap-big', 650); ?>
+</div>
+<div class='grid_4'>
+    <?php echo $this->sectionHelper('my_fisdap-small', 250); ?>
+</div>
+<span class='clear'></span>

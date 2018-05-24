@@ -1,0 +1,23 @@
+<div class="container_12" id="form_div">
+	
+	<?= $this->element->target_base ?>
+	<?= $this->element->base_options ?>
+	<?= $this->element->site_id ?>
+	
+	<table class='fisdap-table bases-table clickable'>	
+	    <?php foreach ($this->element->options as $id => $option) { ?>
+		<tr id=<?= $id ?> class='base-row'><td><?= $option ?></td></tr>
+	    <?php } ?>
+	</table>
+        
+        <div class='buttons'>
+		<div id="cancelButtonWrapper" class="small gray-button">
+			<a href='#' id='cancel-merge-btn'>Cancel</a>
+		</div>
+		<div id="mergeButtonWrapper" class="small green-buttons">
+			<a href='#' id='do-merge-btn'>Merge</a>
+		</div>
+	</div>
+
+</div>
+

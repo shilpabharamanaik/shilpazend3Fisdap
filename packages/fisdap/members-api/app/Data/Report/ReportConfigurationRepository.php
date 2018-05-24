@@ -7,14 +7,14 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface ReportConfigurationRepository
  *
  * @package Fisdap\Data\Report
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface ReportConfigurationRepository extends Repository
-{
+interface ReportConfigurationRepository extends Repository {
 
     /**
      * @param \DateTime $start

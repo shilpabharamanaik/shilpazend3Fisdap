@@ -2,6 +2,7 @@
 
 use Swagger\Annotations as SWG;
 
+
 /**
  * A model for communication preferences data to be used when creating RoleData entities through a Job (Command) class
  *

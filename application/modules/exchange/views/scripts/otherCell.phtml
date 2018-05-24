@@ -1,0 +1,32 @@
+<?php $cellId = "OtherIntervention_" . $this->other->id; ?>
+
+<tr id="<?= $cellId ?>" class='draggable_skill'>
+<?php
+if ($this->other->soft_deleted) {
+    echo "<td colspan='4' class='undo'>Other Intervention #" . $this->other->id . " successfully deleted. <a id='undo-delete-$cellId' href='#' onclick='undoDeleteSkill(\"$cellId\"); return false;'>Undo!</a></td>";
+    $elementStyle = "style='display:none;'";
+}
+
+$skillName = "OtherIntervention";
+$skillId = $this->other->id;
+$isALSFlag = $this->other->is_als;
+$priority = $this->other->priority;
+
+$radioButtonName = $skillName . "_" . $skillId . "_als_bls";
+
+?>
+	<td <?= $elementStyle ?> class='procedure-grabby-column priority_<?= $priority; ?>'><img src="/images/icons/wide_grabby.png" class='grabby-icon' title='Click and drag to reorder' /></td>
+    <td <?= $elementStyle ?> class='procedure-icon-column'><img class='small-skill-icon' src='/images/icons/other_gray.png'></td>
+    <td <?= $elementStyle ?> class='procedure-description-column' onclick="loadOtherModal(<?= $this->other->id ?>);"><?= $this->other->getProcedureText(); ?></td>
+    <td <?= $elementStyle ?> class='procedure-tools-column'>
+        <?= $this->skillEvalHookHelper('other', $this->other) ?>
+        <span class="toggle-als-bls">
+        	<input type='radio' name="<?= $radioButtonName ?>" id="<?= $radioButtonName ?>_bls" skillId='<?= $skillName ?>_<?= $skillId ?>' onclick="toggleAlsBls(<?=$skillId?>, '<?= $skillName ?>', 'bls')" <?php echo ($isALSFlag)?"":"CHECKED='CHECKED'"; ?>"/>
+        	<label for='<?= $radioButtonName ?>_bls'>BLS</label>
+        	<input type='radio' name="<?= $radioButtonName ?>" id="<?= $radioButtonName ?>_als" skillId='<?= $skillName ?>_<?= $skillId ?>' onclick="toggleAlsBls(<?=$skillId?>, '<?= $skillName ?>', 'als')" <?php echo ($isALSFlag)?"CHECKED='CHECKED'":""; ?>/>
+        	<label for='<?= $radioButtonName ?>_als'>ALS</label>
+        </span>
+        <a href="#" class="duplicate-skill" onclick="duplicateSkill(<?= $this->other->id ?>, 'OtherIntervention'); return false;"><img class="small-icon" title="duplicate skill" src="/images/icons/duplicate.png"></a>
+        <a href="#" class="delete-skill" skillId="OtherIntervention_<?= $this->other->id ?>" title="delete skill"><img class="small-icon" src="/images/icons/delete.png"></a>
+	</td>
+</tr>

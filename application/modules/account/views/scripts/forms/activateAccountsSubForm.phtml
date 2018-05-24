@@ -1,0 +1,134 @@
+<h3 class="dark-gray">You have <?= $this->element->order_configuration->quantity ?> activation codes with:</h3>
+<div class="grid_6">
+    <p>
+        <?= $this->element->order_configuration->getProductSummary() ?>
+    </p>
+    <p>
+        Certification Level: <?= $this->element->order_configuration->certification_level->id ?  $this->element->order_configuration->certification_level->description : "Instructor" ?>
+        <?= $this->element->order_configuration->graduation_date ? "<br />Graduating: " . $this->element->order_configuration->graduation_date->format("m-d-Y") . "<br>" : "" ?>
+        <?= $this->element->order_configuration->group->id ? "Group: " . $this->element->order_configuration->group->name . "<br>" : "" ?>
+    </p>
+</div>
+
+<div class="clear"></div>
+
+<table class="fisdap-table activate-accounts-table">
+    <thead>
+        <tr>
+            <td style="width:30px;"></td>
+            
+            <? foreach($this->element->fieldPrefixes as $prefix => $field) {
+                echo "<td>" . $field . "</td>";
+            } ?>
+            
+<!--            <td style="width:138px;">
+                First Name
+            </td>
+            
+            <td style="width:138px;">
+                Last Name
+            </td>
+            
+            <td style="width:138px;">
+                Username
+            </td>
+            
+            <td style="width:138px;">
+                Password
+            </td>
+            
+            <td style="width:138px;">
+                Email
+            </td>
+            
+            <td class='grad-date'>
+                Graduating
+            </td>-->
+        </tr>
+        
+        <tbody>
+            <? foreach ($this->element->serials as $i => $sn) {
+                $addHiddenClass = "";
+                $numColumns = count($this->element->fieldPrefixes); ?>
+                <tr class="<?= $this->element->hasErrors($sn->id) ? "has-errors" : null ?>" style="height:41px;">
+                    <td>
+                        <?= $i + 1 ?>
+                    </td>
+                    
+                    <?
+                    // this code is already active, do not show inputs
+                    if ($sn->isActive()) { ?>
+                        <td colspan="<?= $numColumns ?>" class="active">
+                            Activated by <?= $sn->user->getName() . " on " . $sn->activation_date->format('m-d-Y'); ?>
+                        </td>
+                    <? }
+                    // this code has been distributed
+                    else if($sn->distribution_email){
+                        // are we going to override it?
+                        if(!$this->element->overrideDistributed){
+                            $addHiddenClass = "class='hiddenCell " . $sn->id . "'";?>
+                            <td colspan="<?= $numColumns ?>" class="active useAnywaysText" id="useAnywaysText<?= $sn->id;?>">
+                                Sent to <?= $sn->distribution_email . " on " . $sn->distribution_date->format('m-d-Y'); ?> <button class="useAnywaysTrigger">Use activation code for a different student.</button>
+                            </td>
+                        <?php
+                        } 
+                    }
+                    
+                    // $this->element->overrideDistributed
+                    if(!$sn->isActive()){
+                        foreach ($this->element->fieldPrefixes as $prefix => $field) {
+                            echo "<td $addHiddenClass>" . $this->element->{$prefix . $sn->id} . "</td>";
+                            
+                            if (++$j === $numColumns) {
+                                if(($sn->distribution_email && $this->element->overrideDistributed) || strlen($addHiddenClass) > 0) {
+                                    // we are going to override this, set some styling to indicate this
+                                    echo '<div class="distributed">
+                                        <img src="/images/icons/alert_circle.png">
+                                        <div class="distributedToolTip">This activation code was already emailed to:<br />' . $sn->distribution_email  . " on " . $sn->distribution_date->format('m-d-Y') . '</div>
+                                    </div>';
+                                }
+                            }
+                        }
+                        
+                        ?>
+                    
+<!--                        <td <?= $addHiddenClass; ?>>
+                            <?= $this->element->{"first_" . $sn->id} ?>
+                        </td>
+                        
+                        <td <?= $addHiddenClass; ?>>
+                            <?= $this->element->{"last_" . $sn->id} ?>
+                        </td>
+                        
+                        <td <?= $addHiddenClass; ?>>
+                            <?= $this->element->{"username_" . $sn->id} ?>
+                        </td>
+                        
+                        <td <?= $addHiddenClass; ?>>
+                            <?= $this->element->{"password_" . $sn->id} ?>
+                        </td>
+                        
+                        <td <?= $addHiddenClass; ?>>
+                            <?= $this->element->{"email_" . $sn->id} ?>
+                        </td>
+                        
+                        <td <?= $addHiddenClass; ?> style="position:relative;text-align:center;">
+                            <?= $this->element->{"grad_date_" . $sn->id} ?>
+                            <?php
+                            if(($sn->distribution_email && $this->element->overrideDistributed) || strlen($addHiddenClass) > 0){
+                                // we are going to override this, set some styling to indicate this?>
+                                <div class="distributed">
+                                    <img src="/images/icons/alert_circle.png">
+                                    <div class='distributedToolTip'>This activation code was already emailed to:<br /> <?= $sn->distribution_email  . " on " . $sn->distribution_date->format('m-d-Y');?></div>
+                                </div>
+                            <?php
+                            }
+                            ?>
+                        </td>-->
+                    <? } ?>
+                </tr>
+            <? } ?>
+        </tbody>
+    </thead>
+</table>
+<?= $this->element->orderConfigurationId ?>

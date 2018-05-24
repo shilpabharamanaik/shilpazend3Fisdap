@@ -1,0 +1,20 @@
+<?= $this->pageTitleHelper("", null, $this->breadcrumb) ?>
+<div class="grid_12 island">
+    <div id="transactionErrors">
+        <?= $this->transactionErrors ?>
+    </div>
+
+    <? if (!$this->paymentMethod) { ?>
+    <div class="order-summary-section">
+        <h3 class="section-header no-border">Order summary</h3>
+        <?= $this->summary ?>
+    </div>
+    <div class="clear"></div>
+    <? } ?>
+
+    <div>
+        <?= $this->form ?>
+    </div>
+
+    <?= ($this->paymentMethod) ? '<a href="#" id="confirmPayment"> Next (payment details) >></a>' : ''; ?>
+</div>

@@ -1,0 +1,48 @@
+<h2 class="page-title" id='shift-list-title'>Shifts</h2>
+
+<div id="shift-list-container" class="grid_12 island">
+	<? if ($this->roleName == "student"): ?>
+		<div class="grid_6">
+			<h4 class="header" id='shift-list-title'>
+				<a href="<?= $this->schedulerLink ?>">Schedule</a>
+			</h4>
+			<p>
+				Visit the calendar and sign up for shifts.
+			</p>
+
+		</div>		
+		<div class="grid_6">
+			<h4 class="header" id='shift-list-title'>
+				<a href="<?= $this->skillsPatientCareLink ?>">Skills & Patient Care</a>	
+			</h4>
+			<p>Document skills, patient encounters, and fill out skill sheets and evaluations.</p>
+		</div>
+	<? elseif ($this->roleName == "instructor"): ?>
+		<div class="grid_6">
+			<h4 class="header" id='shift-list-title'>
+				<a href="<?= $this->schedulerLink ?>">Schedule</a>
+			</h4>
+			<p>
+				Use the calendar to view and manage your students' lab and internship schedules.
+			</p>
+			<br />
+			<p>
+				<a href="<?= $this->schedulerLink ?>">Visit the Fisdap Scheduler.</a>
+			</p>
+		</div>
+		<div class="grid_6">
+			<h4 class="header" id='shift-list-title'>
+				<a href="<?= $this->skillsPatientCareLink ?>">Skills & Patient Care</a>
+			</h4>
+			<p>
+				Review the information that students have documented about the skills they've performed and the patients they've encountered or fill out skill sheets and scenario evaluations.
+			</p>
+			<br />
+			<p>
+				<a href="<?= $this->skillsPatientCareLink ?>">Visit Skills & Patient Care.</a>
+			</p>
+		</div>
+	<? endif; ?>
+</div>
+
+

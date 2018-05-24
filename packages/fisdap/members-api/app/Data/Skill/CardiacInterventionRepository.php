@@ -10,4 +10,5 @@ use Fisdap\Data\Repository\Repository;
  */
 interface CardiacInterventionRepository extends Repository
 {
+
 }

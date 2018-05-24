@@ -1,0 +1,36 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//fisdap//NONSGML v1.0//EN
+X-WR-CALNAME:<?= $this->calendarFeed->name . "\r\n" ?>
+CALSCALE:GREGORIAN
+<?= str_replace("\n", "\r\n", $this->vtimezone_definition) . "\r\n" ?>
+<? foreach ($this->events as $id => $event) {
+$eventTitle = ($event['event_name'] ? $event['event_name'] . ", " : "") . ucfirst($event['event_type']) . " shift at " . $event['site_name'] . ": " . $event['base_name'];
+$uid = ($event['quick_add_shift'] ? "1" : "2") . $id;
+$students = array();
+$eventSummaryPieces = array();
+if (count($event['instructors']) > 0){
+    $eventSummaryPieces[] = "Instructor" . (count($event['instructors']) > 1 ? "s" : "") . ": " . implode(", ", $event['instructors']);
+}
+if (count($event['preceptors']) > 0){
+    $eventSummaryPieces[] = "Preceptor" . (count($event['preceptors']) > 1 ? "s" : "") . ": " . implode(", ", $event['preceptors']);
+}
+if ($event['notes']) {
+    $eventSummaryPieces[] = "Notes: " . $event['notes'];
+}
+$eventUrl = Util_HandyServerUtils::getCurrentServerRoot() . ($event['quick_add_shift'] ? "skills-tracker/shifts/my-shift/shiftId/" : "scheduler/shift/details/event/") . $id;
+$eventSummaryPieces[] = "View in Fisdap: " . $eventUrl;
+?>
+BEGIN:VEVENT
+DTEND;TZID=<?= $this->tzid ?>:<?= $event['end_datetime']->format('Ymd\THis') . "\r\n" ?>
+UID:<?= $uid . "\r\n"  ?>
+DTSTAMP:<?= date('Ymd\THis\Z') . "\r\n"  ?>
+LOCATION:<?= preg_replace('/([\,;])/','\\\$1', $this->baseAddresses[$event['base_id']]) . "\r\n"  ?>
+DESCRIPTION:<?= preg_replace('/([\,;])/','\\\$1', implode("\\n", $eventSummaryPieces)) . "\r\n"  ?>
+URL;VALUE=URI:<?= preg_replace('/([\,;])/','\\\$1', $eventUrl) . "\r\n"  ?>
+SUMMARY:<?= preg_replace('/([\,;])/','\\\$1', $eventTitle) . "\r\n"  ?>
+DTSTART;TZID=<?= $this->tzid ?>:<?= $event['start_datetime']->format('Ymd\THis') . "\r\n"  ?>
+END:VEVENT
+<?
+} ?>
+END:VCALENDAR

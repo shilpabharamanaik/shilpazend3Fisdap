@@ -1,0 +1,63 @@
+<?php
+function grid($i, $class='') {
+    if ($class) {
+        $class = ' ' . $class;
+    }
+    return '<div class="grid_' . $i . $class . '">';
+}
+//report-header
+echo $this->element->defaultGoalSetId;
+
+echo grid(12).'<h2 id="category-subtitle-title" class="report-category-subtitle page-title">Title</h2></div>';
+echo grid(8) . $this->element->name . '</div>';
+echo grid(4) . $this->element->account_type . $this->element->defaultGoalSet . '</div>';
+
+echo grid(12) . "<br /><h2 id='category-subtitle-age-ranges' class='report-category-subtitle page-title'>Age Ranges</h2></div>";
+echo grid(12, 'category-sub-heading'). 'The following age categories are defined as:</div>';
+echo grid(4, 'goal-element') . "Newborn starts at: 0</div>";
+echo grid(4, 'goal-element') . $this->element->preschooler_start_age . "</div>";
+echo grid(4, 'goal-element') . $this->element->adult_start_age . "</div>";
+echo grid(4, 'goal-element') . $this->element->infant_start_age . "</div>";
+echo grid(4, 'goal-element') . $this->element->school_age_start_age . "</div>";
+echo grid(4, 'goal-element') . $this->element->geriatric_start_age . "</div>";
+echo grid(4, 'goal-element') . $this->element->toddler_start_age . "</div>";
+echo grid(4, 'goal-element') . $this->element->adolescent_start_age . "</div>";
+
+foreach ($this->element->goals as $category => $categoryGoals) {
+    $categoryOut = $category;
+
+    if(trim($category) == "Skills"){
+        $categoryOut = "Skills / Interventions";
+    }
+    echo grid(12).'<br/><h2 id="category-subtitle-' . $category . '" class="report-category-subtitle page-title">' . $categoryOut . '</h2></div>'; /*dark-gray*/
+
+    if (!empty($this->element->interviewExamLead[$category])) {
+        echo grid(12, 'category-sub-heading').'A student will get credit for the following '.strtolower($category).' if she has performed the:</div>';
+
+        echo grid(12);
+        foreach ($this->element->interviewExamLead[$category] as $element) {
+            echo grid(3) . $element->render() . '</div>';
+        }
+        echo '</div>';
+    }
+
+    $heading = $this->element->headings[$category]['Goals'];
+    if ($heading) {
+        if ($heading == 'patients') {
+            $heading = 'How many patients should each student assess?';
+        }
+        echo grid(12, 'category-sub-heading2').$heading.'</div>';
+    }
+
+    foreach ($categoryGoals as $i => $goal) {
+        echo grid(4, 'goal-element') . $goal->render() . '</div>';
+    }
+}
+
+echo $this->element->id->render();
+echo $this->element->referring_url->render();
+echo $this->element->program_id->render();
+
+
+echo $this->element->Submit;
+echo $this->element->Cancel;

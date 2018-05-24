@@ -3,6 +3,7 @@
 use Fisdap\Entity\Permission;
 use Fisdap\ErrorHandling\Exceptions\NoPermissions;
 
+
 /**
  * Contract for retrieving and determining user permissions
  *

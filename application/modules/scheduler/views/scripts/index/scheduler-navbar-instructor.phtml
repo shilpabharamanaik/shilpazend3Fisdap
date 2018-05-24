@@ -1,0 +1,35 @@
+<div id="navbar-links" class='grid_12'>
+	<a href='#' id="pdf-link"><img src="/images/icons/pdf_icon.png" id="pdf-icon">Export PDF/Email</a>
+
+	<div id='menus'>
+		<div class='menu-container'>
+			<a href='#' id="options-link" class="menu-link">Scheduler Options</a>
+			<div id='options-menu' class='island'>
+<? 				if($this->permissions['settings']) { ?>
+					<a href='/scheduler/settings/' class='small-link' id="settings-link">Scheduler settings</a>
+<? 				}
+				if($this->permissions['lab'] || $this->permissions['clinical'] || $this->permissions['field'] || $this->isStudent) { ?>
+					<a href='/scheduler/requests' class='small-link' id="requests-link">Manage shift requests</a>
+<? 				}	?>
+					<a href='/scheduler/emails' class='small-link' id="emails-link">Manage recurring emails</a>
+			</div>
+		</div>
+		
+		<div class='menu-container'>	
+			<a href='#' id="compliance-link" class="menu-link">Compliance</a>
+			<div id='compliance-menu' class='island'>
+<? 				if($this->permissions['settings'] && $this->permissions['edit_compliance']) { ?>
+					<a href='/scheduler/compliance/settings/' class='small-link' id="compliance-settings-link">Compliance settings</a>
+<? 				}
+				if ($this->permissions['edit_compliance']) { ?>
+					<a href='/scheduler/compliance/edit-status' class='small-link' id="edit-compliance-link">Edit compliance status</a>
+<? 				}	?>
+				<a href='/portfolio' class='small-link' id="portfolio-link">Student portfolios</a>
+<?				if($this->permissions['settings'] && $this->permissions['edit_compliance']) { ?>
+					<a href='/scheduler/compliance/manage' class='small-link' id="compliance-manage-link">Manage requirements</a>
+<? 				}	?>
+			</div>
+		</div>
+	</div>
+	<div class='clear'></div>
+</div>

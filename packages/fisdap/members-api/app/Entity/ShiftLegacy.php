@@ -21,6 +21,7 @@ use Fisdap\Attachments\Associations\Entities\EntityAttachmentsSupport;
 use Fisdap\Attachments\Associations\Entities\HasAttachments;
 use Fisdap\EntityUtils;
 
+
 /**
  * Entity class for Legacy Shifts.
  *
@@ -443,13 +444,11 @@ class ShiftLegacy extends Timestampable implements HasAttachments
     /**
      * @param StudentLegacy $student
      */
-    public function setStudent($student)
-    {
+    public function setStudent($student) {
         $this->student = $student;
     }
 
-    public function getStudent()
-    {
+    public function getStudent() {
         return $this->student;
     }
 
@@ -584,7 +583,7 @@ class ShiftLegacy extends Timestampable implements HasAttachments
                 $program = ProgramLegacy::getCurrentProgram();
 
                 // don't send the emails for lab shifts
-                if ($program->send_critical_thinking_emails && $this->type != 'lab') {
+                if($program->send_critical_thinking_emails && $this->type != 'lab'){
                     $this->sendCriticalThinkingEmail();
                 }
 
@@ -921,8 +920,7 @@ class ShiftLegacy extends Timestampable implements HasAttachments
      *
      * @return Array containing the associated shifts.
      */
-    public function getAssociatedSkills($studentID)
-    {
+    public function getAssociatedSkills($studentID){
         // These need to be returned in the correct order...
         // Start with the Airways...
         $mainList = array('active' => array(), 'inactive' => array());
@@ -958,9 +956,8 @@ class ShiftLegacy extends Timestampable implements HasAttachments
      * @return int 0 if the elements are equal, -1 if A comes before B, and 1 if B
      * comes before A.
      */
-    public static function sortSkillList($a, $b)
-    {
-        if ($a->skill_order == $b->skill_order) {
+    public static function sortSkillList($a, $b){
+        if($a->skill_order == $b->skill_order){
             return 0;
         }
 
@@ -1001,22 +998,22 @@ class ShiftLegacy extends Timestampable implements HasAttachments
 
         $programId = User::getLoggedInUser()->getProgramId();
 
-        if ($entityName == 'CardiacIntervention') {
+        if($entityName == 'CardiacIntervention'){
             $procedureSkillEntityName = '\Fisdap\Entity\ProgramCardiacProcedure';
-        } elseif ($entityName == 'OtherIntervention') {
+        }elseif($entityName == 'OtherIntervention'){
             $procedureSkillEntityName = '\Fisdap\Entity\ProgramOtherProcedure';
-        } elseif ($entityName == 'LabSkill') {
+        }elseif($entityName == 'LabSkill'){
             $procedureSkillEntityName = '\Fisdap\Entity\ProgramLabAssessment';
-        } else {
+        }else{
             $procedureSkillEntityName = '\Fisdap\Entity\Program' . $entityName . "Procedure";
         }
 
-        foreach ($result as $merge) {
+        foreach($result as $merge){
             // If the skill is no longer included in the program, add it to a
             // different list so it can still be tracked.
-            if ($procedureSkillEntityName::programIncludesProcedure($programId, $merge->procedure->id)) {
+            if($procedureSkillEntityName::programIncludesProcedure($programId, $merge->procedure->id)){
                 $mainList['active'][] = $merge;
-            } else {
+            }else{
                 $mainList['inactive'][] = $merge;
             }
         }
@@ -1091,9 +1088,7 @@ class ShiftLegacy extends Timestampable implements HasAttachments
      */
     public function getVerificationArray()
     {
-        if ($this->verification == null) {
-            return [];
-        }
+        if ($this->verification == null) return [];
         return $this->verification->toArray();
     }
 
@@ -1266,7 +1261,7 @@ class ShiftLegacy extends Timestampable implements HasAttachments
                 . $this->start_datetime->format("Y-m-d") . " "
                 . $this->site->name;
 
-            foreach ($emailAddresses as $address) {
+            foreach($emailAddresses as $address){
                 $mail = new \Fisdap_TemplateMailer();
 
                 $mail->addTo($address)
@@ -1308,7 +1303,7 @@ class ShiftLegacy extends Timestampable implements HasAttachments
             $emailAddresses = $this->student->getInstructorEmails();
             $emailAddresses[] = $this->student->email;
 
-            foreach ($emailAddresses as $address) {
+            foreach($emailAddresses as $address){
                 $mail = new \Fisdap_TemplateMailer();
                 $mail->addTo($address)
                     ->setReplyTo($this->student->email)
@@ -1360,6 +1355,7 @@ class ShiftLegacy extends Timestampable implements HasAttachments
         if ($user->getCurrentRoleName() == "instructor") {
             //Make sure the instructor has permission this particular type of Skills Tracker data
             $allowed = $allowed && $user->getCurrentRoleData()->hasPermission("Edit " . ucfirst($this->type) . " Data");
+
         } else {
             //Shift must be unlocked
             $allowed = $allowed && !$this->locked;
@@ -1395,7 +1391,8 @@ class ShiftLegacy extends Timestampable implements HasAttachments
             // Permissions have shifts as 'Field', 'Lab', 'Clinic'
             $permissionShiftType = ($this->type == 'clinical') ? 'Clinic' : ucwords($this->type);
             $allowed = $allowed && $user->getCurrentRoleData()->hasPermission('Edit ' . $permissionShiftType . ' Schedules');
-        } elseif ($roleName == 'student') {
+
+        } else if ($roleName == 'student') {
             //Shift must be unlocked
             $allowed = $allowed && !$this->locked;
         } else {
@@ -1438,8 +1435,7 @@ class ShiftLegacy extends Timestampable implements HasAttachments
     /**
      * @param $type string
      */
-    public function setType($type)
-    {
+    public function setType($type) {
         $this->type = $type;
     }
 
@@ -1581,7 +1577,7 @@ class ShiftLegacy extends Timestampable implements HasAttachments
 
         $rawResults = \Zend_Registry::get('db')->query($query)->fetchAll();
         $patients = array();
-        foreach ($rawResults as $key => $patient) {
+        foreach($rawResults as $key => $patient) {
             $patients[$patient['shift_id']][$patient['id']] = $patient;
             unset($rawResults[$key]);
         }
@@ -1597,9 +1593,9 @@ class ShiftLegacy extends Timestampable implements HasAttachments
     {
         if ($this->type == 'field') {
             return array('113');
-        } elseif ($this->type == 'clinical') {
+        } else if ($this->type == 'clinical') {
             return array('114');
-        } elseif ($this->type == 'lab') {
+        } else if ($this->type == 'lab') {
             return array('115');
         }
 
@@ -1682,7 +1678,7 @@ class ShiftLegacy extends Timestampable implements HasAttachments
     public function getDurationText()
     {
         $title = $this->hours . "hr";
-        if ($this->hours > 1) {
+        if($this->hours > 1){
             $title .= "s";
         }
         return $title;
@@ -1697,7 +1693,7 @@ class ShiftLegacy extends Timestampable implements HasAttachments
     {
         $entity = false;
 
-        if ($this->event_id) {
+        if($this->event_id){
             $entity = EntityUtils::getEntity("EventLegacy", $this->event_id);
         }
 
@@ -1716,21 +1712,22 @@ class ShiftLegacy extends Timestampable implements HasAttachments
 
         // it came from an event
         $event = $this->getParentEvent();
-        if ($event) {
+        if($event){
             $instructor_slot = $event->getSlotByType('instructor');
 
-            if ($instructor_slot) {
-                if ($instructor_slot->assignments) {
-                    foreach ($instructor_slot->assignments as $assignment) {
+            if($instructor_slot){
+                if($instructor_slot->assignments){
+                    foreach($instructor_slot->assignments as $assignment){
                         $user = $assignment->user_context->user;
                         $instructors[] = $user->first_name . " " . $user->last_name;
                     }
                 }
             }
+
         }
 
         $instructor_count = count($instructors);
-        if ($instructor_count > 0) {
+        if($instructor_count > 0){
             $return_text .= "Instructor";
             $return_text .= ($instructor_count != 1) ? "s" : "";
             $return_text .= ": ";
@@ -1752,16 +1749,16 @@ class ShiftLegacy extends Timestampable implements HasAttachments
 
         // it came from an event
         $event = $this->getParentEvent();
-        if ($event) {
-            if ($event->preceptor_associations) {
-                foreach ($event->preceptor_associations as $preceptor_assoc) {
+        if($event){
+            if($event->preceptor_associations){
+                foreach($event->preceptor_associations as $preceptor_assoc){
                     $preceptors[] = $preceptor_assoc->preceptor->first_name . " " . $preceptor_assoc->preceptor->last_name;
                 }
             }
         }
 
         $preceptor_count = count($preceptors);
-        if ($preceptor_count > 0) {
+        if($preceptor_count > 0){
             $return_text .= "Preceptor";
             $return_text .= ($preceptor_count != 1) ? "s" : "";
             $return_text .= ": ";
@@ -1780,7 +1777,7 @@ class ShiftLegacy extends Timestampable implements HasAttachments
         $preceptors = array();
         if (count($this->preceptor_associations) > 0) {
             $title = (count($this->preceptor_associations) == 1) ? "Preceptor: " : "Preceptors: ";
-            foreach ($this->preceptor_associations as $pa) {
+            foreach($this->preceptor_associations as $pa){
                 $preceptors[] = $pa->preceptor->first_name . " " . $pa->preceptor->last_name;
             }
         }
@@ -1831,43 +1828,37 @@ class ShiftLegacy extends Timestampable implements HasAttachments
     }
 
 
-    private function getMeds()
-    {
+    private function getMeds() {
         $criteria = Criteria::create();
         $criteria->where(Criteria::expr()->isNull('patient'));
         return $this->meds->matching($criteria);
     }
 
-    private function getCardiacInterventions()
-    {
+    private function getCardiacInterventions() {
         $criteria = Criteria::create();
         $criteria->where(Criteria::expr()->isNull('patient'));
         return $this->cardiac_interventions->matching($criteria);
     }
 
-    private function getOtherInterventions()
-    {
+    private function getOtherInterventions() {
         $criteria = Criteria::create();
         $criteria->where(Criteria::expr()->isNull('patient'));
         return $this->other_interventions->matching($criteria);
     }
 
-    private function getAirways()
-    {
+    private function getAirways() {
         $criteria = Criteria::create();
         $criteria->where(Criteria::expr()->isNull('patient'));
         return $this->airways->matching($criteria);
     }
 
-    private function getIvs()
-    {
+    private function getIvs() {
         $criteria = Criteria::create();
         $criteria->where(Criteria::expr()->isNull('patient'));
         return $this->ivs->matching($criteria);
     }
 
-    private function getVitals()
-    {
+    private function getVitals() {
         $criteria = Criteria::create();
         $criteria->where(Criteria::expr()->isNull('patient'));
         return $this->vitals->matching($criteria);

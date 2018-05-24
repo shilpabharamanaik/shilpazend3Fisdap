@@ -1,0 +1,82 @@
+
+<?= $this->pageTitleHelper() ?>
+<?= $this->messageHelper() ?>
+
+<div id="display-report-nav-bar">
+    <?= $this->reportsNavBar("goals"); ?>
+</div>
+<link type="text/css" rel="stylesheet" media="screen" href="/css/my-fisdap/widget-styles/goals-widget.css">
+<div class="clear"></div>
+
+<div id="report-form" class="report-form<?php if ($this->reportContent) { ?> hidden<?php } else { ?> shown<?php } ?> island grid_12">
+	<div id="report-form-errors" class="error"></div>
+	<form id="report-form-form" method="post" action="/reports/index/run">
+		<div class="goals-widget-report">
+			<div class='grid_12'>
+				<div class='grid_12 report-form-section'>
+					<?php if($this->user->isInstructor() === TRUE) { ?>
+					<h3 class='section-header'>Select one student</h3>
+					<?php } ?>
+					<?php
+	    				echo($this->multistudentPicklist(
+                            $this->user,
+							array("student" => $this->globalStudent),
+	    					array(
+				                'mode' => 'single',
+				                'loadJSCSS' => TRUE,
+				                'loadStudents' => TRUE,
+				                'showTotal' => TRUE,
+								'studentVersion' => TRUE,
+                                'useSessionFilters' => TRUE,
+                                'sessionNamespace' => "ReportStudentFilter"
+							)
+	    				));
+					?>
+				</div>
+			</div>
+		</div>
+		<div class="about-student grid_7">
+			<?php
+				echo $this->aboutStudent(array(
+					'helpers' => array(
+						'profile-pic' => array(
+                            'options' => array(
+                                'size' => '150'
+                            )
+                        ),
+						'info',
+						'badges'
+					)
+				));
+			?>
+		</div>
+        <div class="clear"></div>
+        <br>
+		<div class="goals-widget" style="display:none;">
+			<?php
+				echo $this->sectionHelper(
+					'goals-widget', 
+					450, 
+					array(
+						'allowMinimize'=>false,
+						'minimizeMode'=>'expanded'
+					)
+				);
+			?>
+
+		</div>
+
+	    <?php // print form components
+	    /*
+	    foreach($this->form as $component) {
+	        if ($component['header']) {
+	            print $component['header'];
+	        }
+	        print $component['component'];
+	        if ($component['footer']) {
+	            print $component['footer'];
+	        }
+	    } */
+	    ?>
+	</form>
+</div>

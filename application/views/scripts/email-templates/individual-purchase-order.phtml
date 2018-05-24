@@ -1,0 +1,41 @@
+<?
+if ($this->salesEmail) {
+	echo $this->order->getStaffOrderDetails();
+}
+?>
+Hello <?= $this->order->name ?>,<br />
+<p>
+	Thank you for your <?= $this->order->upgrade_purchase ? "upgrade to include" : "order of" ?>:
+	<ul>
+		<?php
+		foreach($this->order->order_configurations->first()->getProductArray() as $product){
+			echo "<li>" . $product['name'] . "</li>";
+		}
+		?>
+	</ul>
+</p>
+
+<p style="margin-top:2em">
+		<p>
+			This email will serve as your receipt. Here are the transaction details:<br />
+			<p style="margin-left:1em">
+				Fisdap Order Number: <?= $this->order->id ?><br />
+				Ordered by: <?= $this->order->name ?><br />
+				<? if ($this->order->paypal_transaction_id) {
+					echo "Reference Number: " . $this->order->paypal_transaction_id . "<br />";
+				} ?>
+				Amount: $<?= $this->order->getTotalCost() ?>
+			</p>
+		</p>
+</p>
+
+<? if (!$this->order->upgrade_purchase) { ?>
+	<p style="margin-top:2em">
+		If you haven't done so already, please use this link to activate your account:<br>
+		<?= $this->urlRoot . "account/new/index/code/" . $this->order->order_configurations->first()->serial_numbers->first()->number; ?>
+	</p>
+	
+	<p style="margin-top:2em">
+		For your records, your activation code is: <?= $this->order->order_configurations->first()->serial_numbers->first()->number; ?>
+	</p>
+<? } ?>

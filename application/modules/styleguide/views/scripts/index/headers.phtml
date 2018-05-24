@@ -1,0 +1,8 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_12 island">
+    <?php
+        foreach ($this->styleguide->getSectionChildren($this->section) as $subsection) {
+            echo $this->partial("section.phtml", array("section" => $subsection));
+        }
+    ?>
+</div>

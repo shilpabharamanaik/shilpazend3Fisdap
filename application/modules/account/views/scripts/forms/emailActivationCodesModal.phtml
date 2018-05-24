@@ -1,0 +1,24 @@
+<div id="emailErrors" class="error">Please enter a valid email address for each activation code below.</div>
+<div id="warningErrors" class="warning">Please note: you have chosen to email activation codes that have already been distributed. These have been highlighted in yellow.</div>
+
+<div id="accountColumnHeader">
+	<h3 class="section-header">Account Details</h3>
+</div>
+<div id="emailColumnHeader">
+	<h3 class="section-header">Email Address</h3>
+</div>
+<div class='clear'></div>
+
+<div id="emailInputElements"></div>
+<?= $this->element->message;?>
+
+<div style="clear:both;"></div>
+
+<div id="sendButtonWrapper" class="small green-buttons">
+    <div id="sendButtonThrobber"><img src="/images/throbber_small.gif"></p></div>
+    <button id="sendButton">Send Email</button>
+</div>
+
+<div class="small gray-button">
+    <button id="emailCloseButton">Cancel</button>
+</div>

@@ -1,0 +1,26 @@
+<table class="rating-table withTopMargin">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Student</th>
+        <th>Preceptor</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach ($this->element->types as $typeId => $typeName) {
+        echo "<tr><td class='first'>$typeName</td>";
+        foreach ($this->element->raterTypes as $raterId => $raterName) {
+            $elementName = $raterName . "_" . $typeId . "_" . $this->element->signoff->id;
+            if ($raterName == "Preceptor") {
+                echo "<td class='last'>";
+            } else {
+                echo "<td>";
+            }
+            echo $this->element->$elementName . "</td>";
+        }
+        echo "</tr>";
+    }
+    ?>
+    </tbody>
+</table>

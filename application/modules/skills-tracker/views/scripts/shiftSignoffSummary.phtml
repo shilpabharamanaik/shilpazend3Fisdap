@@ -1,0 +1,20 @@
+<a name='shift-signoff'></a>
+<h3 class='<?php echo $this->shift->type ?>-header'>Preceptor Feedback</h3>
+
+<div class="section-content">
+    <h4 class="header">Shift Summary</h4>
+    <div class="section-body">
+        <?= nl2br($this->signoff->summary) ?>
+    </div>
+
+    <h4 class="withTopMargin header">Plan of Action</h4>
+    <div class="section-body">
+        <?= nl2br($this->signoff->plan) ?>
+    </div>
+</div>
+
+<div class="clear"></div>
+
+<div class='no-pdf back-to-top'>
+    <a href='#top'>back to top</a>
+</div>

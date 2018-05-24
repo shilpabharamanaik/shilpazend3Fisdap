@@ -7,12 +7,13 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface SiteAccreditationInfoRepository
  *
  * @package Fisdap\Data\Site
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface SiteAccreditationInfoRepository extends Repository
-{
+interface SiteAccreditationInfoRepository extends Repository {
+
 }

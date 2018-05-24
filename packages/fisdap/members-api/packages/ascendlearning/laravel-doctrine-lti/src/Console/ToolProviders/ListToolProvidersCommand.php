@@ -53,6 +53,7 @@ final class ListToolProvidersCommand extends Command
         $toolProviders = $toolProviderRepository->match(Spec::andX(), Spec::asArray());
 
         $toolProvidersWithCustomParams = array_map(function ($toolProvider) {
+
             $customParameters = array_map(function ($customParameter) {
                 return key($customParameter) . '=' . current($customParameter);
             }, $toolProvider['customParameters']);
@@ -60,6 +61,7 @@ final class ListToolProvidersCommand extends Command
             $toolProvider['customParameters'] = implode(PHP_EOL, $customParameters);
 
             return $toolProvider;
+
         }, $toolProviders);
 
         $this->table($headers, $toolProvidersWithCustomParams);

@@ -1,0 +1,34 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_12 island">
+    
+    <?php if($this->errorMessage){ ?>
+    <div class="error">
+        <?= $this->errorMessage; ?>
+    </div>
+    <?php } ?>
+    
+    
+    <p>
+        Please choose the student(s) from the list below.
+    </p>
+    
+    <?php if ($this->isStaff) { ?>
+        <p><strong>Legend:</strong>
+            <ul>
+                <li><span class="hasProduct"><input name="example" id="example" value="0" checked="checked" type="checkbox"> Adds a product</li>
+                <li><img class="mini-checkmark" src="/images/check.png"> Student already has this product</span></li>
+                <li><span class="downgradeProduct"><input name="example2" id="example2" value="0" type="checkbox"> Removes (downgrades) a product</span></li>
+                <li><span class="reduceAttemptProduct"><input name="example3" id="example3" value="0" type="checkbox"> Reduces number of attempts on a (testing )product</span></li>
+            </ul>
+        </p>
+    <?php } ?>
+    
+    <?= $this->form ?>
+    <div class="grid_4">
+        <a href="/account/orders/upgrade">&lt;&lt; Previous (Choose products)</a>
+    </div>
+    
+    <div class="prefix_4 grid_4">
+        <a id="next-link" href="#">Next (Order Summary) &gt;&gt;</a>
+    </div>
+</div>

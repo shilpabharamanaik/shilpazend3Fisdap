@@ -1,0 +1,11 @@
+<div class="compliance-row">
+	<div class="grid_2"><?= $this->formCheckbox("completed_" . $this->attachment['id'] . "_new", 1) ?></div>
+	<div class="grid_3"><?= $this->attachment['req_name'] ?></div>
+	<div class="grid_4">
+		<?= $this->formSelect("expirationDate_" . $this->attachment['id'] . "_new") ?>
+		<?= $this->formSelect("dueDate_" . $this->attachment['id'] . "_new") ?>
+	</div>
+	<div class="grid_3">
+	</div>
+	<div class="clear"></div>
+</div>

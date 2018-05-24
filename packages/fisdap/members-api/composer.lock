@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "55bd01ff9778df892c109c40fa057359",
+    "content-hash": "651d35e8e7997f5105d490506d41b041",
     "packages": [
         {
             "name": "ascendlearning/laravel-doctrine-lti",
@@ -2565,16 +2565,16 @@
         },
         {
             "name": "flow/jsonpath",
-            "version": "0.4.0",
+            "version": "0.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FlowCommunications/JSONPath.git",
-                "reference": "f0222818d5c938e4ab668ab2e2c079bd51a27112"
+                "reference": "00aa9c361e4d0a210dd95f3c917a1e0dde3a957f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FlowCommunications/JSONPath/zipball/f0222818d5c938e4ab668ab2e2c079bd51a27112",
-                "reference": "f0222818d5c938e4ab668ab2e2c079bd51a27112",
+                "url": "https://api.github.com/repos/FlowCommunications/JSONPath/zipball/00aa9c361e4d0a210dd95f3c917a1e0dde3a957f",
+                "reference": "00aa9c361e4d0a210dd95f3c917a1e0dde3a957f",
                 "shasum": ""
             },
             "require": {
@@ -2602,7 +2602,7 @@
                 }
             ],
             "description": "JSONPath implementation for parsing, searching and flattening arrays",
-            "time": "2018-03-04T16:39:47+00:00"
+            "time": "2016-09-06T17:43:18+00:00"
         },
         {
             "name": "franzl/lti",

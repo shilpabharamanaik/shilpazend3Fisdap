@@ -1,0 +1,31 @@
+Hello, <?= $this->request->owner->user->first_name ?>!
+<div>
+<?php 	switch ($this->request->request_type->name) {
+		case "drop":	?>
+			<p>You requested to drop the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+		case "cover": ?>
+			<p>You requested coverage from <?= $this->request->recipient->user->getName() ?> for the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+		case "swap": ?>
+			<p>You requested to swap the following <?= $this->request->event->type ?> shift with <?= $this->request->recipient->user->getName() ?>:</p>
+<?php			break;
+	} 	?>
+	
+	<div>
+		<?= $this->request->event->getDetailViewDate() ?><br>
+		<?= $this->request->event->getLocation() ?>
+	</div>
+	
+<?php 	if ($this->request->request_type->name == "swap") {
+		        $swap = $this->request->getCurrentSwap();	?>
+			<p>in return for <?= $this->request->recipient->user->first_name ?>'s <?= $swap->offer->slot->event->type ?> shift:</p>
+			<div>
+				<?= $swap->offer->slot->event->getDetailViewDate() ?><br>
+				<?= $swap->offer->slot->event->getLocation() ?>
+			</div>
+<?php
+	}	?>	
+	<p>However, the <?= $this->request->request_type->name ?> request has been denied. You are still responsible for this shift.
+	
+</div>

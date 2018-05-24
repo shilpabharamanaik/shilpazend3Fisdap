@@ -13,6 +13,6 @@ use Fisdap\Data\Repository\Repository;
  * @package Fisdap\Data\Instructor
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface InstructorLegacyRepository extends Repository
-{
-}
+interface InstructorLegacyRepository extends Repository {
+
+} 

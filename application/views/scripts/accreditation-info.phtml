@@ -1,0 +1,71 @@
+<div class="accred_info_row">
+	<div class="grid_7"><span class='label'>CAO:</span> <?= $this->accred_info->cao; ?></div>
+	<div class="grid_4"><span class='label'>Phone:</span> <?= $this->accred_info->phone; ?></div>
+</div>
+
+<div class="accred_info_row grid_12">
+	<span class='label'>Distance from location of program:</span> <?= $this->accred_info ? $this->accred_info->getDistanceDescription() : "" ?>
+</div>
+
+<div class="accred_info_row grid_12">
+	<span class='label'>Is there a current signed agreement with this affiliate?</span> <?= $this->accred_info ? $this->accred_info->getYesNo('signed_agreement') : "" ?>
+</div>
+
+<div class='clear'></div>
+<div class="dotted-line"><hr></div>
+
+<div class="accred_info_row grid_12">
+	<span class='label'>Who supervises the students?</span> <?= $this->accred_info ? $this->accred_info->getSupervisionDescription() : "" ?>
+</div>
+<div class="accred_info_row grid_12">
+	<span class='label'>Are there written policies as to what students may do in each area?</span> <?= $this->accred_info ? $this->accred_info->getYesNo('written_policies') : "" ?>
+</div>
+<div class="accred_info_row">
+	<div class="grid_7">
+		<span class='label'>Are the preceptors formally trained?</span> <?= $this->accred_info ? $this->accred_info->getYesNo('formally_trained_preceptors') : "" ?>
+	</div>
+<? if ($this->accred_info->formally_trained_preceptors) { ?>
+	<div class="grid_5">
+		<span class='label'>For how many hours?</span> <?= $this->accred_info->preceptor_training_hours; ?>
+	</div>
+<? } ?>
+</div>
+
+<? if($this->site->type != "clinical") { ?>
+<div class="accred_info_row grid_12">
+	<span class='label'>Is there online medical direction for this affiliate?</span> <?= $this->accred_info ? $this->accred_info->getYesNo('online_medical_direction') : "" ?>
+</div>
+<div class="accred_info_row grid_12">
+	<span class='label'>Does this affiliate provide Advanced Life Support?</span> <?= $this->accred_info ? $this->accred_info->getYesNo('advanced_life_support') : "" ?>
+</div>
+<div class="accred_info_row grid_12">
+	<span class='label'>Is there a quality improvement program that reviews runs?</span> <?= $this->accred_info ? $this->accred_info->getYesNo('quality_improvement_program') : "" ?>
+</div>
+
+<div class='clear'></div>
+<div class="dotted-line"><hr></div>
+
+<div class="accred_info_row grid_12">
+    <span class='label'>Number of runs per year:</span> <?= $this->accred_info ? $this->accred_info->number_of_runs: "" ?>
+</div>
+<div class="accred_info_row grid_12">
+	<span class='label'>Number of active EMS units (excluding backups):</span> <?= $this->accred_info ? $this->accred_info->active_ems_units : "" ?>
+</div>
+<div class="accred_info_row grid_12">
+        <span class='label'>Number of trauma calls per year</span> <?= $this->accred_info ? $this->accred_info->number_of_trauma_calls : "" ?>
+</div>
+<div class="accred_info_row grid_12">
+    <span class='label'>Number of critical trauma calls per year:</span> <?= $this->accred_info ? $this->accred_info->number_of_critical_trauma_calls : "" ?>
+</div>
+<div class="accred_info_row grid_12">
+    <span class='label'>Number of pediatric calls per year:</span> <?= $this->accred_info ? $this->accred_info->number_of_pediatric_calls : "" ?>
+</div>
+<div class="accred_info_row grid_12">
+    <span class='label'>Number of cardiac arrest calls per year:</span> <?= $this->accred_info ? $this->accred_info->number_of_cardiac_arrest_calls : "" ?>
+</div>
+<div class="accred_info_row grid_12">
+    <span class='label'>Number of cardiac calls (less cardiac arrest) per year:</span> <?= $this->accred_info ? $this->accred_info->number_of_cardiac_calls : "" ?>
+</div>
+<? } ?>
+
+<div class='clear'></div>

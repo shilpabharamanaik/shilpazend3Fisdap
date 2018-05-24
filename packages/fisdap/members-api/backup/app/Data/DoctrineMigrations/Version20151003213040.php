@@ -27,6 +27,7 @@ class Version20151003213040 extends AbstractMigration
         $this->addSql('UPDATE fisdap2_product_package SET package_ISBN = "9781284131963" WHERE id = 2 LIMIT 1');
         $this->addSql('UPDATE fisdap2_product_package SET package_ISBN = "9781284131956" WHERE id = 7 LIMIT 1');
         $this->addSql('UPDATE fisdap2_product_package SET package_ISBN = "9781284131949" WHERE id = 4 LIMIT 1');
+
     }
 
     /**

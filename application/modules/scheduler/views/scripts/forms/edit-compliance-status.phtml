@@ -1,0 +1,110 @@
+<? $people = ($this->element->selectFormValues['selection-by']) == "by-people" ? true : false; ?>
+<div class="grid_12 island withTopMargin" id="compliance-table">
+	<h3 class="section-header" id="edit-compliance-title">Edit Compliance Status: <?= $people ? "By People" : "By Requirements" ?></h3>
+	<div id='edit-status-div'>
+	<?
+		// if we're selecting by people, the attachments are in the userAttachments property. If we're selecting by requirement,
+		// they are in the requirementAttachments property
+		$formAttachments = $people ? $this->element->userAttachments : $this->element->requirementAttachments;
+		$total = count($formAttachments);
+		
+		if ($total == 0) {
+			$selections = $people ? "people" : "requirements";
+			echo "<div class='error'>Please select one or more $selections.</div>";
+		} else {
+			foreach($formAttachments as $info) {
+				$numAttachments = count($info['attachments']);
+				$blankMsg = $people ? "No assigned requirements." : "No one is currently assigned.";	?>
+			<div class="compliance-section">
+				<div class='grid_12 withTopMargin'>
+					<? if (!$people) { ?>
+						<img class="type-icon" src="/images/icons/<?= $info['req-type'] ?>-requirement.png">
+						<? if ($info['req-type'] == 'shared') { ?>
+						<img class="type-icon" src="/images/icons/site-requirement.png">
+						<? } ?>
+					<? } ?>
+					<div class="grid_7">
+						<h4 class='section-header no-border'><?= $info['sectionTitle'] ?>:</h4>
+					<? if ($numAttachments) { ?>
+						<a href="#" class="mark-compliant">mark all compliant</a> | <a href="#" class="mark-non-compliant">mark all non-compliant</a>
+					</div>
+						<? if ($this->element->selectFormValues['selection-by'] == "by-requirements" && $info['attachments'][0]['expires']) { ?>
+						<div class="grid_5 extra-small">
+							<a href="#" class="expiration-btn">Expiration <img src="/images/icons/calendar.gif"></a>
+						</div>
+						<? }
+					} else { ?>
+						<?= $blankMsg ?>
+					</div>
+					<? } ?>
+				</div>
+				
+				<div class='grid_12 withTopMargin'>
+					<? foreach($info['attachments'] as $attachment) { ?>
+						<div class="compliance-row">
+							<div class="grid_2"><?= $this->element->{"completed_" . $attachment['id']} ?></div>
+							<div class="grid_5"><span class="compliance-title"><?= $attachment['compliance_title'] ?></span></div>
+							<div class="grid_4" style="min-height:1px;">
+								<?= $this->element->{"renewed_" . $attachment['id']} ?>
+
+								<div class="form-prompt<?= ($attachment['completed'] || $attachment['expired']) ? " hidden" : "" ?>">
+									<div id="dueDate_<?= $attachment['id']?>">
+										<?= ($attachment['in_progress'] ? "" : "past ") . "due: " . (is_null($attachment['due_date']) ? "No date entered" : $attachment['due_date']->format("m/d/Y")) ?></div>
+								</div>
+								
+								<? if ($attachment['expired']) {
+									echo "<div id='expirationDate_" . $attachment['id'] ."'>expired " . $attachment['expiration_date']->format("m/d/Y") . "</div>";
+								} else {
+									echo $this->element->{"expirationDate_" . $attachment['id']};
+								} ?>
+							</div>
+							<div class="grid_1">
+								<?= $attachment['completed'] && $attachment['expires'] ? "<a href='#' class='add-new-attachment' data-attachmentid='" . $attachment['id'] . "'>Renew</a>" : "" ?>
+							</div>
+							<div class="clear"></div>
+						</div>
+					<? } ?>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="dotted-line"><hr></div>
+		<? }
+		} ?>
+	</div>
+</div>
+
+<? if ($total > 0) { ?>
+	<div id="edit-compliance-buttons" class="withTopMargin" style="float:right">
+		<span>
+			<button href="#" id="cancel-btn">Cancel</button>			
+		</span>
+		<span>
+			<?= $this->element->saveButton ?>
+		</span>
+	</div>
+<? } ?>
+
+<div id="expiration-menu">
+	Enter <span class="exp-count">0</span> expiration dates as <?= $this->formText("expDatePicker", null, array("class" => "selectDate")) ?>
+	<span class="form-desc">(people who already have dates entered will not be affected)</span>
+	<div class="withTopMargin" style="float:right;">
+		<span>
+			<a href="#" id="exp-cancel">Cancel</a>
+		</span>
+		<span>
+			<a href="#" id="exp-apply">Apply</a>
+		</span>
+	</div>
+</div>
+
+<div id="dummy-row" class="new-compliance-row" style='display: none;'>
+	<div class="grid_2"><?= $this->formCheckbox("completed", 1, array(), array(1)) ?></div>
+	<div class="grid_5"><span class="compliance-title"></span></div>
+	<div class="grid_4">
+		<div class="form-prompt"><?= $this->formLabel("expirationDate", "exp:") . " " . $this->formText("expirationDate", null, array("class" => "new-element expirationDate")) ?></div>
+		<div class="form-prompt"><?= $this->formLabel("dueDate", "due:") . " " . $this->formText("dueDate", null, array("class" => "new-element")) ?></div>
+	</div>
+	<div class="grid_1">
+	</div>
+	<div class="clear"></div>
+</div>

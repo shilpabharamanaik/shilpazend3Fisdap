@@ -7,6 +7,7 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
+
 /**
  * Class DoctrineRequirementHistoryRepository
  *
@@ -15,18 +16,18 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineRequirementHistoryRepository extends DoctrineRepository implements RequirementHistoryRepository
 {
-    public function getFullAttachmentHistory($requirementAttachment)
-    {
-        $qb = $this->_em->createQueryBuilder();
-        
-        $qb->select("h")
-           ->from("\Fisdap\Entity\RequirementHistory", "h")
-           ->join("h.requirement", "r")
-           ->leftJoin("h.requirement_attachment", "ra")
-           ->andWhere("ra = ?1 OR r = ?2")
-           ->orderBy("r.timestamp")
-           ->setParameters(array(1 => $requirementAttachment, 2 => $requirementAttachment->requirement));
-        
-        return $qb->getQuery()->getResult();
-    }
+	public function getFullAttachmentHistory($requirementAttachment)
+	{
+		$qb = $this->_em->createQueryBuilder();
+		
+		$qb->select("h")
+		   ->from("\Fisdap\Entity\RequirementHistory", "h")
+		   ->join("h.requirement", "r")
+		   ->leftJoin("h.requirement_attachment", "ra")
+		   ->andWhere("ra = ?1 OR r = ?2")
+		   ->orderBy("r.timestamp")
+		   ->setParameters(array(1 => $requirementAttachment, 2 => $requirementAttachment->requirement));
+		
+		return $qb->getQuery()->getResult();
+	}
 }

@@ -2,6 +2,7 @@
 
 use Fisdap\Api\Client\Gateway\CommonHttpGateway;
 
+
 /**
  * Http implementation of a ReportsGateway
  *
@@ -31,13 +32,13 @@ class HttpReportsGateway extends CommonHttpGateway implements ReportsGateway
 
         if ($startDate instanceof \DateTime) {
             $query['startDate'] = date_format($startDate, 'Y-m-d 00:00:00');
-        } elseif (is_string($startDate)) {
+        } else if (is_string($startDate)) {
             $query['startDate'] = $startDate;
         }
 
         if ($endDate instanceof \DateTime) {
             $query['endDate'] = date_format($endDate, 'Y-m-d 00:00:00');
-        } elseif (is_string($endDate)) {
+        } else if (is_string($endDate)) {
             $query['endDate'] = $endDate;
         }
 

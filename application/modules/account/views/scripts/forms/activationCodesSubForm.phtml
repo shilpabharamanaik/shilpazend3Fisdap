@@ -1,0 +1,37 @@
+<div class="grid_6">
+	<h3 class="dark-gray">You have <?= $this->element->order_configuration->quantity ?> activation codes for:</h3>
+	
+	<p>
+		<?= $this->element->order_configuration->certification_level->description ?>
+		<?= $this->element->order_configuration->graduation_date ? "graduating: " . $this->element->order_configuration->graduation_date->format("m-d-Y") . "<br>" : "" ?>
+		<?= $this->element->order_configuration->group->id ? "group: " . $this->element->order_configuration->group->name . "<br>" : "" ?>
+	</p>
+	
+	<p>
+		<?= $this->element->order_configuration->getProductSummary() ?>
+	</p>
+	
+	<br>
+	
+	<?= $this->element->message ?>		
+</div>
+
+<div class="grid_6">
+	<h3 class="dark-gray">
+		Email addresses
+	</h3>
+	<p>We will send an email to each address listed below.</p>
+	<a href="#" class="parse-email-link">Or enter a comma separated list.</a><br>
+	
+	<? foreach ($this->element->serials as $i => $sn) { ?>
+		<div class="grid_1"><?= $i+1 . "." ?></div>
+		<div class="grid_11"><?= $this->element->{"serial_" . $sn->id} ?> </div>
+	<? } ?>
+</div>
+
+<div class="clear"></div>
+
+<div class="prefix_6 grid_6">
+	<a href="#" class="preview-link">Preview Invitation</a>
+</div>
+<?= $this->element->orderConfigurationId ?>

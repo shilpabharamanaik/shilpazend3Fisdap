@@ -13,4 +13,5 @@ use Fisdap\Ascend\Greatplains\Contracts\Repositories\SalesInvoiceRepository as S
  */
 class SalesInvoiceRepository extends Repository implements SalesInvoiceRepositoryInterface
 {
+
 }

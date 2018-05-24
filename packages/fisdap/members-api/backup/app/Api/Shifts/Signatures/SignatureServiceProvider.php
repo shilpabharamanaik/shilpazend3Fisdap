@@ -57,7 +57,7 @@ final class SignatureServiceProvider extends ServiceProvider
 
 
         /**
-         *
+         * 
          */
         $router->post('/users/{userId}/signatures', [
 //            'middleware' => [
@@ -120,3 +120,5 @@ final class SignatureServiceProvider extends ServiceProvider
         ]);
     }
 }
+
+

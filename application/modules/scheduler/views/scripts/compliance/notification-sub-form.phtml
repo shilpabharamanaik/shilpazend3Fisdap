@@ -1,0 +1,73 @@
+<div id='compliance-notifications'>
+	
+	<div class='input-line'>
+		<?= $this->element->on_assign ?>
+	</div>
+	<div class='links'>
+		<a href='#' class='view-sample' data-section='assign-sample'>View sample</a>
+	</div>
+	<div id='assign-sample' class='sample'>
+		<div>Hello,</div> 
+		<div>
+			Your instructor just assigned a requirement to you
+			<ul><li>CPR Certification: due <?= date("M d, Y", strtotime("+1 month")) ?></li></ul>
+		</div>
+		<div>
+			If you have any questions about how to fulfill this requirement, please contact your instructor.
+		</div>
+	</div>
+	
+	<div id='warnings'>
+		<?php foreach ($this->element->warning_ids as $warning_id) { ?>
+		<div class='input-line warning-row' id='warning_<?= $warning_id ?>'>
+			<?= $this->element->{'warning_switch_'.$warning_id} ?>
+			<div class='text'>Send a warning</div>
+			<?= $this->element->{'warning_frequency_offset_'.$warning_id} ?>
+			<div class='text'><span id='warning_offset_label_<?= $warning_id ?>'>day</span> before each assignment is due or expires.</div>
+		</div>
+		<?php } ?>
+		<?= $this->element->added_warnings ?>
+		<?= $this->element->deleted_warnings ?>
+	</div>
+	<div class='links'>
+		<a href='#' class='view-sample' data-section='warning-sample'>View sample</a> | <a href='#' id='add-warning'>Add another warning</a>
+	</div>
+	<div id='warning-sample' class='sample'>
+		<div>Hello,</div>
+		<div>The following requirements need your attention.</div>
+		<div>
+			In 30 days (on <?= date("M d, Y", strtotime("+30 days")) ?>) you will be non-compliant for:
+			<ul>
+				<li>CPR Certification: due</li>
+				<li>Flu Immunization: due</li>
+				<li>TB Skin Test: expiring</li>
+			</ul>
+		</div>
+		<div>
+			If you have any questions about how to fulfill these requirements, please contact your instructor.
+		</div>
+	</div>
+
+	<div class='input-line'>
+		<?= $this->element->on_noncompliant ?>
+	</div>
+	<div class='links'>
+		<a href='#' class='view-sample' data-section='noncompliant-sample'>View sample</a>
+	</div>
+	<div id='noncompliant-sample' class='sample'>
+		<div>Hello,</div>
+		<div>
+			The following requirement needs your immediate attention and will affect your eligibility to
+			attend shifts at sites where this is required.
+		</div>
+		<div>
+			You are now non-compliant for:
+			<ul><li>CPR Certification: past due</li></ul>
+		</div>
+		<div>
+			If you have any questions about how to fulfill this requirement, please contact your compliance representative.
+		</div>
+	</div>
+
+	
+</div>

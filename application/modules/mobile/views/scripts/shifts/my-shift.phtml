@@ -1,0 +1,23 @@
+<h2 class='page-title'><?= ucfirst($this->shift->type) ?> Shift Summary</h2>
+<div class="island">
+    <?= $this->partial('shiftSummary.phtml', array('shift' => $this->shift, "page" => "my-shift")); ?>
+</div>
+
+<?
+if (count($this->messages) > 0) {
+	echo "<div class='success'>" . implode('<br>', $this->messages) . "</div>";
+}
+?>
+
+<div class="grid_12">
+	<h2 class='page-title' style="float:left;"><?= ucfirst($this->shift->getRunType() . "s") ?></h2>
+	<? if ($this->shift->isEditable()) echo "<a id='add-run-btn' href='/mobile/patients/patient/shiftId/{$this->shift->id}' style='float:right'>Add " . ucfirst($this->shift->getRunType()) . "</a>"; ?>
+</div>
+
+<div class="island">
+    <?= $this->mobileRunList($this->shift->id) ?>
+</div>
+
+<br />
+
+<a href="/mobile/index/">&lt;&lt; Back to Shift List</a>

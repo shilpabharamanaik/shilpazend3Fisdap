@@ -7,6 +7,7 @@ use Log;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
+
 /**
  * Provides event logger configuration and registration
  *
@@ -37,10 +38,8 @@ class EventLoggingServiceProvider extends ServiceProvider
 
         $streamHandler = new StreamHandler(
             Config::get('events.log_file', storage_path('logs/events.log')),
-            Config::get(
-                'events.log_level',
-                Config::get('app.debug') == true ? Logger::DEBUG : Logger::INFO
-            )
+            Config::get('events.log_level',
+                Config::get('app.debug') == true ? Logger::DEBUG : Logger::INFO)
         );
 
         $monologLogger->pushHandler($streamHandler);
@@ -61,7 +60,7 @@ class EventLoggingServiceProvider extends ServiceProvider
 
 
         if (Config::get('events.event_fires.enabled', false) === true) {
-            Event::listen('*', function () {
+            Event::listen('*', function() {
                 /** @var EventLogger $eventLogger */
                 $eventLogger = $this->app->make(EventLogger::class);
 

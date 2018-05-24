@@ -1,0 +1,31 @@
+<h2 class="page-title"><?php echo $this->student->first_name . " " . $this->student->last_name; ?>'s Portfolio</h2>
+
+<?php
+	foreach($this->actions as $actionName){
+		$this->headLink()->appendStylesheet("/css/portfolio/index/" . $actionName . ".css");
+		
+		$data = $_POST; 
+		
+		$data['contentOnly'] = true;
+		
+		$contents = $this->action($actionName, "index", "portfolio", $data) . "<br /><br />";
+		
+		$c = 0;
+		
+		// Strip out the anchor tags and replace them with just the contents of the tags.
+		$pattern = "/(\<a .*?\>(.*?)\<\/a\>)/s";
+		$contents = preg_replace($pattern, '${2}', $contents, -1, $c);
+		//preg_match_all($pattern, $contents, $matches);
+		//var_dump($matches);
+		
+		echo $contents; //$this->action($actionName, "index", "portfolio", $data) . "<br /><br />";
+	}
+	echo "<p style='margin-top: 50px; margin-bottom:50px; float: left; width: 40%;  border: 0; border-top: 1px solid #000;padding-top:10px;'> Medical Director </p> <p style='width:20%; float:left;'>&nbsp;&nbsp;</p><p style=' padding-top:10px; border: 0; border-top: 1px solid #000; margin-top: 50px; margin-bottom:50px; float: left; width:20%;'>Date</p>";
+	echo "<p style='float: left; width: 40%; border: 0; border-top: 1px solid #000;padding-top:10px;'> Program Director </p> <p style='width:20%;float:left;'>&nbsp;&nbsp;</p><p style='padding-top:10px; float: left; width: 20%; border: 0; border-top: 1px solid #000;'>Date</p> ";
+?>
+
+<script>
+	$(function(){ 
+		$('body').css('background', '#FFFFFF');
+	});
+</script>

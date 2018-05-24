@@ -5,6 +5,7 @@ use Illuminate\Foundation\Console\RoutesCommand;
 use Illuminate\Routing\Route;
 use Jeremeamia\SuperClosure\ClosureParser;
 
+
 /**
  * Extension of Artisan 'routes' command, providing list of all route filters
  *
@@ -26,10 +27,8 @@ final class RouteFiltersListCommand extends RoutesCommand
     protected function filterRouteAsClass(Route $route)
     {
         if (($this->option('name') && !str_contains($route->getName(), $this->option('name'))) ||
-            $this->option('path') && !str_contains(
-                implode('|', $route->methods()) . ' ' . $route->uri(),
-                $this->option('path')
-            )
+            $this->option('path') && !str_contains(implode('|', $route->methods()) . ' ' . $route->uri(),
+                $this->option('path'))
         ) {
             return null;
         }

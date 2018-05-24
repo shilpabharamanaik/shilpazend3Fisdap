@@ -2,6 +2,7 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
+
 /**
  * Class DoctrineConstraintTypeRepository
  *
@@ -14,12 +15,13 @@ class DoctrineConstraintTypeRepository extends DoctrineRepository implements Con
      * @return array
      */
     public function getAll()
-    {
-        $qb = $this->_em->createQueryBuilder();
+	{
+		$qb = $this->_em->createQueryBuilder();
 
-        $qb->select('c')
-           ->from('\Fisdap\Entity\ConstraintType', 'c');
+		$qb->select('c')
+		   ->from('\Fisdap\Entity\ConstraintType', 'c');
 
-        return $qb->getQuery()->getResult();
-    }
+		return $qb->getQuery()->getResult();
+	}
+	
 }

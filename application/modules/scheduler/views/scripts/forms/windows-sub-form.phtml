@@ -1,0 +1,81 @@
+<? $id = $this->element->id; ?>
+
+<tr id="window_<?= $id ?>_row" class="<?= $this->element->new_class; ?>" selector_id="<?= $this->element->id ?>">
+	<td class='active-col'><?= $this->element->{'window_active_' . $id} ?></td>
+	
+	<td class="dates-col">
+		
+			
+		<div style="display:none;">
+			<?= $this->element->{'offset_type_start_' . $id} ?>
+			<?= $this->element->{'offset_type_end_' . $id} ?>
+		</div>	
+		
+		<?
+		foreach($this->element->offsets as $offset){
+			
+			if($offset == "start") { ?>
+				<div class='from extra-small gray-button'>
+					<a href="#" data-time='start' class='offset-type-change-trigger' data-windowTempId='<?= $id ?>' title='change mode'>from:</a>
+				</div>
+			<? } ?>
+			
+			<div class='<?= $offset ?>-offset-type-elements-wrapper-<?= $id ?>' id="<?= $offset ?>_static_<?= $id ?>" <?= $this->element->{'show_' . $offset . '_static'} ?>>
+				<?= $this->element->{'offset_value_' . $offset . '_static_' . $id} ?>
+			</div>
+			
+			<div class='week-offset-wrapper <?= $offset ?>-offset-type-elements-wrapper-<?= $id ?>' id="<?= $offset ?>_interval_<?= $id ?>" <?= $this->element->{'show_' . $offset . '_interval'} ?>>
+				<?= $this->element->{'offset_value_' . $offset . '_interval_' . $id} ?>
+				<?= $this->element->{'offset_value_' . $offset . '_interval_type_' . $id} ?>
+				<div class="offset-description">
+					before the shift starts<?= ($offset == "start") ? "" : "."; ?>
+				</div>	
+			</div>		
+		
+			<div class='month-offset-wrapper <?= $offset ?>-offset-type-elements-wrapper-<?= $id ?>' id="<?= $offset ?>_prevMonth_<?= $id ?>" <?= $this->element->{'show_' . $offset . '_prevMonth'} ?>>
+				<div class="prev-month-offset-the">The</div>
+				<?= $this->element->{'offset_value_' . $offset . '_prevMonth_' . $id} ?>
+				<div class="prev-month-offset-description">of the previous month<?= ($offset == "start") ? "" : "."; ?></div>
+			</div>
+			
+			<? if($offset == "start") { ?>
+				<div class='clear'></div>
+				<div class="to extra-small gray-button">
+					<a href="#" data-time='end' class='offset-type-change-trigger' data-windowTempId='<?= $id ?>' title='change mode'>until:</a>
+				</div>
+			<? } ?>
+			
+		<?
+		} ?>
+
+	</td>
+	
+	<td class="ct-col">
+		
+		<?
+		for($i = 1; $i < 3; $i++) { ?>
+			<div class="constraint" <?= $this->element->{'show_' . $i . '_constraint'} ?>>
+				
+				<div class="constraint-type-options">
+					<?= $this->element->{'constraint_type_' . $i . '_' . $id} ?>
+					<?= ($i == 1 && !$this->element->hide_add_category) ? '<a href="#" class="add-constraint">Add category</a>' : ''; ?>	
+				</div>
+				
+				<div class="cv-col">
+					<?= $this->element->{'cert_constraint_values_' . $i . '_' . $id} ?>
+					<?= $this->element->{'group_constraint_values_' . $i . '_' . $id} ?>
+				</div>
+				
+				<div class="clear"></div>
+			
+			</div>
+			
+			<div class="clear"></div>
+			
+		<?
+		}
+		?>
+		
+	</td>
+	
+</tr>

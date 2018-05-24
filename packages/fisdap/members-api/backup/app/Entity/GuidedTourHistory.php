@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Entity class for Guided Tour History -- a user gets  record in here once they have either completed a tour or chosen 'I'm good'
  *
@@ -18,21 +19,22 @@ use Doctrine\ORM\Mapping\Table;
  */
 class GuidedTourHistory extends EntityBaseClass
 {
-    /**
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
-     */
-    protected $id;
-    
-    /**
+	/**
+	 * @Id
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 */
+	protected $id;
+	
+	/**
      * @ManyToOne(targetEntity="GuidedTour")
     */
-    protected $guided_tour;
-    
-    /**
-     * @ManyToOne(targetEntity="UserContext")
-     * @JoinColumn(name="user_role_id", referencedColumnName="id")
-     */
-    protected $user_context;
+	protected $guided_tour;
+	
+	/**
+	 * @ManyToOne(targetEntity="UserContext")
+	 * @JoinColumn(name="user_role_id", referencedColumnName="id")
+	 */
+	protected $user_context;
+	
 }

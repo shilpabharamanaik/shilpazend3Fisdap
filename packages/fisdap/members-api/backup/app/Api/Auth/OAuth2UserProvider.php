@@ -6,6 +6,7 @@ use Fisdap\Logging\ClassLogging;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
 
+
 /**
  * User provider for use with OAuth2 server
  *

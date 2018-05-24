@@ -1,0 +1,22 @@
+<?= $this->pageTitleHelper() ?>
+
+<div class="island withTopMargin">
+    <h2 class="section-header">Current user</h2>
+    <?= $this->currentuser->getUsername() ?>
+</div>
+
+<div class="island withTopMargin">
+    <h2 class="section-header">Current context</h2>
+    <?= $this->currentcontext->getId() . ": " . $this->currentcontext->getDescription() ?>
+</div>
+
+<!--<div class="island withTopMargin">
+    <h2 class="section-header">$_SESSION</h2>
+    <?/* var_dump($this->oldsession) */?>
+</div>-->
+
+<!--<div class="island withTopMargin">
+    <h2 class="section-header">Global session</h2>
+    <?/* var_export($this->session) */?>
+</div>-->
+

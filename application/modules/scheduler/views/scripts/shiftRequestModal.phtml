@@ -1,0 +1,61 @@
+<style>
+</style>
+<?php
+	$event = $this->element->assignment->slot->event;
+?>
+
+<div class="container_12" id="form_div">
+
+	<?php if (isset($this->element->event->type)): // prevents 404 ?>
+	<img id='site-icon' class='icon' src='/images/icons/<?= $this->element->event->type ?>SiteIconColor.png'>
+	<?php endif; ?>
+	<h4 class='table-label <?= $this->element->event->type ?>'><?= $this->element->date ?></h4>
+	<h4 class='header' style='margin: 0 0 5px 30px;position:relative;top:-5px'><?= $this->element->location ?></h4>
+	<div class='clear'></div>
+
+<?php if ($this->element->pending) { ?>
+	<div id='pending' class="section-header no-border">
+		This shift already has a pending request. Visit your <a href='/scheduler/requests' style='color:#A94612'>shift request page</a>
+		for more details.
+	</div>
+<?php } else if ($this->element->past) { ?>
+	<div id='pending' class="section-header no-border">
+		This shift has already occurred. You cannot remove it from your schedule.
+	</div>
+<?php } else if (count($this->element->request_options) < 1) { ?>
+	<div id='pending' class="section-header no-border">
+		You are not allowed to make changes to this shift.
+	</div>
+<?php } else { ?>
+	
+	<h3 class='section-header'>What would you like to do with this shift?</h3>
+	<div id="request-type-div" class='cupertino'>
+	<?php foreach($this->element->request_options as $value => $option) { ?>
+		<input type="radio" id="type-<?= $value ?>" name="type" value="<?= $value ?>"/><label for="type-<?= $value ?>"><?= $option['name'] ?></label>
+		<input type="hidden" id="<?= $option['name'] ?>_needs_permission" value="<?= $option['needs_permission'] ?>">
+	<?php } ?>
+	</div>
+	<?php echo $this->element->recipient ?>
+	<div id="swap-terms">
+		<h3 class='section-header no-border'>What kind of shift would you prefer in return? <span class='optional'>(optional)</span></h3>
+		<?php echo $this->element->site_type ?>
+		<div class='clear'></div>
+		<?php echo $this->element->duration ?>
+		<div class='clear'></div>
+		<?php echo $this->element->site ?>
+		<div class='clear'></div>
+	</div>
+	<div id='instructions' class="section-header no-border"></div>
+	<?php echo $this->element->assignment_id ?>
+
+<?php } ?>
+	<div class='buttons'>
+		<div id="cancelButtonWrapper" class="small gray-button">
+			<a href='#' id='cancel-btn'><?= ($this->element->pending) ? "Ok" : "Cancel" ?></a>
+		</div>
+		<div id="saveButtonWrapper" class="small green-buttons">
+			<a href='#' id='save-btn'>Ok</a>
+		</div>
+	</div>
+
+</div>

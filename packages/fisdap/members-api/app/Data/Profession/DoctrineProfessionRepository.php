@@ -7,6 +7,7 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
+
 /**
  * Class DoctrineProfessionRepository
  *
@@ -42,7 +43,7 @@ class DoctrineProfessionRepository extends DoctrineRepository implements Profess
     {
         $rawProfs = $this->getAllProfessionInfo($orderBy);
         $formOptions = array();
-        foreach ($rawProfs as $prof) {
+        foreach($rawProfs as $prof){
             $formOptions[$prof['id']] = $prof['name'];
         }
         return $formOptions;

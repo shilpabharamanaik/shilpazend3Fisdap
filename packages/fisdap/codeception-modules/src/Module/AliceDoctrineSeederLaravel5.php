@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\SchemaTool;
 use Nelmio\Alice\Loader\Yaml as YamlLoader;
 
+
 /**
  * Adds support for the AliceDoctrineSeeder fixture library.
  *
@@ -158,7 +159,7 @@ class AliceDoctrineSeederLaravel5 extends Module
         $fixturePath = $this->getFixturePath();
 
         if (is_array($fixtureFilenames)) {
-            array_walk($fixtureFilenames, function (&$fixtureFilename) use ($fixturePath) {
+            array_walk($fixtureFilenames, function(&$fixtureFilename) use ($fixturePath) {
                 $fixtureFilename = $fixturePath . $fixtureFilename;
             });
         } else {
@@ -193,7 +194,7 @@ class AliceDoctrineSeederLaravel5 extends Module
         $executor = new ORMExecutor(self::$em, $purger);
 
         $logger = $this->logger;
-        $executor->setLogger(function ($message) use ($logger) {
+        $executor->setLogger(function($message) use ($logger) {
             $logger->debug($message);
         });
 

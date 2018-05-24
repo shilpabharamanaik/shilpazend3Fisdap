@@ -13,6 +13,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+
 /**
  * Handles error and exception logging, third-party error tracking, and facilitates JSON output
  *
@@ -134,4 +135,4 @@ class ErrorHandler extends Handler
 
         return parent::render($request, $e);
     }
-}
+} 

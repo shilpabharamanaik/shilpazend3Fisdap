@@ -50,7 +50,8 @@ abstract class Transformer extends TransformerAbstract
      */
     protected function removeFields(array $fields, array &$entity)
     {
-        foreach ($fields as $field) {
+        foreach ($fields as $field)
+        {
             unset($entity[$field]);
         }
     }

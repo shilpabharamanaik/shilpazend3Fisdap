@@ -6,6 +6,7 @@ use Fisdap\Attachments\Associations\Repositories\RepositoryAttachmentsSupport;
 use Fisdap\Attachments\Associations\Repositories\StoresAttachments;
 use Fisdap\Data\Repository\Repository;
 
+
 class RepositoryAttachmentsSupportTest extends Test implements Repository, StoresAttachments
 {
     use RepositoryAttachmentsSupport;

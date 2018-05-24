@@ -1,0 +1,94 @@
+<? if ($this->shift->isFuture()) { ?>
+    <div class="grid_12 island withTopMargin">
+        You can't document skills or patient care for a shift that hasn't happened yet. Check back on the day of the
+        shift.
+    </div>
+<?
+} else {
+
+    $video = $this->youtubeVideo("hhlhePuy_Tw", "my-shift-blank-state.phtml", 500, 300);
+    if ($video) {
+        echo '<div class="grid_12 island withTopMargin">';
+        echo $video;
+        echo '</div>';
+    }
+    ?>
+
+
+    <div class="clear"></div>
+    <div class="grid_12 island withTopMargin" style="overflow:visible;">
+        <div id="lab-skills-widgets">
+            <?php echo $this->sectionHelper('lab-skills-widgets', 720, array(
+                'allowMinimize' => false,
+                'minimizeMode' => 'expanded',
+                'explicitStudentId' => $this->shift->student->id,
+                'explicitPanelName' => 'Lab'
+            )); ?>
+        </div>
+    </div>
+    <div class="clear"></div>
+
+    <?= $this->practiceSkillWidget($this->shift, $this->labPartnerShifts) ?>
+
+    <div class="clear"></div>
+
+    <?
+    // This checks for obsolete, old-style quickAddedSkills data. Just here for historical data purposes
+    // $this->hasQuickAddedSkills should never be true for contemporary shifts
+    if ($this->hasQuickAddedSkills) { ?>
+        <div class="grid_12 island withTopMargin">
+            <h2 class="section-header">Quick Add Skills</h2>
+
+            <p>If you practiced some skills in or outside of the lab, you can "quick-add" them below. NREMT Skill Sheets
+                are available, too! Click and drag interventions to reorder them.</p>
+
+            <form id='quick-skills-form' action="/skills-tracker/shifts/save-quick-skill-lab" method="POST">
+                <input type="hidden" id='quick-shift-id' name="shiftID" value="<?php echo $this->shift->id ?>"/>
+                <input type="hidden" id='quick-student-id' name="studentID"
+                       value="<?php echo $this->shift->student->id ?>"/>
+                <table id="quick-skills" class="quick-table">
+                    <thead id="quick-skills-header">
+                    <tr>
+                        <th>Skill</th>
+                        <th>Patient</th>
+                        <th>Successful</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody id='quick-skills-body'></tbody>
+                    <tfoot id="quick-skills-footer">
+                    <tr>
+                        <th colspan="4"><a href="#" id="add-skills-btn">Add Skill</a><!--<a id="signoff-btn" href="#">Sign-off</a>-->
+                        </th>
+                    </tr>
+                    <tr>
+                        <td id='inactive-summary' colspan='4'></td>
+                    </tr>
+                    </tfoot>
+                </table>
+
+                <input id="returnMode" name='returnMode' type='hidden' value='text'/>
+            </form>
+
+            <div id='autosave-timer'></div>
+            <?php echo $this->procedureOptions; ?>
+        </div>
+    <? } ?>
+
+    <div class='grid_12 island withTopMargin'>
+        <?= $this->runList($this->shift, $this->runs, $this->isInstructor, $this->shift->type); ?>
+    </div>
+
+    <div class='grid_12 island withTopMargin'>
+        <?= $this->shiftAttachmentList($this->shift, $this->attachments, $this->isInstructor, $this->attachmentsRemaining) ?>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="loginForm" style="display: none;">
+        <div class='login-form-wrapper'><?= $this->labPartnerLogin() ?></div>
+        <div class='clear'></div>
+    </div>
+
+    <div class="clear"></div>
+<? } ?>

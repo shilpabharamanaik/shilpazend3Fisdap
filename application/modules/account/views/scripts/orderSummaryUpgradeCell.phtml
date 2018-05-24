@@ -1,0 +1,27 @@
+<tr>
+    <td class="account">
+        <?= $this->orderConfig->getAccountSummary() ?>
+    </td>
+    
+    <td class="products">
+        <?= $this->orderConfig->getProductSummary() ?>
+    </td>
+    
+    <td class="cost">
+        $<span class="price"><?= $this->orderConfig->getProductPrice() ?></span><br>
+        per account
+        <?= $this->formHidden("configuration_" . $this->orderConfig->id, $this->orderConfig->configuration) ?>
+    </td>
+    
+    <td class="quantity">
+        <? if ($this->orderConfig->order->order_type->id == 2) { ?>
+            <div class='product-code'><?= $this->orderConfig->getProductCode() ?></div>
+        <? } else { ?>
+            Quantity: <?= $this->formText("quantity_" . $this->orderConfig->id, $this->orderConfig->quantity, array('size' => 4, 'data-configid' => $this->orderConfig->id)) ?>
+        <? } ?>
+    </td>
+    
+    <td class="delete">
+        <img class="small-icon clickable delete-config" src="/images/icons/delete.png" data-configid="<?= $this->orderConfig->id ?>">
+    </td>
+</tr>

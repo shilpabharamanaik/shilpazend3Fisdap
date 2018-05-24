@@ -1,0 +1,17 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_12 island">
+    <div class="grid_12">
+        <?= $this->exportButtons(array("pdf"), "export-report-links") ?>
+    </div>
+    <div class="clear"></div>
+	<div id='pdfContents' class="withTopMargin">
+		<?= $this->invoice ?>		
+	</div>
+
+	<script>
+		$(".pdfLink").click(function(e){
+			e.preventDefault();
+			createPdf($("#pdfContents").clone(), "invoice.pdf", 'export-report-links', 0);
+		});
+	</script>
+</div>

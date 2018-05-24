@@ -1,0 +1,62 @@
+<h2 class="section-header"><?= $this->element->student->user->first_name . " " . $this->element->student->user->last_name . " (" . $this->element->student->user->username . ")" ?></h2>
+<div class="grid_7">
+    <h3 class="section-header no-border">Contact Information</h3>
+    <?= $this->element->general ?>
+    <div class='clear'></div>
+    
+    <?= $this->element->phoneNumbers ?>
+    <div class='clear'></div>
+    
+    <?= $this->element->contactAddress ?>
+    <div class='clear'></div>
+    
+    <?= $this->element->licenseNumber ?>
+    <div class='clear'></div>
+    
+    <?= $this->element->licenseExpirationDate ?>
+    <div class='clear'></div>
+    
+    <?= $this->element->licenseState ?>
+    <div class='clear'></div>
+    
+    <?= $this->element->stateLicenseNumber ?>
+    <div class='clear'></div>
+    
+    <?= $this->element->stateLicenseExpirationDate ?>
+    <div class='clear'></div>
+    
+    <h3 class="section-header no-border withTopMargin">Emergency Contact</h3>
+    
+    <?= $this->element->contact ?>
+
+    <? if ($this->element->mailingList) {?>
+        <?= $this->element->mailingList ?>
+    <? } ?>
+    
+    <? if ($this->element->staffOptions) {?>
+        <h3 class="section-header no-border">Staff Only</h3>
+        <?= $this->element->staffOptions ?>
+    <? } ?>
+</div>
+
+<div class="grid_5">
+    <?= $this->fisdapGravatar($this->element->student->email) ?>
+    
+    <? if ($this->element->graduation) {?>
+        <?= $this->element->graduation ?>
+    <? } ?>
+
+    <!-- The text and password here are to prevent FF from auto filling my login credentials because it ignores autocomplete="off"-->
+    <input type="text" class="hidden">
+    <input type="password" class="hidden">
+
+    <?= $this->element->passwords ?>
+</div>
+
+<div class="clear"></div>
+
+<div class="action-buttons">
+    <?= $this->element->save ?>
+</div>
+
+<?= $this->element->studentId ?>

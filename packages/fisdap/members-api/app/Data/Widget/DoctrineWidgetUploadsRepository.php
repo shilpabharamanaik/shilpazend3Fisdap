@@ -7,6 +7,7 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
+
 /**
  * Class DoctrineWidgetUploadsRepository
  *
@@ -32,16 +33,16 @@ class DoctrineWidgetUploadsRepository extends DoctrineRepository implements Widg
 
         $cleanUploads = array();
 
-        foreach ($uploads as $upload) {
-            if ($user->isInstructor()) {
+        foreach($uploads as $upload){
+            if($user->isInstructor()){
                 // An instructor should always be able to see their own uploaded files..
-                if ($user->id == $upload->uploader->id) {
+                if($user->id == $upload->uploader->id){
                     $cleanUploads[] = $upload;
-                // Otherwise only show the upload to instructors if the permission was set on the file...
-                } elseif ($upload->educators_allowed) {
+                    // Otherwise only show the upload to instructors if the permission was set on the file...
+                }elseif($upload->educators_allowed){
                     $cleanUploads[] = $upload;
                 }
-            } else {
+            }else{
                 $cert = $user->getCurrentRoleData()->getCertification();
                 if ($upload->certification_levels->contains($cert)) {
                     $cleanUploads[] = $upload;

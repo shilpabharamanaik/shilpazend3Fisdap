@@ -1,0 +1,327 @@
+<div class="island grid_12">
+
+<?
+
+$shiftRequestHelpText = '<p>Select the drop/cover/swap and signup window options you want to appear as the default when you add shifts to the schedule. (You can still edit all of these settings on an individual shift level from the Add and Edit Shift interfaces.)</p><br>' .
+    '<p>Use the can/cannot and with/without buttons to set your drop/cover/swap default preferences.</p><br>' .
+    '<ul><li><span style="font-weight:bold">Drop</span>: students can remove the shift from their schedule without someone else picking it up.</li>' .
+    '<li><span style="font-weight:bold">Cover</span>: students can identify a student to cover their shift for them.</li>' .
+    '<li><span style="font-weight:bold">Swap</span>: students exchange shifts with each other.</li></ul><br /><p>If students can sign up for shifts, use the from and until options to set up the window of time during which they will be allowed to sign up for each type of shift.</p>';
+
+$studentViewHelpText = "<p>You can allow students to see their classmates in the calendar or you can " .
+    "hide student names so that all the students' schedules are private.</p><br>" .
+    "<p>This is really a matter of preference. Allowing students to view each other's " .
+    "schedules is beneficial to your students if you permit them to swap shifts or request coverage.</p>";
+
+?>
+
+<div class='grid_6'>
+
+
+</div><? // closes column ?>
+
+
+<div class='grid_6'>
+
+    <? // Students ?>
+
+    <div class='section'>
+
+        <h3 class="settings-header">
+            Student permissions
+            <?= $this->helpBubble("studentViewHelp", "Student permissions help", $studentViewHelpText) ?>
+        </h3>
+
+        <div class='settings-line'>
+
+            <div class='floater'>Students</div>
+            <div class='flip-container'>
+                <div id="can_student_view_full_calendar" class="can-cannot"></div>
+                &nbsp;</div>
+            <div class='floater'>view each other's schedules.</div>
+
+            <?= $this->element->student_view_full_calendar; ?>
+
+        </div>
+
+        <div class='clear'></div>
+
+        <div class='subsection'>
+
+            <? foreach ($this->element->site_types as $type) { ?>
+
+                <div class='settings-line defaults'>
+                    <div class='floater'>Students</div>
+                    <div class='flip-container'>
+                        <div id="can_<?= $type ?>_create" class="can-cannot"></div>
+                        &nbsp;</div>
+                    <div class='floater'>create <?= $type ?> shifts.</div>
+                    <?php echo $this->element->{$type . '_create'}; ?>
+                </div>
+
+                <div class='clear'></div>
+
+            <? } ?>
+
+        </div>
+
+        <div class='clear'></div>
+
+        <div class='subsection'>
+
+            <? foreach ($this->element->site_types as $type) { ?>
+
+                <div class='settings-line defaults'>
+                    <div class='floater'>Students</div>
+                    <div class='flip-container'>
+                        <div id="can_<?= $type ?>_pick" class="can-cannot"></div>
+                        &nbsp;</div>
+                    <div class='floater'>sign up for <?= $type ?> shifts.</div>
+
+                    <?= $this->element->{$type . '_pick'}; ?>
+                </div>
+
+                <div class='clear'></div>
+
+            <? } ?>
+
+        </div>
+
+    </div> <? // close student permissions section ?>
+
+</div><? // closes the column ?>
+
+<div class="grid_6">
+        <h3 class="settings-header">Student Notifications</h3>
+        <div class="grid_2">
+            <?= $this->element->sendStudentNotifications ?>
+        </div>
+
+        <div class="grid_10">
+            Send students an email notification any time they are added to or removed from a shift.
+        </div>
+
+        <div class="clear"></div>
+
+
+    <? // Sites ?>
+        <h3 class="settings-header top-margin-settings-header">Sites</h3>
+    <a href='/account/sites'>Manage</a> the lab, clinical, and field sites associated with your program.
+
+
+    <? // Requirements ?>
+    <h3 class="settings-header requirements-settings-header top-margin-settings-header">Requirements</h3>
+    <a href='/scheduler/compliance/manage'>Manage</a> your program's requirements. Add new requirements, edit existing
+    requirements, and manage assignments.
+    <br/><br/>
+
+</div>
+
+<div class="clear"></div>
+
+
+<div class="grid_12">
+
+    <h3 class="settings-header">
+        Default add shift settings
+        <?= $this->helpBubble($type . "ShiftRequestHelp", "Default Add Shift settings help", $shiftRequestHelpText) ?>
+    </h3>
+
+    <p id="defaults_description_paragraph">
+        The settings you select here will appear as the default when you add shifts to your schedule. You can still
+        edit them on a per-shift basis, but setting up your defaults here will save you time when creating new
+        shifts.
+    </p>
+
+    <div id="offset-type-options-wrapper">
+
+        <div class="offset-types">
+            <img id='close-offset-types' src="/images/icons/delete.png">
+
+            <div id="date_shift_is_created_offset_type_option" class="offset-type-option"
+                 data-offsetType="date_shift_is_created" data-offsetTypeId="4">
+                <span class="ot-description big-line-height-ot-description full_width_ot_description">The date the shift is created.</span>
+
+                <div class="clear"></div>
+            </div>
+
+            <div class="clear"></div>
+
+            <div class="offset-type-option" data-offsetType="static" data-offsetTypeId="1">
+                <span class="ot-description big-line-height-ot-description">Specific date</span>
+                <span class="input-example"><img src="/images/static-date-offset-example.png"></span>
+            </div>
+
+            <div class="offset-type-option" data-offsetType="prevMonth" data-offsetTypeId="3">
+                <span class="ot-description monthly">Monthly date</span>
+                <span class="input-example"><img src="/images/month-date-example.png"></span>
+            </div>
+
+            <div class="offset-type-option" data-offsetType="interval" data-offsetTypeId="2">
+                <span class="ot-description rolling">Rolling</span>
+                <span class="input-example"><img src='/images/rolling-offset-example.png'></span>
+            </div>
+
+            <img src="/images/ticker.png" id="offset-types-ticker">
+        </div>
+
+    </div>
+
+
+    <? foreach ($this->element->site_types as $type) { ?>
+
+        <div class='section'>
+
+            <h3 class="settings-sub-header">
+
+                <img id='site-icon' class='icon' src='/images/icons/<?= $type ?>SiteIconColor.png'>
+                Adding <?= $type ?> shifts
+
+            </h3>
+
+            <div class="grid_6">
+                <? foreach ($this->element->request_types as $request_type) {
+
+                    $switch = $request_type->name; ?>
+
+                    <div class='settings-line defaults'>
+
+                        <div class='floater floater-no-max-width'>Students</div>
+                        <div class='flip-container'>
+                            <div id="can_<?= $type ?>_<?= $switch ?>" class="can-cannot"></div>
+                            &nbsp;</div>
+                        <div class='floater floater-no-max-width'><?= $switch ?> <?= $type ?> shifts<span
+                                class='period'></span></div>
+
+                        <div class='permission_phrase'>
+                            <div class='flip-container'>
+                                <div id="with_<?= $type ?>_<?= $switch ?>_permission" class="with-without"></div>
+                                &nbsp;</div>
+                            <div class='floater floater-no-max-width'>permission.</div>
+                        </div>
+
+                        <?= $this->element->{$type . '_' . $switch} ?>
+                        <?= $this->element->{$type . '_' . $switch . '_permission'} ?>
+
+                        <div class='clear'></div>
+
+                    </div>
+
+                    <div class='clear'></div>
+
+                <? } ?>
+            </div>
+
+
+            <div class="grid_6 windows_wrapper">
+
+                <div class="windows_summary" id="<?= $type ?>_windows_summary">
+                    Students
+                    <span id="<?= $type ?>_windows_signup_summary">can</span>
+                    sign up for new <?= $type ?> shifts<span id="<?= $type ?>_windows_singup_summary_period">.</span>
+                </div>
+
+                <?
+                // windows!
+                $window_form = $this->element->{$type . '_window_sub_form'};
+                $id = "new_window_" . $type;
+                ?>
+
+                <div class="windows" id="<?= $type ?>_windows">
+
+                    <div style="display:none;">
+                        <?= $window_form->{'offset_type_start_' . $id} ?>
+                        <?= $window_form->{'offset_type_end_' . $id} ?>
+                    </div>
+
+                    <?
+                    foreach ($window_form->offsets as $offset) {
+
+                        if ($offset == "start") {
+                            ?>
+                            <div class="window_offset_row">
+                            <div class='from extra-small gray-button'>
+                                <a href="#" data-time='start' class='offset-type-change-trigger'
+                                   data-windowTempId='<?= $id ?>' title='change mode'>from:</a>
+                            </div>
+                        <? } ?>
+
+                        <div class='<?= $offset ?>-offset-type-elements-wrapper-<?= $id ?>'
+                             id="<?= $offset ?>_static_<?= $id ?>" <?= $window_form->{'show_' . $offset . '_static'} ?>>
+                            <?= $window_form->{'offset_value_' . $offset . '_static_' . $id} ?>
+                        </div>
+
+                        <div class='week-offset-wrapper <?= $offset ?>-offset-type-elements-wrapper-<?= $id ?>'
+                             id="<?= $offset ?>_interval_<?= $id ?>" <?= $window_form->{'show_' . $offset . '_interval'} ?>>
+                            <?= $window_form->{'offset_value_' . $offset . '_interval_' . $id} ?>
+                            <?= $window_form->{'offset_value_' . $offset . '_interval_type_' . $id} ?>
+                            <div class="offset-description">
+                                before the shift starts<?= ($offset == "start") ? "" : "."; ?>
+                            </div>
+                        </div>
+
+                        <div class='month-offset-wrapper <?= $offset ?>-offset-type-elements-wrapper-<?= $id ?>'
+                             id="<?= $offset ?>_prevMonth_<?= $id ?>" <?= $window_form->{'show_' . $offset . '_prevMonth'} ?>>
+                            <div class="prev-month-offset-the">The</div>
+                            <?= $window_form->{'offset_value_' . $offset . '_prevMonth_' . $id} ?>
+                            <div class="prev-month-offset-description">of the previous
+                                month<?= ($offset == "start") ? "" : "."; ?></div>
+                            <div class="clear"></div>
+                        </div>
+
+
+                        <div
+                            style="<?= ($window_form->{'date_of_shift_creation_' . $offset}) ? '' : 'display:none;'; ?>"
+                            class="date-of-shift-creation-wrapper" id="<?= $offset ?>_dateOfShift_<?= $id ?>">the date
+                            the shift is created
+                        </div>
+
+                        <? if ($offset == "start") { ?>
+                            <div class='clear'></div>
+                            </div>
+
+                            <div class="to extra-small gray-button">
+                                <a href="#" data-time='end' class='offset-type-change-trigger'
+                                   data-windowTempId='<?= $id ?>' title='change mode'>until:</a>
+                            </div>
+                        <? } ?>
+
+                    <?
+                    } ?>
+
+                    <div class="clear"></div>
+
+                </div>
+
+
+            </div>
+
+            <div class='clear'></div>
+
+
+            <? if ($type != "lab") { ?>
+                <div class="dotted-line">
+                    <hr>
+                </div>
+                <div class="clear"></div>
+            <? } ?>
+
+
+        </div>
+
+    <? } ?>
+
+</div>
+
+</div> <? // closes island ?>
+
+
+<div class='clear'></div>
+
+<div id="control-buttons">
+    <span class="small green-buttons">
+        <button id="save-button">Save</button>
+    </span>
+</div>
+
+<div class='clear'></div>

@@ -2,12 +2,13 @@
 
 use Swagger\Annotations as SWG;
 
+
 /**
  * Class Accreditation
  *
  * @package Fisdap\Api\Programs\Jobs\Models
  * @author  Ben Getsug <bgetsug@fisdap.net>
- *
+ *          
  * @SWG\Definition(definition="ProgramAccreditation")
  */
 final class Accreditation
@@ -27,7 +28,7 @@ final class Accreditation
 
     /**
      * ProgramLegacy::$year_accredited
-     *
+     * 
      * @var int|null
      * @SWG\Property(type="integer")
      */

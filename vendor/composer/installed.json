@@ -2127,6 +2127,38 @@
         "description": "A collection of extensions to Doctrine that enhance/extend its functionality."
     },
     {
+        "name": "fisdap/exception",
+        "version": "9999999-dev",
+        "version_normalized": "9999999-dev",
+        "dist": {
+            "type": "path",
+            "url": "./packages/fisdap/exception",
+            "reference": "f1f343b416ddaa425633396b5c5c36484248c7d2",
+            "shasum": null
+        },
+        "require": {
+            "php": ">=5.2.11"
+        },
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Zend_Exception": "library/"
+            }
+        },
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "Zend Framework 1 Exception package",
+        "homepage": "http://framework.zend.com/",
+        "keywords": [
+            "exception",
+            "framework",
+            "zend",
+            "zf1"
+        ]
+    },
+    {
         "name": "fisdap/jbl-rest-authentication-php-sdk",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -2409,6 +2441,70 @@
             }
         ],
         "description": "Members REST API Client"
+    },
+    {
+        "name": "fisdap/registry",
+        "version": "9999999-dev",
+        "version_normalized": "9999999-dev",
+        "dist": {
+            "type": "path",
+            "url": "./packages/fisdap/registry",
+            "reference": "22145a9de1eab2e461dbc480a0dc3a1640830236",
+            "shasum": null
+        },
+        "require": {
+            "php": ">=5.2.11"
+        },
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Zend_Registry": "library/"
+            }
+        },
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "Zend Framework 1 Registry package",
+        "homepage": "http://framework.zend.com/",
+        "keywords": [
+            "exception",
+            "framework",
+            "zend",
+            "zf1"
+        ]
+    },
+    {
+        "name": "fisdap/session",
+        "version": "9999999-dev",
+        "version_normalized": "9999999-dev",
+        "dist": {
+            "type": "path",
+            "url": "./packages/fisdap/session",
+            "reference": "d114041b27130fd2ab3fd1e8534ac786948a8cde",
+            "shasum": null
+        },
+        "require": {
+            "php": ">=5.2.11"
+        },
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Zend_Session": "library/"
+            }
+        },
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "Zend Framework 1 session package",
+        "homepage": "http://framework.zend.com/",
+        "keywords": [
+            "exception",
+            "framework",
+            "zend",
+            "zf1"
+        ]
     },
     {
         "name": "flow/jsonpath",

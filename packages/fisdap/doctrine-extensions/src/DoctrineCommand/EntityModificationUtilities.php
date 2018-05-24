@@ -16,7 +16,7 @@ trait EntityModificationUtilities
      * @param $usePerconaOnlineSchemaChange boolean Should we use the Percona Online Schema Change trait w/ the migration class?
      * @throws \Exception
      */
-    protected function createDoctrineMigrationFile($upCode, $downCode, $usePerconaOnlineSchemaChange = false)
+    protected function createDoctrineMigrationFile($upCode, $downCode, $usePerconaOnlineSchemaChange = FALSE)
     {
         // Run the generate migration command (\Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand())
         $generateCommand = $this->getApplication()->find('migrations:generate');
@@ -95,8 +95,7 @@ EOT;
         return $entityCodeString;
     }
 
-    private function getEntityIdentityInfo($entityClass)
-    {
+    private function getEntityIdentityInfo($entityClass) {
         // Find ID Property for entity
         $metadata = $this->allMetadata[$entityClass];
         $identifiers = $metadata->getIdentifierFieldNames();
@@ -115,8 +114,7 @@ EOT;
         );
     }
 
-    private function getPropertyColumnName($property, $entityClass, $isAssociationField = false)
-    {
+    private function getPropertyColumnName($property, $entityClass, $isAssociationField = FALSE) {
         if ($isAssociationField) {
             $mapping = $this->allMetadata[$entityClass]->getAssociationMapping($property);
             return $mapping['joinColumns'][0]['name'];
@@ -125,4 +123,5 @@ EOT;
             return $mapping['columnName'];
         }
     }
+
 }

@@ -30,3 +30,4 @@ final class ProgramSettingsWasUpdated
         return $this->id;
     }
 }
+

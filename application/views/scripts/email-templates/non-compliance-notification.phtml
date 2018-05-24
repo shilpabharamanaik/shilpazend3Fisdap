@@ -1,0 +1,14 @@
+Hello <?= $this->name ?>,<br><br>
+
+The following <?= $this->count > 1 ? "requirements need" : "requirement needs" ?> your immediate attention,
+and will affect your eligibility to attend shifts at sites where
+<?= $this->count > 1 ? "these are" : "this is" ?> required.<br><br>
+
+You are non-compliant for:<br>
+<? foreach ($this->requirements as $requirement) {
+	echo "- " . $requirement['requirementName'] . ": " . $requirement['status'] . "<br>";
+} ?>
+<br><br>
+
+If you have any questions about how to fulfill <?= $this->count > 1 ? "these requirements" : "this requirement" ?>,
+please contact your compliance representative.

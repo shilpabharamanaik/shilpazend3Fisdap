@@ -7,6 +7,7 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface ShiftRequestRepository
  *

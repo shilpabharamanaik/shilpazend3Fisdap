@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Client;
 
+
 /**
  * Loads mrapi-client-config.php configuration file and provides access to configuration data
  *
@@ -80,9 +81,7 @@ final class ApiClientConfig
         $configFile = null;
 
         foreach ($directories as $directory) {
-            if ($directory === null) {
-                continue;
-            }
+            if ($directory === null) continue;
 
             $configFile = $directory . DIRECTORY_SEPARATOR . 'mrapi-client-config.php';
 

@@ -3,6 +3,7 @@
 use Fisdap\Entity\OrderPermission;
 use Fisdap\Fractal\Transformer;
 
+
 /**
  * Prepares order permission data for JSON output
  *
@@ -24,4 +25,4 @@ final class OrderPermissionTransformer extends Transformer
 
         return $orderPermission;
     }
-}
+} 

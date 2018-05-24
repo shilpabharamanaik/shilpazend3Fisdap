@@ -10,6 +10,7 @@ use Fisdap\Attachments\Entity\Attachment;
 use Fisdap\Attachments\Transformation\AttachmentTransformer;
 use Illuminate\Container\Container;
 
+
 class AttachmentTransformerCest
 {
     /**
@@ -48,23 +49,14 @@ class AttachmentTransformerCest
         $this->associatedEntityMock = Mockery::mock(HasAttachments::class);
 
         $this->fakeAttachment = Mockery::mock(new Attachment(
-            12345,
-            $this->associatedEntityMock,
-            'somepic.jpg',
-            67890,
-            'image/jpeg',
-            'fakes/12345/abc123',
-            'abc123',
-            'foo',
-            'bar'
+            12345, $this->associatedEntityMock, 'somepic.jpg', 67890, 'image/jpeg', 'fakes/12345/abc123', 'abc123', 'foo', 'bar'
         ));
 
         $this->attachmentsKernelMock = Mockery::mock(AttachmentsKernel::class);
         $this->containerMock = Mockery::mock(Container::class);
         $this->signedUrlGeneratorFactoryMock = new SignedUrlGeneratorFactory($this->containerMock);
         $this->attachmentTransformer = new AttachmentTransformer(
-            $this->attachmentsKernelMock,
-            $this->signedUrlGeneratorFactoryMock
+            $this->attachmentsKernelMock, $this->signedUrlGeneratorFactoryMock
         );
     }
 
@@ -165,15 +157,7 @@ class AttachmentTransformerCest
     {
         // arrange
         $attachment = new Attachment(
-            12345,
-            $this->associatedEntityMock,
-            'somepic.jpg',
-            67890,
-            'image/jpeg',
-            'fakes/12345/abc123',
-            'abc123',
-            'foo',
-            'bar'
+            12345, $this->associatedEntityMock, 'somepic.jpg', 67890, 'image/jpeg', 'fakes/12345/abc123', 'abc123', 'foo', 'bar'
         );
 
         $attachment->setProcessed(true);

@@ -1,0 +1,23 @@
+<tr>
+
+	<td class="package-desc-cell">
+		<span class="package-title"><?= $this->package->name ?></span> <span class="package-desc"><?= $this->package->description ?></span>
+	</td>
+	
+	<td class="package-limits-cell">
+		<?= $this->package->limitable ? $this->formRadio("limited_" . $this->package->id, 1, array(), array(1 => "Limited", 0 => "Unlimited")) : "N/A" ?>
+	</td>
+	
+	<td class="certification-cell">
+		<?= $this->formRadio("certification_package_" . $this->package->id, $this->package->certifications->first()->id, array(), $this->package->getFormOptions()) ?>
+	</td>
+	
+	<td class="price-cell">
+		<div id='price_<?= $this->package->id ?>'>$<?= $this->package->certifications->first()->limited_price ?></div>
+	</td>
+	
+	<td class="code-cell">
+		<div id='code_<?= $this->package->id ?>'><?= \Fisdap\Entity\Order::generateProductCode(\Fisdap\Entity\User::getLoggedInUser()->getCurrentProgram()->id, $this->package->certifications->first()->configuration, $this->package->certifications->first()->certification->id) ?></div>
+	</td>
+
+</tr>

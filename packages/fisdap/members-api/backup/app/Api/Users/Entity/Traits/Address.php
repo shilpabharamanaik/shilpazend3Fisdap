@@ -2,6 +2,7 @@
 
 use Doctrine\ORM\Mapping\Column;
 
+
 /**
  * Trait Address
  *

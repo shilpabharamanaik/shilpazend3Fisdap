@@ -1,0 +1,26 @@
+<div class="container_12" id="form_div">
+
+	<div class='notice'>
+		Removing <?= $this->element->program->name ?> from this network will also remove any future shared shifts at
+		<?= $this->element->site->name ?> from <?= $this->element->program->name ?>'s schedule.<br><br>
+		Any existing future shifts at <?= $this->element->site->name ?> created by <?= $this->element->program->name ?> will no longer be seen by the sharing network.
+	</div>
+	
+	<div class='settings-line'>
+		Drop scheduled students from these shifts?
+		<?= $this->element->drop_students ?>
+	</div>
+	
+    <div class='buttons'>
+		<div id="cancelButtonWrapper" class="small gray-button">
+			<a href='#' id='cancel-remove-btn'>Cancel</a>
+		</div>
+		<div id="saveButtonWrapper" class="small green-buttons">
+			<a href='#' id='remove-sharing-btn'>Remove</a>
+		</div>
+	</div>
+	
+	<?= $this->element->program_id ?>
+	<?= $this->element->site_id ?>
+	
+</div>

@@ -1,0 +1,11 @@
+<?= $this->shift->student->user->first_name ?> <?= $this->shift->student->user->last_name ?> has submitted the following narrative(s) for shift #<?= $this->shift->id ?> on <?= $this->shift->start_datetime->format("Y-m-d") ?> at <?= $this->shift->site->name ?>
+
+
+<?
+foreach ($this->shift->narratives as $narrative) {
+    if (!$narrative->isBlank()) {
+	echo $narrative->getProcedureText(false);
+	echo "\n\n\n";
+    }
+}
+?>

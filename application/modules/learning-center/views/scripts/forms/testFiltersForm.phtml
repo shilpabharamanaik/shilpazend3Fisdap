@@ -1,0 +1,42 @@
+<div id="filterOptions">
+	
+	<div class="grid_3 filterOptionList">
+		<div class='form-prompt'>
+			<?= $this->element->filterOptions ?>
+			<div class="clear"></div>
+		</div>
+	</div>
+	
+
+	<div class="grid_4">
+		<div id="fitlerDetailWrapper">
+				
+			<div class="filterTypeContainer" id="date-ranges-container">
+				<div class="grid_7">
+					<?= $this->element->start_date ?>
+				</div>
+				
+				<div class="grid_4">
+					<?= $this->element->end_date ?>
+				</div>
+				
+				<div class="clear"></div>
+			</div>
+			
+			<div class="filterTypeContainer" id="test-container">
+				<?= $this->element->test_id ?>
+			</div>
+			
+			<div class="filterTypeContainer" id="contact-container" class="filter-dialog">
+				<?= $this->element->contact_name ?>
+			</div>
+		
+		</div>
+	</div>
+	
+	
+	<div class="clear"></div>
+	
+</div>
+
+<div class="clear"></div>

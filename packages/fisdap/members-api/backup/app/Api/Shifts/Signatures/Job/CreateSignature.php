@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Shifts\Signatures\Job;
 
+
 use Fisdap\Api\Jobs\Job;
 use Fisdap\Api\Jobs\RequestHydrated;
 use Fisdap\Data\User\UserRepository;
@@ -21,7 +22,8 @@ final class CreateSignature extends Job implements RequestHydrated
 
     public function handle(
         UserRepository $userRepository
-    ) {
+    )
+    {
         $signature = new Signature;
 
         $user = $this->validResource($userRepository, 'userId');
@@ -35,7 +37,7 @@ final class CreateSignature extends Job implements RequestHydrated
         return $signature;
     }
     
-    public function rules()
+    public function rules() 
     {
         return [
             'signatureString' => 'required|string',
@@ -51,4 +53,6 @@ final class CreateSignature extends Job implements RequestHydrated
     {
         return array();
     }
+
 }
+

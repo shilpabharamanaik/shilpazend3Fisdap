@@ -7,12 +7,13 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface ShiftAttendanceRepository
  *
  * @package Fisdap\Data\ShiftAttendance
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface ShiftAttendanceRepository extends Repository
-{
+interface ShiftAttendanceRepository extends Repository {
+
 }

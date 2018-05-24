@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Queries\Parameters;
 
+
 /**
  * Template for encapsulating common query parameters
  *

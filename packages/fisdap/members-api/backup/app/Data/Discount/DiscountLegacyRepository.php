@@ -2,6 +2,7 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface DiscountLegacyRepository
  *
@@ -17,4 +18,4 @@ interface DiscountLegacyRepository extends Repository
      * @return array
      */
     public function getCurrentDiscounts($programId, \DateTime $currentDate = null);
-}
+} 

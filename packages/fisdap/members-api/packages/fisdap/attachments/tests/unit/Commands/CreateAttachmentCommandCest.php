@@ -12,9 +12,10 @@ use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+
 /**
  * Class CreateAttachmentCommandCest
- *
+ * 
  * @author  Ben Getsug <bgetsug@fisdap.net>
  */
 class CreateAttachmentCommandCest

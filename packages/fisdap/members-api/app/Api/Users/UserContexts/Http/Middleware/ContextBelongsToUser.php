@@ -8,6 +8,7 @@ use Fisdap\Entity\UserContext;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 
+
 /**
  * Ensures user context belongs to 'userId' route parameter
  *
@@ -26,8 +27,7 @@ final class ContextBelongsToUser
      * @param AuthManager $auth
      * @param UserContextRepository $userContextRepository
      */
-    public function __construct(AuthManager $auth, UserContextRepository $userContextRepository)
-    {
+    public function __construct(AuthManager $auth, UserContextRepository $userContextRepository) {
         $this->userContextRepository = $userContextRepository;
     }
 

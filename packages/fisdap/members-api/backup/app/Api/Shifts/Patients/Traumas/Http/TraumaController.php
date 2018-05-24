@@ -2,6 +2,7 @@
 
 namespace Fisdap\Api\Shifts\Patients\Traumas\Http;
 
+
 use Doctrine\ORM\EntityManagerInterface;
 use Fisdap\Api\Http\Controllers\Controller;
 use Fisdap\Api\Transformation\EnumeratedTransformer;

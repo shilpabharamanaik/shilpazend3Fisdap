@@ -1,0 +1,43 @@
+<?php
+	$request = $this->request;
+	$user = \Fisdap\Entity\User::getLoggedInUser();
+?>
+
+<tr class='<?= $this->type== 'pending' ? "clickable" : "" ?>' data-requestid=<?= $request['id'] ?>>
+    <? if ($this->type == 'pending') { ?>
+        <td class="checkbox-cell">
+            <div class="top">
+                <?= $this->formCheckbox("toggle_" . $request['id'], $request['id'], array("class" => "checkbox-toggle")) ?>
+            </div>
+        </td>
+    <? } ?>
+
+	<td class="sent" style='border-left-style:hidden;border-right-style:hidden'>
+		<div class='top'><?= $request['date'] ?></div>
+	</td>
+	
+	<td class="request" style='border-left-style:hidden;border-right-style:hidden'>
+		<div class='top'><?= $request['request'] ?></div>
+	</td>
+	
+	<td class="name" style='border-left-style:hidden;border-right-style:hidden'>
+		<div class='top person'><?= $request['person'] ?></div>
+	</td>
+	
+	<td class="shift <?= $request['event_type'] . " " . $request['addl-site-type'] ?>" style='border-left-style:hidden;border-right-style:hidden'>
+		<img id='site-icon' class='icon' src='/images/icons/<?= $request['event_type'] ?>SiteIconColor.png'>
+		<h4 class='<?= $request['event_type'] ?>'><?= $request['event_date'] ?></h4>
+		<h4 class='header' style='margin: 0 0 5px 30px'><?= $request['event_location'] ?></h4>
+		<div class='additional-shift-info'><?= $request['addl-info'] ?></div>
+	</td>
+
+    <? if ($this->type == 'completed') { ?>
+        <td class="status">
+            <?= $request['status'] ?>
+        </td>
+    <? } ?>
+
+	<td class="tools" style='border-left-style:hidden;border-right-style:hidden'>
+        <?= $request['tools'] ?>
+	</td>
+</tr>

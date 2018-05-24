@@ -12,6 +12,7 @@ use Fisdap\Entity\ShiftLegacy;
 use Fisdap\Fractal\Transformer;
 use Illuminate\Container\Container;
 
+
 /**
  * Prepares report data for JSON output
  *
@@ -24,6 +25,7 @@ final class ReportTransformer extends Transformer
     {
         // Process headers
         if (isset($report['headers'])) {
+
         }
 
         $transformed = [

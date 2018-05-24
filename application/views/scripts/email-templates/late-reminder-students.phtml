@@ -1,0 +1,27 @@
+Hello <?= $this->user->first_name ?> <?=$this->user->last_name ?>,
+
+You have shifts in the Fisdap Skills Tracker that require your attention.
+
+The following shifts have been marked as late and have not yet been locked:
+<?php
+foreach ($this->lateNotLockedShifts as $shift) {
+    echo $shift->id . " on " . $shift->start_datetime->format('Y-m-d') . " at "
+         . $shift->site->name . ", " . $shift->base->name . "\n";
+}
+?>
+
+The following shifts have been marked as late but have been locked:
+<?php
+foreach ($this->lateLockedShifts as $shift) {
+    echo $shift->id . " on " . $shift->start_datetime->format('Y-m-d') . " at "
+         . $shift->site->name . ", " . $shift->base->name . "\n";
+}
+?>
+
+The following shifts have not been marked late but will be due in the next 24 hours:
+<?php
+foreach ($this->dueShifts as $shift) {
+    echo $shift->id . " on " . $shift->start_datetime->format('Y-m-d') . " at "
+         . $shift->site->name . ", " . $shift->base->name . " Due by " . $shift->end_datetime->add(new DateInterval("PT72H"))->format("Y-m-d Hi") . "\n";
+}
+?>

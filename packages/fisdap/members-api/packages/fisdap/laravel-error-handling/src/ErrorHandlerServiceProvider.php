@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Intouch\Newrelic\Newrelic;
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Registers custom exception handling and provides routes for testing errors
  *
@@ -41,7 +42,7 @@ final class ErrorHandlerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(ErrorHandler::class, function () {
+        $this->app->bind(ErrorHandler::class, function() {
             return new ErrorHandler(
                 $this->app['request'],
                 $this->app['config'],

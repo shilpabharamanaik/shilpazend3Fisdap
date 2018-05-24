@@ -3,6 +3,7 @@
 use Fisdap\Api\Events\Event;
 use Fisdap\Entity\UserContext;
 
+
 /**
  * An event to fire when a user context (UserContext Entity) was created
  *

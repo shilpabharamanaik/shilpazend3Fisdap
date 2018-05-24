@@ -6,9 +6,10 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Term Type
- *
+ * 
  * @Entity
  * @Table(name="fisdap2_term_type")
  */
@@ -33,4 +34,5 @@ class TermType extends Enumerated
      * @Column(type="string", nullable=true)
      */
     protected $entity_name;
+
 }

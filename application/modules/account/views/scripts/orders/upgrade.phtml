@@ -1,0 +1,18 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_12 island">
+	<h2 class="section-header">Products to upgrade</h2>
+	<p style='margin-bottom:1em;'>
+		Please choose one or more products. You will choose the students on the next page.<br />
+		You can also <a href='/account/orders/upgrade-instructors'>upgrade instructor accounts</a> to include Preceptor Training.
+	</p>
+	<?php if ($this->isStaff) { ?>
+		<p><a href="#" id="all-products-shortcut">Select all products and continue</a></p>
+	<?php } ?>
+	<?= $this->form ?>
+	<div class="grid_4">
+		<a href="/account/orders">&lt;&lt; Previous (Order Accounts)</a>
+	</div>
+	<div class="prefix_4 grid_4">
+		<a id="next-link" href="#">Next (Choose students) &gt;&gt;</a>
+	</div>
+</div>

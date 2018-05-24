@@ -1,0 +1,9 @@
+<?= $this->pageTitleHelper() ?>
+<div class="island grid_12">
+    <form method="post">
+        Start Date: <?= $this->datePicker("startDate", '', array()); ?><br /><br />
+        End Date: <?= $this->datePicker("endDate", '', array()); ?><br /><br />
+        <?= $this->formSubmit("submit", "Get XML"); ?>
+        <?= $this->formHidden("format", "xml"); ?>
+    </form>
+</div>

@@ -1,0 +1,49 @@
+<?php
+		$edit_link = '<div class="edit_link_wrapper"><a href="#" class="edit_staff_member" data-staffMemberId="' . $this->staff_member->id . '">edit</a></div>';
+?>
+
+		<div id='staff-member-<?= $this->staff_member->id ?>' class="accordion_element" data-sortString="<?= $this->staff_member->first_name . $this->staff_member->last_name ?>">
+			
+			<div id="site_staff_accordion_<?= $this->staff_member->id ?>" class="accordion_element_header">
+				<? if ($this->site_admin) { ?>
+					<div class="delete_staff_member_wrapper">
+						<a class="delete-staff-member no-accordion-action" data-staffMemberId="<?= $this->staff_member->id ?>" title="delete staff member" href="#">
+							<img class="small-icon no-accordion-action" src="/images/icons/delete.png">
+						</a>
+					</div>
+				<? } ?>
+
+				<div class="accordion_staff_member_name_wrapper">
+					<?= $this->staff_member->first_name ?> <?= $this->staff_member->last_name ?><?= ($this->staff_member->title) ? ", ". $this->staff_member->title : "" ?>
+				</div>
+				
+				<div class="clear"></div>
+				
+			</div>
+
+				<div class="accordion_element_content">
+					
+					<? if($this->staff_member->hasContactInfo()) { ?>
+						<div class="grid_6">phone: <?= $this->phoneNumberHelper($this->staff_member->phone, $this->country) ?></div>
+						<div class="grid_6">email: <?= $this->staff_member->email ?></div>
+						<div class="grid_6">pager: <?= $this->phoneNumberHelper($this->staff_member->pager, $this->country) ?></div>
+					<? } else { ?>
+						<div class="grid_12">No contact info has been entered for this staff member.</div>
+					<? } ?>
+                    <div class="clear"></div>
+
+                    <div class="grid_12 bases">
+                        bases: <?= ($this->staff_member->getBases()) ? implode(", ", $this->staff_member->getBases()): "All bases" ?>
+                    </div>
+
+                    <? if ($this->staff_member->notes) { ?>
+                        <div class="grid_12 staff_member_notes">notes: <?= $this->staff_member->notes ?></div>
+                    <? } ?>
+					
+					<?= $edit_link ?>
+					
+					<div class="clear"></div>
+					
+				</div>
+			
+		</div>

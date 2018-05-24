@@ -1,0 +1,430 @@
+<script>
+	$(function(){
+		// Assign the click handler to the modal launch buttons...
+		$('.modal_launcher').button().click(function(e){
+			e.preventDefault();
+			modalName = $(this).attr('data-modal-name');
+			$('#' + modalName + '_modal').dialog({ 
+				width: 500, 
+				height: 375,
+				modal: true,
+				close: function(){ refreshDataOutput(modalName); },
+				buttons: [ { text: "Ok", click: function() { $( this ).dialog( "close" ); } } ]
+			});
+			return false;
+		});
+
+		$('#cancel_button').button().click(function(e){
+			e.preventDefault();
+			window.location = "/exchange/scenario/list";
+			return false;
+		});
+
+		$('#save_button').button().click(function(e){
+			e.preventDefault();
+			
+			blockUi(true);
+
+			$.post("/exchange/scenario/save", getPostData(), function(resp){ window.location = "/exchange/scenario/list"; });
+
+			return false;
+		});
+
+		// Display all currently saved data...
+		refreshDataOutput("sample");
+		refreshDataOutput("opqrst");
+		//refreshDataOutput("vitals");
+		refreshDataOutput("physical_exam");
+
+		// Make everything a chosen.
+		$('#scenario_complaint, #patient_gender, #patient_ethnicity, #assessment_primary, #assessment_secondary').chosen();
+
+		$('#add_new_vital').click(function(){
+			blockUi(true);
+			$.post("/exchange/scenario/save-add-vital", getPostData(), function(resp){ 
+				window.location = "/exchange/scenario/index/scenarioId/" + $('#scenario_id').val(); 
+			});
+		});
+	});
+
+	function getPostData(){
+		data = {};
+		
+		$('.scenario_inputs :input').each(function(i, el){
+			data[$(el).attr('name')] = $(el).val();
+		});
+
+		data['vitals_curveball'] = $('#vitals_curveball').val();
+		data['vitals_critical_failures'] = $('#vitals_critical_failures').val();
+		data['interventions_dangerous_actions'] = $('#interventions_dangerous_actions').val();
+
+		return data;
+	}
+	
+	function refreshDataOutput(modalName){
+		modalDomNameDivs = $('#' + modalName + '_modal').children().find('div.grid_3');
+		modalDomDataDivs = $('#' + modalName + '_modal').children().find('div.grid_9');
+
+		modalDataOutput = $('#' + modalName + '_data_output');
+		
+		modalDataOutput.empty();
+		
+		for(i=0; i<modalDomNameDivs.length; i++){
+			nameDiv = $(modalDomNameDivs[i]);
+			
+			dataVal = $(modalDomDataDivs[i]).find("input, textarea").val();
+
+			if(dataVal.trim() == ""){
+				dataVal = "N/A";
+			}
+			
+			newNode = $("<div class='grid_4'><span class='prompt_name'>" + nameDiv.text() + "</span><span class='prompt_value'>" + dataVal + "</span></div>");
+
+			modalDataOutput.append(newNode);
+		}
+	}
+	
+	// This needs to be defined so that the modals can correctly set the patient ID...
+	function getPatientId()
+	{
+		return $('#patient_id').val();
+	}
+</script>
+<span id='scenario_contents'>
+	<div class='scenario_inputs'>
+		<?php echo $this->element->scenario_id; ?>
+		<?php echo $this->element->patient_id; ?>
+		<?php 
+			//echo $this->element->vital_id; 
+		?>
+		
+		<div class="grid_12 island withTopMargin withStaticPosition">
+			<h3 class="section-header">Scenario Details</h3>
+			
+			<?php
+				if($this->isStaff){
+			?>
+				<div class="grid_2">Scenario Status</div><div class="grid_10"><?php echo $this->element->scenario_state; ?></div> <br /> <br />
+			<?php
+				}
+			?>
+			
+			<div class="grid_2">Scenario title</div><div class="grid_10"><?php echo $this->element->scenario_title; ?></div> <br /> <br />
+			
+			<div class="grid_2"'>Chief complaint</div><div class="grid_10" style='position: static'><?php echo $this->element->scenario_complaint; ?></div> <br /> <br />
+			
+			<div class="grid_2">Notes <br /> <span class='prompt_value'>(Moulage, equipment, scene-size up info, etc.)</span> </div><div class="grid_10"><?php echo $this->element->scenario_notes; ?></div> <br /> <br />
+			
+			<div class="grid_2">Objectives</div><div class="grid_10">
+				<?php echo $this->element->scenario_objectives; ?>
+			</div>
+		</div>
+		
+		<div class='clear'></div>
+		
+		<div class="grid_12 island withTopMargin withStaticPosition">
+			<h3 class="section-header">Patient Information</h3>
+			Information provided by dispatch (read aloud to student)<br />
+			<?php echo $this->element->patient_information; ?> <br /><br />
+			
+			<div class='grid_12' style='position: static'>
+				<div class='grid_3'>
+					Age <?php echo $this->element->patient_age; ?>
+				</div>
+				<div class='grid_3' style='position: static'>
+					Gender <?php echo $this->element->patient_gender; ?>
+				</div>
+				<div class='grid_3' style='position: static'>
+					Ethnicity <?php echo $this->element->patient_ethnicity; ?>
+				</div>
+				<div class='grid_3'>
+					Weight <?php echo $this->element->patient_weight; ?> <?php echo $this->element->patient_weight_unit; ?>
+				</div>
+			</div>
+			
+			<br />
+			<br />
+			
+			<div class='grid_12'>
+				<div class='grid_2 blue-button extra-small'>
+					<a id='sample_launch_button' class='modal_launcher' data-modal-name="sample"  href='#'>SAMPLE</a>
+				</div>
+				<div class='grid_10' id='sample_data_output'>
+					
+				</div>
+				<div class='clear'></div>
+			</div>
+			
+			<div class='clear'></div>
+			<br />
+			
+			<div class='grid_12'>
+				<div class='grid_2 blue-button extra-small'>
+					<a id='opqrst_launch_button' class='modal_launcher' data-modal-name="opqrst"  href='#'>OPQRST</a>
+				</div>
+				<div class='grid_10' id='opqrst_data_output'>
+					
+				</div>
+				<div class='clear'></div>
+			</div>
+		</div>
+		<div class='clear'></div>
+		
+		<div class="grid_12 island withTopMargin withStaticPosition">
+			<h3 class="section-header">Physical Examination</h3>
+			<div class='grid_12'>
+				<a name='vitals'></a>
+			<?php 
+				$vitalNum = 1;
+				foreach($this->scenario->patient->vitals as $vital){
+					$vitalDataAttr = "data-vital_id='" . $vital->id . "'";
+					$idTail = "_" . $vitalNum;
+			?>
+					<div class='grid_2 blue-button extra-small'>
+						<a id='vitals-btn<?= $idTail; ?>' <?= $vitalDataAttr ?> href='#' class='vitals-btn'>Vitals #<?= $vitalNum; ?></a>
+					</div>
+					<div class='grid_10' id='vitals_data_output'>
+						<div class='grid_4'>
+							<span class='prompt_name'>Blood Pressure:</span>
+							<span id='vitals_blood_pressure<?= $idTail; ?>' <?= $vitalDataAttr ?> class='vitals_blood_pressure prompt_value'><?= $vital->systolic_bp . "/" . $vital->diastolic_bp; ?></span>
+						</div>
+						<div class='grid_4'>
+							<span class='prompt_name'>Pulse:</span>
+							<span id='vitals_pulse<?= $idTail; ?>' <?= $vitalDataAttr ?> class='vitals_pulse prompt_value'><?= $vital->pulse_rate . " " . $vital->pulse_quality->name; ?></span>
+						</div>
+						<div class='grid_4'>
+							<span class='prompt_name'>Respirations:</span>
+							<span id='vitals_respirations<?= $idTail; ?>' <?= $vitalDataAttr ?> class='vitals_respirations prompt_value'><?= $vital->resp_rate . " " . $vital->resp_quality->name; ?></span>
+						</div>
+						<div class='grid_4'>
+							<span class='prompt_name'>SpO2:</span>
+							<span id='vitals_spo2<?= $idTail; ?>' <?= $vitalDataAttr ?> class='vitals_spo2 prompt_value'><?= $vital->spo2; ?></span>
+						</div>
+						<div class='grid_4'>
+							<span class='prompt_name'>Skin:</span>
+							<span id='vitals_skin<?= $idTail; ?>' <?= $vitalDataAttr ?> class='vitals_skin prompt_value'><?php
+								$skins = array();
+								
+								foreach($vital->skins as $sId){
+									$s = \Fisdap\EntityUtils::getEntity('VitalSkin', $sId);
+									$skins[] = $s->name;
+								}
+								
+								echo implode(', ', $skins);
+							?></span>
+						</div>
+						<div class='grid_4'>
+							<span class='prompt_name'>Pupils:</span>
+							<span id='vitals_pupils<?= $idTail; ?>' <?= $vitalDataAttr ?> class='vitals_pupils prompt_value'><?php
+								if($vital->pupils_equal && $vital->pupils_round && $vitals->pupils_reactive){
+									echo "PERRL: Yes";
+								}elseif($vital->pupils_equal || $vital->pupils_round || $vitals->pupils_reactive){
+									echo "PERRL: No";
+								}else{
+									echo "N/A";
+								}
+							?></span>
+						</div>
+						<div class='grid_4'>
+							<span class='prompt_name'>Lung Sounds:</span>
+							<span id='vitals_lung_sounds<?= $idTail; ?>' <?= $vitalDataAttr ?> class='vitals_lung_sounds prompt_value'><?php
+								$lungs = array();
+								foreach($vital->lung_sounds as $lsId){
+									$ls = \Fisdap\EntityUtils::getEntity('VitalLungSound', $lsId);
+									$lungs[] = $ls->name;
+								}
+								
+								echo implode(', ', $lungs);
+							?></span>
+						</div>
+						<div class='grid_4'>
+							<span class='prompt_name'>Blood Glucose:</span>
+							<span id='vitals_blood_glucose<?= $idTail; ?>' <?= $vitalDataAttr ?> class='vitals_blood_glucose prompt_value'><?= $vital->blood_glucose; ?></span>
+						</div>
+						<div class='grid_4'>
+							<span class='prompt_name'>APGAR:</span>
+							<span id='vitals_apgar<?= $idTail; ?>' <?= $vitalDataAttr ?> class='vitals_apgar prompt_value'><?= $vital->apgar; ?></span>
+						</div>
+						<div class='grid_4'>
+							<span class='prompt_name'>GCS:</span>
+							<span id='vitals_gcs<?= $idTail; ?>' <?= $vitalDataAttr ?> class='vitals_gcs prompt_value'><?= $vital->gcs; ?></span>
+						</div>
+					</div>
+					<div class='clear'></div>
+					<br />
+				<?php
+					$vitalNum++;
+				} 
+				?>
+				
+				<?php if($vitalNum <= 5){
+					echo "<a href='#' id='add_new_vital'>Add new vital</a>";
+				}?>
+			</div>
+			
+			<div class='clear'></div>
+			<br />
+			
+			<div class='grid_12'>
+				<div class='grid_2 blue-button extra-small'>
+					<a id='physical_launch_button' class='modal_launcher' data-modal-name="physical_exam" href='#'>Physical Exam</a>
+				</div>
+				<div class='grid_10' id='physical_exam_data_output'>
+					
+				</div>
+				<div class='clear'></div>
+			</div>
+		</div>
+		<div class='clear'></div>
+		
+		<div class="grid_12 island withTopMargin withStaticPosition">
+			<h3 class="section-header">Assessment</h3>
+			<div class='grid_12' style='position: static'>
+				<div class='grid_5' style='position: static'>
+					<div class='grid_12' style='position: static'>
+						<div class='grid_3'>Primary</div>
+						<div class='grid_9' style='position: static'><?php echo $this->element->assessment_primary; ?></div>  <br /><br />
+						<div class='grid_3'>Secondary</div>
+						<div class='grid_9' style='position: static'><?php echo $this->element->assessment_secondary; ?></div>
+					</div>
+				</div>
+				<div class='grid_7'>
+					<div class='grid_12'>
+						<div class='grid_3'>Special Considerations <br /> <span class='prompt_value'>(Vital patient information not covered in other sections)</span> </div>
+						<div class='grid_9'><?php echo $this->element->assessment_special_consideration; ?></div>
+					</div>
+				</div>
+			</div>
+			<div class='clear'></div>
+		</div>
+		<div class='clear'></div>
+	</div>
+	<div class="grid_12 island withTopMargin withStaticPosition" id='intervention-list-island'>
+		<h3 class="section-header">Interventions</h3>
+		<?php
+			// Include an intervention list, don't show the vitals modal 
+			echo $this->interventionList($this->scenario->patient->id, null, true, "field", array("Iv", "Med", "Other", "Airway", "Cardiac"), "Exchange"); 
+		?>
+		<br />
+		<div class='grid_12' id='inappropriate-action'>
+			<div class='grid_3'>Inappropriate / Dangerous actions</div>
+			<div class='grid_9'><?php echo $this->element->interventions_dangerous_actions; ?></div>
+		</div>
+	</div>
+	<div class='clear'></div>
+		
+	<div class="grid_12 island withTopMargin" id='curveball-island'>
+		<h3 class="section-header">Curveball</h3>
+		<div class='grid_12'>
+			Change in condition / event to be read to the student <br />
+			<?php echo $this->element->vitals_curveball; ?> <br /><br />
+		</div>
+		<div class='grid_12'>
+			Critical Failures<br />
+			<?php echo $this->element->vitals_critical_failures; ?> <br /><br />
+		</div>
+	</div>
+	
+	<div class='clear'></div>
+	
+	<br />
+	<div class="grid_12 no-pdf">
+		<div class='prefix_9 grid_3 extra-small'>
+			<div class='grid_6'>
+				<a href='#' id='cancel_button'>Cancel</a>
+			</div>
+			<div class='grid_6 green-buttons'>
+				<a href='#' id='save_button'>Save</a>
+			</div>
+		</div>
+	</div>
+	<div class="grid_12 island withTopMargin no-pdf pdfLink" id='export-island' style='display: none;'>
+		<a href='#' class='pdfLink' id='export-pdf'><img src='/images/icons/pdf_icon.png' alt='Export PDF'/></a>
+	</div>
+</span>	
+<div>
+	<div id='modal_container' style='display: none;'>
+		<div id='sample_modal' class='scenario_inputs'>
+			<div class='grid_12 g_12_width'>
+				<div class='grid_3 g_3_width modal_label'>Signs & Symptoms:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->sample_signs; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Allergies:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->sample_allergies; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Medications:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->sample_medications; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Prior History:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->sample_prior_history; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Last Oral Intake:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->sample_last_oral_intake; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Events:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->sample_events; ?></div>
+				<div class='clear'></div>
+			</div>
+			<div class='clear'></div>
+		</div>
+		<div id='opqrst_modal' class='scenario_inputs'>
+			<div class='grid_12 g_12_width'>
+				<div class='grid_3 g_3_width modal_label'>Onset:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->opqrst_onset; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Provocation:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->opqrst_provocation; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Quality:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->opqrst_quality; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Radiation:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->opqrst_radiation; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Severity:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->opqrst_severity; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Time:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->opqrst_time; ?></div>
+				<div class='clear'></div>
+			</div>
+			<div class='clear'></div>
+		</div>
+		<div id='vitals_modal'>
+			<?php  
+				echo $this->vitalsModal; 
+			?>
+		</div>
+		<div id='physical_exam_modal' class='scenario_inputs'>
+			<div class='grid_12 g_12_width'>
+				<div class='grid_3 g_3_width modal_label'>HEENT:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->physical_heent; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Neck:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->physical_neck; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Chest:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->physical_chest; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Abdomen:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->physical_abdomen; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Pelvis:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->physical_pelvis; ?></div> <br />
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Lower Extremities:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->physical_lower_extremities; ?></div>
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Upper Extremities:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->physical_upper_extremities; ?></div>
+				<div class='clear'></div>
+				<div class='grid_3 g_3_width modal_label'>Posterior:</div>
+				<div class='grid_9 g_9_width'><?php echo $this->element->physical_posterior; ?></div>
+				<div class='clear'></div>
+			</div>
+			<div class='clear'></div>
+		</div>
+		<div id='ekg_modal' class='scenario_inputs'>
+		</div>
+	</div>
+</div>

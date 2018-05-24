@@ -1,0 +1,84 @@
+<div id='sharingDirections'>
+<?php
+	switch ($this->element->sharedStatus) {
+		case 4:		?>
+			<p>You are an <span style='font-weight:bold'>admin</span> for the sharing network at
+				<?= $this->element->site->name ?>.</p>
+			<p>You can move programs between Sharing and Not Sharing to accept requests or remove programs from the network.
+				Select a program and click <b>Edit</b> to view and change sharing permissions.</p>	
+<?php 		break;
+		case 3:		?>
+			<p>You are a <span style='font-weight:bold'>member</span> of the sharing network at
+				<?= $this->element->site->name ?>.</p>
+			<p>You can move your program from Sharing to Not Sharing to remove yourself from the network.</p>
+<?php 		break;
+		case 2:
+			if ($this->element->site->hasNetwork()) {
+				$contacts = $this->element->site->getSharingContactInfo();
+?>
+				<p>You are awaiting approval to join the sharing network at <?= $this->element->site->name ?>.<br>
+					If you have been waiting more than two business days, please contact:</p>
+				<ul id='contact-list'>
+<?php			foreach ($contacts as $contact) { 	?>
+						<li><?= $contact['name'] ?> at <?= $contact['email'] ?></li>
+<?php				}	?>
+				</ul>
+<?php		} else { 	?>
+				<p>You are awaiting approval to start a sharing network at <?= $this->element->site->name ?>.<br>
+					If you have been waiting more than two business days, please contact Fisdap at support@fisdap.net.</p>
+<?php 		}
+			break;
+		case 1:		?>
+			<p>You are not part of the sharing network at <?= $this->element->site->name ?>.</p>
+<?php 		break;
+		default:	?>
+			<p>No one has set up a sharing network at <?= $this->element->site->name ?> yet.</p>
+<?php 		break;
+	} ?>
+</div>
+				
+<?php
+	if ($this->element->sharedStatus <= 1) { ?>
+		<div class="small blue-button" id="requestButtonsContainer">
+			<a href="#" id="request-sharing-btn">Request sharing</a>
+		</div>
+<?php }?>
+
+<div class="clear"></div>
+
+<div id="programContainer">
+	
+	<div id="inactiveContainer">
+		<?= $this->element->nonsharingProgram ?>
+		<div>
+			<span class='no-request'>Gray programs</span> have not requested sharing.
+		</div>
+	</div>				
+
+	<div id="moveButtonsPrograms" class="extra-small grey-button">
+		<a id="addProgram">></a>
+		<a id="removeProgram"><</a>
+	</div>
+
+	<div id="activeContainer">
+		<?= $this->element->sharingProgram ?>
+		<div>* denotes a sharing network site admin.</div>
+	</div>
+</div>
+
+<?= $this->element->nonRequestedPrograms ?>
+<input type='hidden' id='admins' name='admins' value='<?= implode(', ', array_keys($this->element->site->getAdminPrograms())) ?>'>
+<input type='hidden' id='program_id' name='program_id' value='<?= $this->element->program->id ?>'>
+<input type='hidden' id='shared_status' name='shared_status' value='<?= $this->element->sharedStatus ?>'>
+
+<div class="clear"></div>
+					
+<?php
+	if ($this->element->sharedStatus == 4) { ?>
+		<div class="extra-small orange-button" id="sharingButtonsContainer">
+			<a href="#" id="edit-sharing-btn">Edit</a>
+		</div>
+<?php }	?>
+
+<?= $this->element->sharingPermissionsModal ?>
+<?= $this->element->removeSharingModal ?>

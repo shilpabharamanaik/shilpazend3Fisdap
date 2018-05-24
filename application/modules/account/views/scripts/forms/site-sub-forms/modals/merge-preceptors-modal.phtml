@@ -1,0 +1,41 @@
+
+<div class="container_12" id="form_div">
+	
+	<?= $this->element->target_preceptor ?>
+	<?= $this->element->preceptor_options ?>
+	<?= $this->element->site_id ?>
+	
+	<table class='fisdap-table preceptors-table clickable'>	
+	    <?
+		if ($this->element->options) {
+			foreach ($this->element->options as $id => $option) {
+				$phone = "";
+				$email = "";
+				$preceptor = \Fisdap\EntityUtils::getEntity("PreceptorLegacy", $id);
+				if ($preceptor->work_phone) {$phone = $preceptor->work_phone;}
+				else if ($preceptor->home_phone) {$phone = $preceptor->home_phone;}
+				else if ($preceptor->pager) {$phone = $preceptor->pager;}
+				if ($phone) {$phone = ": " . $preceptor->formatNumber($phone);}
+				if ($preceptor->email) {$email = ($phone) ? ", " : ": ";$email .= $preceptor->email;}
+				?>
+				
+				<tr id='<?= $id ?>' class='preceptor-row'><td><?= $option . $phone . $email; ?></td></tr>
+			<?
+			}
+		}
+		?>
+	</table>
+        
+        <div class='buttons'>
+		<div id="cancel-preceptor-merge-wrapper" class="small gray-button">
+			<a href='#' id='cancel-preceptor-merge-btn'>Cancel</a>
+		</div>
+		<div id="preceptor-merge-wrapper" class="small green-buttons">
+			<a href='#' id='do-preceptor-merge-btn'>Merge</a>
+		</div>
+	</div>
+
+</div>
+
+
+

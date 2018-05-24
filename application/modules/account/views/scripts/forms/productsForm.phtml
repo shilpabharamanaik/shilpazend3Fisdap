@@ -1,0 +1,25 @@
+<table class="products-table">
+    <? foreach($this->element->products as $product) { ?>
+		<tr>
+			<td class="product">
+				<?= $this->element->{"products_" . $product->id} ?>
+			</td>
+			
+			<td class="description">
+				<?= $product->description ?>
+			</td>
+			
+			<td class="cost">
+                <?
+					if (($newPrice = $product->getDiscountedPrice()) < ($oldPrice = $product->getPrice())) {
+						echo "<div class='old-price'>$" . number_format($oldPrice, 2, ".", ",") . "</div>";
+						echo "<div class='new-price'>$" . number_format($newPrice, 2, ".", ",") . " " . $this->helpBubble("discount_" . $product->id, "Discount", $product->getDiscountMessagesText()) .  "</div>";
+					} else {
+						echo "$" . number_format($newPrice, 2, ".", ",");
+					}
+				?>
+			</td>
+		</tr>
+	<? } ?>
+</table>
+<?= \Fisdap\Entity\User::getLoggedInUser()->isStaff() ? "* = Staff Only Products<br /><br />Staff Note: Upgrading a student to include transition course will require you to edit their NREMT license info on their account page.<br /><br />" : null ?>

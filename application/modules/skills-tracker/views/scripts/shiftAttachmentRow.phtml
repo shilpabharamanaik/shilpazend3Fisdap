@@ -1,0 +1,41 @@
+<?php
+    $this->attachment->date = new \DateTime($this->attachment->created);
+    $attachment_info_display_helper = new Fisdap_View_Helper_AttachmentInfo();
+?>
+
+<tr class="attachment-row clickable" data-attachmentid="<?= $this->attachment->id ?>">
+    <td class='number-column'>
+        <?= $this->partialCounter ?>
+    </td>
+
+    <td class="thumbnail-column <?= $this->attachment->preview['class'] ?>">
+        <?= $attachment_info_display_helper->attachmentDownloadPreviewLink($this->attachment, $this->associatedEntityId, "thumbnail ".$this->attachment->preview['class']) ?>
+    </td>
+
+    <td class='name-column'>
+        <?= $attachment_info_display_helper->attachmentInfo($this->attachment, $this->titleClass) ?>
+    </td>
+
+    <td class="date-column">
+        <?= $this->attachment->date->format('M j, Y | H:i:s') ?>
+    </td>
+
+    <td class="actions-column">
+        <?php if ($this->attachment->usedForSignoff) { ?>
+            <div class="signoff">Used for signoff</div>
+        <?php } else { ?>
+        <div class="action-cell">
+            <div>
+                <a href="#" class="edit-attachment" title="edit attachment" data-attachmentid="<?= $this->attachment->id ?>" >
+                    <img class="tiny-icon square svg" src="/images/icons/edit.svg" alt="edit attachment">
+                </a>
+            </div>
+            <div>
+                <a href="#" class="delete-attachment" title="delete attachment" data-attachmentid="<?= $this->attachment->id ?>" >
+                    <img class="tiny-icon square svg" src="/images/icons/delete.svg" alt="delete attachment">
+                </a>
+            </div>
+        </div>
+        <?php } ?>
+    </td>
+</tr>

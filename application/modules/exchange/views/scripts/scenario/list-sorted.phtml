@@ -1,0 +1,20 @@
+<?php echo $this->pageTitleHelper(); ?>
+
+<div class='grid_12 island'>
+	<div class='prefix_10 grid_2'>
+		<div class="extra-small gray-button">
+			<a href='/exchange/scenario/index/' id='add-scenario'></a>
+		</div>
+	</div>
+	
+	<div class='clear'></div>
+	
+	<br />
+	
+	<?php echo $this->scenarioListHelper($this->userScenarios, true, $this->isStaff); ?>
+	
+	<br />
+	<br />
+	
+	<?php echo $this->scenarioListHelper($this->otherScenarios, false, $this->isStaff); ?>
+</div>

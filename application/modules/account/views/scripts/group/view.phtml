@@ -1,0 +1,187 @@
+<?= $this->pageTitleHelper() ?>
+
+<script>
+	var globalActiveFlag = true;
+	
+	inactiveList = [];
+	activeList = [];
+	
+	$(function(){
+		<?php foreach($this->activeGroups as $id => $value){ ?>
+			activeList.push({id: <?php echo $id ?>, name: "<?php echo $value; ?>"})
+		<?php } ?>
+
+		<?php foreach($this->inactiveGroups as $id => $value){ ?>
+			inactiveList.push({id: <?php echo $id ?>, name: "<?php echo $value; ?>"})
+		<?php } ?>
+
+		$('#delete_button, #edit_button').button();
+
+		$('#delete_button').click(function(){
+			if($('#groupListBox').val() > 0 && globalActiveFlag){
+				$('<div>Are you sure you want to deactivate the group ' + $("#groupListBox option[value='" + $("#groupListBox").val() + "']").text() + '?  This will move the group to the inactive list.</div>').dialog({
+					buttons: [ 
+						{ text: "Cancel", click: function(){$(this).dialog("close");}},
+						{ text: "Confirm", click: function(){
+							$.post(
+									'/account/group/delete',
+									{group_id: $('#groupListBox').val()},
+									function(response){
+										window.location = '/account/group/view';
+									}
+							); 
+						}}, 
+					],
+					modal: true,
+					title: "Confirm deactivation"
+				});
+			}
+		});
+		
+		$('#active_buttonset').buttonset();
+
+		populateGroupList(true);
+	});
+
+	function populateGroupList(activeFlag){
+		if(activeFlag == undefined){
+			activeFlag = true;
+		}
+
+		globalActiveFlag = activeFlag;
+		
+		currentList = ((activeFlag) ? activeList : inactiveList);
+
+		$('#groupListBox').empty();
+
+		if(currentList.length > 0){
+			for(i in currentList){
+				e = currentList[i];
+				
+				newOpt = $('<option>' + e['name'] + '</option>');
+				newOpt.attr('value', e['id']);
+	
+				$('#groupListBox').append(newOpt);
+			}
+		}else{
+			activeText = (activeFlag ? "active" : "inactive");
+			newOpt = $('<option style="color: gray">No ' + activeText + ' groups available</option>');
+
+			newOpt.attr('value', 0);
+			
+			$('#groupListBox').append(newOpt);
+		}
+
+		updateEditLink();
+		
+		return false;
+	}
+
+	function updateEditLink(){
+		groupId = $('#groupListBox').val();
+
+		if(groupId > 0){
+			$('#edit_button').attr('href', '/account/group/edit/gid/' + groupId);
+			$('#edit_button').button('enable');
+
+			// Only enable this button if we're on the Active tab...
+			if(globalActiveFlag){
+				$('#delete_button').button('enable');
+			}else{
+				$('#delete_button').button('disable');
+			}
+		}else{
+			$('#edit_button').attr('href', '#');
+			$('#edit_button').button('disable');
+			$('#delete_button').button('disable');
+		}
+	}
+
+</script>
+		
+<style type="text/css">
+	.padded-list-box {
+		width: 250px;
+		margin: 5px;
+	}
+	
+	#add-group {
+		display: block;
+		width: 132px; height: 29px;
+		background-position: bottom;
+		text-indent: -9999px;
+		float:left;
+	/*	margin-right:.5em;
+		margin-top:.5em;*/
+		margin: .5em;
+	}
+	
+	#add-group{
+		background-image: url(/images/buttons/addStudentGroupBtn_orange.png);
+	}
+	
+	#add-group:hover{
+		background-position: center;
+	}
+	
+	#add-group:active {
+		background-position: top;
+	}
+	
+	
+	
+	.cupertino .ui-button-text-only .ui-button-text{
+		padding: .2em 1em;
+	}
+	
+	.cupertino .ui-button{
+		width: 125px;
+	}
+	
+	#inactive_button{
+		margin-left: -0.5em;
+	}
+	
+	.cupertino .ui-widget{
+		font-size: 0.95em;
+	}
+</style>
+
+<div class='header-action-buttons'>
+    <a href='/account/group/edit' id='add-group'>+ Group</a>
+</div>
+
+<h1>Student Groups</h1>
+<div class="grid_12 island">
+	<div class='grid_12'>
+		Add or edit student groups to organize your students. 
+	</div>
+	<div class='prefix_4 grid_6' style='margin-top: 10px;'>
+		<div class='grid_12'>
+			<span class='grid_12' style='padding-left: 0px;'>
+				<div id='active_buttonset' class='cupertino'>
+					<input type='radio' onclick='return populateGroupList(true)' id='active_button' name='active_setting'><label for='active_button' class='ui-state-active'>Active</label>
+					<input type='radio' onclick='return populateGroupList(false)' id='inactive_button' name='active_setting'><label for='inactive_button' id='inactive_button'>Inactive</label>
+				</div>
+			</span>	
+			<span class='clear'></span>
+			
+			<select id='groupListBox' class='padded-list-box' size="8" onchange="updateEditLink()">
+				
+			</select>
+			
+			<div class='clear'></div>
+			
+			<div class='grid_5'>
+				<div class="extra-small gray-button">
+					<a href='#' id='delete_button'>Deactivate</a>
+				</div>
+			</div>
+			<div class='grid_4' style='padding-left: 25px;'>
+				<div class="extra-small gray-button">
+					<a id='edit_button' href='#'>Edit</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

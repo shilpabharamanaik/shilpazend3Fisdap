@@ -6,6 +6,7 @@ use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
+
 /**
  * Extension of Guzzle HTTP client
  *
@@ -45,6 +46,7 @@ final class HttpClient extends Client implements HttpClientInterface
             }
 
             return $returnJsonAsArray ? $jsonObject['data'] : $jsonObject->data;
+
         } catch (RequestException $e) {
             $errorResponse = json_decode($e->getResponse()->getBody()->getContents(), $returnJsonAsArray);
 

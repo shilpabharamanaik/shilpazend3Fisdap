@@ -1,0 +1,109 @@
+<div class="grid_12 island">
+	<?php if ($this->element->error) { ?>
+		<div class="error">
+			<?= $this->element->error; ?>
+		</div>
+	<?php } ?>
+	
+	<h3 class='section-header stepOne'>Contact Information</h3>
+	
+	<div class="contact-info">
+		<div class="grid_4">
+			<?= $this->element->contact_name ?>
+		</div>
+		
+		<div class="grid_4">
+			<?= $this->element->contact_phone ?>
+		</div>
+		
+		<div class="grid_4">
+			<?= $this->element->contact_email ?>
+		</div>
+	</div>
+
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_12 island withTopMargin">
+	<div class='testDetails'>
+		<h3 class='section-header stepTwo'>Test Details</h3>
+		
+		<div class="grid_7">
+			<div class="grid_3">
+				Test:
+			</div>
+			
+			<div class="grid_9">
+				<?= $this->element->test_id ?>		
+			</div>
+			
+			<div class="clear"></div>
+			
+			<div class="grid_3 dateRange">
+				Date range:
+			</div>
+			
+			<div class="grid_9">
+				<?= $this->element->start_date ?> To: <?= $this->element->end_date ?>
+			</div>
+			
+			<div class="clear"></div>
+			
+		</div>
+		
+		<div class="grid_5">
+			<div class="view-scores-container">
+				Students <?= $this->element->is_published ?> view their scores.		
+			</div>
+		</div>
+	
+		<div class="clear"></div>
+		
+		<div class="grid_12" id="notes">
+			<p>Notes:</p>
+			<?= $this->element->test_notes ?>
+		</div>
+		
+	</div>
+</div>
+
+<div class="grid_12 island withTopMargin">
+	<h3 class='section-header'>Select Students</h3>
+	<div class="grid_12">
+		<?php
+		// prefer checkedStudents to the $scheduledTest's list, because checkedStudents should be whatever the user just submitted
+		if (is_array($this->element->checkedStudents)) {
+			$students = $this->element->checkedStudents;
+		} else if ($this->element->scheduledTest != null) {
+			foreach($this->element->scheduledTest->students as $student) {
+				$students[] = $student->id;
+			}
+		} else {
+			$students = array();
+		}
+		if ($this->element->scheduledTest) {
+			$additionalArgs = array(
+				'moodleQuizId' => $this->element->scheduledTest->test->moodle_quiz_id,
+			);
+		} else {
+			$additionalArgs = array();
+		}
+		echo $this->multiStudentPicker(array(
+											 'sourceLink' => '/ajax/get-filtered-student-list-with-test-attempts',
+											 'additionalQueryArgs' => $additionalArgs,
+											 'selectedStudents' => $students,
+											 'targetFormId' => $this->element->getAttrib('id'),
+											 'useSessionSettings' => false,
+											 'canViewStudentNames' => true));
+		?>
+			<br />
+
+	</div>
+</div>
+
+<div class="prefix_11 grid_1 saveContainer">
+	<?= $this->element->save ?>
+</div>
+<?= $this->element->noShowTotals ?>
+<?= $this->element->scheduledTestId ?>

@@ -1,0 +1,27 @@
+<div id="settings-wrapper">
+    <?= $this->pageTitleHelper() ?>
+    <?= $this->messageHelper() ?>
+
+    <?= $this->reportsNavBar("settings"); ?>
+    
+    <div class="clear"></div>
+    
+    <div class="grid_12 island">
+        <h2 class="section-header">Available <?= $this->profession ?> Reports</h2>
+        <div id='reports-filters'>
+            <?= $this->formText("report_search", null, array("class" => "search-box", "title" => "Type a report title to search...")) ?>
+        </div>
+        
+        <div id="reports-container">
+<?php
+        foreach ($this->reports as $report) {
+            echo $this->partial("reportRow.phtml", array("report" => $report,
+                                                         "mode" => "settings",
+                                                         "name" => $report->name,
+                                                         "active" => $this->program->isActiveReport($report->id)));
+        }
+?>	
+        </div>
+    </div>
+    
+</div>

@@ -10,6 +10,7 @@ use Fisdap\Entity\MedType;
 use Fisdap\Entity\OtherProcedure;
 use Fisdap\EntityUtils;
 
+
 /**
  * Class Skills
  *
@@ -86,7 +87,7 @@ trait Skills
     /**
      * Create a default narrative section for a new program
      * @codeCoverageIgnore
-     * @deprecated
+     * @deprecated 
      */
     public function createDefaultNarrativeSection()
     {

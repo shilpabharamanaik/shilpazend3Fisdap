@@ -2,6 +2,7 @@
 
 use Fisdap\Api\Client\Gateway\CommonHttpGateway;
 
+
 /**
  * Template for HTTP implementation of an AttachmentsGateway
  *
@@ -14,13 +15,7 @@ abstract class HttpAttachmentsGatewayTemplate extends CommonHttpGateway implemen
      * @inheritdoc
      */
     public function create(
-        $associatedEntityId,
-        $userContextId,
-        $filePath,
-        $id = null,
-        $nickname = null,
-        $notes = null,
-        array $categories = null
+        $associatedEntityId, $userContextId, $filePath, $id = null, $nickname = null, $notes = null, array $categories = null
     ) {
         $multipart = [];
 

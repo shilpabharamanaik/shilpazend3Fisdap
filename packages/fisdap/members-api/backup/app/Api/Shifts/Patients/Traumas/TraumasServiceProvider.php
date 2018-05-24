@@ -45,6 +45,7 @@ class TraumasServiceProvider extends ServiceProvider
                 'as'   => 'patients.traumas.mechanisms',
                 'uses' => TraumaController::class . '@getMechanisms'
             ]);
+
         });
     }
 }

@@ -1,0 +1,42 @@
+<div class="grid_12">
+<?php
+	echo $this->element->comment->render();
+?>
+
+<?php 
+	echo $this->element->instructor_only->render();
+?>
+	<br/>Email this comment to:</div> <br />
+
+<?php
+
+	$renderableOthers = array();
+	foreach($this->element->otherElements as $oe){
+		$renderableOthers[] = $oe->render() . " " . $oe->getLabel();
+	}
+	
+	echo $this->staggeredList($renderableOthers);
+?>
+<br />
+<div class="grid_12"><img id='educator_list_click' src='images/arrow_right.png' style='width: 15px; height 15px;' />Educators</div> <br/>
+<div class="grid_12" id='educators_list'>
+	<?php 
+		$renderableInstructors = array();
+		foreach($this->element->instructorElements as $ie){
+			$renderableInstructors[] = $ie->render() . " " . $ie->getLabel();
+		}
+
+		echo $this->staggeredList($renderableInstructors);
+	?>
+</div>
+<div class="grid_12">
+	<?php
+		echo $this->element->cancel->render();
+		echo $this->element->save->render();
+	?>
+</div>
+<!--<script>
+	$('#educators_list').hide();
+	$('#educator_list_click').click(function(){ $('#educators_list').toggle() });
+</script>
+-->

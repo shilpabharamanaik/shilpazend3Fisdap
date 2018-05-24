@@ -3,6 +3,7 @@
 use PDO;
 use OAuth2\Storage\UserCredentialsInterface;
 
+
 /**
  * Class FisdapUserCredentials
  *

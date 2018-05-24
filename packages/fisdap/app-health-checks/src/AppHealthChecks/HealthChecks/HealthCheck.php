@@ -2,6 +2,7 @@
 
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Template for a health check
  *
@@ -115,4 +116,4 @@ abstract class HealthCheck implements ChecksHealth
         $this->logger->error("{$this->getName()} Health Check Failure - $exceptionMessage");
         self::$totalErrors++;
     }
-}
+} 

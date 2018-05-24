@@ -2,6 +2,7 @@
 
 use Fisdap\Api\Events\Event;
 
+
 /**
  * Class DemoStudentWasCreated
  *

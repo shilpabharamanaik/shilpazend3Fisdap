@@ -19,15 +19,15 @@ use Happyr\DoctrineSpecification\Exception\InvalidArgumentException;
  */
 class Iv extends Skill
 {
-    const viewScriptName = "iv";
-    
+	const viewScriptName = "iv";
+	
     /**
-     * @var integer
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
-     */
-    protected $id;
+	 * @var integer
+	 * @Id
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 */
+	protected $id;
     
     /**
      * @ManyToOne(targetEntity="IvProcedure")
@@ -58,95 +58,90 @@ class Iv extends Skill
      * @Column(type="boolean", nullable=true)
      */
     protected $success;
-    
-    /**
+	
+	/**
      * @Column(type="integer", nullable=true)
      */
     protected $skill_order;
-    
-    
-    public function init()
-    {
-        $this->subject = EntityUtils::getEntity('Subject', 1);
-    }
+	
+	
+	public function init()
+	{
+		$this->subject = EntityUtils::getEntity('Subject', 1);
+	}
 
-    public function set_site($value)
-    {
-        $this->site = self::id_or_entity_helper($value, "IvSite");
-    }
+	public function set_site($value)
+	{
+		$this->site = self::id_or_entity_helper($value, "IvSite");
+	}
 
-    public function set_procedure($value)
-    {
-        $this->procedure = self::id_or_entity_helper($value, "IvProcedure");
-    }
+	public function set_procedure($value)
+	{
+		$this->procedure = self::id_or_entity_helper($value, "IvProcedure");
+	}
 
-    public function set_fluid($value)
-    {
-        $this->fluid = self::id_or_entity_helper($value, "IvFluid");
-    }
+	public function set_fluid($value)
+	{
+		$this->fluid = self::id_or_entity_helper($value, "IvFluid");
+	}
 
-    public function setSite(IvSite $ivSite)
-    {
-        $this->site = $ivSite;
-    }
+	public function setSite(IvSite $ivSite)
+	{
+		$this->site = $ivSite;
+	}
 
-    public function getSite()
-    {
-        return $this->site;
-    }
+	public function getSite()
+	{
+		return $this->site;
+	}
 
-    public function setProcedure(IvProcedure $ivProcedure)
-    {
-        $this->procedure = $ivProcedure;
-    }
+	public function setProcedure(IvProcedure $ivProcedure)
+	{
+		$this->procedure = $ivProcedure;
+	}
 
-    public function getProcedure()
-    {
-        return $this->procedure;
-    }
+	public function getProcedure()
+	{
+		return $this->procedure;
+	}
 
-    public function setFluid(IvFluid $ivFluid)
-    {
-        $this->fluid = $ivFluid;
-    }
+	public function setFluid(IvFluid $ivFluid)
+	{
+		$this->fluid = $ivFluid;
+	}
 
-    public function getFluid()
-    {
-        return $this->fluid;
-    }
+	public function getFluid()
+	{
+		return $this->fluid;
+	}
 
-    public function setSize($size)
-    {
-        if ($this->getProcedure()) {
-            if ($this->getProcedure()->id === 1 || $this->getProcedure()->id === 3 || $this->getProcedure()->id === 8) {
-                $eo = 'even';
-                $tmpSize = $size;
-                $string = '14-24';
-                if ($tmpSize % 2 || $tmpSize < 14 || $tmpSize > 24) {
-                    throw new InvalidArgumentException('IV gauge size must be an ' . $eo . ' integer between ' . $string . ' Given size is ' . $size);
-                }
-            } elseif ($this->getProcedure()->id === 2) {
-                if ($size != 15 && $size != 25 && $size != 45) {
-                    throw new InvalidArgumentException('IV gauge size must be either 15, 25, or 45. Given size is '.$size);
-                }
+	public function setSize($size)
+	{
+		if ($this->getProcedure()) {
+			if ($this->getProcedure()->id === 1 || $this->getProcedure()->id === 3 || $this->getProcedure()->id === 8) {
+				$eo = 'even';
+				$tmpSize = $size;
+				$string = '14-24';
+				if ($tmpSize % 2 || $tmpSize < 14 || $tmpSize > 24) throw new InvalidArgumentException('IV gauge size must be an ' . $eo . ' integer between ' . $string . ' Given size is ' . $size);
+			} else if ($this->getProcedure()->id === 2) {
+                if ($size != 15 && $size != 25 && $size != 45) throw new InvalidArgumentException('IV gauge size must be either 15, 25, or 45. Given size is '.$size);
             }
-        }
+		}
 
-        return $this->gauge = $size;
+		return $this->gauge = $size;
     }
 
-    public function setGauge($size)
-    {
-        $this->setSize($size);
-    }
+	public function setGauge($size)
+	{
+		$this->setSize($size);
+	}
 
-    public function getViewScriptName()
-    {
-        return self::viewScriptName;
-    }
-    
-    public function getProcedureText($html=true)
-    {
+	public function getViewScriptName()
+	{
+		return self::viewScriptName;
+	}
+	
+	public function getProcedureText($html=true){
         if ($this->success !== null) {
             $successText = ($this->success)?'Successful ':'Unsuccessful ';
         } else {
@@ -176,72 +171,70 @@ class Iv extends Skill
             $shiftType = $this->shift->type;
         }
 
-        if ($html) {
+        if($html){
             $line1 = "<span class='summary-header {$shiftType}'>$successText{$procedureName} ($performedText)</span><br />";
             $line2 = "<span class='summary-details'>" . implode("; ", $lineTwoArray) . "</span>";
 
             return $line1 . $line2;
-        } else {
+        }else{
             $line1 = "$successText{$procedureName} ($performedText)\n";
             $line2 = implode("; ", $lineTwoArray);
 
             return ucwords(self::viewScriptName) . "\n" . $line1 . $line2 . "\n\n";
         }
-    }
+	}
 
-    public function countsTowardGoal($dataReqs)
-    {
-        if (!$this->success) {
-            return 0;
-        } else {
-            return parent::countsTowardGoal($dataReqs);
-        }
-    }
-    
-    public static function countsTowardGoalSQL($iv, $dataReqs)
-    {
-        if (!$iv['success']) {
-            return 0;
-        } else {
-            return parent::countsTowardGoalSQL($iv, $dataReqs);
-        }
-    }
-    
-    public static function getAllByShiftSQL($shiftId)
-    {
-        $query = "SELECT * FROM fisdap2_ivs WHERE shift_id = " . $shiftId;
-        return \Zend_Registry::get('db')->query($query)->fetchAll();
-    }
-    
-    public function getHookIds()
-    {
-        switch ($this->shift->type) {
-            case "field":
-                return array(26, 27);
-            case "clinical":
-                return array(56, 57);
-            case "lab":
-                return array(79, 80);
-            default:
-                return array();
-        }
-    }
+	public function countsTowardGoal($dataReqs) {
+		if (!$this->success) {
+			return 0;
+		} else {
+			return parent::countsTowardGoal($dataReqs);
+		}
+	}
+	
+	public static function countsTowardGoalSQL($iv, $dataReqs) {
+		if (!$iv['success']) {
+			return 0;
+		} else {
+			return parent::countsTowardGoalSQL($iv, $dataReqs);
+		}
+	}
+	
+	public static function getAllByShiftSQL($shiftId)
+	{
+		$query = "SELECT * FROM fisdap2_ivs WHERE shift_id = " . $shiftId;
+		return \Zend_Registry::get('db')->query($query)->fetchAll();
+	}
+	
+	public function getHookIds()
+	{
+		switch ($this->shift->type) {
+			case "field":
+				return array(26, 27);
+			case "clinical":
+				return array(56, 57);
+			case "lab":
+				return array(79, 80);
+			default:
+				return array();
+		}
+	}
 
-    /**
-     * @return array
-     */
-    public function toArray()
-    {
-        $skills = parent::toArray();
-        $skills['procedureId'] = $this->getProcedure() ? $this->getProcedure()->id : null;
-        $skills['size'] = $skills['gauge'];
-        $skills['ivSiteId'] = $this->getSite() ? $this->getSite()->id : null;
-        $skills['fluidId'] = $this->getFluid() ? $this->getFluid()->id : null;
+	/**
+	 * @return array
+	 */
+	public function toArray()
+	{
+		$skills = parent::toArray();
+		$skills['procedureId'] = $this->getProcedure() ? $this->getProcedure()->id : null;
+		$skills['size'] = $skills['gauge'];
+		$skills['ivSiteId'] = $this->getSite() ? $this->getSite()->id : null;
+		$skills['fluidId'] = $this->getFluid() ? $this->getFluid()->id : null;
 
-        unset(
-            $skills['gauge']
-        );
+		unset(
+			$skills['gauge']
+		);
 
-        return $skills;
-    }
+		return $skills;
+	}
 }

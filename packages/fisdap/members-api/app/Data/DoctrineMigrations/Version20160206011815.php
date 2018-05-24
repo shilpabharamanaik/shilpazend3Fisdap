@@ -3,6 +3,7 @@
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
+
 /**
  * Create LTI tables
  *

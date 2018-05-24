@@ -14,6 +14,7 @@ use OAuth2\HttpFoundationBridge\Response as BridgeResponse;
 use OAuth2\Server as OAuth2Server;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
+
 /**
  * Effectively an OAuth2 Resource Server, this middleware performs OAuth2 token
  * verification and stores the User entity in Laravel's Authentication service
@@ -147,7 +148,7 @@ final class OAuth2ResourceServer
     private function authorizeToken(BridgeRequest $bridgeRequest, BridgeResponse $bridgeResponse)
     {
         // Respond with an error if token validation fails
-        if (! $this->oauth2Server->verifyResourceRequest($bridgeRequest, $bridgeResponse)) {
+        if ( ! $this->oauth2Server->verifyResourceRequest($bridgeRequest, $bridgeResponse)) {
 
             // replace OAuth2 server generic "Service" realm with something proper
             $wwwAuthHeader = str_replace(
@@ -211,7 +212,7 @@ final class OAuth2ResourceServer
         // todo - rename this header to user-context-id
         $tokenData['userContextId'] = (int) $this->request->header('fisdap-members-user-role-id');
 
-        if (! $this->auth->guard()->validate($tokenData)) {
+        if ( ! $this->auth->guard()->validate($tokenData)) {
             $this->unauthorized('No user-identifying information was found in an access token or request headers');
         }
 

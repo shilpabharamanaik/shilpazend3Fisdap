@@ -9,9 +9,10 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Entity class for Legacy Program Site Associations.
- *
+ * 
  * @Entity
  * @Table(name="ProgramSiteAssoc")
  * @HasLifecycleCallbacks
@@ -24,7 +25,7 @@ class ProgramSiteShare extends EntityBaseClass
      * @GeneratedValue
      */
     protected $id;
-    
+	
     /**
      * @ManyToOne(targetEntity="ProgramLegacy", inversedBy="site_shares")
      * @JoinColumn(name="Program_id", referencedColumnName="Program_id")

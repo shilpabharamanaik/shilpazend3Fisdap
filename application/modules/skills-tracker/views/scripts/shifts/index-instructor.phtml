@@ -1,0 +1,131 @@
+<div>
+    <div class="grid_9">
+        <h1 id='shift-list-title'>Skills & Patient Care</h1>
+    </div>
+    <div class="grid_3">
+        <?php if ($this->user->getCurrentRoleData()->hasPermission('Edit Program Settings')): ?>
+            <a href='/skills-tracker/settings/' class='small-link' id="settings-link">Settings</a>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div id="find-student-container" class="island grid_12">
+    <h3 class='section-header'>Select a student</h3>
+    <?= $this->studentPicker ?>
+</div>
+
+
+<div id="student-content-container">
+    <div id="shift-list-container" class="grid_12">
+        <?php
+        if ($this->studentId) {
+            $patients = \Fisdap\EntityUtils::getRepository("Patient")->getPatientsForExamInterviewTool($this->studentId);
+
+            if($patients) {
+                echo '<p><div id="exam-info-check" class="notice">It looks like you have some shifts that are missing important data. Please visit <a id="exam-interview-link" class="exam-interview-link" href="/skills-tracker/shifts/exam-interview-form/studentId/' . $this->studentId . '">this page</a> to correct those records.</div></p>';
+            } else {
+                echo '<p><div id="exam-info-check" class="notice" style="display:none;">It looks like you have some shifts that are missing important data. Please visit <a id="exam-interview-link" class="exam-interview-link" href="">this page</a> to correct those records.</div></p>';
+            }
+        } else {
+            echo '<p><div id="exam-info-check" class="notice" style="display:none;">It looks like you have some shifts that are missing important data. Please visit <a id="exam-interview-link" class="exam-interview-link" href="">this page</a> to correct those records.</div></p>';
+        }
+
+        if ($this->studentId) {
+            $student = \Fisdap\EntityUtils::getEntity('StudentLegacy', $this->studentId);
+			if(!empty($student)){
+				if (!$student->getSerialNumber()->hasSkillsTracker()) {
+					$hideAddAndFilter = "style='display:none;'";
+					echo($this->exportButtons(array("pdf"), "export-shift-list-links", false));
+				}
+			else {
+                ?>
+                <?= $this->exportButtons(array("pdf"), "export-shift-list-links") ?>
+            <?php }
+			}
+			?>
+            <h2 class="section-header" id="shift-list-student-title">
+                <?= $student->user->getFullName() ?>'s Shifts
+            </h2>
+            <?php
+        } else {
+            $hideAddAndFilter = "style='display:none;'";
+            ?>
+            <?= $this->exportButtons(array("pdf"), "export-shift-list-links", false) ?>
+            <h2 class="section-header" id="shift-list-student-title" <?= $hideAddAndFilter; ?>></h2>
+        <?php } ?>
+
+        <div id="addAndFilter" <?= $hideAddAndFilter; ?>>
+            <?= $this->addShiftWidget(); ?>
+            <div id="shift-filters"><?= $this->shiftFilters; ?></div>
+        </div>
+
+        <div id='shift-list'>
+            <?
+            if ($this->studentId) {
+                echo $this->shiftList($this->studentId, $this->studentsGateway, $this->filter, true);
+            }
+            ?>
+        </div>
+
+
+        <script lang="text\javascript" src="/js/library/Fisdap/View/Helper/YoutubeVideo/YoutubeVideo.js"></script>
+        <script id="swfobjScript" lang="text\javascript"
+                src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+
+        <?php echo $this->javascriptHelper('jquery.combobox.js'); ?>
+
+        <script>
+            $(function () {
+                $('#available-list').change(function () {
+                    // only update if a student is chosen
+                    if (($('#available-list').val())) {
+                        filterShifts("<?= $this->filter ?>", $('#available-list').val(), true);
+                        $('#hidden-modal-student-id').val($('#available-list').val());
+                        toggleAddShiftButtons();
+                    }
+                });
+
+                toggleAddShiftButtons = function () {
+                    if ($('#hidden-modal-student-id').val() > 0) {
+                        $('#add-shift-container').show();
+                    } else {
+                        $('#add-shift-container').hide();
+                    }
+                }
+
+
+                <?php if(!$this->studentId): ?>
+                $('#add-shift-container').hide();
+                <?php endif;?>
+
+                // Update the URL that is loaded when a user clicks on a shift row...
+                rowClickURL = "/skills-tracker/shifts/detailed-shift-report/shiftId/";
+            });
+        </script>
+    </div>
+</div>
+
+<div id='shift-modal-container'>
+    <?= $this->shiftModal; ?>
+</div>
+
+<div id='shift-lock-modal-container'>
+    <?= $this->shiftLockModal ?>
+</div>
+
+
+<!--
+
+**NOTE: --- regarding the final </div> below ---
+
+The reason this is here is because somewhere in the body
+of the html there exists and opening <div> with no closing </div>.
+
+The net effect to to push the footer to the right. Because the footer is in
+the layout and has no fore knowledge of the is error condition the footer
+becomes part of the body and not seperate in and of it self
+
+Yes this is a quick fix
+
+-->
+</div>

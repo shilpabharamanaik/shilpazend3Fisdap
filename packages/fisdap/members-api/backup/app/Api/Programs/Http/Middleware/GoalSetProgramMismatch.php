@@ -4,12 +4,11 @@ use Closure;
 use Fisdap\Api\Programs\Http\Exceptions\GoalSetIdProgramIdMismatch;
 use Fisdap\Api\Queries\Exceptions\ResourceNotFound;
 use Fisdap\Data\Goal\GoalRepository;
-use Fisdap\Entity\GoalSet;
-
-;
+use Fisdap\Entity\GoalSet;;
 use Fisdap\Entity\User;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
+
 
 /**
  * Ensures provided GoalSet belongs to program or is one of the three defaults.

@@ -1,0 +1,91 @@
+<?= $this->pageTitleHelper() ?>
+<?= $this->messageHelper() ?>
+
+<?= $this->email_modal ?>
+
+<div class='grid_12 island' id="search-island">
+	<div class="grid_12" id="toolbar">
+		<div class="grid_12 search-label">
+			Who are you looking for?
+		</div>
+		
+		<div class="clear"></div>
+		
+		<div class="grid_6">
+			<div id="search-placeholder-text">enter name, username or email...</div>
+			<?= $this->formText("searchString", $this->search_string_from_session) ?>
+		</div>
+		
+		
+		<div class="grid_4 extra-small green-buttons">
+			<a href="#" id="searchButton">Go</a>
+		</div>
+	</div>
+	
+
+	<div class="extra-small gray-button" id="allStudents">
+		<a href="#" id="showAllStudents">Show all students</a>
+	</div>
+</div>	
+
+<div style="clear: both"></div>
+
+<div class="grid_12 island" id="search-result-options">
+	
+	<div class="grid_7" id='search_area'>
+		<?php echo $this->form; ?>
+	</div>
+	
+	<div class="grid_5" id="other_links">
+		
+		<div class="extra-small gray-button">
+			<a href="#" id="displayOptionsTrigger">Columns</a>
+			<a href="#" id="email"><img src="/images/icons/email-icon.png">Email</a>
+			<?= $this->exportButtons(array("pdf", "csv"), "export-student-list-links") ?>
+		</div>
+	</div>
+	
+	<div id="hint_box" style="clear: both;margin: 0px 0px 0px 12px;"> Please use the search box and filters to search for the desired student(s). </div>
+	
+</div>
+
+	
+	<div id="spacing">
+		<div id='results_area'>
+
+		</div>
+	</div>	
+
+
+<div id="displayOptions">
+	
+	<div class="grid_6 first_col">
+		<input type="checkbox" name="options-id" id="options-id" value="id"><label for="options-id">Student ID</label><br />
+		<input type="checkbox" name="options-name" id="options-name" value="name" checked="checked"><label for="options-name">Student Name</label><br />
+		<input type="checkbox" name="options-cert" id="options-cert" value="cert" checked="checked"><label for="options-cert">Cert. Level</label><br />
+		<input type="checkbox" name="options-email" id="options-email" value="email" checked="checked"><label for="options-email">Email</label><br />
+		<input type="checkbox" name="options-phone" id="options-phone" value="phone" checked="checked"><label for="options-phone">Phone</label><br />
+		<input type="checkbox" name="options-product-access" id="options-product-access" value="product-access" checked="checked"><label for="options-product-access">Product Access</label><br />
+		<input type="checkbox" name="options-grad-date" id="options-grad-date" value="grad-date" checked="checked"><label for="options-grad-date">Grad Date</label><br />
+	</div>
+	
+	<div class="grid_6">
+		<input type="checkbox" name="options-username" id="options-username" value="username" checked="checked"><label for="options-username">Username</label><br />
+		<input type="checkbox" name="options-grad-status" id="options-grad-status" value="grad-status"><label for="options-grad-status">Grad Status</label><br />
+		<input type="checkbox" name="options-good-data" id="options-good-data" value="good-data"><label for="options-good-data">Good Data</label><br />
+		<input type="checkbox" name="options-address" id="options-address" value="address"><label for="options-address">Address</label><br />
+		<input type="checkbox" name="options-emergency-contact" id="options-emergency-contact" value="emergency-contact"><label for="options-emergency-contact">Emergency Contact</label><br />
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div class="small gray-button" id="doSave">
+		<a href="#" id="updateDisplay">Update List</a>
+	</div>
+	
+</div>
+
+<div style='clear: both;'></div>
+
+
+

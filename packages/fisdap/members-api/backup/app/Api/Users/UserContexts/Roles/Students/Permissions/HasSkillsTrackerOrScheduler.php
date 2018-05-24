@@ -4,6 +4,7 @@ use Fisdap\Api\Products\Finder\FindsProducts;
 use Fisdap\Api\Users\UserContexts\Permissions\UserContextPermission;
 use Fisdap\Entity\UserContext;
 
+
 /**
  * Validates whether a (student) user role has Skills Tracker or Scheduler
  *
@@ -41,18 +42,12 @@ class HasSkillsTrackerOrScheduler implements UserContextPermission
         $userProducts = $this->productsFinder->getUserContextProductNames($userContext->getId());
 
         $hasLimitedScheduler = $this->productsFinder->hasProduct(self::SCHEDULER_LIMITED_PRODUCT_NAME, $userProducts);
-        $hasLimitedSkillsTracker = $this->productsFinder->hasProduct(
-            self::SKILLS_TRACKER_LIMITED_PRODUCT_NAME,
-            $userProducts
-        );
-        $hasUnlimitedScheduler = $this->productsFinder->hasProduct(
-            self::SCHEDULER_UNLIMITED_PRODUCT_NAME,
-            $userProducts
-        );
-        $hasUnlimitedSkillsTracker = $this->productsFinder->hasProduct(
-            self::SKILLS_TRACKER_UNLIMITED_PRODUCT_NAME,
-            $userProducts
-        );
+        $hasLimitedSkillsTracker = $this->productsFinder->hasProduct(self::SKILLS_TRACKER_LIMITED_PRODUCT_NAME,
+            $userProducts);
+        $hasUnlimitedScheduler = $this->productsFinder->hasProduct(self::SCHEDULER_UNLIMITED_PRODUCT_NAME,
+            $userProducts);
+        $hasUnlimitedSkillsTracker = $this->productsFinder->hasProduct(self::SKILLS_TRACKER_UNLIMITED_PRODUCT_NAME,
+            $userProducts);
 
         return ($hasLimitedScheduler === true ||
             $hasLimitedSkillsTracker === true ||

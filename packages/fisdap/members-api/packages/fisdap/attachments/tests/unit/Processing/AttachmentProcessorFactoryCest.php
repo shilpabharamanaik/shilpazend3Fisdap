@@ -5,6 +5,7 @@ use Fisdap\Attachments\Processing\ImageAttachmentProcessor;
 use Fisdap\Attachments\Processing\ProcessesAttachments;
 use Illuminate\Container\Container;
 
+
 class AttachmentProcessorFactoryCest
 {
     /**

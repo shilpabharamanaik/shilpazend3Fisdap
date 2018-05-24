@@ -1,0 +1,42 @@
+<?= $this->pageTitleHelper("", null, '<a href="/skills-tracker/shifts">' . $this->shiftListLinkText . '</a>') ?>
+
+<div class="grid_8">
+	<?php echo $this->partial('shiftSummary.phtml', array('shift' => $this->shift, "page" => "my-shift")) ?>
+</div>
+
+<div class="grid_4">
+	<div id="shift-buttons-container">
+        <div class='orange-button small'>
+            <div class='button lock-shift-btn icon-button'>
+                <img class="icon" src="/images/icons/<?= ($this->element->shift->locked) ? "unlocked" : "locked" ?>-white.svg">
+                <div class='text'><?= ($this->shift->locked) ? "Unlock shift" : "Lock shift" ?></div>
+            </div>
+        </div>
+
+		<? if ($this->isInstructor && $this->shift->student->program->program_settings->allow_educator_shift_audit) echo $this->auditShiftWidget($this->shift->id); ?>
+	</div>
+</div>
+
+<div class="clear"></div>
+
+<?php
+// add the javascript variables that maps skills to hooks
+// and give us the hooks urls
+echo $this->evalJsHookHelper($this->program->id, $this->shift->type);
+
+//Render the a specific view script depending on type of shift
+echo $this->render('myShift' . ucfirst($this->shift->type) . '.phtml');
+echo $this->modalForm;
+echo $this->shiftLockModal;
+
+if (!$this->shift->isFuture()) {
+	echo "<div class='grid_12 island withTopMargin overflow'>";
+	echo $this->evalHookWidget($this->shift->student->user->id, $this->shift->id, $this->hookId);
+	echo "</div>";
+}
+?>
+
+<input type='hidden' id='primary_shift_id' value='<?php echo $this->shift->id; ?>' />
+
+
+<?= ($this->track_airway_management_credit) ? "<input type='hidden' id='clinical_quick_add_interventions' value='1' />" : ""; ?>

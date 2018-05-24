@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Programs\Sites\Preceptors\Jobs;
 
+
 use Faker\Provider\DateTime;
 use Fisdap\Api\Jobs\Job;
 use Fisdap\Api\Jobs\RequestHydrated;
@@ -119,7 +120,9 @@ final class CreatePreceptor extends Job implements RequestHydrated
         SiteLegacyRepository $siteLegacyRepository,
         StudentLegacyRepository $studentLegacyRepository,
         EventDispatcher $eventDispatcher
-    ) {
+    )
+    {
+
         $preceptor = new PreceptorLegacy;
         $preceptor->setUUID($this->uuid);
         
@@ -149,10 +152,8 @@ final class CreatePreceptor extends Job implements RequestHydrated
         $preceptorLegacyRepository->store($preceptor);
         $programPreceptorLegacyRepository->store($ppl);
 
-        $eventDispatcher->fire(new PreceptorWasCreated(
-            $preceptor->getId(),
-                                                       $preceptor->getFirstName() . ' ' . $preceptor->getLastName()
-        ));
+        $eventDispatcher->fire(new PreceptorWasCreated($preceptor->getId(),
+                                                       $preceptor->getFirstName() . ' ' . $preceptor->getLastName()));
 
         return $preceptor;
     }

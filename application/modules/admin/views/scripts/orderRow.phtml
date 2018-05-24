@@ -1,0 +1,11 @@
+<tr>
+    <td><?= $this->order->id ?></td>
+    <td><?= $this->order->payment_method->name ?></td>
+    <td><?= $this->order->payment_method->id == 1 ? $this->order->invoice_number : $this->order->paypal_transaction_id ?></td>
+    <td><?= $this->order->po_number ?></td>
+    <td><?= $this->order->getQbStatus() ?></td>
+    <td><?= $this->order->program->name ?></td>
+    <td><?= $this->order->getTotalCost() ?></td>
+    <td><?= $this->order->staff_free_order ?></td>
+    <td><?= $this->order->order_date->format("Y-m-d") ?></td>
+</tr>

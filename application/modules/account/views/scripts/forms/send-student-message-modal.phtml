@@ -1,0 +1,115 @@
+<div id="email-modal">
+	
+	<?= $this->element->emails; ?>
+	<?= $this->element->user_ids; ?>
+	
+	<div class="grid_12">
+		
+		<div class="grid_3">
+			To:
+		</div>
+		
+		<div class="grid_9">
+			
+			<div id='student-count'>0 students</div> <a href="#" id="show-student-list">Show list</a>
+			
+			<div id="to-list"></div>
+			
+		</div>
+		
+		<div class="clear"></div>
+		
+		<div class="grid_3" id="subject-label">
+			Subject:
+		</div>
+		
+		<div class="grid_9">
+			
+			<?= $this->element->subject; ?>
+			
+		</div>
+		
+		<div class="clear"></div>
+		
+		<div class="grid_3">
+			Message:
+		</div>
+		
+		<div class="grid_9">
+			<?= $this->element->message ?>
+		</div>
+		
+		<div class="clear"></div>
+		
+		<div class="grid_3"></div>
+		
+		<div class="grid_9">
+			<div class="grid_1">
+				<?= $this->element->ccSelf; ?>
+			</div>
+			
+			<div class="grid_11">
+				<label for="ccSelf">Send copy to myself</label>
+			</div>
+		</div>
+		
+		
+		<div class="clear"></div>
+		
+		<div class="grid_3">
+			Send as:
+		</div>
+		
+		<div class="grid_9">
+		
+			<div id="msg_type_buttonset" class='extra-small'>
+				
+				<input type="radio" name="msg_tpe" value="email" id="email_msg_type" selected="selected">
+				<label for="email_msg_type">Email</label>
+				
+				<input type="radio" name="msg_tpe" value="inbox" id="inbox_msg_type">
+				<label for="inbox_msg_type">MyFisdap message</label>
+				
+				<input type="radio" name="msg_tpe" value="both" id="both_msg_type">
+				<label for="both_msg_type">Both</label>
+				
+			</div>
+		</div>
+		
+		<div class="clear"></div>
+		
+		<div id="personal-email">
+			
+			<a href="#" id='personal-email-options-link'>Use personal email client </a><i>(optional)</i>
+			
+			<div id="mailto-options">
+				
+				<p>Which application do you use?<br />
+				
+					<a href="#" id='outlook'>Outlook</a><br />
+					<a href="#" id='other'>Other</a>
+				
+				</p>
+				
+			</div>
+			
+		</div>
+		
+		<div class="clear"></div>
+
+		<div id="bottom-buttons" class="small">
+			
+			<a href="#" id='close-email-modal'>Cancel</a>
+			
+			<div class="green-buttons">
+				<a href="#" id='send-email-modal'>Send</a>
+			</div>
+			
+		</div>
+		
+		
+	</div>
+	
+	
+	
+</div>

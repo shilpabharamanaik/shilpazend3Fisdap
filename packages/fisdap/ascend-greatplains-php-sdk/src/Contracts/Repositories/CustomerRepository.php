@@ -11,4 +11,5 @@
  */
 interface CustomerRepository extends Repository
 {
+
 }

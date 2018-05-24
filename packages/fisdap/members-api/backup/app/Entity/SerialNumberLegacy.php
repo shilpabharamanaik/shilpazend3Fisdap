@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
+
 /**
  * Legacy Entity class for Serial Numbers.
  *
@@ -932,7 +933,7 @@ class SerialNumberLegacy extends EntityBaseClass
                     //Enroll the user in the correct course
                     $result = $moodleAPI->enrollCourse($this->user, $courseId);
 
-                //Get possible moodle groups to add this user to
+                    //Get possible moodle groups to add this user to
                     //$moodleGroups = \Fisdap\EntityUtils::getRepository("MoodleGroup")->findBy(array("product" => $product->id, "program" => $this->program->id));
 
                     //foreach ($moodleGroups as $group) {
@@ -958,7 +959,8 @@ class SerialNumberLegacy extends EntityBaseClass
         //3). Apply auto-assigned scheduler requirements if not already applied
 
         if ($this->hasScheduler()) {
-            $need_auto = true;
+
+            $need_auto = TRUE;
 
             $requirements = EntityUtils::getRepository("RequirementAutoAttachment")->findBy([
                 "role"                => 1,
@@ -968,7 +970,7 @@ class SerialNumberLegacy extends EntityBaseClass
 
             foreach ($requirements as $auto_requirement) {
                 if ($this->user->getCurrentUserContext()->hasRequirement($auto_requirement->requirement->id)) {
-                    $need_auto = false;
+                    $need_auto = FALSE;
                 }
             }
 
@@ -983,7 +985,7 @@ class SerialNumberLegacy extends EntityBaseClass
      * @param \Fisdap\Entity\ProgramLegacy $program
      * @return \Fisdap\Entity\SerialNumberLegacy
      * @codeCoverageIgnore
-     * @deprecated
+     * @deprecated 
      */
     public static function getDemoSerial(ProgramLegacy $program)
     {
@@ -1017,8 +1019,7 @@ class SerialNumberLegacy extends EntityBaseClass
      * @param SerialNumberLegacy $mergeNumber
      * @return bool
      */
-    public function mergeSerialNumbers(SerialNumberLegacy $mergeNumber)
-    {
+    public function mergeSerialNumbers(SerialNumberLegacy $mergeNumber) {
         // make sure these serial numbers are compatible
         if ($this->program != $mergeNumber->program) {
             return false;

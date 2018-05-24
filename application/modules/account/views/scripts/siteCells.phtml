@@ -1,0 +1,41 @@
+
+<tr class="<?= $this->site['type'];?>" 
+    data-siteId="<?= $this->site['id'];?>" 
+    data-siteAddress="<?= $this->site['address'];?>" 
+    data-siteContact="<?= $this->site['contact'];?>" 
+    data-siteTitle="<?= $this->site['title'];?>">
+	<td class="siteType">
+		<span class='hidden'><?= $this->site['type'];?></span>
+		<img class="icon" src="/images/icons/<?= $this->site['type'];?>SiteIconColor.png">
+	</td>
+	<td class="siteName"><?= $this->site['name']?></td>
+	<td class="siteCity"><?= $this->site['city']?></td>
+	<td class="siteState"><?php echo strtoupper($this->site['state']);?></td>
+<?php if(array_key_exists('activeSite', $this->site)) { ?>
+	<td class="siteActive">
+		<span class='hidden'>-<?= $this->site['activeSite'];?></span>
+<?php 	if($this->site['activeSite'] == 1) { ?>
+			<img id="checkmark" width="15px" height="15px" src="/images/icons/checkmark.png">
+<?php 	} ?>
+	</td>
+<?php } ?>
+	<td class="siteShared">
+		<span class='hidden'>-<?= $this->site['sharedSite'];?></span>
+<?php
+		switch ($this->site['sharedSite']) {
+			case 1:		?>
+			<img id="notInNetwork" width="20px" height="20px" src="/images/icons/not-in-network.png" title='not in network'>
+<?php				break;
+			case 2:		?>
+			<img id="pendingApproval" width="20px" height="20px" src="/images/icons/not-in-network.png" title='pending approval'>
+<?php				break;
+			case 3:		?>
+			<img id="sharing" width="20px" height="20px" src="/images/icons/sharing.png" title='sharing'>
+<?php				break;
+			case 4:		?>
+			<img id="sharingAdmin" width="20px" height="20px" src="/images/icons/sharing-admin.png" title='site admin'>
+<?php 				break;
+		} ?>
+	</td>
+	<td class="scrollbar"></td>
+</tr>

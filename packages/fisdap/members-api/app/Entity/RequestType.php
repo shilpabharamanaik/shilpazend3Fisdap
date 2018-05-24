@@ -6,9 +6,10 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Request Type
- *
+ * 
  * @Entity
  * @Table(name="fisdap2_request_type")
  */

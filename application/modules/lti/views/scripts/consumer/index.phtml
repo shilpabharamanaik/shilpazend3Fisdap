@@ -1,0 +1,11 @@
+<html>
+<head><title>Launching LTI Tool Provider...</title></head>
+<body onload="document.ltiLaunchForm.submit();">
+Launching <em><?= $this->launchParams['context_title'] ?></em>...
+<form id="ltiLaunchForm" name="ltiLaunchForm" method="POST" action="<?= $this->launchUrl ?>">
+    <?php foreach ($this->launchParams as $k => $v ): ?>
+        <input type="hidden" name="<?= $k ?>" value="<?= $v ?>">
+    <?php endforeach; ?>
+</form>
+<body>
+</html>

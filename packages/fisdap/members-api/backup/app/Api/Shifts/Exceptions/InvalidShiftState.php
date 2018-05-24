@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
+
 /**
  * Class InvalidShiftState
  *

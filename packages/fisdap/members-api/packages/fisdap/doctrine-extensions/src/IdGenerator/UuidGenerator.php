@@ -4,6 +4,7 @@ use Doctrine\ORM\Id\AbstractIdGenerator;
 use Doctrine\ORM\EntityManager;
 use Fisdap\Doctrine\Extensions\ColumnType\UuidType;
 
+
 /**
  * An ID generation strategy for Doctrine that complements the UuidType column type.
  *

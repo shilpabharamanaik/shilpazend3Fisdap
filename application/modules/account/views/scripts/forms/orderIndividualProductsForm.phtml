@@ -1,0 +1,44 @@
+<div id="orderWrapper">
+    <h3 class="section-header">Choose products</h3>
+        
+    <div id="productList" class="grid_6">
+        <?php
+        for($i = 0; $i<$this->element->productCount; $i++){
+            $product = "product" . $i;
+            $price = "price" . $i;
+            $config = "config" . $i;
+            ?>
+            <div class="grid_9"><?= $this->element->$product ?></div>
+            <div class="grid_3">$<?= $this->element->$price->getValue() ?></div>
+            <div class="hidden">
+                <?= $this->element->$price ?>
+                <?= $this->element->$config ?>
+            </div>
+        <?php 
+        }
+        ?>
+    </div>
+
+    <div class="prefix_1 grid_4">
+        <?= $this->element->state ?>
+    </div>
+
+    <div class="clear"></div>
+    
+    <div id="totals" class="grid_6">
+        <h3 class="section-header no-border grid_9">Total cost: </h3>
+        <h3 class="section-header no-border grid_3 green">$<span id="totalCost"></span></h3>
+    </div>
+    
+    <div id="hiddenInputs">
+        <?= $this->element->orderConfig;?>
+        <?= $this->element->orderCost;?>
+        <?= $this->element->userId;?>
+    </div>
+    <div class="clear"></div>
+    <div class="action-buttons">
+        <?= $this->element->save;?>
+    </div>
+
+</div>
+

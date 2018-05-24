@@ -1,0 +1,35 @@
+Hello and welcome to Fisdap!<br>
+
+<p>
+    <?= $this->orderer->getName() ?> has ordered a Fisdap account for you.
+</p>
+
+<?= $this->message ? "<p>" . $this->message . "</p>" : "" ?>
+
+<p>
+    Don't have a Fisdap account yet?
+    <a href="<?= $this->urlRoot . "account/new/index/code/" . $this->serial->number ?>">Create an account</a>.
+</p>
+
+<? if ($this->upgradeable) { ?>
+<p>
+    Already have a Fisdap account?
+    <a href="<?= $this->urlRoot . "account/orders/upgrade-individual/code/" . $this->serial->number ?>">Upgrade your account</a>.
+</p>
+<? } ?>
+
+<p>
+    Your account will have access to the following product<?= $this->serial->hasMultipleProducts() ? "s" : null ?>:<br>
+    <?
+    if ($this->serial->order_configuration) {
+        echo $this->serial->order_configuration->getProductSummary();
+    } else {
+        echo $this->serial->getProductSummary();
+    }
+    ?>
+</p>
+
+<p>
+    For your records, your unique activation code is:<br>
+    <?= $this->serial->number ?>
+</p>

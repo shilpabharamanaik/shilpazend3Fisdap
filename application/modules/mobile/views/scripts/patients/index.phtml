@@ -1,0 +1,28 @@
+<h2 class='page-title'><?= ucfirst($this->run->shift->getRunType()); ?> Summary</h2>
+<div class="island">
+    <?= $this->partial('shiftSummary.phtml', array('shift' => $this->run->shift)); ?>
+</div>
+
+<?
+if (count($this->messages) > 0) {
+	echo "<div class='success'>" . implode('<br>', $this->messages) . "</div>";
+}
+?>
+
+<h2 class='page-title skill-grouping'>Team Assessment</h2>
+<div class="island">
+	<?= $this->partial('patientSummary.phtml', array('patient' => $this->patient)) ?>
+</div>
+
+<?= $this->mobileSkillSummary("Vital Signs", "vitals", $this->patient->vitals, $this->patient->id) ?>
+<?= $this->mobileSkillSummary("Airway", "airways", $this->patient->airways, $this->patient->id) ?>
+<?= $this->mobileSkillSummary("Cardiac Interventions", "cardiac-interventions", $this->patient->cardiac_interventions, $this->patient->id) ?>
+<?= $this->mobileSkillSummary("Venous Access", "ivs", $this->patient->ivs, $this->patient->id) ?>
+<?= $this->mobileSkillSummary("Meds", "meds", $this->patient->meds, $this->patient->id) ?>
+<?= $this->mobileSkillSummary("Other Interventions", "other-interventions", $this->patient->other_interventions, $this->patient->id) ?>
+<?php if($this->run->student->program->include_narrative): ?>
+<?= $this->mobileSkillSummary("Narrative", "narrative", $this->patient->getNarrativeArray(), $this->patient->id, true) ?>
+<?php endif; ?>
+<br />
+
+<a href="/mobile/shifts/my-shift/shiftId/<?= $this->run->shift->id ?>">&lt;&lt; Back to My Shift</a>

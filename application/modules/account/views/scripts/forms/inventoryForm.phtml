@@ -1,0 +1,83 @@
+<h3 class="section-header">Search for activation codes</h3>
+
+
+<button class="modeTrigger" id="byCodesTrigger">By specific activation codes<img id='closed' src='/images/arrow_left.png'></button><br />
+
+
+<div id="byCodes">
+    <p>Enter a list of activation codes (one on each line)</p>
+    <?= $this->element->code ?>
+    <div style="clear:both;"></div>
+
+</div>
+
+<button class="modeTrigger" id="byFiltersTrigger">By filters<img id='open' src='/images/arrow_down.png'></button>
+<div id="byFilters">
+    <div class="inventoryFormLeft">
+    
+        <p>For any of the following products:</p>
+        <button id="checkAll">Uncheck all</button>
+        <div id="productsWrapper">
+            <? foreach($this->element->products as $product) {
+                echo $this->element->{"products_" . $product->configuration};
+            }
+            ?>
+        </div>
+        
+    </div>
+        
+    <div class="inventoryFormRight">       
+        <p>Ordered between:</p>   
+        
+        <div id="dateContainer">            
+            <?= $this->element->dateBegin ?> and 
+            <?= $this->element->dateEnd ?>
+        </div>
+        
+        <div style="clear:both;"></div>
+    
+        
+        <div id="groupsWrapper">
+            <p>For the following people:</p>
+            <?= $this->element->group ?>
+        </div>
+        
+        <div id="gradWrapper">
+            <?= $this->element->grad ?>            
+        </div>
+        
+        <div id="certLevelsWrapper">
+            <? foreach($this->element->certLevels as $cert) {
+                // LAME - zend struggles with having a dash in the name, replace it with an underscore
+                echo $this->element->{"levels_" . preg_replace('/[^a-z0-9]/i', '_', $cert['name'])};
+            }
+        ?>
+        </div>
+        
+        <div style="clear:both;"></div>
+    
+        
+        <p>That are:</p>
+        <div id="statusWrapper">
+            <?= $this->element->available ?>
+            <?= $this->element->activated ?>
+            <?= $this->element->distributed ?>
+        </div>
+    </div>
+    
+    <div style="clear:both;"></div>
+
+</div>
+
+<div style="clear:both;"></div>
+
+
+<div class="extra-small green-buttons">
+    <button id="searchButton">Search</button>
+</div>
+
+<div style="clear:both;"></div>
+
+
+
+

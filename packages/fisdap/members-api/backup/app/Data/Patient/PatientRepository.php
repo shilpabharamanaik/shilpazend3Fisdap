@@ -7,12 +7,13 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface PatientRepository
  *
  * @package Fisdap\Data\Patient
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface PatientRepository extends Repository
-{
+interface PatientRepository extends Repository {
+
 }

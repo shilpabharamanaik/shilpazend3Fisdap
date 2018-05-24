@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
+
 /**
  * Calendar Feed
  *
@@ -161,7 +162,7 @@ class CalendarFeed extends EntityBaseClass
         $events = $repo->getStudentShifts($this->user_context->id, $startDate, $endDate);
         $locations = array();
         $newEvents = array();
-        foreach ($events as $i => $event) {
+        foreach($events as $i => $event) {
             $event['instructors'] = $repo->getEventInstructorList($event['event_id']);
             $event['preceptors'] = $repo->getEventPreceptorList($event['event_id']);
             $event['quick_add_shift'] = is_null($event['event_id']);

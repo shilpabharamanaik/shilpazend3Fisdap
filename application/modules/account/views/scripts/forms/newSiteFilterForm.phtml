@@ -1,0 +1,53 @@
+<br />
+<div class="selectContainer">
+
+
+	<?= $this->element->type ?>
+	<div class="space"></div>
+	<?= $this->element->state ?>
+	
+	<div style="clear:both;"></div>
+
+</div>
+
+		<div style="clear:both;"></div>
+		
+		<div id="sitesContainer">
+	
+			<div id="arrowsContainer">
+				<div id="typeArrow"><img src="/images/cluetip/whiteUpArrow.png"></div>
+				<div id="typeArrowDown"><img src="/images/cluetip/whiteDownArrow.png"></div>
+				
+				<div id="nameArrow"><img src="/images/cluetip/whiteUpArrow.png"></div>
+				<div id="nameArrowDown"><img src="/images/cluetip/whiteDownArrow.png"></div>
+				
+				<div id="cityArrow" style="left: 328"><img src="/images/cluetip/whiteUpArrow.png"></div>
+				<div id="cityArrowDown" style="left: 328"><img src="/images/cluetip/whiteDownArrow.png"></div>
+				
+				<div id="stateArrow" style="right: 98"><img src="/images/cluetip/whiteUpArrow.png"></div>
+				<div id="stateArrowDown" style="right: 98"><img src="/images/cluetip/whiteDownArrow.png"></div>
+				
+				<div id="sharedArrow"><img src="/images/cluetip/whiteUpArrow.png"></div>
+				<div id="sharedArrowDown"><img src="/images/cluetip/whiteDownArrow.png"></div>
+			</div>
+			
+			<div id="siteListContainer">
+			
+			
+				
+				
+				<div id='site-list'>
+					<?php
+						echo $this->listSites(true, $this->element->program->state, null, null, "asc");
+					?>
+				</div>
+				
+				<div class="extra-small orange-button">
+					<a href="#" id="new-site-btn">New...</a><br>
+					<a href="/account/sites/site/siteId" id="editButton" style="float:right; margin-top:-13px;">Open Site</a>
+				</div>
+				
+			
+			</div>
+		
+		</div>

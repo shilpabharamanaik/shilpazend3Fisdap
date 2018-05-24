@@ -1,0 +1,99 @@
+<?
+
+// set up some variables for easy reading throughout this file
+$event = $this->event;
+$is_instructor = $this->isInstructor;
+$day_view = $this->dayView;
+
+$open_slot_count = $event['open_slot_count'];
+$has_open_window = $event['has_open_window'];
+$has_active_window = $event['has_active_window'];
+$user_can_see = $event['user_can_see_a_window'];
+$active_window_count = $event['active_window_count'];
+$open_weeble_img_name = (stristr($event['open_weebles'], "invisible")) ? "invisible" : "outline";
+
+// do not show the open windows table if the user is a student without an active/open/quailifying window
+if ($user_can_see || $is_instructor) {
+    if (!$is_instructor && $open_slot_count == 0) {
+    } else {
+        ?>
+
+        <h3 class="slot-heading">Open Slots <? echo ($day_view) ? $event['open_weebles'] : "" ?></h3>
+
+        <div class="slots-wrapper">
+            <table class="slots-table open-slots-table">
+
+                <?
+                if (!$day_view) {
+                ?>
+                <tr>
+                    <td rowspan="<?= $active_window_count ?>" class="weeble-cell">
+                        <?php
+                        if ($open_slot_count == 0) {
+                            echo "none";
+                        } else {
+                            if (!$is_instructor && !$has_open_window) {
+                            } else {
+                                ?>
+                                <img class='weeble' src="/images/icons/student-weeble-<?= $open_weeble_img_name ?>.svg">
+                                <br/>x <?= $open_slot_count ?>
+                            <?php
+                            }
+                        }
+                        ?>
+                    </td>
+                    <?
+                    }
+                    ?>
+
+                    <?php
+                    if ($event['students_can_sign_up']){
+
+                    if (!$has_active_window){
+                    ?>
+                    <td class='closed'>Sign up is turned off for this shift.</td>
+                </tr>
+            <?
+            }
+            else {
+                $count = 0;
+                foreach ($event['windows'] as $window) {
+                    if ($window['active']) {
+                        if ($window['user_can_see'] || $is_instructor) {
+                            echo (($count != 0) || $day_view) ? "<tr>" : "";
+                            $count++;
+                            if (!$is_instructor && $window['status'] != "open") {
+                            } else {
+
+                                $deactivated_flag = "";
+                                if ($window['status'] != "closed" && !$window['active']) {
+                                } else {
+
+                                    ?>
+                                    <td class="<?= $window['status'] ?>"><?= $window['who'] ?></td>
+                                    <td class="<?= $window['status'] ?>"><?= $window['when'] ?></td>
+
+                                    </tr>
+                                <?php
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            }
+
+            else {
+                ?>
+                <td class='closed'>Students cannot sign up for any <?= $event['event_type'] ?> shifts.</td></tr>
+            <?
+            }
+            ?>
+            </table>
+
+        </div>
+
+    <?
+    }
+}
+?>

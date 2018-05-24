@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Entity class for Preceptor Ratings
  *
@@ -16,12 +17,12 @@ use Doctrine\ORM\Mapping\Table;
 class PreceptorRating extends EntityBaseClass
 {
     /**
-     * @var integer
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
-     */
-    protected $id;
+	 * @var integer
+	 * @Id
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 */
+	protected $id;
     
     /**
      * @ManyToOne(targetEntity="PreceptorRatingType")
@@ -46,6 +47,7 @@ class PreceptorRating extends EntityBaseClass
     
     public function init()
     {
+
     }
     
     /**
@@ -88,7 +90,7 @@ class PreceptorRating extends EntityBaseClass
         $this->signoff = $signoff;
     }
     
-    public function setValue($value)
+    public function setValue($value) 
     {
         $this->value = $value;
     }
@@ -141,3 +143,4 @@ class PreceptorRating extends EntityBaseClass
         return $array;
     }
 }
+

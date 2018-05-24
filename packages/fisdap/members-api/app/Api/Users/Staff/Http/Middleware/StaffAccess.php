@@ -6,6 +6,7 @@ use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\Foundation\Application;
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Provides 'before' filter to allow Fisdap employees to perform any request
  *

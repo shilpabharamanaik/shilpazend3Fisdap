@@ -22,6 +22,7 @@ use Swagger\Annotations as SWG;
  */
 final class CreatePatient extends PatientAbstract
 {
+
     public function handle(
         PatientRepository $patientRepository,
         ShiftLegacyRepository $shiftLegacyRepository,

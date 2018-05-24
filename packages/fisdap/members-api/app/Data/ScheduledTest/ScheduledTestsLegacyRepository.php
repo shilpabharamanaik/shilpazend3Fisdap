@@ -7,12 +7,13 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface ScheduledTestsLegacyRepository
  *
  * @package Fisdap\Data\ScheduledTest
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface ScheduledTestsLegacyRepository extends Repository
-{
+interface ScheduledTestsLegacyRepository extends Repository {
+
 }

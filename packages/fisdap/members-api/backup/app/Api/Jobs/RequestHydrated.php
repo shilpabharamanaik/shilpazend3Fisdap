@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Jobs;
 
+
 /**
  * Interface RequestHydrated
  *

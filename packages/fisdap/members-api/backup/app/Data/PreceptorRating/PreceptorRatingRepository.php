@@ -7,11 +7,12 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface PreceptorRatingRepository
  * @package Fisdap\Data\PreceptorRating
  * @author Isaac White <isaac.white@ascendlearning.com>
  */
-interface PreceptorRatingRepository extends Repository
-{
+interface PreceptorRatingRepository extends Repository {
+
 }

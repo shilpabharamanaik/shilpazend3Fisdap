@@ -56,7 +56,7 @@ final class CreateProgram extends Job implements RequestHydrated
 
     /**
      * Array of program type IDs, defaults to EMS
-     *
+     * 
      * @var int[]
      * @SWG\Property(type="array", items=@SWG\Items(type="integer"), example={1})
      */
@@ -148,7 +148,7 @@ final class CreateProgram extends Job implements RequestHydrated
             $program->setProfession($professionRepository->getOneById($this->professionId));
         }
         
-        $programTypes = array_map(function ($programTypeId) use ($programTypeLegacyRepository) {
+        $programTypes = array_map(function($programTypeId) use ($programTypeLegacyRepository) {
             return $programTypeLegacyRepository->getOneById($programTypeId);
         }, $this->programTypeIds);
 

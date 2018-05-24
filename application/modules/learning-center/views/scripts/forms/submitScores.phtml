@@ -1,0 +1,52 @@
+<?= $this->messageHelper() ?>
+
+<div class="grid_12 island withTopMargin extraLong">
+    <div class="grid_12" id='filter-content'>
+        <div id ='filter-content'>
+            <div class="grid_7">
+                <?= $this->element->certificationLevels; ?>
+                <?= $this->element->groups; ?>
+            </div>
+
+            <div class="grid_5">
+
+                <?= $this->element->grad; ?>
+                <?= $this->element->status; ?>
+            </div>
+            </div>
+        <div class="clear"></div>
+    </div>
+        <div>
+            <?= $this->element->save; ?>
+        </div>
+
+<div class="clear"></div>
+    <div id='table-holder'><table id='student-table' class='tablesorter submit-scores-table'>
+            <thead>
+                <tr id='head'>
+                    <th class="written-result">Written Result</th>
+                    <th class="practical-result">Practical Result</th>
+                    <th class="name">Student</th>
+                    <th class="grad-date">Graduation Date</th>
+                    <th class="cert-level">Certification Level</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+            // go through students and print the elements for them
+            foreach ($this->element->users as $user_info) {
+                    $written_tmp_id = "pass_fail_written_" . $user_info['user_id'];
+                    $practical_tmp_id = "pass_fail_practical_" . $user_info['user_id'];
+                    echo '<tr>';
+                    echo '<td>' . $this->element->{$written_tmp_id} . '</td>';
+                    echo '<td>' . $this->element->{$practical_tmp_id} . '</td>';
+                    echo '<td class="name">' . $user_info['last_name'] . ', ' . $user_info['first_name'] . '</td>';
+                    echo '<td class="date">' . $user_info['graduation_year'] . '</td>';
+                    echo '<td class="level">' . $user_info['cert_description'] . '</td>';
+                    echo '</tr>';
+            }
+            ?>
+            </tbody>
+           </table>
+        </div>
+</div>

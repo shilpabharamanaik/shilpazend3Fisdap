@@ -7,12 +7,13 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface ScheduledSessionsLegacyRepository
  *
  * @package Fisdap\Data\ScheduledSession
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface ScheduledSessionsLegacyRepository extends Repository
-{
+interface ScheduledSessionsLegacyRepository extends Repository {
+
 }

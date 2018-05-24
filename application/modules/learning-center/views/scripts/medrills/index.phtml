@@ -1,0 +1,26 @@
+<?= $this->pageTitleHelper() ?>
+<?
+foreach ($this->videos as $category => $videos) { 
+?>
+
+<div class="grid_12 island withTopMargin">
+    <h2 class="section-header"><?= $category ?></h2>
+    
+    <?php foreach ($videos as $index => $video) {
+        $view_link = $this->view_link_base . "/category/" . $video->category->id . "/video/" . ($index+1);
+    ?>
+    <div class="grid_4">
+        <a class='thumbnail-link' href="<?= $view_link ?>">
+            <img src="<?= $this->vimeoHelper->vimeoThumbnail($video->vimeo_id) ?>" class="thumbnail">
+            <img src="/images/icons/play.png" class="play-button">
+        </a>
+        <h4 class="header"><a href="<?= $view_link ?>"><?= $video->title ?></a></h4>
+        <div class="video-caption">
+            <?= $video->caption ?> 
+        </div>
+    </div>
+    <?php } ?>
+
+</div> 
+<div class="clear"></div>
+<?php } ?>

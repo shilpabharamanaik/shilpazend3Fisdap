@@ -8,6 +8,7 @@
 use Fisdap\Data\Repository\DoctrineRepository;
 use Fisdap\Entity\Order;
 
+
 /**
  * Class DoctrineOrderRepository
  *
@@ -125,15 +126,15 @@ class DoctrineOrderRepository extends DoctrineRepository implements OrderReposit
         return array_pop($qb->getQuery()->getSingleResult());
     }
 
-    /**
-     * Get all completed orders that are not product codes, filterable by date range
-     *
-     * @param array $filters
-     * @return Order[]
-     */
-    public function getAllOrders($filters = array())
-    {
-        $qb = $this->_em->createQueryBuilder();
+	/**
+	 * Get all completed orders that are not product codes, filterable by date range
+	 *
+	 * @param array $filters
+	 * @return Order[]
+	 */
+	public function getAllOrders($filters = array())
+	{
+		$qb = $this->_em->createQueryBuilder();
 
         $qb->select("o", "p")
             ->from("\Fisdap\Entity\Order", "o")

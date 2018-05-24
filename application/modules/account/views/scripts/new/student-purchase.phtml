@@ -1,0 +1,66 @@
+<?php
+if (!$this->orphanAccount) {
+    $breadcrumb = '<a id="backToConfirm" href="/account/new/confirm-account/pc/' . $this->accountDetails['code'] . '"><< Previous (Account Confirmation)</a>';
+} else {
+    $breadcrumb = '<a id="backLink" href="/account/new/order-individual-products/orderId/' . $this->orderId . '"><< Back to Product Selection</a>';
+}
+?>
+
+<?= $this->pageTitleHelper("", null, $breadcrumb) ?>
+<?= $this->messageHelper() ?>
+
+<div class="grid_12 island">
+    <h3 class="section-header no-border">Order Summary</h3>
+    <?php
+    // if we actually want to list each product with an option to remove it from the order configuration
+    if ($this->orphanAccount) {
+        ?>
+        <div class="order-summary" id="orderSum" data-configid="<?= $this->orderConfig->id; ?>">
+            <div id="noProductsMessage" class="hidden grid_8">
+                Looks like you don't have any products selected! Use the link above to
+                return to the product selection page.
+            </div>
+
+            <div class="grid_8" id="productTable">
+                <table class="orphan-order-summary fisdap-table">
+                    <?php foreach ($this->orderConfig->getProductArray() as $product) { ?>
+                    <tr class='product-row' id='<?= $product['configuration'] ?>'>
+                        <td class='proName'><?= $product['name'] ?></td>
+                        <td class='proCost'>$<span class='price'><?= $product['price'] ?></td>
+                        <td class="delete">
+                            <img class="small-icon clickable delete-product" src="/images/icons/delete.png" id="<?= $product['id'] ?>">
+                        </td>
+                    </tr>
+<?php } ?>
+                </table>
+            </div>
+
+            <div id="couponWrapper" class="grid_4">
+                <?= $this->couponBox($this->order) ?>
+            </div>
+
+        </div>
+        <div class="clear"></div>
+
+    <?php } // we got here from a product code, just list a summary of the order
+    else { ?>
+        <div class="order-summary">
+            <h4 class="section-header no-border">
+                <?= $this->accountDetails['limitations']; ?>
+                <?= $this->accountDetails['cert']; ?>
+                Account at <?= $this->accountDetails['programName']; ?>
+            </h4>
+            <?= $this->summary ?>
+        </div>
+        <div class="clear"></div>
+
+    <?php } ?>
+
+    <?= $this->transactionErrors ?>
+
+    <div>
+        <?= $this->form ?>
+    </div>
+</div>
+
+

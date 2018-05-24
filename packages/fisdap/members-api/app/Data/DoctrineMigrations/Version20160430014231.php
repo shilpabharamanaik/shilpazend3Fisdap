@@ -3,9 +3,10 @@
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
+
 /**
  * Fix primary key column name on ServiceAccount table
- *
+ * 
  * @author  Ben Getsug <bgetsug@fisdap.net>
  */
 class Version20160430014231 extends AbstractMigration

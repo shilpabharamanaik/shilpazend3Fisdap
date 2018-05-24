@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Entity class for Shared Event Preferences
  *
@@ -23,7 +24,7 @@ class SharedEventPreferenceLegacy extends EntityBaseClass
      * @GeneratedValue
      */
     protected $id;
-    
+	
     /**
      * @var \Fisdap\Entity\ProgramLegacy
      * @ManyToOne(targetEntity="ProgramLegacy")
@@ -64,4 +65,5 @@ class SharedEventPreferenceLegacy extends EntityBaseClass
      * @Column(name="StudentNotes", type="string", nullable=true)
      */
     protected $notes;
+
 }

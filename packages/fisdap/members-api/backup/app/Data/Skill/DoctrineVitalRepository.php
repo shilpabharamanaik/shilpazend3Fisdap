@@ -10,4 +10,5 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineVitalRepository extends DoctrineRepository implements VitalRepository
 {
+
 }

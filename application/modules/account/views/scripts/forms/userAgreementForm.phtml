@@ -1,0 +1,27 @@
+<div id="wrapper">
+    <div id="formContainer">
+        <p id="label">Please take a moment to read our user agreement.</p>
+        
+        <?= $this->element->agreement;?>
+        
+        <a id="viewpp" href="#">View Privacy Policy</a>
+        
+        <div id="agreeCheckbox">
+            <?= $this->element->agreeFlag;?>
+                <div id="agreeDetails">
+                <p>I consent to the transmission and transfer of my personal information, into the United States, to be processed, stored and maintained on or through JB Learning servers located in the United States, as described in the “Use of Data” section, above; and I consent to the collection, use and disclosure of my data, for the purposes described in the above sections entitled “Your Learning Data,”  “General JB Learning Elearning Courseware Data,” and “Aggregate School Metrics.”
+                </p>
+                </div>
+        </div>
+        
+        <div id="saveButton" class="action-buttons">
+            <?= $this->element->save;?>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="privacyPolicyDialog">
+    <?= $this->element->privacyPolicy;?>
+</div>

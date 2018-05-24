@@ -4,6 +4,7 @@ use Fisdap\Data\Repository\DoctrineRepository;
 use Fisdap\Data\Repository\RetrievesByName;
 use Fisdap\Entity\Profession;
 
+
 /**
  * Class DoctrineCertificationLevelRepository
  *
@@ -27,9 +28,9 @@ class DoctrineCertificationLevelRepository extends DoctrineRepository implements
         $qb->select('cl.id, cl.description, cl.abbreviation, cl.name, cl.configuration_blacklist, cl.bit_value')
             ->from('\Fisdap\Entity\CertificationLevel', 'cl');
 
-        if (is_array($profession)) {
+        if(is_array($profession)){
             $qb->where($qb->expr()->in("cl.profession", $profession));
-        } elseif ($profession) {
+        } else if ($profession) {
             $qb->where("cl.profession = ?1")
                 ->setParameter(1, $profession);
         }
@@ -40,7 +41,7 @@ class DoctrineCertificationLevelRepository extends DoctrineRepository implements
 
         // key by name (which is the shortened, system-y version of the cert level)
         $return = array();
-        foreach ($results as $certLevel) {
+        foreach($results as $certLevel) {
             $return[$certLevel['name']] = $certLevel;
         }
 
@@ -59,7 +60,7 @@ class DoctrineCertificationLevelRepository extends DoctrineRepository implements
 
         // then dump them into an array that a zend form element will understand
         $formOptions = array();
-        foreach ($rawCerts as $index => $certOption) {
+        foreach($rawCerts as $index => $certOption){
             $formOptions[$certOption['id']] = $certOption['description'];
         }
 
@@ -77,7 +78,7 @@ class DoctrineCertificationLevelRepository extends DoctrineRepository implements
     {
         $rawCerts = $this->getAllCertificationLevelInfo($profession);
         $formOptions = array();
-        foreach ($rawCerts as $cert) {
+        foreach($rawCerts as $cert){
             $formOptions[$cert['id']] = $cert['description'];
         }
 

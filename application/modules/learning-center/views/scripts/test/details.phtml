@@ -1,0 +1,73 @@
+<div class="grid_12 workflow-link workflow-link-top workflow-link-left">
+	<a id="scheduled-tests-link" href="/learning-center/index/schedule"><< Scheduled Tests</a>
+</div>
+<div class="grid_12">
+	<h2 class="page-title">Test Details: <?php echo $this->testName; ?></h2>
+</div>
+<div id="shift-list-container" class="grid_12 island">
+			
+	<div class="grid_6 text-with-header">
+		<h4 class="widget-title-bar">Students</h4>
+		<div class="text-contents fixed-height-scroll">
+			<ul>
+				<?php foreach($this->students as $student) {
+					echo '<li>' . $student . '</li>';
+				} ?>
+			</ul>
+			<?php if ($this->studentUpgradeWarning) {
+				echo '<p>' . $this->studentUpgradeWarning . '</p>';
+			} ?>
+		</div>
+	</div>
+	
+	<div class="grid_6 text-with-header">
+		<h4 class="widget-title-bar">Proctor passwords</h4>
+		<div class="text-contents fixed-height-scroll">
+			<ul>
+				<?php foreach($this->testPasswords as $date => $password) {
+					// format the datetime properly
+					$date = new \DateTime($date);
+					echo '<li>On ' . $date->format('m/d/Y') . ' the password will be <strong> ' . $password . '</strong></li>';
+				} ?>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="grid_12 text-with-header">
+		<h4 class="widget-title-bar">Helpful links</h4>
+		<div class="text-contents test-helpful-links">
+			<p><a href="https://testing-instructions.s3.amazonaws.com/student_instructions.pdf">Student Instructions</a> -- Step-by-step directions explain how and where students should log in to take the test online.</p>
+			<p><a href="https://testing-instructions.s3.amazonaws.com/how_to_succeed.pdf">How to succeed on a Fisdap exam</a> -- Share these tips for success with your students. </p>
+			<?php if (count($this->scheduledTest->test->documents) > 0) {
+				foreach($this->scheduledTest->test->documents as $document) { 
+					print '<p><a href="/learning-center/test/download-test-document/did/' . $document->id . '">' . $document->label . '</a>';
+					if ($document->description) {
+						print ' -- ' . $document->description;
+					}
+					print '</p>';
+				}
+			} ?>
+			<p><a href="http://www.fisdap.net/support/testing/secure_testing">Questions?</a> -- Refer to our Testing Help section for more information and best practices.</p>
+		</div>
+	</div>
+	
+	<?php if ($this->testNotes) { ?>
+		<div class="grid_12 text-with-header">
+			<h4 class="widget-title-bar">Notes</h4>
+			<div class="text-contents">
+				<p><?php echo $this->testNotes; ?></p>
+			</div>
+		</div>
+	<?php } ?>
+	
+	<div class="grid_12 workflow-link workflow-link-bottom workflow-link-right">
+		<a id="scheduled-tests-link" href="/learning-center/test/edit/stid/<?php echo $this->scheduledTest->id; ?>">Edit This Test >></a>
+	</div>
+
+</div>
+
+
+	<script lang='text/javascript'>
+		$("#edit_test").button().addClass('gray-button');
+		$("#back_to_list").button().addClass('gray-button');
+	</script>

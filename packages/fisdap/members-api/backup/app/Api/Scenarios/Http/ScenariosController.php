@@ -381,7 +381,7 @@ final class ScenariosController extends Controller
 
         foreach ($scenario->getSkills() as $skill) {
             $skill = $skill->toArray();
-            switch ($skill['skill_type']) {
+            switch($skill['skill_type']) {
                 case "Airway":
                     $skill['skill'] = $airwayRepository->find($skill['skill_id']);
                     break;
@@ -402,9 +402,9 @@ final class ScenariosController extends Controller
             if (isset($skill['skill']) && $skill['skill'] !== null) {
                 if ($skill['priority'] == 3) {
                     $essential[] = $skill;
-                } elseif ($skill['priority'] == 2) {
+                } else if ($skill['priority'] == 2) {
                     $important[] = $skill;
-                } elseif ($skill['priority'] == 1) {
+                } else if ($skill['priority'] == 1) {
                     $not[] = $skill;
                 }
             }
@@ -543,8 +543,7 @@ final class ScenariosController extends Controller
         );
     }
 
-    private function getClosestBP($search)
-    {
+    private function getClosestBP($search) {
         $closest = null;
         $rtv = null;
         foreach ($this->iSimBPLookup as $item) {

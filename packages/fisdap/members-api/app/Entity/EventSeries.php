@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * @Entity
  * @Table(name="fisdap2_event_series")
@@ -87,7 +88,7 @@ class EventSeries extends EntityBaseClass
     public function addEvent(EventLegacy $event)
     {
         // first remove the event from its current series (if it has one)
-        if ($event->series) {
+        if($event->series){
             $event->series->events->removeElement($event);
             $event->series = null;
         }
@@ -95,4 +96,5 @@ class EventSeries extends EntityBaseClass
         $this->events->add($event);
         $event->series = $this;
     }
+    
 }

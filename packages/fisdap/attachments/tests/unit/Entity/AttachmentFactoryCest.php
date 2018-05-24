@@ -9,6 +9,7 @@ use Fisdap\Attachments\Entity\Attachment;
 use Fisdap\Attachments\Entity\AttachmentFactory;
 use Symfony\Component\HttpFoundation\File\File;
 
+
 class AttachmentFactoryCest
 {
     /**
@@ -48,23 +49,14 @@ class AttachmentFactoryCest
 
 
         $this->fakeAttachment = Mockery::mock(new Attachment(
-            12345,
-            $this->associatedEntityMock,
-            'fakeattach.txt',
-            12345,
-            'text/plain',
-            'fakes/12345/abc123',
-            'abc123',
-            'foo',
-            'bar'
+            12345, $this->associatedEntityMock, 'fakeattach.txt', 12345, 'text/plain', 'fakes/12345/abc123', 'abc123', 'foo', 'bar'
         ));
 
         $this->attachmentTypeMapperMock = Mockery::mock(MapsAttachmentTypes::class);
         $this->attachmentCategoriesRepositoryMock = Mockery::mock(AttachmentCategoriesRepository::class);
 
         $this->attachmentFactory = new AttachmentFactory(
-            $this->attachmentTypeMapperMock,
-            $this->attachmentCategoriesRepositoryMock
+            $this->attachmentTypeMapperMock, $this->attachmentCategoriesRepositoryMock
         );
 
         file_put_contents('/tmp/fakeattach.txt', 'lorum ipsum dolor sit amet');
@@ -90,14 +82,7 @@ class AttachmentFactoryCest
 
         // act
         $attachment = $this->attachmentFactory->create(
-            'fake',
-            12345,
-            $this->associatedEntityMock,
-            'abc123',
-            $this->fakeFile,
-            'fakes/12345/abc123',
-            'foo',
-            'bar'
+            'fake', 12345, $this->associatedEntityMock, 'abc123', $this->fakeFile, 'fakes/12345/abc123', 'foo', 'bar'
         );
 
         // assert
@@ -126,15 +111,7 @@ class AttachmentFactoryCest
 
         // act
         $attachment = $this->attachmentFactory->create(
-            'fake',
-            12345,
-            $this->associatedEntityMock,
-            'abc123',
-            $this->fakeFile,
-            'fakes/12345/abc123',
-            'foo',
-            'bar',
-            ['ECG']
+            'fake', 12345, $this->associatedEntityMock, 'abc123', $this->fakeFile, 'fakes/12345/abc123', 'foo', 'bar', ['ECG']
         );
 
         // assert
@@ -152,7 +129,7 @@ class AttachmentFactoryCest
     {
         // assert
         $I->assertTrue(
-            $I->seeExceptionThrown(AttachmentCategoryNotFound::class, function () {
+            $I->seeExceptionThrown(AttachmentCategoryNotFound::class, function() {
                 // arrange
                 $this->fakeAttachment->shouldReceive('createFromFile');
 
@@ -160,15 +137,7 @@ class AttachmentFactoryCest
 
                 // act
                 $this->attachmentFactory->create(
-                    'fake',
-                    12345,
-                    $this->associatedEntityMock,
-                    'abc123',
-                    $this->fakeFile,
-                    'fakes/12345/abc123',
-                    'foo',
-                    'bar',
-                    ['POO']
+                    'fake', 12345, $this->associatedEntityMock, 'abc123', $this->fakeFile, 'fakes/12345/abc123', 'foo', 'bar', ['POO']
                 );
             })
         );

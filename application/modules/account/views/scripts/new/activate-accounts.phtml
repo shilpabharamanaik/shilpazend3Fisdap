@@ -1,0 +1,71 @@
+<?= $this->pageTitleHelper() ?>
+
+<div class="grid_12 island">
+	
+	<?php // let jquery handle displaying the correct error/warning/success messages. just make the params accessable ?>
+	<div style="display:none;">
+		<div id="rowsAvailable"><?= $this->params['rowsAvailable'];?></div>
+		<div id="additionalStudents"><?= $this->params['additionalStudents'];?></div>
+		<div id="override"><?= $this->params['override'];?></div>
+	</div>
+	
+	<?php
+	// if we attempted to upload a file
+	if($this->params['rowsWithData'] > -1){
+		
+		// at least one valid row was found
+		if($this->params['rowsWithData'] > 0){?>
+		
+			<div id="uploadResult" class="success grid_12">
+				<?= $this->params['rowsWithData']; ?> student<?php if($this->params['rowsWithData']>1){echo "s";};?> from <?= $this->params['fileName'];?>
+				<?php if($this->params['rowsWithData']>1){echo "were";}else {echo "was";}?> added to the form below.
+			</div>
+	
+			<div id="warningUploadResult" class="success grid_12">
+				<ul>
+					<?php // let javascript handle most the messages ?>
+					
+					<li id="notReadableWarning">
+						Some data was not readable. These fields are highlighted in yellow.
+					</li>
+					
+					<li id="hasDistributedNotUsedWarning">
+						Your distributed activation codes were not used when uploading the spreadsheet.
+					</li>
+					
+					<li id="hasDistributedUsedWarning">
+						Account details from your uploaded file overwrote distributed activation codes.
+						
+						To undo this action, use the "Upload Spreadsheet" button,
+						unckeck the "Override" option and upload your file again.
+					</li>
+				</ul>
+			</div>
+		
+		<?php
+		}
+		
+		// there was no valid data, throw an error
+		else {?>
+			<div id="uploadResult" class="error grid_12">No data was found in <?= $this->filename?>.</div>
+		<?php
+		}
+		
+	}
+	?>
+	
+	<div class="clear"></div>
+	
+	<? //if ($this->onlyStudentAccounts) { ?>
+		<div class="small blue-button">
+			<a id="uploadTrigger" href="#">Upload Spreadsheet</a>
+		</div>
+	<? //} ?>
+
+	<?= $this->form ?>
+	
+</div>
+
+<div id="uploaderDialog">
+	<?= $this->modal ?>
+</div>

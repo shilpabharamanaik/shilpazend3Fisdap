@@ -4,6 +4,7 @@ use Illuminate\Foundation\Bootstrap\ConfigureLogging as FoundationConfigureLoggi
 use Illuminate\Log\Writer;
 use Illuminate\Contracts\Foundation\Application;
 
+
 /**
  * Class ConfigureLogging
  *

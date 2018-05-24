@@ -134,6 +134,7 @@ use Fisdap\Entity\Vital;
 use Illuminate\Support\ServiceProvider;
 use Zend_Registry;
 
+
 /**
  * Class EntityRepositoryServiceProvider
  *
@@ -216,6 +217,7 @@ class EntityRepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         foreach (self::$entityRepositoryInterfaceMap as $entityName => $repoClassName) {
+
             $this->app->singleton(
                 $repoClassName,
                 function () use ($entityName) {
@@ -228,4 +230,4 @@ class EntityRepositoryServiceProvider extends ServiceProvider
             );
         }
     }
-}
+} 

@@ -2,6 +2,7 @@
 
 use Fisdap\Fractal\Transformer;
 
+
 /**
  * Prepares class section data for JSON output
  *

@@ -3,6 +3,7 @@
 use Fisdap\Data\Repository\Repository;
 use Fisdap\Entity\Permission;
 
+
 /**
  * Interface PermissionRepository
  *

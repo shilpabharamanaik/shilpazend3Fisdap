@@ -1,0 +1,36 @@
+    <?= $this->pageTitleHelper() ?>
+    <?= $this->messageHelper() ?>
+
+    <?= $this->reportsNavBar("history"); ?>
+    
+    <div class="clear"></div>
+    
+    <div class="grid_12 island">
+        <h2 class="section-header">Recent Reports</h2>
+        <?= $this->formText("report_search", null, array("class" => "search-box", "title" => "Type a report title or description to search...")) ?>
+        
+        <div id="reports-container" class="recent-reports-container">
+<?php
+		if (count($this->savedConfigurations) < 1) {
+?>
+            <div class='info'>You have not run any reports.</div>
+<?php	}
+		foreach($this->savedConfigurations as $configID => $info) { ?>
+			<div class="report-row">
+				<div class='grid_12'>
+					<h4 class="dark-gray report-title"><?= $info['title']?></h4>
+                    <?php if ($info['resultsStatus'] == 'ready') { ?>
+                        <a href="/reports/index/display/report/<?= $info['reportClass']?>/config/<?= $configID ?>" class='run-report'>View results</a>
+                    <?php } else if ($info['resultsStatus'] == 'pending') { ?>
+                        <a href="/reports/index/display/report/<?= $info['reportClass']?>/config/<?= $configID ?>" class='run-report report-pending' data-config-id="<?= $configID ?>"><img src="/images/icons/queueThrobber.gif" /></a>
+                    <?php } ?>
+					<a href="/reports/index/display/report/<?= $info['reportClass']?>/config/<?= $configID ?>/clearCache/1" class='run-report'>Run again</a>
+					<div class="report-categories medium-gray">
+						<?= $info['label']?>, <?= $info['updated'] ?>
+					</div>
+				</div>
+				<div class='clear'></div>
+			</div>
+<?php 	} ?>
+        </div>
+    </div>

@@ -1,0 +1,308 @@
+<div id="control-buttons">
+    <div id='autosave-text'>Last saved <span id='autosave-timer'>0 seconds</span> ago</div>
+    <span class="extra-small green-buttons">
+        <button id="save-button">Save</button>
+    </span>
+</div>
+
+<div class="tab-content" id="features-tab">
+
+    <div class='grid_6'>
+        <?
+        $scheduleHelpText = 'You can give students permission to add their own shifts to the schedule. Most programs that don\'t use the Scheduler check these boxes.
+			If you are using the Scheduler, you can create the schedule for your students, and then they sign up for the shifts they want.
+			In this case, leave the boxes unchecked.
+			<br /><br />
+			After each shift, students can indicate if they were tardy, absent and/or absent with permission for an accurate attendance report.
+			If students miss a shift, they can mark themselves "absent" to record the missed shift without getting credit for it.';
+        ?>
+
+        <h3 class="settings-header">
+            Schedules
+            <?= $this->helpBubble("scheduleHelp", "Schedule Help", $scheduleHelpText) ?>
+        </h3>
+
+        <div class="settings-group">
+            Students can create their own schedules for:
+            <div>
+                <?php echo $this->element->can_students_create_lab . $this->formLabel('can_students_create_lab', 'Lab Shifts'); ?>
+                <?php echo $this->element->can_students_create_clinical . $this->formLabel('can_students_create_clinical', 'Clinical Shifts'); ?>
+                <?php echo $this->element->can_students_create_field . $this->formLabel('can_students_create_field', 'Field Shifts'); ?>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            Students can mark shifts as:
+            <div>
+                <?= $this->element->tardy . $this->formLabel('tardy', 'Tardy') ?>
+                <?= $this->element->absent . $this->formLabel('absent', 'Absent') ?>
+                <?= $this->element->absent_with_permission . $this->formLabel('absent_with_permission', 'Absent with Permission') ?>
+            </div>
+        </div>
+
+        <br/>
+
+        <?
+        $emailHelpText = '<h4>Late Data Email Reminders</h4>
+			If you want to warn students about late data, you can also choose the deadline. Students receive an email 24 hours before the shift is late and a
+			daily reminder after the documentation is late until the shift is marked complete.<br /><br />You can also choose to automatically lock the shift once the deadline has passed.  Students will not be able to enter data until an instructor unlocks the shift for them.<br /><br />
+			
+			<h4>Critical Thinking Prompts</h4>
+			Students receive an email if they observed or performed noteworthy procedures or events (e.g. birth, chest decompression, intubation)
+			during a field or clinical shift. The email contains questions to help the student reflect on the event, and their responses are sent
+			to their instructors. These emails spark critical thinking and help instructors identify when students need follow-up. <br />';
+        ?>
+
+        <h3 class="settings-header">
+            Emails
+            <?= $this->helpBubble("emailHelp", "Email Help", $emailHelpText) ?>
+        </h3>
+
+        <?php echo $this->element->send_late_shift_emails . $this->formLabel('send_late_shift_emails', 'Warn students when documentation is late:') ?>
+        <br/>
+
+        <div id="late-data-options">
+            <div class='prefix_1 grid_11'>Lab data is late after <?php echo $this->element->late_lab_deadline; ?>
+                hours
+            </div>
+            <div class='prefix_1 grid_11'>Clinical data is late
+                after <?php echo $this->element->late_clinical_deadline; ?> hours
+            </div>
+            <div class='prefix_1 grid_11'>Field data is late after <?php echo $this->element->late_field_deadline; ?>
+                hours
+            </div>
+            <?php echo $this->element->autolock_late_shifts . $this->formLabel('autolock_late_shifts', 'Automatically lock shifts when documentation is late') ?>
+            <br/>
+        </div>
+
+        <div class='clear'></div>
+        <br/>
+
+        <?php echo $this->element->send_critical_thinking_emails . $this->formLabel('send_critical_thinking_emails', 'Send "Critical Thinking" prompts after interesting experiences') ?>
+
+        <br/><br/>
+
+
+        <h3 class='settings-header'>Graduation Requirements</h3>
+
+        <div class="settings-group">
+            <div class='manage-link'>
+                <a href='/reports/settings/manage-goalsets'>Manage goalsets</a>
+            </div>
+            <br/>
+            For the Graduation Requirements Report and Goals widget, include Skills Tracker data from the following:
+            <br/><br/>
+            Locations
+            <div class="checkbox-group">
+                <div><?php echo $this->element->include_lab_in_mygoals . $this->formLabel('include_lab_in_mygoals', 'Lab Shifts') ?></div>
+                <div><?php echo $this->element->include_clinical_in_mygoals . $this->formLabel('include_clinical_in_mygoals', 'Clinical Shifts') ?></div>
+                <div><?php echo $this->element->include_field_in_mygoals . $this->formLabel('include_field_in_mygoals', 'Field Shifts') ?></div>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            Patient types
+            <div class="checkbox-group">
+                <?php
+                foreach ($this->element->subjectTypes as $st_id => $st_name) {
+                    $elementName = "subject_type_" . $st_id;
+                    echo "<div>" . $this->element->$elementName . $this->formLabel($elementName, $st_name) . "</div>";
+                }
+                ?>
+            </div>
+        </div>
+
+    </div>
+    <!-- closes left column -->
+
+    <div class='grid_6'>
+        <h3 class="settings-header">
+            Documentation Options
+        </h3>
+
+        <div class="settings-group">
+            <?php echo $this->element->include_narrative . $this->formLabel('include_narrative', 'Allow students to document narratives') ?>
+            <br \>
+            <a id='edit_link' href='#'>Manage narrative format</a>
+
+            <div class='clear'></div>
+        </div>
+
+        <? if ($this->element->isStaff || !$this->element->usingClinicalPractice) { ?>
+            <div id="set-quick-add-clinical" class="settings-group">
+                <?php echo $this->element->quick_add_clinical . $this->formLabel('quick_add_clinical', 'Allow students to quick add clinical skills') ?>
+            </div>
+        <? } ?>
+
+        <br \>
+
+
+        <?
+        $signoffHelpText = 'Fisdap offers you the possibility to go truly paperless by asking preceptors for their electronic signatures.
+			Your options include a digital signature or typing in a Fisdap username and password. Choose both or the one that you prefer.<br /><br />
+			
+			Additionally, you can ask preceptors to sign off on each patient contact or the shift as a whole.<br /><br />
+			
+			If you want to audit shifts, be sure to check the "Educators can audit shifts" box. Fisdap recommends you audit at least 10% of each student’s
+			shifts to make sure that it is not being falsified.';
+        ?>
+
+        <h3 class="settings-header">
+            Auditing and Sign off
+            <?= $this->helpBubble("signoffHelp", "Sign off and Auditing Help", $signoffHelpText) ?>
+        </h3>
+
+        <?php echo $this->element->allow_educator_shift_audit . $this->formLabel('allow_educator_shift_audit', ' Educators can audit shifts'); ?>
+        <br/><br/>
+        <?php echo $this->element->disable_educator_signoff . $this->formLabel('disable_educator_signoff', ' Disable preceptor sign off for my program'); ?>
+        <br/><br/>
+
+        <div id="sign-off-stuff">
+            <span id='signoff_stem'>Preceptors should sign off on each</span><br/>
+            <?= $this->element->signoff_location ?><br/><br/>
+
+            <span id='signoff_options_stem'>When signing off the preceptor should have the option to</span><br/>
+            <?php echo $this->element->allow_educator_evaluations . $this->formLabel('allow_educator_evaluations', ' Rate the student\'s performance'); ?>
+            <br/>
+            <?php echo $this->element->allow_educator_signoff_signature . $this->formLabel('allow_educator_signoff_signature', ' Record a digital signature'); ?>
+            <br/>
+            <?php echo $this->element->allow_educator_signoff_login . $this->formLabel('allow_educator_signoff_login', ' Enter a Fisdap username and password'); ?>
+            <br/>
+            <?php echo $this->element->allow_educator_signoff_attachment . $this->formLabel('allow_educator_signoff_attachment', ' Choose a file attachment'); ?>
+            <br/>
+            <!--<div class='prefix_1 grid_11'><?php echo $this->element->allow_educator_signoff_email; ?> by receiving a secure email</div>-->
+            <br/>
+        </div>
+
+        <?
+        $evalsHelpText = 'By enabling this option, you can require that certain evals be present on a shift before students are allowed to complete and lock that shift.<br /><br />
+
+			Required evaluations can be set by shift type.';
+        ?>
+
+        <h3 class="settings-header">
+            Shift Evaluations
+            <?= $this->helpBubble("evalsHelp", "Shift Evaluations Help", $evalsHelpText) ?>
+        </h3>
+
+        <div class="settings-group">
+            <?php echo $this->element->require_evals . $this->formLabel('require_evals', 'Require filled-out evaluation(s) prior to shift lock') ?>
+            <br \>
+            <a id='edit_evals_link' href='#'>Customize required evals</a>
+
+            <div class='clear'></div>
+        </div>
+        <br/>
+
+        <? if ($this->element->isStaff) { ?>
+            <h3 class="settings-header">Staff
+                Options <?= $this->helpBubble("staffHelp", "Staff Only Options", "Here you can toggle practice skills on and off for field and clinical shifts.") ?></h3>
+            <?= $this->element->practice_skills_field . " " . $this->formLabel('practice_skills_field', 'Enable practice skills for field shifts'); ?>
+            <br/>
+            <?= $this->element->practice_skills_clinical . " " . $this->formLabel('practice_skills_clinical', 'Enable practice skills for clinical shifts'); ?>
+        <? } ?>
+
+    </div>
+    <!-- closes right div -->
+
+</div>
+
+<div class="tab-content" id="lab-practice-tab">
+
+    <div id="lab-skills-tabs" class="cupertino">
+        <?php
+        $first = true;
+        foreach ($this->element->groups as $group) {
+            $selected = $first ? "checked='checked'" : null;
+            $first = false;
+            ?>
+            <input type="radio" id="<?= $group['abbreviation']; ?>" name="cert_level_groups" <?= $selected ?>>
+            <label for="<?= $group['abbreviation']; ?>"><?= $group['description']; ?></label>
+        <?php
+        }
+        ?>
+    </div>
+
+
+    <?php
+    foreach ($this->element->groups as $group) {
+        ?>
+
+        <div id='<?= $group['abbreviation']; ?>-content' class='lab-skills-tab-content'>
+
+            <?php
+            if ($this->element->isStaff) {
+                ?>
+                <div class='add-category-wrapper'>
+                    <img src='/images/throbber_small.gif'>
+                    <a class="add-category" href="#" id="<?= $group['id'] ?>"></a>
+
+                    <div class="clear"></div>
+                </div>
+            <?php } ?>
+
+            <div class="clear"></div>
+
+            <div class="category-accordion">
+
+                <?php
+                foreach ($group['categories'] as $practiceCat) {
+                    echo $this->element->practiceCategoryTable->practiceCategoryTable($practiceCat,
+                        $this->element->{'category' . $practiceCat->id . '_cat_name'},
+                        $this->element->formElements[$practiceCat->id]);
+                }
+                ?>
+
+            </div>
+
+        </div>
+    <?php
+    }
+    ?>
+
+    <?php if(!$this->element->hasNewPracticeCategory){
+        ?>
+        <br><a href="#" id="update-skillsheets">Update NREMT skillsheets to the most recent version.</a>
+    <?php  }else if(!$this->element->hasNewPPCP){
+        ?>
+        <br><a href="#" id="update-ppcp-skillsheets">Update NREMT skillsheets to the most recent version.</a>
+    <?php } ?>
+
+</div><!-- close lab skills tab -->
+
+<div class="tab-content" id="customization-tab">
+
+    Fisdap procedure lists can be customized to meet your local protocol.
+    Checked skills will be available to your students.<br/><br/>
+
+    <h3 class="settings-header">Airways</h3>
+    <?php echo $this->staggeredList($this->element->airwayElements); ?>
+    <br/>
+
+    <h3 class="settings-header">Cardiac</h3>
+    <?php echo $this->staggeredList($this->element->cardiacElements); ?>
+    <br/>
+
+    <h3 class="settings-header">Intravenous Access</h3>
+    <?php echo $this->staggeredList($this->element->ivElements); ?>
+    <br/>
+
+    <h3 class="settings-header">Medications</h3>
+    <?php echo $this->staggeredList($this->element->medElements); ?>
+    <br/>
+
+    <h3 class="settings-header">Other</h3>
+    <?php echo $this->staggeredList($this->element->otherElements); ?>
+    <br/>
+
+    <h3 class="settings-header">Lab Assessments</h3>
+    <?php echo $this->staggeredList($this->element->labElements); ?>
+    <br/>
+
+
+    <p>If you would like to add a procedure to the list, please send an email to support@fisdap.net or call
+        651.690.9241</p>
+
+    <div class='clear'></div>
+
+</div><!-- close customization tab -->

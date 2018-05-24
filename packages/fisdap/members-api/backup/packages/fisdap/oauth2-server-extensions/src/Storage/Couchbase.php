@@ -7,6 +7,7 @@ use OAuth2\Storage\JwtBearerInterface;
 use OAuth2\Storage\RefreshTokenInterface;
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Class Couchbase
  *
@@ -20,8 +21,8 @@ use Psr\Log\LoggerInterface;
  * @package Fisdap\OAuth\Storage
  * @author  Alex Stevenson
  */
-class Couchbase implements
-    AuthorizationCodeInterface,
+class Couchbase
+    implements AuthorizationCodeInterface,
                AccessTokenInterface,
                ClientCredentialsInterface,
                RefreshTokenInterface,
@@ -57,9 +58,8 @@ class Couchbase implements
                     'First argument to \Fisdap\OAuth\Storage\Couchbase must be an instance of \Couchbase or a configuration array'
                 );
             }
-            global $app;
-            echo $app::VERSION;
-            exit;
+			global $app;
+echo $app::VERSION; exit;
             $this->db = new \Couchbase($connection['hosts'], $connection['username'], $connection['password'], $connection['bucket']);
         }
 
@@ -133,10 +133,12 @@ class Couchbase implements
             $clientDetails = $this->db->get($this->config['client_prefix'] . $client_id);
 
             return json_decode($clientDetails, true);
+
         } catch (\Exception $e) {
             $this->logException('warning', $e);
             return false;
         }
+
     }
 
 
@@ -208,6 +210,7 @@ class Couchbase implements
      */
     public function getAccessToken($access_token)
     {
+
         try {
             $token = $this->db->get($this->config['access_token_prefix'] . $access_token);
             return json_decode($token, true);
@@ -284,6 +287,7 @@ class Couchbase implements
         $scope = null,
         $id_token = null
     ) {
+
         $code = compact('authorization_code', 'client_id', 'user_id', 'redirect_uri', 'expires', 'scope', 'id_token');
         $code['type'] = "oauth_authorization_code";
 
@@ -326,6 +330,7 @@ class Couchbase implements
      */
     public function getRefreshToken($refresh_token)
     {
+
         try {
             $token = $this->db->get($this->config['refresh_token_prefix'] . $refresh_token);
             return json_decode($token, true);

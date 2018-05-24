@@ -14,6 +14,7 @@ use Franzl\Lti\ToolConsumer;
 use Franzl\Lti\User;
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Class DoctrineStorage
  *
@@ -283,6 +284,7 @@ final class DoctrineStorage extends AbstractStorage
             $resource_link->updated = $context->getUpdated()->getTimestamp();
 
             return true;
+
         } catch (\Exception $e) {
             $this->log('critical', $e->getMessage(), (array) $resource_link);
 
@@ -328,7 +330,8 @@ final class DoctrineStorage extends AbstractStorage
                 }
 
                 $context->setShareApproved($resource_link->share_approved);
-            } elseif ($id == $previous_id) {
+
+            } else if ($id == $previous_id) {
 
                 /** @var Context $context */
                 $context = $this->entityManager->getRepository(Context::class)->findOneBy([
@@ -351,6 +354,7 @@ final class DoctrineStorage extends AbstractStorage
                 }
 
                 $context->setShareApproved($resource_link->share_approved);
+
             } else {
 
                 /** @var Context $context */
@@ -467,7 +471,7 @@ final class DoctrineStorage extends AbstractStorage
             $critera->where($critera->expr()->lte('expires', new \DateTime));
             $expiredNonces = $this->entityManager->getRepository(Nonce::class)->matching($critera);
 
-            foreach ($expiredNonces as $expiredNonce) {
+            foreach($expiredNonces as $expiredNonce) {
                 $this->entityManager->remove($expiredNonce);
             }
 

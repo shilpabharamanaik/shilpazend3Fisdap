@@ -1,0 +1,32 @@
+<div class="grid_4">
+    <div class="coupon-summary">
+        <?= $this->couponBox($this->order) ?>
+    </div>
+</div>
+<div class='grid_8'>
+    <div class='total-summary'>
+        <div class='cost-summary'>
+            <div class="grid_10">
+                Subtotal:
+            </div>
+            <div class="grid_2">
+                 $<span class='subtotal-sum'><?= $this->order->getFullCost(); ?></span>
+            </div>
+            <div class="clear"></div>
+            
+            <?
+                foreach ($this->order->order_configurations as $config) {
+                    $discounts = $config->getDiscounts();
+                    foreach($discounts as $discount) {
+                        echo "<div class='grid_10'>" . $discount['message'] . " Discount:</div>";
+                        echo "<div class='grid_2'>-$" . number_format($discount['discount'] * $config->quantity, 2, ".", ",") . "</div>";
+                        echo "<div class='clear'></div>";
+                    }
+                }
+            ?>
+        </div>
+
+        <h3 class='sub-heading'>Total: <span class='total-sum'>$<?= $this->order->getTotalCost() ?></span></h3>
+    </div>
+</div>
+<div class="clear"></div>

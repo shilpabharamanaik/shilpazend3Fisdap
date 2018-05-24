@@ -7,6 +7,7 @@ use Fisdap\Entity\User;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 
+
 /**
  * Ensures shift student program id matches program id of current user role
  *

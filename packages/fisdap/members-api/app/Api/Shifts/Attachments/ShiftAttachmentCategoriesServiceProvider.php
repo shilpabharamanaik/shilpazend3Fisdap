@@ -23,7 +23,7 @@ final class ShiftAttachmentCategoriesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $router = app('router'); // Router Instance
+		$router = app('router'); // Router Instance
         parent::boot();
     }
 

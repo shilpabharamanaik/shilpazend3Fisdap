@@ -8,11 +8,12 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\PrePersist;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Todo
  *
  * Todo is a Message that has user-modifiable attributes like a Completed flag and Due date
- *
+ * 
  * @Entity
  * @Table(name="fisdap2_todos")
  * @HasLifecycleCallbacks
@@ -56,13 +57,11 @@ class Todo extends EntityBaseClass
      * Setters
      */
 
-    public function set_notes($text)
-    {
+    public function set_notes($text) {
         $this->notes = $text; //@todo any format checking we need to do here?
     }
     
-    public function set_completed($completed)
-    {
+    public function set_completed($completed) {
         $this->completed = ($completed) ? 1 : 0;
     }
     
@@ -71,13 +70,12 @@ class Todo extends EntityBaseClass
      * Getters
      */
 
-    public function get_notes()
-    {
+    public function get_notes() {
         return $this->notes;
     }
     
-    public function get_completed()
-    {
-        return ($this->completed) ? true : false;
+    public function get_completed() {
+        return ($this->completed) ? TRUE : FALSE;
     }
+    
 }

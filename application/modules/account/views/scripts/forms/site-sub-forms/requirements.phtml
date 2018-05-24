@@ -1,0 +1,126 @@
+<a id='manage-requirements' href='/scheduler/compliance/manage'>
+	Manage requirements
+</a>
+
+<div id='req-messages'></div>
+
+<?php if ($this->element->noReqs) { ?>
+	<div class='info'>
+		Compliance is a feature of the Fisdap Scheduler that allows you to track requirements and share them with
+		other programs using this site.
+	</div>
+	
+	<div>No one has set up any Site Requirements for your program.</div>
+	
+<?php } else { ?>
+
+	<div id='requirementsDirections'>
+<?php
+		switch ($this->element->sharedStatus) {
+			// Site Admin
+			case 4: ?>
+				<div>
+					Move your requirements to indicate which ones need to be completed by people in <span style='font-weight:bold'>your program</span>.
+					<div style="margin-top:1em;">Select a requirement and click Share to indicate which ones need to be completed by everyone in the <span style='font-weight:bold'>sharing network</span>.</div>
+				</div>
+<?php	 		break;
+			// Program is in the network, but not an admin
+			case 3: ?>
+				<div>
+					Move your requirements to indicate which ones need to be completed by people in <span style='font-weight:bold'>your program</span>.
+					<div style='margin-top:1em;'>Gray requirements are managed by a site admin, and will need to be completed by everyone in the <span style='font-weight:bold'>sharing network</b>.</div>
+				</div>
+<?php	 		break;
+			// Network exists, program is not yet in it (includes pending state)
+			case 2:
+			case 1: ?>
+				<div>
+					Move your requirements to indicate which ones need to be completed by people in your program.
+				</div>
+<?php	 		break;
+			// There is no network
+			default: ?>
+				<div>
+					Move your requirements to indicate which ones need to be completed by people in your program.
+				</div>
+<?php	 		break;
+		} ?>
+<?php
+/*
+		switch ($this->element->sharedStatus) {
+			case 4:		?>
+				<div>
+					Select a requirement and click Share to ensure that anyone from <span style='font-weight:bold'>other</span>
+					programs in your network must also fulfill it in order to be compliant at this site.
+				</div>
+<?php	 		break;
+			case 3:		?>
+				<div>
+					Gray requirements are set by the Sharing Admin, and anyone from <span style='font-weight:bold'>any</span>
+					program in the sharing network must fulfill them in order to be compliant at this site.
+				</div>
+<?php	 		break;
+		}*/ ?>
+	</div>
+	
+	<div class="clear"></div>
+
+	<div id="requirementsContainer">
+		
+		<div id="availableContainer">
+			<?= $this->element->availableRequirements ?>
+			<div class="search-req-list">
+				<img class="magnifying-glass-icon" src="/images/icons/magnifying-glass.png">
+				<input class="search-list" data-listToSearch="availableRequirements">
+			</div>
+		</div>				
+	
+		<div id="moveButtonsRequirements" class="extra-small grey-button">
+			<a id="addRequirement">></a>
+			<a id="removeRequirement"><</a>
+		</div>
+	
+		<div id="activeContainer">
+			<?= $this->element->activeRequirements ?>
+			<div class="search-req-list">
+				<img class="magnifying-glass-icon" src="/images/icons/magnifying-glass.png">
+				<input class="search-list" data-listToSearch="activeRequirements">
+			</div>
+<?php	if ($this->element->sharedStatus == 3) { ?>
+			<div class='select-key'>
+				<span class='disabled'>Gray</span> requirements are managed by a site admin.
+			</div>
+<?php	} ?>
+		</div>
+		
+		<div id='hiddenSelects'>
+			<?= $this->element->availableRequirements_hidden ?>
+			<?= $this->element->activeRequirements_hidden ?>
+		</div>
+	</div>
+	
+	<input type='hidden' id='program_id' name='program_id' value='<?= $this->element->program->id ?>'>
+	<input type='hidden' id='shared_status' name='shared_status' value='<?= $this->element->sharedStatus ?>'>
+	<input type='hidden' id='changed_reqs' name='changed_reqs' value=''>
+	<input type='hidden' id='sharing_changed' name='sharing_changed' value=''>
+
+	<div class="clear"></div>
+					
+<?php
+		if ($this->element->sharedStatus == 4) { ?>
+			<div class="extra-small gray-button" id="sharingButtonsContainer">
+				<a href="#" id="edit-req-sharing-btn">Share</a>
+			</div>
+		
+			<div class="clear"></div>
+<?php 	}	?>
+
+	<div class="green-buttons requirementsButtonsContainer">
+		<a href="#" id="save-reqs-btn">Save</a>
+	</div>
+	<div class="gray-button requirementsButtonsContainer">
+		<a href="#" id="reset-reqs-btn">Reset</a>
+	</div>
+
+<?php }	?>
+

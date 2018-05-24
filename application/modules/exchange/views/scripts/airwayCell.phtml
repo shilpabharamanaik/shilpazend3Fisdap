@@ -1,0 +1,32 @@
+<?php $cellId = "Airway_" . $this->airway->id; ?>
+
+<tr id="<?= $cellId ?>" class='draggable_skill'>
+<?php
+if ($this->airway->soft_deleted) {
+    echo "<td colspan='4' class='undo'>Airway #" . $this->airway->id . " successfully deleted. <a id='undo-delete-$cellId' href='#' onclick='undoDeleteSkill(\"$cellId\"); return false;'>Undo!</a></td>";
+    $elementStyle = "style='display:none;'";
+}
+
+$skillName = "Airway";
+$skillId = $this->airway->id;
+$isALSFlag = $this->airway->is_als;
+$priority = $this->airway->priority;
+
+$radioButtonName = $skillName . "_" . $skillId . "_als_bls";
+
+?>
+    <td <?= $elementStyle ?> class='procedure-grabby-column priority_<?= $priority; ?>'><img src="/images/icons/wide_grabby.png" class='grabby-icon' title='Click and drag to reorder' /></td>
+    <td <?= $elementStyle ?> class='procedure-icon-column'><img class='small-skill-icon' src='/images/icons/airway_gray.png'></td>
+    <td <?= $elementStyle ?> class='procedure-description-column' onclick="loadAirwayModal(<?= $this->airway->id ?>);"><?= $this->airway->getProcedureText(); ?></td>
+    <td <?= $elementStyle ?> class='procedure-tools-column'>
+        <?= $this->skillEvalHookHelper('airway', $this->airway);?>
+        <span class="toggle-als-bls">
+        	<input type='radio' name="<?= $radioButtonName ?>" id="<?= $radioButtonName ?>_bls" skillId='<?= $skillName ?>_<?= $skillId ?>' onclick="toggleAlsBls(<?=$skillId?>, '<?= $skillName ?>', 'bls')" <?php echo ($isALSFlag)?"":"CHECKED='CHECKED'"; ?>"/>
+        	<label for='<?= $radioButtonName ?>_bls'>BLS</label>
+        	<input type='radio' name="<?= $radioButtonName ?>" id="<?= $radioButtonName ?>_als" skillId='<?= $skillName ?>_<?= $skillId ?>' onclick="toggleAlsBls(<?=$skillId?>, '<?= $skillName ?>', 'als')" <?php echo ($isALSFlag)?"CHECKED='CHECKED'":""; ?>/>
+        	<label for='<?= $radioButtonName ?>_als'>ALS</label>
+        </span>
+        <a href="#" class="duplicate-skill" onclick="duplicateSkill(<?= $this->airway->id ?>, 'Airway'); return false;"><img class="small-icon" title="duplicate skill" src="/images/icons/duplicate.png"></a>
+        <a href="#" class="delete-skill" skillId="<?= $cellId ?>" title="delete skill"><img class="small-icon" src="/images/icons/delete.png"></a>
+    </td>
+</tr>

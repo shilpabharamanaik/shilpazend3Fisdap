@@ -1,0 +1,70 @@
+<?= $this->pageTitleHelper() ?>
+<?= $this->messageHelper() ?>
+<div class="grid_12 island">
+	<div id="searchForm">
+		<?= $this->form;?>
+	</div>
+</div>
+
+<div class="grid_12 island withTopMargin">
+	<div id="activeCodesSelectedError" class="error">
+		You may not email activated activation codes.<br />
+		These accounts have already been created an cannot be distributed to other students.
+	</div>
+	
+	<div id="noCodesSelectedError" class="error">
+		Please select an activation code.
+	</div>
+	
+	<div id="instructorsSelectedError" class="error">
+		Preceptor Training accounts cannot have a graduation date or be associated wtih a group. Please select activation codes that are not for intructors.
+	</div>
+	
+	<div id="successMessage" class="success"></div>
+	
+	<div id="tableWrapper">
+		<div id="topRowBg"></div>
+		<table id="theTopRow">
+			<tr class="topRow">
+				<td class="checkboxCell"></td>
+				<td class="codeCell">Activation Code</td>
+				<td class="productsCell">Products</td>
+				<td class="statusCell">Available</td>
+				<td class="certCell">Certification</td>
+				<td class="advancedCell">Advanced</td>
+				<td class="orderCell">Order</td>
+			</tr>
+		</table>
+		
+		<div id="throbber">
+			<p>Generating list, please wait.
+			<img src="/images/throbber_small.gif"></p>
+		</div>	
+		<div id="inventoryListBox">
+			<div id="inventoryList">
+				
+			</div>
+			
+		</div>
+	</div>
+	
+	<div id="bottomButtons" class="extra-small gray-button">
+		<div id="emailButtonWrapper"><a id="email">Email</a></div>
+		<?php // hidden for now <div id="certButtonWrapper"><a id="cert">Edit Certification</a></div> ?>
+		<div id="gradGroupsButtonWrapper"><a id="gradGroups">Edit Graduation/Groups</a></div>
+		<div id="deleteGroupButtonWrapper"><a id="deleteGroup" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Delete</span></a></div>
+	</div>
+	
+</div>
+
+<div id="emailDialog">
+	<?= $this->emailModal ?>
+</div>
+
+<div id="certDialog">
+	<?= $this->certModal ?>
+</div>
+
+<div id="gradGroupDialog">
+	<?= $this->gradGroupModal ?>
+</div>

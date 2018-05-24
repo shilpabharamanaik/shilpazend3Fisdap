@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Practice Skill
  *
@@ -15,12 +16,12 @@ use Doctrine\ORM\Mapping\Table;
 class PracticeSkill extends EntityBaseClass
 {
     /**
-     * @var integer
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
-     */
-    protected $id;
+	 * @var integer
+	 * @Id
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 */
+	protected $id;
     
     /**
      * @var string

@@ -11,8 +11,9 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
+
 /**
- *
+ *  
  * @Entity(repositoryClass="Fisdap\Data\Window\DoctrineWindowRepository")
  * @Table(name="fisdap2_windows")
  */
@@ -103,7 +104,7 @@ class Window extends EntityBaseClass
     public function set_start_date($datetime)
     {
         // make sure hte datetime is at midnight the day of
-        if (is_string($datetime)) {
+        if(is_string($datetime)){
             $datetime = new \DateTime($datetime);
         }
         
@@ -114,7 +115,7 @@ class Window extends EntityBaseClass
     public function set_end_date($datetime)
     {
         // make sure the datetime is at 23:59:59 the day of
-        if (is_string($datetime)) {
+        if(is_string($datetime)){
             $datetime = new \DateTime($datetime);
         }
         
@@ -146,13 +147,15 @@ class Window extends EntityBaseClass
     public function getWhenDescription()
     {
         $today = new \DateTime();
-        if ($this->start_date > $today) {
+        if($this->start_date > $today){
             $when = "Sign up opens on " . $this->start_date->format("M j, Y") . ".";
-        } else {
-            if ($this->end_date < $today) {
+		}
+        else {
+            if($this->end_date < $today){
                 $when = "Sign up closed on " . $this->end_date->format("M j, Y") . ".";
-            } else {
-                $when = ($this->end_date->format("j") == $today->format("j")) ? "Sign up by today." : "Sign up by " . $this->end_date->format("M j, Y") . ".";
+            }
+            else {
+				$when = ($this->end_date->format("j") == $today->format("j")) ? "Sign up by today." : "Sign up by " . $this->end_date->format("M j, Y") . ".";
             }
         }
         
@@ -162,55 +165,53 @@ class Window extends EntityBaseClass
     public function getStatus()
     {
         $today = new \DateTime();
-        if ($this->start_date > $today) {
-            $stat = "not-open-yet";
-        } else {
-            $stat = ($this->end_date < $today) ? "closed" : "open";
-        }
+        if($this->start_date > $today){ $stat = "not-open-yet"; }
+        else { $stat = ($this->end_date < $today) ? "closed" : "open";}
         return $stat;
     }
     
     public function getWhoDescription()
     {
-        $certLevels = array();
-        $certIds = array();
+		$certLevels = array();
+		$certIds = array();
         $classSections = array();
-        $groupsIds = array();
+		$groupsIds = array();
         
-        foreach ($this->constraints as $constraint) {
+        foreach($this->constraints as $constraint){
             $entityName = $constraint->constraint_type->entity_name;
-            foreach ($constraint->values as $val) {
-                //  $valueEntity = \Fisdap\EntityUtils::getEntity($entityName, $val->value);
-                if ($entityName == "CertificationLevel") {
-                    //$certLevels[] = $valueEntity->description . "s";
-                    $certIds[] = $val->value;
-                } else {
-                    //$classSections[] = $valueEntity->name;
-                    $groupsIds[] = $val->value;
-                }
+            foreach($constraint->values as $val){
+              //  $valueEntity = \Fisdap\EntityUtils::getEntity($entityName, $val->value);
+                if($entityName == "CertificationLevel"){
+					//$certLevels[] = $valueEntity->description . "s";
+					$certIds[] = $val->value;
+				}
+                else {
+					//$classSections[] = $valueEntity->name;
+					$groupsIds[] = $val->value;
+				}
             }
         }
         
         $numOfCertLevels = count($certLevels);
         $descript  = "";
-        $descript .= (($numOfCertLevels == 3) || ($numOfCertLevels == 0)) ? "All students " : $this->getConstraintDescription($certLevels, null);
+		$descript .= (($numOfCertLevels == 3) || ($numOfCertLevels == 0)) ? "All students " : $this->getConstraintDescription($certLevels, null);
         $descript .= $this->getConstraintDescription($classSections, " in ");
 
-        $who = array();
-        $who['description'] = $descript;
-        $who['certs'] = $certIds;
-        $who['groups'] =  $groupsIds;
-        
+		$who = array();
+		$who['description'] = $descript;
+		$who['certs'] = $certIds;
+		$who['groups'] =  $groupsIds;
+		
         return $who;
     }
     
     public function getConstraintDescription($collection, $phrase)
     {
-        if ($collection) {
+        if($collection){
             $description = $phrase;
             $count = 0;
-            foreach ($collection as $item) {
-                $description .= ($count != 0) ? " or " . $item : $item;
+            foreach($collection as $item){
+				$description .= ($count != 0) ? " or " . $item : $item;
                 $count++;
             }
         }
@@ -219,10 +220,11 @@ class Window extends EntityBaseClass
     
     public function clearConstraints($flush = true)
     {
-        if ($this->constraints) {
-            foreach ($this->constraints as $constraint) {
-                if ($constraint->values) {
-                    foreach ($constraint->values as $constraint_val) {
+        if($this->constraints){
+            foreach($this->constraints as $constraint){
+                
+                if($constraint->values){
+                    foreach($constraint->values as $constraint_val){
                         $constraint->values->removeElement($constraint_val);
                         $constraint_val->delete($flush);
                     }
@@ -238,11 +240,11 @@ class Window extends EntityBaseClass
     
     public function addConstraintsFromArray($constraint_type_id, $constraint_vals)
     {
-        if ($constraint_vals) {
+        if($constraint_vals){
             $constraint = EntityUtils::getEntity('WindowConstraint');
             $constraint->set_constraint_type($constraint_type_id);
             
-            foreach ($constraint_vals as $id => $description) {
+            foreach($constraint_vals as $id => $description){
                 $constraintValue = EntityUtils::getEntity('WindowConstraintValue');
                 $constraintValue->value = $id;
                 $constraintValue->description = $description;
@@ -255,22 +257,26 @@ class Window extends EntityBaseClass
 
     public function calculateOffsetDate($type_id, $offset_value, $event_start)
     {
-        if ($type_id == 1) {
+        if($type_id == 1){
             // static!
             $date = $offset_value[0];
-        } elseif ($type_id == 2) {
+        }
+        else if($type_id == 2){
             // interval!
             $date = date("Y-m-d", strtotime("-" . $offset_value[0] . " " . $offset_value[1], strtotime($event_start->format("Y-m-d"))));
-        } elseif ($type_id == 3) {
+        }
+        else if($type_id == 3){
             // previous month!
             $month_before = date("Y-m-d", strtotime("-1 month", strtotime($event_start->format("Y-m-d"))));
             $month_date = new \DateTime($month_before);
             $date = new \DateTime($month_date->format("m") . "/" . $offset_value[0] . "/" . $month_date->format("Y"));
-        } elseif ($type_id == 4) {
+        }
+        else if($type_id == 4){
             // today!
             $date = new \DateTime();
         }
 
         return $date;
     }
+
 }

@@ -1,0 +1,17 @@
+<?= $this->pageTitleHelper() ?>
+
+<div class="grid_8">
+	<a href="/account/sites/"><< Back to Site Admin page</a>
+</div>
+
+
+<div class="grid_12 island">
+
+	<p>Find and select your site from the list below. If you do not see your site, click "New..." to add it.</p>
+
+	<div id="sitesContainer">
+		<?= $this->form ?>
+	</div>
+</div>
+
+<?= $this->newSiteModal ?>

@@ -1,0 +1,313 @@
+<script>
+    var patientCareClock = 0;
+
+    // Tracks whether an ajax request is currently pending...
+    // Flips to true before we send it, false when the ajax returns.
+    var pendingChange = false;
+
+    // Tracks whether or not to send a second request when the
+    // pending one completes.  This prevents us from spamming several
+    // ajax requests for clicking many fields at once.  Effectively
+    // makes it asynch without locking the interface.
+    var resendRequest = false;
+
+    var pcTime = 0;
+
+    var alreadySavedPC = false;
+
+    function removePCAutosave() {
+        //$.ajaxSetup({async:false});
+        autosavePCData();
+        $('select:visible').unbind('blur');
+        $('input:visible:not(":button, :submit")').unbind('blur');
+        $("#patientCareForm #save").unbind("click");
+        $('#shift-overview-link').unbind('click');
+        clearInterval(patientCareClock);
+        pcTime = 0;
+    }
+
+    function autosavePCData() {
+        data = $('#patientCareForm').serialize();
+
+        if (!pendingChange) {
+            pendingChange = true;
+
+            $.post("/skills-tracker/patients/save-patient-care-ajax", data, function (response) {
+                // Reset the counter...
+                pcTime = 0;
+
+                $("#hiddenPatientId").val(response);
+
+                pendingChange = false;
+
+                alreadySavedPC = true;
+
+                if (resendRequest) {
+                    resendRequest = false;
+                    autosavePCData();
+                }
+            });
+        } else {
+            resendRequest = true;
+        }
+    }
+
+    function initPCAutosave() {
+        pendingChange = false;
+        resendRequest = false;
+        alreadySavedPC = false;
+
+
+        //Make the save button just trigger an autosave
+        $("#save-clone").click(function (e) {
+            e.preventDefault();
+            autosavePCData();
+        });
+
+        $('select:visible').blur(autosavePCData);
+        $('input:visible:not(":button, :submit")').blur(autosavePCData);
+
+        $('#shift-overview-link').click(function (e) {
+            $.ajaxSetup({async: false});
+            autosavePCData();
+        });
+
+        patientCareClock = setInterval(function () {
+            pcTime++;
+
+            if (pcTime < 60) {
+                timestr = pcTime + ' seconds';
+            } else if (pcTime >= 60 && pcTime < 120) {
+                timestr = '1 minute';
+            } else if (pcTime >= 120 && pcTime < 3600) {
+                timestr = Math.floor(pcTime / 60) + ' minutes';
+            } else {
+                timestr = '&gt;1 hour';
+            }
+
+            //Only display the timer notification we've done at least one autosave
+            if (alreadySavedPC) {
+                if (pcTime <= 2) {
+                    //show the timer readout and highlight for a few seconds
+                    var timerReadout = $("#autosave-timer").show();
+                    //timerReadout.addClass("updated").removeClass('updated', 3000);
+                }
+
+                $('#autosave-timer').html('Last saved ' + timestr + ' ago');
+            }
+        }, 1000);
+    }
+</script>
+<div id='form-holder'>
+    <div class="required-fields-container patient_care_legend">
+        <div class="prefix_5 grid_3 airway_management_key_wrapper"><img src="/images/icons/airway_management.png"
+                                                                        class="am_key_icon"> = airway management
+        </div>
+        <div class="grid_2">* = required field</div>
+        <div class="grid_2"><img src="/images/nsc_diamond.png"> = NSC goal</div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+
+    <?php if ($this->element->run->shift->type != "clinical") { ?>
+
+        <div class="grid_6">
+            <h3 class='section_header'>Team</h3>
+        </div>
+
+        <div class="grid_6">
+            <h3 class='section_header'>Dispatch</h3>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="grid_6">
+            <div class="section">
+                <?= $this->element->teamLead ?>
+                <script>
+                    $(function () {
+                        $('#teamLead').parent().append($('<span class="eval-icon-div"><?php echo $this->shiftEvalHookHelper('team_lead', $this->element->run->shift, false, false); ?></span>'));
+                    });
+                </script>
+
+                <?= $this->element->teamSize ?>
+
+                <?= $this->element->preceptor ?>
+                <script>
+                    $(function () {
+                        $('#preceptor-eval-icon').append($('<?php echo $this->shiftEvalHookHelper('team_lead', $this->element->run->shift, false, false); ?>'));
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="grid_6">
+            <div class="section">
+                <?= $this->element->responseMode ?>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        <?php
+    } else {
+        echo "<div class='grid_6'> <h3 class='section_header'>Team</h3> </div> <div class='clear'></div>";
+        echo "<div class='grid_6'>" . $this->element->preceptor . "</div>";
+    }
+
+    ?>
+
+    <div class="grid_12">
+        <h3 class='section_header'>Patient Assessment</h3>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6">
+        <div class="interview_exam_wrapper">
+            <?= $this->element->interview ?>
+            <?= $this->element->exam ?>
+        </div>
+
+        <div class="airway_management_wrapper">
+            <img src="/images/icons/airway_management.png">
+            <?= $this->element->airway_success ?>
+            <?= $this->element->airway_management_options; ?>
+        </div>
+
+        <div class="alert_fields_wrapper">
+            <div class="avpu_score_wrapper select-prompt">
+                <span id="avpu_score"></span>
+            </div>
+            <?= $this->element->alert ?>
+
+            <div class="prefix_1" id="alert-fields">
+                <div class="grid_11">
+                    <?= $this->element->orientation ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid_6">
+        <? if ($this->element->run->shift->type == "lab") echo $this->element->subject; ?>
+        <?= $this->element->age ?>
+        <div class="clear"></div>
+        <div class="gender_element_wrapper"><?= $this->element->gender ?>
+            <div class="clear"></div>
+        </div>
+        <?= $this->element->ethnicity ?>
+
+        <div class="clear"></div>
+
+        <div class="complaints_wrapper">
+            <?= $this->element->complaints ?>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6">
+        <div style='float: left'><?= $this->element->primary ?></div>
+        <div class='eval-icon-div'
+             style='float: left'><?php echo $this->shiftEvalHookHelper('primary_impression', $this->element->run->shift); ?></div>
+    </div>
+
+    <div class="grid_6 secondary_impression_wrapper">
+        <div style='float: left'><?= $this->element->secondary ?></div>
+        <div class='eval-icon-div'
+             style='float: left'><?php echo $this->shiftEvalHookHelper('secondary_impression', $this->element->run->shift); ?></div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div id="arrest-fields">
+        <div class="grid_6">
+            <?= $this->element->witness ?>
+        </div>
+
+        <div class="grid_6">
+            <?= $this->element->pulseReturn ?>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+    <div id="trauma-fields">
+        <div class="grid_4">
+            <?= $this->element->mechanism ?>
+        </div>
+        <div class="grid_4">
+            <?= $this->element->cause ?>
+        </div>
+        <div class="grid_4">
+            <?= $this->element->intent ?>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+    <div class="grid_12">
+        <?= $this->element->criticality ?>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_12">
+        <h3 class='section_header'>Vitals and Interventions</h3><br/>
+        Click and drag interventions to reorder them.
+    </div>
+
+    <?= $this->interventionList($this->element->patient->id, $this->element->run->shift->id, false, $this->element->run->shift->type) ?>
+
+    <div class="clear"></div>
+
+    <?php if ($this->element->run->shift->type != "clinical") { ?>
+        <div class="grid_12">
+            <h3 class='section_header'>Transportation</h3>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="grid_5">
+            <?= $this->element->disposition ?>
+        </div>
+
+        <div class="grid_5">
+            <?= $this->element->transport ?>
+        </div>
+
+        <div class="clear"></div>
+    <?php } ?>
+
+    <?= $this->element->hiddenPatientId ?>
+    <?= $this->element->runId ?>
+    <?= $this->element->formName ?>
+
+
+    <div class='save-button-container' style="float:right;">
+        <?= $this->element->save ?>
+    </div>
+
+    <div id='autosave-timer'>Autosave:</div>
+
+    <div class="clear"></div>
+
+    <div class="lower-nav">
+        <div style="float:right;">
+            <? if (\Fisdap\Entity\User::getLoggedInUser()->getCurrentRoleData()->program->include_narrative) { ?>
+                <a href="#" style='color: #A94612' class="narrative-link">Next (narrative) >></a>
+            <? } else if (\Fisdap\Entity\User::getLoggedInUser()->getCurrentRoleData()->program->program_settings->allow_signoff_on_patient) { ?>
+                <a href="#" style='color: #A94612' class="signoff-link">Next (preceptor signoff) >></a>
+            <? } else { ?>
+                Next: <a href="/skills-tracker/shifts/create-run/shiftId/<?= $this->element->run->shift->id ?>"
+                         style='color: #A94612'>
+                    Add another patient</a> or
+                <a href="/skills-tracker/shifts/detailed-shift-report/shiftId/<?= $this->element->run->shift->id ?>"
+                   style='color: #A94612'>Review shift documentation</a>
+            <? } ?>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>

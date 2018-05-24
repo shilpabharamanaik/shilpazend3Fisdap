@@ -1,0 +1,33 @@
+<?= $this->pageTitleHelper("", '<div class="new-site-nav"><a id="create-new-site" href="/account/sites/create">Create New Site</a></div>') ?>
+
+<div class="grid_12 island">
+
+	<h3 class="section-header">Available Sites</h3>
+
+	<?= $this->filterForm ?>
+	
+	<div id="sitesContainer">
+		<div id="siteListContainer">
+			<div id='site-list'>
+				<?= $this->listSites(true, $this->program->state); ?>
+			</div>
+
+			<div id="site-info">
+				<div id="address-info">
+					<span class="info-title">Street: </span>
+					<span id="address"></span>
+				</div>
+				<div id="contact-info">
+					<span class="info-title">Contact: </span>
+					<span id="contact"></span>
+				</div>
+			</div>
+			<div class="extra-small green-buttons">
+				<a href="#" id="editButton">Add</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?= $this->partial("sites-legend.phtml"); ?>
+

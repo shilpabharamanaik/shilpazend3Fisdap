@@ -1,0 +1,78 @@
+<? if ($this->element->verification->id) { ?>
+	<div class="signoff-notice notice">
+		<p>
+			<? if ($this->element->run->locked) echo "<img class='signoff-lock' src='/images/icons/lock.png'>"; ?><?= $this->element->verification->getSignoffMessage($this->element->run->patient->student->program->program_settings) ?>
+		</p>
+	</div>
+<? } ?>
+
+<?php if ($this->element->summary): ?>
+	<div class="grid_12 signoff-container">
+		<h3 class="signoff-header">Shift Summary</h3>
+		<div class="grid_12">
+			<p class="signoff-subtext"></p>
+			<?php echo $this->element->summary ?>
+		</div>
+	</div>
+<?php endif; ?>
+
+<div class="clear"></div>
+
+<?php if($this->element->run): ?>
+	<div <?php echo (($this->element->allow_educator_evaluations) ? '': 'style="display:none;"');  ?> class="grid_12 signoff-container" <?php echo(((true)? 'class="hide_the_rater_section"': ""))  ?>>
+		<h3 class="signoff-header">Directions</h3>
+		<div class="grid_12">
+			<p class="signoff-subtext" style="margin-bottom: 1em;">
+				The contact should be rated by the student FIRST and the preceptor SECOND. Use the following standard for evaluation:<br />
+				<span class="rating">NA</span> - Not Applicable
+				; Not needed or expected<br />
+				<span class="rating">0</span> - Unsuccessful; required excessive or critical prompting; not attempted when student was expected to try<br />
+				<span class="rating">1</span> - Marginal; Inconsistent; Not yet competent<br />
+				<span class="rating">2</span> - Successful; Competent; No Prompting
+			</p>
+			<table class="rating-table">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Student</th>
+						<th>Preceptor</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					foreach ($this->element->types as $typeId => $typeName) {
+						echo "<tr><td class='first'>$typeName</td>";
+						foreach ($this->element->raterTypes as $raterId => $raterName) {
+							$elementName = $raterName . "_" . $typeId . "_" . $this->element->uniqueIdKey;
+							if ($raterName == "Preceptor") {
+								echo "<td class='last'>";
+							} else {
+								echo "<td>";
+							}
+							echo $this->element->$elementName . "</td>";
+						}
+						echo "</tr>";
+					}
+					?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<?php endif; ?>
+
+<div class="grid_6">
+	<?php if($this->element->run && $this->element->allow_educator_evaluations): ?>
+		<h3 class="signoff-header">Score</h3>
+		<p>
+			Total: <span class="rating-percentage"></span>% (<span class="rating-score"></span> of <span class="rating-possible"></span>)
+		</p>
+	<?php endif; ?>
+	<?php if($this->element->plan): ?>
+		<h3 class="signoff-header">Plan of Action</h3>
+		<?php echo $this->element->plan ?>
+	<?php endif; ?>
+</div>
+
+<?php echo $this->element->formKey; ?>
+
+

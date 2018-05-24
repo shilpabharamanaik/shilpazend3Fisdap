@@ -7,12 +7,13 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface GuidedTourRepository
  *
  * @package Fisdap\Data\GuidedTour
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface GuidedTourRepository extends Repository
-{
-}
+interface GuidedTourRepository extends Repository {
+
+} 

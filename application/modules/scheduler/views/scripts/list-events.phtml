@@ -1,0 +1,77 @@
+<div class="list-event-view" id="list-event-view-<?= $this->dayDescription ?>">
+	<div class="content">
+		<?php
+		$eCount = 0;
+		$totalEvents = count($this->events);
+		
+		foreach($this->events as $baseId => $event) {
+			foreach($event as $eventId => $event) { ?>
+			
+				<div id="list-event-<?= $eventId ?>" data-sortby="<?= $event['sort_by'] ?>" class="list-event" data-eventid="<?= $eventId ?>" data-startTime="<?= $event['start_datetime']->format("Hi") ?>">
+				
+					<div class="grid_9">
+						<div class="site-icon-wrapper"><img class="site-icon" src="/images/icons/<?= $event['event_type'] ?>SiteIconColor.png"></div>
+						<?= $event['event_title'] ?>
+						
+						<div class="clear"></div>
+						
+						<? if($event['preceptor_list']) { ?>
+							<div class='preceptor-instructor-wrapper'>
+							<?= $event['preceptor_list'] ?>
+							</div>
+						<? } ?>
+						
+						<div class="clear"></div>
+
+					</div>
+					
+					<div class="grid_3 weebles">
+						<div class="weebles-positioner">
+							<?= $event['closed_weebles'] ?>
+							<?= $event['open_weebles'] ?>
+							<div class="clear"></div>
+						</div>	
+					</div>
+					
+					<div class="clear"></div>
+					
+					<div class="grid_12 assignment-list">
+						<table class="slots-table">
+							<?php
+							
+							if($event['slot_assignments']){
+								$count = 0;
+								foreach($event['slot_assignments'] as $assignment){
+									echo ($count==4) ? "</tr>" : "";
+									echo ($count==4) ? "<tr>" : "";
+									$count = ($count==4) ? 1 : $count+1;
+									$class = (count($event['slot_assignments']) == 1) ? "single-assignment" : "assignment-cell";
+									$red_class = ($assignment['red']) ? "non-compliant-assignment-cell" : "";
+									?>
+									<td class="<?= $class ?> <?= $red_class ?>"><b><?= $assignment['name'] ?></b> <?= $assignment['certLevel'] ?></td>
+									<?php
+								}
+								
+								// for every remaining cell -weird i know just let it happen
+								if($class == "assignment-cell"){
+									for($i = 0; $i < (4-$count); $i++){
+										echo "<td class='" . $class . "'></td>";
+									}
+								}
+							}
+							
+							else {echo "<tr><td>No one is scheduled for this shift yet.</td></tr>";} ?>
+						</table>
+					</div>
+					
+					<div class="clear"></div>
+					
+				</div>
+				<?= $this->partial("event-details.phtml", array("event" => $event, "eventId" => $eventId, "current_user_data" => $this->current_user_data)); ?>
+
+			<?php
+			}
+		}
+		?>
+	</div>
+</div>

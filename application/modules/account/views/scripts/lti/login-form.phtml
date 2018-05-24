@@ -1,0 +1,46 @@
+<?= $this->partial('lti/return-link.phtml', null, $this); ?>
+<div class="row-container">
+    
+    <div id='create_acct' class='area'>
+        <h3 class="section-header no-border">First time using Fisdap?</h3>
+
+        <div class="button-container small green-buttons">
+            <a href="/account/lti/create-user" id="setup-new" title="Create a new account">
+                Create a new account
+            </a>
+        </div>
+
+    </div>
+
+    <div id='login_area' class="area">
+        <div class="section-body">
+            <h3 class="section-header no-border">Already have a Fisdap account?</h3>
+            <?php
+            $flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger');
+            $msgs = $flashMessenger->getMessages();
+            if (!empty($msgs)):
+                ?>
+                <div class="error">
+                    <?= implode('<br>', $msgs) ?>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <form id="login-form" method="post" action="/account/lti/auth" enctype="application/x-www-form-urlencoded">
+            <div class="input-section">
+                <label class="required" for="username">Username:</label>
+                <input id="username" class="fancy-input" type="text" size="20" value="<?= $this->username ?>"
+                       name="username" <?= $this->disableUsername ?>>
+            </div>
+            <div class="input-section">
+                <label class="required" for="password">Password:</label>
+                <input id="password" class="fancy-input" type="password" size="20" value="" name="password">
+            </div>
+
+            <div class="button-container small green-buttons">
+                <input type="submit" id="submit" name="submit" value="Log in"/>
+            </div>
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,205 @@
+<div id='confirmScenarioExportModal'>
+	<div class='confirmation-modal-text'>
+		The scenario selected for export must remain secure and confidential. It should not be shared with anyone other than the intended population and may not be duplicated at any time.
+	</div>
+	<div class='confirmation-modal-buttons'>
+		<div class='buttonWrapper small green-buttons'>
+			<a href='#' id='export-confirm'>I Agree</a>
+		</div>
+	</div>
+</div>
+
+<div class='grid_12'>
+	<div class='grid_8'>
+		<?php echo $this->pageTitleHelper(); ?>
+	</div>
+	<div id="export-report-links" class="grid_4 export-links extra-small gray-button" style="display: block; padding-top: 30px; text-align: right;">
+		<a href='/exchange/scenario/list' class="grid_12" style="margin-bottom: 1em;"><< Back to Scenario List</a>
+		<a href="#" id="export-pdf" class="grid_6 export-button" title="Export to PDF"><img src="/images/icons/pdf_icon.png" style='height: 20px;'>&nbsp;&nbsp;PDF</a>
+		<a href="#" id="export-alsi" class="grid_6 export-button" style="margin:0;" data-scenario-id="<?= $this->scenario->id ?>" title="Export to iSimulate"><img src="/images/icons/isimlogo.png" style='height: 20px;'>&nbsp;&nbsp;iSimulate</a>
+	</div>
+</div>
+<div class='clear'></div>
+
+<style>
+	.confirmation-modal-text {
+		margin-top: 1em;
+	}
+
+	.confirmation-modal-buttons {
+		float: right;
+		margin-top: 1em;
+	}
+
+	.confirmation-modal-buttons .buttonWrapper {
+		display: inline;
+		margin-left: .5em;
+	}
+
+	#export-report-links {
+		position: relative;
+		top: -8px;
+		margin: 0.5em 0;
+	}
+
+	.extra-small {
+		font-size: 8pt;
+	}
+
+	.export-links {
+		float: right;
+	}
+</style>
+
+<script>
+$(function(){
+	var caller = "";
+
+	$("#export-pdf").button();
+	$("#export-alsi").button();
+
+	// initialize the export confirmation modal
+	$("#confirmScenarioExportModal").dialog({
+		"autoOpen": false,
+		"modal": true,
+		"width": 600,
+		"draggable": false,
+		"resizable": false,
+		"title": "Scenario Export Agreement",
+		"open": function(event, ui){
+			trigger = "";
+		},
+		"close": function( event, ui ) {
+			var scenarioId = document.getElementById('export-alsi').dataset.scenarioId;
+
+			if (trigger == "ok") {
+				if (caller == "alsi") {
+					var win = window.open('/exchange/scenario/export/scenarioId/' + scenarioId, '_blank');
+					if (win) {
+						//Browser has allowed it to be opened
+						win.focus();
+					} else {
+						//Browser has blocked it
+						alert('Please allow popups for this website');
+					}
+				} else if (caller == "pdf") {
+					var contents = $($('#scenario_contents').html());
+
+					// Change the prompts to be a bit larger.
+					contents.find('.prompt_name').removeClass('prompt_name').addClass('prompt_name_large');
+					contents.find('.prompt_value').removeClass('prompt_value').addClass('prompt_value_large');
+
+					var interventionTables = contents.find('#intervention-table_3, #intervention-table_2, #intervention-table_1, #inappropriate-action').clone();
+					contents.find('#intervention-list-island').remove();
+					contents.append(interventionTables);
+
+					contents.append('<div class="grid_12"></div>');
+
+					var curveball = $('#curveball-island').clone();
+					contents.append(curveball);
+
+					createPdf(contents, 'scenario-export.pdf', 'scenario_contents');
+					return false;
+				}
+			}
+		}
+	});
+
+	$("#export-confirm").button().click(function(e){
+		trigger = "ok";
+		e.preventDefault();
+		$("#confirmScenarioExportModal").dialog("close");
+	});
+
+	$("#export-alsi").click(function(e) {
+		caller = "alsi";
+		e.preventDefault();
+		$("#confirmScenarioExportModal").dialog("open");
+	});
+
+
+	$("#export-pdf").click(function(e){
+		caller = "pdf";
+		e.preventDefault();
+		$("#confirmScenarioExportModal").dialog("open");
+	});
+});
+</script>
+
+<?php echo $this->form; ?>
+
+<?php
+	// Some cleanup stuff here if we're a non-staff member "editing" another users eval.
+
+	if(!$this->canEdit){
+	?>
+		<script>
+			$(function(){
+				$('#scenario_objectives_container, .duplicate-skill, .delete-skill').hide();
+				$('a[role="button"]').hide();
+				$("input, textarea, select").prop('disabled', true);
+				$(".ui-buttonset").buttonset('disable').removeClass('ui-state-disabled');
+				$(".draggable_skill").draggable('destroy');
+				$(".procedure-description-column").attr('onclick', '');
+				$(".active-element").prop('disabled', false);
+
+				$("#export-confirm").show();
+			});
+		</script>
+
+		<div class='grid_12 island withTopMargin'>
+			<h3 class="section-header">My Review</h3>
+
+			<div class='grid_12'>
+				Use this form to enter revisions or updates that you feel would be useful.
+			</div>
+			<div class='clear'></div>
+
+			<form action='/exchange/scenario/save-review' method='post'>
+				<div class='grid_9'>
+					<input class='active-element' type='hidden' name='scenarioId' value='<?php echo $this->scenario->id; ?>' />
+					<input class='active-element' type='hidden' name='reviewId' value='<?php echo $this->userReview->id; ?>' />
+					<textarea cols='80' name='review' class='active-element'><?php echo $this->userReview->review; ?></textarea>
+				</div>
+				<div class='grid_3'>
+					<input class='active-element' type='submit' value='Save Review'/>
+				</div>
+			</form>
+		</div>
+		<div class='clear'></div>
+	<?php
+	}elseif($this->isStaff){
+	?>
+		<div class='grid_12 island withTopMargin'>
+			<h3 class="section-header">Reviews</h3>
+			<?php if(count($this->scenario->reviews) > 0){ ?>
+				<table class='review_table'>
+					<thead><td>Author</td><td>Review</td><td>&nbsp;</td></thead>
+					<?php
+						foreach($this->scenario->reviews as $review){
+							echo "<tr>";
+							echo "<td>" . $review->reviewer->getName() . "</td>";
+							echo "<td>" . $review->review . "</td>";
+							echo "<td>" . $review->updated->format('Y-m-d H:i:s') . "</td>";
+							echo "</tr>";
+						}
+					?>
+				</table>
+			<?php } else { ?>
+				No reviews have been sumbitted for this scenario yet.
+			<?php } ?>
+		</div>
+	<?php
+	}
+
+	if ($this->isStaff || $this->canExport) {
+	?>
+		<script>
+			$(function () {
+				$("#export-pdf").show();
+				$("#export-alsi").show();
+			});
+		</script>
+    <?php
+	}
+?>

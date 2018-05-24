@@ -1,0 +1,50 @@
+<div class="week-event-view" id="week-event-view-<?= $this->dayNum ?>">
+	
+	<div class="content">
+		
+		<?php
+		
+		$eCount = 0;
+		$totalEvents = count($this->events);
+
+		foreach($this->events as $baseId => $event) {
+			
+			foreach($event as $eventId => $event) {
+				if ($this->pdf) {
+					$eCount++;
+					if ($eCount % 3 == 2) {
+						$class = ($eCount < $totalEvents) ? 'week-event-middle' : 'week-event-middle-last';
+					} else {
+						$class = '';
+					}
+				}
+			?>
+				
+				<div id="week-event-<?= $eventId ?>" data-sortby="<?= $event['sort_by'] ?>" data-yearNum="<?= $event['start_datetime']->format("Y") ?>" data-monthNum="<?= $event['start_datetime']->format("n") ?>" data-dayNum="<?= $this->dayNum; ?>" class="week-event <?= $class ?> grid_4" data-eventid="<?= $eventId ?>" data-startTime="<?= $event['start_datetime']->format("Hi") ?>">
+					
+					<?= $event['event_title'] ?>
+					
+					<div class="clear"></div>
+						
+					<?= $event['preceptor_list'] ?>
+					
+					<div class="clear"></div>
+					
+					<?= $event['closed_weebles'] ?>
+					<?= $event['open_weebles'] ?>
+					
+					<?= $event['special_icons'] ?>
+					
+					<div class="clear"></div>
+					
+				</div>
+				
+				<?= $this->partial("event-details.phtml", array("event" => $event, "eventId" => $eventId, "current_user_data" => $this->current_user_data)); ?>
+			
+			<?php
+			}
+		}
+		?>
+		
+	</div>
+</div>

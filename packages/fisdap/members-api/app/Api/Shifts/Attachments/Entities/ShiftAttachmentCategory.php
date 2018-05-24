@@ -3,6 +3,7 @@
 use Doctrine\ORM\Mapping\Entity;
 use Fisdap\Attachments\Categories\Entity\AttachmentCategory;
 
+
 /**
  * Shift attachment category entity
  *

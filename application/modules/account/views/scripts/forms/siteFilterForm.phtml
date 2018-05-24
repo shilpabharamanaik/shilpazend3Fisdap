@@ -1,0 +1,25 @@
+<div class="selectContainer">
+	<div id="search-filter">
+		<?= $this->element->site_search ?>
+	</div>
+	<div id="state-filter">
+		<?= $this->element->state ?>
+	</div>
+	
+	<div id="site-type-filter" class="cupertino extra-small">
+		<input type="radio" name="site-type-filter" id="all-sites" checked="checked">
+		<label for="all-sites">All</label>
+
+		<input type="radio" name="site-type-filter" id="field-sites">
+		<label for="field-sites">Field</label>
+		
+		<input type="radio" name="site-type-filter" id="clinical-sites">
+		<label for="clinical-sites">Clinical</label>
+
+		<input type="radio" name="site-type-filter" id="lab-sites">
+		<label for="lab-sites">Lab</label>
+	</div>
+
+</div>
+
+<div class="clear"></div>

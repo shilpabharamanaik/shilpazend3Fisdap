@@ -2,6 +2,7 @@
 
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Checks storing, retrieving, and deleting objects in Couchbase
  *
@@ -20,8 +21,7 @@ final class CouchbaseHealthCheck extends HealthCheck
      * @param \Couchbase      $couchbase
      * @param LoggerInterface $logger
      */
-    public function __construct(\Couchbase $couchbase, LoggerInterface $logger)
-    {
+    public function __construct(\Couchbase $couchbase, LoggerInterface $logger) {
         parent::__construct($logger);
         $this->couchbase = $couchbase;
     }
@@ -56,10 +56,11 @@ final class CouchbaseHealthCheck extends HealthCheck
             $this->couchbase->delete($uniqueKey);
 
             $this->status = self::STATUS_SUCCESS;
+
         } catch (\Exception $e) {
             $this->handleError($e);
         }
 
         $this->stop();
     }
-}
+} 

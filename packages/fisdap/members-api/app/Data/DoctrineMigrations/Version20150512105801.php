@@ -24,5 +24,6 @@ class Version20150512105801 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql("delete from fisdap2_reports where id = 27 limit 1");
         $this->addSql("delete from fisdap2_category_report where report_id = 27 limit 3");
+
     }
 }

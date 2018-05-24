@@ -1,0 +1,18 @@
+<a name='practice-items'></a>
+<h3 class='<?= $this->shift->type ?>-header'>Lab Practice</h3>
+
+<div class="grid_9">
+    <? if (count($this->shift->practice_items) == 0) { ?>
+        <p>It doesn't look like any quick added skills have been recorded yet.</p>
+    <? } else { ?>
+        <table width='100%'>
+            <? foreach($this->shift->practice_items as $item) echo $this->partial('shiftDetailPracticeItem.phtml', array('item' => $item)); ?>
+        </table>
+    <? } ?>
+</div>
+
+<div class="clear"></div>
+
+<div class='no-pdf back-to-top'>
+    <a href='#top'>back to top</a>
+</div>

@@ -1,0 +1,43 @@
+<?= $this->element->base_id; ?>
+<? if ($this->element->isDefault) { ?>
+    <label for="base_name">
+        Name:
+    </label>
+    <dd class='standard_base_name'>
+        <?= $this->element->base->name ?> <span class="standard-department">(standard)</span>
+    </dd>
+<? } else { ?>
+    <?= $this->element->base_name; ?>
+<? } ?>
+
+<div class="clear"></div>
+
+
+<?= $this->element->base_address; ?>
+<div class="clear"></div>
+
+<?= $this->element->base_city; ?>
+<div class="clear"></div>
+
+<?= $this->element->base_state; ?>
+
+<?= $this->element->base_zip; ?>
+<div class="clear"></div>
+
+
+<? if ($this->element->newSharedBase) { ?>
+    <div class='inline-flippy withTopMargin'>
+        On creation, set this <?= $this->element->base_department ?> to <div class='flip-container'><div id="can_activate_bases" class="active-inactive-flip"></div></div> for the other programs in the sharing network.
+    </div>
+    <?php echo $this->element->activate_bases ?>
+<? } ?>
+
+
+<div id="base-modal-buttons" class="small">
+	
+	<div class="green-buttons">
+		<a href="#" id="save-base-modal">Save</a>
+	</div>
+		
+	<a href="#" id="cancel-base-modal">Cancel</a>
+</div>

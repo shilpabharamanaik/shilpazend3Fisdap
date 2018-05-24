@@ -1,0 +1,228 @@
+<?php
+
+/* * **************************************************************************
+ *
+ *         Copyright (C) 1996-2011.  This is an unpublished work of
+ *                          Headwaters Software, Inc.
+ *                             ALL RIGHTS RESERVED
+ *         This program is a trade secret of Headwaters Software, Inc.
+ *         and it is not to be copied, distributed, reproduced, published,
+ *         or adapted without prior authorization
+ *         of Headwaters Software, Inc.
+ *
+ * ************************************************************************** */
+
+/**
+ * Description of eval-hook
+ *
+ * @author astevenson
+ */
+echo "<br />";
+echo $this->pageTitleHelper();
+
+$this->headLink()->appendStylesheet('/css/default/oldfisdap/eval-hook.css');
+
+echo "<a id='closeWindow' href='#'><< Back</a><br /><br />";
+
+echo "<div class='content-block'>";
+
+echo "<div class='eval-subheader'>Which of these forms would you like to use?</div>";
+
+echo "<select id='eval-list'>";
+foreach($this->evals as $eval){
+	echo "<option value='" . $eval['id'] . "'>" . $eval['name'] . "</option>";
+}
+echo "</select>";
+
+echo "<button id='open-eval-btn'>Go</button>";
+
+echo "<br /><br />";
+
+$isInstructor = (\Fisdap\Entity\User::getLoggedInUser()->getCurrentRoleName() == 'instructor');
+
+if(count($this->completedEvals) > 0){
+	echo "<div class='eval-subheader'>Evaluations I've already filled out:</div>";
+	echo "<table>";
+	foreach($this->completedEvals as $eval){
+		$passFailText = "";
+		if($eval->eval_def->show_pass_fail){
+			if($eval->passed){
+				$passFailText = "(passed)";
+			}else{
+				$passFailText = "(failed)";
+			}
+		}
+		echo "<tr class='eval-row'>";
+		if($isInstructor || !$eval->confirmed){
+			echo "<td class='eval-title-column'><a href='#' eval-session-id='" . $eval->id . "' style='font-size: .9em;' class='edit-eval-link'>" . $eval->eval_def->eval_title . " " . $passFailText . "</a></td>";
+			echo "<td class='eval-delete-column'><a href='#' eval-session-id='" . $eval->id . "' class='delete-eval-link'><img src='/images/icons/delete.png' width='20' height='20'/></a></td>";
+		}else{
+			echo $eval->eval_def->eval_title . " " . $passFailText;
+		}
+		echo "</tr>";
+	}
+	echo "</table>";
+}
+?>
+</div>
+
+
+	<div id='frame-modal' style="overflow:scroll !important; -webkit-overflow-scrolling:touch !important;"></div>
+
+<script>
+	$(function(){
+		$('#closeWindow').click(function(){
+			window.close();
+		});
+	});
+	
+	var frameModal = $('#frame-modal');
+	
+	function postSave(reload, evalDefId){
+		frameModal.empty();
+		
+		if(reload == 1){
+			loadEval(evalDefId);
+		}else{
+			// Closing the dialog triggers a page refresh.
+			frameModal.dialog('close');
+			window.opener.focus();
+			window.close();
+		}
+	}
+	
+	frameModal.bind("dialogclose", function(event, ui){
+		blockUi(true);
+		<?php if($this->proc && $this->aid): ?>
+			// If we're here via the external page, close out the new window
+			// when the dialog is killed.
+			window.close();
+		<?php else: ?>
+			// If we're not showing a new eval, reload the page to get a new listing.
+			window.location.reload(true);
+		<?php endif; ?>
+	});
+	
+	currentInterval = null;
+	
+	$(function(){
+		frameModal.hide();
+		$('#open-eval-btn').click(function(){
+			loadEval($('#eval-list').val());
+		});
+		
+		$('.delete-eval-link').each(function(index, el){
+			$(el).click(function(){
+				deleteEval($(this).attr('eval-def-id'));
+				return false;
+			});
+		});
+		
+		// Set up the completed eval link handlers...
+		$('.edit-eval-link').each(function (index, el){
+			$(el).click(function(){
+				displayEval($(this).attr('eval-session-id'));
+				return false;
+			});
+		});
+	});
+	
+	initModal = function(){
+		modalWidth = '975';
+		
+		frameModal.empty();
+
+		frameModal.dialog({
+			autoOpen: false,
+			width: modalWidth,
+			height: 'auto',
+			resizable: false,
+			modal: true,
+			position: ['center',20]
+		});
+	}
+	
+	displayEval = function(evalSessionId){
+
+        initModal();
+
+		renderUrl('/oldfisdap/get-eval-view-url', {
+			'esid': evalSessionId
+		});
+
+		return false;
+	}
+	
+	deleteEval = function(evalSessionId){
+
+        initModal();
+		
+		renderUrl('/oldfisdap/get-eval-delete-url', {
+			'esid': evalSessionId
+		});
+
+		return false;
+	}
+	
+	loadEval = function(evalDefID){
+
+			initModal();
+		
+		var renderOptions = {
+			'edid': evalDefID,
+			'ehid': '<?php echo $this->hookID; ?>',
+			'subject': '<?php echo $this->subject; ?>',
+			'sid': '<?php echo $this->shiftID; ?>'
+		}
+
+		renderUrl('/oldfisdap/get-eval-url', renderOptions);
+
+		return false;
+	}
+	
+	renderUrl = function(postUrl, postObj){
+		$.post(postUrl, postObj, function(evalURL){
+				evalWidth = '925';
+			
+				<?php if($this->isMobile): ?>
+					evalHeight = 5000;
+				<?php else: ?>
+					evalHeight = 525;
+				<?php endif; ?>
+				
+				newIFrame = $("<iframe id='eval-frame' type='text/html' width='" + evalWidth + "' height='" + evalHeight + "' src='" + evalURL + "'></iframe>");
+				frameModal.dialog('open');
+				frameModal.append(newIFrame);
+				frameModal.show();
+		});
+	}
+	
+	// If there's only one eval available, and there are no filled out ones,
+	// go ahead and open the available eval.
+	$(function(){
+		<?php if($this->proc && $this->aid): ?>
+			proc = '<?php echo $this->proc; ?>';
+			aid = '<?php echo $this->aid; ?>';
+			switch(proc){
+				case 'add':
+					loadEval(aid);
+					break;
+				case 'edit':
+					displayEval(aid);
+					break;
+				case 'delete':
+					deleteEval(aid);
+					break;
+				default:
+					alert('Unable to perform the requested procedure: ' + proc + '/' + aid +'!');
+			}
+		<?php else: ?>
+			if($('#eval-list').children().length == 1 && $('#completed-eval-list').children().length == 0){
+				// Grab the anchor tag and trigger its click method.
+				$('#eval-list').find('a').first().click();
+			}
+		<?php endif; ?>
+			
+		$('#open-eval-btn').button().addClass('extra-small green-button');
+	});
+</script>

@@ -1,0 +1,47 @@
+<?= $this->shift->student->user->first_name ?>,
+
+<p>Thank you for entering your Fisdap data.</p>
+
+<p>It looks like you had an interesting experience on your recent shift -- <a href="https://members.fisdap.net/skills-tracker/shifts/my-shift/shiftId/<?= $this->shift->id ?>"> <?= $this->shift->site->name . ": " . $this->shift->base->name . " " . $this->shift->start_datetime->format("M j, Y | Hi") . " (" . $this->shift->hours . " hrs)" ?></a> -- where you participated in the following skills:</p>
+
+<ul>
+    <?php
+    foreach ($this->triggers as $trigger) {
+        echo "<li>" . $trigger . "</li>";
+    }
+    ?>
+</ul>
+
+<p>Your instructor would like to hear more about this experience and what
+    you learned during this shift.  <b>Please answer the following questions and forward the responses to your instructor:</b></p>
+<ul>
+
+    <li>1. What did you learn on this shift?</li>
+    <br><br><br>
+    <li>2. What were your thoughts about the nature and prognosis of this
+    patient's illness or symptoms? Did the patient present with the
+    classic signs and symptoms of their illness or injury? Did the
+    patient's symptoms mimic other possible illnesses or diagnoses? How
+    life threatening was this patient's condition?  Why?</li>
+    <br><br><br><br><br>
+
+    <li>3. How did you contribute to the care of this patient?</li>
+    <br><br><br>
+
+    <li>4. How do you feel about your performance?  (What did you feel good about?
+    Are there some skills that may need improvement?)</li>
+    <br><br><br>
+
+    <li>5. If you had been in charge, would you have done anything differently?
+    If so, what?</li>
+    <br><br><br>
+
+    <li>6. What are your general thoughts and feelings about this shift?</li>
+    <br><br><br>
+</ul>
+<p>Feel free to look at the following web page to refresh your memory and/or see other details about this shift:
+    https://members.fisdap.net/skills-tracker/shifts/my-shift/shiftId/<?= $this->shift->id ?></p>
+<br>
+<p>
+    Thanks for your prompt reply.
+</p>

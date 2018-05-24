@@ -1,0 +1,80 @@
+
+<div id="settings-wrapper">
+    <?= $this->pageTitleHelper() ?>
+    
+    <?
+    	$video = $this->youtubeVideo("LH7fOwxNibI", "st-settings-video.phtml", 500, 300);
+		if($video){
+			echo '<div id="video-wrapper" class="grid_12 island withTopMargin">';
+			echo $video;
+			echo '</div>';
+		}
+    ?>
+        
+    <?= $this->messageHelper() ?>
+    <div id="tabs">
+        
+        <span class="tab" id="tab1">
+            <button id="tab1-link">
+                <span class='tab-text'>Features</span>
+            </button>
+        </span>
+        
+        <span class="tab" id="tab2">
+            <button id="tab2-link">
+                <span class='tab-text'><?= $this->labSkillsLabel ?></span>
+            </button>
+    
+        </span>
+        
+        <span class="tab" id="tab3">
+            <button id="tab3-link">
+                <span class='tab-text'>Customization</span>
+            </button>
+        </span>
+        
+        <div id="ticker-wrapper">
+            <img id="ticker" src="/images/ticker.png">
+        </div>
+        
+    </div>
+    
+    <?php echo $this->form->element->Cancel; ?><?php echo $this->form->element->Save; ?>
+    
+    <div class="island grid_12">
+        <?php echo $this->form; ?>
+    </div>
+    
+</div>
+
+<?php echo $this->skillsheetModal; ?>
+
+<div id="def-name-modal-confirm">
+    <div class="notice">
+        <span id='defNameChange-number-of-students-text'></span>
+        student<span id="defNameChange-plural-student">s</span>
+        <span id="defNameChange-plural-student-hasHave">have</span>
+        entered this lab practice item as
+        "<span id="defNameChange-item-name"></span>".
+        You are going to change it to
+        "<span id="defNameChange-new-item-name"></span>".
+    
+    </div>
+    
+    <div id="defNameChangeModalSpacer"></div>
+
+    <div id="defNameChange-modal-buttons">
+
+        <div class="extra-small green-buttons">
+			<img src="/images/throbber_small.gif" id="defNameChange-throbber">
+			<a id="save-def-name" href="#">Continue</a>
+        </div>
+            
+         <div class="extra-small gray-button">
+			<a id="close-def-name-modal" href="#">Cancel</a>
+		</div>
+	</div>
+
+</div>
+<?php echo $this->customNarrativeModal; ?>
+<?php echo $this->requireEvalsModal; ?>

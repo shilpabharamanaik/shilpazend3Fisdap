@@ -4,6 +4,7 @@ use Fisdap\Queries\Specifications\QueryModifiers\LeftFetchJoin;
 use Happyr\DoctrineSpecification\BaseSpecification;
 use Happyr\DoctrineSpecification\Spec;
 
+
 /**
  * Class UsersWithContextsAndProgram
  *

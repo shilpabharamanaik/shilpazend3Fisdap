@@ -13,7 +13,7 @@ use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
 /**
  * Class SetAirways
  * @author  Isaac White <isaac.white@ascendlearning.com>
- *
+ * 
  * @SWG\Definition(
  *     definition="Airway",
  *     description="This is a model representation of a default Airway",
@@ -58,8 +58,7 @@ final class SetAirways extends AbstractSkills
      */
     public $airwayManagement = null;
 
-    public function setAirwayId($airwayId)
-    {
+    public function setAirwayId($airwayId) {
         $this->airwayId = $airwayId;
     }
 
@@ -75,8 +74,8 @@ final class SetAirways extends AbstractSkills
         EntityManagerInterface $em,
         EventDispatcher $eventDispatcher,
         BusDispatcher $busDispatcher,
-        AirwayManagementRepository $airwayManagementRepository
-    ) {
+        AirwayManagementRepository $airwayManagementRepository)
+    {
         $this->em = $em;
 
         // Try to grab an existing Airway. If not found, create a new one.
@@ -93,13 +92,13 @@ final class SetAirways extends AbstractSkills
         if (!is_null($this->airwayManagement)) {
             if ($this->getShift() != null) {
                 $this->airwayManagement->setShift($this->getShift());
-            } elseif ($this->getPatient()->getShift() != null) {
+            } else if ($this->getPatient()->getShift() != null) {
                 $this->airwayManagement->setShift($this->getPatient()->getShift());
             }
 
             if ($airway != null) {
                 $this->airwayManagement->setAirway($airway);
-            } elseif ($this->getPatient() != null) {
+            } else if ($this->getPatient() != null) {
                 $this->airwayManagement->setPatient($this->getPatient());
             }
 
@@ -110,7 +109,7 @@ final class SetAirways extends AbstractSkills
             $airway->setAirwayManagement($airMan);
 
             $airMan->save();
-        } elseif (is_null($this->airwayManagement) && !is_null($airway->id)) {
+        } else if (is_null($this->airwayManagement) && !is_null($airway->id)) {
             // We need to find any airwayManagement records belonging to this airway and nuke them.
             $airManRecords = $airwayManagementRepository->findBy(['airway' => $airway->id]);
 
@@ -118,7 +117,7 @@ final class SetAirways extends AbstractSkills
                 $airwayManagementRepository->destroy($airManRecord);
             }
             $airway->setAirwayManagement(null);
-        } elseif (is_null($this->airwayManagement) && !is_null($this->getPatient())) {
+        } else if (is_null($this->airwayManagement) && !is_null($this->getPatient())) {
             // We need to find any airwayManagement records belonging to this airway and nuke them.
             $airManRecords = $airwayManagementRepository->findBy(['patient' => $this->getPatient()->getId()]);
 
@@ -133,3 +132,4 @@ final class SetAirways extends AbstractSkills
         return $airway;
     }
 }
+

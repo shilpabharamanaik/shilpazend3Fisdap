@@ -1,0 +1,17 @@
+<div>
+	<h1><span id="requests-page-title-header">Shift Requests</span></h1>
+	
+	<?= $this->tour->guidedTourHelper($this->tour_id); ?>
+	
+	<?= $this->navBar("shift_requests"); ?>
+   
+    <div class='grid_12 island'>
+		<?= $this->messageHelper() ?>
+		<?= $this->shiftRequestTable($this->requests) ?>
+    </div>
+	
+    <?= $this->requestCancelModal; ?>
+    <?= $this->swapHistoryModal; ?>
+    <?= $this->shiftHistoryModal() ?>
+
+</div>

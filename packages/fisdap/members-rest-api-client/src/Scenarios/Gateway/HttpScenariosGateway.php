@@ -2,6 +2,7 @@
 
 use Fisdap\Api\Client\Gateway\CommonHttpGateway;
 
+
 /**
  * Http implementation of a ScenariosGateway
  *

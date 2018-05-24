@@ -1,0 +1,39 @@
+<?php $date_format = "M j, Y"; ?>
+
+Hello <?= $this->recipient_name ?>,
+<br><br>
+
+The following <?= $this->language['requirements'] ?> <?= $this->language['need'] ?> your attention.<br>
+<br>
+
+
+
+<?php if (count($this->pending_attachments) > 0) { ?>
+
+	You will soon be out of compliance for:
+	<ul>
+
+<?php 	foreach ($this->pending_attachments as $attachment) { ?>
+		<li><?= $attachment->requirement->name ?> - due <?= $attachment->due_date->format($date_format) ?></li>
+<?php 	} ?>
+	</ul>
+<?php } ?>
+
+
+
+<?php if (count($this->non_comp_attachments) > 0) { ?>
+
+	You are out of compliance for:
+	<ul>
+
+<?php   foreach ($this->non_comp_attachments as $attachment) { 
+		$date = $attachment->expired ? "expired ".$attachment->getExpirationDate($date_format) : "past due ".$attachment->due_date->format($date_format); ?> 
+		<li><?= $attachment->requirement->name ?> - <?= $date ?></li>
+<?php 	} ?>
+	</ul>
+<?php } ?>
+
+
+
+If you have any questions about how to fulfill <?= $this->language['these'] ?> <?= $this->language['requirements'] ?>, 
+please contact your instructor, <?= $this->sender_name ?>.

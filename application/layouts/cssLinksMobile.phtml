@@ -1,0 +1,19 @@
+<?php
+//add css to our header
+$this->headLink()
+        ->headLink(array('rel' => 'shortcut icon',
+                                  'href' => '/images/favicon.ico'),
+                                  'PREPEND')
+     ->appendStylesheet("/css/fluid_grid.css")
+     ->appendStylesheet("/css/css-reset.css")
+     ->appendStylesheet("/css/themeroller/default/jquery-ui-1.8.16.custom.css")
+     ->appendStylesheet("/css/themeroller/orange-button/jquery-ui-1.8.15.custom.css")
+     ->appendStylesheet("/css/themeroller/green-buttons/jquery-ui-1.8.16.custom.css")
+     //->appendStylesheet("/css/themeroller/gray-button/jquery-ui-1.8.16.custom.css")
+     //->appendStylesheet("/css/library/Zend/commenting.css")
+     ->appendStylesheet("/css/mobile.css");
+
+
+$this->cssHelper();
+
+echo $this->headLink();

@@ -1,0 +1,9 @@
+<script>
+	$(function(){
+		data = {
+			esids: [231843, 250419, 264313, 264336, 264337, 264338, 264339, 264340]
+		};
+
+		$.post('/oldfisdap/write-eval-files/', data, function(retData){console.log(retData)});
+	});
+</script>

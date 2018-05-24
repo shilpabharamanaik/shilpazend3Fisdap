@@ -1,0 +1,183 @@
+<?= $this->pageTitleHelper() ?>
+
+<div class="extra-small orange-button" id="topButtons">
+
+	<?php
+	if($this->isStaff){?>
+		<a href="/admin" id="staffDirectory">Staff Directory</a>
+	<?php
+	} ?>
+
+	<a href="/account/edit/instructor/instructorId/<?= $this->instructorId ?>">Edit my Fisdap account</a>
+	<?php
+	if($this->canOrder && $this->programCanOrder){?>
+		<a href="/account/orders">Order accounts</a>
+	<?php
+	}?>
+</div>
+
+<div class="grid_12 island withTopMargin">
+
+		<h3 class="section-header">Student Accounts</h3>
+
+		<?php
+		if($this->canEditStudents){?>
+			<div class="grid_6">
+				<a href="/account/edit/student">Student Account Information</a><br />
+				Edit student information including password, email address, emergency contact, and graduation date.
+			</div>
+
+			<div class="grid_6 prefix 1">
+				<a href="/account/edit/grad-status">Graduation Status</a><br />
+				Update your records by documenting which students have successfully graduated, failed to graduate, or left the program.
+			</div>
+
+			<div class="grid_6 needMargin">
+				<a href="/account/edit/student-search">Student Search</a><br />
+				Search for students and view their account info (grad date, cert. level, cell phone number, product access, etc.) at a glance. You can also generate lists and easily send emails to an entire group of students.
+			</div>
+
+
+			<div class="grid_6 needMargin">
+		<?php
+		}
+		else {?>
+			<div class="grid_6">
+		<?php } ?>
+
+			<a href="/account/new/research-consent">Sample Research Consent Form</a><br />
+			Students can donate their anonymized Fisdap data to EMS research.
+		</div>
+</div>
+
+<div style="clear:both"></div>
+
+
+<?php
+if($this->canEditInstructors){?>
+	<div class="grid_12 island withTopMargin">
+		<h3 class="section-header">Instructor Accounts</h3>
+
+		<div class="grid_6">
+			<a href="/account/edit/instructor">Instructor Account Information</a><br />
+			Edit passwords, contact information and permissions for instructors who have Fisdap accounts.
+		</div>
+
+		<div class="grid_6 prefix 1">
+			<a href="/account/new/instructor">Create a new instructor account</a><br />
+			Add a Fisdap account for your colleague. You will be able to customize account permissions.
+		</div>
+
+		<div style="clear:both"></div>
+	</div>
+<?php
+} ?>
+
+<?php
+if($this->canEditProgram || $this->canEditEvals || $this->canEditCompliance){?>
+		<div class="grid_12 island withTopMargin">
+		<h3 class="section-header">Program Settings</h3>
+		
+		<?php if($this->canEditProgram) { ?>
+			<div class="grid_6">
+				<a href="/account/edit/program">Program Info</a><br />
+				Edit contact information and other program settings.
+			</div>
+			
+			<div class="grid_6">
+				<a href="/account/sites">Sites</a><br />
+				Manage the lab, clinical, and field sites associated with your program.
+			</div>
+			
+			<div class='clear'></div>
+			
+			<div class="grid_6  needMargin">
+				<a href="/account/group/view">Student Groups</a><br />
+				Organize your students and instructors into groups.
+			</div>
+			
+			
+			<? if ($this->canEditCompliance){ ?>
+				
+				<div class="grid_6 needMargin">
+					<a href="/scheduler/compliance/manage">Requirements</a><br />
+					Add new requirements, edit existing requirements, and manage requirement assignments.
+				</div>
+				
+				<div class='clear'></div>
+				
+			<? } ?>
+			
+			<div class="grid_6 needMargin">
+				<a href="/skills-tracker/settings">Skills Tracker</a><br />
+				Customize feature settings, including student permissions, lab skills and skill sheets, and local protocol for meds and procedures.
+			</div>
+			
+			<? if (!$this->canEditCompliance){ echo "<div class='clear'></div>"; } ?>
+			
+			<div class="grid_6 needMargin">
+				<a href="/scheduler/settings">Scheduler</a><br />
+				Determine your students' permissions, including the options to create, sign up for, or change their shifts.
+			</div>
+			
+			<? if ($this->canEditCompliance){ echo "<div class='clear'></div>"; } ?>
+			
+		<?
+		} else { ?>
+			<? if ($this->canEditCompliance){ ?>
+				<div class="grid_6">
+					<a href="/scheduler/compliance/edit-status">Compliance Status</a><br />
+					View and edit compliance status for all people with requirements in your program.
+				</div>
+			<? }
+		} ?>
+		
+		<?php if ($this->canEditEvals) { ?>
+			<div class="grid_6 <?= ($this->canEditProgram) ? "needMargin" : ""; ?>">
+				<a href="/account/index/program-eval">Program Evals</a><br />
+				Evaluate program resources including preceptors, sites, and personnel. CoAEMSP "Part C" evaluations are also included.
+			</div>
+		<?php } ?>
+
+		</div>
+<?php
+} ?>
+
+
+<?php
+
+if($this->canOrder){
+    $sectionTitle = ($this->programCanOrder) ? "Order Accounts" : "Activation Codes";
+    $inventorySectionClass = ($this->programCanOrder) ? "grid_6 needMargin" : "grid_6";
+    ?>
+	<div class="grid_12 island withTopMargin">
+		<h3 class="section-header"><?= $sectionTitle ?></h3>
+
+        <?php if($this->programCanOrder){ ?>
+		<div class="grid_6">
+			<a href="/account/orders/account-holders">Buy new accounts</a><br />
+			Whether you are paying or they are, order new activation codes for students and preceptors.
+		</div>
+
+		<div class="grid_6 prefix 1">
+			<a href="/account/orders/upgrade">Upgrade existing accounts</a><br />
+			If you'd like to order additional product access for your students, you can upgrade their accounts.
+		</div>
+
+        <?php } ?>
+		<div class="<?= $inventorySectionClass ?>">
+			<a href="/account/orders/inventory">View my inventory (unused activation codes)</a><br />
+			Search for specific activation codes or find ones that have not been activated and are still available.
+		</div>
+
+        <?php if($this->programCanOrder){ ?>
+		<div class="grid_6 needMargin">
+			<a href="/account/orders/history">View my order history</a><br />
+			Reference-and even repeat-your past orders.
+		</div>
+        <?php } ?>
+
+		<div style="clear:both"></div>
+	</div>
+<?php
+}?>

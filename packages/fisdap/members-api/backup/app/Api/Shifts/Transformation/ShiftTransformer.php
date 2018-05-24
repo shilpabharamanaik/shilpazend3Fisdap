@@ -12,6 +12,7 @@ use Fisdap\Entity\ShiftLegacy;
 use Fisdap\Fractal\Transformer;
 use Illuminate\Container\Container;
 
+
 /**
  * Prepares shift data for JSON output
  *

@@ -1,0 +1,54 @@
+<div class="island grid_12">
+    <div>
+        <!-- Notifications -->
+        <?
+        $notificationsHelpText = "<p>The notification settings you select here will appear as the default when you add requirements to your program. " .
+            "You can still edit them on a per-requirement basis, but setting up your defaults here will save you time when creating new requirements.</p><br>" .
+            "<p>Use the on/off switches to set which notification types you would like to send out.</p><br>" .
+            "<p>For non-compliance warnings, select how far in advance you would like them to be sent. You can also set up multiple warnings by clicking " .
+            "\"Add another warning\". This is helpful if you would like people to be reminded more than once before they become non-compliant " .
+            "(for instance at 30 days, 15 days, and 1 week beforehand).</p><br>";
+        ?>
+        <div class='section'>
+            <h3 class="section-header">
+                Default notification settings
+                <?= $this->helpBubble("notificationsHelp", "Default Notification Settings Help", $notificationsHelpText) ?>
+            </h3>
+            <?= $this->element->notificationForm ?>
+        </div>
+
+        <div class='dotted-line'>
+            <hr>
+        </div>
+
+        <!-- Auto-assign -->
+        <?
+        $autoAssignHelpText = "<p>The auto-assign settings you select here will appear as the default when you add requirements to your program. " .
+            "You can still edit them on a per-requirement basis, but setting up your defaults here will save you time when creating new requirements.</p><br>" .
+            "<p>Use the on/off switches to set whether you would like to use auto-assign or not.</p><br>" .
+            "<p>Requirements with auto-assign turned on will be automatically be assigned when new accounts are created (so you don't have to assign " .
+            "each one yourself when your new class starts). You can also set whether to assign to all account types or just certain ones.</p><br>";
+        ?>
+        <div class='section'>
+            <h3 class="section-header">
+                Default auto-assign settings
+                <?= $this->helpBubble("autoAssignHelp", "Default Auto-Assign Settings Help", $autoAssignHelpText) ?>
+            </h3>
+
+            <div class='input-line'>
+                <?= $this->element->autoAssignForm ?>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class='clear'></div>
+
+
+<div id="control-buttons">
+    <span class="small green-buttons">
+        <button id="save-button" data-changes=false>Save</button>
+    </span>
+</div>
+<div class='clear'></div>

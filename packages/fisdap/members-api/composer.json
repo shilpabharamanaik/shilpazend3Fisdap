@@ -35,7 +35,7 @@
         "fisdap/laravel-error-handling": "dev-master",
         "fisdap/logging": "dev-master",
         "fisdap/oauth2-server-extensions": "dev-master",
-        "flow/jsonpath": "^0.4.0",
+        "flow/jsonpath": "^0.3.4",
         "franzl/lti": "dev-master",
         "happyr/doctrine-specification": "^0.7.2",
         "hoa/file": "1.17.07.11",

@@ -1,0 +1,29 @@
+<div class="grid_12 radio-lock">
+	<?php echo $this->element->lock ?>
+</div>
+
+<div class="clear"></div>
+
+<div id='email-container' class="grid_12" style='display:hidden;'>
+	<?= $this->element->sendEmail ?><br>
+	<?= $this->element->emailText ?>
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_12">
+	<ul>
+	<?php
+	$histories = $this->element->shift->histories;
+	
+	if (count($histories) > 0) {
+		foreach ($histories as $history) {
+			echo "<li>" . $history->timestamp->format('m/d/Y H:i') . " - " . $history->change->name . " by " . $history->user->first_name . " " . $history->user->last_name . "</li>";
+		}
+	}
+	?>
+	</ul>
+</div>
+
+<?php echo $this->element->shiftId ?>
+<?php echo $this->element->currentLockedStatus ?>

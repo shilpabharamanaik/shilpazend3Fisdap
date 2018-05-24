@@ -1,0 +1,19 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_12 island">
+    <p>
+        You can save money by ordering one of our packages. If you prefer to customize your
+        own package, continue to our <a href="/account/orders/products">"a la carte" ordering option</a>.
+    </p>
+    <br>
+    <p>Packages for your students: <?= $this->studentsDescription ?></p>
+    
+    <?= $this->form ?>
+    
+    <div class="alpha grid_4">
+        <a href='/account/orders/account-holders'><< Previous (Account Holders)</a>
+    </div>
+    
+    <div class="prefix_4 grid_4">
+        <a href="#" id="next-link">Next (Products - a la carte) >></a>
+    </div>
+</div>

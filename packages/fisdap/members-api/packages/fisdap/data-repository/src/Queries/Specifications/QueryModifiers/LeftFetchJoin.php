@@ -1,7 +1,9 @@
 <?php namespace Fisdap\Queries\Specifications\QueryModifiers;
 
+
 use Doctrine\ORM\QueryBuilder;
 use Happyr\DoctrineSpecification\Query\QueryModifier;
+
 
 /**
  * Class LeftFetchJoin

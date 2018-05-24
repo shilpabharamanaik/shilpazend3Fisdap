@@ -1,0 +1,19 @@
+<?php echo $this->pageTitleHelper() ?>
+
+<script type='text/javascript'>
+
+	$(document).ready(function() {
+
+		
+		$('#calendar').fullCalendar({
+			theme: true,
+			editable: false,
+			events: "/skills-tracker/shifts/shifts-json",
+			eventColor: '#655d57',
+		});
+		
+	});
+
+</script>
+
+<div id='calendar'></div>

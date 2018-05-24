@@ -6,6 +6,7 @@ use Fisdap\Entity\User;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 
+
 /**
  * Ensures current user role program ID matches route 'programId' parameter
  *

@@ -1,0 +1,107 @@
+<div class="grid_12">
+	<?php $hiddenClass = (($this->element->step == 2)?'preview-hidden':''); ?>
+	<div id="message_create_edit" class="<?php echo $hiddenClass; ?>">
+            <?php echo $this->element->subject; ?>
+            
+            <?php echo $this->element->body; ?>
+    
+            <?php if($this->element->userIds): ?>
+                <div class="user-group-filter-subform-staff">
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            // Hide advanced recipient setting controls by default
+                            $("#advanced-recipients").hide();
+                            $("#advanced-recipient-link").click(function(event) {
+                                event.preventDefault();
+                                $("#advanced-recipients").toggle();
+                                if ($("#arrow").attr('src') == '/images/arrow_left.png') {
+                                    $("#arrow").attr('src', '/images/arrow_down.png');
+                                } else {
+                                    $("#arrow").attr('src', '/images/arrow_left.png');
+                                }
+                            });
+                        });
+                    </script>
+                    <a href="#" id="advanced-recipient-link" class='small-link'>Advanced Recipient Setting<img id="arrow" style="width:1em;" src="/images/arrow_left.png"></a>
+                    <div id="advanced-recipients">
+                    <?php echo $this->element->userIds; ?>
+                    </div>
+                    <br /><br />
+            <?php endif; ?>
+            
+            <?php echo $this->element->userGroupFilter; ?>
+            
+            <?php if($this->element->userIds):  // closing DIV for the staff wrapper around both UserIDs and the usergroupfilter ?>
+                </div>
+            <?php endif; ?>
+            
+            <?php echo $this->element->multistep; ?>
+            
+            <?php // replacing ternary structure with if/else structure to avoid weird 
+                  // segmentation fault error (https://github.com/zendframework/zf1/issues/90) 
+		if ($this->element->step != 2) {
+  			echo $this->element->preview_submit;
+		} else {
+  			echo '';
+		}
+	   ?>
+        </div>
+	<?php
+		$user = \Fisdap\Entity\User::getLoggedInUser();
+		
+                // output the confirmation element in all cases (for staff it will be a checkbox, instructors a hidden/implicit value)
+                if ($this->element->confirmation) {
+                    echo $this->element->confirmation;
+                }
+		if($user->staff != NULL && $user->staff->isStaff()): 
+	?>
+		<?php if ($this->element->confirmation) { ?>
+            <?php echo $this->element->picker_do_not_onload; ?>
+            
+            <a id="message_create_edit_show" href="#">Edit my message</a>
+            <?php echo $this->element->confirmation_submit; ?>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                	$('#preview_submit').hide();
+                    
+                    // Show the message edit form if the user clicks the "edit message" element
+                    $("#message_create_edit_show").click(function() {
+                        $("#message_create_edit").slideDown();
+                        $(this).hide();
+                        $('#message-create-confirmation').hide();
+                    });
+                    
+                    // show/hide the final submit button if the confirmation checkbox is checked
+                    $("#confirmation_submit-element").hide();
+                    $("input[name='confirmation']").click(function() {
+                        if ($(this).is(':checked')) {
+                            $("#confirmation_submit-element").slideDown();
+                        } else {
+                            $("#confirmation_submit-element").slideUp();
+                        }
+                    });
+                });
+            </script>
+        <?php } ?>
+	<?php else: ?>
+			<?php echo $this->element->picker_do_not_onload; ?>
+			
+	        <?php echo $this->element->confirmation_submit; ?>
+	        
+	        <?php if($this->element->step == 2){ ?>
+				<input type='button' style='float: right' id="message_create_edit_show" value='Edit my message'></input>
+            	<script type="text/javascript">
+	                $(document).ready(function() {
+	                    // Show the message edit form if the user clicks the "edit message" element
+	                    $("#message_create_edit_show").addClass('green-button medium').button().click(function() {
+	                        $("#message_create_edit").slideDown();
+	                        $(this).hide();
+	                        $('#message-create-confirmation').hide();
+	                    });
+	                });
+	            </script>
+	        <?php } ?>
+	        
+            <div class='cancel_link'><a href='/'>Cancel</a></div>
+	<?php endif; ?>
+</div>

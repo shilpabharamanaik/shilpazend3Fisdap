@@ -1,0 +1,10 @@
+<?php
+	$requests = \Fisdap\EntityUtils::getRepository("ShiftRequest")->getPendingRequestCountByOwner(\Fisdap\Entity\User::getLoggedInUser()->getCurrentRoleData()->user_context);
+	$request_count_html = ($requests > 0) ? "<span class='request-count'>" . $requests . "</span>" : "";
+?>
+
+<ul id="compliance-nav-bar">
+	<li class="export-pdf-nav-bar-menu-item student-pdf" id="pdf-link">Export PDF/Email</li>
+	<li><a class='single-navbar-option' href='/scheduler/requests'><div class='requests-txt'>Shift requests</div><?= $request_count_html; ?><div class='clear'></div></a></li>
+    <li><a class='single-navbar-option' href='/portfolio/index/compliance'>Compliance</a></li>
+</ul>

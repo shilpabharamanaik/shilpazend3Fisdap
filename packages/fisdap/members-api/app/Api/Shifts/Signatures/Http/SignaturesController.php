@@ -44,9 +44,13 @@ final class SignaturesController extends Controller
     
     public function update()
     {
+        
     }
     
     public function destroy()
     {
+        
     }
 }
+
+

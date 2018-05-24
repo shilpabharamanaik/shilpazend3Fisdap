@@ -1,0 +1,30 @@
+<script>
+    openURL = function (url) {
+        window.open(url, '_blank', 'width=1020,height=700');
+        return false;
+    };
+</script>
+
+<a name='shift-evals'></a>
+<h3 class='<?php echo $this->shift->type ?>-header'>Evals</h3>
+
+<div class="section-content">
+    <?php if (count($this->evalList) == 0) { ?>
+        It doesn't look like any evals have been entered yet.
+    <?php } else { ?>
+        <?php foreach ($this->evalList as $eval) { ?>
+            <?php $baseURL = "/oldfisdap/eval-hook/hid/{$eval->eval_hook_def_id}/sid/{$this->shift->id}/proc/edit/aid/{$eval->id}"; ?>
+            <div class='eval-link'>
+                <a href='#' onclick='return openURL("<?php echo $baseURL; ?>")'>
+                    <?php echo $eval->eval_def->eval_title; ?>
+                </a>
+            </div>
+        <?php } ?>
+    <?php } ?>
+</div>
+
+<div class="clear"></div>
+
+<div class='no-pdf back-to-top'>
+    <a href='#top'>back to top</a>
+</div>

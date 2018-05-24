@@ -1,0 +1,31 @@
+<?php
+    $shift_summary_display_helper = new Fisdap_View_Helper_ShiftSummaryDisplayHelper();
+    $summary_options = array("shift_link" => false, "display_size" => "medium", "show_attendance" => true, "show_icon" => true);
+?>
+<div id="shift-summary" class="island">
+    <?= $shift_summary_display_helper->shiftSummaryDisplayHelper(null, null, $this->shift, $summary_options) ?>
+
+    <div class="action-buttons no-pdf">
+        <?
+        if ($this->shift->isShiftScheduleEditable()) {
+            echo "<a class='small-link' id='edit-shift-link' href='#' title='edit shift'>
+                    <img class='tiny-icon square svg' alt='edit shift' src='/images/icons/edit.svg'>
+                  </a>";
+        }
+        ?>
+    </div>
+
+    <div class="shift-summary-links">
+        <?php if ($this->page != "detailed-shift-report") { ?>
+            <a class="my-shift-link small-link no-pdf" href='/skills-tracker/shifts/detailed-shift-report/shiftId/<?= $this->shift->id ?>'>
+                Detailed shift report
+            </a> |
+        <?php } else if ($this->shift->isEditable()) { ?>
+            <a class="my-shift-link small-link no-pdf" href='/skills-tracker/shifts/my-shift/shiftId/<?= $this->shift->id ?>'>
+                Shift overview
+            </a> |
+        <?php } ?>
+        <?php echo $this->mapLinkHelper($this->shift); ?>
+    </div>
+
+</div>

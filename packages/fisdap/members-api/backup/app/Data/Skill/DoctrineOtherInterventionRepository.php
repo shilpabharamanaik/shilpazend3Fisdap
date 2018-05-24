@@ -10,4 +10,5 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineOtherInterventionRepository extends DoctrineRepository implements OtherInterventionRepository
 {
+
 }

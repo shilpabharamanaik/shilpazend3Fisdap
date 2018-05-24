@@ -1,0 +1,91 @@
+<?php
+    $helpText = 'When a student has left your program and you select "Remove from Class", that student\'s class year '.
+		'will change to "Left Program." The student will no longer be listed when you search for his or her '.
+		'former class year, and the former class year will not be saved in FISDAP.</br></br>'.
+		'If you select "Retain Class Year," the student\'s class year will not change. He or she will still be '.
+		'listed when you search for that class year.';
+    $user = \Fisdap\Entity\User::getLoggedInUser();
+?>
+
+<div class="grid_12 island withTopMargin">
+	<h3 class='section-header'>Select Students</h3>
+	<div class="grid_12">
+		<?php
+		if (is_array($this->element->checkedStudents)) {
+			$students = $this->element->checkedStudents;
+		} else {
+			$students = array();
+		}
+		
+		$additionalArgs = array();
+
+        echo $this->multiStudentPicker(array(
+            'sourceLink' => '/account/edit/get-filtered-student-list-with-grad-status',
+            'selectedStudents' => $students,
+            'targetFormId' => $this->element->getAttrib('id'),
+            'useSessionSettings' => true,
+            'canViewStudentNames' => true));
+		?>
+			<br />
+
+	</div>
+</div>
+
+<div class="grid_12 island withTopMargin">
+    <h3 class='section-header'>Graduation Settings</h3>
+    
+    <div class='grid_6'>
+        <div><?= $this->element->editDateFlag ?></div>
+    
+        <div id="grad-date-settings">
+            <h3 class="section-header">Graduation Date</h3>
+            <?= $this->element->gradDate ?>
+        </div>
+    </div>
+    
+    <div class='grid_6'>
+        <div><?= $this->element->editStatusFlag ?></div>
+    
+        <div id="grad-status-settings">
+            <h3 class="section-header">Graduation Status</h3>
+            <?= $this->element->gradStatus ?>
+        </div>
+        <div id="left-program-settings">
+            <?= $this->element->removeShiftsFlag ?>
+        </div>
+    
+        <div id="good-data-settings">
+            <h3 class="section-header">Good Data</h3>
+            <?= $this->element->goodData ?>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+    
+<? if ($user->isStaff()) { ?>
+    <div class='grid_6'>
+        <div><?= $this->element->editCertFlag ?></div>
+        
+        <div id="cert-level-settings">
+            <h3 class="section-header">Certification Level</h3>
+            <?= $this->element->certLevel ?>
+        </div>
+    </div>
+
+
+    <div class='grid_6'>
+        <div><?= $this->element->editShiftFlag ?></div>
+
+        <div id="shift-limit-settings">
+            <h3 class="section-header">Shift Limit</h3>
+            <?= $this->element->shiftLimitField ?>
+            <?= $this->element->shiftLimitClinical ?>
+        </div>
+    </div>
+<? } ?>
+
+</div>
+
+<div class="clear"></div>
+
+<?= $this->element->save ?>

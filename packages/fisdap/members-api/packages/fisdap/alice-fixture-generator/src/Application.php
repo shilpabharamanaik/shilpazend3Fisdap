@@ -4,6 +4,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Console\Application as IlluminateApplication;
 use Symfony\Component\Console\Input\InputInterface;
 
+
 /**
  * Class Application
  *

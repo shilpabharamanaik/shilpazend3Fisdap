@@ -1,0 +1,38 @@
+<?php
+$demographicHelpBubbletext = "Reporting this information is entirely optional. By sharing this information with " .
+    "us and consenting to give your data for research, you are helping us make informed and evidence-based decisions " .
+    "about the future of EMS education.<br><br>Read more about past <a href='http://www.fisdap.net/research' target='_new'>Fisdap research</a>.";
+?>
+<div class="grid_7">
+    <h3 class="section-header">
+        Contact Information
+    </h3>
+        <?= $this->element->firstName ?>
+        <?= $this->element->lastName ?>
+        <?= $this->element->email ?>
+</div>
+
+<div class="grid_5" id="gravatar">
+    <?= $this->fisdapGravatar("null"); ?>
+</div>
+
+<div class="grid_7">
+    <h3 class="section-header">
+        Demographic
+        Information <?= $this->helpBubble("demo-help", "Demographic Information", $demographicHelpBubbletext) ?>
+    </h3>
+
+    <div class="form-group">
+        <?= $this->element->gender ?>
+        <?= $this->element->ethnicity ?>
+        <?= $this->element->birth_date ?>
+    </div>
+</div>
+
+<div class="clear"></div>
+
+<div class="action-buttons">
+    <?= $this->element->save ?>
+</div>
+
+<?= $this->element->userId ?>

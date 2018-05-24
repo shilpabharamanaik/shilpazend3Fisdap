@@ -1,0 +1,29 @@
+<div id="preceptor-modal"><?= $this->element->preceptor_modal; ?></div>
+<div id="merge-preceptors-modal"><?= $this->element->merge_preceptors_modal; ?></div>
+
+<div class="add-preceptor-wrapper">
+	<a href="#" class="add-preceptor add-preceptor-<?= $this->element->site_type ?>" id="add-preceptor-btn"></a>
+</div>
+
+<div id="preceptor-buttons" class="extra-small">
+	
+	<div class="grid_6">
+		<a href="#" id="merge-preceptors" class="hide-when-no-accordion">Merge</a>
+	</div>
+	
+	<div class="grid_6">
+		<?= $this->element->search_preceptors ?>
+	</div>
+	
+	<div class="clear"></div>
+</div>
+
+<div class="all-action-links-preceptors hide-when-no-accordion">
+	<div class="grid_6"><a href="#" id="expand-all-preceptors">expand all</a> | <a href="#" id="collapse-all-preceptors">collapse all</a></div>
+	<div class="grid_6 activate-preceptors"><a href="#" id="activate-all-preceptors">activate all</a> | <a href="#" id="deactivate-all-preceptors">deactivate all</a></div>
+	<div class="clear"></div>
+</div>
+
+<div id="preceptor-accordion" class="accordion">
+	<?= $this->partial("forms/site-sub-forms/preceptor-accordion.phtml", array("form_element" => $this->element, 'country' => $this->element->program->country)); ?>
+</div>

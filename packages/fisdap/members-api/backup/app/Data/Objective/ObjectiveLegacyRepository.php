@@ -7,12 +7,13 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface ObjectiveLegacyRepository
  *
  * @package Fisdap\Data\Objective
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface ObjectiveLegacyRepository extends Repository
-{
+interface ObjectiveLegacyRepository extends Repository {
+
 }

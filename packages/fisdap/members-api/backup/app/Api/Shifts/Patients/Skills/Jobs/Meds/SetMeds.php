@@ -60,8 +60,7 @@ final class SetMeds extends AbstractSkills
      */
     public $practiceItemId;
 
-    public function setMedicationId($medicationId)
-    {
+    public function setMedicationId($medicationId) {
         $this->medicationId = $medicationId;
     }
 
@@ -73,7 +72,8 @@ final class SetMeds extends AbstractSkills
     public function handle(
         EntityManagerInterface $em,
         EventDispatcher $eventDispatcher
-    ) {
+    )
+    {
         $this->em = $em;
 
         // Try to grab an existing Med. If not found, create a new one.
@@ -93,7 +93,7 @@ final class SetMeds extends AbstractSkills
 
         $eventDispatcher->fire($med->getMedication());
 
-        return $med;
+        return $med; 
     }
     
     public function rules()
@@ -111,3 +111,4 @@ final class SetMeds extends AbstractSkills
         ];
     }
 }
+

@@ -1,0 +1,34 @@
+<? 	$params = $this->params; ?>
+
+
+<div class='grid_12 goal-row'>
+
+    <div class='grid_1'>&nbsp;</div>
+
+    <div class='grid_4 goal_heading'>
+      <span class="vertical-align-middle"><?= $params['goal_name']; ?></span>
+    </div>
+
+    <div class='grid_5'>
+
+        <div class='<?= $params['percent_class']; ?> percent_bar' style='width: <?= $params['scaled_percent']; ?>%'>
+            <?= ($params['percent'] == 100) ? "<div class='goal-complete-checkmark'><img src='/images/icons/checkmark-dark-gray.png'/></div>" : ""; ?>
+        </div>
+
+        <span class='percent_font percent_float_text'>
+            <?= $params['percent']; ?>% <span class='percent_subtext'>(<?= $params['performed']; ?> of <?= $params['required']; ?>)</span>
+        </span>
+
+    </div>
+
+    <div class='grid_1 observed-container'>
+        <div class='observed_font'><?= $params['observed']; ?></div>
+    </div>
+
+    <div class='grid_1'>&nbsp;</div>
+
+    <span class='clear'></span>
+
+</div>
+
+<span class='clear'></span>

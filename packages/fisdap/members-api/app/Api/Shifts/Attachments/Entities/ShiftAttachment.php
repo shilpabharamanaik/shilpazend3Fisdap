@@ -15,6 +15,7 @@ use Fisdap\Attachments\Entity\Attachment;
 use Fisdap\Entity\ShiftLegacy;
 use Fisdap\Entity\Verification;
 
+
 /**
  * Shift attachment Entity
  *
@@ -82,15 +83,7 @@ class ShiftAttachment extends Attachment
         $notes = null
     ) {
         parent::__construct(
-            $userContextId,
-            $associatedEntity,
-            $fileName,
-            $size,
-            $mimeType,
-            $urlRoot,
-            $id,
-            $nickname,
-            $notes
+            $userContextId, $associatedEntity, $fileName, $size, $mimeType, $urlRoot, $id, $nickname, $notes
         );
         $this->verifications = new ArrayCollection();
     }

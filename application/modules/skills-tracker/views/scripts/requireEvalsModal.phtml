@@ -1,0 +1,79 @@
+<?php
+$requireEvalsHelpText = "The evals that are listed under each shift type are set by Fisdap staff and can be customized for your program. ".
+    "Call 651-690-9241 or email support@fisdap.net to update your lists. <br /><br />".
+    "Students will not be able to lock shifts of each type until all evals marked as required are filled out. ";
+?>
+
+<?= $this->helpBubble("requireEvalsHelp", "Customize required evals", $requireEvalsHelpText) ?>
+
+<div class="container_12" id="form_div">
+
+    <table id="field_evals" class='eval-table'>
+        <thead id='header'>
+        <th class='eval_title'>Field Shift Evaluations</th>
+        <th class='require_title'>Require</th>
+        </thead>
+
+        <?php if (($this->element->field_evals)) {
+            foreach ($this->element->field_evals as $eval) { ?>
+                <tr id="row_<?= $eval['id'] ?>">
+                    <td class='eval_title'><?php echo $eval['name'] ?></td>
+                    <td class='require_checkbox'><?php echo $this->element->{$eval['id'].'_field_require'} ?></td>
+                </tr>
+            <?php }} else { ?>
+            <tr >
+                <td> No shift level Field evals available </td>
+                <td> N/A </td>
+            </tr>
+        <?php } ?>
+    </table>
+    <br>
+    <hr width ='95%' noshade>
+    <br>
+    <table id="clinical_evals" class='eval-table'>
+        <thead id='header'>
+        <th class='eval_title'>Clinical Shift Evaluations</th>
+        <th class='require_title'>Require</th>
+        </thead>
+
+        <?php if (($this->element->clinical_evals)) {
+            foreach ($this->element->clinical_evals as $eval) { ?>
+                <tr id="row_<?= $eval['id'] ?>">
+                    <td class='eval_title'><?php echo $eval['name'] ?></td>
+                    <td class='require_checkbox'><?php echo $this->element->{$eval['id'].'_clinical_require'} ?></td>
+                    </tr>
+            <?php }} else { ?>
+                    <tr >
+                    <td> No shift level Clinical evals available </td>
+                    <td> N/A </td>
+                    </tr>
+            <?php } ?>
+    </table>
+    <br>
+    <hr width ='95%' noshade>
+    <br>
+    <table id="lab_evals" class='eval-table'>
+        <thead id='header'>
+        <th class='eval_title'>Lab Shift Evaluations</th>
+        <th class='require_title'>Require</th>
+        </thead>
+
+        <?php if (($this->element->lab_evals)) {
+            foreach ($this->element->lab_evals as $eval) { ?>
+            <tr id="row_<?= $eval['id'] ?>">
+                <td class='eval_title'><?php echo $eval['name'] ?></td>
+                <td class='require_checkbox'><?php echo $this->element->{$eval['id'].'_lab_require'} ?></td>
+                </tr>
+            <?php }} else { ?>
+                <tr >
+                    <td> No shift level Lab evals available </td>
+                    <td> N/A </td>
+                </tr>
+            <?php } ?>
+    </table>
+
+    <?php echo $this->element->required_field_eval_ids ?>
+    <?php echo $this->element->required_clinical_eval_ids ?>
+    <?php echo $this->element->required_lab_eval_ids ?>
+</div>
+

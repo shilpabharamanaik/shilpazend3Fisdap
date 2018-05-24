@@ -1,0 +1,50 @@
+<?php echo $this->doctype(); ?>
+<html>
+    <head>
+		<?php echo $this->headTitle($this->headTitleHelper()); ?>
+
+		<?php
+			echo $this->headMeta()
+					  ->appendHttpEquiv('Content-Language', 'en-US')
+					  ->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+		?>
+
+		<?php echo $this->partial('cssLinks.phtml', array('files' => array('/css/layouts/login.css'))); ?>
+		<?php echo $this->partial('jsLinks.phtml'); ?>
+	</head>
+
+    <body>
+		<div style='width: 1000px; margin: auto;' class="login_page">
+			<div class='login_header'>
+				<div class='logo'>
+					<a href='http://www.<?php echo Util_HandyServerUtils::get_server(); ?>.net/'><img src='/images/Fisdap_logo_new_small.png' width='82' height='35'></a>
+				</div>
+				<div class='spacer'></div>
+			</div>
+
+			<div id='main-content' class='container_12'>
+				<?php echo $this->layout()->content; ?>
+
+				<div class="clear"></div>
+				<? if (!$this->hideSubFooter) { ?>
+
+					<div class="grid_12 bottomLinks">
+						<a href="/privacy" target="_blank">Privacy Policy</a>
+						<a href="/terms" target="_blank">Terms of Use</a>
+					</div>
+					<div class="clear"></div>
+				<? } ?>
+			</div>
+			<?php echo $this->mainFooter(); ?>
+		</div>
+
+		<div id='jquery-dialog-container'></div>
+		
+    <?php echo $this->partial('piwik.phtml', array(
+						   'currentUserId' => $this->currentUserId,
+						   'piwikBaseUrl' => $this->piwikBaseUrl,
+						   'piwikSiteId' => $this->piwikSiteId,
+						   )); ?>
+    
+    </body>
+</html>

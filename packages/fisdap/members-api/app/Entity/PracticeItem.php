@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
+
 /**
  * Practice Item
  *
@@ -23,12 +24,12 @@ use Fisdap\EntityUtils;
 class PracticeItem extends EntityBaseClass
 {
     /**
-     * @var integer
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
-     */
-    protected $id;
+	 * @var integer
+	 * @Id
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 */
+	protected $id;
     
     /**
      * @var StudentLegacy
@@ -92,8 +93,8 @@ class PracticeItem extends EntityBaseClass
      * @Column(type="integer", nullable=true)
      */
     protected $evaluator_id;
-    
-    /**
+	
+	/**
      * @var AirwayManagement
      * @OneToOne(targetEntity="AirwayManagement", mappedBy="practice_item", cascade={"persist","remove"})
      */
@@ -104,32 +105,32 @@ class PracticeItem extends EntityBaseClass
      * @OneToMany(targetEntity="Med", mappedBy="practice_item", cascade={"persist","remove"})
      */
     protected $meds;
-    
-    /**
+	
+	/**
      * @var ArrayCollection
      * @OneToMany(targetEntity="Airway", mappedBy="practice_item", cascade={"persist","remove"})
      */
     protected $airways;
-    
-    /**
+	
+	/**
      * @var ArrayCollection
      * @OneToMany(targetEntity="Iv", mappedBy="practice_item", cascade={"persist","remove"})
      */
     protected $ivs;
-    
-    /**
+	
+	/**
      * @var ArrayCollection
      * @OneToMany(targetEntity="CardiacIntervention", mappedBy="practice_item", cascade={"persist","remove"})
      */
     protected $cardiac_interventions;
-    
-    /**
+	
+	/**
      * @var ArrayCollection
      * @OneToMany(targetEntity="OtherIntervention", mappedBy="practice_item", cascade={"persist","remove"})
      */
     protected $other_interventions;
-    
-    /**
+	
+	/**
      * @var ArrayCollection
      * @OneToMany(targetEntity="Vital", mappedBy="practice_item", cascade={"persist","remove"})
      */
@@ -139,34 +140,35 @@ class PracticeItem extends EntityBaseClass
     {
         //Set default patient_type to live human
         $this->meds = new ArrayCollection();
-        $this->airways = new ArrayCollection();
-        $this->ivs = new ArrayCollection();
-        $this->cardiac_interventions = new ArrayCollection();
-        $this->other_interventions = new ArrayCollection();
-        $this->vitals = new ArrayCollection();
+		$this->airways = new ArrayCollection();
+		$this->ivs = new ArrayCollection();
+		$this->cardiac_interventions = new ArrayCollection();
+		$this->other_interventions = new ArrayCollection();
+		$this->vitals = new ArrayCollection();
         $this->set_patient_type(5);
     }
     
-    
+	
     public function set_passed($value)
     {
         // Has the passed field changed?
         $changed = $this->passed != $value;
         $this->passed = $value;
         
-        // if they've updated the modal to say they have failed, remove any skills they may have received credit for
-        if ($changed) {
-            $am = $this->getAirwayManagement();
-            if ($am !== false) {
-                // update the existing airway management record
-                $am->success = $this->passed;
-                $am->save();
-            }
-            
-            if (!$this->passed) {
-                $this->deleteSkills();
-            }
-        }
+		// if they've updated the modal to say they have failed, remove any skills they may have received credit for
+		if($changed){
+			
+			$am = $this->getAirwayManagement();
+			if($am !== false){
+				// update the existing airway management record
+				$am->success = $this->passed;
+				$am->save();
+			}
+			
+			if(!$this->passed){
+				$this->deleteSkills();
+			}
+		}
     }
 
     /**
@@ -245,60 +247,60 @@ class PracticeItem extends EntityBaseClass
         $this->time = new \DateTime($value);
         return $this;
     }
-    
-    // we need to wait until this function is called to attach skills
-    public function confirmAttachSkills($attach_skills, $passed)
-    {
-        // give them airway management credit if this practice item came from a definition that wants to track that
-        if ($this->practice_definition->airway_management_credit === true) {
-            $this->attachAirwayManagement($passed);
-        }
-        
-        // Give the student credit for the skills for this practice item
-        if ($attach_skills) {
-            $this->attachSkills($passed);
-        }
-    }
+	
+	// we need to wait until this function is called to attach skills
+	public function confirmAttachSkills($attach_skills, $passed)
+	{		
+		// give them airway management credit if this practice item came from a definition that wants to track that
+		if($this->practice_definition->airway_management_credit === true){
+			$this->attachAirwayManagement($passed);
+		}
+		
+		// Give the student credit for the skills for this practice item
+		if($attach_skills){
+			$this->attachSkills($passed);
+		}
+		
+	}
 
     /**
      * Trigger the deletion of airway management credit and skills associated with this practice item upon unconfirming
      */
-    public function unconfirmDeleteSkills()
-    {
-        if ($this->practice_definition->airway_management_credit === true) {
+    public function unconfirmDeleteSkills(){
+        if($this->practice_definition->airway_management_credit === true){
             $this->deleteAirwayManagement();
         }
 
         $this->attachSkills(false);
     }
     
-    public function getAirwayManagement()
-    {
-        return ($this->airway_management) ? $this->airway_management : false;
-    }
-    
+	public function getAirwayManagement()
+	{
+		return ($this->airway_management) ? $this->airway_management : false;
+	}
+	
     /**
      * Return the name of the evaluator
      * @return string
      */
     public function getEvaluatorName()
     {
-        if ($this->evaluator_id) {
-            $roleData = EntityUtils::getEntity($this->evaluator_type->entity_name, $this->evaluator_id);
-            
-            if ($roleData->user) {
-                return $roleData->user->getName();
-            } else {
-                return "[Deleted " . $this->evaluator_type->name . "]";
-            }
-        } else {
-            return "[No Evaluator Set]";
-        }
+    	if($this->evaluator_id){
+	        $roleData = EntityUtils::getEntity($this->evaluator_type->entity_name, $this->evaluator_id);
+	        
+	        if($roleData->user){
+	        	return $roleData->user->getName();
+	        }else{
+	        	return "[Deleted " . $this->evaluator_type->name . "]";
+	        }
+    	}else{
+    		return "[No Evaluator Set]";
+    	}
     }
     
     public function getSummary()
     {
-        $summary = "<span class='summary-header {$this->shift->type}'>"
+		$summary = "<span class='summary-header {$this->shift->type}'>"
                  . ($this->passed ? "Successful" : "Unsuccessful") . " "
                  . $this->practice_definition->name . "</span><br />";
                  
@@ -307,7 +309,7 @@ class PracticeItem extends EntityBaseClass
         if (count($this->practice_definition->practice_skills)) {
             $summary .= "<br />Skills: ";
             $skills = array();
-            foreach ($this->practice_definition->practice_skills as $skill) {
+            foreach($this->practice_definition->practice_skills as $skill) {
                 $skills[] = $skill->name;
             }
             $summary .= implode(", ", $skills);
@@ -321,39 +323,39 @@ class PracticeItem extends EntityBaseClass
         $shiftDate = $this->shift->start_datetime;
         
         if ($this->time) {
-            $shiftDate->setTime($this->time->format("H"), $this->time->format("i"));
+            $shiftDate->setTime($this->time->format("H"), $this->time->format("i"));            
         }
         return $shiftDate;
     }
-    
-    public function attachAirwayManagement($passed)
-    {
-        $am = $this->getAirwayManagement();
-        if ($am !== false) {
-            // update the existing airway management record
-            $am->success = $passed;
-        } else {
-            $am = EntityUtils::getEntity('AirwayManagement');
-            $am->shift = $this->shift;
-            $am->practice_item = $this;
-            $am->subject = EntityUtils::getEntity('Subject', $this->patient_type->id);
-            $am->performed_by = true;
-            $am->success = $passed;
-            $am->airway_management_source = EntityUtils::getEntity('AirwayManagementSource', 1);
-        }
-        
-        $this->save();
-        $am->save();
-    }
+	
+	public function attachAirwayManagement($passed)
+	{
+		$am = $this->getAirwayManagement();
+		if($am !== false){
+			// update the existing airway management record
+			$am->success = $passed;
+		}
+		else {
+			$am = EntityUtils::getEntity('AirwayManagement');
+			$am->shift = $this->shift;
+			$am->practice_item = $this;
+			$am->subject = EntityUtils::getEntity('Subject', $this->patient_type->id);
+			$am->performed_by = true;
+			$am->success = $passed;
+			$am->airway_management_source = EntityUtils::getEntity('AirwayManagementSource', 1);
+		}
+		
+		$this->save();
+		$am->save();
+	}
 
     /**
      * Delete the airway management associated with this practice item, if it exists.
      */
-    public function deleteAirwayManagement()
-    {
+    public function deleteAirwayManagement(){
         $am = $this->getAirwayManagement();
 
-        if ($am !== false) {
+        if($am !== false){
             $am->delete();
             $this->airway_management = null;
             $this->save();
@@ -364,13 +366,13 @@ class PracticeItem extends EntityBaseClass
      * Attach or delete skills depending on whether or not the practice item was passed.
      * @throws \Exception when $this->passed is set before the item has been attached to a shift/student
      */
-    private function attachSkills($passed)
+     private function attachSkills($passed)
     {
         if ($passed) {
-            foreach ($this->practice_definition->practice_skills as $practiceSkill) {
+            foreach($this->practice_definition->practice_skills as $practiceSkill) {
                 $skill = EntityUtils::getEntity($practiceSkill->entity_name);
                 
-                foreach ($practiceSkill->fields as $field => $value) {
+                foreach($practiceSkill->fields as $field => $value) {
                     $skill->$field = $value;
                 }
                 
@@ -385,7 +387,7 @@ class PracticeItem extends EntityBaseClass
                 $skill->save(false);
             }
         } else {
-            $this->deleteSkills();
+            $this->deleteSkills();            
         }
     }
     

@@ -1,0 +1,87 @@
+<?php
+
+/* * **************************************************************************
+ *
+ *         Copyright (C) 1996-2011.  This is an unpublished work of
+ *                          Headwaters Software, Inc.
+ *                             ALL RIGHTS RESERVED
+ *         This program is a trade secret of Headwaters Software, Inc.
+ *         and it is not to be copied, distributed, reproduced, published,
+ *         or adapted without prior authorization
+ *         of Headwaters Software, Inc.
+ *
+ * ************************************************************************** */
+
+/**
+ * A page that summarizes a student's exam experience
+ *
+ * @author khanson
+ */
+?>
+<?php if (!$this->contentOnly) {
+    $name = ($this->user->isInstructor()) ? $this->student_name : "You";
+?>
+
+<h2 class="page-title"><?= $this->student->user->getFullName() ?>'s Portfolio</h2>
+
+<?php echo $this->portfolioNavigation($this->skillstracker, $this->compliance); ?>
+
+<div class='grid_9'>
+    <div id="portfolio-page-content" class="island">
+        <?php } else { ?>
+        <div class='grid_12'>
+            <div class="island">
+                <?php } ?>
+                <?php foreach ($this->attempts as $section => $section_attempts) { ?>
+                    <h2 class="page-title">
+                        <?php echo $section_attempts['image']; ?>
+                        <span class="title-text"><?php echo $section_attempts['title']; ?>
+                            <span style="font-size:80%"><?php echo $section_attempts['subtitle']; ?></span></span>
+                    </h2>
+                    <table class='score_table'>
+                        <thead>
+                        <tr>
+                            <th>Exam</th>
+                            <th>Date</th>
+                            <th>Score %</th>
+                            <th>Learning<br>Rx</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php if (empty($section_attempts['moodle_attempts'])) { ?>
+                            <tr>
+                                <td colspan=4 class='full_row'><?= $name ?> did not take
+                                    any <?php echo strtolower($section_attempts['title']); ?>.
+                                </td>
+                            </tr>
+                        <?php } else {
+                            foreach ($section_attempts['moodle_attempts'] as $attempt) { ?>
+                                <tr>
+                                    <td class='name_col'><?php echo $attempt['name']; ?></td>
+                                    <td class='date_col'><?php echo $attempt['date']; ?></td>
+                                    <td class='score_col'><?php echo $attempt['score']; ?></td>
+                                    <td class='rx_col'><?php echo $attempt['learning_rx']; ?></td>
+                                </tr>
+                            <?php }
+                        } ?>
+                        </tbody>
+                    </table>
+                <?php }
+                if ($this->user->isInstructor()) { ?>
+                    For more information and other student's scores, visit the <a
+                        href='<?php echo $this->testing_link; ?>'>Test Administration</a> pages.
+                    <?php
+                } else if ($this->hasTesting) { ?>
+                    For more information about your performance, be sure to visit your <a
+                        href='<?php echo $this->testing_link; ?>'>test scores</a> page.
+                    <?php
+                }
+                ?>
+            </div>
+        </div>
+
+        <?php
+        foreach ($this->learningRxContents as $rx) {
+            echo $rx . "<br />";
+        }
+        ?>

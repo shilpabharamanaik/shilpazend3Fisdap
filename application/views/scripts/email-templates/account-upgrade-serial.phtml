@@ -1,0 +1,21 @@
+<div>
+    Hello <?= $this->name ?>,
+</div>
+
+<div>
+    This is just a brief message to confirm that your Fisdap account has been upgraded to
+    include:
+    <ul>
+    <? foreach ($this->products as $category) {
+        foreach ($category['products'] as $product) {
+            if ($product['upgradeable']) {
+                echo "<li>".$product['product']->name;
+                if ($product['attempts']) {
+                    echo " (more attempts)";
+                }
+                echo "</li>";
+            }
+        }
+    } ?>
+    </ul>
+</div>

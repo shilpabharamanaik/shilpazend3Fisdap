@@ -5,6 +5,7 @@ use Fisdap\Attachments\Entity\Attachment;
 use Fisdap\Attachments\Transformation\TransformsAttachments;
 use Fisdap\Fractal\Transformer;
 
+
 /**
  * AttachmentTransformer decorator for shift attachments
  *

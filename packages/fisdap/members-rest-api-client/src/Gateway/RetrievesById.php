@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Client\Gateway;
 
+
 /**
  * Contract for retrieving a single resource by ID
  *

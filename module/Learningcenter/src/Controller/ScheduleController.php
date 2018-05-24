@@ -20,7 +20,7 @@ use Fisdap\Entity\PermissionSubRole;
 use Fisdap\Entity\ScheduledTestsLegacy;
 
 //use User\Entity\ScheduledTestsLegacy;
-use User\Entity\User;
+use Fisdap\Entity\User;
 
 class ScheduleController extends AbstractActionController
 {

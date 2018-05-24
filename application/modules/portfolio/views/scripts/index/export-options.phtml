@@ -1,0 +1,127 @@
+<?php
+/* * **************************************************************************
+ *
+ *         Copyright (C) 1996-2011.  This is an unpublished work of
+ *                          Headwaters Software, Inc.
+ *                             ALL RIGHTS RESERVED
+ *         This program is a trade secret of Headwaters Software, Inc.
+ *         and it is not to be copied, distributed, reproduced, published,
+ *         or adapted without prior authorization
+ *         of Headwaters Software, Inc.
+ *
+ * ************************************************************************** */
+
+/**
+ * Description of index
+ *
+ * @author astevenson
+ */
+
+echo $this->javascriptHelper('library/Fisdap/Utils/create-pdf.js');
+?>
+<script>
+	$(function(){
+		$("#cancel-button").addClass("gray-button").button().click(function(){
+			window.location = '/portfolio/index';
+		});
+		$("#submit-button").addClass("green-buttons").button();
+
+		$("#submit-button").click(function(){
+			$.post('/portfolio/index/export-contents/', $('#options-form').serialize(), function(data){
+				pdfName = "<?= $this->student->first_name . "_" . $this->student->last_name; ?>_portfolio_<?= date('Y-m-d'); ?>.pdf";
+				
+				// Remove the pdfGenerate form, in case one already exists from a previous export....
+				$('#pdfLink').empty();
+				
+				var newForm = $("<form id='pdfGenerate' method='post' action='/pdf/create-pdf-from-html'><input type='hidden' name='pdfName' value='" + escape(pdfName) + "' /><input type='hidden' name='pdfContents' value='" + escape(data) + "' /></form>");
+				$('#pdfLink').append(newForm);
+				$('#pdfGenerate').submit();
+			});
+		});
+	});
+</script>
+
+<?php if(!$this->contentOnly) { ?>
+
+	<h2 class="page-title"><?= $this->student->user->getFullName() ?>'s Portfolio</h2>
+
+	<?= $this->portfolioNavigation($this->skillstracker, $this->compliance); ?>
+
+	<div class='grid_9'>
+		<div id="portfolio-page-content" class="island">
+<?php } else { ?>
+	<div class='grid_12'>
+		<div class="island">
+<?php } ?>
+	<h2 class='section-header'>Export Options</h2>
+	<div class='export-question'>
+		Which of the following do you want to include in your export?
+	</div>
+		
+		<form action='/portfolio/index/export-contents' method='POST' id='options-form'>
+			<div class='grid_12'>
+				<div class='grid_11 suffix_1 export-group'>
+					<div class='export-option-item'><input type='checkbox' value='1' id='about-page-cb' name='include-about-page' /> The "About <?= $this->student->first_name; ?>" page</div>
+				</div>
+				
+				<?php if ($this->compliance) { ?>
+				<div class='grid_11 suffix_1 export-group'>
+					<div class='export-option-item'><input type='checkbox' value='1' id='compliance-page-cb' name='include-compliance-page' /> Compliance Status</div>
+				</div>
+				<?php } ?>
+				
+								
+				<?php if ($this->skillstracker) { ?>
+				<div class='grid_11 suffix_1 export-group'>
+					<div class='export-option-item'><input type='checkbox' value='1' id='competency-page-cb' name='include-competency-page' /> Competency Summary</div>
+				</div>
+				
+				<div class='grid_11 suffix_1 export-group'>
+					<div class='export-option-item'><input type='checkbox' value='1' id='exams-page-cb' name='include-exams-page' /> Exams</div>
+					<div class='grid_10 prefix_1'>
+						<div class='export-option-item'><input type='checkbox' value='1' id='include-learning-prescriptions-cb' name='include-learning-prescriptions' /> Include a copy of all Learning Prescriptions</div>
+					</div>
+				</div>
+				
+				<div class='grid_11 suffix_1 export-group'>
+					<div class='export-option-item'><input type='checkbox' value='1' id='lab-practice-page-cb' name='include-lab-practice-page' /> Lab Practice summary</div>
+					<div class='grid_10 prefix_1'>
+						<!-- <div class='export-option-item'><input type='checkbox' value='1' id='include-evals-cb' name='include-evals' /> Include a copy of all Skills and Scenario Evaluation forms</div> -->
+					</div>
+				</div>
+				
+				<div class='grid_11 suffix_1 export-group'>
+					<input type='checkbox' value='1' id='internship-summary-page-cb' name='include-internship-summary-page' /> Internship summary
+					<div class='grid_10 prefix_1'>
+						<!-- 
+							<div class='export-option-item'><input type='checkbox' value='1' id='include-preceptor-signoff-evals-cb' name='include-preceptor-signoff-evals' /> Include a copy of all "preceptor signoff" evaluations</div>
+							<div class='export-option-item'><input type='checkbox' value='1' id='include-field-evals-cb' name='include-field-evals' /> Include a copy of all field shift evaluations</div>
+							<div class='export-option-item'><input type='checkbox' value='1' id='include-skills-and-patient-care-evals-cb' name='include-skills-and-patient-care-evals' /> Include a copy of all skills and patient care evaluations</div>
+							<div class='export-option-item'><input type='checkbox' value='1' id='include-goals-report-cb' name='include-goals-report' /> Include a Goals Report</div>
+							<div class='export-option-item'><input type='checkbox' value='1' id='include-skills-report-cb' name='include-skills-report' /> Include a Skills Report</div>
+						-->
+					</div>
+				</div>
+				
+				<div class='grid_11 suffix_1 export-group'>
+					<div class='export-option-item'><input type='checkbox' value='1' id='affective-eval-page-cb' name='include-affective-eval-page' /> Affective Evaluation summary</div>
+					<div class='grid_10 prefix_1'>
+						<!-- <div class='export-option-item'><input type='checkbox' value='1' id='include-affective-evals-cb' name='include-affective-evals' /> Include a copy of all Affective Evaluation forms</div> -->
+					</div>
+				</div>
+				<?php } ?>
+				
+				When you click export, we will compile all of these materials into a PDF document.  Please note that export cannot include files in the attachment section of the portfolio.
+				
+				<br />
+				<br />
+				
+				<div class='prefix_8 grid_4'>
+					<input id='submit-button' type='button' value='Get PDF'/>
+					<span id='pdfLink' style='display: none;'></span>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+</div>

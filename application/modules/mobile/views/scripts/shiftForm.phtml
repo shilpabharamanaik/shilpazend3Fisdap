@@ -1,0 +1,70 @@
+<?php
+$siteType = $this->element->types;
+if (count(\Fisdap\Entity\SiteLegacy::getSites($this->element->user->getProgramId(), $this->element->types)) == 0) {
+	if ($this->element->user->isInstructor()) {
+		echo "<p>
+			This program has no $siteType sites yet.<br>
+			If you have permission, you may go to the \"Account section\" and click on " . ucfirst($siteType) . " sites to add one.
+		      </p>";
+	} else {
+		echo "<p>
+			This program has no $siteType sites yet.<br>
+			Your instructor must add some before you can schedule shifts.
+		      </p>";
+	}
+
+}
+?>
+<div class="shift-conflicts-msg notice" style="display:none;">
+	Note: <?= $this->element->user->isInstructor() ? $this->element->student->first_name . " " . $this->element->student->last_name . " already has" : "You already have" ?> a shift scheduled during this time.
+</div>
+
+<div class="grid_6">
+	<?php echo $this->element->site ?>
+</div>
+
+<div class="grid_6">
+	<?php echo $this->element->base ?>
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_12">
+	<?php echo $this->element->date ?>
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_6">
+	<?= $this->element->time ?>
+	<? if ($this->element->show_attendence) { echo $this->element->attendence; } ?>
+</div>
+
+<?
+if ($this->element->show_attendence) {
+	echo '<div class="grid_6">';
+	echo $this->element->attendenceComments;
+	echo '</div>';
+}
+?>
+
+<div class="clear"></div>
+
+<div class="grid_12">
+	<?= $this->element->hours ?>
+</div>
+
+<div class="clear"></div>
+
+<?= $this->element->shiftId ?>
+<?= $this->element->studentId ?>
+<?= $this->element->hasSites ?>
+
+<div class='edit-buttons modal-buttons'>
+	<div id="cancelButtonWrapper" class="small gray-button modal-button-wrapper">
+		<a href='#' id='cancel-edit-btn'>Cancel</a>
+	</div>
+	<div id="saveButtonWrapper" class="small green-buttons modal-button-wrapper">
+		<a href='#' id='save-edit-btn'>Save</a>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+<?
+
+if ($this->element->isErrors()) {
+	echo "<ul class='form-errors'><li>" . implode("</li><li>", $this->element->getCustomMessages()) . "</li></ul>";
+}
+
+$subforms = $this->element->getSubForms();
+$length = count($subforms);
+$i = 1;
+foreach($subforms as $subform) {
+	echo $subform;
+	
+	//Display form separator as long as there's another form to display
+	if ($i < $length) {
+		echo "<div class='subform-separator'>------------------------------------------------------</div>";
+	}
+	$i++;
+}
+?>
+
+<div class="prefix_9 grid_3">
+	<?= $this->element->sendButton ?>
+</div>
+
+<?= $this->element->orderId ?>

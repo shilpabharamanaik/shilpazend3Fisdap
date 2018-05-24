@@ -1,0 +1,41 @@
+<?php
+//add css to our header
+$this->headLink()
+     ->headLink(array('rel' => 'shortcut icon',
+                                  'href' => '/images/favicon.ico'),
+                                  'PREPEND')
+	// global.css will include all of our imports to jquery ui stylesheets
+	 ->appendStylesheet("/css/global.css")
+	 ->appendStylesheet("/css/library/Fisdap/View/Helper/Navigation/mainMenu.css")
+	 ->appendStylesheet("/css/library/Fisdap/View/Helper/Navigation/mainFooter.css");
+
+if (count($this->files) > 0) {
+    foreach ($this->files as $file) {
+        $this->headLink()->appendStylesheet($file);
+    }
+}
+
+$this->cssHelper();
+
+// print out the <link> tags for css files using the headscript and verisons
+$css_files = "" . $this->headLink();
+$css = explode('<link href="', $css_files);
+
+// just to clean up the src code a bit
+echo "\n";
+echo "\n";
+
+foreach($css as $src){
+	if(strlen($src) != 0){
+		
+		if(strrpos($src, ".css")){
+			echo '<link href="' . substr($src, 0, strrpos($src, ".css")) . '.css?lastModified=' . $this->last_modified . '"' . ' media="screen" rel="stylesheet" type="text/css" >';
+		}
+		else {
+			// this is a favicon
+			echo '<link href="' . substr($src, 0, strrpos($src, ".ico")) . '.ico" rel="shortcut icon" >';
+		}
+		
+		echo "\n";
+	}
+}

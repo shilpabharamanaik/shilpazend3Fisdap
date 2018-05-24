@@ -1,0 +1,66 @@
+<div class='container_12'>
+    <? if ($this->element->isInstructor) { ?>
+
+        <a id="subscription_summary" rel="#subscription_summary-popup" href="#subscription_summary-popup" title="Subscription Help" class=""><img class="question-mark" src="/images/icons/question_mark.png"></a>
+        <div id="subscription_summary-popup" style="display: none;">You are creating a link that will share information with your calendar service. This information
+            allows your personal calendar to display Fisdap shifts. Your shifts will be displayed on a rolling basis, which includes
+            shifts that occurred as far back as a month before the current date and up to 3 months after the current date. Shifts
+            occurring before the previous month will be removed from your calendar; shifts occurring within the next 3 months will
+            be added, based on the current date.</div>
+
+        <div class="pdf-modal-filter-description">
+
+        </div>
+    <? } ?>
+
+
+    <div class="clear"></div>
+
+    <div class="grid_7">
+        <? if ($this->element->calendarFeed->id) { ?>
+            <div class="notice">
+                Generating a new link will deactivate the link you generated before.
+                You will need to re-subscribe from your personal calendar using this
+                new link.
+            </div>
+        <? } ?>
+
+        <div class="">
+            <?= $this->element->calendarName ?>
+        </div>
+
+        <? if (!$this->element->calendarFeed->id) { ?>
+            <div class="info">
+                Your subscription will include <?= $this->element->isInstructor ? "chosen shifts matching your filters" : "Your Shifts" ?> that occur during a rolling window from 1 month prior through the following 3 months (based on the current date).
+            </div>
+        <? } ?>
+
+        <?= $this->element->instructor ?>
+
+    </div>
+
+    <div class="grid_5">
+        <img src="/images/subscription_preview_<?= $this->element->isInstructor ? "instructors" : "students" ?>.png" style="margin-top: .5em;">
+    </div>
+
+    <div class="clear"></div>
+
+    <?
+    if ($this->element->calendarFeed->id) {
+        echo '<div class="grid_12">';
+        echo "<div class='withTopMargin'>" . $this->element->url . "</div>";
+        echo '</div>';
+    }
+    ?>
+</div>
+
+<?= $this->element->calendarId ?>
+
+<div class='modal-buttons'>
+    <div class="modal-button-wrapper small gray-button">
+        <a href='#' id='calendar-cancel-btn'>Cancel</a>
+    </div>
+    <div class="modal-button-wrapper small green-buttons">
+        <a href='#' id='calendar-btn'>Generate <?= $this->element->calendarFeed->id ? "new " : "" ?>link</a>
+    </div>
+</div>

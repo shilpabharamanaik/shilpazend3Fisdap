@@ -4,6 +4,7 @@ use Fisdap\Api\Commerce\OrderPermissions\Http\OrderPermissionsController;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
+
 /**
  * Enables commerce-related routes
  *

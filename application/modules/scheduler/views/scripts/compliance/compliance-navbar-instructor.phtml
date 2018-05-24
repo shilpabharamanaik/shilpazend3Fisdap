@@ -1,0 +1,46 @@
+<?php
+	$scheduler_settings = $this->permissions['settings'];
+	$manage_requests = ($this->permissions['lab'] || $this->permissions['clinical'] || $this->permissions['field']);
+	$compliance_settings = ($this->permissions['settings'] && $this->permissions['edit_compliance'] && $this->permissions['page'] != "settings");
+	$compliance_status = ($this->permissions['edit_compliance'] && $this->permissions['page'] != "edit");
+	$portfolio = ($this->permissions['page'] != "portfolio");
+	$manage = ($this->permissions['settings'] && $this->permissions['edit_compliance'] && $this->permissions['page'] != "manage");
+	$requests = \Fisdap\EntityUtils::getRepository("ShiftRequest")->getPendingRequestCountByProgram(\Fisdap\Entity\User::getLoggedInUser()->getProgramId());
+	$request_count_html = ($requests > 0) ? "<span class='request-count'>" . $requests . "</span>" : "";
+?>
+
+<ul id="compliance-nav-bar">
+	
+	<? if($this->permissions['scheduler'] || $this->permissions['on_calendar']) { ?>
+		<li class='compliance-nav-bar-menu-item' data-dropDownId='scheduler-navbar-options'>
+			Scheduler
+			<ul id="scheduler-navbar-options" class="navbar-options">
+				<?= ($this->permissions['on_calendar']) ? "" : "<li><a class='navbar-sub-option' href='/scheduler'>Calendar</a></li>"; ?>
+				<?= ($scheduler_settings) ? "<li><a class='navbar-sub-option' href='/scheduler/settings'>Settings</a></li>" : ""; ?>
+				<?= ($manage_requests) ? "<li><a class='navbar-sub-option' href='/scheduler/requests'><div class='requests-txt'>Shift requests</div>" . $request_count_html. "<div class='clear'></div></a></li>" : ""; ?>
+				<li><a class='navbar-sub-option' href="/scheduler/emails">Recurring emails</a></li>
+			</ul>
+		</li>
+	<? } ?>
+
+	<? if($compliance_settings || $compliance_status || $portfolio || $manage) { ?>
+		<li class='compliance-nav-bar-menu-item' data-dropDownId='compliance-navbar-options'>
+			Compliance
+			<ul id="compliance-navbar-options" class="navbar-options">
+				<?= ($compliance_settings) ? "<li><a class='navbar-sub-option' href='/scheduler/compliance/settings'>Settings</a></li>" : ""; ?>
+				<?= ($manage) ? "<li><a class='navbar-sub-option' href='/scheduler/compliance/manage'>Requirements</a></li>" : ""; ?>
+				<?= ($compliance_status) ? "<li><a class='navbar-sub-option' href='/scheduler/compliance/edit-status'>Edit status</a></li>" : ""; ?>
+				<?= ($portfolio) ? "<li><a class='navbar-sub-option' href='/portfolio'>Student portfolios</a></li>" : ""; ?>
+			</ul>
+		</li>
+	<? } ?>
+		
+	<? if($this->permissions['on_calendar']) { ?>
+		<div class="dashed-right-border"></div>
+		<li class="export-pdf-nav-bar-menu-item" id="pdf-link">Export PDF/Email</li>
+	<? } ?>
+	
+</ul>
+
+
+

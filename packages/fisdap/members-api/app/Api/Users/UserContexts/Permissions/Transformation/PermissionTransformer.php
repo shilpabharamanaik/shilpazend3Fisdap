@@ -3,6 +3,7 @@
 use Fisdap\Entity\Permission;
 use League\Fractal\TransformerAbstract;
 
+
 /**
  * Prepares permission data for JSON output
  *
@@ -47,9 +48,7 @@ final class PermissionTransformer extends TransformerAbstract
             $category = isset($permission['category']) ? $permission['category'] : null;
         }
 
-        if ($category === null) {
-            return;
-        }
+        if ($category === null) return;
 
         return $this->item($category, new PermissionCategoryTransformer);
     }

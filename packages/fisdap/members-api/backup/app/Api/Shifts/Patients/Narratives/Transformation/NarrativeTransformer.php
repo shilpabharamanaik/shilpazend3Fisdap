@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Shifts\Patients\Narratives\Transformation;
 
+
 use Fisdap\Entity\Narrative;
 use Fisdap\Fractal\Transformer;
 
@@ -24,3 +25,4 @@ final class NarrativeTransformer extends Transformer
         return $narrative;
     }
 }
+

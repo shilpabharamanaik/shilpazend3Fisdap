@@ -1,0 +1,4 @@
+Hello <?= $this->verification->email->preceptor->first_name ?>,
+
+Please use the following URL to sign off on run #<?= $this->verification->run->id ?>: \n\n";
+http://trunk.astevenson.members.fisdapdev.net/skills-tracker/signoff/email-based?key=" . <?= $this->verification->email->email_key ?>

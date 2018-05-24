@@ -1,0 +1,50 @@
+<?php echo $this->doctype() . PHP_EOL; ?>
+<html>
+    <head>
+        <?php
+        echo $this->headMeta()
+            ->appendHttpEquiv('Content-Language', 'en-US')
+            ->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8') . PHP_EOL;
+        $this->headTitle()->prepend('Fisdap Members :: ');
+        echo $this->headTitle() . PHP_EOL;
+        echo $this->headLink()
+            ->headLink(
+            array('rel'  => 'shortcut icon',
+                  'href' => '/images/favicon.ico')
+        )
+        ?>
+    </head>
+    <body>
+    <div>
+        <?php if (count($this->completedChecks) > 0): ?>
+        <code>
+            <?php foreach ($this->completedChecks as $check): ?>
+            <strong><?= $check->getName() ?> status:</strong>
+                <?php if ($check->getStatus() != 'OK'): ?>
+                    <span style="color:#C00;">
+                    <?php else: ?>
+                    <span style="color:#090;">
+                    <?php endif; ?>
+                    <?= $check->getStatus() ?>
+                        <?php if ($check->getError() !== null): ?>
+                            - <?= $check->getError() ?>
+                        <?php endif; ?>
+                    (<?= $check->getRunTime() ?> ms)
+                    </span><br/><br/>
+                <?php endforeach; ?>
+        </code>
+        <p>
+            <code>
+                Total time for all checks: <?= $this->totalRunTime ?> ms
+            </code>
+        </p>
+        <?php endif; ?>
+
+        <?php if ($this->brokenHealthCheckCount > 0): ?>
+        <code><span style="color:#C00;">Some health checks failed to run.  Please check the logs.</span></code>
+        <?php endif; ?>
+    </div>
+    </body>
+</html>
+
+

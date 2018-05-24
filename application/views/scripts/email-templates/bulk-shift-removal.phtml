@@ -1,0 +1,11 @@
+Hello, <?= $this->student->first_name ?>!<br>
+<div>
+	<div>
+		The following <?= ($this->count == 1) ? "shift has" : "shifts have" ?> been removed from your schedule:
+		<ul>
+			<?php foreach ($this->event_info as $event_text) { ?>
+			<li><?= $event_text ?></li>
+			<?php } ?>
+		</ul>
+	</div>
+</div>

@@ -5,6 +5,7 @@ use Fisdap\OAuth\Storage\Couchbase as CouchbaseStorage;
 use Illuminate\Support\ServiceProvider;
 use Log;
 
+
 /**
  * Class CouchbaseOAuthStorageServiceProvider
  *
@@ -30,19 +31,19 @@ final class CouchbaseOAuthStorageServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/oauth2-server-extensions.php',
-            'oauth2-server-extensions'
+            __DIR__.'/../config/oauth2-server-extensions.php', 'oauth2-server-extensions'
         );
 
         // Set up the oauth2 storage object here.
-        $this->app->singleton(CouchbaseStorage::class, function () {
-            $couchbaseConfig = Config::get('oauth2-server-extensions.couchbase');
+        $this->app->singleton(CouchbaseStorage::class, function()
+            {
+                $couchbaseConfig = Config::get('oauth2-server-extensions.couchbase');
 
-            $storage = new Couchbase($couchbaseConfig, [], Log::getMonolog());
+                $storage = new Couchbase($couchbaseConfig, [], Log::getMonolog());
 
-            return $storage;
-        });
+                return $storage;
+            });
 
         $this->app->alias(CouchbaseStorage::class, 'couchbase_oauth_storage');
     }
-}
+} 

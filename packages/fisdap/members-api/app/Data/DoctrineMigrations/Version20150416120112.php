@@ -5,6 +5,7 @@ namespace Fisdap\Data\DoctrineMigrations;
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
+
 /**
  * Migrates a table for Laravel queue job failures
  *

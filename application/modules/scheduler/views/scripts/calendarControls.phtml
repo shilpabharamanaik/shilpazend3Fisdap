@@ -1,0 +1,63 @@
+<div class='calendar-controls'>
+	
+	<div id="cal-controls-inside-wrapper">
+		
+		<div id="controls-blocker"></div>
+		
+		<div class='col'>
+			
+			<div class='next-prev-buttons'>
+				<button href='#' class='prev first'><</button>
+				<button href='#' class='next last'>></button>
+			</div>
+			
+			<div class='go-to-today'>
+				<button href='#' class='today first last'>Today</button>
+			</div>
+			
+		</div>
+		
+		<div class='col' style='position:relative;'>
+			<h3 class="cal-control-title"><?= $this->title ?></h3>
+		</div>
+		
+		<div class='col'>
+			<img src="/images/icons/edit-inverted.png" alt="Edit date" id='edit-icon'>
+		</div>
+		
+		<? $display_month_type_options = ((strpos(strtolower($this->type), "month") !== false)) ? true : false; ?>
+		
+		<div id="month-view-type-options" <?= ($display_month_type_options) ? "" : "style='display:none;'"; ?>>
+			
+			<button class="first <?= (strtolower($this->previous_month_view_type) == "month") ? 'selected' : ''; ?>">Overview</button>
+			<button class="last  <?= (strtolower($this->previous_month_view_type) == "month-details") ? 'selected' : ''; ?>">Details</button>
+			
+		</div>
+		
+		<div class='view-type'>
+			<?php
+				$count = 1;
+				
+				foreach($this->viewTypes as $viewType){
+					
+					//$selected = (strtolower($viewType) == $this->type) ? "selected" : "";
+					$selected = ((strpos(strtolower($this->type), strtolower($viewType)) !== false)) ? "selected" : "";
+					$first = ($count == 1) ? "first" : "";
+					$last = ($count == count($this->viewTypes)) ? "last" : "";
+					?>
+					
+					<button class='<?= $first ?> <?= $last ?> <?= $selected ?>'><?= $viewType ?></button>
+					
+					<?php
+					
+					$count++;
+				}
+				
+			?>
+		</div>
+		
+		<div class="clear"></div>	
+	
+	</div>
+	
+</div>

@@ -1,0 +1,138 @@
+<?
+if ($this->shift['soft_deleted']) {
+    echo "<td colspan='7' class='undo'>Shift #" . $this->shift['id'] . " successfully deleted. <a id='undo-delete-{$this->shift['id']}' href='#' onclick='undoDeleteShift(\"{$this->shift['id']}\"); return false;'>Undo!</a></td></tr>";
+    $elementStyle = "style='display:none;'";
+}
+
+if($this->hasInstructorPermission){
+	$hasPermission = true;
+	$editLink = "/skills-tracker/shifts/my-shift/shiftId/" . $this->shift['id'];
+}else{
+	$hasPermission = false;
+	$editLink = "/skills-tracker/shifts/detailed-shift-report/shiftId/" . $this->shift['id'];
+}
+
+$iconHelper = new Fisdap_View_Helper_BadgeIcon($this);
+?>
+
+<tr id='<?php echo $this->shift['id'] ?>' <?= $elementStyle ?> class="clickable">
+    <td class='summary-column' onclick='window.location="<?= $editLink ?>"'>
+		<?
+            //Commenting out this part for now, as this resulted in shifts times not updating in skills tracker when shift is modified in scheduler
+			if ($this->shift['start_datetime']) {
+				$start_datetime = strtotime($this->shift['start_datetime']);
+				$end_datetime = strtotime($this->shift['end_datetime']);
+                                $hours_text = round($this->shift['hours'], 2) . ($this->shift['hours'] > 1 ? " hrs" : " hr");
+			} else {
+				$start_time = Util_FisdapTime::create_from_military_time($this->shift['StartTime']);
+				$start_datetime = DateTime::createFromFormat('Y-m-d Hi', $this->shift['StartDate'] . " " . $start_time->get_military_time())->format('U');
+				$end_datetime = $start_datetime + ($this->shift['hours'] * 3600);
+				$hours_text = round($this->shift['hours'], 2) . ($this->shift['hours'] > 1 ? " hrs" : " hr");
+			}
+
+			switch(date("Y-m-d", $start_datetime)){
+				case date_create("now")->format("Y-m-d"):
+					echo '<img src="/images/today.png" class="date-icon">';
+					break;
+				case date_create("now -1 day")->format("Y-m-d"):
+					echo '<img src="/images/yesterday.png" class="date-icon">';
+					break;
+				case date_create("now +1 day")->format("Y-m-d"):
+					echo '<img src="/images/tomorrow.png" class="date-icon">';
+					break;
+			}
+
+            $future = (date("U", $start_datetime) > date("U"));
+			$patient_count = $this->shift['patient_count'];
+		?>
+
+        <div class="shift-info-container">
+        <?php if($hasPermission) {
+            echo $iconHelper->lockShiftIcon($this->shift['id'], $this->shift['locked'], $this->shift['late']);
+        } else {
+            echo $iconHelper->lockStatusIcon($this->shift['id'], $this->shift['locked'], $this->shift['late']);
+        } ?>
+        </div>
+
+        <div class="shift-summary">
+		    <h4 class="<?= $this->shift['type'] ?>"><?php echo date("M j, Y, Hi", $start_datetime)." ($hours_text)"; ?></h4>
+		    <?php echo $this->shift['base_name'] . ", " . $this->shift['site_name'] ?>
+        </div>
+	</td>
+
+	<td class="num-patients-column" onclick='window.location="<?= $editLink ?>"'>
+        <?php if ($future && $patient_count == 0) { ?>
+            <p title='Shift has not yet occurred.'>-</p>
+        <?php } else { ?>
+		    <?= $this->shift['patient_count'] ?>
+        <?php } ?>
+	</td>
+
+	<?php if($this->shift['allow_signoff_on_patient'] == "1"): ?>
+		<td class="signoff-column">
+			<?
+			$numVerifiedRuns = $this->shift['verified_runs'];
+			$numRuns = $this->shift['total_runs'];
+			if($future && $numVerifiedRuns == 0) {
+                echo "<p title='Shift has not yet occurred.'>-</p>";
+            } elseif ($numVerifiedRuns == $numRuns && $numRuns) { ?>
+                <img src='/images/icons/<?= $this->shift['type'] ?>-signoff.svg' class="small-icon square svg" title="signoff complete" onclick="window.location='<?= $editLink ?>'" />
+			<?php } else {
+				echo $numVerifiedRuns . " of " . $numRuns;
+			}
+			?>
+		</td>
+	<?php elseif(\Fisdap\Entity\User::getLoggedInUser()->getCurrentRoleData()->program->program_settings->allow_signoff_on_shift): ?>
+		<td class="signoff-column">
+            <?php if ($future && $this->shift['verification_id']) { ?>
+				<p title='Shift has not yet occurred.'>-</p>
+			<?php } elseif($this->shift['verification_id'] == null) { ?>
+				<a href='/skills-tracker/signoff/shift-signoff/shiftId/<?php echo $this->shift['id']; ?>'>
+                    <img src='/images/icons/<?= $this->shift['type'] ?>-no-signoff.svg' class="small-icon square svg" title="signoff incomplete"/>
+                </a>
+			<?php } else { ?>
+				<a href='/skills-tracker/signoff/shift-signoff/shiftId/<?php echo $this->shift['id']; ?>'>
+                    <img src='/images/icons/<?= $this->shift['type'] ?>-signoff.svg' class="small-icon square svg" title="signoff complete"/>
+                </a>
+			<?php } ?>
+		</td>
+	<?php endif; ?>
+
+	<? if ($this->shift['allow_educator_shift_audit'] == "1") { ?>
+		<td class="audited-column" onclick='window.location="<?= $editLink ?>"'>
+            <?php if ($future) { ?>
+                <p title='Shift has not yet occurred.'>-</p>
+            <?php } else { ?>
+                <?= ($this->shift['audited']) ? "<img class='tiny-icon square' src='/images/icons/checkmark.png'>" : ""; ?>
+            <?php } ?>
+		</td>
+	<? } ?>
+
+	<td class="id-column shift_attendance" >
+        <?php if ($future) { ?>
+            <p title='Shift has not yet occurred.'>-</p>
+        <?php } else { ?>
+            <span style='height:100%;width:100%;padding:1.5em 0.75em;' class='edit_attendance'  shiftid='<?php echo $this->shift['id']; ?>'> <?= $this->shift['attendance'] ?></span>
+			<a style='height:100%;width:100%;padding:1.5em 0.75em;' class='small-link editshift-shift-link' shiftid='<?php echo $this->shift['id']; ?>' href='#' title='edit shift'>
+                 <img class='tiny-icon square svg' alt='edit shift' src='/images/icons/edit.svg'>
+		    </a>
+        <?php } ?>
+	</td>
+
+
+    <td class="actions-column">
+        <div class="action-cell">
+            <?= $iconHelper->shiftAttachmentIcon($this->shift['id'], $this->shift['attachment_count']) ?>
+
+            <?= $iconHelper->shiftCommentIcon($this->shift['id'], $this->shift['comment_count']) ?>
+
+            <?php if ($hasPermission): ?>
+                <div class="delete-icon">
+                    <a href='#' class='delete-shift' title='delete shift' shiftid='<?php echo $this->shift['id'] ?>'>
+                        <img class="tiny-icon square svg" src="/images/icons/delete.svg" alt="delete" title="delete">
+                    </a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </td>
+</tr>

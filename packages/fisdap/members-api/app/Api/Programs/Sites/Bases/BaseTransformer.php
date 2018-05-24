@@ -3,6 +3,7 @@
 use Fisdap\Entity\BaseLegacy;
 use League\Fractal\TransformerAbstract as Transformer;
 
+
 /**
  * Prepares base data for JSON output
  *
@@ -23,4 +24,4 @@ final class BaseTransformer extends Transformer
         }
         return $base;
     }
-}
+} 

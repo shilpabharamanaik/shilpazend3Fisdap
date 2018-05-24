@@ -3,6 +3,7 @@
 use Fisdap\Entity\ProgramSettings;
 use Fisdap\Fractal\Transformer;
 
+
 /**
  * Prepares program settings data for JSON output
  *
@@ -22,7 +23,7 @@ final class ProgramSettingsTransformer extends Transformer
             $programSettings = $programSettings->toArray();
         }
 
-        if (!isset($programSettings['uuid'])) {
+        if(!isset($programSettings['uuid'])) {
             $this->removeFields(['uuid'], $programSettings);
         }
 

@@ -1,0 +1,144 @@
+<div class='clear'></div>
+<br />
+<div class='grid_12'>
+    <h2 class='section-header'><?php
+        if(trim($this->goalCategory) == "Skills"){
+            echo "Skills / Interventions";
+        }else{
+            echo $this->goalCategory;
+        }
+        ?>
+    </h2>
+</div>
+
+<div class='clear'></div>
+<table id="<?php echo $this->goalCategory; ?>-table" cellspacing="0" class='report-table'>
+    <thead>
+    <tr>
+        <td width='150'></td>
+        <?php
+        $addWarning = false;
+
+        // Table Headings
+        $headerRow2 ='<td>Student</td>';
+        $studentRes = current($this->goalsResults);
+
+        $colCount = count($studentRes[$this->goalCategory]) * 2 + 1;
+
+        foreach ($studentRes[$this->goalCategory] as $i => $goalRes) {
+            $nameOut = $goalRes->goal->def->short_name;
+
+            if(trim($nameOut) == "Airway Management"){
+                $nameOut .= "*";
+                $addWarning = true;
+            }
+            echo "<td colspan='2' align='center' valign='bottom'>". $nameOut . '<br />goal: ' . $goalRes->requirementDesc . '</td>';
+
+            $headerRow2 .= "<td class='table-header-op'>O</td><td class='table-header-op'>P</td>";
+        }
+        echo "<td colspan='2' align='center' valign='bottom'>Overall<br /> %</td>";
+        echo '</tr><tr>' . $headerRow2 . "<td class='table-header-op' colspan='2'></td>";
+
+        ?>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <?php
+
+    // Table Data
+    $first = 'first ';	// needed by plugin
+
+    $countps = array();
+
+    // Should data about other people (who are not the logged in user) be anonymized? For students, yes.
+    $loggedInUser = \Fisdap\Entity\User::getLoggedInUser();
+    if($loggedInUser->getCurrentRoleName() == 'student') {
+        $anonymizeOthers = TRUE;
+    } else {
+        $anonymizeOthers = FALSE;
+    }
+
+
+    foreach($this->goalsResults as $ii => $studentRes) {
+
+        //application/modules/reports/views/scripts/goal/goals-results-multiple-students.phtml
+        $oneGoalRes = current($studentRes[$this->goalCategory]);
+        if ($oneGoalRes->studentName) {
+            $fullName = $oneGoalRes->studentName;
+            // if we are anonymizng others, override the name of any student not corresponding to the current user
+            if ($anonymizeOthers) {
+                $fullName = 'Anonymous';
+            }
+        } else {
+            //var_dump(array($ii, $studentRes)); exit;
+        }
+        echo "<tr class=\"{$first}report-row\">"
+            . '<td>' . $fullName . '</td>';
+
+        $catTotalReq = 0;
+        $catPointsTowardGoal = 0;
+
+//			$countps[$this->goalCategory][$fullName] = count($studentRes[$this->goalCategory]);
+        foreach ($studentRes[$this->goalCategory] as $i => $goalRes) {
+            $catTotalReq += $goalRes->goal->number_required;
+            $catPointsTowardGoal += $goalRes->pointsTowardGoal;
+
+            // keep: this wouild hightlight started goals in yellow
+            //$goalMet = $goalRes->met(true) ? "class='completed'" :
+            //	(($goalRes->pointsTowardGoal) ? "class='started'" : '');
+
+            $goalMet = $goalRes->met(true) ? "class='completed'" : '';
+
+            // Need to do a special case here, since the Airway Management doesn't have a super reliable
+            // means of tallying the Observed count.  Set it to N/A.
+            if($goalRes->goal->def->short_name == "Airway Management"){
+                echo  "<td>N/A</td><td $goalMet>" . $goalRes->performedCountDesc . '</td>';
+            }else{
+                echo  "<td>" . $goalRes->observedCountDesc . "</td>"
+                    . "<td $goalMet>" . $goalRes->performedCountDesc . '</td>';
+            }
+        }
+
+        $perc = ($catTotalReq == 0) ? 'n/a' : number_format($catPointsTowardGoal/$catTotalReq * 100, 1) . '%';
+        echo "<td colspan='2'>" . $perc . "</td>";
+
+        echo '</tr>';
+        $first='';
+    } ?>
+
+    <tr class='tablescroll_head'>
+        <td width='150'></td>
+        <?php
+        // Table Headings
+        $studentRes = reset($this->goalsResults);
+
+        foreach ($studentRes[$this->goalCategory] as $i => $goalRes) {
+            $nameOut = $goalRes->goal->def->short_name;
+
+            if(trim($nameOut) == "Airway Management"){
+                $nameOut .= "*";
+                $addWarning = true;
+            }
+            echo "<td colspan='2' align='center' valign='bottom'>". $nameOut . '<br />goal: ' . $goalRes->requirementDesc . '</td>';
+        }
+        echo "<td colspan='2' align='center' valign='bottom'>Overall<br /> %</td>";
+        echo '</tr>';
+
+        ?>
+    </tr>
+
+    </tbody>
+    <tfoot>
+    <tr class='report-row'>
+        <?php //echo '<td colspan=' . $colCount . '>Summary</td>'; ?>
+    </tr>
+    </tfoot>
+</table>
+
+<?php
+if($addWarning){
+    echo "<div style='color: #655D57; font-size: .90em'>*: Successful Airway Management performed before Aug 1, 2013 is NOT included.</div>";
+}
+?>

@@ -2,6 +2,7 @@
 
 use Closure;
 
+
 /**
  * Pipe that logs command dispatching
  *

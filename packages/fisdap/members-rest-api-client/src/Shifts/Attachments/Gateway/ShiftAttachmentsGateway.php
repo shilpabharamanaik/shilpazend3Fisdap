@@ -2,6 +2,7 @@
 
 use Fisdap\Api\Client\Attachments\Gateway\AttachmentsGateway;
 
+
 /**
  * Contract for shift attachments gateways
  *

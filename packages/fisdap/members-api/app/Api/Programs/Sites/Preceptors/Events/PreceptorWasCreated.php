@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Programs\Sites\Preceptors\Events;
 
+
 use Fisdap\Api\Events\Event;
 
 /**
@@ -48,3 +49,4 @@ final class PreceptorWasCreated extends Event
         return $this->name;
     }
 }
+

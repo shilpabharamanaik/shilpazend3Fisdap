@@ -2,6 +2,7 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface ClassSectionLegacyRepository
  *
@@ -84,4 +85,4 @@ interface ClassSectionLegacyRepository extends Repository
      * @return array
      */
     public function getFormOptions($programId, $active = null);
-}
+} 

@@ -2,6 +2,7 @@
 
 namespace Fisdap\Api\Programs\Sites\Preceptors;
 
+
 use Fisdap\Entity\PreceptorLegacy;
 use Fisdap\Fractal\Transformer;
 

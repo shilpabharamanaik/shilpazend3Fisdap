@@ -7,12 +7,13 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface TestScoreLegacyRepository
  *
  * @package Fisdap\Data\TestScore
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface TestScoreLegacyRepository extends Repository
-{
+interface TestScoreLegacyRepository extends Repository {
+
 }

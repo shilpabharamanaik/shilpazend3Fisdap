@@ -1,0 +1,92 @@
+<?php
+
+/* * **************************************************************************
+ *
+ *         Copyright (C) 1996-2011.  This is an unpublished work of
+ *                          Headwaters Software, Inc.
+ *                             ALL RIGHTS RESERVED
+ *         This program is a trade secret of Headwaters Software, Inc.
+ *         and it is not to be copied, distributed, reproduced, published,
+ *         or adapted without prior authorization
+ *         of Headwaters Software, Inc.
+ *
+ * ************************************************************************** */
+
+/**
+ * Description of eval-hook
+ *
+ * @author astevenson
+ */
+
+echo "<h1>Available Evals</h1>";
+
+echo "<ul id='eval-list'>";
+
+echo "<li><a href='#'>Skill Lab - Spinal Immobilization</a></li>";
+
+echo "</ul><br />";
+
+echo "<h1>Completed Evals</h1>";
+echo "<ul id='completed-eval-list'>";
+echo "<li>No evals have been completed yet!</li>";
+echo "</ul>";
+?>
+
+<div id='frame-modal'></div>
+
+<script>
+	var frameModal = $('#frame-modal');
+	
+	function postSave(reload, evalDefId){
+		frameModal.empty();
+		
+		if(reload == 1){
+			loadEval(evalDefId);
+		}else{
+			// Closing the dialog triggers a page refresh.
+			frameModal.dialog('close');
+		}
+	}
+	
+	frameModal.bind("dialogclose", function(event, ui){
+		blockUi(true);
+		// If we're not showing a new eval, reload the page to get a new listing.
+		window.location.reload(true);
+	});
+	
+	currentInterval = null;
+	
+	$(function(){
+		frameModal.hide();
+		
+		// On ready, rework the list anchor tags to open up a modal with the 
+		// eval in it...
+		$('#eval-list').children().each(function (index, el){
+			aTag = $(el).find('a').first();
+			
+			aTag.click(function(){
+				initModal();
+				newIFrame = $("<iframe id='eval-frame' type='text/html' width='900' height='475' src='/oldfisdap/eval-render'></iframe>");
+				frameModal.dialog('open');
+				frameModal.append(newIFrame);
+				frameModal.show();
+				return false;
+			});
+		});
+	});
+	
+	initModal = function(){
+		modalWidth = '950';
+		modalHeight = 550;
+		
+		frameModal.empty();
+		
+		frameModal.dialog({
+			autoOpen: false, 
+			width: modalWidth, 
+			height: modalHeight,
+			resizable: false,
+			modal: true
+		});
+	}
+</script>

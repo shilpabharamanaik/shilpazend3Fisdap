@@ -3,6 +3,7 @@
 use Fisdap\Api\Events\Event;
 use Fisdap\Entity\SerialNumberLegacy;
 
+
 /**
  * Template for serial number (SerialNumberLegacy Entity) events
  *

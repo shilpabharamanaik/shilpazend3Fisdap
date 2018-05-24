@@ -1,0 +1,12 @@
+<div>
+		<p><?= $this->recipient->getContextualName() ?> is now scheduled for the following <?= $this->event->type ?> shift:</p>
+		<div>
+			<?= $this->event->getDetailViewDate() ?><br>
+			<?= $this->event->getLocation() ?>
+		    <?= ($this->event->notes) ? "<br />Notes: " . $this->event->notes : ""; ?>
+		    <div><?= $this->event->getPreceptorText(); ?></div>
+		    <div><?= $this->event->getInstructorText(); ?></div>
+		    <?= $this->event->getStudentSlotText(true); ?>
+		</div>
+
+</div>

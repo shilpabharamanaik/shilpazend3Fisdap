@@ -1,0 +1,20 @@
+{
+	"name": "fisdap/session",
+	"description": "Zend Framework 1 session package",
+	"keywords": [
+		"framework",
+		"zf1",
+		"zend",
+		"exception"
+	],
+	"homepage": "http://framework.zend.com/",
+	"license": "BSD-3-Clause",
+	"require": {
+		"php": ">=5.2.11"
+	},
+	"autoload": {
+		"psr-0": {
+			"Zend_Session": "library/"
+		}
+	}
+}

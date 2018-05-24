@@ -10,4 +10,5 @@ use Fisdap\Data\Repository\Repository;
  */
 interface OtherInterventionRepository extends Repository
 {
+
 }

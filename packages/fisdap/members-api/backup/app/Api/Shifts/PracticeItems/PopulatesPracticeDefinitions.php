@@ -2,6 +2,7 @@
 
 use Fisdap\Entity\ProgramLegacy;
 
+
 /**
  * Contract for a PracticeItem Populator
  *

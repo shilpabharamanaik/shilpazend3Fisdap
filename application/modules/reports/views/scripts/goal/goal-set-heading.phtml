@@ -1,0 +1,17 @@
+<div class="grid_11">
+    <h1>Goals Report: <?php echo $this->goalSet->name; ?></h1>
+</div>
+<div class='grid_1 no-pdf'><a href='#' onclick='return createGoalsReportPDF("goalsReport");' id='pdfLink'><img src='/images/icons/pdf_icon.png' /></a></div>
+<div class="clear"></div>
+<!--<a href='/reports/goal'>< Return to "Goals Report: Pick Your Settings"</a>-->
+<div class='island'>
+    <div class='grid_12'>
+        <div class='grid_8 summary-box' >
+            <b>Goal Set:</b>
+            <?php echo $this->goalSet->name; ?><br />
+            <b>Students:</b>
+            <?php echo $this->studentCount . '  ' . $this->heading->studentsInfo; ?> <br />
+            <b>Shifts:</b>
+            <?php echo $this->heading->shiftsInfo; ?><br />
+
+        </div>

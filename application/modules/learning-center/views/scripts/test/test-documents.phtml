@@ -1,0 +1,20 @@
+<h2 class="page-title"><?= $this->pageTitleHelper() ?></h2>
+
+<div class="grid_12 island">
+	<p><a href="/learning-center/test/upload-test-document">Upload a new test document</a>.</p>
+	
+	<ul class="test-documents-tests">
+		<?php foreach($this->tests as $test) {
+			print '<li><strong>' . $test->test_name . '</strong>';
+			if (count($test->documents) > 0) {
+				print '<ul class="test-documents-documents">';
+				foreach($test->documents as $document) {
+					print '<li>' . $document->label . ' (<a href="/learning-center/test/upload-test-document/did/' . $document->id . '">edit</a> <a href="/learning-center/test/delete-test-document/did/' . $document->id . '">delete</a>)</li>';
+				}
+				print '</ul></li>';
+			} else {
+				print ' - No documents</li>';
+			}
+		} ?>
+	</ul>
+</div>

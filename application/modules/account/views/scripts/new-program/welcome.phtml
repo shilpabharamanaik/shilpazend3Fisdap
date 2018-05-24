@@ -1,0 +1,23 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_6 withTopMargin">
+    <img src="/images/shields.png">
+</div>
+
+<div class="grid_6 withTopMargin">
+    <p>
+        Fisdap offers a suite of online tools designed for healthcare education. To make sure we give you the best tools for your program, please tell us about your organization.
+    </p>
+    <br />
+    <?= $this->form ?>
+    <div id='cert-levels'>
+        Student types: 
+        <? foreach ($this->certifications as $professionId => $certs) {
+            echo "<span class='certs' id='certs_$professionId'>" . implode(", ", $certs) . "</span>";
+        } ?>
+    </div>
+</div>
+
+<div class="clear"></div>
+<div class="prefix_8 grid_4">
+    <a id="next-link" href="#">Next (About your organization) >></a>
+</div>

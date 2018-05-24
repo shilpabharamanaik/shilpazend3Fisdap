@@ -1,0 +1,22 @@
+Hello, <?= $this->request->owner->user->first_name ?>!
+<div>
+<?php 	switch ($this->request->request_type->name) {
+		case "drop":	?>
+			<p>You have cancelled your request to drop the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+		case "cover": ?>
+			<p>You have cancelled your request for coverage from <?= $this->request->recipient->user->getName() ?> for the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+		case "swap": ?>
+			<p>You have cancelled your request to swap the following <?= $this->request->event->type ?> shift with <?= $this->request->recipient->user->getName() ?>:</p>
+<?php			break;
+	} 	?>
+	
+	<div>
+		<?= $this->request->event->getDetailViewDate() ?><br>
+		<?= $this->request->event->getLocation() ?>
+	</div>
+	
+	<p>You are still responsible for this shift.</p>
+	
+</div>

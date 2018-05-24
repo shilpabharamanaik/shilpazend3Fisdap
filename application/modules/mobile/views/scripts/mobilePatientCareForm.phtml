@@ -1,0 +1,134 @@
+<div id='form-holder'>
+	<?php if ($this->element->run->shift->type == "lab") { ?>
+		<div class="grid_12">
+			<?php echo $this->element->subject ?>
+		</div>
+	<?php } ?>
+
+	<?php if ($this->element->run->shift->type != "clinical") { ?>
+	
+		<div class="grid_12">
+			<h3 class='section_header'>Team</h3>
+		</div>
+
+	
+		<div class="grid_12">
+			<?php echo $this->element->teamLead ?>
+		</div>
+
+		<div class="grid_12">
+			<?php echo $this->element->teamSize ?>
+		</div>
+		
+		<div class="grid_12">
+			<?php echo $this->element->preceptor ?>
+		</div>
+		
+		<div class="grid_12">
+			<h3 class='section_header'>Dispatch</h3>
+		</div>
+
+		<div class="grid_12">
+			<?php echo $this->element->responseMode ?>
+		</div>
+	<?php } ?>
+
+	<div class="grid_12">
+		<h3 class='section_header'>Patient Assessment</h3>
+	</div>
+
+
+	<div class="grid_12">
+		<?php echo $this->element->interview ?>
+		<?php echo $this->element->exam ?>
+                <?php echo $this->element->airway_success ?>
+	</div>
+
+
+	<div class="grid_12">
+		<?php echo $this->element->age ?>
+	</div>
+
+	<div class="grid_12">
+		<?php echo $this->element->gender ?>
+	</div>
+
+	<div class="grid_12">
+		<?php echo $this->element->ethnicity ?>
+	</div>
+
+	<div class="grid_12">
+		<div class="grid_3">
+			<?php echo $this->element->alert ?>
+		</div>
+		<div id="alert-fields">
+			<div class="grid_4">
+				<?php echo $this->element->orientation ?>
+			</div>
+			<div class="grid_5">
+				<?php echo $this->element->response ?>
+			</div>
+		</div>
+	</div>
+
+	<div class="grid_12">
+		<?php echo $this->element->complaints ?>
+	</div>
+
+	<div class="grid_12">
+		<?php echo $this->element->primary ?>
+	</div>
+
+	<div class="grid_12">
+		<?php echo $this->element->secondary ?>	
+	</div>
+
+	<div id="arrest-fields">
+		<div class="grid_6">
+			<?php echo $this->element->witness ?>
+		</div>
+
+		<div class="grid_6">
+			<?php echo $this->element->pulseReturn ?>
+		</div>
+	</div>
+
+	<div id="trauma-fields">
+		<div class="grid_12">
+			<?php echo $this->element->mechanism ?>
+		</div>
+		<div class="grid_12">
+			<?php echo $this->element->cause ?>
+		</div>
+		<div class="grid_12">
+			<?php echo $this->element->intent ?>
+		</div>
+	</div>
+
+	<div class="grid_12">
+		<?php echo $this->element->criticality ?>
+	</div>
+
+	<?php if ($this->element->run->shift->type != "clinical") { ?>
+		<div class="grid_12">
+			<h3 class='section_header'>Transportation</h3>
+		</div>
+
+		<div class="grid_12">
+			<?php echo $this->element->disposition ?>
+		</div>
+
+		<div class="grid_12">
+			<?php echo $this->element->transport ?>
+		</div>
+	<?php } ?>
+
+	<?php echo $this->element->hiddenPatientId ?>
+	<?php echo $this->element->runId ?>
+	<?php echo $this->element->formName ?>
+
+	
+	<div style="float:right;">
+		<?php echo $this->element->save ?>
+	</div>
+</div>

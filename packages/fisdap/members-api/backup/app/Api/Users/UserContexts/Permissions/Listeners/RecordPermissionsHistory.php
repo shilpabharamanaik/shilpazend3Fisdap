@@ -7,6 +7,7 @@ use Fisdap\Entity\PermissionHistoryLegacy;
 use Fisdap\Logging\Events\EventLogging;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
+
 /**
  * Records a change to role permissions
  *
@@ -55,7 +56,7 @@ final class RecordPermissionsHistory implements ShouldQueue
 
         $changerRoleId = $event->getChangerRoleDataId();
 
-        if (! is_null($changerRoleId)) {
+        if ( ! is_null($changerRoleId)) {
             $permissionHistory->setChanger($this->instructorLegacyRepository->getOneById($changerRoleId));
         }
 

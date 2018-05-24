@@ -1,0 +1,387 @@
+<script>
+    //save the signoff before navigating away from this form
+    window.onbeforeunload = function () {
+        if($("#signoffForm").length > 0) {
+            removeSigAutosave();
+        }
+
+    }
+
+
+	var signoffClock = 0;
+
+	// Tracks whether an ajax request is currently pending...
+	// Flips to true before we send it, false when the ajax returns.
+	var pendingSigChange = false;
+
+	// Tracks whether or not to send a second request when the 
+	// pending one completes.  This prevents us from spamming several
+	// ajax requests for clicking many fields at once.  Effectively
+	// makes it asynch without locking the interface.
+	var resendSigRequest = false;
+	
+	var alreadySavedSig = false;
+	
+	var sigTime = 0;
+	
+
+	function removeSigAutosave(){
+		//$.ajaxSetup({async:false});
+		autosaveSigData();
+		$('#signoffForm select:visible').unbind('blur');
+		$('#signoffForm input:visible').unbind('blur');
+		$('#signoffForm textarea:visible').unbind('blur');
+		$("#signoffForm #save").unbind('click');
+		$('#shift-overview-link').unbind('click');
+		clearInterval(signoffClock);
+		sigTime = 0;
+	}
+	
+	//autosave is a flag to tell the server not to save the verfication piece
+	function autosaveSigData(autosave) {
+		if (typeof autosave == "undefined") {
+			autosave = 1;
+		}
+		var data = $('#signoffForm').serialize();
+
+		data += "&autosave=" + autosave;
+
+		if (!pendingSigChange) {
+			pendingSigChange = true;
+
+			$.post("/skills-tracker/patients/save-signoff-ajax", data, function(response){
+				if (typeof response == "object") {
+					blockUi(false);
+					
+					//Add errors to page
+					htmlErrors = '<div class=\'form-errors alert\'><ul>';
+					$('label').removeClass('prompt-error');
+					
+					$.each(response, function(elementId, msgs) {
+						$('label[for=' + elementId + ']').addClass('prompt-error');
+						htmlErrors += '<li>' + msgs + '</li>';
+					});
+					
+					htmlErrors += '</ul></div>';
+					
+					$('#signoff .form-errors').remove();
+					$('div#signoff').prepend(htmlErrors);
+					$( 'html, body' ).animate( {scrollTop: $('#signoff .form-errors').offset().top}, 0);
+				} else {
+					// Reset the counter...
+					sigTime = 0;
+
+					$("#signoffForm #signoffId").val(response);
+
+					alreadySavedSig = true;
+					
+					if (autosave == 0) {
+						window.location = "/skills-tracker/shifts/my-shift/";
+					}
+				}
+				
+				pendingSigChange = false;
+
+				if (resendSigRequest) {
+					resendSigRequest = false;
+					autosaveSigData();
+				}
+			});
+		} else {
+			resendSigRequest = true;
+		}
+	}
+	
+	function initSigAutosave() {
+		// unbind everything, because we're about to rebind it all
+		$("#rating-table input").unbind();
+		$("#save-clone").unbind();
+		$("#signoffButton").unbind();
+		$('#shift-overview-link').unbind();
+		$('#signoffForm textarea').unbind();
+
+		alreadySavedSig = false;
+		sigTime = 0;
+		
+		//get summary seed if it's blank
+		if ($("#summary").val() == "") {
+			$.post("/skills-tracker/patients/generate-summary-seed/", {"runId" : $("#runId").val() },
+				   function(response) {
+					$("#summary").val(response);
+				   });
+		}
+		
+		// Tracks whether an ajax request is currently pending...
+		// Flips to true before we send it, false when the ajax returns.
+		var pendingSigChange = false;
+
+		// Tracks whether or not to send a second request when the 
+		// pending one completes.  This prevents us from spamming several
+		// ajax requests for clicking many fields at once.  Effectively
+		// makes it asynch without locking the interface.
+		var resendSigRequest = false;
+
+		//Get scores of preceptor ratings and add them together
+		calcScores = function() {
+			var score = 0;
+			var possible = 0;
+			var percentage = 0;
+			
+			for (i=1; i <= 7; i++) {
+				var value = $('input[name="Student_' + i + '[rating]"]:checked').val();
+				var disabledToggle = $('input[name="Student_' + i + '[disabled]"]').is(':checked');
+				
+				if (!disabledToggle) {
+					if (value) {
+						score += parseInt(value);
+					}
+					possible += 2;
+				}
+			}
+			
+			for (i=1; i <= 7; i++) {
+				var value = $('input[name="Preceptor_' + i + '[rating]"]:checked').val();
+				var disabledToggle = $('input[name="Preceptor_' + i + '[disabled]"]').is(':checked');
+				
+				if (!disabledToggle) {
+					if (value) {
+						score += parseInt(value);
+					}
+					possible += 2;
+				}
+			}
+			
+			$("#rating-possible").text(possible);
+			$("#rating-score").text(score);
+			if (possible == 0) {
+				$("#rating-percentage").text("N/A");
+			} else {
+				percentage = score/possible * 100;
+				$("#rating-percentage").text(percentage.toFixed(0));
+			}
+		}
+		
+		//calculate scores when this page loads
+		calcScores();
+		
+		//bind calculate scores event to all the preceptor rating inputs
+		$("#rating-table input").click(calcScores);
+        $("#rating-table input").change(function(e) {
+            e.preventDefault();
+            autosaveSigData(1);
+        });
+		
+		//The save button will only save signoff data
+		$("#save-clone").click(function(e) {
+			e.preventDefault();
+			autosaveSigData(1);
+		});
+		
+		//The signoff button will actually submit the verification data
+		$("#signoffButton").parent().addClass("green-buttons");
+		$("#signoffButton").button().css("font-size", "80%").click(function(e) {
+			e.preventDefault();
+			if ($("#lock").is(":checked")) {
+				var confirmationMsg = 'By clicking "ok" below, you\'re indicating that this information is complete and correct. The student will not be able to record any additional information for this patient.';
+			} else {
+				var confirmationMsg = 'By clicking "ok" below, you\'re indicating that the information on this form is complete and correct.';
+			}
+			
+			$('<div>' + confirmationMsg + '</div>').dialog({
+				modal: true,
+				resizable: false,
+				draggable: false,
+				width: 600,
+				title: "Sign off confirmation",
+				buttons: {
+					Cancel : function() {
+						$(this).dialog("close");
+					},
+					"Ok" : function() {
+						$(this).dialog("close");
+						blockUi(true);
+						// wait until any pending requests are done, then save the signoff
+						if ($.active > 0) {
+							$(document).ajaxStop(function () {
+								autosaveSigData(0);
+								$(document).unbind("ajaxStop");
+							});
+						} else {
+							autosaveSigData(0);
+						}
+
+					}
+				}
+			});
+		});
+
+		$('#signoffForm textarea:visible').blur(function(e){autosaveSigData()});
+
+		$('#shift-overview-link').click(function(e){
+			$.ajaxSetup({async:false});
+			autosaveSigData();
+		});
+
+		signoffClock = setInterval(function(){
+			sigTime++;
+
+			if(sigTime < 60){
+				timestr = sigTime + ' seconds';
+			}else if(sigTime >= 60 && sigTime < 120){
+				timestr = '1 minute';
+			}else if(sigTime >= 120 && sigTime < 3600){
+				timestr = Math.floor(sigTime/60) + ' minutes';
+			}else{
+				timestr = '&gt;1 hour';
+			}
+			
+			//Only display the timer notification we've done at least one autosave
+			if (alreadySavedSig) {
+				if (sigTime <= 1) {
+					//show the timer readout and highlight for a few seconds
+					var timerReadout = $("#autosave-timer-sig").show();
+					//timerReadout.addClass("updated").removeClass('updated', 3000);
+				}
+				
+				
+				$('#autosave-timer-sig').html('Last saved ' + timestr + ' ago');
+			}
+		}, 1000);
+	}
+</script>
+
+<?php if(!$this->element->run) { ?>
+<h2 class="section-header">Shift Signoff</h2>
+<?php } ?>
+
+<? if ($this->element->verification->id) { ?>
+	<div id="signoff-notice" class="notice">
+		<? if ($this->element->run->locked) { ?>
+			<div class="notice-icon">
+				<img class="small-icon square svg" title="patient locked" src="/images/icons/locked.svg" alt="patient locked">
+			</div>
+		<? } ?>
+		  <?php if ($this->element->verification->verified) { ?>
+		<?= $this->element->verification->getSignoffMessage() ?>
+		If you want to make changes to this page, you will need to click the "unverify" button at the bottom and the preceptor will need to fill out the form again.
+		  <?php } ?>
+	</div>
+<? } ?>
+
+<div class="grid_12 signoff-container">
+	<h4 class="sub-heading">Shift Summary</h4>
+	<div>
+		<p class="signoff-subtext">List patient age, gender and primary impression; LOC, complaints, and event circumstances; and summarize the treatments successfully performed by the student.</p>
+		<?php echo $this->element->summary ?>
+	</div>
+</div>
+
+<div class="clear"></div>
+
+<?php if($this->element->run): ?>
+	<div <?php echo (($this->element->allow_educator_evaluations) ? '': 'style="display:none;"');  ?> class="grid_12 signoff-container" id="hide_the_rater_section">
+		<h4 class="sub-heading">Directions</h4>
+		<div class="grid_12">
+			<p class="signoff-subtext" style="margin-bottom: 1em;">
+				The contact should be rated by the student FIRST and the preceptor SECOND. Use the following standard for evaluation:<br />
+				<span class="rating">NA</span> - Not Applicable
+				; Not needed or expected<br />
+				<span class="rating">0</span> - Unsuccessful; required excessive or critical prompting; not attempted when student was expected to try<br />
+				<span class="rating">1</span> - Marginal; Inconsistent; Not yet competent<br />
+				<span class="rating">2</span> - Successful; Competent; No Prompting
+			</p>
+			<table id="rating-table">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Student</th>
+						<th>Preceptor</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					foreach ($this->element->types as $typeId => $typeName) {
+						echo "<tr><td class='first'>$typeName</td>";
+						foreach ($this->element->raterTypes as $raterId => $raterName) {
+							$elementName = $raterName . "_" . $typeId;
+							if ($raterName == "Preceptor") {
+								echo "<td class='last'>";
+							} else {
+								echo "<td>";	
+							}
+							echo $this->element->$elementName . "</td>";
+						}
+						echo "</tr>";
+					}
+					?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<?php endif; ?>
+
+<div class="grid_6">
+	<?php if($this->element->run && $this->element->allow_educator_evaluations): ?>
+		<h4 class="sub-heading">Score</h4>
+		<p>
+			Total: <span id="rating-percentage"></span>% (<span id="rating-score"></span> of <span id="rating-possible"></span>)
+		</p>
+	<?php endif; ?>
+	<h4 class="sub-heading">Plan of Action</h4>
+	<p class="signoff-subtext">What would you suggest the student could work on to improve?</p>
+	<?php echo $this->element->plan ?>
+</div>
+
+<div class="grid_6">
+	<h4 class="sub-heading">Preceptor Signoff</h4>
+	<p class="signoff-subtext">
+        <? if ($this->element->signoffTypeCount > 1) { ?>
+		    Preceptors: Use one of the methods below to verify this evaluation's accuracy.
+        <? } else if ($this->element->signoffTypeCount === 1) { ?>
+            Preceptors: Sign off below to verify this evaluation's accuracy.
+        <? } ?>
+	</p>
+	<?php echo $this->element->verificationForm ?>
+</div>
+
+<div class="clear"></div>
+
+
+<?php
+if (!$this->element->verification->id) {
+?>
+<div class='save-button-container' style="float:right; padding-top: 15px;">
+	<?php echo $this->element->save ?>
+</div>
+<?php
+}
+?>
+
+<?php if($this->element->run): ?>
+	<div id="autosave-timer-sig">Autosave:</div>
+	<div class="lower-nav">
+		<div style="float:left;">
+			<?php if(\Fisdap\Entity\User::getLoggedInUser()->getCurrentRoleData()->program->include_narrative): ?>
+				<a href="#" style='color: #A94612' class="narrative-link"><< Previous (narrative)</a>
+			<?php else: ?>
+				<?php if(\Fisdap\Entity\User::getLoggedInUser()->getCurrentRoleData()->program->program_settings->allow_signoff_on_patient): ?>
+					<a href="#" style='color: #A94612' class="patient-care-link"><< Previous (patient care)</a>
+				<?php endif;?>
+			<?php endif;?>
+		</div>
+
+		<div style="float:right;">
+			Next: <a href="/skills-tracker/shifts/create-run/shiftId/<?= $this->element->run->shift->id ?>" style='color: #A94612'>
+			Add another patient</a> or
+			<a href="/skills-tracker/shifts/detailed-shift-report/shiftId/<?= $this->element->run->shift->id ?>" style='color: #A94612'>Review shift documentation</a>
+		</div>
+	</div>
+<?php endif; ?>
+
+<div class="clear"></div>
+
+
+<?php echo $this->element->signoffId ?>
+<?php echo $this->element->runId ?>
+<?php echo $this->element->shiftId ?>
+<?php echo $this->element->formName ?>

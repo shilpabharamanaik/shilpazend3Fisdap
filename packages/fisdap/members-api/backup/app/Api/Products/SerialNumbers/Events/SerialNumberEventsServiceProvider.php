@@ -5,6 +5,7 @@ use Fisdap\Api\Products\SerialNumbers\Listeners\UpdateComplianceRequirements;
 use Fisdap\Api\Products\SerialNumbers\Listeners\EnrollUserInMoodleCourses;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
+
 /**
  * Registers listeners for serial number events
  *

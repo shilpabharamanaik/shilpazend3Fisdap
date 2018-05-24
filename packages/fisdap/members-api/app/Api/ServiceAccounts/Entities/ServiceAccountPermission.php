@@ -6,12 +6,13 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Class ServiceAccountPermission
  *
  * @package Fisdap\Api\ServiceAccounts\Entities
  * @author  Ben Getsug <bgetsug@fisdap.net>
- *
+ *          
  * @Table(name="ServiceAccountPermission")
  * @Entity(repositoryClass="Fisdap\Api\ServiceAccounts\Permissions\Repository\DoctrineServiceAccountPermissionsRepository")
  */

@@ -4,6 +4,7 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\PrePersist;
 use Doctrine\ORM\Mapping\PreUpdate;
 
+
 /**
  * For use with Doctrine Entities, this satisfies the HasTimestamps contract
  *

@@ -1,0 +1,155 @@
+<div class="columns-container">
+    <div class="grid_4">
+        <div class="form-section">
+            <h4 class="sub-heading">Contact</h4>
+            <?= $this->element->first ?>
+            <?= $this->element->middle ?>
+            <?= $this->element->last ?>
+            <?= $this->element->email ?>
+            <?= $this->element->phone ?>
+        </div>
+    </div>
+
+    <div class="grid_4">
+        <div class="form-section">
+            <h4 class="sub-heading">Address</h4>
+            <?= $this->element->ADDRESS ?>
+            <?= $this->element->addressLineTwo ?>
+            <?= $this->element->CITY ?>
+            <?= $this->element->STATE ?>
+            <?= $this->element->ZIP ?>
+            <?= $this->element->COUNTRY ?>
+        </div>
+    </div>
+
+    <div class="grid_4">
+        <div class="form-section">
+            <h4 class="sub-heading">Credit Card</h4>
+
+            <div>
+                <img id="visa-logo" class="credit-card-icon" src="https://www.braintreegateway.com/images/payment_instrument_images/visa.png" alt="Visa">
+                <img id="master-card-logo" class="credit-card-icon" src="https://www.braintreegateway.com/images/payment_instrument_images/mastercard.png" alt="MasterCard">
+                <img id="discover-logo" class="credit-card-icon" src="https://www.braintreegateway.com/images/payment_instrument_images/discover.png" alt="Discover">
+                <img id="american-express-logo" class="credit-card-icon" src="https://www.braintreegateway.com/images/payment_instrument_images/american_express.png" alt="Amex">
+            </div>
+
+            <div class="form-prompt">
+                <label for="card-number">Card Number:</label>
+                <div id="card-number" class="braintree-field"></div>
+            </div>
+
+            <div class="form-prompt">
+                <label for="cvv">CVV:</label>
+                <div id="cvv" class="braintree-field"></div>
+            </div>
+
+            <div class="form-prompt">
+                <label for="expiration-date">Expiration Date:</label>
+                <div id="expiration-date" class="braintree-field"></div>
+            </div>
+
+            <div id="braintree-badge">
+                <a href="https://www.braintreegateway.com/merchants/<?= Braintree_Configuration::merchantId(); ?>/verified" target="_blank">
+                    <img src="https://s3.amazonaws.com/braintree-badges/braintree-badge-wide-light.png" width="280px" height ="44px" border="0"/>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="grid_12">
+    <?= $this->element->saveBillingInfo ?>
+</div>
+
+<div class="clear"></div>
+
+<div class="action-buttons">
+    <?= $this->element->orderButton ?>
+    <?= $this->costContainer($this->element->order) ?>
+</div>
+
+<div class="hidden">
+    <?= $this->element->orderId ?>
+    <?= $this->element->NAME ?>
+</div>
+<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+<script>
+    var colorTransition = "color 160ms linear";
+
+    braintree.setup("<?= Braintree_ClientToken::generate() ?>", "custom", {
+        id: "order-credit-card",
+        hostedFields: {
+            styles: {
+                // Style all elements
+                "input": {
+                    "font-size": "11px",
+                    "transition": colorTransition,
+                    "-webkit-transition": colorTransition
+                },
+                ".valid": {
+                    "color": "green"
+                },
+                ".invalid": {
+                    "color": "red"
+                },
+
+                // Media queries
+                // Note that these apply to the iframe, not the root window.
+                "@media screen and (max-width: 700px)": {
+                    "input": {
+                        "font-size": "11px"
+                    }
+                }
+            },
+            number: {
+                selector: "#card-number"
+            },
+            cvv: {
+                selector: "#cvv"
+            },
+            expirationDate: {
+                selector: "#expiration-date",
+                placeholder: "MM/YY or MM/YYYY"
+            },
+            onFieldEvent: function (event) {
+                var ccIcons = $(".credit-card-icon");
+
+                if (event.type === "fieldStateChange") {
+                    // Handle a change in validation or card type
+                    if (event.card) {
+                        switch (event.card.type) {
+                            // visa|master-card|american-express|diners-club|discover|jcb|unionpay|maestro
+
+                            case "visa":
+                            case "master-card":
+                            case "american-express":
+                            case "discover":
+                                ccIcons.addClass('unusedCard');
+                                $("#" + event.card.type + "-logo").removeClass('unusedCard');
+                                break;
+                            default:
+                                ccIcons.removeClass('unusedCard');
+                                break;
+                        }
+                    } else {
+                        ccIcons.removeClass('unusedCard');
+                    }
+                }
+            }
+        },
+        onError: function (error) {
+            blockUi(false);
+
+            var html = "<div class='error'>" +
+                "<h4>Credit Card Error</h4>" +
+                "<ul>" +
+                "<li>" + error.message + "</li>" +
+                "</ul>" +
+                "</div>";
+
+            $('#transactionErrors').html(html)
+
+        }
+    });
+</script>

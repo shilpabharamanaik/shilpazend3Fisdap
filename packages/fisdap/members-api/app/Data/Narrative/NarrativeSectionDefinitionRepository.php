@@ -7,12 +7,13 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface NarrativeSectionDefinitionRepository
  *
  * @package Fisdap\Data\Narrative
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface NarrativeSectionDefinitionRepository extends Repository
-{
+interface NarrativeSectionDefinitionRepository extends Repository {
+
 }

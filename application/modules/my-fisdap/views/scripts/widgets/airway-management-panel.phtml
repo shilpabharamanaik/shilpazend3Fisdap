@@ -1,0 +1,106 @@
+<?
+	// just to clean up the rest of the code let's simplify these variables
+	$params = $this->params;
+	$overall_progress = $params['overall_progress'];
+	$et_success_progress = $params['et_success_progress'];
+	$coa_success_progress = $params['coa_success_progress'];
+?>
+
+<div class='grid_12 airway_management_widget_wrapper'>
+        
+	<div class='grid_12'>
+        <div class='grid_5'>
+            <h3 class='airway_managemnet_widget_header'>Airway management attempts</h3>
+		</div>
+					
+        <div class='grid_7 overall_progress_bar_wrapper'>
+			
+            <div style='width:<?= $overall_progress['width']; ?>%;' class='<?= $overall_progress['class']; ?> precent_bar'>
+				<?= ($overall_progress['percent'] == 100) ? '<div class="goal-complete-checkmark"><img src="/images/icons/checkmark-dark-gray.png"></div>' : ''; ?>
+			</div>
+			
+			<span class='percent_font percent_float_text'>
+				<?= $overall_progress['percent']; ?>%
+				(<?= $overall_progress['attempt_count']; ?> of <?= $overall_progress['goal']; ?>)
+			</span>
+			
+        </div>
+		
+		<div class='clear'></div>
+        
+        <div class='grid_5 airway_management_pie_chart_wrappers'>
+			
+			<?= $params['live_patients_pie_chart']; ?>
+			<div class='clear'></div>
+			<?= $params['simulations_pie_chart']; ?>
+			
+        </div>
+        
+        <div class='grid_7 airway_management_eureka_wrappers'>
+			
+            <div class='widget_details_graph_title'>
+				Eureka (last 20 attempts)
+			</div>
+                
+			<div class='clear'></div>
+
+            <? if($overall_progress['attempt_count'] == 0){ ?>
+               <span class="airway_management_panel_no_attempts_eureka">No attempts.</span>
+            <? } ?>
+
+			<?= $params['coa_eureka']; ?>
+			<?= $params['all_eureka']; ?>
+			
+			<div class='clear'></div>
+			
+			<div class='airway_management_bottom_eureka_links'>
+				<a href='#' class='show_all_attempts toggle_am_eureka_graphs'>Show all attempts</a> | 
+				<a href='#' class='show_am_widget_eureka_details'>Show details</a> | 
+				<a href='#' class='show_am_widget_eureka_key'>Show key</a>
+			</div>
+			
+			<div class='clear'></div>
+				
+		</div>
+		
+		<div class="grid_7 success_progress_wrapper">
+
+			<div class='grid_6'>
+				<h3 class='airway_managemnet_coa_success_header'>ET Success over last 10 attempts</h3>
+			</div>
+
+			<div class='grid_6'>
+				<div style='width:<?= $et_success_progress['width']; ?>%;' class='<?= $et_success_progress['class'] ?> precent_bar'>
+					<?= ($et_success_progress['percent'] == 100) ? '<div class="goal-complete-checkmark"><img src="/images/icons/checkmark-dark-gray.png"></div>' : ''; ?>
+				</div>
+				<span class='percent_font percent_float_text'>
+					<?= $et_success_progress['percent']; ?>%
+				</span>
+			</div>
+
+			<div class='grid_6'>
+				<h3 class='airway_managemnet_coa_success_header'>Success over last 20 attempts</h3>
+			</div>
+			
+			<div class='grid_6'>
+				<div style='width:<?= $coa_success_progress['width']; ?>%;' class='<?= $coa_success_progress['class'] ?> precent_bar'>
+					<?= ($coa_success_progress['percent'] == 100) ? '<div class="goal-complete-checkmark"><img src="/images/icons/checkmark-dark-gray.png"></div>' : ''; ?>
+				</div>
+				<span class='percent_font percent_float_text'>
+					<?= $coa_success_progress['percent']; ?>%
+				</span>
+			</div>
+			
+			<div class='clear'></div>
+			
+		</div>
+		
+		<div class='clear'></div>
+			
+	</div> <? // close grid_12 ?>
+	
+</div> <? // close airway_management_widget_wrapper ?>
+
+<a href='#' class='launch-report-config airway_management_widget_launch_report' data-studentid='<?= $params['student_id']; ?>' data-reporttype='AirwayManagement' data-goalSetId="<?= $params['goal_set_id']; ?>">
+	View the full Airway Management report >>
+</a>

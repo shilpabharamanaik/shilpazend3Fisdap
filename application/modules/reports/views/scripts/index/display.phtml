@@ -1,0 +1,70 @@
+<?= $this->pageTitleHelper() ?>
+
+<div id="report-header" <?= ($this->standalone) ? "class='standalone'" : "" ?>>
+</div>
+
+<? if (!$this->standalone) { ?>
+<div id="display-report-nav-bar">
+    <?= $this->reportsNavBar("display"); ?>
+</div>
+<? } ?>
+
+<div id="report-info" class="<?php if ($this->reportContent) { ?>shown<?php } else { ?>hidden<?php } ?> island grid_12">
+    <a href="#" id="show-report-form">
+        <img id="edit-icon" title="Edit report parameters" src="/images/icons/edit-pencil.png" alt="Edit report parameters">
+    </a>
+    <div id="report-info-header">
+        <h3 class='section-header'>Report options</h3>
+        <?= $this->exportButtons(array("pdf", "csv"), "export-report-links") ?>
+        <table id='report-summary'><?= $this->summary ?></table>
+    </div>
+    <div class='clear'></div>
+</div>
+
+<div id="report-form" class="<?php if ($this->startPoller) { ?>hidden<?php } else { ?>shown<?php } ?> report-form island grid_12">
+    <div id='report-form-errors' class='error'></div>
+    <form id="report-form-form" method="post" action="/reports/index/run">
+        <?php // print form components
+        foreach($this->form as $component) {
+            if ($component['header']) {
+                print $component['header'];
+            }
+            print $component['component'];
+            if ($component['footer']) {
+                print $component['footer'];
+            }
+        }
+        ?>
+    </form>
+</div>
+
+<div class="clear"> </div>
+
+<div id="report-waiting" class="<?php if ($this->startPoller) { ?>shown<?php } else { ?>hidden<?php } ?> island grid_12">
+    <h3 class='section-header'>Fisdap Robot is running your report.</h3>
+    <div class="grid_11">
+        <p>
+            It shouldn't take more than a few minutes, but feel free to leave and return to the
+            <a href="/reports/index/history">Report History page</a> to view your results.
+        </p>
+    </div>
+    <div class="grid_1">
+        <img src="/images/icons/queueThrobber.gif" />
+    </div>
+    <?php if ($this->startPoller) { ?>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var configId = <?php print $this->configurationId; ?>;
+                var values = { 'configId' : configId };
+                // start polling the server to see when report is ready
+                reportCachePoller(configId, values);
+            })
+        </script>
+    <?php } ?>
+</div>
+
+<div id="report-content" class="<?php if ($this->reportContent) { ?>shown<?php } else { ?>hidden<?php } ?> island withTopMargin grid_12">
+    <div id="report-results">
+        <?php if ($this->reportContent) { print $this->reportContent; } ?>
+    </div>
+</div>

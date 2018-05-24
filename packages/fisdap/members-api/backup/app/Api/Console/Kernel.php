@@ -4,6 +4,7 @@ use Fisdap\Api\Bootstrap\ConfigureLogging;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+
 /**
  * Class Kernel
  *

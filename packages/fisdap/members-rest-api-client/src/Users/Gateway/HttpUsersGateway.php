@@ -4,6 +4,7 @@ use Fisdap\Api\Client\Gateway\CommonHttpGateway;
 use Fisdap\Api\Client\Gateway\GetOneById;
 use Fisdap\Api\Client\Gateway\RetrievesById;
 
+
 /**
  * HTTP implementation of a UsersGateway
  *

@@ -1,0 +1,210 @@
+<?= $this->pageTitleHelper() ?>
+
+<?php echo $this->eurekaModal; ?>
+
+<div class="grid_12 island withTopMargin">
+	
+	<h3 class="section-header">Active Items</h3>
+
+<?php foreach ($this->studentResults as $definitionID => $students) {
+	
+	// set up a few variables to make the rest of this prettier
+	$peerGoal = $this->practiceItemData['definition_data'][$definitionID]['peer_goal'];
+	$instructorGoal = $this->practiceItemData['definition_data'][$definitionID]['instructor_goal'];
+	$eurekaGoal = $this->practiceItemData['definition_data'][$definitionID]['eureka_goal'];
+	$eruekaWindow = $this->practiceItemData['definition_data'][$definitionID]['eureka_window'];
+
+	$numberOfGoals = 0;
+	if($peerGoal){$numberOfGoals++;}
+	if($instructorGoal){$numberOfGoals++;}
+	if($eurekaGoal){$numberOfGoals++;}
+
+?>
+	
+	<table class="lab-pratice-report-table fisdap-table">
+		
+	<thead>
+		<tr>
+			<th class="student-col">
+				<?php echo $this->practiceItemData['definition_data'][$definitionID]['definition_name']; ?>
+			</th>
+			
+			<th class="peer-col">
+				<img src="/images/icons/lab_skills_icon_peer_white.png">Peer:
+				<?= $peerGoal; ?>
+			</th>
+			
+			<th class="instructor-col">
+				<img src="/images/icons/lab_skills_icon_instructor_white.png">Instructor:
+				<?= $instructorGoal; ?>
+
+
+			</th>
+			
+			<th class="eureka-col">
+				<img src="/images/icons/lab_skills_icon_eureka_white.png">Eureka:
+				<?php echo ($eurekaGoal) ? $eurekaGoal . " / " . $eruekaWindow : "N/A"; ?>
+			</th>
+			
+			<td class="precent-col">
+				Overall %
+			</td>
+		</tr>
+	</thead>
+	
+	<?php
+	$count = 0;
+	foreach($this->selectedStudentIds as $studentID) {
+		
+		// get the student
+		$student = \Fisdap\EntityUtils::getEntity("StudentLegacy", $studentID);
+		
+		// set up some friendlier variables
+		$peerCheckoffs = $students[$studentID]['student'];
+		$instructorCheckoffs = $students[$studentID]['instructor'];
+		$eurekaStatus = $students[$studentID]['eurekaSuccess'];
+		$precentage = $students[$studentID]['precentage'];
+		
+		// set up classes for successes and odd/even rows
+		$rowClass = ($count%2 == 0) ? "even" : "odd";
+		$peerSuccess = ($peerCheckoffs >= $peerGoal) ? "success" : "";
+		$instructorSuccess = ($instructorCheckoffs >= $instructorGoal) ? "success" : "";
+		$eurekaSuccess = ($eurekaGoal && $eurekaStatus) ? "success" : "";
+		$complete = (($precentage == 100)) ? "success" : "";
+		
+		?>
+		
+		<tr class="<?= $rowClass; ?>">
+
+			<td class="student-col">
+				<?php echo $student->first_name . " " . $student->last_name; ?>
+			</td>
+			
+			<td class="peer-col <?= $peerSuccess; ?>">
+				<?php
+
+				echo ($peerCheckoffs) ? $peerCheckoffs : "0";
+				
+				?>
+			</td>
+			
+			<td class="instructor-col <?= $instructorSuccess; ?>">
+				<?php	echo ($instructorCheckoffs) ? $instructorCheckoffs : "0";
+				?>
+			</td>
+			
+			<td class="eureka-col <?= $eurekaSuccess; ?>">
+				<?php
+				
+				if ($eurekaGoal){?>
+				
+					<a href="#" class="eureka-trigger"
+					   data-defId="<?= $definitionID ?>"
+					   data-studentId="<?= $student->id; ?>">
+					   
+					   <?php echo ($eurekaStatus) ? "Met" : "Not Met"; ?>
+					
+					</a>
+					
+				<?php
+				}
+				else {
+					echo "N/A";
+				}
+				?>
+			</td>
+			
+			<td class="precent-col <?= $complete; ?>">
+				<?php
+				if($numberOfGoals > 0){
+					if ($precentage) {
+						echo $precentage . "%";
+					}
+					else {
+						echo "0%";
+					}
+				}
+				else {
+					echo "N/A";
+				}
+				?>
+			</td>
+			
+		</tr>
+		
+	<?php
+		$count++;
+		} // end row loop
+	?>
+		
+	</table>
+	
+	<br />
+
+<?php
+	} // end defintion table loop
+?>
+
+</div>
+
+
+<div class="grid_12 island withTopMargin">
+	<h3 class="section-header">Summary</h3>
+
+	<table class="lab-pratice-report-table fisdap-table">
+		
+	<thead>
+		<tr>
+			<th class="student-col">All Items</th>
+			
+			<th class="peer-col">
+				<img src="/images/icons/lab_skills_icon_peer_white.png">Peer
+			</th>
+			
+			<th class="instructor-col">
+				<img src="/images/icons/lab_skills_icon_instructor_white.png">Instructor
+			</th>
+			
+			<th class="eureka-col">
+				<img src="/images/icons/lab_skills_icon_eureka_white.png">Eureka
+			</th>
+			
+			<td class="precent-col">
+				Overall %
+			</td>
+		</tr>
+	</thead>
+	
+	<?php
+	$overallCount = 0;
+	foreach($this->studentTotals as $studentId => $totals) {
+		// get the student
+		$student = \Fisdap\EntityUtils::getEntity("StudentLegacy", $studentId);
+		$overallRowClass = ($overallCount%2 == 0) ? "even" : "odd";
+		
+		$peerSuccess = ($totals['peerCheckoff'] == 100) ? "success" : "";
+		$instructorSuccess = ($totals['instructorCheckoff'] == 100) ? "success" : "";
+		$eurekaStatus = ($totals['eurekaCheckoff'] == 100) ? "success" : "";
+		$overallPrecent = ($totals['overallPrecent'] == 100) ? "success" : "";
+
+		?>
+		
+		<tr class="<?= $overallRowClass; ?>">
+			<td class='student-col'><?php echo $student->first_name . " " . $student->last_name; ?></td>
+			<td class='peer-col <?= $peerSuccess; ?>'><?= $totals['peerCheckoff']; ?>%</td>
+			<td class='instructor-col <?= $instructorSuccess; ?>'><?= $totals['instructorCheckoff']; ?>%</td>
+			<td class='eureka-col <?= $eurekaStatus; ?>'><?= $totals['eurekaCheckoff']; ?>%</td>
+			<td class='precent-col <?= $overallPrecent; ?>'><?= $totals['overallPrecent']; ?>%</td>
+			
+		</tr>
+		
+	<?php	
+	$overallCount++;
+	}
+	
+	?>
+	
+	</table>
+				
+	
+</div>

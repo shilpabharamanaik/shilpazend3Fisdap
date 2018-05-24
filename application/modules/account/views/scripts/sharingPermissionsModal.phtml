@@ -1,0 +1,60 @@
+<div class="container_12" id="form_div">
+	<h3 class='section-header'>
+		<?= $this->element->program->name ?> - <?= $this->element->site->name ?>
+	</h3>
+	
+<?php if ($this->element->is_new) { ?>
+	<div id='new_share'>
+		<div class='new_directions'>
+			<?= $this->element->program->name ?> is joining the sharing network for <?= $this->element->site->name ?>.
+		</div>
+		
+		<div class='settings-line'>
+			<div class='grid_10'>
+				Add <?= $this->element->program->name ?> to all existing shared shifts?
+			</div>
+			<div class='grid_2'>
+				<?= $this->element->share_existing ?>
+			</div>
+		</div>
+		
+		<div class='settings-line'>
+			<div class='grid_10'>
+				Add <?= $this->element->program->name ?>'s existing shifts at <?= $this->element->site->name ?> to the shared schedule?
+			</div>
+			<div class='grid_2'>
+				<?= $this->element->receive_existing ?>
+			</div>
+		</div>
+	</div>
+<?php } ?>
+
+	<div class='settings-line'>
+		<div class='floater'><?= $this->element->program->name ?></div>
+		<div class='flip-container'><div id="can_admin" class="can-cannot"></div>&nbsp;</div>
+		<div class='floater'>create shared shifts at <?= $this->element->site->name ?>.</div>
+		<?php echo $this->element->admin; ?>
+	</div>
+	<div class='clear'></div>
+	
+	<div class='settings-line'>
+		<div class='floater'><?= $this->element->program->name ?></div>
+		<div class='flip-container'><div id="can_see_students" class="can-cannot"></div>&nbsp;</div>
+		<div class='floater'>see other programs' students' names.</div>
+		<?php echo $this->element->see_students; ?>
+	</div>
+	<div class='clear'></div>	
+	
+        <div class='buttons'>
+		<div id="cancelButtonWrapper" class="small gray-button">
+			<a href='#' id='cancel-sharing-btn'>Cancel</a>
+		</div>
+		<div id="saveButtonWrapper" class="small green-buttons">
+			<a href='#' id='save-sharing-btn'>Save</a>
+		</div>
+	</div>
+	<?= $this->element->new_share ?>
+	<?= $this->element->program_id ?>
+	<?= $this->element->site_id ?>
+</div>
+

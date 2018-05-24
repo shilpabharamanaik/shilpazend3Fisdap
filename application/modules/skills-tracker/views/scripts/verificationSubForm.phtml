@@ -1,0 +1,234 @@
+<?php
+use Fisdap\Api\Shifts\Attachments\Entities\ShiftAttachment;
+
+$signoffDTFormat = 'M j, Y \a\t Hi';
+
+$programSettings = $this->element->programSettings;
+// Make sure the program has signoffs included, and at least one signoff
+// method.
+if (($programSettings->allow_educator_signoff_login ||
+    $programSettings->allow_educator_signoff_signature ||
+    $programSettings->allow_educator_signoff_email ||
+    $programSettings->allow_educator_signoff_attachment
+)
+):
+    ?>
+    <div id="verification-container">
+        <div id="signOffTabs">
+            <ul>
+                <?php if ($programSettings->allow_educator_signoff_login): ?>
+                    <li><a href="#signOffTab1">Password</a></li>
+                <?php endif; ?>
+                <?php if ($programSettings->allow_educator_signoff_signature): ?>
+                    <li><a href="#signOffTab2">Signature</a></li>
+                <?php endif; ?>
+                <?php if ($programSettings->allow_educator_signoff_email): ?>
+                    <li><a href="#signOffTab3">Email</a></li>
+                <?php endif; ?>
+                <?php if ($programSettings->allow_educator_signoff_attachment): ?>
+                    <li><a href="#signOffTab4">Attachment</a></li>
+                <?php endif; ?>
+            </ul>
+            <?php if ($programSettings->allow_educator_signoff_login): ?>
+                <div id="signOffTab1">
+                    <input type='hidden' id='hiddenVerificationType' value='Password'/>
+                    <?php
+                    if ($this->element->verification->type->id == 1 && $this->element->verification->verified) {
+                        $user = \Fisdap\EntityUtils::getEntity('User', $this->element->verification->verified_by);
+
+                        // Change timezone to program timezone
+                        date_default_timezone_set('America/Chicago');
+
+                        /** @var DateTime $signoffDT */
+                        $signoffDT = clone $this->element->verification->updated;
+
+                        if ($programSettings && $programSettings->timezone && $programSettings->timezone->mysql_offset) {
+                            $signoffDT->setTimezone(DateTime::createFromFormat('O', $programSettings->timezone->mysql_offset)->getTimezone());
+                            $signoffDTFormat = $signoffDT->format($signoffDTFormat);
+                        } else {
+                            $signoffDT->setTimezone(new DateTimeZone('America/Chicago'));
+                            $signoffDTFormat = $signoffDT->format($signoffDTFormat);
+                        }
+
+                        echo $user->first_name . " " . $user->last_name . " signed off on " . $signoffDTFormat . ".";
+
+                    } else {
+                        echo $this->element->username . "\n";
+                        echo $this->element->password;
+                    }
+                    ?>
+                </div>
+            <?php endif; ?>
+            <?php if ($programSettings->allow_educator_signoff_signature): ?>
+                <div id="signOffTab2">
+                    <input type='hidden' id='hiddenVerificationType' value='Signature'/>
+                    <?php
+                    if ($this->element->verification->type->id == 2 && $this->element->verification->verified) {
+                        // Change timezone to program timezone
+                        date_default_timezone_set('America/Chicago');
+
+                        /** @var DateTime $signoffDT */
+                        $signoffDT = clone $this->element->verification->updated;
+
+                        if ($programSettings && $programSettings->timezone && $programSettings->timezone->mysql_offset) {
+                            $signoffDT->setTimezone(DateTime::createFromFormat('O', $programSettings->timezone->mysql_offset)->getTimezone());
+                            $signoffDTFormat = $signoffDT->format($signoffDTFormat);
+                        } else {
+                            $signoffDT->setTimezone(new DateTimeZone('America/Chicago'));
+                            $signoffDTFormat = $signoffDT->format($signoffDTFormat);
+                        }
+
+                        echo $this->element->verification->signature->name . " signed off on " . $signoffDTFormat . ".";
+                        echo $this->signatureHelper($this->element->verification->signature->id);
+                    } else {
+                        echo $this->element->signatureName . "\n";
+                        echo $this->element->signature;
+                    }
+                    ?>
+                </div>
+            <?php endif; ?>
+            <?php if ($programSettings->allow_educator_signoff_email): ?>
+                <div id="signOffTab3">
+                    <input type='hidden' id='hiddenVerificationType' value='Email'/>
+                    <?
+                    if ($this->element->verification->type->id == 3) {
+                        if ($this->element->verification->verified) {
+                            // Change timezone to program timezone
+                            date_default_timezone_set('America/Chicago');
+
+                            /** @var DateTime $signoffDT */
+                            $signoffDT = clone $this->element->verification->updated;
+
+                            if ($programSettings && $programSettings->timezone && $programSettings->timezone->mysql_offset) {
+                                $signoffDT->setTimezone(DateTime::createFromFormat('O', $programSettings->timezone->mysql_offset)->getTimezone());
+                                $signoffDTFormat = $signoffDT->format($signoffDTFormat);
+                            } else {
+                                $signoffDT->setTimezone(new DateTimeZone('America/Chicago'));
+                                $signoffDTFormat = $signoffDT->format($signoffDTFormat);
+                            }
+
+                            echo $this->element->verification->email->preceptor->first_name . " signed off on " . $signoffDTFormat . ".";
+                        } else {
+                            echo "An invitation was emailed to " . $this->element->verification->email->preceptor->first_name
+                                . " " . $this->element->verification->email->preceptor->last_name . " on "
+                                . $this->element->verification->email->sent_time->format($signoffDTFormat) . ". "
+                                . $this->element->verification->email->preceptor->first_name
+                                . " has not yet rated your performance.";
+                        }
+                    } else {
+                        if ($this->element->patient->preceptor->email) {
+                            echo "<p>Fisdap can send your preceptor an invitation to fill out this form. That way, it can be filled out whenever your preceptor has some spare time. Make sure you rate your own performance before inviting the preceptor to rate you.</p><br>";
+                            echo $this->element->emailCheckbox;
+                            echo $this->element->preceptorId;
+                        } else {
+                            echo "You must first select a preceptor to use this method of verification.";
+                        }
+                    }
+
+                    ?>
+                </div>
+            <?php endif; ?>
+            <?php if ($programSettings->allow_educator_signoff_attachment): ?>
+                <div id="signOffTab4" class="attachment-table-container">
+                    <input type='hidden' id='hiddenVerificationType' value='Attachment'/>
+
+                    <?php
+                        $shiftType = $this->element->shift->type;
+                        $shiftId = $this->element->shift->id;
+
+                        if ($this->element->verification->type->id == 4 && $this->element->verification->verified) {
+                            date_default_timezone_set('America/Chicago');
+
+                            /** @var DateTime $signoffDT */
+                            $signoffDT = clone $this->element->verification->updated;
+
+                            if ($programSettings && $programSettings->timezone && $programSettings->timezone->mysql_offset) {
+                                $signoffDT->setTimezone(DateTime::createFromFormat('O', $programSettings->timezone->mysql_offset)->getTimezone());
+                                $signoffDTFormat = $signoffDT->format($signoffDTFormat);
+                            } else {
+                                $signoffDT->setTimezone(new DateTimeZone('America/Chicago'));
+                                $signoffDTFormat = $signoffDT->format($signoffDTFormat);
+                            }
+
+                            // Attachment signoff exists
+                            $shiftAttachment = $this->element->shiftAttachment;
+                            echo "Signed off on ". $signoffDTFormat . ".";
+                            echo $this->attachmentCard($shiftAttachment, $shiftId, $shiftType);
+                        } else {
+                            $checkmarkTable = $this->checkmarkTableGeneric($this->element->attachmentTableConfig, $this->element->attachmentTableOptions);
+                            $attachmentsExist = count($this->element->attachmentTableOptions['rows']) > 0;
+                            $attachmentTableClasses = $attachmentsExist ? '' : 'hidden';
+                            $attachmentTableEmptyClasses = ($attachmentsExist || !$this->element->shiftAttachmentsRemaining) ? 'hidden' : '';
+
+                            if ($this->element->shiftAttachmentsRemaining) { ?>
+                                <a id="add-attachment" class="<?= $shiftType ?>" href="#" title="add an attachment" alt="+ Attachment">+ Attachment</a>
+                    <?php   } else { ?>
+                                <div class="notice">
+                                    <?php if ($this->element->isInstructor) { ?>
+                                        <?= $this->element->shift->student->user->getName() ?> has hit the maximum number of shift attachments.
+                                    <?php } else { ?>
+                                        You've hit the maximum number of shift attachments.
+                                    <?php } ?>
+                                </div>
+                    <?php   } ?>
+
+                    <?php   if($attachmentsExist || $this->element->shiftAttachmentsRemaining) {  ?>
+                        <h3 class="section-header">Select an attachment</h3>
+                    <?php   } ?>
+                        <div id="attachment-table-empty" class="notice <?= $attachmentTableEmptyClasses ?>">Add an attachment to use for preceptor signoff.</div>
+                        <div id="attachment-table" class="<?= $attachmentTableClasses ?>" data-tabletype="signoff" data-shiftid="<?= $shiftId ?>">
+                            <?= $checkmarkTable ?>
+                        </div>
+                    <?php } ?>
+                </div>
+            <?php endif; ?>
+        </div>
+
+
+        <script lang="text/javascript">
+            $(function () {
+                $("#signOffTabs").tabs({
+                    activate: function (event, ui) {
+                        var verificationTypeField = $("#verificationType");
+                        var selectedTabId = $("#signOffTabs ul> .ui-tabs-active").attr('aria-controls');
+                        var selectedTabHiddenVerificationType = $("#" + selectedTabId + " #hiddenVerificationType").val();
+                        verificationTypeField.val(selectedTabHiddenVerificationType);
+                    }
+                });
+
+                var verificationType = $("#verificationType").val();
+                var defaultTabIndex = $("#signOffTabs li:contains('"+verificationType+"')").index();
+                $("#signOffTabs").tabs("option", "active", defaultTabIndex);
+
+                // if this signoff is verified, disable the tabs
+                if ($("#verificationId").val() > 0) {
+                    $("#signOffTabs").tabs("disable");
+                    $("#signOffTabs").tabs("enable", defaultTabIndex);
+                }
+
+            });
+        </script>
+        <?= $this->element->verificationType ?>
+        <?= $this->element->verificationId ?>
+        <div class="verification_sub_form_lock_wrapper">
+            <?= $this->element->lock ?>
+        </div>
+        <div class="verification_sub_form_submit_btn_wrapper">
+            <?php
+            if ($this->element->verification->id) {
+                echo $this->element->unlockButton;
+            } else {
+                if (\Fisdap\Entity\User::getLoggedInUser()->getCurrentRoleData()->program->program_settings->allow_signoff_on_patient) {
+                    echo $this->element->signoffButton;
+                }
+            }
+            ?>
+        </div>
+
+        <?php echo $this->element->subRunId; ?>
+        <?php echo $this->element->subShiftId; ?>
+        <?php echo $this->attachmentModal(); ?>
+    </div>
+<?php else: ?>
+    Signoffs are not enabled in your <a href='/skills-tracker/settings/'>Skills Tracker Settings.</a>
+<?php endif; ?>

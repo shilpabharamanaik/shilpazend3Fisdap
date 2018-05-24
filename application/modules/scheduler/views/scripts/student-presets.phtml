@@ -1,0 +1,26 @@
+<? $preset_data = $this->preset_data; ?>
+
+<div class="student-presets" data-userContextId="<?= $preset_data['userContextId']?>" data-certId="<?= $preset_data['cert_id'] ?>" data-groupIds="<?= $preset_data['group_ids'] ?>" data-studentId="<?= $preset_data['student_id'] ?>">
+	
+	<div class="my-shift-wrapper extra-small gray-button">
+		<a href="#" class="my-shifts">My shifts</a>
+	</div>
+	
+	<div class="my-available-shifts-wrapper extra-small gray-button">
+		<div class="avail-text">Available shifts: </div>
+		<a href="#" data-availShiftType="Lab"><img src="/images/icons/labSiteIconColor.png" class="lab-img"></a>
+		<a href="#" data-availShiftType="Clinical" id="clinical-student-preset-button"><img src="/images/icons/clinicalSiteIconColor.png" class="clinical-img"></a>
+		<a href="#" data-availShiftType="Field"><img src="/images/icons/fieldSiteIconColor.png" class="field-img"></a>
+		<div class="clear"></div>
+	</div>
+
+    <div class="notice student-shift-limit-warning" style="display: none;">
+        You've hit the maximum number of <span id='limit-warning-type'></span> shifts you can schedule.
+    </div>
+
+	<div class="clear"></div>
+
+</div>
+
+<div class="clear"></div>
+

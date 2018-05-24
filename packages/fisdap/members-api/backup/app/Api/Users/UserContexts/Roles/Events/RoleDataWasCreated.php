@@ -3,6 +3,7 @@
 use Fisdap\Api\Events\Event;
 use Fisdap\Entity\RoleData;
 
+
 /**
  * An event to fire when a role data (RoleData) entity has been created
  *

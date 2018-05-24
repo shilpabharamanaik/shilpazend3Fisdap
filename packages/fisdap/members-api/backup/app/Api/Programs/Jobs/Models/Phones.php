@@ -2,12 +2,13 @@
 
 use Swagger\Annotations as SWG;
 
+
 /**
  * Class Phones
  *
  * @package Fisdap\Api\Programs\Jobs\Models
  * @author  Ben Getsug <bgetsug@fisdap.net>
- *
+ *          
  * @SWG\Definition(definition="ProgramPhones", required={"phone"})
  */
 final class Phones

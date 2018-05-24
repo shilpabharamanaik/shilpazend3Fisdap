@@ -1,0 +1,43 @@
+<div class="section-header grid_12">
+	<div class="grid_6">
+		Properties:
+	</div>
+	<div class="grid_6">
+		Assigned to:
+	</div>
+</div>
+
+
+<div class="grid_6" style="border-right: 1px solid #ffffff;">
+	<?= $this->element->category ?>
+	<div class="form-prompt">
+		<div class="slider-container"><?= $this->element->programRequirements ?></div> Program Requirements
+		<div class="clear"></div>
+	</div>
+	
+	<div class="form-prompt">
+		<div class="slider-container"><?= $this->element->siteRequirements ?></div> Site Requirements
+	</div>
+	<div id="sitelist-blocker"></div>
+	<div id="site-list">
+		<?= $this->element->sites ?>
+	</div>
+</div>
+
+<div class="grid_5">
+	<?= $this->element->accountType ?>
+	<?= $this->element->students ?>
+	<?= $this->element->instructors ?>
+</div>
+
+<div class="clear"></div>
+<div class="grid_12">
+	<div class='modal-buttons'>
+		<div class="buttonWrapper extra-small gray-button">
+			<a href='#' id='filters-reset-btn'>Reset Filters</a>
+		</div>
+		<div class="buttonWrapper extra-small green-buttons">
+			<a href='#' id='filters-go-btn'>Go</a>
+		</div>
+	</div>	
+</div>

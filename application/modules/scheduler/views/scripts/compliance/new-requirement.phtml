@@ -1,0 +1,64 @@
+<?= $this->pageTitleHelper() ?>
+<?= ($this->tour) ? $this->tour->guidedTourHelper($this->tour_id) : '';?>
+
+<div class="grid_12 island level-descriptions">
+	<div id="req-titles">
+		<div id="collapse-descriptions">
+			<img class="show-specific-attachments" src="/images/icons/plus.png">
+		</div>
+		
+		<div class="grid_6">
+			<h3><img src="/images/icons/program-requirement.png">Program Requirements</h3>
+		</div>
+		
+		<div class="grid_6">
+			<h3><img src="/images/icons/site-requirement.png">Site Requirements</h3>
+		</div>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div id='req-descriptions'>
+		<div class="grid_6">
+			<div class="text">
+				Program Requirements can only be seen by people from your program.
+			</div>
+			<div class="text">
+				If not fulfilled, people will appear non-compliant for ALL shifts.
+			</div>
+			<div class="text">
+				You must assign these requirements in order for people to receive them.
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="text">
+				If shared, Site Requirements can be seen by people from your program as well as any Site Admins at that site.
+			</div>
+			<div class="text">
+				If not fulfilled, people will appear non-compliant only for shifts taking place at the selected sites.
+			</div>
+			<div class="text">
+				Site Requirements are specific to the site (or sites) you choose, and can be either assigned in advance
+				or only once someone is scheduled for a shift at that site.
+			</div>
+			<div class="text">
+				Once you create a Site Requirement, it will automatically be assigned to anyone scheduled for a future
+				shift at the selected sites.
+			</div>
+		</div>
+	</div>
+	
+	<div class="clear"></div>
+	
+</div>
+
+<div class="clear"></div>
+
+<div id="requirement-form-wrapper">
+	
+	<?= $this->requirementForm ?>
+
+</div>
+
+<?= $this->pickSitesModal;	?>
+<?= $this->requirementAssignModal;	?>

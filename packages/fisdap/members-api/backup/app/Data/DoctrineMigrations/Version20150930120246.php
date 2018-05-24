@@ -130,6 +130,7 @@ class Version20150930120246 extends AbstractMigration
             "CECBEMS-approved online course, which you can submit for 24 hours of continuing ".
             "education upon completion.";
         $this->addSql('UPDATE fisdap2_product SET description = "'.$ATCdescription.'" WHERE id = 15 LIMIT 1');
+
     }
 
     /**
@@ -237,5 +238,6 @@ class Version20150930120246 extends AbstractMigration
         // AEMT Transition Course
         $ATCdescription = "EMT-I to AEMT";
         $this->addSql('UPDATE fisdap2_product SET description = "'.$ATCdescription.'" WHERE id = 15 LIMIT 1');
+
     }
 }

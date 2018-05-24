@@ -1,0 +1,80 @@
+<h2 class="section-header">Contact Information</h2>
+
+<div class="grid_4">
+    <h4 class="sub-heading">Name & Email</h4>
+    <?= $this->element->firstName ?>
+    <?= $this->element->lastName ?>
+    <?= $this->element->email ?>
+</div>
+
+<div class="grid_4">
+    <h4 class="sub-heading">Phone</h4>
+    <?= $this->element->homePhone ?>
+    <?= $this->element->cellPhone ?>
+    <?= $this->element->workPhone ?>
+</div>
+
+<div class="grid_4">
+    <h4 class="sub-heading">Address</h4>
+    <?= $this->element->address ?>
+    <?= $this->element->city ?>
+    <?= $this->element->country ?>
+    <?= $this->element->state ?>
+    <?= $this->element->zip ?>
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_6">
+    <h2 class="section-header"><?= $this->element->licenseNumber ? "Certification Information" : "School" ?></h2>
+    <?= $this->element->licenseNumber ?>
+    <?= $this->element->licenseExpirationDate ?>
+    <?= $this->element->licenseState ?>
+    <?= $this->element->stateLicenseNumber ?>
+    <?= $this->element->stateLicenseExpirationDate ?>
+    <? if ($this->element->gradDate) { ?>
+        <h4 class="sub-heading">Graduation</h4>
+        <?= $this->element->serial->graduation_date ? "<div class='form-prompt'>" . $this->element->serial->graduation_date->format('F Y') . "</div>" : $this->element->gradDate ?>
+    <? } ?>
+    <h4 class="sub-heading need-top-margin">Past Education</h4>
+    <div id="emtGrad"><?= $this->element->emtGradDate ?></div>
+    <?= $this->element->emtGradFlag ?><br />
+    <div id="emtCert"><?= $this->element->emtCertDate ?></div>
+    <?= $this->element->emtCertFlag ?>
+</div>
+
+<div class="grid_6">
+    <h2 class="section-header">Demographic Information <?= $this->helpBubble("demo-help", "Demographic Information", "Reporting this information is entirely optional. By sharing this information with us and consenting to give your data for research, you are helping us make informed and evidence-based decisions about the future of EMS education. Read more about past <a href='http://www.fisdap.net/research' target='_new'>Fisdap research</a>.") ?></h2>
+    <?= $this->element->gender ?>
+    <?= $this->element->ethnicity ?>
+    <?= $this->element->birthDate ?>
+    <h4 class="sub-heading need-top-margin">Emergency Contact</h4>
+    <?= $this->element->contactName ?>
+    <?= $this->element->contactRelationship ?>
+    <?= $this->element->contactPhone ?>
+</div>
+
+<div class="clear"></div>
+
+<h2 class="section-header need-top-margin">Username & Password</h2>
+<div class="grid_6">
+    <!-- The text and password here are to prevent FF from auto filling my login credentials because it ignores autocomplete="off"-->
+    <input type="text" class="hidden">
+    <input type="password" class="hidden">
+
+    <?= $this->element->newUsername ?>
+    <p class="form-desc">(minimum 3 characters; letters and numbers are allowed)</p>
+    <?= $this->element->newPassword ?>
+    <p class="form-desc">(minimum 5 characters; letters, numbers and symbols are allowed)</p>
+    <?= $this->element->confirmPassword ?>
+</div>
+
+<div class="clear"></div>
+<?= $this->element->mailingList ? "<div class='grid_12'>" . $this->element->mailingList . "</div>" : null ?>
+
+<div class="action-buttons">
+    <?= $this->element->save ?>
+</div>
+
+<?= $this->element->studentId ?>
+<?= $this->element->snId ?>

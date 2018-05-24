@@ -1,0 +1,19 @@
+Hello, <?= $this->request->recipient->user->first_name ?>!
+<div>
+		<p><?= $this->request->owner->user->getName() ?> has accepted your offer to swap the following <?= $this->swap->offer->slot->event->type ?> shift:</p>
+		<div>
+				<?= $this->swap->offer->slot->event->getDetailViewDate() ?><br>
+				<?= $this->swap->offer->slot->event->getLocation() ?>
+		</div>
+		<p>in exchange for <?= $this->request->owner->user->first_name ?>'s <?= $this->request->event->type ?> shift:</p>
+		<div>
+				<?= $this->request->event->getDetailViewDate() ?><br>
+				<?= $this->request->event->getLocation() ?>
+		</div>
+		
+		<p>
+				This request has been sent to your instructor for approval.
+				You can view the status of this swap at your <a href='<?= $this->url ?>'>shift request page</a>.
+		</p>
+	
+</div>

@@ -26,9 +26,10 @@ use Fisdap\Api\Users\Entity\Traits\Phones;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
+
 /**
  * Entity class for Users.
- *
+ * 
  * @Entity(repositoryClass="Fisdap\Data\User\DoctrineUserRepository")
  *
  * @Table(name="fisdap2_users")
@@ -210,10 +211,10 @@ class User extends EntityBaseClass implements Authenticatable
 
     public function __construct()
     {
-        $this->userContexts = new ArrayCollection();
-        $this->serial_numbers = new ArrayCollection();
-        $this->mailing_lists = new ArrayCollection();
-    }
+		$this->userContexts = new ArrayCollection();
+		$this->serial_numbers = new ArrayCollection();
+		$this->mailing_lists = new ArrayCollection();
+	}
 
 
     /**
@@ -594,7 +595,7 @@ class User extends EntityBaseClass implements Authenticatable
     public function updateMailingLists($newEmail, $oldEmail)
     {
         $mailchimp = $this->getMailChimpWrapper();
-        foreach ($this->mailing_lists as $list) {
+        foreach($this->mailing_lists as $list) {
             $mailchimp->updateEmail($oldEmail, array('EMAIL' => $newEmail), $list->mailchimp_name);
         }
     }
@@ -721,7 +722,7 @@ class User extends EntityBaseClass implements Authenticatable
      */
     public function getCurrentUserContext()
     {
-        if (! $this->current_user_context) {
+        if ( ! $this->current_user_context) {
             if ($this->userContexts->count() > 0) {
                 $this->current_user_context = $this->userContexts->first();
             } else {
@@ -928,7 +929,7 @@ class User extends EntityBaseClass implements Authenticatable
             $instructor->email_event_flag = false;
 
             //Remove this instructor from all of his/her class sections
-            foreach ($instructor->classSectionInstructors as $csi) {
+            foreach($instructor->classSectionInstructors as $csi) {
                 $csi->section->removeInstructor($instructor);
             }
 
@@ -968,7 +969,7 @@ class User extends EntityBaseClass implements Authenticatable
 
         if ($userName && \Zend_Registry::isRegistered('LoggedInUser')) {
             return \Zend_Registry::get('LoggedInUser');
-        } elseif (is_null($userName)) {
+        } else if (is_null($userName)) {
             return null;
         }
 
@@ -1010,11 +1011,11 @@ class User extends EntityBaseClass implements Authenticatable
         if ($userValue && $userValue!==true) {
             if (is_integer($userValue)) {	// user_id
                 return \Fisdap\EntityUtils::getEntity('User', $userValue);
-            //$repo = \Fisdap\EntityUtils::getEntityManager()->getRepository("\Fisdap\Entity\User");
+                //$repo = \Fisdap\EntityUtils::getEntityManager()->getRepository("\Fisdap\Entity\User");
                 //return $repo->find('\Fisdap\Entity\User', $userValue);
-            } elseif (is_string($userValue)) {	// username
+            } else if (is_string($userValue)) {	// username
                 return self::getByUsername($userValue);
-            } elseif ($autoLogInUser) {
+            } else if ($autoLogInUser) {
                 return $userValue; // user entity or other value
             } else {
                 return null;
@@ -1042,8 +1043,7 @@ class User extends EntityBaseClass implements Authenticatable
      * @codeCoverageIgnore
      * @deprecated permissions should be determined with the PermissionsFinder
      */
-    public function hasPermission($permission)
-    {
+    public function hasPermission($permission){
         // a non-instructor is never going to have permissions, so always return false
         if (!$this->isInstructor()) {
             return false;
@@ -1053,19 +1053,19 @@ class User extends EntityBaseClass implements Authenticatable
 
         $repos = \Fisdap\EntityUtils::getEntityManager()->getRepository('\Fisdap\Entity\Permission');
 
-        if (is_string($permission)) {
+        if(is_string($permission)){
             $permissionObject = $repos->findOneByName($permission);
-        } elseif (is_int($permission)) {
+        }else if(is_int($permission)){
             $permissionObject = $repos->findOneById($permission);
-        } elseif (is_a($permission, '\Fisdap\Entity\Permission')) {
+        }else if(is_a($permission, '\Fisdap\Entity\Permission')){
             $permissionObject = $permission;
-        } else {
+        }else{
             return false;
         }
 
         $hasPermission = false;
 
-        if (is_a($permissionObject, '\Fisdap\Entity\Permission')) {
+        if(is_a($permissionObject, '\Fisdap\Entity\Permission')){
             return ($this->getCurrentRoleData()->permissions & $permissionObject->bit_value);
         }
 
@@ -1322,7 +1322,7 @@ class User extends EntityBaseClass implements Authenticatable
     public function removeFromAllMailingLists()
     {
         $mailchimp = $this->getMailChimpWrapper();
-        foreach ($this->mailing_lists as $list) {
+        foreach($this->mailing_lists as $list) {
             $this->removeMailingList($list);
         }
         return $this;
@@ -1388,7 +1388,7 @@ class User extends EntityBaseClass implements Authenticatable
      * @param boolean $hashed has the password parameter already been hashed?
      * @return boolean
      */
-    public static function authenticate_password($username, $password, $hashed = false)
+    public static function authenticate_password($username, $password, $hashed = FALSE)
     {
         $user = self::getByUsername($username);
 
@@ -1419,6 +1419,7 @@ class User extends EntityBaseClass implements Authenticatable
 
             return $password == $user->password;
         }
+
     }
 
 
@@ -1429,7 +1430,7 @@ class User extends EntityBaseClass implements Authenticatable
      *
      * @return bool
      */
-    public static function authenticate_legacy_password($username, $password, $hashed = false)
+    public static function authenticate_legacy_password($username, $password, $hashed = FALSE)
     {
         $user = self::getByUsername($username);
 

@@ -2,6 +2,7 @@
 
 use Fisdap\Data\Repository\Repository;
 
+
 /**
  * Interface AirwayManagementRepository
  *
@@ -9,4 +10,4 @@ use Fisdap\Data\Repository\Repository;
  */
 interface AirwayManagementRepository extends Repository
 {
-}
+} 

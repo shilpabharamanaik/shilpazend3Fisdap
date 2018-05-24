@@ -1,0 +1,10 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_12 island">
+	<p>This order has been completed instantly.</p>
+	
+	<?php
+    if($this->instructor){
+        echo $this->orderSummary($this->order->id);
+    }
+	?>
+</div>

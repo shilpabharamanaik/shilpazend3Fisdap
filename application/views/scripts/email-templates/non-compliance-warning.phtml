@@ -1,0 +1,14 @@
+Hello <?= $this->name ?>,<br><br>
+The following <?= $this->count > 1 ? "requirements need" : "requirement needs" ?> your attention.
+<br><br>
+<? foreach ($this->requirements as $days => $requirements) {
+	echo "In $days days (on " . date_create("+$days days")->format("M j, Y") .") you will be non-compliant for:<br>";
+	
+	foreach($requirements as $requirement) {
+		echo "- " . $requirement['requirementName'] . ": " . $requirement['status'] . "<br>";		
+	}
+	
+	echo "<br>";
+} ?>
+<br><br>
+If you have any questions about how to fulfill <?= $this->count > 1 ? "these requirements" : "this requirement" ?>, please contact your instructor.

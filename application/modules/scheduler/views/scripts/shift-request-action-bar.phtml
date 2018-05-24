@@ -1,0 +1,18 @@
+<div id="shift-request-action-bar">
+    <div id="approval-button-bar" class="grid_6">
+        <a id="checkbox-selector" href="#"><img src="/images/icons/arrow_down_with_checkbox.png"></a> <span class="green-buttons small"><a id="approve-requests" href="#" data-stateid="2">Approve requests</a></span> <span class="small"><a id="deny-requests" href="#" data-stateid="3">Deny requests</a></span>
+        <div id="checkbox-selector-menu" class="island" style="display: none;">
+            <ul class="clickable">
+                <li>All</li>
+                <li>None</li>
+                <li>Drop</li>
+                <li>Cover</li>
+                <li>Swap</li>
+            </ul>
+        </div>
+    </div>
+    <div class='grid_6'>
+        <?= $this->formText("request_search", null, array("class" => "search-box", "title" => "Type a student name to search...")) ?>
+    </div>
+</div>
+<div class="clear"></div>

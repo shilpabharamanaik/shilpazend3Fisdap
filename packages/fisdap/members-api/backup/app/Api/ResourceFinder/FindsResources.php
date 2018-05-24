@@ -17,4 +17,5 @@ interface FindsResources
      * @return mixed
      */
     public function findById($id, array $associations = null, array $associationIds = null, $asArray = false);
+
 }

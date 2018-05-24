@@ -1,0 +1,10 @@
+Hello, <?= $this->recipient->user->getName() ?>,
+<div>
+		<p><?= $this->initiator->user->getName() ?> just assigned you to a <?= $this->event->type ?> shift:</p>
+		<div>
+			<?= $this->event->getDetailViewDate() ?><br>
+			<?= $this->event->getLocation() ?>
+		    <?= ($this->event->notes) ? "<br />Notes: " . $this->event->notes : ""; ?>
+		</div>
+
+</div>

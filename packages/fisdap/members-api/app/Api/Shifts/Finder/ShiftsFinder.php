@@ -12,6 +12,7 @@ use Fisdap\Entity\ShiftLegacy;
 use Fisdap\Queries\Specifications\CommonSpec;
 use Happyr\DoctrineSpecification\Spec;
 
+
 /**
  * Service for retrieving one or more shifts by various criteria
  *
@@ -38,8 +39,7 @@ final class ShiftsFinder implements FindsShifts
     /**
      * @inheritdoc
      */
-    public function getById($id, array $associations = null, array $associationIds = null, $asArray = false)
-    {
+    public function getById($id, array $associations = null, array $associationIds = null, $asArray = false) {
         $spec = CommonSpec::makeSpecWithAssociations($associations, $associationIds);
         $spec->andX(new ById($id));
 

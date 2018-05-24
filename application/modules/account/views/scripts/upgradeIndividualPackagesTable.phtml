@@ -1,0 +1,19 @@
+<div class="category">
+    <h4 class='section-header no-border'>Product Packages</h4>
+    <div class='form-desc'>Save when you buy products as part of a package!</div>
+</div>
+
+<table class="upgrade-table package">
+    <tr>
+        <td class="checkbox">
+            <input id="package-0" type="radio" data-price="0" data-config="0" name="packages[]" value="0" checked="checked">
+        </td>
+        <td class="name">
+            <label for="package-0">No package</label>
+        </td>
+    </tr>
+
+    <?php foreach ($this->availablePackages as $package) {
+        echo $this->packageRow($package);
+    } ?>
+</table>

@@ -1,0 +1,37 @@
+<div id='skillsheet-modal-wrapper'>
+	
+	<div id="change-warning" class="notice">
+		<span id='number-of-students-text'></span>
+		student<span id="plural-student">s</span> <span id="plural-student-hasHave">have</span>  filled out the current skillsheet attached to this lab practice item.
+		If you change to a new skillsheet, you can still find the completed one<span id="plural-one">s</span>  in the Reports section.
+	</div>
+	
+	<?= $this->element->hiddenDefIdForSkillsheet; ?>
+	
+	<?php
+		foreach($this->element->groups as $group){?>
+			<div id='<?= $group['abbreviation'];?>-skillsheet-selectbox-wrapper' class='skillsheets-selectbox-wrapper'>
+				<?= $this->element->{$group['abbreviation'] . '_skillsheet_select'}; ?>
+			</div>
+	<?php
+		}
+	?>
+	
+	<div id="delete-skillsheet">
+		<a id="delete-skillsheet-a" href="#"><img src="/images/icons/delete.png">Remove skillsheet</a>
+	</div>
+	
+	<div id="skillsheet-modal-spacer"></div>
+
+	<div id="skillsheet-modal-buttons">
+		<div class="extra-small green-buttons">
+			<img src="/images/throbber_small.gif" id="add-skillsheet-throbber">
+			<a id="save-skillsheet" href="#">Add</a>
+		</div>
+		
+		<div class="extra-small gray-button">
+			<a id="close-skillsheet-modal" href="#">Cancel</a>
+		</div>
+	</div>
+	
+</div>

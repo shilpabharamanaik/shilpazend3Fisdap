@@ -1,0 +1,15 @@
+Hello, <?= $this->request->owner->user->first_name ?>!
+<div>
+        <p>You requested coverage from <?= $this->request->recipient->user->getName() ?> for the following <?= $this->request->event->type ?> shift:</p>
+
+	<div>
+		<?= $this->request->event->getDetailViewDate() ?><br>
+		<?= $this->request->event->getLocation() ?>
+	</div>
+	
+	<p>
+		<?= $this->request->recipient->user->first_name ?> has agreed to cover this shift,
+		and this request has been sent to your instructor for approval. To view the status
+		of this request visit your <a href='<?= $this->url ?>'>shift request page</a>.
+	
+</div>

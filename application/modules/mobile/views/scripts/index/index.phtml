@@ -1,0 +1,26 @@
+<? if ($this->user->isInstructor()) {
+   echo $this->mobileStudentPicker($this->searchString);
+} ?>
+
+
+<? if ($this->studentId) { ?>
+    <?= $this->user->isInstructor() ? "<h2 class='page-title'>" . $this->student->first_name . " " . $this->student->last_name . "'s Shifts</h2>" : ""; ?>
+	<div class="island">
+		<div class="grid_12">
+			<div id="shift-filters-container">
+				View: <?= ($this->filter == "all") ? 'All' : '<a href="/mobile/?filter=all">All</a>' ?> | <?= ($this->filter == "pending") ? 'Pending' : '<a href="/mobile/?filter=pending">Pending</a>' ?>
+			</div>
+
+            <div id="add-shift-container">
+                <?=  $this->showAddShiftButton ? '<a href="#" id="add-shift-btn" class="small">Add Shift</a>' : '' ?>
+            </div>
+        </div>
+
+		<div class="grid_12">
+			<?= $this->mobileShiftList($this->studentId, $this->filter) ?>
+		</div>
+	</div>
+
+	<?= $this->shiftModal ?>
+	<?= $this->shiftLockModal ?>
+<? } ?>

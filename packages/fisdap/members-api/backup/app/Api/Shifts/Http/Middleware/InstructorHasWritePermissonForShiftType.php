@@ -9,6 +9,7 @@ use Fisdap\Entity\User;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 
+
 /**
  * Ensures instructor has write permissions for a shift type
  *
@@ -69,9 +70,8 @@ final class InstructorHasWritePermissionForShiftType
                 $this->user->context()->getRoleData()->getId()
             );
 
-            if (! $this->permissionsFinder->hasInstructorPermission(
-                "edit {$shift->getType()} data",
-                $instructorPermissions
+            if ( ! $this->permissionsFinder->hasInstructorPermission(
+                "edit {$shift->getType()} data", $instructorPermissions
             )) {
                 throw new NoEditPermission(
                     "Instructor does not have edit permission for '{$shift->getType()}' shifts"

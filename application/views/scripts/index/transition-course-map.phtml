@@ -1,0 +1,67 @@
+<div class="grid_12" id="transition-course-map">
+  
+  <div id="non-supported-browser">
+	To see an interactive map, please update your browser.<br />
+	<a href="http://www.mozilla.com/firefox/">Firefox 19</a><br />
+	<a href="https://www.google.com/intl/en/chrome/browser/?hl=us">Google Chrome</a><br />
+	<a href="http://windows.microsoft.com/en-gb/internet-explorer/download-ie">Internet Explorer 10</a>
+  </div>
+
+		<div id="state-list">
+				
+		<?php
+		
+				foreach($this->states as $state){ ?>
+						
+						<a class='state-anchor' href='#' data-bg-color='<?= $state->color ?>'
+						id='state-anchor-<?= $state->abbreviation ?>'
+						data-abbreviation='<?= $state->abbreviation ?>'>
+						<?= $state->name ?>
+						</a>
+						
+				<?php
+				}
+				
+		?>
+				
+		</div>
+		
+		
+		<div id="hidden-right-division"></div>
+		<div id="hidden-left-division"></div>
+		
+		
+		<?php
+		
+				foreach($this->states as $state){ ?>
+						
+						<div id='popup-<?= $state->abbreviation ?>' class='state-data' data-state-abbreviation='<?= $state->abbreviation ?>' data-state-color='<?= $state->color ?>'>
+						
+								<img src='images/icons/delete.png' class='close-popup'>
+						
+								<h3 class='state-name' style='color:#<?= $state->color; ?>'><?= $state->name ?></h3>
+								
+								<div class='scrolling-content'>
+								
+										<h2 class='status'><?= $state->status ?></h2>
+										<?= nl2br($state->note); ?>
+								
+								</div>
+								
+								<div class="ticker-wrapper">
+										<img src="images/ticker.png">
+								</div>
+								
+						</div>
+						
+				<?php
+				}
+				
+		?>
+		
+		<div id="tcmap" style="width: 670px; height: 400px;"></div>
+		
+		<div class='grid_12' style='color: #666666; padding-top: 8px;'>
+			Trouble seeing the map?  <a href='<?php echo Util_HandyServerUtils::getCurrentServerRoot() . "index/transition-course-map" ?>'>Click here</a>.
+		</div>
+</div>

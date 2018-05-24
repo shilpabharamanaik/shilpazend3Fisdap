@@ -3,6 +3,7 @@
 use Doctrine\ORM\EntityManager;
 use Illuminate\Support\ServiceProvider;
 
+
 /**
  * Provides Alice fixture generation console command
  *
@@ -22,7 +23,7 @@ class FixtureGeneratorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(GenerateCommand::class, function () {
+        $this->app->singleton(GenerateCommand::class, function() {
             return new GenerateCommand($this->app->make(EntityManager::class));
         });
     }

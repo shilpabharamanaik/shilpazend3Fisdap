@@ -1,0 +1,22 @@
+ <html>
+	<head>
+		<link href="<?php echo Util_HandyServerUtils::get_fisdap_members1_url_root() ?>shift/evals/eval_display.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="<?php echo Util_HandyServerUtils::get_fisdap_members1_url_root() ?>shift/evals/eval_display_new.css" media="screen" rel="stylesheet" type="text/css" />
+		 
+		<script type="text/javascript" src="<?php echo Util_HandyServerUtils::get_fisdap_members1_url_root() ?>shift/evals/eval_display.js"></script>
+		<script type="text/javascript" src="<?php echo Util_HandyServerUtils::get_fisdap_members1_url_root() ?>phputil/html_gen_lib.js"></script>
+		<script type="text/javascript" src="<?php echo Util_HandyServerUtils::get_fisdap_members1_url_root() ?>phputil/cpaint2.inc.compressed.js"></script>
+		 
+		<?php echo $this->headContents; ?>
+	</head>
+ 	
+	<body>
+		<script>
+			$(function(){
+				$('#stopwatch').remove();
+				$('img[src="../../images/pdf_icon.png"]').remove();
+			});
+		</script> 
+		<?php echo $this->bodyContents; ?>
+	</body>
+</html>

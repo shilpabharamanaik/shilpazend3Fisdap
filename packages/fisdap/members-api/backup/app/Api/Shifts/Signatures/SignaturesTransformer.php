@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Shifts\Signatures;
 
+
 use Fisdap\Entity\Signature;
 use Fisdap\Fractal\Transformer;
 
@@ -21,3 +22,4 @@ final class SignaturesTransformer extends Transformer
         return $signature;
     }
 }
+

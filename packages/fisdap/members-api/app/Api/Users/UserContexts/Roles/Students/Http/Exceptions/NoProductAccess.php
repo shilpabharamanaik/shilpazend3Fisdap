@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
+
 /**
  * Class NoProductAccess
  *
@@ -10,4 +11,5 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
  */
 final class NoProductAccess extends AccessDeniedHttpException
 {
+
 }

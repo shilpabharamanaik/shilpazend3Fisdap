@@ -7,6 +7,7 @@ use Fisdap\Data\Base\BaseLegacyRepository;
 use Fisdap\Queries\Specifications\Distinct;
 use Happyr\DoctrineSpecification\Spec;
 
+
 /**
  * Service for retrieving bases
  *

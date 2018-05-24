@@ -1,0 +1,21 @@
+<tr class="clickable">
+	<td class="date">
+		<?= $this->order->order_date->format("M j, Y") ?>
+	</td>
+	
+	<td class="quantity">
+		<?= $this->order->getTotalQuantity() ?>
+	</td>
+	
+	<td class="cost">
+		$<?= $this->order->getTotalCost() ?>
+	</td>
+	
+	<td class="orderer">
+		<?= $this->order->getOrdererName() ?>
+	</td>
+	
+	<td class="order-id">
+		<?= $this->order->id ?>
+	</td>
+</tr>

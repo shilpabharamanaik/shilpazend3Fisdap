@@ -8,9 +8,10 @@ final class SignatureServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $router = app('router'); // Router Instance
+		$router = app('router'); // Router Instance
         parent::boot();
-        \Config::set('attachments.types.shift.entity', ShiftAttachment::class);
+		\Config::set('attachments.types.shift.entity', ShiftAttachment::class);
+		
     }
         
     public function map(Router $router)
@@ -59,7 +60,7 @@ final class SignatureServiceProvider extends ServiceProvider
 
 
         /**
-         *
+         * 
          */
         $router->post('/users/{userId}/signatures', [
 //            'middleware' => [
@@ -122,3 +123,5 @@ final class SignatureServiceProvider extends ServiceProvider
         ]);
     }
 }
+
+

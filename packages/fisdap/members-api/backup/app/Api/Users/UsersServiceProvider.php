@@ -6,6 +6,7 @@ use Fisdap\Api\Users\Http\UsersController;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
+
 /**
  * Enables user-related routes, providing REST API endpoint documentation for each, and provides user-related services
  *

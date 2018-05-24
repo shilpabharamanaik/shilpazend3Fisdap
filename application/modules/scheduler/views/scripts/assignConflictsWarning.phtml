@@ -1,0 +1,14 @@
+<div id="assign-conflicts-warning" class="notice">
+    <?= count($this->conflicts) ?> of the selected students <?= count($this->conflicts) > 1 ? "are" : "is" ?> already scheduled for shifts during this time.<br />
+    <ul class="fisdap-list">
+        <?
+            foreach($this->conflicts as $student => $conflicts) {
+                echo "<li>" . $conflicts[0]["first_name"] . " " . $conflicts[0]["last_name"] . ": ";
+                foreach($conflicts as $conflict) {
+                    echo "<span class='" . $conflict['type'] . "'>" . $conflict['start_datetime']->format("M j, Y, Hi") . " (" . $conflict['hours'] . ") " . $conflict['site_name'] . ": " . $conflict['base_name'] . "</span><br />";
+                }
+                echo "</li>";
+            }
+        ?>
+    </ul>
+</div>

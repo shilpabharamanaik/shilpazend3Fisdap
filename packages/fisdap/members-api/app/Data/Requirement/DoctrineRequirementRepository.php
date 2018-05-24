@@ -12,6 +12,7 @@ use Fisdap\Entity\ProgramLegacy;
 use Fisdap\Entity\RequirementNotification;
 use Fisdap\EntityUtils;
 
+
 /**
  * Class DoctrineRequirementRepository
  *
@@ -51,18 +52,20 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
             ->andWhere("r.universal = 1")
             ->orderBy("r.name");
 
-        if ($form_options) {
+        if($form_options){
             $data = $qb->getQuery()->getArrayResult();
             $return_vals = array();
 
-            foreach ($data as $req) {
-                if (!$return_vals[$req['category']['name']]) {
+            foreach($data as $req){
+
+                if(!$return_vals[$req['category']['name']]){
                     $return_vals[$req['category']['name']] = array();
                 }
 
                 $return_vals[$req['category']['name']][$req['id']] = $req['name'];
             }
-        } else {
+        }
+        else {
             $return_vals = $qb->getQuery()->getResult();
         }
 
@@ -89,7 +92,7 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
         $return_vals = array();
         $data = $qb->getQuery()->getArrayResult();
 
-        foreach ($req_ids as $id) {
+        foreach ($req_ids as $id){
             $return_vals[$id] = array();
         }
 
@@ -299,7 +302,7 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
 
         $usersToNotify = array();
 
-        foreach ($results as $result) {
+        foreach($results as $result) {
             $usersToNotify[$result['userContextId']][] = array(
                 "requirementName" => $result['name'],
                 "status" => $result['completed'] == 1 ? "expiring" : "due",
@@ -317,7 +320,7 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
      * Given one or several UserContext IDs, update their compliance based
      * on their current requirements, and current shifts.
      * todo - refactor - SRP violation - move to a service
-     *
+     * 
      * @codeCoverageIgnore
      * @deprecated
      */
@@ -604,7 +607,7 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
     {
         $site_ids = EntityUtils::getRepository('SiteLegacy')->getSharedSites($program_id);
 
-        if (count($site_ids) > 0) {
+        if(count($site_ids) > 0){
             $qb = $this->_em->createQueryBuilder();
 
             $qb->select("distinct r, cat")
@@ -633,7 +636,7 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
      */
     public function getSharedRequirementsByProgram($program_id, $site_ids, $filters = array())
     {
-        if (count($site_ids) > 0) {
+        if(count($site_ids) > 0){
             $qb = $this->_em->createQueryBuilder();
 
             $qb->select("distinct r, cat")
@@ -668,8 +671,8 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
             $qb->andWhere("ras.active = true");
         }
 
-        if (array_key_exists("universal", $filters)) {
-            if ($filters['universal']) {
+        if(array_key_exists("universal", $filters)){
+            if($filters['universal']){
                 $qb->andWhere("r.universal = true");
             }
         }
@@ -718,19 +721,19 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
         $options = array('Site' => array(), 'Program' => array(), 'Shared' => array());
 
         if ($include_site_level && $requirements['site_level']) {
-            foreach ($requirements['site_level'] as $site_req) {
+            foreach($requirements['site_level'] as $site_req) {
                 $options['Site'][$site_req->id] = $site_req->name;
             }
         }
 
         if ($include_program_level && $requirements['program_level']) {
-            foreach ($requirements['program_level'] as $prog_req) {
+            foreach($requirements['program_level'] as $prog_req){
                 $options['Program'][$prog_req->id] = $prog_req->name;
             }
         }
 
         if ($include_shared_level && $requirements['shared_level']) {
-            foreach ($requirements['shared_level'] as $prog_req) {
+            foreach($requirements['shared_level'] as $prog_req) {
                 $options['Shared'][$prog_req->id] = $prog_req->name;
             }
         }
@@ -740,37 +743,27 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
 
     public function getRequirements($program_id, $include_program_level = true, $include_site_level = true, $include_shared_level = true, $just_ids = false, $filters = array())
     {
-        if ($include_site_level) {
+
+        if($include_site_level){
             $site_requirements = $this->getAllSiteRequirements($program_id, $filters);
         }
 
-        if ($include_program_level) {
+        if($include_program_level){
             $program_requirements = $this->getAllProgramRequirements($program_id, $filters);
         }
 
-        if ($include_shared_level) {
+        if($include_shared_level){
             $shared_requirements = $this->getAllGlobalRequirementsByProgram($program_id, $filters);
         }
 
-        if ($just_ids) {
+        if($just_ids){
             $req_ids = array();
-            if ($site_requirements) {
-                foreach ($site_requirements as $req) {
-                    $req_ids[] = $req->id;
-                }
-            }
-            if ($program_requirements) {
-                foreach ($program_requirements as $req) {
-                    $req_ids[] = $req->id;
-                }
-            }
-            if ($shared_requirements) {
-                foreach ($shared_requirements as $req) {
-                    $req_ids[] = $req->id;
-                }
-            }
+            if($site_requirements){foreach($site_requirements as $req){$req_ids[] = $req->id;}}
+            if($program_requirements){foreach($program_requirements as $req){$req_ids[] = $req->id;}}
+            if($shared_requirements){foreach($shared_requirements as $req){$req_ids[] = $req->id;}}
             $return_array = array_unique($req_ids);
-        } else {
+        }
+        else {
             $return_array = array("site_level" => $site_requirements, "program_level" => $program_requirements, "shared_level" => $shared_requirements);
         }
 
@@ -837,7 +830,7 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
                 $req_id = $shared_req_association['id'];
                 $newReq = true;
 
-                foreach ($site_requirement_associations as $key => $sra) {
+                foreach($site_requirement_associations as $key => $sra) {
                     // if this req is already part of the array, just add the association(s)
                     if ($req_id == $sra['id']) {
                         foreach ($shared_req_association['requirement_associations'] as $association) {
@@ -850,11 +843,13 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
                 if ($newReq) {
                     $site_requirement_associations[] = $shared_req_association;
                 }
+
             }
         }
 
         // add site requirements to the array
         foreach ($site_requirement_associations as $sra) {
+
             $req_id = $sra['id'];
             $global = array();
             $local = array();
@@ -893,8 +888,7 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
         return $program_reqs;
     }
 
-    public static function sortAssociationsBySiteName($a, $b)
-    {
+    public static function sortAssociationsBySiteName($a, $b) {
         return strcmp($a['name'], $b['name']);
     }
 
@@ -992,7 +986,7 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
             ->andWhere("ra.archived = 0")
             ->setParameter(1, $requirement_id);
 
-        if (!is_null($program_id)) {
+        if(!is_null($program_id)){
             $qb->andWhere("ur.program = ?2")
                 ->setParameter(2, $program_id);
         }
@@ -1046,7 +1040,7 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
             ->join("ur.user", "u")
             ->join("ur.program", "p");
 
-        if (!$order_by_names) {
+        if(!$order_by_names){
             $qb->join("ur.certification_level", "cert");
         }
 
@@ -1056,9 +1050,10 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
             ->andWhere("ra.archived = 0")
             ->andWhere("ras.active = 1");
 
-        if ($order_by_names) {
+        if($order_by_names){
             $qb->orderBy("u.last_name, u.first_name");
-        } else {
+        }
+        else {
             $qb->orderBy("cert.description");
         }
 
@@ -1231,7 +1226,7 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
                 ->setParameter(1, $programId);
 
             $certifications = $qb->getQuery()->getScalarResult();
-            foreach ($certifications as $cert) {
+            foreach($certifications as $cert) {
                 self::$accountTotals[$cert['description']] = $cert['total'];
             }
 
@@ -1259,7 +1254,7 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
                 ->setParameter(1, $programId);
 
             $sites = $qb->getQuery()->getResult();
-            foreach ($sites as $site) {
+            foreach($sites as $site) {
                 self::$siteTotals[$site['type']] = $site['total'];
             }
             $siteTotals = self::$siteTotals;
@@ -1308,16 +1303,16 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
         $account_types[] = "Instructor";
         $attachmentSummary = array();
         // set up the array with the account types in the right order
-        foreach ($account_types as $id => $opt) {
+        foreach($account_types as $id => $opt){
             $attachmentSummary[$opt] = array();
         }
         // add attachment info to the summary
-        foreach ($attachments as $attachment) {
+        foreach($attachments as $attachment) {
             $attachment['description'] = $attachment['description'] ? $attachment['description'] : "Instructor";
             $attachmentSummary[$attachment['description']][] = array("role" => $attachment['role'],"name" => $attachment['first_name'] . " " . $attachment['last_name'], "userContextId" => $attachment['userContextId']);
         }
         //Now check to see if the count matches the total, if so, don't give a full list
-        foreach ($attachmentSummary as $cert => $summary) {
+        foreach($attachmentSummary as $cert => $summary) {
             if (count($summary) == $accountTotals[$cert] && count($summary) > 0) {
                 $attachmentSummary[$cert] = "All active " . $cert . "s";
             }
@@ -1335,7 +1330,7 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
 
         $autoAttachments = $qb->getQuery()->getResult();
         $autoAttachmentSummary = array();
-        foreach ($autoAttachments as $autoAttachment) {
+        foreach($autoAttachments as $autoAttachment) {
             $autoAttachmentSummary[] = "New " . ($autoAttachment['description'] ? $autoAttachment['description'] : "Instructor") . "s";
         }
         $requirementSummary['auto_attachments'] = $autoAttachmentSummary;
@@ -1371,7 +1366,7 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
         } else {
             $associationSummary['program'] = false;
             $associationSummary['active'] = $associations[0]["active"];
-            foreach ($associations as $association) {
+            foreach($associations as $association) {
                 if ($association['active_site'] == 1) {
                     if ($association['global'] == 1) {
                         $associationSummary['global'] = true;
@@ -1386,7 +1381,7 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
 
         //Now check to see if the count matches the total, if so, don't give a full list
         if ($associationSummary['sites']) {
-            foreach ($associationSummary['sites'] as $type => $summary) {
+            foreach($associationSummary['sites'] as $type => $summary) {
                 if (count($summary) == $siteTotals[$type]) {
                     $associationSummary['sites'][$type] = "All active " . $type . " sites";
                 }
@@ -1482,13 +1477,13 @@ class DoctrineRequirementRepository extends DoctrineRepository implements Requir
             ->setParameter(1, $site_id);
 
         // Only do this if we have a list of $network_program_ids...
-        if (count($network_program_ids) > 0) {
+        if(count($network_program_ids) > 0){
             $qb->andWhere("ras.program IN (" . implode(",", $network_program_ids) . ")");
         }
 
         $res = $qb->getQuery()->getResult();
         $return_val = array();
-        foreach ($res as $data) {
+        foreach($res as $data){
             $return_val[] = $data['id'];
         }
 

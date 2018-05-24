@@ -1,0 +1,20 @@
+<div>
+<?php 	switch ($this->request->request_type->name) {
+		case "cover": ?>
+			<p><?= $this->request->owner->user->getName() ?> is requesting coverage from you for the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+		case "swap": ?>
+			<p><?= $this->request->owner->user->getName() ?> is requesting to swap the following <?= $this->request->event->type ?> shift with you:</p>
+<?php			break;
+	} 	?>
+	
+	<div>
+		<?= $this->request->event->getDetailViewDate() ?><br>
+		<?= $this->request->event->getLocation() ?>
+	</div>
+	
+	<p>
+		To respond to this request, visit your <a href='<?= $this->url ?>'>shift request page</a>.
+	</p>
+	
+</div>

@@ -1,0 +1,42 @@
+<div id="cd-filters-wrapper">
+	
+	<div class="where">
+		
+		<?= $this->element->sites_filters ?>
+		<div class="clear"></div>
+
+		<?= $this->element->bases_filters ?>
+		<div class="clear"></div>
+				
+	</div>
+
+	<div class="chosen">
+		
+		<?= $this->element->preceptors_filters ?>
+		<div class="clear"></div>
+
+		<?= $this->element->available_filters ?>
+		<dt id="available_filters-label">Show available shifts</dt>
+		<div class="clear"></div>
+				
+		<?= $this->element->chosen_filters ?>
+		<dt id="chosen_filters-label">Show chosen shifts</dt>
+		<div class="clear"></div>
+
+	</div>
+	
+			<div class="clear"></div>
+
+			
+	<div class="action-buttons">
+		<div class="go extra-small green-buttons">
+			<a href="#" id="submit-filters-btn">Go</a>
+		</div>
+		
+		<div class="reset extra-small gray-button">
+			<a href="#" id="reset-filters-btn">Reset Filters</a>
+		</div>
+		
+	</div>
+		
+</div>

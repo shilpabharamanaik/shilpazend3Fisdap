@@ -1,0 +1,44 @@
+<?= $this->partial('lti/return-link.phtml', null, $this); ?>
+<div class="row-container">
+    
+    <div id='create_acct_sml' class='area'>
+        <h3 class="section-header no-border">First time using Fisdap?</h3>
+
+        <div class="button-container small green-buttons">
+            <a href="/account/lti/create-user" id="setup-new" title="Create a new account">
+                Create a new account
+            </a>
+        </div>
+
+    </div>
+
+    <div id='login_area' class="area">
+        <div class="section-body">
+            <?php
+            $flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger');
+
+            $msgs = $flashMessenger->getMessages();
+            if (!empty($msgs)):?>
+                <div class="error">
+                    <?= implode('<br>', $msgs) ?>
+                </div>
+            <?php endif; ?>
+
+            Looks like you have more than one Fisdap account associated with this email address. Please click on the correct
+            one below:
+        </div>
+
+        <div class="user-table">
+            <?= $this->checkmarkTableGeneric(array(), $this->tableConfig); ?>
+        </div>
+
+        <div class='action-button action-buttons'>
+            <span class='small green-buttons'>
+                <a href='#' id='continue-setup'>Select account</a>
+            </span>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+</div>

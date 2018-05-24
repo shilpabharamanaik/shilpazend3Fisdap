@@ -1,0 +1,23 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_6 withTopMargin">
+    <img src="/images/shields.png">
+</div>
+<div class="grid_6 withTopMargin">
+    <h4 class="dark-gray">Instructor Account</h4>
+    <p>
+        Username: <?= $this->user->username ?>
+    </p>
+    <br />
+    <br />
+    <h4 class="dark-gray">Student Account</h4>
+    We also created a demo student account for you to use as you begin to explore Fisdap. This way, you can experience using Fisdap as both an instructor and a student.
+    <p>
+        Student demo username: <?= $this->demoUser->username ?><br />
+        Student demo password: 12345
+    </p>
+</div>
+<div class="clear"></div>
+
+<div class="prefix_9 grid_3">
+    <a href="/login">Fisdap Member Login &gt;&gt;</a>
+</div>

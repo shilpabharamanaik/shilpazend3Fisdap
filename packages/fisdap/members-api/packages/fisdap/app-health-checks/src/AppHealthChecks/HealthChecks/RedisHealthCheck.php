@@ -3,6 +3,7 @@
 use Illuminate\Redis\Database;
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Checks storing, retrieving, and deleting a string in Redis
  *
@@ -57,6 +58,7 @@ final class RedisHealthCheck extends HealthCheck
             $this->redis->del($uniqueKey);
 
             $this->status = self::STATUS_SUCCESS;
+
         } catch (\Exception $e) {
             $this->handleError($e);
         }

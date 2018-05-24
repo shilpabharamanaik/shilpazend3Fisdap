@@ -1,0 +1,11 @@
+<?php
+	// this is an ugly hack to deal with the vital vs. vitals issue. Sorry.
+	$skill_name = ucwords($this->skill->getViewScriptName());
+	if ($skill_name == "Vital") {
+		$skill_name .= "s";
+	}
+?>
+<tr>
+	<td align='right' width='50%' class='left-table-td'><?php echo $skill_name; ?>:</td>
+	<td align='left' width='50%' class='right-table-td'><?php echo $this->skill->getProcedureText(); ?></td>
+</tr>

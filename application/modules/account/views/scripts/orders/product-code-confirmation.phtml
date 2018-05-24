@@ -1,0 +1,50 @@
+<?= $this->pageTitleHelper() ?>
+<div class="grid_12 island">
+	<h2 class="section-header">Thank You!</h2>
+	<p>
+		Your product codes have been generated.
+	</p>
+	<table class="receipt-table">
+		<tr>
+			<td>
+				Ordered by
+			</td>
+			
+			<td>
+				<?= $this->order->user->getName() . " on " . $this->order->order_date->format("m-d-Y") ?>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				Order #
+			</td>
+			
+			<td>
+				<?= $this->order->id ?>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				Description
+			</td>
+			
+			<td>
+				<? foreach ($this->order->order_configurations as $config) {
+					echo "<div class='product-code-container'>" . "<span class='product-code'>" . $config->getProductCode() . "</span>" . ": " . $config->getAccountSummary(true, " ") . " with " . $config->getProductSummary() . ' <a href="#" class="send-product-code-link">Email product code</a></div>';
+				} ?>
+			</td>
+		</tr>
+	</table>
+	
+	<p>
+		Your product codes were emailed to <?= $this->order->user->email ?>.
+	</p>
+	
+	<div class="grid_5">
+		<a href="/account/orders">&lt;&lt; Return to Order Accounts</a>
+	</div>
+</div>
+
+<?= $this->modal ?>

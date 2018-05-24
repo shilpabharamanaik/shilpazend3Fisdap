@@ -1,0 +1,71 @@
+<div class="month-details-content">	
+	<div class="month-details-day-content">
+		
+		<?php
+		if($this->events){
+			$shift_add = '';
+			foreach($this->events as $baseId => $event) {
+						
+				foreach($event as $eventId => $event) { 
+					 $shifts = \Fisdap\EntityUtils::getEntity('ShiftLegacy', $eventId);
+						if($shifts){							
+							$shift_add = $shifts->site->getMapAddress($shifts);							
+						}
+					
+						?>
+					<div id="month-details-event-<?= $eventId; ?>" data-sortby="<?= $event['sort_by'] ?>" class="month-details-event" data-eventid="<?= $eventId ?>" data-startTime="<?= $event['start_datetime']->format("Hi") ?>" data-dayNum="<?=  $event['start_datetime']->format("j") ?>">
+						
+						<div class='<?= $event["event_type"]; ?>'>
+							<div class='details_time_duration_wrapper'><?= $event['start_time_duration_display']; ?></div>
+							<div class='details_location_wrapper'>
+								<?= $event['event_name']; ?><?= ($event['event_name'] && ($this->display_options['site_names']['value'] || $this->display_options['base_names']['value'])) ? "," : ""; ?>
+								<?= ($this->display_options['site_names']['value']) ? $event['site_name'] : ""; ?><?= ($this->display_options['site_names']['value'] && $this->display_options['base_names']['value']) ? ":" : ""; ?>
+								<?= ($this->display_options['base_names']['value']) ? $event['base_name'] : ""; ?>
+							</div>
+						</div>
+						
+						<?= ($this->display_options['preceptor_names']['value']) ? $event['preceptor_only_list'] : ""; ?>
+						<?= ($this->display_options['instructor_names']['value']) ? $event['instructor_only_list'] : ""; ?>
+						
+						<?= $event['special_icons'] ?>
+						
+						<div class="clear"></div>
+						
+						<? if($this->display_options['weebles']['value']) { ?>
+							<div class='month_details_weebles'>
+								<?= $event['closed_weebles'] ?>
+								<?= $event['open_weebles'] ?>
+								<div class="clear"></div>
+							</div>
+						<? } ?>
+						
+						<? if($event['slot_assignments'] && $this->display_options['student_names']['value']){ ?>
+							<div class="month_details_assignments">
+								<? foreach($event['slot_assignments'] as $assignment) { ?>
+									<div data-assignmentId="<?= $assignment['id'] ?>" class='month_details_student_name <?= ($assignment['red']) ? "non-compliant-row" : "" ?>'>
+											<b><?= $assignment['name'] ?></b> <span class='month_details_assignments_cert'><?= $assignment['certLevel'] ?></span>
+									</div>
+						
+								<? } ?>
+							</div>
+						<? } ?>
+						<div class="details_map_address" style="display:none;">
+							<?= $shift_add; ?>
+						</div>
+									
+							
+						
+					</div>
+					
+					<?= $this->partial("event-details.phtml", array("event" => $event, "eventId" => $eventId, "current_user_data" => $this->current_user_data, "display_options" => $this->display_options)); ?>
+					
+				<?
+				}
+			}
+		}
+		else {
+			//echo $this->noShiftsMsg;
+		}
+		?>
+	</div>
+</div>

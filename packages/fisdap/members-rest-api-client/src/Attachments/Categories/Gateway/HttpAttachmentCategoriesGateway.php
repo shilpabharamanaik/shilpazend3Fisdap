@@ -2,6 +2,7 @@
 
 use Fisdap\Api\Client\Gateway\CommonHttpGateway;
 
+
 /**
  * HTTP implementation of an AttachmentsGateway
  *

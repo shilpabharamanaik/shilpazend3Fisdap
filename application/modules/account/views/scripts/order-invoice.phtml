@@ -1,0 +1,115 @@
+<div class='pdf_invoice container_12'>
+
+    <div class="grid_3">
+        <img src="/images/Fisdap_logo_new_small.png"><br>
+        33271 Collection Center Drive
+        Chicago, IL 60693-0332
+    </div>
+
+    <div class="prefix_5 grid_4">
+        <div class="invoice-title">Invoice</div>
+        <table class="simple-table">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Order ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="due-date"><?= $this->order->order_date->format("n/j/Y") ?></td>
+                <td class="order-id"><?= $this->order->id ?></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6 withTopMargin">
+        <table class="simple-table">
+            <thead>
+            <tr>
+                <td>Bill to</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><?= $this->order->getBillingAddress(true) ?></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_12">
+        <table class="withTopMargin">
+            <colgroup class="invoice-columns" span="6"/>
+            <thead>
+            <tr>
+                <th class="no-borders" colspan="3"></th>
+                <th>P.O. No.</th>
+                <th>Terms</th>
+                <th>Due Date</th>
+            </tr>
+            <tr>
+                <td class="no-borders" colspan="3"></td>
+                <td><?= $this->order->po_number ?></td>
+                <td class="terms">Net 30</td>
+                <td class="due-date"><?= $this->order->getInvoiceDueDate()->format("n/j/Y") ?></td>
+            </tr>
+            <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th colspan="2">Description</th>
+                <th>Rate</th>
+                <th>Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?
+            foreach ($this->order->order_configurations as $config) {
+                $invoiceConfig = $config->getInvoiceArray();
+
+                //Actually append the invoice data for this order configuration
+                $invoiceConfigTotal = count($invoiceConfig);
+                foreach ($invoiceConfig as $i => $line) {
+                    if ($i == $invoiceConfigTotal - 1) {
+                        $class = "extra-padding";
+                    } else {
+                        $class = "";
+                    }
+                    echo "<tr>"
+                        . "<td class='$class'>" . $line['item'] . "</td>"
+                        . "<td class='quantity $class'>" . $line['qty'] . "</td>"
+                        . "<td class='$class' colspan='2'>" . $line['desc'] . "</td>"
+                        . "<td class='rate $class'>" . (isset($line['qty']) ? number_format($line['rate'], 2) : "") . "</td>"
+                        . "<td class='amount $class'>" . (isset($line['qty']) ? number_format($line['qty'] * $line['rate'], 2) : "") . "</td>"
+                        . "</tr>";
+                }
+            }
+            ?>
+            </tbody>
+            <tfoot>
+            <td colspan="4"></td>
+            <td colspan="2"><h3 style='float:left;'>Total</h3>
+
+                <div style='float:right;'>$<?= $this->order->total_cost ?></div>
+            </td>
+            </tfoot>
+        </table>
+
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_12 withTopMargin">
+        Please send payment to above address.<br/>
+        A finance charge of 5% will be assessed on all invoices overdue by 90 days or more. <br/>
+        For additional information or to pay with a credit card please contact us at accounting@fisdap.net or
+        651-690-9241.<br/>
+        Ascend Learning Holdings, LLC<br/>
+        Jones & Bartlett Learning, LLC dba Fisdap - EIN: 32-0222868<br/>
+    </div>
+</div>

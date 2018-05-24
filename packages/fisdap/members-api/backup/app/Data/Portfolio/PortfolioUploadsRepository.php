@@ -14,12 +14,12 @@ use Fisdap\Data\Repository\Repository;
  * @copyright 1996-2015 Headwaters Software, Inc.
  */
 
-interface PortfolioUploadsRepository extends Repository
-{
+interface PortfolioUploadsRepository extends Repository {
 
     /**
      * @param int $studentid
      * @return mixed
      */
     public function getUploadedFilesForStudent($studentid);
+
 }

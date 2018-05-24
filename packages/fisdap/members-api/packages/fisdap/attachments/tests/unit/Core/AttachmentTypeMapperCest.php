@@ -3,6 +3,7 @@
 use Fisdap\Attachments\Core\ConfigProvider\ProvidesConfig;
 use Fisdap\Attachments\Core\TypeMapper\AttachmentTypeMapper;
 
+
 class AttachmentTypeMapperCest
 {
     /**

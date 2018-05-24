@@ -1149,6 +1149,18 @@ class ComposerStaticInite157492c5e2799fab0508c7ca457ea69
         ),
         'Z' => 
         array (
+            'Zend_Session' => 
+            array (
+                0 => __DIR__ . '/..' . '/fisdap/session/library',
+            ),
+            'Zend_Registry' => 
+            array (
+                0 => __DIR__ . '/..' . '/fisdap/registry/library',
+            ),
+            'Zend_Exception' => 
+            array (
+                0 => __DIR__ . '/..' . '/fisdap/exception/library',
+            ),
             'ZendDiagnostics\\' => 
             array (
                 0 => __DIR__ . '/..' . '/zendframework/zenddiagnostics/src',

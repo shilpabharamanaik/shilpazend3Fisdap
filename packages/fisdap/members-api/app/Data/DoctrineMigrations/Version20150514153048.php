@@ -200,6 +200,7 @@ class Version20150514153048 extends AbstractMigration
 
         //Link the product to the moodle quiz
         $this->addSql("insert into fisdap2_products_moodle_quizzes (product_id, moodle_quiz_id) values (47, 68)");
+
     }
 
     public function down(Schema $schema)
@@ -214,5 +215,6 @@ class Version20150514153048 extends AbstractMigration
 
         //remove product association
         $this->addSql("delete from fisdap2_products_moodle_quizzes where product_id = 47 and moodle_quiz_id in (67,68) limit 2");
+
     }
 }

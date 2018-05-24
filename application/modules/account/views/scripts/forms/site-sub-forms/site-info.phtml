@@ -1,0 +1,110 @@
+<div id="siteInfo">
+	<div class="form-errors" id="form-errors"></div>
+	
+
+    <div id="activateSite">
+        <?= $this->element->active ?>
+    </div>
+	
+	<?= $this->element->sharing_icon; ?>
+
+	<h3 class="section-header">
+<?	if (!$this->element->newSite) { ?>
+		<img class="icon" src="/images/icons/<?= $this->element->site->type ?>SiteIconColor.png">
+<?	} ?>
+		Site Information
+	</h3>
+	
+	<div class="input-div grid_6">
+        <?= $this->element->name ?>
+	</div>
+	<div class="input-div-left grid_5" id="abbrev-div">
+        <?= $this->element->abbrev ?>
+	</div>
+	
+<?	if ($this->element->newSite) { ?>
+	<div class="input-div grid_3" id="type-div">
+        <div id="site-type">
+			<input type="radio" name="site-type" id="field">
+			<label for="field" title="Field site"><img class="icon" src="/images/icons/fieldSiteIconColor.png"></label>
+			
+			<input type="radio" name="site-type" id="clinical">
+			<label for="clinical" title="Clinical site"><img class="icon" src="/images/icons/clinicalSiteIconColor.png"></label>
+	
+			<input type="radio" name="site-type" id="lab">
+			<label for="lab" title="Lab site"><img class="icon" src="/images/icons/labSiteIconColor.png"></label>
+		</div>
+		<div id="type-label">
+			<label class="label-div required" for="type">Type:</label>
+		</div>
+		<div class="form-desc">(required)</div>
+	</div>
+<?	} ?>
+	<div class="hidden">
+		<?= $this->element->type ?>
+	</div>
+    
+	<div class="clear"></div>
+                    
+	<div class="input-div grid_6">
+	        <?= $this->element->address ?>
+	</div>
+	<div class="address-directions grid_5">
+	        If you want to use the Map It! feature in Skills Tracker,<br>
+		enter an address for this site.
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div id='address-2'>
+		<div class="input-div grid_3">
+			<?= $this->element->city ?>
+		</div>
+		<div class="input-div grid_3">
+			<?= $this->element->state ?>
+		</div>
+		<div class="input-div-left grid_5">
+			<?= $this->element->zip ?>
+		</div>
+	</div>
+	
+	<div class="clear"></div>
+		
+	<div class='dotted-line'><hr></div>
+		
+	<h3 class="section-header">Contact Information</h3>
+	<div class="input-div grid_6">
+        <?= $this->element->contactName ?>
+	</div>
+	<div class="input-div-left grid_5">
+        <?= $this->element->contactTitle ?>
+	</div>
+    
+    <div style="clear:both;"></div>
+	
+	<div class="input-div grid_3 contact_phone_wrapper">
+		<?= $this->element->contactPhone ?>
+	</div>
+	<div class="input-div grid_3 contact_fax_wrapper">
+		<?= $this->element->contactFax ?>
+	</div>
+	<div class="input-div-left grid_5 contact_email_wrapper">
+		<?= $this->element->contactEmail ?>
+	</div>
+	
+	<div style="clear:both;"></div>
+	
+	<div id="control-buttons">
+		<div class="small green-buttons">
+		    <a id="save-button" href="#">Save</a>
+		</div>
+		<div class="small gray-button">
+		    <a id="cancel-button" href="#">Cancel</a>
+		</div>
+	</div>
+	
+	<img id='submitThrobber' src='/images/throbber_small.gif'>
+	<?= $this->element->site_id ?>
+ 
+</div>
+

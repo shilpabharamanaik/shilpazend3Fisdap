@@ -1,0 +1,67 @@
+<div id="display_options_modal">
+
+    <div class="grid_12" id="display_options_modal_content">
+
+        <p>Customize your calendar view by turning elements on or off depending on your preferences.</p>
+
+        <div class="grid_6">
+
+            <? if ($this->element->filter_display_options) {
+                foreach ($this->element->filter_display_options as $option_name => $option_data) {
+                    ?>
+                    <div class="display_option_row display_option_row_<?= $option_name ?>">
+
+                        <div class="grid_4"><?= $this->element->{$option_name . "_slider_checkbox"}; ?></div>
+
+                        <div class="grid_8">
+                            <?= $option_data['display']; ?>
+                            <? if ($option_name == "weebles") { ?>
+                                <div class="weebles_wrapper">
+                                    <img id="display-options-red-weeble" src="/images/icons/student-weeble-red.svg">
+                                    <img id="display-options-filled-weeble" src="/images/icons/student-weeble.svg">
+                                    <img id="display-options-open-weeble"
+                                         src="/images/icons/student-weeble-outline.svg">
+                                </div>
+                            <?
+                            } else if ($option_name == "totals") {
+                                ?>
+                                <div class="display_options_modal_totals_wrapper">
+                                    <div class="event-totals-wrapper">
+                                        <div class="event-total lab "><img src="/images/icons/labSiteIconColor.png">1
+                                        </div>
+                                        <div class="event-total clinical "><img
+                                                src="/images/icons/clinicalSiteIconColor.png">1
+                                        </div>
+                                        <div class="event-total field "><img src="/images/icons/fieldSiteIconColor.png">3
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            <? } ?>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <?= ($option_name == "base_names") ? "</div><div class='grid_6'>" : ''; ?>
+                <?
+                }
+            } ?>
+
+        </div>
+
+        <div id="display_options_modal_buttons">
+
+            <div class="small green-buttons">
+                <a href="#" id="save-display-options-modal">Save</a>
+            </div>
+
+            <div class="small gray-button">
+                <a href="#" id="close-display-options-modal">Cancel</a>
+            </div>
+
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+
+</div>

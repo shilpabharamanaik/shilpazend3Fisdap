@@ -52,5 +52,6 @@ class AddressCollectionTest extends TestCase
         $addressCollection->append($address);
 
         $this->assertCount(1, $addressCollection->toArray());
+
     }
 }

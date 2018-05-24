@@ -280,7 +280,7 @@ class Product extends EntityBaseClass
             $tutorials[] = array(
                 "name" => "Scheduler for Students",
                 "url" => $urlroot . "scheduler/scheduler_students");
-        } elseif ($this->id == 1 || $this->id == 10) {
+        } else if ($this->id == 1 || $this->id == 10) {
             $tutorials[] = array(
                 "name" => "Skills Tracker",
                 "url" => "http://vimeo.com/39905485"
@@ -290,15 +290,15 @@ class Product extends EntityBaseClass
                 "name" => "Your Portfolio",
                 "url" => $urlroot . "skills_tracker/portfolio"
             );
-        } elseif ($this->category->id == 2) {
+        } else if ($this->category->id == 2) {
             $tutorials[] = array(
                 "name" => "Secure Testing",
                 "url" => $urlroot . "testing/secure_testing_0");
-        } elseif ($this->category->id == 3) {
+        } else if ($this->category->id == 3) {
             $tutorials[] = array(
                 "name" => "Study Tools",
                 "url" => $urlroot . "testing/study_tools_0");
-        } elseif ($this->id == 9) {
+        } else if ($this->id == 9) {
             $tutorials[] = array(
                 "name" => "Preceptor Training",
                 "url" => $urlroot . "accreditation/preceptor_training#log-in-to-preceptor-training"

@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Shifts\Patients\Http;
 
+
 use Fisdap\Api\Http\Controllers\Controller;
 use Fisdap\Api\Shifts\Patients\Finder\PatientsFinder;
 use Fisdap\Api\Shifts\Patients\Jobs\CreatePatient;

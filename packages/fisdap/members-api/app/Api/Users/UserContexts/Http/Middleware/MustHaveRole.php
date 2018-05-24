@@ -6,6 +6,7 @@ use Fisdap\Entity\User;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 
+
 /**
  * Ensures that current user (context) has specific role
  *
@@ -24,8 +25,7 @@ final class MustHaveRole
     /**
      * @param AuthManager $auth
      */
-    public function __construct(AuthManager $auth)
-    {
+    public function __construct(AuthManager $auth) {
         $this->user = $auth->guard()->user();
     }
 

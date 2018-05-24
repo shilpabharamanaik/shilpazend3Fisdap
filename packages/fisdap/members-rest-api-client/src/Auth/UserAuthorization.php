@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\Client\Auth;
 
+
 /**
  * DTO to encapsulate user authorization data
  *

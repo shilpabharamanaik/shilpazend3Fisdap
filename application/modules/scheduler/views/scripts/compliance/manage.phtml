@@ -1,0 +1,83 @@
+<?= $this->pageTitleHelper("", '<div class="compliance-nav"><a id="add-requirement" href="/scheduler/compliance/new-requirement">Add Requirement</a></div>') ?>
+<?= $this->tour->guidedTourHelper($this->tour_id); ?>
+
+    <div id ="queued-edits-notice" class="grid_12 success" style="display: none;">
+        Fisdap Robot is processing the changes to your requirement. It shouldn't take more than a few minutes, but feel free to leave
+        this page while you wait. You can make additional changes to your requirement once this task is complete.
+        <img src="/images/icons/queueThrobber.gif" title="Running background task">
+    </div>
+    <div class="clear"></div>
+
+<?= $this->navBar("manage"); ?>
+
+<div class="grid_12 island">
+	<h2 class="section-header program-requirements-header">
+		<span id='program-req-header'><?= $this->program->name ?>'s Requirements</span>
+		<?= $this->formText("requirement_search", null, array("class" => "search-box", "title" => "Type a requirement title to search...")) ?>
+	</h2>
+	<div id="controls-blocker"></div>
+	<div id="fixed-menu-bar">
+		<div id="requirement-button-bar" class="grid_4">
+			<a id="checkbox-selector" href="#"><img src="/images/icons/arrow_down_with_checkbox.png"></a> <a id="edit-requirements" href="#">Edit</a>  <a id="assign-requirements" href="#">Assign</a> <a id="more-selector" href="#">More <img src="/images/accordion_arrow_down.png"></a>
+			<div id="checkbox-selector-menu" class="island" style="display: none;">
+				<ul class="clickable">
+					<li>All</li>
+					<li>None</li>
+					<li>Active</li>
+					<li>Inactive</li>
+				</ul>
+			</div>
+			<div id="more-selector-menu" class="island" style="display: none;">
+				<ul class="clickable">
+					<li id='auto-assign-requirements'>Auto-assign</li>
+					<li id='notification-requirements'>Notifications</li>
+				</ul>
+			</div>
+		</div>
+		<div class="grid_8">
+			<div id="requirement-filters-wrapper"><?= $this->requirementFilters ?></div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	
+	<div id="table-blocker"></div>
+	<div id="manage-requirements-container">
+		<?= $this->manageRequirementsTable($this->program, array(), $this->queuedReqs) ?>
+	</div>
+</div>
+
+<? if ($this->program->usesSharing()) { ?>
+<div class="grid_12 island withTopMargin">
+	<h2 class="section-header program-requirements-header">
+		<span id='sharing-req-header'>Requirements From Your Sharing Network</span>
+		<?= $this->formText("shared_req_search", null, array("class" => "search-box", "title" => "Type a requirement title to search...")) ?>
+	</h2>
+	<div id="shared-requirements-container">
+		<?= $this->sharedRequirementsTable($this->program->id) ?>		
+	</div>
+</div>
+<? } ?>
+
+<div id="activationModal">
+	<h4 class="section-header">Test Requirement</h4>
+	<div id="activation-text">
+		Re-activating this requirement will cause all previous assignments to return, along with their compliance statuses.
+	</div>
+	<div id="deactivation-text">
+		Deactivating this requirement will cause it to no longer affect the compliance statuses of the people assigned. If re-activated, the original assignments and status will return.
+	</div>
+	<div class='modal-buttons'>
+		<div class="buttonWrapper" class="small gray-button">
+			<a href='#' id='activation-cancel-btn'>Cancel</a>
+		</div>
+		<div class="buttonWrapper small green-buttons">
+			<a href='#' id='activation-btn'>Ok</a>
+		</div>
+	</div>
+</div>
+
+<?= $this->autoAssignModal; ?>
+<?= $this->notificationsModal; ?>
+<?= $this->requirementAssignModal; ?>
+
+<img id="req-throbber" src="/images/throbber_small.gif">

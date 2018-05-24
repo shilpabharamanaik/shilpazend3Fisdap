@@ -2,6 +2,7 @@
 
 use GuzzleHttp\Exception\BadResponseException;
 
+
 /**
  * Class MembersRestApiClientError
  *

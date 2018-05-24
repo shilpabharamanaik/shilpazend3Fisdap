@@ -5,6 +5,7 @@ use Fisdap\Api\Shifts\Queries\ShiftQueryParameters;
 use Happyr\DoctrineSpecification\BaseSpecification;
 use Happyr\DoctrineSpecification\Spec;
 
+
 /**
  * Class ProgramShifts
  *

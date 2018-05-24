@@ -1,0 +1,194 @@
+<?php
+
+/* * **************************************************************************
+ *
+ *         Copyright (C) 1996-2011.  This is an unpublished work of
+ *                          Headwaters Software, Inc.
+ *                             ALL RIGHTS RESERVED
+ *         This program is a trade secret of Headwaters Software, Inc.
+ *         and it is not to be copied, distributed, reproduced, published,
+ *         or adapted without prior authorization
+ *         of Headwaters Software, Inc.
+ *
+ * ************************************************************************** */
+
+?>
+<script>
+	$(function(){
+		$('.jqcal').datepicker({
+			//showOn: "button",
+			//buttonImage: "/images/icons/calendar.gif",
+			//buttonImageOnly: true,
+			//buttonText: "Choose Date"
+		});
+	});
+
+	var curInputs = 0;
+
+	function addNewExamInput(amount, value){
+		if(amount == undefined){
+			amount = 1;
+		}
+		
+		if(value == undefined){
+			value = '';
+		}
+
+		for(i = 0; i<amount; i++){
+			curInputs++;
+
+			newNode = "<div class='grid_6 exam_input_div'>" + curInputs + ". <input id='exam_name" + curInputs + "' name='completed_exams[]' value='" + value + "'/></div>";
+
+			$('#exam_container').append($(newNode));
+		}
+	}
+
+	$(function(){
+		<?php
+			if($this->portfolioOptions->completed_exams == ''){
+				echo "addNewExamInput(6);";
+			}else{
+				echo "curInputs = " . count(unserialize($this->portfolioOptions->completed_exams)) . ";";
+			}
+		?>
+	});
+	
+	$(function(){
+		$("#cancel-button").addClass("gray-button").button().click(function(){
+			window.location = '/portfolio/index';
+		});
+		$("#submit-button").addClass("green-button").button();
+	});
+
+	<?php if($this->user->isInstructor() && !$this->user->hasPermission("Edit Portfolio")): ?>
+		$(function(){
+			$("#competency-form input").attr('disabled', 'disabled');
+			$("#cancel-button").remove();
+			$("#submit-button").remove();
+		});
+	<?php endif; ?>
+</script>
+<?php
+	$checkedText = 'checked="CHECKED"';
+?>
+
+<?php if(!$this->contentOnly) { ?>
+
+	<h2 class="page-title"><?= $this->student->user->getFullName() ?>'s Portfolio</h2>
+
+	<?php echo $this->portfolioNavigation($this->skillstracker, $this->compliance); ?>
+
+	<div class='grid_9'>
+		<div id="portfolio-page-content" class="island">
+<?php } else { ?>
+	<div class='grid_12'>
+		<div class="island">
+<?php } ?>
+		<form action='/portfolio/index/competency' method='POST' id='competency-form'>
+			<h3 class='header'>Overall Competencies</h3>
+			<div>
+				This document is based on the CoAEMSP "Terminal Competency Form" and should be signed by the program director and medical director.
+			</div>
+			<br />
+			<div>
+				We hereby certify that the candidate listed below has successfully completed all of the Terminal Competencies required for graduation from the education program as a minimally
+				competent, entry-level <?php echo $this->student->getCertification("formatted");?> and as such is eligible for State and National Certification written and practical examination in accordance with our published policies
+				and procedures.
+			</div>
+
+			<br />
+
+			<h3 class='header'><?php echo $this->portfolioOptions->student->user->getFullName() ?></h3>
+			<div>
+				All program requirements successfully completed: <input id='all_requirements_completed' name='all_requirements_completed' value='<?php echo $this->portfolioOptions->get_formatted_date('all_requirements_date')?>' class='jqcal'/>
+			</div>
+
+			<br />
+			<input type='checkbox' id='written_id_cb' name='written_id_cb' <?php echo ($this->portfolioOptions->written_exams_completed ? $checkedText : ''); ?>/> <span class='title'>Student passed required written examinations.</span>
+
+			<div class='grid_10 prefix_1'>
+				List the courses that require a final written examination
+				<div id='exam_container' class='grid_12'>
+					<?php
+					if($this->portfolioOptions->completed_exams != ''){
+						$completedExams = unserialize($this->portfolioOptions->completed_exams);
+
+						foreach($completedExams as $pos => $exam){
+							echo "<div class='grid_6 exam_input_div'>" . ($pos+1) . ". <input id='exam_name" . ($pos+1) . "' name='completed_exams[]' value='" . $exam . "'/></div>";
+						}
+						
+						// Echo out at least 6 exam boxes...  
+						if(count($completedExams) < 6){
+							?>
+							<script>
+								addNewExamInput(<?php echo (6-count($completedExams))?>);
+							</script>
+							<?php
+						}
+					}
+					?>
+				</div>
+			</div>
+
+			<div class='grid_3 prefix_6'>
+				<a onclick='addNewExamInput(2); return false;' href='#'>Add more courses</a>
+			</div>
+
+			<div style='clear: both'></div>
+
+			<br />
+			
+			<span class='grid_1'><input type='checkbox' id='practical_skill_sheets_cb' name='practical_skill_sheets_cb' <?php echo ($this->portfolioOptions->practical_skill_sheets_completed ? $checkedText : ''); ?>/></span> <span class='grid_11 title'>Practical Skills Sheets</span>
+			<div class='grid_11 prefix_1'><a href='/portfolio/index/skill-sheets'>Details</a></div>
+			<div style='clear: both'></div><br />
+
+			<span class='grid_1'><input type='checkbox' id='clinical_tracking_records_cb' name='clinical_tracking_records_cb' <?php echo ($this->portfolioOptions->clinical_tracking_records_completed ? $checkedText : ''); ?>/></span> <span class='grid_11 title'>Clinical Tracking Records <span class='minor-title'>(attended all required areas, completed required skill repetitions, etc.)</span></span>
+			<div class='grid_11 prefix_1'><a href='/portfolio/index/affective-evaluations'>Details</a></div>
+			<div style='clear: both'></div><br />
+
+			<span class='grid_1'><input type='checkbox' id='field_internship_records_cb' name='field_internship_records_cb' <?php echo ($this->portfolioOptions->field_internship_records_completed ? $checkedText : ''); ?>/></span> <span class='grid_11 title'>Field Internship Tracking Records <span class='minor-title'>(number of team leads, achieved objectives, etc.)</span></span>
+			<div class='grid_11 prefix_1'><a href='/portfolio/index/internship-records'>Details</a></div>
+			<div style='clear: both'></div><br />
+
+			<span class='grid_1'><input type='checkbox' id='affective_learning_eval_cb' name='affective_learning_eval_cb' <?php echo ($this->portfolioOptions->affective_learning_eval_completed ? $checkedText : ''); ?>/></span> <span class='grid_11 title'>Affective Learning Domain Evaluations</span>
+			<div class='grid_11 prefix_1'><a href='/portfolio/index/affective-evaluations'>Details</a></div>
+			<div style='clear: both'></div><br />
+
+			<span class='grid_1'><input type='checkbox' id='student_counseling_cb' name='student_counseling_cb' <?php echo ($this->portfolioOptions->student_counseling_completed ? $checkedText : ''); ?>/></span> <span class='grid_11 title'>Student Counseling Form(s) <span class='minor-title'>as applicable</span></span>
+			<div class='grid_11 prefix_1'><a href='/portfolio/index/attachments'>Details</a></div>
+			<div style='clear: both'></div><br />
+
+			<h4 class='header'>Card Course Certifications</h4>
+			<div>
+				<?php
+					foreach($this->studentCerts as $certName => $cert){
+						echo "<span class='grid_3 prefix_1'>$certName</span>";
+						echo "<span class='grid_3'> on <input id='student_cert_date_{$cert['id']}' name='student_cert_date_{$cert['id']}' class='jqcal' value='" . ($cert['entity']->certification_date?$cert['entity']->certification_date->format('m/d/Y'):'') . "' style='width: 100px;' /></span>";
+						echo "<span class='grid_5'>Expires: <input id='student_cert_expiration_{$cert['id']}' name='student_cert_expiration_{$cert['id']}' class='jqcal' value='" . ($cert['entity']->expires?$cert['entity']->expires->format('m/d/Y'):'') . "' style='width: 100px;' />&nbsp;&nbsp;&nbsp;<input type='checkbox' id='student_cert_na_{$cert->id}' name='student_cert_na_{$cert['id']}' " . ($cert['entity']->not_applicable ? $checkedText : '') . "/> N/A</span>";
+					}
+				?>
+			</div>
+
+			<h4 class='header'>After Graduation - Outcomes</h4>
+			<div class='grid_11 prefix_1'>
+				<div><input type='checkbox' id='passed_national_registry_cb' name='passed_national_registry_cb' <?php echo ($this->portfolioOptions->passed_national_registry_completed ? $checkedText : ''); ?>/> <span>Passed National Registry or State Certification</span> <input id='passed_national_registry_date' name='passed_national_registry_date' class='jqcal' value='<?php echo $this->portfolioOptions->get_formatted_date('passed_national_registry_date')?>' style='width: 100px;' /></div>	
+				
+				<div>
+					<input type='checkbox' id='employed_date_cb' name='employed_date_cb'
+					<?php echo ($this->portfolioOptions->employed_date_completed ? $checkedText : ''); ?>/>
+					<span>Employed performing <?php echo $this->portfolioOptions->student->getCertification()->description; ?> duties as of</span>
+					<input id='employed_date' name='employed_date' class='jqcal' value='<?php echo $this->portfolioOptions->get_formatted_date('employed_date')?>' style='width: 100px;' />
+				</div>
+				
+				<div><input type='checkbox' id='employer_survey_cb' name='employer_survey_cb' <?php echo ($this->portfolioOptions->employer_survey_completed ? $checkedText : ''); ?>/> <span>Employer survey completed as of</span> <input id='employer_survey_date' name='employer_survey_date' class='jqcal' value='<?php echo $this->portfolioOptions->get_formatted_date('employer_survey_date')?>' style='width: 100px;' /></div>
+				<div><input type='checkbox' id='graduate_survey_cb' name='graduate_survey_cb' <?php echo ($this->portfolioOptions->graduate_survey_completed ? $checkedText : ''); ?>/> <span>Graduate survey completed as of</span> <input id='graduate_survey_date' name='graduate_survey_date' class='jqcal' value='<?php echo $this->portfolioOptions->get_formatted_date('graduate_survey_date')?>' style='width: 100px;' /></div>
+			</div>
+			<?php if(!$this->contentOnly): ?>
+				<div class='prefix_8 grid_4'>
+					<input type='button' value='Cancel' id='cancel-button'/> <input id='submit-button' type='submit' value='Save'/>
+				</div>
+			<?php endif; ?>
+			<div class="clearfix"></div>
+		</form>
+	</div>
+</div>

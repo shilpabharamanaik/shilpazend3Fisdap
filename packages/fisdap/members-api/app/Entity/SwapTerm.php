@@ -8,9 +8,10 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
+
 /**
  * Swap Term
- *
+ * 
  * @Entity
  * @Table(name="fisdap2_swap_terms")
  */
@@ -59,20 +60,20 @@ class SwapTerm extends EntityBaseClass
     /**
      * Returns a string containing a description of these terms
      */
-    public function getDescription()
-    {
-        if ($this->term_type->name == 'duration') {
+    public function getDescription() {
+	if ($this->term_type->name == 'duration') {
             if ($this->value[0] == 1) {
                 return "1 hour long";
             }
             return $this->value[0]." hours long";
-        }
+	}
         
         $values = array();
         foreach ($this->value as $id) {
             $entity = EntityUtils::getEntity($this->term_type->entity_name, $id);
             $values[] = ucfirst($entity->name);
         }
-        return implode(', ', $values);
+	return implode(', ', $values);
     }
+
 }

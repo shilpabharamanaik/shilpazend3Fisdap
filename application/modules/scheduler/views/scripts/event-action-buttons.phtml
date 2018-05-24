@@ -1,0 +1,135 @@
+<?
+	// set up some variables for easy reading later on
+	$user 	         = $this->current_user_data['user'];
+	$program_id      = $this->current_user_data['program_id'];
+	$is_instructor   = ($this->current_user_data['role_name'] == 'instructor') ? true : false;
+	$current_userContextId    = $this->current_user_data['userContextId'];
+	$user_can_see    = ($is_instructor) ? true : $this->event['user_can_see_a_window'];
+	$open_slot_count = $this->event['open_slot_count'];
+	$request_perms   = $this->event['request_perms'];
+	$scheduler_perm  = ($this->current_user_data['scheduler_permissions'][$this->event['event_type']]) ? true : false;
+	
+	$has_skills_tracker  = $this->current_user_data['has_skills_tracker'];
+	$skills_tracker_url  = "/skills-tracker/shifts/my-shift/";
+	$skills_tracker_perm = ($this->current_user_data['skills_tracker_permissions'][$this->event['event_type']]) ? true : false;
+	$shared_perm_check   = ($this->event['shared_event']) ? $this->event['is_site_admin'] : true;
+	
+	// init some button stuff
+	$delete_quick_add_shift = $edit_quick_add_shift = $assign_button = $delete_button = $edit_button = $open_history_modal = $signup = $shift_request = $link_to_skills_tracker = false;
+	$series_id = $event_id = $future = $userContextId = $assignment_id = $st_href = $edit_event_url = null;
+    $shift_id = $this->event['shift_id'];
+?>
+
+<?php
+
+	// Handle permissions for quick add shift buttons (edit/delete)
+	if($this->event['quick_add_shift'] && $this->event['users_assignment_id']){
+		
+		// ----- Quick add delete button -----
+		if ($skills_tracker_perm){
+			$delete_quick_add_shift = true;
+		}
+		
+		// ----- Quick add edit button -----
+		if ($scheduler_perm || (!$is_instructor)){
+			$edit_quick_add_shift = true;
+		}
+	}
+	
+	// instructor buttons
+	if ($is_instructor) {
+        // ----- History button -----
+        // (all instructors see in all cases)
+        $open_history_modal = true;
+		
+		// instructor buttons for NON-QUICK ADD Buttons
+		if(!$this->event['quick_add_shift']){
+			
+			$event_id = $this->eventId;
+			
+			// ----- Assign/Drop button -----
+			if($scheduler_perm && !$this->event['previously_shared_event']) {
+				$assign_button = true;
+			}
+			
+			// ----- Delete button -----
+			// (must be admin and have permission to edit schedules)
+			if(($shared_perm_check && $scheduler_perm) && !$this->event['previously_shared_event']) {
+				$delete_button = true;
+				$future = $this->event['future'];
+			}
+			
+			// ----- Edit button -----
+			// (must have permission to edit schedules and the event must be in the future) 
+			if($scheduler_perm && $this->event['future'] && !$this->event['previously_shared_event']){
+				$edit_button = true;
+				$edit_event_url = ($this->event['series_id']) ? "#" : "/scheduler/shift/edit/event/" . $this->eventId;
+			}
+		}
+	
+	// Student buttons
+	} else {
+		
+		// is the current logged in student on this shift?
+		$users_assignment_id = $this->event['users_assignment_id'];
+		$event_id = $this->eventId;
+		
+		// ----- Sign up button -----
+		// This logged in student must:
+			// not already be on the shift
+			// have an open/active/qualifying window ($user_can_see)
+			// there is at least 1 open slot
+			// and finally, the global setting for shift sign up must be on
+		if(is_null($users_assignment_id) && $user_can_see && $open_slot_count > 0 && $scheduler_perm){
+			$signup = true;
+			$userContextId = $current_userContextId;
+		}
+		
+		// Student only buttons
+		// Continue only if this logged in student is attending the shift or it is a quick add shift
+		if($users_assignment_id || $this->event['quick_add_shift']) {
+			
+			// ----- Request Change button -----
+			if(!$this->event['quick_add_shift']){
+				// needs permission for at least 1 request type and the shift must start after today
+				if($this->event['show_change_request_btn'] && $this->event['start_datetime']->format("Y-m-d") > date("Y-m-d")) {
+					$shift_request = true;
+					$assignment_id = $users_assignment_id;
+				}
+			}
+			
+			// ----- Skills & Pt. Care button (FOR STUDENTS SHIFTS ONLY, instructors get a shield in the filled slots table) -----
+			if($has_skills_tracker && $users_assignment_id){
+				$link_to_skills_tracker = true;
+				$st_href = $skills_tracker_url;
+				$st_href .= ($this->event['quick_add_shift']) ? "shiftId/" . $this->event['shift_id'] : "assignmentId/" . $users_assignment_id; ?>
+			<?
+			}
+			
+		}
+	} ?>
+	
+	<? // build this guy. This will help reduce the number of DOM elements for the initial append (makes things much faster).
+	// JavaScript will handle things from here, and only when the user asks. ?>
+
+    <div class="btn-data" id="btn-data-<?= $this->eventId; ?>"
+        <?= ($delete_quick_add_shift) ? 'data-delete-quick-add-shift = "' . $delete_quick_add_shift . '"' : ''; ?>
+        <?= ($edit_quick_add_shift) ? 'data-edit-quick-add-shift = "' . $edit_quick_add_shift  . '"' : ''; ?>
+        <?= ($assign_button) ? 'data-assign = "' . $assign_button  . '"' : ''; ?>
+        <?= ($delete_button) ? 'data-delete = "' . $delete_button  . '"' : ''; ?>
+        <?= ($edit_button) ? 'data-edit = "' . $edit_button  . '"' : ''; ?>
+        <?= ($open_history_modal) ? 'data-history = "' . $open_history_modal  . '"' : ''; ?>
+        <?= ($signup) ? 'data-signup = "' . $signup . '"' : ''; ?>
+        <?= ($shift_request) ? 'data-shift-request = "' . $shift_request . '"' : ''; ?>
+        <?= ($link_to_skills_tracker) ? 'data-st-link = "' . $link_to_skills_tracker  . '"' : ''; ?>
+        <?= ($shift_id) ? 'data-shift-id = "' . $shift_id  . '"' : ''; ?>
+        <?= 'data-series-id = "' . $this->event['series_id']  . '"'; ?>
+        <?= ($event_id) ? 'data-event-id = "' . $event_id  . '"' : ''; ?>
+        <?= ($future) ? 'data-future = "1"' : 'data-future = "0"'; ?>
+        <?= ($userContextId) ? 'data-user-context-id = "' . $userContextId  . '"' : ''; ?>
+        <?= ($assignment_id) ? 'data-assignment-id = "' . $assignment_id  . '"' : ''; ?>
+        <?= ($st_href) ? 'data-st-href = "' . $st_href  . '"' : ''; ?>
+        <?= ($edit_event_url) ? 'data-edit-event-href = "' . $edit_event_url  . '"' : ''; ?>>
+    </div>
+
+	<div id="bottom-buttons-<?= $this->eventId ?>" class="bottom-buttons extra-small gray-button"></div>

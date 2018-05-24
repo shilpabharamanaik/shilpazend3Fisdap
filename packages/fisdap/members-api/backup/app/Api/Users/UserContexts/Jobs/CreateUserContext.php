@@ -19,6 +19,7 @@ use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Swagger\Annotations as SWG;
 
+
 /**
  * A Job (Command) for creating a new user context (UserContext Entity)
  *

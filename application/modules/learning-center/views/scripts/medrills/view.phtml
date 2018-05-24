@@ -1,0 +1,27 @@
+<?= $this->pageTitleHelper() ?>
+
+<div class="grid_12 island withTopMargin">
+    <h2 class="section-header"><?= $this->category ?></h2>
+    <h4 class="sub-heading video-counter">
+        <span id="video-count"><?= $this->startVideo ?></span> of <?= count($this->videos) ?>
+    </h4>
+    <div class="grid_1"><img src="/images/tall_arrow_left.png" id="prev-video" class="nav-arrow"></div>
+
+    <div class="grid_10 view_video_portal">
+    <?php foreach ($this->videos as $index => $video) { ?>
+        <div class="view_video" data-videoNumber="<?= $index+1 ?>">
+            <h4 class="header"><?= $video->title ?></h4>
+            <?= $this->vimeoHelper->vimeoEmbed($video->vimeo_id, 733) ?>
+            <div class="video-caption">
+                <?= $video->description ?>
+            </div>
+        </div>
+    <?php } ?>
+    </div>
+
+    <div class="grid_1"><img src="/images/tall_arrow_right.png" id="next-video" class="nav-arrow"></div>
+
+</div> 
+<div class="clear"></div>
+
+

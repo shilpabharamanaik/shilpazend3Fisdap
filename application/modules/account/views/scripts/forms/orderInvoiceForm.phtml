@@ -1,0 +1,61 @@
+<div class="columns-container">
+    <h3 class="sub-heading">Please confirm your billing information.</h3>
+    <br>
+
+    <p>We will send a bill (payable in the next 30 days) to:</p>
+
+    <div class="grid_6">
+        <?= $this->element->name ?>
+        <?= $this->element->email ?>
+        <?= $this->element->phone ?>
+    </div>
+
+    <div class="grid_6">
+        <?= $this->element->programName ?>
+        <?= $this->element->addressLineOne ?>
+        <?= $this->element->addressLineTwo ?>
+        <?= $this->element->billingCountry ?>
+        <?= $this->element->city . " " . $this->element->billingState . " " . $this->element->zip ?>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_12">
+        <? if ($this->element->saveBillingInfo) { ?>
+            <?= $this->element->saveBillingInfo ?>
+        <? } ?>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_12">
+        <br>
+        <p>An invoice will be emailed to the address listed above.</p>
+        <br>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6">
+        <h3 class="sub-heading">Purchase Order
+            number <?= $this->element->user->getCurrentProgram()->requires_po ? "(required)" : "(optional)" ?></h3>
+
+        <p>If you would like your bill to reference a Purchase Order number, please list it below.</p>
+        <?= $this->element->po ?>
+    </div>
+
+    <div class="clear"></div>
+    <? if ($this->element->user->isStaff()) {
+        echo $this->element->staffFreeOrder;
+
+    } ?>
+
+    <div class="clear"></div>
+</div>
+
+<div class="action-buttons">
+    <?= $this->costContainer($this->element->order) ?>
+    <?= $this->element->orderButton ?>
+</div>
+
+<?= $this->element->orderId ?>

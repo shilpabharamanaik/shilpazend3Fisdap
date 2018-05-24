@@ -1,0 +1,49 @@
+<?= $this->pageTitleHelper() ?>
+
+<? if ($this->accountDetails) { ?>
+    <div class="order-summary">
+        Your
+        <?php
+        // show the limits/certification level if we have more than just study tools
+        if(!$this->accountDetails['studyToolsOnly']){
+            echo $this->accountDetails['cert'];
+        }
+        ?>
+        account
+        <?php
+        // don't show the program if it's in FISDAP Study Tools
+        if($this->accountDetails['programId'] != 688){
+            echo "at " . $this->accountDetails['programName'];
+        }
+        ?>
+        includes the following
+        <?php
+        // make product plural if there is more than one product
+        $productCount = count($this->accountDetails['products']);
+        if($productCount > 1){
+            echo "products: ";
+        }
+        else {
+            echo "product: ";
+        }
+        $i = 0;
+        // display the list of products
+        foreach($this->accountDetails['products'] as $product){
+            echo $product['name'];
+            if($i == $productCount - 2){
+               echo " and ";
+            }
+            else if($i != $productCount-1){
+                echo ", ";
+            }
+            else if($i == $productCount-1){
+                echo ".";
+            }
+            $i++;
+        }?>
+    </div>
+<? } ?>
+            
+<div class="grid_12 island">
+    <?= $this->form ?>
+</div>

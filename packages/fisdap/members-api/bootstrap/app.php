@@ -2,6 +2,7 @@
 
 use Fisdap\ErrorHandling\ErrorHandler;
 
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application

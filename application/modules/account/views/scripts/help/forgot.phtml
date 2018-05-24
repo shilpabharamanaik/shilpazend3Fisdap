@@ -1,0 +1,40 @@
+<?= $this->pageTitleHelper() ?>
+
+<div id="errorsContainer"></div>
+<div class="island">
+    <div class="infoBox left">
+        <h3 class="sub-heading">Reset Your Password</h3>
+
+        <p>If you have forgotten your username or password, please type your email address below. We'll send you an
+            email that will include a link to reset your password.</p>
+
+
+        <?= $this->form; ?>
+
+        <div id="usersContainer">
+        </div>
+
+        <div id="notice">
+            Please Note: Fisdap staff members are not authorized to change student passwords. If you are a student, only
+            you or your instructor are able to reset your password.
+        </div>
+    </div>
+
+    <div class="infoBox">
+        <h3 class="sub-heading">Suggestions</h3>
+
+        <ul>
+            <li>Usernames can include both numbers and letters.</li>
+            <li>Your email address is <i>not</i> your username.</li>
+            <li>Usernames are <i>not</i> case sensitive. Passwords <i>are</i> case sensitive.</li>
+            <li>When you try to log in, make sure that your keyboard is not accidentally in "Caps Lock" mode.</li>
+        </ul>
+
+        <p><a id="back" href="/login">Return to Login</a></p>
+
+    </div>
+</div>
+
+
+    
+    

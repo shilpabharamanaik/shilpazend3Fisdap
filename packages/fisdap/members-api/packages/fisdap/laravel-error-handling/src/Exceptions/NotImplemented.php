@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
+
 /**
  * Class NotImplemented
  *

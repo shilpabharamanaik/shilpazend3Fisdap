@@ -2,14 +2,14 @@
 
 use Fisdap\ErrorHandling\Exceptions\InvalidType;
 
+
 /**
  * Query parameter for program ID(s)
  *
  * @package Fisdap\Api\Queries\Parameters
  * @author  Ben Getsug <bgetsug@fisdap.net>
  */
-trait IdentifiedByPrograms
-{
+trait IdentifiedByPrograms {
 
     /**
      * @var int[]|null
@@ -35,7 +35,7 @@ trait IdentifiedByPrograms
     public function setProgramIds(array $programIds)
     {
         foreach ($programIds as $programId) {
-            if (! is_numeric($programId)) {
+            if ( ! is_numeric($programId)) {
                 throw new InvalidType('program id must be an integer');
             }
         }

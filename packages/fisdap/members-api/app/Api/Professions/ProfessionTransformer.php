@@ -4,6 +4,7 @@ use Fisdap\Api\Professions\CertificationLevels\CertificationLevelTransformer;
 use Fisdap\Entity\Profession;
 use Fisdap\Fractal\Transformer;
 
+
 /**
  * Prepares profession data for JSON output
  *
@@ -52,10 +53,8 @@ final class ProfessionTransformer extends Transformer
     {
         $certificationLevels = $profession instanceof Profession ? $profession->certifications : $profession['certifications'];
 
-        if (empty($certificationLevels)) {
-            return;
-        }
+        if (empty($certificationLevels)) return;
 
         return $this->collection($certificationLevels, new CertificationLevelTransformer);
     }
-}
+} 

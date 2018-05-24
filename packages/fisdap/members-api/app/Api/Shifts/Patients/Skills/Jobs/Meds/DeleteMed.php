@@ -25,7 +25,7 @@ final class DeleteMed extends AbstractSkills implements RequestHydrated
     public function handle(MedRepository $medRepository)
     {
         $med = $medRepository->find($this->id);
-        if ($med) {
+        if($med) {
             $medRepository->destroy($med);
         }
 

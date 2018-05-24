@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
+
 /**
  * Entity class for Guided Tour.
  *
@@ -20,59 +21,60 @@ use Fisdap\EntityUtils;
  */
 class GuidedTour extends EntityBaseClass
 {
-    /**
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
-     */
-    protected $id;
+	/**
+	 * @Id
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 */
+	protected $id;
 
-    /**
-     * @Column(type="string", nullable=true)
-     */
-    protected $url;
-    
-    /**
+	/**
+	 * @Column(type="string", nullable=true)
+	 */
+	protected $url;
+	
+	/**
      * @ManyToOne(targetEntity="Role")
      */
-    protected $role;
-    
-    /**
-     * @Column(type="boolean", nullable=true)
-     */
-    protected $active;
-    
-    /**
-     * @Column(type="string", nullable=true)
-     */
-    protected $name;
-    
-    /**
-     * @Column(type="string", nullable=true)
-     */
-    protected $welcome_msg;
-    
-    /**
-     * @Column(type="string", nullable=true)
-     */
-    protected $end_msg;
-    
+	protected $role;
+	
+	/**
+	 * @Column(type="boolean", nullable=true)
+	 */
+	protected $active;
+	
+	/**
+	 * @Column(type="string", nullable=true)
+	 */
+	protected $name;
+	
+	/**
+	 * @Column(type="string", nullable=true)
+	 */
+	protected $welcome_msg;
+	
+	/**
+	 * @Column(type="string", nullable=true)
+	 */
+	protected $end_msg;
+	
     /**
      * @var ArrayCollection
      * @OneToMany(targetEntity="GuidedTourStep", mappedBy="guided_tour", cascade={"persist","remove"})
      */
-    protected $steps;
-    
-    public function init()
+	protected $steps;
+	
+	public function init()
     {
         $this->steps = new ArrayCollection;
     }
-    
-    public function userHasCompleted($userContextId)
-    {
-        $repo = EntityUtils::getRepository('GuidedTour');
-        $history_record_id = $repo->getTourHistoryByUser($this->id, $userContextId);
-        
-        return ($history_record_id) ? true : false;
-    }
+	
+	public function userHasCompleted($userContextId)
+	{
+		$repo = EntityUtils::getRepository('GuidedTour');
+		$history_record_id = $repo->getTourHistoryByUser($this->id, $userContextId);
+		
+		return ($history_record_id) ? true : false;
+	}
+	
 }

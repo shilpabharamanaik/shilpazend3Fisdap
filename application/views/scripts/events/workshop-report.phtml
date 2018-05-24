@@ -1,0 +1,73 @@
+<?= $this->pageTitleHelper() ?>
+<?= $this->messageHelper(); ?>
+
+
+<link rel="stylesheet" href="/js/tableSorter/themes/blue/style.css">
+
+
+<div class='grid_12 island'>
+	
+	<div class="grid_12">
+		<?= $this->form ?><br>
+	</div>
+	
+
+</div>
+
+<div style="clear: both"></div>
+
+<div class='grid_12 island withTopMargin' id="outer_results_area">
+	
+	<div class="grid_6" id="other-links">
+		
+			<div class="small gray-button" id="resultoptions">
+				<a id="displayOptionsTrigger">Columns</a>
+			</div>
+		
+			<?= $this->exportButtons(array("pdf"), "export-workshop-report-links") ?>
+		
+			<div class="small gray-button" id="emailAllOther">
+				<a href="" id="emailAllAttendeesOther"><img height="15" width="20" src="/images/icons/email-icon.png">Email</a>
+			</div>				
+	</div>	
+	
+	<div id='results_area'>
+	</div>
+	
+</div>
+
+
+
+<div id="displayOptions">
+	
+	<div class="grid_6" style="margin-right:2em">
+		<input type="checkbox" name="options-id" id="options-id" value="id"><label for="options-id">ID</label><br />
+		<input type="checkbox" name="options-name" id="options-name" value="name" checked="checked"><label for="options-name">Name</label><br />
+		<input type="checkbox" name="options-cert" id="options-cert" value="cert" ><label for="options-cert">Cert. Level</label><br />
+		<input type="checkbox" name="options-email" id="options-email" value="email" ><label for="options-email">Email</label><br />
+		<input type="checkbox" name="options-phone" id="options-phone" value="phone" ><label for="options-phone">Phone</label><br />
+		<input type="checkbox" name="options-emailed" id="options-emailed" value="emailed" ><label for="options-emailed">Emailed</label><br />
+		<input type="checkbox" name="options-cert-taught" id="options-cert-taught" value="cert-taught" ><label for="options-cert-taught">Cert. Lvl Taught</label><br />
+		<input type="checkbox" name="options-cert-num" id="options-cert-num" value="cert-num" ><label for="options-cert-num">Cert. Number</label><br />
+	</div>
+	
+	<div class="grid_6">
+		<input type="checkbox" name="options-username" id="options-username" value="username"><label for="options-username">Username</label><br />
+		<input type="checkbox" name="options-organization" id="options-organization" value="organization" checked="checked"><label for="options-organization">Organization</label><br />
+		<input type="checkbox" name="options-zip" id="options-zip" value="zip"><label for="options-zip">Zipcode</label><br />
+		<input type="checkbox" name="options-state" id="options-state" value="state"><label for="options-state">State</label><br />
+		<input type="checkbox" name="options-city" id="options-city" value="city"><label for="options-city">City</label><br />	
+		<input type="checkbox" name="options-address1" id="options-address1" value="address1"><label for="options-address1">Address Line 1</label><br />
+		<input type="checkbox" name="options-address2" id="options-address2" value="address2"><label for="options-address2">Address Line 2</label><br />	
+		<input type="checkbox" name="options-workshop" id="options-workshop" value="workshop"><label for="options-workshop">Workshop</label><br />
+		<input type="checkbox" name="options-action" id="options-action" value="action"><label for="options-action">Action</label><br />
+	
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div class="small gray-button" id="doSave">
+		<a href="#" id="updateDisplay">Update List</a>
+	</div>
+	
+</div>		

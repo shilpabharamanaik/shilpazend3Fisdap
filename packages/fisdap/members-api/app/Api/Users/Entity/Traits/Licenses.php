@@ -2,6 +2,7 @@
 
 use Doctrine\ORM\Mapping\Column;
 
+
 /**
  * Trait Licenses
  *
@@ -142,7 +143,7 @@ trait Licenses
     {
         if ($value instanceof \DateTime) {
             $this->state_license_expiration_date = $value;
-        } elseif ($value) {
+        } else if ($value) {
             $this->state_license_expiration_date = new \DateTime($value);
         }
 
@@ -160,7 +161,7 @@ trait Licenses
     {
         if ($value instanceof \DateTime) {
             $this->license_expiration_date = $value;
-        } elseif ($value) {
+        } else if ($value) {
             $this->license_expiration_date = new \DateTime($value);
         }
 

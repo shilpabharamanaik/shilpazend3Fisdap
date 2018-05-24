@@ -6,6 +6,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Yaml\Yaml;
 
+
 /**
  * Class GenerateCommand
  *
@@ -154,7 +155,7 @@ class GenerateCommand extends Command
      */
     protected function populateFixtureFiles($entityClass, $id, $depth = 0)
     {
-        if (! class_exists($entityClass)) {
+        if ( ! class_exists($entityClass)) {
             return;
         }
 
@@ -174,7 +175,7 @@ class GenerateCommand extends Command
 
         $fields = $metadata->getFieldNames();
 
-        if (! array_key_exists($entityClass, $this->fixtureFileContents)) {
+        if ( ! array_key_exists($entityClass, $this->fixtureFileContents)) {
             $this->fixtureFileContents[$entityClass] = [];
         }
 
@@ -185,7 +186,7 @@ class GenerateCommand extends Command
         foreach ($fields as $field) {
 
             // set created/updated timestamps
-            switch ($field) {
+            switch($field) {
                 case 'created':
                     $value = '<dateTimeBetween(\'-1 year\', \'now\')>';
                     break;
@@ -251,12 +252,10 @@ class GenerateCommand extends Command
                     }
                 }
             } else {
-                if (! in_array($fieldName, $fields)) {
+                if ( ! in_array($fieldName, $fields)) {
                     // Quick check to see if the associated entity even exists in the DB...
                     try {
-                        if (! is_object($entity->$fieldName)) {
-                            continue;
-                        }
+                        if ( ! is_object($entity->$fieldName)) continue;
                         $this->fixtureFileContents[$entityClass][$entityKey][$fieldName] = '@' . $targetEntityShortName . '_' . $entity->$fieldName->id;
                     } catch (\Exception $e) {
                         echo 'Caught ' . get_class($e) . ': '. $e->getMessage() . PHP_EOL;

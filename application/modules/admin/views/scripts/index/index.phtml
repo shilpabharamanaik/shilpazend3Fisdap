@@ -1,0 +1,506 @@
+<?= $this->pageTitleHelper() ?>
+
+<div class="links">
+    <a href="#cxtesting">CX Testing Tools</a>
+    <a href="#testing">Testing Tools</a>
+    <a href="#workshop">Testing Workshop Tools</a>
+    <a href="#staff">Staff Tools</a>
+    <a href="#sales">Sales Tools</a>
+</div>
+
+<div class="grid_12 island withTopMargin">
+    <h3 class="section-header">CX Tools</h3>
+
+    <div class="grid_6">
+        <div class="headerExpand"><a href="/admin/index/user-search">User Search</a></div>
+        <div class="contentExpand">
+            <p>Search for a user (student or instructor) with name, email or username. From here you can mask as that
+                user or switch to that user's program.</p>
+        </div>
+    </div>
+    <div class="grid_6">
+        <div class="headerExpand"><a href="https://manager.paypal.com/">Verisign</a></div>
+        <div class="contentExpand">
+            <p>This is a quick link to our Verisign account.</p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a href="/login/masquerade">Fisdap 2.0 User Switcher</a></div>
+        <div class="contentExpand">
+            <p>This tool masks staff as another username. It lets staff members view information as though they were
+                that user. This is useful for seeing what our users claim to see, i.e. checking to see what a student or
+                instructor can see (or not see) based on permissions and program settings. </p><br/>
+
+            <p><span style="font-weight: bold">Important:</span> This tool cannot be 100% trusted because things are
+                unreliably changed when we switch programs, so it's still critical to give customer some benefit of the
+                doubt.</p>
+        </div>
+    </div>
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a href="/account/edit/transfer-account">Transfer Account</a></div>
+        <div class="contentExpand">
+            <p>This tool allows staff to transfer a student or instructor account from one program to another. By first
+                choosing whether the account is an instructor or student, a staff member can then input either the
+                account's username or ID number. Finally, the staff member can input the Current Program and the New
+                Program names from the dropdown menus provided. Please include a brief description as to why the student
+                or instructor is being transferred to be sent in the Internal Tool Update email. </p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/modify_serial_numbers.php"); ?>">Modify
+                Serial Numbers</a></div>
+        <div class="contentExpand">
+            <p>Legacy tool that can be used to delete, deactivate and change the product access for serial numbers.
+                Note: Some features in this tool have been deprecated in favor of the <a
+                    href='/account/orders/inventory'>Inventory</a>.</p>
+        </div>
+    </div>
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/note_view.php"); ?>">Program
+                Notes/Switcher</a></div>
+        <div class="contentExpand">
+            <p>You can view and add program notes here. You can also use the legacy program switcher.</p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/modifyProgramType.php"); ?>">Modify
+                Program Type</a></div>
+        <div class="contentExpand">
+            <p>Set the program type(s) for a given program. You can choose from several options including:
+                Academic/Training Institution, Hospital, Clinic, Ambulance Service, etc.</p>
+        </div>
+    </div>
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/customer_report.php"); ?>">Customer
+                Report</a></div>
+        <div class="contentExpand">
+            <p>Master list of all programs in Fisdap along with the program contact, contact info, and last ordered
+                products.</p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a href="/skills-tracker/shifts/confirm-practice-items">Confirm Practice Items</a>
+        </div>
+        <div class="contentExpand">
+            <p>Bulk Confirm/Unconfirm tool for practice items. This page can also be accessed via a link in the practice
+                item form.</p>
+        </div>
+    </div>
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a href="/account/edit/merge-account">Merge Accounts</a></div>
+        <div class="contentExpand">
+            <p>Tool for merging two accounts.</p>
+        </div>
+    </div>
+
+</div>
+
+<div style="clear:both"></div>
+
+<div class="grid_12 island withTopMargin">
+    <h3 class="section-header">Evals</h3>
+
+    <div class="grid_6">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("shift/evals/eval_overview.html"); ?>">Eval
+                Admin</a></div>
+        <div class="contentExpand">
+            <p>This tool presents a list of all current Evals within the system and allows staff to display, edit, or
+                duplicate those forms. The first link on the page allows for the creation of a new Evaluation. That tool
+                will receive its own documentation.</p>
+        </div>
+    </div>
+    <div class="grid_6">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/updateEvalDefinitions.html"); ?>">Eval
+                Subj/Evaluator Editor</a></div>
+        <div class="contentExpand">
+            <p>This tool allows a staff member to set the Subject and Evaluator Types on an Eval Form. Upon opening the
+                tool, staff can choose the eval they wish to edit from the drop down menu. Once the Eval has been
+                chosen, the Type can be selected for both Subject and Evaluator.</p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("shift/evals/hook_editor.php"); ?>">Eval Hook
+                Editor</a></div>
+        <div class="contentExpand">
+            <p>This tool allows for the placement of evals within the FISDAP Skills Tracker system.</p><br>
+
+            <p>First, ensure all that the correct program is being edited (default is current program). Next, decide on
+                hook placement.</p>
+
+            <p>The hook placements available are broken down into: Field, Clinical, Lab and Unmatched.</p><br>
+
+            <p>The first three describe their respective sites in the Skills Tracker, the last one is a catch-all. In
+                Unmatched you will find the "Global" evals for all three sites-- these hooks allow staffmembers to place
+                evals on the Summary Page of a Field, Clinical, or Lab session.</p><br>
+
+            <p>Within "Unmatched," there is the "(Eval List Extras)" hook, which is where Evals that lack specific
+                placement are put. Any evals that a customer requests which are not tied to one of the site types goes
+                here. To add it, click on Hook #109. Where the field says "Add eval to your program default," click the
+                dropdown menu and find the appropriate eval (usually the last one listed). Click add.</p><br>
+
+            <p><span style="font-weight: bold">Important:</span> Adding ANY custom settings will result in the system
+                assuming the defaults are invalid. The default evals will need to be manually re-hooked using the same
+                method above. Use the list below to add all necessary default evals back to Hook #109.</p><br>
+
+            <p>The defaults are 35, 139, 141, 156, 157, 158, 159, 174, 208, 195</p>
+        </div>
+    </div>
+
+
+</div>
+
+<div style="clear:both"></div>
+
+<div class="grid_12 island withTopMargin">
+    <a name="cxtesting"></a>
+
+    <h3 class="section-header">CX Testing Tools</h3>
+
+    <div class="grid_6">
+        <div class="headerExpand"><a href="/reports/index/display/report/PasswordSchedule">Password Schedule</a></div>
+        <div class="contentExpand">
+            <p>This tool provides a list of the proctor passwords for all levels of FISDAP Testing. Passwords change
+                daily and can be displayed for any range of dates. The calendar will only display passwords for tests
+                that have already been scheduled.</p>
+        </div>
+    </div>
+    <div class="grid_6">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/moodle_attempts.php"); ?>">Find/Delete
+                Moodle Attempts</a></div>
+        <div class="contentExpand">
+            <p>Use this tool to find and delete moodle attempts. Useful for getting rid of a half-finished attempt when
+                a student wants to start over.</p>
+        </div>
+    </div>
+</div>
+
+<div style="clear:both"></div>
+
+<div class="grid_12 island withTopMargin">
+    <a name="testing"></a>
+
+    <h3 class="section-header">Testing</h3>
+
+    <div class="grid_6">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("shift/evals/testItemHome.html"); ?>">Testing
+                Development Directory</a></div>
+        <div class="contentExpand">
+            <p>This link opens up a selection of Test Development tools. These tools will receive their own
+                documentation.</p>
+        </div>
+    </div>
+    <div class="grid_6">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("shift/evals/showCat.html"); ?>">Asset Tracking
+                System</a></div>
+        <div class="contentExpand">
+            <p>A slightly outdated location for you to link assets in Fisdap in an informational hierarchy.</p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/national_averages.php"); ?>">Calculate
+                National Averages</a></div>
+        <div class="contentExpand">
+            <p>This tool displays the average scores of students who have taken one of FISDAP's tests. The tool is
+                searchable by range of dates as well as test type. The results are broken down by test section, but
+                include an overall score as well.</p><br/>
+
+            <p><span style="font-weight: bold">Note:</span> This tool often takes a long time to finish retrieving
+                results.</p>
+        </div>
+    </div>
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a href="/learning-center/test/test-documents">Manage Test Documents</a></div>
+        <div class="contentExpand">
+            <p>Add, edit or delete files associated with Fisdap tests.</p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/staff_test_schedule.html"); ?>">Testing
+                Schedule</a></div>
+        <div class="contentExpand">
+            <p>This tool displays a master calendar of scheduled tests, past and present. Tests yet to be taken are
+                listed on a dark grey background; tests dates that have already passed have a normal, white background.
+                This master calendar is searchable by program, test type, and range of dates.</p>
+        </div>
+    </div>
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/NR_score_finder.php"); ?>">Registry
+                Score Status</a></div>
+        <div class="contentExpand">
+            <p>This tool allows staff members to check the submission status of National Registry Exam Scores. In order
+                to correlate scores on FISDAP tests with scores on the NR Exam, we need instructors to submit their
+                students' NR Exam results. This tool is searchable by range of dates as well as FISDAP test type. It
+                outputs the program name, student name, date of test, and whether NR scores have been submitted or
+                not. </p>
+        </div>
+    </div>
+
+</div>
+
+<div style="clear:both"></div>
+
+<div class="grid_12 island withTopMargin">
+    <a name="workshop"></a>
+
+    <h3 class="section-header">Testing Workshop Tools</h3>
+
+    <div class="grid_6">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/ScheduledSessionAdmin.php"); ?>">Maintain
+                Scheduled Sessions</a></div>
+        <div class="contentExpand">
+            <p>Create, edit and delete item review sessions and invite email addresses to attend.</p>
+        </div>
+    </div>
+    <div class="grid_6">
+        <div class="headerExpand"><a href="/events/show-workshops">Workshop Maintenance</a></div>
+        <div class="contentExpand">
+            <p>This tool allows a staff member to edit, delete, or create new workshops. The legacy version can be found
+                <a href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("events/admin/workshop_maint.php"); ?>">here.</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a href="/events/workshop-report">Workshop Reports</a></div>
+        <div class="contentExpand">
+            <p>This tool allows a staff member to export a list of attendees for workshops. It can output data like
+                Phone, Email, Cert Level, whether an attendee has paid, whether an attendee needs transportation, and
+                more. The legacy version can be found <a
+                    href="<?= "/oldfisdap/redirect?loc=" . urlencode("events/admin/workshop_report.php"); ?>">here.</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div style="clear:both"></div>
+
+<div class="grid_12 island withTopMargin">
+    <h3 class="section-header">Event Registration Tools</h3>
+
+    <div class="grid_6">
+        <div class="headerExpand"><a href="/bike-ride/show-event">EMS Bike Ride Events</a></div>
+        <div class="contentExpand">
+            <p>This tool allows a staff member to set up the event information for the National EMS Memorial Bike Ride
+                Form, specifying the event region, start and end date, bike ride origin and destination, etc.</p>
+        </div>
+    </div>
+
+    <div class="grid_6">
+        <div class="headerExpand"><a href="/bike-ride/report">EMS Bike Ride Report</a></div>
+        <div class="contentExpand">
+            <p>This tool allows a staff member to access the riders report for the National EMS Memorial Bike Ride
+                Event.</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="grid_12 island withTopMargin">
+    <a name="staff"></a>
+
+    <h3 class="section-header">Staff Tools</h3>
+
+    <div class="grid_6">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/POPtransactionadmin.html"); ?>">Rewards
+                Transaction Administration</a></div>
+        <div class="contentExpand">
+            <p>This tool provides a listing of all rewards transactions. It is searchable by range of dates and program.
+                It also allows editing/deleting of previous rewards transactions and creation of new transactions (note:
+                must scroll to the bottom of page to add new). See Louise or Sarah for rubric of rewards points assigned
+                for actions and service. Please provide notes detailing the reason for each transaction.</p><br/>
+
+            <p><span style="font-weight: bold">Note:</span> Rewards (as different from Discounts) usually refers to the
+                points instructors earn for their contribution or participation in test development.</p>
+        </div>
+    </div>
+    <div class="grid_6">
+        <div class="headerExpand"><a href="/admin/index/cecbems-data/">Download Transition Course XML for CECBEMS</a>
+        </div>
+        <div class="contentExpand">
+            <p>Download the transition course completion report to register students for CECBEMS Continuing Education
+                Credit hours.</p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a href="/admin/index/referral-report">New Program Referral Report</a></div>
+        <div class="contentExpand">
+            <p>This tool will output a list of referral information for new programs.</p>
+        </div>
+    </div>
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a href="/admin/coupon/">Coupon Administration</a></div>
+        <div class="contentExpand">
+            <p>This tool will allow you to view and edit existing coupons in addition to adding new coupons to the
+                ordering system.</p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/discountadmin.html"); ?>">Discounts
+                Administration</a></div>
+        <div class="contentExpand">
+            <p>This tool provides a listing of discounts provided within the FISDAP system. It is searchable by range of
+                dates and program. It allows editing/deleting of previous discounts, as well as the creation of new
+                discounts (note: must scroll to the bottom of page to add new). If creating a new discount, please
+                provide notes detailing the reason for the discount.</p>
+        </div>
+    </div>
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/expiring_discounts_report.php"); ?>">Expiring
+                Discounts Report</a></div>
+        <div class="contentExpand">
+            <p>This tool will output a list of expiring discounts (including, of course, program number and type of
+                discount) for a range of dates that the staff member inputs. This output can be configured for web
+                browser display, print-friendly display, or spreadsheet-friendly display.</p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/reportbuilder.html"); ?>">Report
+                Builder</a></div>
+        <div class="contentExpand">
+            <p>Most useful for developers. Given an SQL query, create an HTML/PDF table of the results.</p>
+        </div>
+    </div>
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a href="/admin/notifications/history">Notification Center</a></div>
+        <div class="contentExpand">
+            <p>Use the notification center to communicate essential changes to all users, or a segment of relevant users
+                based on account type and product access. These notifications should be limited to software release
+                updates and downtime announcements.</p>
+        </div>
+    </div>
+
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a href="/admin/index/manage-ethnio-screeners">Ethnio Screener Placement</a></div>
+        <div class="contentExpand">
+            <p>Use to activate and/or place Ethnio screeners on pages within the Fisdap Members app to recruit users for
+                user testing.</p>
+        </div>
+    </div>
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a href="/reports/index/display/report/Professions">Program Professions Report</a>
+        </div>
+        <div class="contentExpand">
+            <p>See a list of all the programs in a given profession. Includes program location, contact, and most recent
+                order date.</p>
+        </div>
+    </div>
+</div>
+
+<div class="grid_12 island withTopMargin">
+    <a name="sales"></a>
+
+    <h3 class="section-header">Sales Team Tools</h3>
+
+    <div class="grid_6">
+        <div class="headerExpand"><a href="/reports/index/display/report/AnnualSales">Annual Sales Report</a></div>
+        <div class="contentExpand">
+            <p>A report showing the annual sales per program.</p>
+        </div>
+    </div>
+</div>
+
+<div style="clear:both"></div>
+
+<div class="grid_12 island withTopMargin">
+    <h3 class="section-header">Depreciated</h3>
+
+    <div class="grid_6">
+        <div class="headerExpand"><a href="/admin/index/switch-program-to-old-scheduler">Scheduler 1.0 Switcher</a>
+        </div>
+        <div class="contentExpand">
+            <p>Use this tool to switch a newly created school to scheduler 1.0</p>
+        </div>
+    </div>
+    <div class="grid_6">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/switch_to_beta.php"); ?>">Switch
+                Program to Fisdap 2.0</a></div>
+        <div class="contentExpand">
+            <p>Use this tool to switch a school to use Skills Tracker 2.0.</p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/BetaCustomerReport.php"); ?>">Beta
+                Customer Report</a></div>
+        <div class="contentExpand">
+            <p>List of all customers currently using Skills Tracker 2.0 and their contact info.</p>
+        </div>
+    </div>
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("reports/bookstore_sn_report.php"); ?>">Bookstore
+                Serials Report</a></div>
+        <div class="contentExpand">
+            <p>Create a printable report of serial numbers that a school bookstore can use to distribute or sell Fisdap
+                serial numbers.</p>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="grid_6 withTopMargin">
+        <div class="headerExpand"><a
+                href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("internal/add_pilot_evals.php"); ?>">Add NREMT
+                Pilot Mk2 Evals</a></div>
+        <div class="contentExpand">
+            <p>Adds all NREMT Mk2 Evals to the "Evals" hook under Account Evaluations.</p>
+        </div>
+    </div>
+
+</div>
+
+
+<div style="clear:both"></div>

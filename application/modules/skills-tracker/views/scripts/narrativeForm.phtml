@@ -1,0 +1,55 @@
+<script>
+$(function(){
+	$('#narrative-next, #narrative-review').click(function(e){
+		autosaveNarrativeData(false);
+	});
+});
+</script>
+<div class="clear"></div>
+<?php
+	$section_ids = $this->element->sections;
+	foreach ($section_ids as $id) {
+?>
+		<div class="grid_12" id="div_freeform">
+			<?php echo $this->element->{$id."_text"} ?>
+		</div>
+<?php
+	}
+	
+	if (!$this->element->is_preview) {
+?>
+
+<div class='save-button-container' style="float:right;">
+	<?= $this->element->save ?>
+</div>
+
+<div id='autosave-timer-nar'>Autosave:</div>
+
+<div class="clear"></div>
+
+<div class="lower-nav">
+	<div style="float:left;">
+		<a href="#" style='color: #A94612' class="patient-care-link"><< Previous (patient care)</a>
+	</div>
+	
+	<div style="float:right;">
+		<? if(\Fisdap\Entity\User::getLoggedInUser()->getCurrentRoleData()->program->program_settings->allow_signoff_on_patient) { ?>
+			<a href="#" style='color: #A94612' class="signoff-link">Next (preceptor signoff) >></a>
+		<? } else { ?>
+			Next: <a id='narrative-next' href="/skills-tracker/shifts/create-run/shiftId/<?= $this->element->patient->run->shift->id ?>" style='color: #A94612'>
+			Add another patient</a> or
+			<a id='narrative-review' href="/skills-tracker/shifts/detailed-shift-report/shiftId/<?= $this->element->patient->run->shift->id ?>" style='color: #A94612'>Review shift documentation</a>
+		<? } ?>
+	</div>
+</div>
+
+<div class="clear"></div>
+
+<?php echo $this->element->narrativeId ?>
+<?php echo $this->element->patientId ?>
+<?php echo $this->element->formName ?>
+
+<?php
+	}
+?>
+

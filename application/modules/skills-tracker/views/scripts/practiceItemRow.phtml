@@ -1,0 +1,36 @@
+<tr>
+    <td class='name-col clickable open-practice-item' data-practiceid="<?= $this->item->id ?>">
+        <?= ($this->item->airway_management) ? "<img src='/images/icons/airway_management.png' class='airway_management_icon' title='Airway management credit'>" : ""; ?>
+        <h4 class="<?= $this->item->shift->type ?>"><?= $this->item->practice_definition->name ?></h4>
+    </td>
+    
+    <td class='time-col'>
+        <?= $this->item->getDateTime()->format("Hi") ?>
+    </td>
+    
+    <td class='success-col'>
+        <?= $this->item->passed ? "Pass" : "Fail" ?>
+    </td>
+    
+    <td class='ptype-col'>
+        <?= $this->formSelect("patientType_" . $this->item->id, $this->item->patient_type->id, array("class" => "patientType", "data-practiceid" => $this->item->id), \Fisdap\Entity\Subject::getSelectOptions()) ?>
+    </td>
+    
+    <td class='evaluator-col'>
+        <?= $this->item->getEvaluatorName() ?>
+        <? if ($this->item->evaluator_type->name == "Instructor") { ?>
+            <img class='evaluator-icon' src='/images/icons/<?= $this->item->shift->type ?>_skills_instructor_<?= $this->item->confirmed ? "confirmed" : "unconfirmed" ?>.png'>
+        <? } else { ?>
+            <img class='evaluator-icon' src='/images/icons/lab-skills-peer-icon.png'>
+        <? } ?>
+    </td>
+    
+    <td class='actions-column'>
+        <div class="action-cell">
+            <a href="#" class='delete-practice-item' data-practiceid="<?= $this->item->id ?>">
+                <img class="tiny-icon square svg" src="/images/icons/delete.svg"  alt="delete item">
+            </a>
+        </div>
+    </td>
+
+</tr>

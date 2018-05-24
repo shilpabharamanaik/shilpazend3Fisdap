@@ -4,6 +4,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
+
 /**
  * Class BuildMetadataMakeCommand
  *
@@ -79,4 +80,5 @@ class BuildMetadataMakeCommand extends Command
             ['build-timestamp', 't', InputOption::VALUE_REQUIRED, 'The build timestamp']
         ];
     }
+
 }

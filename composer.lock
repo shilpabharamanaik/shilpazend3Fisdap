@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6de24693efe66bc56f29f92d309f2599",
+    "content-hash": "61d1b63b70475f4b48b1ced0f993193b",
     "packages": [
         {
             "name": "ascendlearning/laravel-doctrine-lti",
@@ -2019,6 +2019,36 @@
             "description": "A collection of extensions to Doctrine that enhance/extend its functionality."
         },
         {
+            "name": "fisdap/exception",
+            "version": "9999999-dev",
+            "dist": {
+                "type": "path",
+                "url": "./packages/fisdap/exception",
+                "reference": "f1f343b416ddaa425633396b5c5c36484248c7d2",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=5.2.11"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Zend_Exception": "library/"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Zend Framework 1 Exception package",
+            "homepage": "http://framework.zend.com/",
+            "keywords": [
+                "exception",
+                "framework",
+                "zend",
+                "zf1"
+            ]
+        },
+        {
             "name": "fisdap/jbl-rest-authentication-php-sdk",
             "version": "dev-master",
             "dist": {
@@ -2291,6 +2321,66 @@
                 }
             ],
             "description": "Members REST API Client"
+        },
+        {
+            "name": "fisdap/registry",
+            "version": "9999999-dev",
+            "dist": {
+                "type": "path",
+                "url": "./packages/fisdap/registry",
+                "reference": "22145a9de1eab2e461dbc480a0dc3a1640830236",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=5.2.11"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Zend_Registry": "library/"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Zend Framework 1 Registry package",
+            "homepage": "http://framework.zend.com/",
+            "keywords": [
+                "exception",
+                "framework",
+                "zend",
+                "zf1"
+            ]
+        },
+        {
+            "name": "fisdap/session",
+            "version": "9999999-dev",
+            "dist": {
+                "type": "path",
+                "url": "./packages/fisdap/session",
+                "reference": "d114041b27130fd2ab3fd1e8534ac786948a8cde",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=5.2.11"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Zend_Session": "library/"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Zend Framework 1 session package",
+            "homepage": "http://framework.zend.com/",
+            "keywords": [
+                "exception",
+                "framework",
+                "zend",
+                "zf1"
+            ]
         },
         {
             "name": "flow/jsonpath",
@@ -13621,7 +13711,10 @@
         "fisdap/app-health-checks": 20,
         "fisdap/attachments": 20,
         "fisdap/codeception-modules": 20,
-        "fisdap/members-api": 20
+        "fisdap/members-api": 20,
+        "fisdap/registry": 20,
+        "fisdap/exception": 20,
+        "fisdap/session": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

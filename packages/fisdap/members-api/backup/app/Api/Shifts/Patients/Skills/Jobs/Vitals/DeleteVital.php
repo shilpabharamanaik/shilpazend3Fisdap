@@ -25,7 +25,7 @@ final class DeleteVital extends AbstractSkills implements RequestHydrated
     public function handle(VitalRepository $vitalRepository)
     {
         $vital = $vitalRepository->find($this->id);
-        if ($vital) {
+        if($vital) {
             $vitalRepository->destroy($vital);
         }
 

@@ -1,0 +1,29 @@
+Hello and welcome to Fisdap!<br>
+
+<p>
+	<?= $this->orderer->getName() ?> set up a Fisdap account for you, and it's ready for you to log in!
+</p>
+
+<? if ($this->serial->id) { ?>
+	<p>
+		Your account has access to the following product<?= $this->serial->hasMultipleProducts() ? "s" : null ?>:<br>
+		<?
+		if ($this->serial->order_configuration) {
+			echo $this->serial->order_configuration->getProductSummary();
+		} else {
+			echo $this->serial->getProductSummary();
+		}
+		?>
+	</p>
+<? } ?>
+
+<p>
+    Here is your login information:<br>
+    Username: <?= $this->user->username ?><br>
+    Password: <?= $this->password ?><br>
+</p>
+
+<p>
+	To get started, go ahead and log in:<br>
+	<?= $this->urlRoot . "login" ?>
+</p>

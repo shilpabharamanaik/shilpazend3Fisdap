@@ -1,0 +1,26 @@
+<div class="skill-list-container">
+	
+<? foreach($this->data as $skill) { ?>
+	<? if ($skill->id) { ?>
+		<div class="skill-container">
+			<? if ($skill->shift->isEditable() && $this->skill == 'narrative') { ?>
+				<div class="skill-summary-buttons orange-button">
+					<a href="/mobile/patients/<?= $this->skill ?>/id/<?= $skill->id ?>">Edit</a>
+					<?= $this->partialLoop()->view->mobileEvalButton($skill->getHookIds(), $skill->shift->id); ?>
+					<a class="delete-skill" href="/mobile/patients/delete-skill/id/<?= $skill->id ?>/skillType/<?= $skill->getShortName() ?>">Delete</a>
+				</div>
+			<? } ?>
+			<div class="skill-summary">
+				<?= $skill->getProcedureText() ?>
+			</div>
+			<? if ($skill->shift->isEditable()) { ?>
+				<div class="skill-summary-buttons orange-button">
+					<a href="/mobile/patients/<?= $this->skill ?>/id/<?= $skill->id ?>">Edit</a>
+					<?= $this->partialLoop()->view->mobileEvalButton($skill->getHookIds(), $skill->shift->id); ?>
+					<a class="delete-skill" href="/mobile/patients/delete-skill/id/<?= $skill->id ?>/skillType/<?= $skill->getShortName() ?>">Delete</a>
+				</div>
+			<? } ?>
+		</div>
+	<? } ?>
+<? } ?>
+</div>

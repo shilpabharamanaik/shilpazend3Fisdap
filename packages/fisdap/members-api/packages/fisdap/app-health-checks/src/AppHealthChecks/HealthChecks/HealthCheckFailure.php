@@ -1,5 +1,6 @@
 <?php namespace Fisdap\AppHealthChecks\HealthChecks;
 
+
 /**
  * Exception to be thrown on health check failure
  *
@@ -8,4 +9,4 @@
  */
 class HealthCheckFailure extends \Exception
 {
-}
+} 

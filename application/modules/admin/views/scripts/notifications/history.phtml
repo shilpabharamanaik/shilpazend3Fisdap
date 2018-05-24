@@ -1,0 +1,28 @@
+<?= $this->pageTitleHelper("",
+    '<div class="notification-nav"><a href="index" id="new-notification">New Notification</a></div>') ?>
+
+<div class="grid_12 island withTopMargin">
+    <h3 class="section-header">History</h3>
+        <table class="fisdap-table">
+            <thead>
+            <tr>
+                <td>Date</td>
+                <td>Type</td>
+                <td>Message</td>
+                <td>Posted to</td>
+            </tr>
+            </thead>
+            <tbody class="notification-table-body">
+            <?= $this->partialLoop("notificationHistoryRow.phtml", $this->notifications) ?>
+            </tbody>
+            <?
+            //do not display load more button if there are no more to load
+            if (count($this->notifications) >= $this->offset) { ?>
+            <tfoot>
+                <tr>
+                    <td class="load-more-cell" data-offset="<?= $this->offset ?>" colspan="4">Load More</td>
+                </tr>
+            </tfoot>
+            <? } ?>
+        </table>
+    </div>

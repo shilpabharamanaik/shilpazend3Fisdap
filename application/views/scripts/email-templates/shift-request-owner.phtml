@@ -1,0 +1,24 @@
+Hello, <?= $this->request->owner->user->first_name ?>!
+<div>
+<?php 	switch ($this->request->request_type->name) {
+		case "drop":	?>
+			<p>You have requested to be dropped from the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+		case "cover": ?>
+			<p>You have requested coverage from <?= $this->recipient_name ?> for the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+		case "swap": ?>
+			<p>You have requested to swap the following <?= $this->request->event->type ?> shift with <?= $this->recipient_name ?>:</p>
+<?php			break;
+	} 	?>
+	
+	<div>
+		<?= $this->request->event->getDetailViewDate() ?><br>
+		<?= $this->request->event->getLocation() ?>
+	</div>
+	
+	<p>
+		To view the status of this request visit your <a href='<?= $this->url ?>'>shift request page</a>.
+	</p>
+	
+</div>

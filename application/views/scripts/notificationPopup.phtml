@@ -1,0 +1,18 @@
+<div class='notification-popup-container <?= $this->class ?>'>
+    <a class='notification-popup-delete' data-userviewid='<?= $this->user_view_id ?>' href='#'>
+        <img src='/images/icons/delete.png' title='Dismiss notification' alt='Delete' />
+    </a>
+    <table class='notification-popup-body'>
+        <tbody>
+        <td class='notification-popup-type'>
+            <img src="/images/notification-<?= $this->class ?>-shadow.png" title="<?= $this->notification_type_name ?>"/>
+        </td>
+        <td class='title-message'>
+            <div class="notification-popup-title"><?= $this->title ?></div>
+            <div class="notification-popup-message"><?= $this->message ?></div>
+        </td>
+        </tbody>
+    </table>
+</div>
+
+

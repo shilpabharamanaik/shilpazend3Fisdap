@@ -1,0 +1,48 @@
+
+
+<div class="grid_6">
+ <?= $this->element->status ?>
+
+  <a href="#" id="see-statuses" class='see-used'><img id='see-statuses-img' src='/images/arrow_right.png'>Recently used statuses</a>
+
+ 
+  <div id="used-statuses">
+  <?php
+   foreach($this->element->usedStatuses as $status){
+	echo $status . ' <a href="#" data-type="status" class="use-default" data-value="' . $status . '">(use)</a><br />';
+   }
+  ?>
+ </div>
+  
+  
+</div>
+
+<div class="grid_6">
+ <?= $this->element->color ?>
+ 
+ <div id="color-caption">
+  (use 6-digit hexadecimal code)
+ </div>
+ 
+ <div id="color-preview"></div>
+ 
+ <a href="#" id="see-colors" class='see-used'><img id='see-colors-img' src='/images/arrow_right.png'>Recently used colors</a>
+ 
+ <div id="used-colors">
+  <?php
+   foreach($this->element->usedColors as $color){
+	echo $color . "<div class='used-colors-preview' style='background-color:#" . $color . "'></div> <a href='#' data-type='color' class='use-default' data-value='" . $color . "'>(use)</a><br />";
+   }
+  ?>
+ </div>
+ 
+</div>
+
+<div class="clear"></div>
+<br />
+<div class="grid_12">
+ <?= $this->element->note ?>
+</div>
+
+<?= $this->element->save ?>
+<?= $this->element->stateId ?>

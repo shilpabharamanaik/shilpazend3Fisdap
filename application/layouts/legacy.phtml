@@ -1,0 +1,59 @@
+<?php echo $this->doctype(); ?>
+<html>
+    <head>
+    	<?php if($this->includeBase){ ?>
+    		<base href='<?php echo $this->serverUrl(); ?>' />
+    	<?php } ?>
+    	
+		<?php echo $this->headTitle($this->headTitleHelper()); ?>
+		
+		<?php
+			echo $this->headMeta()
+					  ->appendHttpEquiv('Content-Language', 'en-US')
+					  ->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+		?>
+		
+		<?= $this->partial('cssLinks.phtml', array('files' => array('/css/legacyHeader.css'))); ?>
+		<?= $this->partial('jsLinks.phtml'); ?>
+	</head>
+	
+    <body>
+		<div class='site'>
+			
+			<div id="legacyHeader">
+				<div id="legacyHeaderLinks">
+					<a href="http://www.fisdap.net/">Home</a>
+					<a href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("index.html?target_pagename=shift/index.html");?>">Data Entry</a>
+					<a href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("index.html?target_pagename=scheduler/schedulercont.html");?>">Scheduler</a>
+					<a href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("index.html?target_pagename=reports/index.html");?>">Reports</a>
+					<a href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("index.html?target_pagename=admin/index.html");?>">Admin</a>
+					<a href="http://www.fisdapdev.net/help">Help</a>
+				</div>
+				
+				<div id="legacyHeaderLoggedInAs">
+					<p>You're logged in as <?= \Fisdap\Entity\User::getLoggedInUser()->username?> (<a href="/login/logout">Log out</a>)</p>
+				</div>
+				
+				<div id="legacyHeaderDetails">
+					<?php
+						$today = new DateTime();
+						echo $today->format("F j, Y");
+					?>
+					<br /><a href="<?php echo "/oldfisdap/redirect?loc=" . urlencode("index.html");?>">My FISDAP</a>
+				</div>
+				
+			</div>
+
+			<div id='main-content' class='container_12'>
+				<?php 
+					if($this->pageTitleLinkURL && $this->pageTitleLinkText) {
+						echo "<a href='{$this->pageTitleLinkURL}' class='page-title-link'>{$this->pageTitleLinkText}</a><br /><br />";
+					}
+				
+				echo $this->layout()->content; ?>
+			</div>
+		</div>
+		<div id='jquery-dialog-container'></div>
+		<?= (APPLICATION_ENV != 'production') ? Fisdap\Logger\SQLLogger::echoQueries() : "" ?>
+    </body>
+</html>

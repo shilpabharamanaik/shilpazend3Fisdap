@@ -1,0 +1,209 @@
+<div class="grid_12 island" id="edit-requirement">
+	
+	<? // -------------------- top wrapper: requirement title -------------------- ?>
+	<div class="top-wrapper">
+		
+		<?= $this->element->requirement_id; ?>
+		
+		<h3 class="section-header">
+			<?= $this->element->requirement->name; ?>
+			<span id="custom-default-label"><?= ($this->element->is_universal) ? "(standard)" : "(custom)"; ?></span>
+			<?= ($this->element->is_universal) ? "" : $this->element->custom_title . "<a href='#' id='edit-custom-title'>Edit title</a>"; ?>
+		</h3>
+		
+		<div class="grid_12 req-sum">
+			
+			<? if($this->element->is_universal){ ?>
+				<div class="static-req-sum">This requirement <span class='expiration'><?= ($this->element->requirement->expires) ? "does" : "does not"; ?></span> expire. Category: <span class="category">Immunization</span></div>
+			<? }
+			else { ?>
+				<div class="dynamic-req-sum">
+					
+					<div class="grid_4">
+						This requirement <span class='expiration'><?= ($this->element->requirement->expires) ? "does" : "does not"; ?></span> expire.
+					</div>
+					
+					<div class="dynamic-req-sum-category-wrapper">
+						<div class="grid_2 category-label">Category:</div>
+						<div class="grid_8">
+							<?= $this->element->category; ?>
+						</div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="clear"></div>
+				</div>
+			<? } ?>
+		</div>
+		<div class="clear"></div>
+		
+	</div> <? // close top wrapper ?>
+	
+	<div class="clear"></div><div class="dotted-line with-bottom-margin"><hr /></div>
+	
+	<? // -------------------- middle wrapper: site attachments -------------------- ?>
+	<div class="middle-wrapper">
+		
+		<div class="grid_12 site-flippy-wrapper">
+			<div class='floater floater-no-max-width'>People need to fulfill this requirement</div>
+			<div class='flip-container long-flip-containter'><div id="regardlessofsite_flippy" class="regardlessof-forspecific regardlessof">regardless of</div>&nbsp;</div>
+			<div class='floater floater-no-max-width'>sites they are attending.</div>
+			<?= $this->element->regardlessofsite ?>
+		</div>
+		
+		<a href="#" id="manage-sites" class='manage-links' data-divtoopen='collapsable-site-content'>Manage sites</a>
+		<div class="dynamic-s-p"><img src="/images/icons/program-requirement.png"></div>
+		
+		<div id="collapsable-site-content">
+			<div class="grid_12 specific-site-content">
+				<div id="add-site-errors"></div>
+				<div id="sites-wrapper">
+					<table id="sites">
+						<? foreach($this->element->site_data as  $site){ ?>
+							<tr id="site-table-row-<?= $site['site_id'] ?>" data-siteid="<?= $site['site_id'] ?>">
+								<td class="site_name <?= $site['type'] ?>"><?= $site['name'] ?></td>
+								<td class="site_type"><?= ucfirst($site['type']) ?></td>
+								<td class="site_address"><?= $site['address'] ?></td>
+								<td class="remove_site"><img class="remove-existing-site" src="/images/icons/delete.png"></td>
+							</tr>
+						<? } ?>
+					</table>
+				</div>
+				
+				<div class="grid_2">
+					<?= $this->element->existing_site_ids ?>
+					<?= $this->element->removing_site_ids ?>
+					<?= $this->element->adding_site_ids ?>
+					<a href="#" id="choose-sites">Choose sites</a>
+				</div>
+				
+				<div class="clear"></div>
+			</div>
+		</div>
+		
+		<div class="clear"></div>
+		
+	</div> <? // close middle wrapper ?>
+
+	<div class="clear"></div><div class="dotted-line"><hr /></div>
+	
+	<? // -------------------- bottom wrapper: assignemnts/auto assign -------------------- ?>
+	<div class="bottom-wrapper">
+
+		<div class="attachment-summary">
+			This requirement is currently assigned to <b><?= $this->element->number_of_students ?></b>
+			student<?= ($this->element->number_of_students == 1) ? "" : "s" ?> and
+			<b><?= $this->element->number_of_instructors ?></b> instructor<?= ($this->element->number_of_instructors == 1) ? "" : "s" ?>.
+			<a href="#" id="manage-assignments" class='manage-links' data-divtoopen='collapsable-attachment-content'>Manage assignments</a>
+		</div>
+		
+		<div id="collapsable-attachment-content">
+			<div id="attachment-buttons">
+				<? // checkbox select menu (the options for the crazy multi selector tool) ?>
+				<div id="checkbox-selector-menu">
+					<a href="#" data-typeid="all">All</a>
+					<a href="#" data-typeid="none">None</a>
+					
+					<? foreach($this->element->cert_levels as $id => $cert){ ?>
+						<a href="#" data-typeid="<?= $id ?>"><?= $cert ?></a>
+					<? } ?>
+					
+					<a href="#" data-typeid="instructor">Instructors</a>
+					<a href="#" data-typeid="past-due">Past due</a>
+				</div>
+				
+				<? // the 'many due dates' popup options ?>
+				<div id="many-due-date-menu">
+					<span id="many-due-date-menu-txt">
+						<span id="will-recieve-due-date-count">0 people</span> will have their due date changed to
+						<? $today = new DateTime(); ?>
+					</span>
+					
+					<input type="text" name="many-due-date" id="many-due-date" value="<?= $today->format("m/d/Y"); ?>" class="selectDate fancy-input">
+					
+					<div class="clear"></div>
+					
+					<div class="info">
+						<span id="some-completed-attachments-selected">The other <span id="plural-completed-attachments">person has</span> already completed
+						their requirement<span class="plural-completed-attachments-requirement"></span> and their due date<span class="plural-completed-attachments-requirement"></span>
+						will not be changed.</span>
+					</div>
+					
+					<div class="apply-due-date-wrapper blue-button extra-small"><a href="#" id="submit-many-due-date">Apply</a></div>
+					<div class="cancel-due-date-wrapper extra-small gray-button"><a href="#" id="cancel-many-due-date">Cancel</a></div>
+				</div>
+				
+				<? // our actual buttons ?>
+				<div class="grid_4">
+					<a id="checkbox-selector" href="#"><img src="/images/icons/arrow_down_with_checkbox.png"></a>
+					<a id="many-due" href="#">Due <img src="/images/icons/calendar.gif"></a>
+					<a id="unassign" href="#">Unassign</a>
+				</div>
+				
+				<? // the search box ?>
+				<div class="grid_8">
+					<div id="search-attachments-place-holder-text">Type a person's name to search...</div>
+					<?= $this->element->search_attachments ?>
+				</div>
+				
+				<div class="clear"></div>
+				
+			</div><? // close attachment buttons ?>
+			
+			<div id="unassign-errors"></div>
+			
+			<div class="existing_attachments">
+				<?= $this->element->removing_attachment_ids ?>
+				<table id="attachments">
+					<? if($this->element->attachment_data){
+						foreach($this->element->attachment_data as $data){
+							$attachment_id = $data['id']; ?>
+							<tr data-usercontextid="<?= $data['userContextId'] ?>" data-userssites="<?= $data['site_ids']; ?>"
+							data-attachmentid="<?= $attachment_id ?>" id="attachment-row-<?= $attachment_id ?>" class="<?= $data['status_class'] ?>">
+								<td class="checkbox-cell"><input class='attachment-checkbox' type="checkbox" data-pastdue="<?= ($data['past_due']) ? 1 : 0 ?>" data-selectorTypeId="<?= $data['cert_id'] ?>" id="<?= $attachment_id ?>-checkbox"></td>
+								<td class="name-cell"><?= $data['name']; ?></td>
+								<td class="cert-cell"><?= $data['cert_level']; ?></td>
+								<td class="status-cell"><?= $data['status']; ?></td>
+								<td class="date-cell"><?= ($this->element->{'due_date_' . $attachment_id}) ? $this->element->{'due_date_' . $attachment_id} : $data['expired_date']; ?></td>
+								<td class="remove_attachment"><img class="remove-existing-attachment" src="/images/icons/delete.png"></td>
+							</tr> 
+						<?}
+					} ?>
+				</table>
+			</div>
+			
+			<div class="grid_12 specific-people-content">
+				<div class="specific-people-summary-wrapper"></div>
+				<div class="clear"></div>
+				<div class="grid_3"><a href="#" id="choose-people">Choose more people</a></div>
+				
+				<div class="hidden-form-elements">
+					<?= $this->element->due_dates ?>
+					<?= $this->element->userContextIds ?>
+				</div>
+				
+				<div class="clear"></div>
+			</div>
+			
+		</div> <? // close collaspableAttachmentContent ?>
+		
+		<div class="clear"></div>
+		
+		<div class="grid_12 auto-assign-wrapper"><?= $this->element->autoAssignForm ?></div>
+		<div class="clear"></div>
+		
+	</div> <? // close bottom wrapper ?>
+	
+	<div class="clear"></div><div class="dotted-line"><hr /></div>
+	
+	<h4 class='notifications-header'>Notifications</h4>
+	<?= $this->element->notificationForm ?>
+	
+</div><? // close island ?>
+
+<div class="buttons-wrapper">
+	<?= $this->element->save ?>
+	<div class="small gray-buttons">
+		<span class="cancel-button">Cancel</span>
+	</div>
+</div>

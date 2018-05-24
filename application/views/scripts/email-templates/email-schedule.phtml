@@ -1,0 +1,15 @@
+Hello!<br>
+
+<p>
+	The attached schedule has been sent to you by Fisdap on behalf of <?= $this->program ?>
+<?
+if ($this->note) { ?>
+	with the following note:</p>
+	<p>
+	<?= $this->note ?>
+<? } else { echo "."; } ?>
+</p>
+
+<p>
+	Please contact <?= $this->sender ?> at <?= $this->senderEmail ?> with any questions.
+</p>

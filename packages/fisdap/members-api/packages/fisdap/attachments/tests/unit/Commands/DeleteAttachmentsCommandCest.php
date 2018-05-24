@@ -8,9 +8,10 @@ use Fisdap\Attachments\Repository\AttachmentsRepository;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 
+
 /**
  * Class DeleteAttachmentsCommandCest
- *
+ * 
  * @author  Ben Getsug <bgetsug@fisdap.net>
  */
 class DeleteAttachmentsCommandCest

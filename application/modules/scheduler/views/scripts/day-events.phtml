@@ -1,0 +1,137 @@
+<?php
+	$user = $this->current_user_data['user'];
+	$userContextId = $this->current_user_data['userContextId'];
+	$isInstructor = true;
+	if($this->current_user_data['role_name'] == "student"){
+		$edit = 0;
+		$isInstructor = false;
+	}
+?>
+
+<div class="day-event-view" id="day-event-view">
+
+	<div class="content">
+
+		<?php
+
+		$eCount = 0;
+		$totalEvents = count($this->events);
+
+		foreach($this->events as $baseId => $event) {
+
+			foreach($event as $eventId => $event) {
+				$edit = $this->current_user_data['scheduler_permissions'][$event['event_type']];
+
+				// if my window is open: show this section
+				$openSlots = $event['slot_count'] - count($event['slot_assignments']);
+				$openWindow = false;
+				$userCanSee = false;
+				$showOpenSlotsSection = false;
+				
+				foreach($event['windows'] as $window){
+					if($window['status'] == "open"){$openWindow = true;}
+					if($window['user_can_see'] || $isInstructor){$userCanSee = true;}
+				}
+
+				$imgName = ($openWindow) ? "outline" : "invisible";
+				
+				if($userCanSee || $isInstructor) {
+					$userCanSee = true;
+					if(!$isInstructor && $openSlots == 0){}
+					else { $showOpenSlotsSection = true; }
+				}
+				
+				if($event['quick_add_shift']){
+					$showOpenSlotsSection = false;
+				}
+
+				$grid = ($showOpenSlotsSection) ? 4 : 6;
+				if($event['quick_add_shift']){
+					$grid = 12;
+				}
+
+				?>
+
+				<div class='day-event' data-sortby="<?= $event['sort_by'] ?>" data-eventid="<?= $eventId ?>" data-startTime="<?= $event['start_datetime']->format("Hi") ?>">
+
+					<div class="grid_7">
+
+						<div class="site-icon-wrapper">
+							<img class="site-icon" src="/images/icons/<?= $event['event_type'] ?>SiteIconColor.png">
+						</div>
+
+						<?= $event['event_title'] ?>
+
+						<div class="clear"></div>
+
+						<?= $event['preceptor_list'] ?>
+					</div>
+
+					<div class="grid_5">
+
+						<? if (!$this->pdf) {
+							echo $this->partial("event-action-buttons.phtml", array("eventId" => $eventId,
+																					"event" => $event,
+																					"open_slots" => $openSlots,
+																					"user_can_see" => $userCanSee,
+																					"current_user_data" => $this->current_user_data));
+						} ?>
+
+					</div>
+
+					<div class="clear"></div>
+
+					<div class="day-event-columns-wrapper">
+
+						<div class="grid_<?= $grid ?>">
+
+							<div class="filled-slot-col">
+								<?= $this->partial("filled-slots-table.phtml", array("event" => $event,
+																					 "isInstructor" => $isInstructor,
+																					 "user_program_id" => $this->current_user_data['program_id'],
+																					 "edit" => $edit,
+																					 "dayView" => true,
+																					 "current_user_data" => $this->current_user_data,
+																					 "pdf" => $this->pdf)); ?>
+							</div>
+
+						</div>
+
+						<? if($showOpenSlotsSection) { ?>
+							<div class="grid_<?= $grid ?>">
+								<div class="open-slot-col">
+									<?= $this->partial("open-slots-table.phtml", array("event" => $event, "isInstructor" => $isInstructor, "dayView" => true)); ?>
+								</div>
+							</div>
+						<? } ?>
+
+						<? if(!$event['quick_add_shift']){ ?>
+							<div class="grid_<?= $grid ?>">
+
+								<div class="notes-col">
+
+									<h3 class="slot-heading">Notes</h3>
+
+									<? if($event['notes']){ ?>
+										<div class="notes"><?= $event['notes'] ?></div>
+									<? } ?>
+
+									<?= $event['drop_swap_cover_display'] ?>
+
+									<div class="clear"></div>
+
+								</div>
+							</div>
+						<? } ?>
+
+						<div class="clear"></div>
+					</div>
+
+				</div>
+
+			<?php
+			}
+		}
+		?>
+	</div>
+</div>

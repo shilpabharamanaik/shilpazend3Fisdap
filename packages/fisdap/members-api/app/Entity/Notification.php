@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * @Entity(repositoryClass="Fisdap\Data\Notification\DoctrineNotificationRepository")
  * @Table(name="fisdap2_notifications")
@@ -49,4 +50,5 @@ class Notification extends EntityBaseClass
      * @Column(type="boolean")
      */
     protected $active = true;
+
 }

@@ -20,3 +20,4 @@ return [
     'maxAge' => 3600,
     'hosts' => [],
 ];
+

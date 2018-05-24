@@ -4,6 +4,7 @@ use Fisdap\Api\Client\Exceptions\MissingUriRoot;
 use Fisdap\Api\Client\HttpClient\HttpClientInterface;
 use Fisdap\Api\Client\JsonMapper;
 
+
 /**
  * Template for an HTTP implementation of a Gateway
  *

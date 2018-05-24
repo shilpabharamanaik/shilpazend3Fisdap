@@ -1,5 +1,6 @@
 <?php namespace Fisdap\Api\VerificationTypes\Http;
 
+
 use Fisdap\Api\Http\Controllers\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Fisdap\Api\Transformation\EnumeratedTransformer;
@@ -44,3 +45,5 @@ final class VerificationTypesController extends Controller
         return $this->respondWithCollection($this->em->getRepository(VerificationType::class)->findAll(), $this->transformer);
     }
 }
+
+

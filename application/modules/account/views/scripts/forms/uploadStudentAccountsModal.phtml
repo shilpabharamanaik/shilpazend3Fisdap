@@ -1,0 +1,51 @@
+<div id="errors">
+    <ul class="form-errors"><li>
+        <ul class="errors">
+            <li id="no-margin">Please choose a CSV file.</li>
+        </ul></li>
+    </ul>
+</div>
+
+<ol id="steps">
+    <li id="step1">Download our template</li>
+    <div class="stepDetails">
+        <a href="/account/new/generate-csv-template" id="clickHere">Click here</a> to download a template.
+    </div>
+    
+    <li id="step2">Fill it out with your students' account details</li>
+    <div class="stepDetails">
+        <p>Just be sure to include each student's first name, last name, email address, etc. Assign them a Fisdap username and password, then save the document
+        as a csv file.</p>
+    </div>
+
+    <li id="step3">Upload to Fisdap</li>
+    
+    <div class="stepDetails">
+        <p>Use the "choose file" button below to find your document, then click "Upload". We'll take it from here and fill in the form with your data.</p>
+    </div>
+    
+    <div id="fileInput">
+        <div id="fancyFileInput">
+            <div class="extra-small gray-button"><a id="chooseFile" href="#">choose file</a></div>
+            <div id="fileName"></div>
+        </div>
+        <div id="inputFix"></div><?= $this->element->file;?>
+    </div>
+
+    <div class="stepDetails" id="distributedModalWarning">
+        <p id="distributionWarning">You have already distributed some activation codes.</p>
+        <?= $this->element->override;?>
+    </div>
+</ol>
+
+<div id="buttons">
+    <div class="small green-buttons">
+        <div id="uploadContainer">
+           <?= $this->element->uploadSave;?>
+        </div>
+    </div>
+    
+    <div class="small gray-button">
+        <a id="cancelButton" href="#">Cancel</a>
+    </div>
+</div>

@@ -2,6 +2,7 @@
 
 use Doctrine\ORM\Mapping\Column;
 
+
 /**
  * Trait Phones
  *
@@ -113,7 +114,7 @@ trait Phones
         $this->work_phone = $value;
         if ($this->getCurrentRoleName() == "student") {
             $this->getCurrentRoleData()->work_phone = $value;
-        } elseif ($this->getCurrentRoleName() == "instructor") {
+        } else if ($this->getCurrentRoleName() == "instructor") {
             $this->getCurrentRoleData()->office_phone = $value;
         }
         return $this;

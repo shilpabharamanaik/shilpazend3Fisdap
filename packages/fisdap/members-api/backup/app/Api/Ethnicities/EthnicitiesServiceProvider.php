@@ -8,6 +8,7 @@
 
 namespace Fisdap\Api\Ethnicities;
 
+
 use Fisdap\Api\Ethnicities\Http\EthnicitiesController;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;

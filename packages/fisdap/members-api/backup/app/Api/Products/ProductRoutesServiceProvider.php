@@ -5,6 +5,7 @@ use Fisdap\Api\Products\Http\ProductsController;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
+
 /**
  * Registers routes for products
  *

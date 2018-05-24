@@ -1,0 +1,12 @@
+<?= $this->pageTitleHelper() ?>
+<?= $this->messageHelper("error") ?>
+<div class="grid_6 withTopMargin">
+    <img src="/images/shields.png">
+</div>
+
+<div class="grid_6 withTopMargin">
+    Please call 651.690.9241 to set up your program in Fisdap.<br /><br />
+    <form method="POST">
+        <?= $this->formLabel("password", "Password: ") . $this->formPassword("password")?> <?= $this->fancyButton("go-btn", "Go!", "#", "green-buttons", "extra-small"); ?>
+    </form>
+</div>

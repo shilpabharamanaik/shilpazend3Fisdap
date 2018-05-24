@@ -1,0 +1,14 @@
+<?php foreach ($this->products as $productCategory) {
+    $categoryInfo = $productCategory['categoryInfo'];
+    ?>
+    <div class="category">
+        <img class='product-shield' src='<?= $categoryInfo['icon'] ?>'>
+        <h4 class='shield-label section-header no-border'><?= $categoryInfo['name'] ?></h4>
+    </div>
+
+    <table class="upgrade-table summary">
+        <?php foreach ($productCategory['products'] as $productInfo) {
+            echo $this->productSummaryRow($productInfo, $this->showPrice);
+        } ?>
+    </table>
+<?php } ?>

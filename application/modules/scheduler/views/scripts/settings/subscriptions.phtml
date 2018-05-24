@@ -1,0 +1,163 @@
+<?= $this->pageTitleHelper() ?>
+
+<?= $this->navBar("subscriptions"); ?>
+
+<div class="grid_12 island">
+    <h3 class='section-header'>Your Calendar Subscriptions</h3>
+
+    <?php if (count($this->calendarFeeds) > 0) { ?>
+        <div id='subscriptions-table' class='accordion-table'>
+
+            <? foreach ($this->calendarFeeds as $calendarFeed) {
+                $filterInfo = \Fisdap\Entity\SchedulerFilterSet::getInfoFromFilters($calendarFeed->filters, $this->programId);
+                ?>
+
+                <div class='calendar-subscription accordion-header-bar'>
+                    <div class='subscription-header' id='header-<?= $calendarFeed->id ?>'>
+                        <img class='accordion-arrow' id='arrow-<?= $calendarFeed->id ?>' src='/images/accordion_arrow_right.png'>
+                        <?= $calendarFeed->name ?>
+                    </div>
+                    <div class='subscription-actions'>
+                        <a class="delete-recurring-subscription" data-calendarid="<?= $calendarFeed->id ?>" data-calendarName="<?= $calendarFeed->name ?>" title="delete email" href="#">
+                            <img class="small-icon" src="/images/icons/delete.png">
+                        </a>
+                    </div>
+                </div>
+
+                <div class='email-details' id='info-<?= $calendarFeed->id ?>'>
+                    <div colspan=3>
+                        <h6 class='dark-gray email-summary'>
+                            <?= $calendarFeed->getUrl() ?>
+                        </h6>
+                        <table class="accordion-info">
+                            <tr>
+                                <td class="accordion-summary">
+                                    <h6 class="dark-gray column-header">Location:</h6>
+                                    <table class="fisdap-table">
+                                        <tr><td class='clickable'>
+                                                <?= $filterInfo['site_category'] ?>
+                                                <img src='/images/icons/plus.png' class='show-specific-item clickable'>
+                                                <ul class='specific-filter'>
+                                                    <?php foreach($filterInfo['sites'] as $type => $sites) {
+                                                        $type = lcfirst($type);
+                                                        foreach ($sites as $site) {
+                                                            echo "<li class='$type'>$site</li>";
+                                                        }
+                                                    } ?>
+                                                </ul>
+                                            </td></tr>
+
+                                        <tr><td class='clickable'>
+                                                <?= $filterInfo['base_category'] ?>
+                                                <img src='/images/icons/plus.png' class='show-specific-item clickable'>
+                                                <ul class='specific-filter'>
+                                                    <?php foreach($filterInfo['bases'] as $site => $bases) {
+                                                        if(count($bases) > 0) {
+                                                            if(is_numeric($site)){ $site = \Fisdap\EntityUtils::getEntity('SiteLegacy', $site)->name; }
+                                                            echo "<h6 class='dark-gray site-title'>$site</h6>";
+                                                            foreach ($bases as $base) {
+                                                                echo "<li>$base</li>";
+                                                            }
+                                                        }
+                                                    } ?>
+                                                </ul>
+                                            </td></tr>
+
+                                        <tr><td class='clickable'>
+                                                <?= $filterInfo['preceptor_category'] ?>
+                                                <img src='/images/icons/plus.png' class='show-specific-item clickable'>
+                                                <ul class='specific-filter'>
+                                                    <?php foreach($filterInfo['preceptors'] as $site => $preceptors) {
+                                                        if(count($preceptors) > 0) {
+                                                            echo "<h6 class='dark-gray site-title'>$site</h6>";
+                                                            foreach ($preceptors as $preceptor) {
+                                                                echo "<li>$preceptor</li>";
+                                                            }
+                                                        }
+                                                    } ?>
+                                                </ul>
+                                            </td></tr>
+                                    </table>
+                                </td>
+
+                                <td class="accordion-summary">
+                                    <h6 class="dark-gray column-header">Chosen by/Assigned to:</h6>
+                                    <?php if (!$filterInfo['chosen']) { ?>
+                                        Not showing chosen/assigned shifts.
+                                    <?php } else { ?>
+                                        <table class="fisdap-table">
+                                            <?php if ($filterInfo['all_chosen_certs']) { ?>
+                                                <tr><td>All certifications</td></tr>
+                                            <?php } else { ?>
+                                                <tr><td class='clickable'>
+                                                        <?= count($filterInfo['chosen_certs']) ?> <?= Util_String::pluralize("certification", count($filterInfo['chosen_certs'])) ?>
+                                                        <img src='/images/icons/plus.png' class='show-specific-item clickable'>
+                                                        <ul class='specific-filter'>
+                                                            <?php foreach($filterInfo['chosen_certs'] as $certification) {
+                                                                echo "<li>$certification</li>";
+                                                            } ?>
+                                                        </ul>
+                                                    </td></tr>
+                                            <?php } ?>
+
+                                            <tr><td class='clickable'>
+                                                    <?= $filterInfo['chosen_groups_category'] ?>
+                                                    <img src='/images/icons/plus.png' class='show-specific-item clickable'>
+                                                    <ul class='specific-filter'>
+                                                        <?php foreach($filterInfo['chosen_groups'] as $group) {
+                                                            echo "<li>$group</li>";
+                                                        } ?>
+                                                    </ul>
+                                                </td></tr>
+
+                                            <tr><td><?= $filterInfo['chosen_grad_date'] ?></td></tr>
+
+                                            <?php if ($filterInfo['all_chosen_students']) { ?>
+                                                <tr><td>All students matching above criteria</td></tr>
+                                            <?php } else { ?>
+                                                <tr><td class='clickable'>
+                                                        <?= count($filterInfo['chosen_students']) ?> <?= Util_String::pluralize("student", count($filterInfo['chosen_students'])) ?>  matching above criteria
+                                                        <img src='/images/icons/plus.png' class='show-specific-item clickable'>
+                                                        <ul class='specific-filter'>
+                                                            <?php foreach($filterInfo['chosen_students'] as $student) {
+                                                                echo "<li>$student</li>";
+                                                            } ?>
+                                                        </ul>
+                                                    </td></tr>
+                                            <?php } ?>
+
+                                        </table>
+                                    <?php } ?>
+                                </td>
+
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            <? } ?>
+
+        </div>
+
+    <?php } else { ?>
+        <div>
+            You have not set up any calendar subscriptions yet. Visit the schedule to set one up.
+        </div>
+    <?php } ?>
+
+</div>
+
+<div id="deleteSubscriptionDialog">
+    <p>
+        Deleting "<span id="deleteCalendarName">Shift Schedule</span>" will unsubscribe your personal calendar from these shifts, which means it will no longer receive updates with new information. However, any shifts already pushed to your calendar will remain.
+    </p>
+    <input type="hidden" id="calendarId" name="calendarId" value="">
+    <div class='modal-buttons'>
+        <div class="modal-button-wrapper small gray-button">
+            <a href='#' id='cancel-delete-btn'>Cancel</a>
+        </div>
+        <div class="modal-button-wrapper small green-buttons">
+            <a href='#' id='confirm-delete-btn'>Confirm</a>
+        </div>
+    </div>
+</div>

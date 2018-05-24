@@ -34,6 +34,7 @@ class AddressTest extends TestCase
     protected function getAddress()
     {
         if (!$this->address) {
+
             $internetAddresses = mockery::mock(InternetAddressCollection::class);
             $internetAddresses->shouldReceive('toArray')->andReturn(['EmailToAddress' => 'test@test.com']);
 

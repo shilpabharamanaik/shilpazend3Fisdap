@@ -9,6 +9,7 @@ use Fisdap\Data\Repository\DoctrineRepository;
 use Scheduler_View_Helper_CalendarView; //@todo someday refactor this since it will break in the standalone rest api
 use Fisdap\Entity\SchedulerFilterSet;
 
+
 /**
  * Class DoctrineEventLegacyRepository
  *
@@ -41,11 +42,12 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
 
         $dates = array();
 
-        foreach ($res as $event_data) {
+        foreach($res as $event_data){
             $dates[] = $event_data['start_datetime'];
         }
 
         return $dates;
+
     }
 
     public function getAllByProgram($program_id, $offset = null, $limit = null, $preconversion = false, $unconvertedShifts = false)
@@ -77,7 +79,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
         $res = $db->query($sql);
         $counter = 0;
 
-        while ($row = $res->fetch()) {
+        while($row = $res->fetch()){
             $arr[] = $row;
         }
 
@@ -101,11 +103,11 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
         $res = $db->query($sql);
         $counter = 0;
 
-        while ($row = $res->fetch()) {
+        while($row = $res->fetch()){
             $arr[] = $row;
         }
 
-        if ($arr) {
+        if($arr){
             return true;
         }
 
@@ -156,7 +158,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
         $arr = array();
         $res = $conn->query($sql);
 
-        while ($row = $res->fetch()) {
+        while($row = $res->fetch()){
             $arr[] = $row['Event_id'];
         }
 
@@ -208,7 +210,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
         $arr = array();
         $res = $conn->query($sql);
 
-        while ($row = $res->fetch()) {
+        while($row = $res->fetch()){
             $arr[] = $row['Event_id'];
         }
 
@@ -254,7 +256,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
         $arr = array();
         $res = $conn->query($sql);
 
-        while ($row = $res->fetch()) {
+        while($row = $res->fetch()){
             $arr[] = $row['Event_id'];
         }
 
@@ -283,7 +285,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
         $arr = array();
         $res = $conn->query($sql);
 
-        while ($row = $res->fetch()) {
+        while($row = $res->fetch()){
             $arr[] = explode(",", $row['userContextIds']);
         }
 
@@ -304,7 +306,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
         $arr = array();
         $res = $conn->query($sql);
 
-        while ($row = $res->fetch()) {
+        while($row = $res->fetch()){
             $arr[] = $row['Receiving_Program_id'];
         }
 
@@ -331,7 +333,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
 
         if ($endDate instanceof \DateTime) {
             $end_datetime = $endDate->setTime(23, 59, 59);
-        } elseif ($endDate) {
+        } else if ($endDate) {
             $end_datetime = new \DateTime($endDate);
             $end_datetime->setTime(23, 59, 59);
         } else {
@@ -340,7 +342,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
 
         if ($startDate instanceof \DateTime) {
             $start_datetime = $startDate;
-        } elseif ($startDate) {
+        } else if ($startDate) {
             $start_datetime = new \DateTime($startDate);
         } else {
             $start_datetime = null;
@@ -382,10 +384,10 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
             $qb->andWhere('s.start_datetime <= ' . $end_datetime->format("'Y-m-d H:i:s'"));
         }
 
-        if ($filters) {
+        if($filters){
             // the way the filter works: if there are any sites selected (and no specific bases) - all bases for that site will be included
             // so we just need to go through the bases. we dont ever need to step through sites
-            if ($filters['bases'] && $filters['bases'] != "all") {
+            if($filters['bases'] && $filters['bases'] != "all"){
                 $qb->andWhere($this->buildFiltersAndWhere("base.id", $filters['bases']));
             }
         }
@@ -455,7 +457,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
 
         $site_admin_perms = array();
 
-        foreach ($eventsToParse as $i => $event) {
+        foreach($eventsToParse as $i => $event) {
             $formattedEventData = [];
 
             $formattedEventData['id'] 	          = $event['id'];
@@ -488,10 +490,10 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
             $formattedEventData['previously_shared_event'] = (in_array($formattedEventData['id'], $previously_shared_event_ids));
 
             //Determine if the instructor viewing the calendar is a site admin
-            if (!$this->cal_view_helper->isStudent && $formattedEventData['shared_event']) {
+            if(!$this->cal_view_helper->isStudent && $formattedEventData['shared_event']){
 
                 // is this instructor a casey?
-                if (!isset($site_admin_perms[$formattedEventData['site_id']])) {
+                if(!isset($site_admin_perms[$formattedEventData['site_id']])) {
                     $site_admin_perms[$formattedEventData['site_id']] = $program->isAdmin($formattedEventData['site_id']);
                 }
 
@@ -501,21 +503,23 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
             //Set up slots
             foreach ($event['slots'] as $k => $slot) {
                 if ($slot['slot_type']['id'] == 1) {
-                    foreach ($slot['assignments'] as $assignment) {
+                    foreach($slot['assignments'] as $assignment) {
+
                         $see_students_names = true;
-                        if ($formattedEventData['shared_event'] && ($assignment['user_context']['program']['id'] != $program->id)) {
-                            if (!isset($see_students_perms[$event['site']['id']])) {
+                        if($formattedEventData['shared_event'] && ($assignment['user_context']['program']['id'] != $program->id)){
+                            if(!isset($see_students_perms[$event['site']['id']])){
                                 $see_students_perms[$event['site']['id']] = $program->seesSharedStudents($event['site']['id']);
                             }
 
                             $see_students_names = $see_students_perms[$event['site']['id']];
                         }
 
-                        if ($this->month_details_view) {
+                        if($this->month_details_view){
                             $program_abbreviation = ($formattedEventData['shared_event']) ? $assignment['user_context']['program']['abbreviation'] . " - " : "";
                             $name = ($see_students_names) ? $program_abbreviation . $assignment['user_context']['user']['first_name'] . " " . $assignment['user_context']['user']['last_name'] . "," : $assignment['user_context']['program']['name'] . " student";
                             $cert = ($see_students_names) ? $assignment['user_context']['certification_level']['description'] : "";
-                        } else {
+                        }
+                        else {
                             $program_abbreviation = ($formattedEventData['shared_event']) ? " from " . $assignment['user_context']['program']['abbreviation'] : "";
                             $name = ($see_students_names) ? $assignment['user_context']['user']['first_name'] . " " . $assignment['user_context']['user']['last_name'] . "," : "Student from " . $assignment['user_context']['program']['name'];
                             $cert = ($see_students_names) ? $assignment['user_context']['certification_level']['description'] . $program_abbreviation : "";
@@ -539,9 +543,9 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
 
                     $formattedEventData['slot_count'] = $slot['count'];
                     $formattedEventData['windows'] = $slot['windows'];
-                } elseif ($slot['slot_type']['id'] == 2) {
+                } else if ($slot['slot_type']['id'] == 2) {
                     //Loop over instructor slot assignments and build list of instructors
-                    foreach ($slot['assignments'] as $assignment) {
+                    foreach($slot['assignments'] as $assignment) {
                         $formattedEventData['instructors'][] = $assignment['user_context']['user']['first_name'] . " " . $assignment['user_context']['user']['last_name'];
                     }
                 }
@@ -556,8 +560,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
                 array(
                     'switch_needs_permission'=>$event['switch_needs_permission'],
                     'student_can_switch'=>$event['student_can_switch']
-                )
-            );
+                ));
             $formattedEventData['request_perms'] = $request_perm_results['results'];
             $formattedEventData['show_change_request_btn'] = $request_perm_results['show_change_request_btn'];
             $formattedEventData['drop_swap_cover_display'] = $this->cal_view_helper->getDropSwapCoverDisplay($formattedEventData['request_perms']);
@@ -572,7 +575,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
             unset($formattedEventData);
         }
 
-        foreach ($quick_added_shifts as $i => $quick_added_shift) {
+        foreach($quick_added_shifts as $i => $quick_added_shift) {
             $formattedEventData = [];
 
             $creator_type = $quick_added_shift['creator']['role']['name'];
@@ -644,8 +647,9 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
 
         $active_window_count = 0;
 
-        if ($windows) {
-            foreach ($windows as $i => $window_data) {
+        if($windows){
+            foreach($windows as $i => $window_data){
+
                 $status       = $this->cal_view_helper->getWindowStatus($window_data['start_date'], $window_data['end_date']);
                 $who          = $this->cal_view_helper->getWindowWho($window_data['constraints']);
                 $user_can_see = $this->cal_view_helper->canUserSeeWindow($status, $who, $user_cert_level, $user_groups, $window_data['active']);
@@ -655,14 +659,10 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
                 $window_data['status'] 	     = $status;
                 $window_data['user_can_see'] = $user_can_see;
 
-                if ($status == "open") {
-                    $has_open_window = true;
-                }
-                if ($user_can_see || !$this->cal_view_helper->student) {
-                    $user_can_see_one = true;
-                }
+                if($status == "open"){$has_open_window = true;}
+                if($user_can_see || !$this->cal_view_helper->student){$user_can_see_one = true;}
 
-                if ($window_data['active'] && $user_can_see) {
+                if($window_data['active'] && $user_can_see){
                     $has_active_window = true;
                     $active_window_count++;
                 }
@@ -670,24 +670,27 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
                 $additional_window_match_check = false;
 
                 // if our filters for 'avail_certs' or 'avail_groups' are not 'all', we need to filter the event based on windows
-                if ($filters['avail_certs'] != "all" || $filters['avail_groups'] != "all") {
+                if($filters['avail_certs'] != "all" || $filters['avail_groups'] != "all"){
+
                     $has_cert  = ($filters['avail_certs'] != "all") ? $this->cal_view_helper->isCertInWindow($who['certs'], $filters['avail_certs']) : true;
                     $has_group = ($filters['avail_groups'] != "all") ? $this->cal_view_helper->isGroupInWindow($who['groups'], $filters['avail_groups']) : true;
 
-                    if ($has_cert && $has_group) {
+                    if($has_cert && $has_group){
                         $additional_window_match_check = true;
                     }
-                } else {
+                }
+                else {
                     $additional_window_match_check = true;
                 }
 
-                if ($additional_window_match_check) {
-                    if ($filters['avail_open_window']) {
+                if($additional_window_match_check){
+                    if($filters['avail_open_window']){
                         // we meet constraint requirements - is this window active and open?
-                        if ($status == "open" && $window_data['active']) {
+                        if($status == "open" && $window_data['active']){
                             $window_match = true;
                         }
-                    } else {
+                    }
+                    else {
                         $window_match = true;
                     }
                 }
@@ -721,9 +724,10 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
         $event['closed_weebles'] = $closed_weeble_data['output'];
         $event['slot_assignments'] = $closed_weeble_data['return_assignments'];
 
-        if ($this->cal_view_helper->student && !$event['has_open_window']) {
+        if($this->cal_view_helper->student && !$event['has_open_window']){
             $event['open_weebles'] = "";
-        } else {
+        }
+        else {
             $assignment_count = count($event['slot_assignments']);
             $event['open_weebles'] = $this->cal_view_helper->getOpenWeebles($assignment_count, $event['slot_count'], $event['id'], $event['has_open_window'], $event['has_active_window'], $event['event_type'], $max_weebles_to_show);
         }
@@ -740,15 +744,16 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
     public function filterByPreceptor(&$event_data, $preceptor_filters)
     {
         $preceptor_match = false;
-        if ($preceptor_filters != "all") {
-            if ($event_data['preceptors']) {
-                foreach ($event_data['preceptors'] as $id => $name) {
-                    if (in_array($id, $preceptor_filters)) {
+        if($preceptor_filters != "all"){
+            if($event_data['preceptors']){
+                foreach($event_data['preceptors'] as $id => $name){
+                    if(in_array($id, $preceptor_filters)){
                         $preceptor_match = true;
                     }
                 }
             }
-        } else {
+        }
+        else {
             $preceptor_match = true;
         }
 
@@ -776,31 +781,35 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
         // let's make sure our avail_certs fits the certifcation level bit configuration on an event level
         // in theory, there shouldn't be any windows that would allow any certifications outside of the event's configuration but it is actually possible,
         // so we're just going to double check before we continue.
-        if ($avail_certs != "all") {
+        if($avail_certs != "all"){
+
             $meets_event_config = false;
-            foreach ($this->cal_view_helper->avail_certs_config as $config) {
-                if ($config & $event_data['cert_config']) {
+            foreach($this->cal_view_helper->avail_certs_config as $config){
+                if($config & $event_data['cert_config']){
                     $meets_event_config = true;
                 }
             }
-        } else {
+
+        }
+        else {
             $meets_event_config = true;
         }
 
-        if ($avail_open_window_filter) {
-            if ($window_match) {
+        if($avail_open_window_filter){
+            if($window_match){
                 // is the global setting for student sign up on or off for this shift type?
                 $settings_sign_up_on = $this->cal_view_helper->current_user_data['scheduler_permissions'][$event_data['event_type']];
 
                 // what about our current users' shift limits? Have they reached their max? (will be false if instrcutor or unlimited account)
                 $reached_shift_limit = $this->cal_view_helper->current_user_data['shift_limits'][$event_data['event_type']];
 
-                if ($open_slot && $settings_sign_up_on && !$reached_shift_limit && $meets_event_config) {
+                if($open_slot && $settings_sign_up_on && !$reached_shift_limit && $meets_event_config){
                     $sign_up_available = true;
                 }
             }
-        } else {
-            if ($window_match && $open_slot && $meets_event_config) {
+        }
+        else {
+            if($window_match && $open_slot && $meets_event_config){
                 $sign_up_available = true;
             }
         }
@@ -823,9 +832,10 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
         $user_is_attending = false;
         $student_filters = $filters['chosen_students'];
 
-        if ($event['slot_assignments']) {
-            foreach ($event['slot_assignments'] as $i => $assignment) {
-                if ($assignment['userContextId'] == $this->cal_view_helper->current_user_data['userContextId']) {
+        if($event['slot_assignments']){
+            foreach($event['slot_assignments'] as $i => $assignment){
+
+                if($assignment['userContextId'] == $this->cal_view_helper->current_user_data['userContextId']){
                     $event['users_assignment_id'] = $assignment['id'];
                     $user_is_attending = true;
                 }
@@ -836,25 +846,29 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
                 $filtering_by_grad_month = ($filters['gradMonth'] != "All months");
                 $filtering_by_grad_year = ($filters['gradYear'] != "All years");
 
-                if (is_array($student_filters) || ($filtering_by_certs || $filtering_by_groups || $filtering_by_grad_month || $filtering_by_grad_year)) {
+                if(is_array($student_filters) || ($filtering_by_certs || $filtering_by_groups || $filtering_by_grad_month || $filtering_by_grad_year)) {
 
                     // If they are filtering by JUST certification level, check that.
-                    if ($filtering_by_certs && !$filtering_by_groups && !$filtering_by_grad_month && !$filtering_by_grad_year) {
+                    if($filtering_by_certs && !$filtering_by_groups && !$filtering_by_grad_month && !$filtering_by_grad_year){
+
                         if (in_array($assignment['cert_id'], $filters['certs'])) {
                             $has_matching_assignment = true;
                         }
-                    } else {
+                    }
+                    else {
 
                         // Otherwise, check by user role id (this means they are also filtering by student groups and/or graduation date)
-                        if (is_array($student_filters)) {
+                        if(is_array($student_filters)) {
                             if (in_array($assignment['userContextId'], $student_filters)) {
                                 $has_matching_assignment = true;
                             }
-                        } else {
+                        }
+                        else {
                             $has_matching_assignment = true;
                         }
                     }
-                } else {
+                }
+                else {
                     $has_matching_assignment = true;
                 }
             }
@@ -882,18 +896,18 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
     {
         $show_event = false;
 
-        if ($preceptor_match) {
+        if($preceptor_match){
 
             // if we are looking for 'chosen_shifts'
             // an event must have a matching_assignment
-            if ($show_chosen) {
-                if ($has_matching_assignment) {
+            if($show_chosen){
+                if($has_matching_assignment){
                     $show_event = true;
                 }
             }
 
-            if ($show_avail) {
-                if ($sign_up_available) {
+            if($show_avail){
+                if($sign_up_available){
                     $show_event = true;
                 }
             }
@@ -913,7 +927,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
      */
     public function increaseDayTotalCounts(&$day_data, $event_type)
     {
-        if (!$day_data['total_counts']) {
+        if(!$day_data['total_counts']){
             $day_data['total_counts'] = array('lab' => array("available" => 0, "total" => 0),
                                               'clinical' => array("available" => 0, "total" => 0),
                                               'field' => array("available" => 0, "total" => 0));
@@ -935,10 +949,11 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
      */
     public function initHasMyShiftToday(&$day_data, $user_is_attending)
     {
-        if (!isset($day_data['has_my_shift_today'])) {
+        if(!isset($day_data['has_my_shift_today'])){
             $day_data['has_my_shift_today'] = $user_is_attending;
-        } else {
-            if ($day_data['has_my_shift_today'] == false) {
+        }
+        else {
+            if($day_data['has_my_shift_today'] == false){
                 $day_data['has_my_shift_today'] = $user_is_attending;
             }
         }
@@ -958,7 +973,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
     public function formatAndFilterEvents(array &$eventDataStructure, array &$filters, array &$locations)
     {
         // set up some variables before we start looping
-        if ($this->cal_view_helper->current_user_data['role_name'] == "student") {
+        if($this->cal_view_helper->current_user_data['role_name'] == "student"){
             $student_group_repo = \Fisdap\EntityUtils::getRepository('ClassSectionLegacy');
             $user_cert_level = $this->cal_view_helper->user->getCurrentUserContext()->certification_level->id;
             $user_groups = $student_group_repo->getProgramGroups($this->cal_view_helper->current_user_data["program_id"], null, $this->cal_view_helper->user->getCurrentRoleData()->id, true, true);
@@ -966,23 +981,25 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
             $filters['avail_certs'] = array($user_cert_level);
             $filters['avail_groups'] = $user_groups;
 
-            if (!isset($this->cal_view_helper->avail_certs_config)) {
+            if(!isset($this->cal_view_helper->avail_certs_config)){
                 $this->cal_view_helper->avail_certs_config = $this->cal_view_helper->getFiltersAvailCertsConfig($filters['avail_certs']);
             }
         }
 
         // the keying gets real crazy here because of years/months/days/events/etc.
-        foreach ($eventDataStructure as $year => $months) {
-            foreach ($months as $month => $days) {
-                foreach ($days as $day => $day_data) {
-                    foreach ($day_data['events'] as $base_id => $base_events) {
-                        if ($base_events) {
-                            foreach ($base_events as $event_id => $event) {
+        foreach($eventDataStructure as $year => $months){
+            foreach($months as $month => $days){
+                foreach($days as $day => $day_data){
+                    foreach($day_data['events'] as $base_id => $base_events){
+
+                        if($base_events){
+
+                            foreach($base_events as $event_id => $event){
 
                                 // set the open slot count so we don't have to calculate in our views
                                 $event['open_slot_count'] = $event['slot_count'] - count($event['slot_assignments']);
 
-                                if ($event['open_slot_count'] < 0) {
+                                if($event['open_slot_count'] < 0){
                                     $event['open_slot_count'] = 0;
                                 }
 
@@ -990,12 +1007,14 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
                                 $preceptor_match = $this->filterByPreceptor($event, $filters['preceptors']);
 
                                 // if we don't have a preceptor match, there's no need to continue to do these calculations
-                                if ($preceptor_match) {
+                                if($preceptor_match){
 
                                     // format the windows data and find out if we have a match based on our filters
-                                    if ($event['quick_add_shift']) {
+                                    if($event['quick_add_shift']){
                                         $sign_up_available = false;
-                                    } else {
+                                    }
+                                    else {
+
                                         $window_match = $this->formatEventWindows($event['windows'], $event, $user_cert_level, $user_groups, $filters);
 
                                         // find out if our current logged in user should see this event as 'available' based on their filters
@@ -1011,7 +1030,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
 
 
                                     // if this shift was available to the user, but they are already on it do not consider it 'available'
-                                    if ($sign_up_available && $user_is_attending) {
+                                    if($sign_up_available && $user_is_attending){
                                         $sign_up_available = false;
                                     }
                                 }
@@ -1020,7 +1039,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
                                 $show_event = $this->getShowEventBool($preceptor_match, $filters["show_chosen"], $filters["show_avail"], $has_matching_assignment, $sign_up_available);
 
                                 // if show event is good, continue formatting the data
-                                if ($show_event) {
+                                if($show_event){
 
                                     // grab some html for consistent formatting across all views
                                     $start_time = $event['start_datetime']->format("Hi");
@@ -1036,7 +1055,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
                                     $event['preceptor_list'] = $this->cal_view_helper->getPreceptorList($event['preceptors'], $event['instructors'], $this->month_details_view);
                                     $this->getWeebles($event, $this->cal_view_helper);
 
-                                    if ($this->month_details_view) {
+                                    if($this->month_details_view){
                                         $event['preceptor_only_list'] = $this->cal_view_helper->preceptorOnlyList($event['preceptors'], true);
                                         $event['instructor_only_list'] = $this->cal_view_helper->instructorOnlyList($event['instructors'], true);
                                     }
@@ -1055,20 +1074,18 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
                                     } else {
                                         $locations[$base_id] = array("description" => $site_name . " " . $base_name, "count" => 1);
                                     }
-                                } else {
+                                }
+                                else {
                                     // we shouldn't be seeing this event, unset it from our array
                                     unset($eventDataStructure[$year][$month][$day]['events'][$base_id][$event_id]);
 
-                                    if (count($eventDataStructure[$year][$month][$day]['events'][$base_id]) == 0) {
+                                    if(count($eventDataStructure[$year][$month][$day]['events'][$base_id]) == 0){
                                         unset($eventDataStructure[$year][$month][$day]['events'][$base_id]);
                                     }
                                 }
                             }
                         }
-                    }
-                }
-            }
-        }
+                    }}}}
     }
 
     /**
@@ -1094,7 +1111,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
         $this->month_details_view = $month_details_view;
 
         //If we're not dealing with all certification, use the cal view helper to determine what certifications we are suppose to filter
-        if ($filters['avail_certs'] != "all") {
+        if($filters['avail_certs'] != "all"){
             $this->cal_view_helper->avail_certs_config = $this->cal_view_helper->getFiltersAvailCertsConfig($filters['avail_certs']);
         }
 
@@ -1159,7 +1176,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
         if ($params['endDate'] instanceof \DateTime) {
             $end_datetime = $params['endDate'];
             $end_datetime->setTime(23, 59, 59);
-        } elseif (isset($params['endDate'])) {
+        } else if (isset($params['endDate'])) {
             $end_datetime = new \DateTime($params['endDate']);
             $end_datetime->setTime(23, 59, 59);
         } else {
@@ -1168,7 +1185,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
 
         if ($params['startDate'] instanceof \DateTime) {
             $start_datetime = $params['startDate'];
-        } elseif (isset($params['startDate'])) {
+        } else if (isset($params['startDate'])) {
             $start_datetime = new \DateTime($params['startDate']);
         } else {
             $start_datetime = null;
@@ -1223,7 +1240,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
             ->leftJoin('wc.values', 'cv')
             ->leftJoin('wc.constraint_type', 'ct');
 
-        if (is_null($single_event_id)) {
+        if(is_null($single_event_id)){
             $qb->andWhere('psa.active = true')
                 ->andWhere('psa.program = ' . $params['program'])
                 ->andWhere('pba.active = true')
@@ -1237,7 +1254,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
             $complete_and_where .= $end_datetime ? ' AND e.start_datetime < ' . $end_datetime->format("'Y-m-d H:i:s'") . ')' : ')';
         }
 
-        if (!is_null($params['ids']) && count($params['ids']) > 0) {
+        if(!is_null($params['ids']) && count($params['ids']) > 0){
             $complete_and_where .= (is_null($single_event_id)) ? ' OR ' : '';
             $complete_and_where .=  '(' . $this->buildFiltersAndWhere("e.id", $params['ids']) . ')';
         }
@@ -1246,11 +1263,11 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
 
         //$qb->andWhere('sl.slot_type = 2');
 
-        if (isset($params['filters']) && is_null($single_event_id)) {
+        if(isset($params['filters']) && is_null($single_event_id)) {
             $filters = $params['filters'];
             // the way the filter works: if there are any sites selected (and no specific bases) - all bases for that site will be included
             // so we just need to go through the bases. we dont ever need to step through sites
-            if ($filters['bases'] && $filters['bases'] != "all") {
+            if($filters['bases'] && $filters['bases'] != "all"){
                 $qb->andWhere($this->buildFiltersAndWhere("b.id", $filters['bases']));
             }
         }
@@ -1404,9 +1421,11 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
 
         //Now the fun part, filtering by students
         if ($filters['chosen_students'] != 'all') {
+
             $userContextIds = SchedulerFilterSet::getStudentUserContextIdsFromFilters($program_id, $filters);
             $qb->andWhere($qb->expr()->in('assignment.user_context', $userContextIds));
-        } elseif (!empty($filters['certs'])) {
+
+        } else if (!empty($filters['certs'])) {
             //We now know that they didn't choose any grad date, group or specific set of students
             //So we can filter by cert level
             $qb->andWhere($qb->expr()->in('ur.certification_level', $filters['certs']));
@@ -1440,7 +1459,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
 
         $results = $qb->getQuery()->getArrayResult();
         $returnArray = array();
-        foreach ($results as $result) {
+        foreach($results as $result) {
             $returnArray[] = $result['first_name'] . " " . $result['last_name'];
         }
 
@@ -1469,7 +1488,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
 
         $results = $qb->getQuery()->getArrayResult();
         $returnArray = array();
-        foreach ($results as $result) {
+        foreach($results as $result) {
             $returnArray[] = $result['first_name'] . " " . $result['last_name'];
         }
 
@@ -1495,7 +1514,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
 
         if ($endDate instanceof \DateTime) {
             $end_datetime = $endDate->setTime(23, 59, 59);
-        } elseif ($endDate) {
+        } else if ($endDate) {
             $end_datetime = new \DateTime($endDate);
             $end_datetime->setTime(23, 59, 59);
         } else {
@@ -1504,7 +1523,7 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
 
         if ($startDate instanceof \DateTime) {
             $start_datetime = $startDate;
-        } elseif ($startDate) {
+        } else if ($startDate) {
             $start_datetime = new \DateTime($startDate);
         } else {
             $start_datetime = null;
@@ -1550,17 +1569,18 @@ class DoctrineEventLegacyRepository extends DoctrineRepository implements EventL
             $qb->andWhere('s.start_datetime <= ' . $end_datetime->format("'Y-m-d H:i:s'"));
         }
 
-        if ($filters) {
+        if($filters){
             $site_ids = SchedulerFilterSet::getSiteIdsFromFilters($program_id, $filters);
             $qb->andWhere($qb->expr()->in('site.id', $site_ids));
 
             //Now filter by only if they're not all and they haven't
-            if ($filters['bases'] && $filters['bases'] != "all") {
+            if($filters['bases'] && $filters['bases'] != "all"){
                 $qb->andWhere($this->buildFiltersAndWhere("base.id", $filters['bases']));
             }
 
             //Check for chosen students
             if ($filters['chosen_students'] && $filters['chosen_students'] != "all") {
+
                 $userContextIds = SchedulerFilterSet::getStudentUserContextIdsFromFilters($program_id, $filters);
                 $qb->andWhere($this->buildFiltersAndWhere("ur.id", $userContextIds));
             }

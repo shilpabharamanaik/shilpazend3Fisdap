@@ -1,0 +1,24 @@
+Hello!
+<div>
+	<div>
+		You have been assigned to <? echo count($this->events)." ".$this->events[0]->type." "; echo (count($this->events) == 1) ? "shift" : "shifts"; ?>
+		at:
+	</div>
+	<div style='margin: 1em 0em'>
+		<?= $this->events[0]->getLocation() ?><br>
+		<?= $this->events[0]->start_datetime->format("Hi") . " (" . $this->events[0]->getDurationText() . ") " ?>
+		<?= ($this->events[0]->notes) ? "<br />Notes: " . $this->events[0]->notes : ""; ?>
+	</div>
+	<div>
+		You are assigned to this shift on the following <?= (count($this->events) == 1) ? "date" : "dates" ?>:
+		<ul>
+			<?php foreach ($this->events as $event) { ?>
+			<li>
+				<a href="<?= $this->urlRoot . "scheduler/shift/details/event/" . $event->id; ?>">
+				<?= $event->start_datetime->format('l, M j, Y') ?>
+				</a>
+			</li>
+			<?php } ?>
+		</ul>
+	</div>
+</div>

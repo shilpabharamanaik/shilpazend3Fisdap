@@ -1,0 +1,18 @@
+<?= $this->pageTitleHelper("", null, "<a href='/skills-tracker/shifts'>&lt;&lt; Shift list</a>") ?>
+<div id="find-student-container" class="island grid_12">
+    <h3 class='section-header'>Select a student</h3>
+    <?= $this->studentPicker ?>
+
+    <h3 class="section-header withTopMargin">Select an evaluator</h3>
+    <div class="grid_4">
+        <?= $this->evaluatorButtonset ?>
+    </div>
+
+    <div id="go-button-container" class="grid_1 prefix_7 green-buttons">
+        <?= $this->fancyButton('practice-items-go', 'Go', '#', 'green-buttons', 'small') ?>
+    </div>
+</div>
+
+<div id="practice-confirmation-container" class="island grid_12 withTopMargin">
+    <?= $this->confirmationTableHelper ?>
+</div>

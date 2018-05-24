@@ -1,0 +1,38 @@
+<?= $this->pageTitleHelper() ?>
+
+
+<div class="grid_12 island">
+	
+	<table class="fisdap-table" id="tc-map-admin-table">
+		
+		<thead>
+			<tr>
+				<th>State</th>
+				<th>Status</th>
+				<th>Color</th>
+			
+			</tr>
+		</thead>
+		
+		<tbody>
+			
+			<?php
+			
+				foreach($this->states as $state){ ?>
+					
+					<tr data-stateId='<?= $state->id; ?>'>
+						<td><?= $state->name ?></td>
+						<td><?= $state->status ?></td>
+						<td><div class='color-preview' style='background-color:#<?= $state->color; ?>'></div><?= $state->color; ?></td>
+					</tr>
+					
+				<?php
+				}
+			
+			?>
+			
+		</tbody>
+		
+	</table>
+	
+</div>

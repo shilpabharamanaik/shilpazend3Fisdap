@@ -1,0 +1,31 @@
+<p>Hello, here are the test details for your upcoming exam.</p>
+
+<p><?php print $this->testName; ?></p>
+
+<p><?php print $this->testDate; ?></p>
+
+<p><?php print $this->numStudents; ?>  student<?php if ($this->numStudents > 1) { ?>s<?php } ?></p>
+
+<?php if (count($this->passwords) > 1) { ?>
+	<p>Your proctor passwords are:</p>
+	
+	<ul><?php 
+	foreach($this->passwords as $dateString => $password) {
+		// $passwords date value comes in as a string formatted YYYY-MM-DD
+		// need to transform per CX request
+		$dateParts = explode('-', $dateString);
+		print '<li>' . $dateParts[1] . '/' . $dateParts[2] . '/' . $dateParts[0] . ': ' . $password . '</li>';
+	} ?></ul>
+<?php } else { ?>
+	<p>Proctor password: <?php print current($this->passwords); ?></p>
+<?php } ?>
+
+<p>We protect the security of our exams by issuing you a proctor password that changes daily. Once the student logs in to take the test, type in the proctor password for each student to unlock their exam.</p>
+
+<p>Proctor passwords are case-sensitive so please be sure to type them exactly as they appear. Again, please do NOT give the proctor password to your students - instead, please enter it for each student.</p>
+
+<p>The students will be able to see their scores once they complete the exam. They can access this information from their Learning Center.</p>
+
+<p>Finally, to edit this exam or to review more information about this exam, such as study guides or directions for logging into the exam, please return to the <a href="<?php print $this->detailsUrl; ?>">Test Details</a> page.</p>
+
+<p>Thanks for your support.</p>

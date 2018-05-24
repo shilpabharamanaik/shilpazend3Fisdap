@@ -4,6 +4,7 @@ use Doctrine\ORM\QueryBuilder;
 use Fisdap\Entity\ShiftLegacy;
 use Happyr\DoctrineSpecification\Query\QueryModifier;
 
+
 /**
  * Class BasesMatchingShifts
  *

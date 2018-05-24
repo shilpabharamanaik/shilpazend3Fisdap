@@ -6,9 +6,10 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
+
 /**
  * Frequency Type
- *
+ * 
  * @Entity
  * @Table(name="fisdap2_frequency_type")
  */

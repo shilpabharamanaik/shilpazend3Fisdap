@@ -1,0 +1,19 @@
+<div>
+<?php 	switch ($this->request->request_type->name) {
+		case "drop":	?>
+			<p><?= $this->request->owner->user->getName() ?> has cancelled the request to drop the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+		case "cover": ?>
+			<p><?= $this->request->owner->user->getName() ?> has cancelled the request for coverage for the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+		case "swap": ?>
+			<p><?= $this->request->owner->user->getName() ?> has cancelled the request to swap the following <?= $this->request->event->type ?> shift:</p>
+<?php			break;
+	} 	?>
+	
+	<div>
+		<?= $this->request->event->getDetailViewDate() ?><br>
+		<?= $this->request->event->getLocation() ?>
+	</div>
+	
+</div>

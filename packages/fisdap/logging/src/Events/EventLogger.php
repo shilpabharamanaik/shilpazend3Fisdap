@@ -2,6 +2,7 @@
 
 use Fisdap\Logging\ComponentLogger;
 
+
 /**
  * PSR-compatible logger for events
  *

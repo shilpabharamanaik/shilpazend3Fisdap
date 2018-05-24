@@ -8,6 +8,7 @@ use Fisdap\Entity\ProgramSiteLegacy;
 use Fisdap\Entity\SiteLegacy;
 use Fisdap\EntityUtils;
 
+
 /**
  * Class Sites
  *
@@ -39,12 +40,12 @@ trait Sites
 
     /**
      * @codeCoverageIgnore
-     * @deprecated
+     * @deprecated 
      */
     public function createDemoSites()
     {
-        foreach ($this->program_types as $type) {
-            switch ($type->id) {
+        foreach($this->program_types as $type) {
+            switch($type->id) {
                 case 1:
                     $type = "lab";
                     break;
@@ -89,8 +90,7 @@ trait Sites
     }
     
     
-    public function usesSharing()
-    {
+    public function usesSharing() {
         foreach ($this->site_shares as $share) {
             if ($share->approved) {
                 return true;
@@ -100,8 +100,7 @@ trait Sites
     }
 
 
-    public function isActiveSite($site_id)
-    {
+    public function isActiveSite($site_id){
         foreach ($this->program_site_associations as $association) {
             if ($association->site->id == $site_id) {
                 return $association->active;
@@ -111,8 +110,7 @@ trait Sites
     }
 
 
-    public function sharesSite($site_id)
-    {
+    public function sharesSite($site_id) {
         foreach ($this->site_shares as $share) {
             if ($share->site->id == $site_id && $share->approved) {
                 return true;
@@ -125,11 +123,11 @@ trait Sites
     {
         $ids = array();
 
-        if (($this->sharesSite($site->id))) {
+        if(($this->sharesSite($site->id))){
             $programs = $site->getAssociatedPrograms();
-            if ($programs) {
-                foreach ($programs as $program_data) {
-                    if ($program_data["shared"]) {
+            if($programs){
+                foreach($programs as $program_data){
+                    if($program_data["shared"]){
                         $ids[] = $program_data["id"];
                     }
                 }
@@ -140,8 +138,7 @@ trait Sites
     }
 
 
-    public function pendingApproval($site_id)
-    {
+    public function pendingApproval($site_id) {
         foreach ($this->site_shares as $share) {
             if ($share->site->id == $site_id && $share->approved == 0) {
                 return true;
@@ -151,8 +148,7 @@ trait Sites
     }
 
 
-    public function isAdmin($site_id)
-    {
+    public function isAdmin($site_id){
         foreach ($this->site_shares as $share) {
             if ($share->site->id == $site_id && $share->admin) {
                 return true;
@@ -162,9 +158,8 @@ trait Sites
     }
 
 
-    public function seesSharedStudents($site_id)
-    {
-        if ($this->site_shares) {
+    public function seesSharedStudents($site_id){
+        if($this->site_shares){
             foreach ($this->site_shares as $share) {
                 if ($share->site->id == $site_id && $share->see_students) {
                     return true;
@@ -192,11 +187,11 @@ trait Sites
     }
 
     
-    public function hasSite(SiteLegacy $site)
-    {
+    public function hasSite(SiteLegacy $site){
         if ($this->getEntityRepository()->getAssociationCountBySite($site->id, $this->id)) {
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }
@@ -229,8 +224,7 @@ trait Sites
     }
 
     
-    public function getSharedStatus($site_id)
-    {
+    public function getSharedStatus($site_id){
         $site = EntityUtils::getEntity('SiteLegacy', $site_id);
 
         if (count($site->site_shares) < 1) {

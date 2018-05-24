@@ -1,0 +1,41 @@
+<?= $this->pageTitleHelper() ?>
+<?= $this->messageHelper() ?>
+
+<div class="grid_12 island">
+	
+    <?= $this->orderSummary($this->orderId); ?>
+	
+	<? if ($this->order->order_type->id == 1) { ?>
+		<?php
+		if(!$this->order->upgrade_purchase){?>
+			<div class="prefix_7 grid_3">
+				<a href="/account/orders/account-holders">Order for another group</a>
+			</div>
+		<?php
+		}
+		else {
+			$styleFix = "style='float:right;'";
+		}?>
+        <? 
+        $orderd_cost = floatval(str_replace(",","",$this->order->getTotalCost()));
+        if($orderd_cost >= 150 || $this->user->isStaff()) { ?>
+		<div class="grid_2" <?= $styleFix ?>><a href="/account/orders/billing/">Next (Billing) &gt;&gt;</a></div>
+        <?php }
+        else { 
+       ?>
+       <form method="post">
+       <input type="hidden" name="orderId" value="<?php echo $this->orderId ?> " id="orderId">
+       <input type="hidden" name="paymentMethod" value="2" >
+       </form>
+       <div class="grid_2"><a href="#" id="confirmPayment"> Next (payment) &gt;&gt;</a>
+       <?php
+        }
+    }        else { ?>
+		<div class="prefix_7 grid_3">
+			<?= $this->fancyButton("order-another", "Order for another group", "/account/orders/account-holders", "gray-button", 'extra-small') ?>			
+		</div>
+		<div class="grid_2">
+			<?= $this->fancyButton("confirm-order", "Confirm Order", "/account/orders/product-code-confirmation/orderId/" . $this->order->id, 'green-buttons', 'extra-small') ?>
+		</div>
+	<? } ?>
+</div>

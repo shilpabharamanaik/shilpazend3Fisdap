@@ -1,0 +1,28 @@
+<?= $this->pageTitleHelper() ?>
+
+
+<div class='grid_12 island'>
+
+    <div class="grid_12" id="dateRange">
+            <?= $this->formLabel("startDate", "Display programs created from:"); ?>
+            <?= $this->formText("startDate") ?>
+            <?= $this->formLabel("endDate", "To:"); ?>
+            <?= $this->formText("endDate") ?>
+            <a href="#" id="searchButton">Search</a>
+    </div>
+    
+    <div class="grid_12" id="mode">
+            <?= $this->formLabel("addressesOnly", "Addresses only?"); ?>
+            <?= $this->formCheckbox("addressesOnly") ?>
+    </div>
+
+</div>
+
+<div class="grid_12 island withTopMargin" id="results">
+    <?= $this->exportButtons(array("pdf", "csv"), "export-referral-report-links") ?>
+
+    <div id='results_area'>
+
+    </div>
+
+</div>    

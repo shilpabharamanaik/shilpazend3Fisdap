@@ -112,6 +112,7 @@ abstract class PreceptorSignoffsAbstract extends Job implements RequestHydrated
         BusDispatcher $busDispatcher,
         UpdateShift $updateShiftJob
     ) {
+
         if (!empty($this->patientId !== null)) {
             // This is a patient signoff
 
@@ -168,9 +169,7 @@ abstract class PreceptorSignoffsAbstract extends Job implements RequestHydrated
                 $shift = $busDispatcher->dispatch($updateShiftJob);
             }
 
-            if ($this->verification !== null) {
-                $this->verification->setVerification($shift->verification);
-            }
+            if ($this->verification !== null) $this->verification->setVerification($shift->verification);
             $verification = $this->verification ? $busDispatcher->dispatch($this->verification) : null;
             $signoff = $this->em->getRepository(PreceptorSignoff::class)->findOneBy(['shift' => $this->shiftId]);
             $signoff = $signoff ? $signoff : new PreceptorSignoff;

@@ -187,7 +187,7 @@ class ProgramLegacy extends EntityBaseClass
         $words = str_word_count($this->name, 1);
 
         if (count($words) > 1) {
-            $firstLetters = array_map(function ($word) {
+            $firstLetters = array_map(function($word) {
                 return substr(ucfirst($word), 0, 1);
             }, $words);
 
@@ -258,7 +258,7 @@ class ProgramLegacy extends EntityBaseClass
      * @param mixed $value integer | \Fisdap\Entity\Profession
      * @return \Fisdap\Entity\ProgramLegacy
      * @codeCoverageIgnore
-     * @deprecated
+     * @deprecated 
      */
     public function set_profession($value)
     {
@@ -290,7 +290,7 @@ class ProgramLegacy extends EntityBaseClass
      */
     public function setCreated()
     {
-        $this->created = new \DateTime;
+            $this->created = new \DateTime;
     }
 
 
@@ -394,7 +394,8 @@ class ProgramLegacy extends EntityBaseClass
             if ($program->get_can_students_create_lab()) {
                 $types[] = 'lab';
             }
-        } elseif ($user->getCurrentRoleName() == "instructor") {
+
+        } else if ($user->getCurrentRoleName() == "instructor") {
             $instructor = $user->getCurrentRoleData();
 
             if ($instructor->hasPermission("Edit Field Schedules")) {
@@ -477,7 +478,7 @@ class ProgramLegacy extends EntityBaseClass
     {
         $returnArray = array();
         $programOptions = EntityUtils::getRepository("ProgramLegacy")->getAllPrograms();
-        foreach ($programOptions as $id => $option) {
+        foreach($programOptions as $id => $option){
             $returnArray[$id] = $option['name'];
         }
         return $returnArray;

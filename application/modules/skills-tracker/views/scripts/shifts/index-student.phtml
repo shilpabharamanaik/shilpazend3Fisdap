@@ -1,0 +1,37 @@
+<div>
+	<div class="grid_9">
+		<h1 id='shift-list-title'>Skills & Patient Care</h1>
+	</div>
+</div>
+
+
+<div id="shift-list-container" class="grid_12">
+    <?php
+    $patients = \Fisdap\EntityUtils::getRepository("Patient")->getPatientsForExamInterviewTool($this->studentId);
+
+    if($patients) {
+        echo '<p><div class="notice">It looks like you have some shifts that are missing important data. Please visit <a class="exam-interview-link" href="/skills-tracker/shifts/exam-interview-form/studentId/' . $this->studentId . '">this page</a> to correct those records.</div></p>';
+    }
+    ?>
+    <input type='hidden' id='studentId' name='studentId' value='<?php echo $this->studentId; ?>' />
+	<?= $this->exportButtons(array("pdf"), "export-shift-list-links") ?>
+	<div class='clear'></div>
+	
+	<?= $this->addShiftWidget(); ?>
+	<div id="shift-filters"><?= $this->shiftFilters; ?></div>
+			
+	<div id='shift-list'>
+		<?= $this->shiftList($this->studentId, $this->studentsGateway, $this->filter, false, $this->messages);?>
+	</div>
+	
+</div>
+<div class='blablabla'></div>
+<?php
+
+echo $this->shiftModal;
+echo $this->shiftLockModal;
+
+if($this->addType){
+	echo "<script> $(function() { loadShiftModal('" . $this->addType . "') }) </script>";
+}
+?>

@@ -1,0 +1,103 @@
+<p>Displaying sites for <?= $this->element->program->name;?></p>
+
+<div style="display:none;">
+		<?= $this->element->all;?>
+		<?= $this->element->field;?>
+		<?= $this->element->lab;?>
+		<?= $this->element->clinical;?>
+</div>
+
+<div id="typeFilterWrapper">
+	
+	<p>Choose one:</p>
+	
+		<div id="ieEight">
+			<select id="typeFilterSelect" style="display:none;">
+				<option value="field">Field</option>
+				<option value="lab">Lab</option>
+				<option value="clinical">Clinical</option>
+			</select>
+		</div>
+	
+		<div id="typeButtons">
+			<span id="typeCheckbox">
+				<a id="allButton">All</a>
+			</span>
+			<span id="typeCheckbox">
+				<a id="fieldButton">Field</a>
+			</span>
+			
+			
+			<span id="typeCheckbox">
+				<a id="labButton">Lab</a>
+			</span>
+			
+			
+			<span id="typeCheckbox">
+				<a id="clinicalButton">Clinical</a>
+			</span>
+			
+			<div style="clear:both;"></div>
+
+		</div>
+	
+		<div style="clear:both;"></div>
+		
+			
+
+	</div>
+
+<div id="sitesContainer">
+
+	<div id="arrowsContainer">
+		<div id="typeArrow"><img src="/images/cluetip/whiteUpArrow.png"></div>
+		<div id="typeArrowDown"><img src="/images/cluetip/whiteDownArrow.png"></div>
+		
+		<div id="nameArrow"><img src="/images/cluetip/whiteUpArrow.png"></div>
+		<div id="nameArrowDown"><img src="/images/cluetip/whiteDownArrow.png"></div>
+		
+		<div id="cityArrow"><img src="/images/cluetip/whiteUpArrow.png"></div>
+		<div id="cityArrowDown"><img src="/images/cluetip/whiteDownArrow.png"></div>
+		
+		<div id="stateArrow"><img src="/images/cluetip/whiteUpArrow.png"></div>
+		<div id="stateArrowDown"><img src="/images/cluetip/whiteDownArrow.png"></div>
+		
+		<div id="activeArrow"><img src="/images/cluetip/whiteUpArrow.png"></div>
+		<div id="activeArrowDown"><img src="/images/cluetip/whiteDownArrow.png"></div>
+		
+		<div id="sharedArrow"><img src="/images/cluetip/whiteUpArrow.png"></div>
+		<div id="sharedArrowDown"><img src="/images/cluetip/whiteDownArrow.png"></div>
+	</div>
+
+	
+	<div id="siteListContainer">
+	
+		<div id='site-list'>
+			<?php
+				if($this->element->noSites){?>
+					<div id='filterMessage'>Go ahead and add sites for your program. Click the "Add new" button below to get started.</div>
+				<?php
+				}
+				else {
+					echo $this->listSites(false);
+				}
+			?>
+		</div>
+
+		<div class="extra-small orange-button">
+			<a href="/account/sites/new" id="addButton">Add new</a><br>
+			
+			<a href="/account/sites/site/siteId" id="editMySiteButton" style="float:right; margin-top:-13px;">Edit</a>
+			
+			<?php if($this->element->isStaff){
+				$oldURL = "/oldfisdap/redirect?loc=" . urlencode("admin/internal_precepList.html?siteId=");
+				?>
+			
+				<a href="<?= $oldURL;?>" id="internalPercepMergeButton" style="float:right; margin-top:-13px;">Internal Preceptor Merge</a>
+			<?php
+			}?>
+		</div>
+	</div>
+	
+	<?= $this->element->list_type ?>
+</div>

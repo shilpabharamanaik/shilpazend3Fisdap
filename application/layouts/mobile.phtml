@@ -1,0 +1,40 @@
+<?php echo $this->doctype(); ?>
+<html class="fisdap-is-mobile">
+    <head>
+		<?php echo $this->headTitle($this->headTitleHelper()); ?>
+		
+		<?php
+			echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1');
+		?>
+        <?
+		// use this for version control of cached js/css files
+		$last_modified = "07/24/2013"; ?>
+		 
+		<?php echo $this->partial('cssLinksMobile.phtml', array('last_modified' => $last_modified)); ?>
+		<?php echo $this->partial('jsLinksMobile.phtml', array('last_modified' => $last_modified)); ?>
+	</head>
+	
+    <body>
+		<div id="mobile-site-content">
+			<div id="header">
+				<div id="profile-link">
+					<? if ($username = Zend_Auth::getInstance()->getIdentity()) echo "$username, <a href='/mobile/login/logout'>Logout</a>"; ?>
+				</div>
+				<div id="site-title">Fisdap Mobile</div>
+			</div>
+			
+			<?= $username ? $this->mobileTickerMenu() : null; ?>
+			
+			<div id="content" class="container_12">	
+				<?php echo $this->layout()->content; ?>
+			</div>
+		</div>
+		
+    <?php echo $this->partial('piwik.phtml', array(
+						   'currentUserId' => $this->currentUserId,
+						   'piwikBaseUrl' => $this->piwikBaseUrl,
+						   'piwikSiteId' => $this->piwikSiteId,
+						   )); ?>
+    
+    </body>
+</html>
