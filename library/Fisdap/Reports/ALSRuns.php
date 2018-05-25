@@ -31,11 +31,11 @@ class Fisdap_Reports_ALSRuns extends Fisdap_Reports_Report
             'title' => 'Select one or more student(s)',
             'options' => array(
                 'mode' => 'multiple',
-                'loadJSCSS' => true,
-                'loadStudents' => true,
-                'showTotal' => true,
-                'studentVersion' => true,
-                'useSessionFilters' => true,
+                'loadJSCSS' => TRUE,
+                'loadStudents' => TRUE,
+                'showTotal' => TRUE,
+                'studentVersion' => TRUE,
+                'useSessionFilters' => TRUE,
                 'sessionNamespace' => "ReportStudentFilter",
             ),
         )
@@ -311,11 +311,11 @@ class Fisdap_Reports_ALSRuns extends Fisdap_Reports_Report
         // These are tucked away since there are 2 ways to calculate these fields
         // and I don't want to clutter up the main block too much.
         $this->cacheALSCalls($studentIdString, $siteIdClause, $ALSLeadClause);
-        $title1 = "Runs/Patients";
-        $title2 = "ALS Skills";
-        $data = $this->getStudentData($students);
-        $reportTable1 = array(
-            'title' => $title1,
+		$title1 = "Runs/Patients";
+		$title2 = "ALS Skills";
+        $data = $this->getStudentData($students);      
+		$reportTable1 = array(
+			'title' => $title1,
             'head' => array(
                 '000' => array( // First row headers...
                     'Name',
@@ -330,7 +330,7 @@ class Fisdap_Reports_ALSRuns extends Fisdap_Reports_Report
                     'Phys. Exam',
                     'Ped. Pts.',
                     'Adult Pts.',
-                    'Ger. Pts.'
+                    'Ger. Pts.'                    
                 )
             ),
             'body' => array()
@@ -351,7 +351,7 @@ class Fisdap_Reports_ALSRuns extends Fisdap_Reports_Report
             $tableRow1['Ped. Pts.'] = $dataRow1['NumPediatrics'];
             $tableRow1['Adult Pts.'] = $dataRow1['NumAdults'];
             $tableRow1['Ger. Pts.'] = $dataRow1['NumGeriatrics'];
-            $reportTable1['body'][] = $tableRow1;
+			$reportTable1['body'][] = $tableRow1;
         }
 
         // add the footer to calculate total, average, and max, but only if there's more than one row
@@ -371,12 +371,12 @@ class Fisdap_Reports_ALSRuns extends Fisdap_Reports_Report
             $reportTable1['foot']["max"] = $max_footer1;
             $reportTable1['foot']["average"] = $average_footer1;
         }
-        
-        $reportTable2 = array(
-        'title' => $title2,
+		
+		$reportTable2 = array(
+		'title' => $title2,
             'head' => array(
                 '000' => array( // First row headers...
-                    'Name',
+                    'Name',                    
                     'IV Suc.',
                     'IV Attempts',
                     'IV Suc. Rate',
@@ -392,7 +392,7 @@ class Fisdap_Reports_ALSRuns extends Fisdap_Reports_Report
 
         foreach ($data as $dataRow2) {
             $tableRow2 = array();
-            $tableRow2['Name'] = array("data" => $dataRow2['Name'], "class"=>"left noSum noAverage noMin noMax");
+            $tableRow2['Name'] = array("data" => $dataRow2['Name'], "class"=>"left noSum noAverage noMin noMax");           
             $tableRow2['IV Suc.'] = $dataRow2['IVSuccess'];
             $tableRow2['IV Atmts'] = $dataRow2['IVNumAttempts'];
             $tableRow2['IV Suc. Rate'] = ($dataRow2['IVNumAttempts'] > 0) ? floor(($dataRow2['IVSuccess'] / $dataRow2['IVNumAttempts']) * 100) . '%' : 'N/A';
@@ -403,7 +403,7 @@ class Fisdap_Reports_ALSRuns extends Fisdap_Reports_Report
             $tableRow2['MD Cnslt'] = $dataRow2['NumMDConsult'];
             $reportTable2['body'][] = $tableRow2;
         }
-        if (count($reportTable2['body']) > 1) {
+		if (count($reportTable2['body']) > 1) {
             $total_footer2 = array(array("data" => "Total:", "class" => "right"));
             $max_footer2 = array(array("data" => "Maximum:", "class" => "right"));
             $average_footer2 = array(array("data" => "Average:", "class" => "right"));
@@ -595,6 +595,7 @@ class Fisdap_Reports_ALSRuns extends Fisdap_Reports_Report
    					)
    				;
             ";
+
         }
 
         // Just in case something weird happens and we don't get an explicit skill set to run
@@ -635,6 +636,7 @@ class Fisdap_Reports_ALSRuns extends Fisdap_Reports_Report
                     "AND p.patient_disposition_id = 1 ".
                     "GROUP BY r.student_id";
                 $this->executeAndCacheQuery($query, array('als_transported' => 'ALSTransport'));
+
             }
         }
     }

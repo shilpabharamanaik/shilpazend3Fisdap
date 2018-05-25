@@ -7,7 +7,7 @@ class MyFisdap_Widgets_ShiftRequests extends MyFisdap_Widgets_Base
     public function render()
     {
         $user = \Fisdap\Entity\User::getLoggedInUser();
-        $currentContext = $user->getCurrentUserContext();
+		$currentContext = $user->getCurrentUserContext();
 
         if ($currentContext->isInstructor()) {
             $pendingRequestCount = \Fisdap\EntityUtils::getRepository("ShiftRequest")->getPendingRequestCountByProgram($currentContext->getProgram()->getId());
@@ -17,7 +17,7 @@ class MyFisdap_Widgets_ShiftRequests extends MyFisdap_Widgets_Base
 
         if ($pendingRequestCount > 1) {
             $html = "<a href='/scheduler/requests/'>You have " . $pendingRequestCount . " pending shift requests.</a>";
-        } elseif ($pendingRequestCount == 1) {
+        } else if ($pendingRequestCount == 1) {
             $html = "<a href='/scheduler/requests/'>You have 1 pending shift request.</a>";
         } else {
             $html = "You have no pending shift requests.";
@@ -41,7 +41,7 @@ class MyFisdap_Widgets_ShiftRequests extends MyFisdap_Widgets_Base
 
         // User must be an instructor that has the "Edit Scheduler" permission...
         if ($currentContext->isInstructor() &&
-            ($currentContext->hasPermission('Edit Field Schedules') ||
+            (   $currentContext->hasPermission('Edit Field Schedules') ||
                 $currentContext->hasPermission('Edit Clinic Schedules') ||
                 $currentContext->hasPermission('Edit Lab Schedules'))) {
             return true;

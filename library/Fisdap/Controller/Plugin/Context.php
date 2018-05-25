@@ -3,6 +3,7 @@
 use Fisdap\Api\Users\CurrentUser\CurrentUser;
 use Fisdap\Entity\User;
 
+
 /**
  * Controller plugin to detect the users browser and store that info in the
  * Zend_Registry, and provide user identification to piwik analytics & New Relic analytics
@@ -44,8 +45,7 @@ class Fisdap_Controller_Plugin_Context extends Zend_Controller_Plugin_Abstract
      *
      * @throws Zend_Exception
      */
-    public function preDispatch(Zend_Controller_Request_Abstract $request)
-    {
+    public function preDispatch(Zend_Controller_Request_Abstract $request) {
 
         // get the view
         $view = Zend_Controller_Front::getInstance()

@@ -65,3 +65,5 @@ abstract class Fisdap_Exception_BaseException extends Exception
         return array();
     }
 }
+
+?>

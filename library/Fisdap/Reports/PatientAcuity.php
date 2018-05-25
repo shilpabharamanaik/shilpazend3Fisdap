@@ -14,7 +14,7 @@ class Fisdap_Reports_PatientAcuity extends Fisdap_Reports_Report
         'shiftInformationForm' => array(
             'title' => 'Select shift information',
             'options' => array(
-                'pickPatientType' => false,
+                'pickPatientType' => FALSE,
                 'selected' => array('sites' => array())
             ),
         ),
@@ -23,11 +23,11 @@ class Fisdap_Reports_PatientAcuity extends Fisdap_Reports_Report
             'name' => 'student-picklist',
             'options' =>  array(
                 'mode' => 'multiple',
-                'loadJSCSS' => true,
-                'loadStudents' => true,
-                'showTotal' => true,
-                'studentVersion' => true,
-                'useSessionFilters' => true,
+                'loadJSCSS' => TRUE,
+                'loadStudents' => TRUE,
+                'showTotal' => TRUE,
+                'studentVersion' => TRUE,
+                'useSessionFilters' => TRUE,
                 'sessionNamespace' => "ReportStudentFilter",
             ),
         ),
@@ -39,8 +39,7 @@ class Fisdap_Reports_PatientAcuity extends Fisdap_Reports_Report
      * OR return a string and it will be rendered as HTML
      * @return array
      */
-    public function runReport()
-    {
+    public function runReport() {
         $sortableByLast = true;
 
 
@@ -50,18 +49,17 @@ class Fisdap_Reports_PatientAcuity extends Fisdap_Reports_Report
         $start_date = $this->config['startDate'];
         $end_date = $this->config['endDate'];
 
-        $students = $this->getMultiStudentData($sortableByLast);
+            $students = $this->getMultiStudentData($sortableByLast);
 
-        // Run a query to get data.
-        $repo = \Fisdap\EntityUtils::getRepository('StudentLegacy');
-        $data = $repo->getStudentPatientAcuityData(array_keys($students), $site_ids, $start_date, $end_date);
+            // Run a query to get data.
+            $repo = \Fisdap\EntityUtils::getRepository('StudentLegacy');
+            $data = $repo->getStudentPatientAcuityData(array_keys($students), $site_ids, $start_date, $end_date);
 
-        $this->addSummaryTable($students, $data);
+            $this->addSummaryTable($students, $data);
     }
 
 
-    protected function addSummaryTable($students, $data)
-    {
+    protected function addSummaryTable($students, $data) {
         // make the table
         $patientAcuityTable = array(
             'title' => "Patient Acuity Summary",
@@ -80,7 +78,7 @@ class Fisdap_Reports_PatientAcuity extends Fisdap_Reports_Report
             'body' => array(),
         );
 
-        foreach ($students as $student_id => $nameOptions) {
+        foreach($students as $student_id => $nameOptions) {
             // get the data for the chosen student
             if ($data[$student_id]) {
                 $tallies = array();

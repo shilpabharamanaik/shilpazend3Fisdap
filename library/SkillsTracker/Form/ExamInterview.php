@@ -2,6 +2,7 @@
 
 class SkillsTracker_Form_ExamInterview extends Fisdap_Form_Base
 {
+
     public $patients;
     public $student_id;
 
@@ -18,6 +19,7 @@ class SkillsTracker_Form_ExamInterview extends Fisdap_Form_Base
 
     public function __construct($student_id = null)
     {
+
         $this->student_id = $student_id;
 
         parent::__construct();
@@ -62,19 +64,24 @@ class SkillsTracker_Form_ExamInterview extends Fisdap_Form_Base
         $this->addElement($saveButton);
 
         $this->setElementDecorators(self::$elementDecorators);
+
     }
 
     public function process($data)
     {
+
         $retVal = array(
             'code' => 200
         );
 
-        if ($this->isValid($data)) {
-            foreach ($this->patients as $patient) {
+        if ($this->isValid($data)){
+
+            foreach($this->patients as $patient) {
+
                 if ($data['exam_' . $patient->id] == 1) {
                     //set exam to performed/1
                     $patient->exam = 1;
+
                 } else {
                     //set exam to observed/0
                     $patient->exam = 0;
@@ -83,17 +90,23 @@ class SkillsTracker_Form_ExamInterview extends Fisdap_Form_Base
                 if ($data['interview_' . $patient->id] == 1) {
                     //set interview to performed/1
                     $patient->interview = 1;
+
                 } else {
                     //set interview to observed/0
                     $patient->interview = 0;
                 }
 
                 $patient->save();
+
             }
         } else {
             $retVal['code'] = 500;
         }
 
         return $retVal;
+
     }
+
+
+
 }

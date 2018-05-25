@@ -9,6 +9,7 @@ use Illuminate\Contracts\Container\Container;
 use Psr\Log\LoggerInterface;
 use Fisdap\Api\Client\Shifts\Attachments\Gateway\ShiftAttachmentsGateway;
 
+
 /**
  * Subscribes to ShiftLegacy Doctrine lifecycle events
  *
@@ -57,14 +58,12 @@ class ShiftEventsSubscriber implements EventSubscriber
      */
     public function preRemove(LifecycleEventArgs $args)
     {
-        if (! $args->getObject() instanceof ShiftLegacy) {
-            return;
-        }
+        if ( ! $args->getObject() instanceof ShiftLegacy) return;
 
         /** @var ShiftLegacy $shift */
         $shift = $args->getObject();
 
-        if (! $shift->getAttachments()->isEmpty()) {
+        if ( ! $shift->getAttachments()->isEmpty()) {
             $attachmentIds = [];
 
             /** @var ShiftAttachment $shiftAttachment */

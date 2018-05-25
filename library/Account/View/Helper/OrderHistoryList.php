@@ -17,12 +17,12 @@
 /**
  * @package Account
  */
-class Account_View_Helper_OrderHistoryList extends Zend_View_Helper_Abstract
+class Account_View_Helper_OrderHistoryList extends Zend_View_Helper_Abstract 
 {
-    protected $_html;
-    
-    public function orderHistoryList($programId, $filters = array())
-    {
+	protected $_html;
+	
+	public function orderHistoryList($programId, $filters = array())
+	{
         $this->view->headLink()->appendStylesheet("/css/library/Account/View/Helper/order-history-list.css");
         $this->view->headLink()->appendStylesheet("/css/fisdap_dialogs.css");
         $this->view->headScript()->appendFile("/js/library/Account/View/Helper/order-history-list.js");
@@ -32,9 +32,9 @@ class Account_View_Helper_OrderHistoryList extends Zend_View_Helper_Abstract
             $orderPartials[] = array('order' => $order);
         }
         
-        $this->_html = "<table class='fisdap-table' id='order-history-list'>";
+        $this->_html = "<table class='fisdap-table' id='order-history-list'>";		
         $this->_html .= "<thead>";
-        $this->_html .= "<tr><th>Date</th><th>Quantity</th><th>Cost</th><th>Ordered By</th><th>Order #</th></tr>";
+		$this->_html .= "<tr><th>Date</th><th>Quantity</th><th>Cost</th><th>Ordered By</th><th>Order #</th></tr>";
         $this->_html .= "</thead>";
         $this->_html .= "<tbody>";
         

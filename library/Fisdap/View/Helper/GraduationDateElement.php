@@ -34,30 +34,30 @@ class Fisdap_View_Helper_GraduationDateElement extends Zend_View_Helper_FormElem
         //get data from values
         $month = isset($value['month']) ? $value['month'] : 0;
         $year = isset($value['year']) ? $value['year'] : 0;
+		
+		//get month/year options
+		$months = isset($attribs['monthAttribs']['formOptions']) ? $attribs['monthAttribs']['formOptions'] : $this->getMonthPrompts();
+		$years = isset($attribs['yearAttribs']['formOptions']) ? $attribs['yearAttribs']['formOptions'] : $this->getYearPrompts();
         
-        //get month/year options
-        $months = isset($attribs['monthAttribs']['formOptions']) ? $attribs['monthAttribs']['formOptions'] : $this->getMonthPrompts();
-        $years = isset($attribs['yearAttribs']['formOptions']) ? $attribs['yearAttribs']['formOptions'] : $this->getYearPrompts();
-        
-        
-        //Use zend view helpers to render select boxes
+		
+		//Use zend view helpers to render select boxes
         $this->html = $this->view->formSelect($name . "[month]", $month, array(), $months);
         $this->html .= $this->view->formSelect($name . "[year]", $year, array(), $years);
         
         return $this->html;
     }
-    
-    private function getYearPrompts()
-    {
-        if ($user = \Fisdap\Entity\User::getLoggedInUser()) {
-            return $user->getCurrentProgram()->get_possible_graduation_years();
-        } else {
-            return Util_FisdapDate::get_year_prompt_names();
-        }
-    }
-    
-    private function getMonthPrompts()
-    {
-        return Util_FisdapDate::get_month_prompt_names();
-    }
+	
+	private function getYearPrompts()
+	{
+		if ($user = \Fisdap\Entity\User::getLoggedInUser()) {
+			return $user->getCurrentProgram()->get_possible_graduation_years();
+		} else {
+			return Util_FisdapDate::get_year_prompt_names();
+		}
+	}
+	
+	private function getMonthPrompts()
+	{
+		return Util_FisdapDate::get_month_prompt_names();
+	}
 }

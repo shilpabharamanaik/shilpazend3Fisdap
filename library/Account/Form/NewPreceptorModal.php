@@ -20,97 +20,99 @@
  */
 class Account_Form_NewPreceptorModal extends Fisdap_Form_BaseJQuery
 {
-    public static $gridElementDecorators = array(
-        'ViewHelper',
-        array(array('element' => 'HtmlTag'), array('tag' => 'div', 'class' => 'grid_3 mostInputs')),
+
+	public static $gridElementDecorators = array(
+		'ViewHelper',
+		array(array('element' => 'HtmlTag'), array('tag' => 'div', 'class' => 'grid_3 mostInputs')),
         array('Label', array('tag' => 'div', 'class' => 'grid_2 leftLabels', 'escape' => false)),
         
-    );
-    
-    public $site_id;
-    
-    public function __construct($siteId = null, $options = null)
-    {
-        $this->site_id = $siteId;
-        parent::__construct($options);
-    }
-    
-    public function init()
-    {
+	);
+	
+	public $site_id;
+	
+	public function __construct($siteId = null, $options = null)
+	{
+		$this->site_id = $siteId;
+		parent::__construct($options);
+	}
+	
+	public function init()
+	{
+
         parent::init();
-        $this->setAttrib('id', 'preceptorForm');
-        
+		$this->setAttrib('id', 'preceptorForm');
+		
 
-        $first_name = new Zend_Form_Element_Text('preceptor_first');
-        $first_name->setLabel('First Name:')
-             ->setRequired(true)
-             ->addValidator('regex', false, array("/^[-_a-zA-Z\s.]+$/"))
-             ->setAttrib('class', 'long precepName')
-             ->addErrorMessage("Please provide a valid first name. Names can only contain letters and dashes.");
-             
-        $last_name = new Zend_Form_Element_Text('preceptor_last');
-        $last_name->setLabel('Last Name:')
-             ->setRequired(true)
-             ->setDescription('(required)')
-             ->setAttrib('class', 'long precepName')
-             ->addValidator('regex', false, array("/^[-_a-zA-Z\s.]+$/"))
-             ->addErrorMessage("Please provide a valid last name. Names can only contain letters and dashes.");
-             
-        $work_phone = new Zend_Form_Element_Text('preceptor_work');
-        $work_phone->setLabel('Work Phone:')
-             ->setAttrib('class', 'long precepPhone');
-             
-        $home_phone = new Zend_Form_Element_Text('preceptor_home');
-        $home_phone->setLabel('Home Phone:')
-             ->setAttrib('class', 'long precepPhone');
-             
-        $pager = new Zend_Form_Element_Text('preceptor_pager');
-        $pager->setLabel('Pager:')
-             ->setAttrib('class', 'long precepPhone');
-        
-        $email = new Zend_Form_Element_Text('preceptor_email');
-        $email->setLabel('Email:')
-             ->setAttrib('class', 'long precepName');
-            
-        $siteId = new Zend_Form_Element_Hidden('preceptor_siteId');
-        $siteId->setValue($this->site_id);
-        
-        $preceptorId = new Zend_Form_Element_Hidden('preceptor_id_input');
-        $preceptorId->setValue("noPreceptor");
+		$first_name = new Zend_Form_Element_Text('preceptor_first');
+		$first_name->setLabel('First Name:')
+			 ->setRequired(true)
+			 ->addValidator('regex', false, array("/^[-_a-zA-Z\s.]+$/"))
+			 ->setAttrib('class', 'long precepName')
+			 ->addErrorMessage("Please provide a valid first name. Names can only contain letters and dashes.");
+			 
+		$last_name = new Zend_Form_Element_Text('preceptor_last');
+		$last_name->setLabel('Last Name:')
+			 ->setRequired(true)
+			 ->setDescription('(required)')
+			 ->setAttrib('class', 'long precepName')
+			 ->addValidator('regex', false, array("/^[-_a-zA-Z\s.]+$/"))
+			 ->addErrorMessage("Please provide a valid last name. Names can only contain letters and dashes.");
+			 
+		$work_phone = new Zend_Form_Element_Text('preceptor_work');
+		$work_phone->setLabel('Work Phone:')
+			 ->setAttrib('class', 'long precepPhone');
+			 
+		$home_phone = new Zend_Form_Element_Text('preceptor_home');
+		$home_phone->setLabel('Home Phone:')
+			 ->setAttrib('class', 'long precepPhone');
+			 
+		$pager = new Zend_Form_Element_Text('preceptor_pager');
+		$pager->setLabel('Pager:')
+			 ->setAttrib('class', 'long precepPhone');
+		
+		$email = new Zend_Form_Element_Text('preceptor_email');
+		$email->setLabel('Email:')
+			 ->setAttrib('class', 'long precepName');
+			
+		$siteId = new Zend_Form_Element_Hidden('preceptor_siteId');
+		$siteId->setValue($this->site_id);
+		
+		$preceptorId = new Zend_Form_Element_Hidden('preceptor_id_input');
+		$preceptorId->setValue("noPreceptor");
 
-        
-        $this->addElements(array(
-            $first_name,
-            $last_name,
-            $work_phone,
-            $home_phone,
-            $pager,
-            $email,
-            $siteId,
-            $preceptorId
-        ));
+		
+		$this->addElements(array(
+			$first_name,
+			$last_name,
+			$work_phone,
+			$home_phone,
+			$pager,
+			$email,
+			$siteId,
+			$preceptorId
+		));
 
-        $this->setElementDecorators(self::$gridElementDecorators, array('preceptor_first', 'preceptor_last', 'preceptor_work', 'preceptor_home', 'preceptor_pager', 'preceptor_email'), true);
+		$this->setElementDecorators(self::$gridElementDecorators, array('preceptor_first', 'preceptor_last', 'preceptor_work', 'preceptor_home', 'preceptor_pager', 'preceptor_email'), true);
 
-        $viewscript = newPreceptorModal.phtml;
+		$viewscript = newPreceptorModal.phtml;
 
-        $this->setDecorators(array(
-            'PrepareElements',
-            array('ViewScript', array('viewScript' => "newPreceptorModal.phtml")),
-            'Form',
-            array('DialogContainer', array(
-                    'id'          	=> 'newPreceptorDialog',
-                    'class'         => 'newPreceptorDialog',
-                    'jQueryParams' 	=> array(
-                    'tabPosition' 	=> 'top',
-                    'modal' 		=> true,
-                    'autoOpen' 		=> false,
-                    'resizable' 	=> false,
-                    'width' 		=> 420,
-                    'title' 		=> 'Add New Preceptor',
-                    'open' 			=> new Zend_Json_Expr("function(event, ui) { $('button').css('color', '#000000'); }"),
-                    'buttons' 		=> array(array("text" => "Cancel", "className" => "gray-button", "click" => new Zend_Json_Expr("function() { $(this).dialog('close'); }")),array("text" => "Save", "id" => "save-btn", "class" => "gray-button small", "click" => new Zend_Json_Expr(
-                        "function() {
+		$this->setDecorators(array(
+			'PrepareElements',
+			array('ViewScript', array('viewScript' => "newPreceptorModal.phtml")),
+			'Form',
+			array('DialogContainer', array(
+					'id'          	=> 'newPreceptorDialog',
+					'class'         => 'newPreceptorDialog',
+					'jQueryParams' 	=> array(
+					'tabPosition' 	=> 'top',
+					'modal' 		=> true,
+					'autoOpen' 		=> false,
+					'resizable' 	=> false,
+					'width' 		=> 420,
+					'title' 		=> 'Add New Preceptor',
+					'open' 			=> new Zend_Json_Expr("function(event, ui) { $('button').css('color', '#000000'); }"),
+					'buttons' 		=> array(array("text" => "Cancel", "className" => "gray-button", "click" => new Zend_Json_Expr("function() { $(this).dialog('close'); }")),array("text" => "Save", "id" => "save-btn", "class" => "gray-button small", "click" => new Zend_Json_Expr(
+						"function() {
 							var saveBtn = $('#newPreceptorDialog').parent().find('.ui-dialog-buttonpane').find('button').hide();
 							var throbber =  $(\"<img id='preceptorModalThrobber' src='/images/throbber_small.gif'>\");
 							saveBtn.parent().append(throbber);
@@ -202,51 +204,54 @@ class Account_Form_NewPreceptorModal extends Fisdap_Form_BaseJQuery
 							
 							
 							
-						}"
-                    ))),
-                ),
-            )),
-        ));
-    }
-    
+						}"))),
+				),
+			)),
+		));
+		
+	}
+	
 
-    public function process($data)
-    {
-        if ($this->isValid($data)) {
-            $user = \Fisdap\Entity\User::getLoggedInUser();
-            $programId = $user->getProgramId();
-            $program = \Fisdap\EntityUtils::getEntity("ProgramLegacy", $programId);
-            
-            $site = \Fisdap\EntityUtils::getEntity("SiteLegacy", $data['preceptor_siteId']);
-            
-            $returnArray = array();
-            
-            
-            if ($data['preceptor_id_input'] == "noPreceptor") {
-                $preceptor = new \Fisdap\Entity\PreceptorLegacy;
-                $returnArray['newPreceptor'] = true;
-            } else {
-                $preceptor = \Fisdap\EntityUtils::getEntity("PreceptorLegacy", $data['preceptor_id_input']);
-                $returnArray['newPreceptor'] = false;
-            }
-            
-            $preceptor->first_name = $data['preceptor_first'];
-            $preceptor->last_name = $data['preceptor_last'];
-            $preceptor->work_phone = $data['preceptor_work'];
-            $preceptor->home_phone = $data['preceptor_home'];
-            $preceptor->pager = $data['preceptor_pager'];
-            $preceptor->email = $data['preceptor_email'];
-            $preceptor->site = $site;
-            $preceptor->save();
-            $program->addPreceptor($preceptor, true);
-            
-            
-            $returnArray['optionText'] = "<option value='" . $preceptor->id . "'>" . $preceptor->first_name . " " . $preceptor->last_name . "</option>";
-            $returnArray['preceptorId'] = $preceptor->id;
-            
-            return $returnArray;
-        } else {
-            return $this->getMessages();
-        }
-    }
+	public function process($data)
+	{
+		if($this->isValid($data)){
+			$user = \Fisdap\Entity\User::getLoggedInUser();
+			$programId = $user->getProgramId();
+			$program = \Fisdap\EntityUtils::getEntity("ProgramLegacy", $programId);
+			
+			$site = \Fisdap\EntityUtils::getEntity("SiteLegacy", $data['preceptor_siteId']);
+			
+			$returnArray = array();
+			
+			
+			if($data['preceptor_id_input'] == "noPreceptor"){
+				$preceptor = new \Fisdap\Entity\PreceptorLegacy;
+				$returnArray['newPreceptor'] = true;
+			}
+			else {
+				$preceptor = \Fisdap\EntityUtils::getEntity("PreceptorLegacy", $data['preceptor_id_input']);
+				$returnArray['newPreceptor'] = false;
+			}
+			
+			$preceptor->first_name = $data['preceptor_first'];
+			$preceptor->last_name = $data['preceptor_last'];
+			$preceptor->work_phone = $data['preceptor_work'];
+			$preceptor->home_phone = $data['preceptor_home'];
+			$preceptor->pager = $data['preceptor_pager'];
+			$preceptor->email = $data['preceptor_email'];
+			$preceptor->site = $site;
+			$preceptor->save();
+			$program->addPreceptor($preceptor, true);
+			
+			
+			$returnArray['optionText'] = "<option value='" . $preceptor->id . "'>" . $preceptor->first_name . " " . $preceptor->last_name . "</option>";
+			$returnArray['preceptorId'] = $preceptor->id;
+			
+			return $returnArray;
+		}
+		else {
+			return $this->getMessages();
+		}
+	}
+	
 }

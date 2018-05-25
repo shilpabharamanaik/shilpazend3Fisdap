@@ -21,10 +21,9 @@
  */
 class Fisdap_View_Helper_ViewAttachment extends Zend_View_Helper_Abstract
 {
-    protected $_html;
-    
-    public function viewAttachment($attachment, $associatedEntityId, $attachmentType, $type = null)
-    {
+	protected $_html;
+	
+    public function viewAttachment($attachment, $associatedEntityId, $attachmentType, $type = null) {
         //var_dump($attachment);
         $attachment->categoryString = is_array($attachment->categories) ? implode(", ", $attachment->categories) : "";
         $attachment->date = new \DateTime($attachment->created);
@@ -52,10 +51,10 @@ class Fisdap_View_Helper_ViewAttachment extends Zend_View_Helper_Abstract
         // then the image itself, or the no preview message if there is no image available
         if ($attachment->variationUrls->medium) {
             $this->_html .= "<div class='image'><img src='".$attachment->variationUrls->medium."'></div>";
-        } elseif (!$attachment->processed && $attachment->preview['type'] == "image") {
+        } else if (!$attachment->processed && $attachment->preview['type'] == "image") {
             $this->_html .= "<div class='image'><img src='".$attachment->preview['src']."'></div>";
         } else {
-            $this->_html .= "
+                $this->_html .= "
                 <div class='no-preview light-gray-bg'>
                     <img src='".$attachment->preview['src']."'>
                     <div class='no-preview-msg'>No preview available</div>
@@ -66,7 +65,7 @@ class Fisdap_View_Helper_ViewAttachment extends Zend_View_Helper_Abstract
         $this->_html .= "<div class='form-desc'>".$attachment->notes."</div>";
 
         $this->_html .= "</div>";
-        
-        return $this->_html;
+		
+		return $this->_html;
     }
 }

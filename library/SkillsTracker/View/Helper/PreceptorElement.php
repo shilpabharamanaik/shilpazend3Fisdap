@@ -31,7 +31,7 @@ class SkillsTracker_View_Helper_PreceptorElement extends Zend_View_Helper_FormEl
      */
     public function preceptorElement($name, $value = null, $attribs = null)
     {
-        $this->html .= $this->view->formSelect($name, $value, array(), $attribs['options']);
+		$this->html .= $this->view->formSelect($name, $value, array(), $attribs['options']);
         $this->html .= '<a href="#" id="new-preceptor" style="width:2.5em; margin-left: .5em;">Add a new preceptor</a>';
         
         return $this->html;

@@ -8,7 +8,8 @@ namespace Fisdap\Goal;
  */
 class GoalCategoryGeneric extends GoalCategoryBase
 {
-    // links to goalDefs
+	// links to goalDefs
 
     // EH? What is the point of this class? - Jesse 8/21/14
+
 }

@@ -19,15 +19,15 @@
  */
 class Account_View_Helper_ProductCheckboxRow extends Zend_View_Helper_Abstract
 {
-    protected $_html;
-    
-    public function productCheckboxRow($product, $moreAttempts = false)
-    {
+	protected $_html;
+	
+	public function productCheckboxRow($product, $moreAttempts = false)
+	{
         $price = number_format($product->getDiscountedPrice(), 2, ".", ",");
 
-        $this->_html = "<tr class='product-".$product->id."-row'>";
+		$this->_html = "<tr class='product-".$product->id."-row'>";
 
-        $this->_html .= "<td class='checkbox'>".
+		$this->_html .= "<td class='checkbox'>".
                             "<input id='product-".$product->id."'
                             type='checkbox' value='".$product->configuration."'
                             name='products[]' data-price='".$price."'
@@ -43,7 +43,7 @@ class Account_View_Helper_ProductCheckboxRow extends Zend_View_Helper_Abstract
         $this->_html .= "<td class='price'>$$price</td>";
 
         $this->_html .= "</tr>";
-        
-        return $this->_html;
-    }
+		
+		return $this->_html;
+	}
 }

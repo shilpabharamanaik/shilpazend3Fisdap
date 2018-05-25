@@ -31,7 +31,7 @@ class SkillsTracker_Validate_Even extends Zend_Validate_Abstract
         $isValid = true;
         $this->_setValue($value);
         
-        if ($value % 2 != 0) {
+        if ($value % 2 != 0 ) {
             $this->_error(self::NOT_EVEN);
             $isValid = false;
         }

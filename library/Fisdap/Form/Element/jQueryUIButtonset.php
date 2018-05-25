@@ -111,18 +111,18 @@ class Fisdap_Form_Element_jQueryUIButtonset extends Zend_Form_Element_Xhtml
     public function getValue()
     {
         if ($this->_disabled) {
-            return -1;
+            return -1;            
         } else {
             return $this->_value;
         }
+    
     }
 
 
     /**
      * @inheritdoc
      */
-    public function setOptions(array $options)
-    {
+    public function setOptions(array $options) {
         $this->options = $options;
         
         return $this;

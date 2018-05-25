@@ -18,17 +18,20 @@
  * @version    $id$
  *
  */
-class WURFL_Xml_DevicePatcher
-{
-    public function patch($device, $patchingDevice)
-    {
-        if (strcmp($patchingDevice->userAgent, $device->userAgent) !== 0) {
-            $message = "Patch Device : " . $patchingDevice->id . " can't ovveride user agent " . $device->userAgent . " with " . $patchingDevice->userAgent;
-            throw new WURFL_WURFLException($message);
-        }
-        
-        $groupIdCapabilitiesMap = WURFL_WURFLUtils::array_merge_recursive_unique($device->getGroupIdCapabilitiesMap(), $patchingDevice->getGroupIdCapabilitiesMap());
-        
-        return new WURFL_Xml_ModelDevice($device->id, $device->userAgent, $device->fallBack, $device->actualDeviceRoot, $groupIdCapabilitiesMap);
-    }
+class WURFL_Xml_DevicePatcher {
+	
+	public function patch($device, $patchingDevice) {
+		
+		if (strcmp ( $patchingDevice->userAgent, $device->userAgent ) !== 0) {
+			$message = "Patch Device : " . $patchingDevice->id . " can't ovveride user agent " . $device->userAgent . " with " . $patchingDevice->userAgent;
+			throw new WURFL_WURFLException ( $message );
+		}
+		
+		$groupIdCapabilitiesMap = WURFL_WURFLUtils::array_merge_recursive_unique ( $device->getGroupIdCapabilitiesMap (), $patchingDevice->getGroupIdCapabilitiesMap () );
+		
+		return new WURFL_Xml_ModelDevice ( $device->id, $device->userAgent, $device->fallBack, $device->actualDeviceRoot, $groupIdCapabilitiesMap );
+	
+	}
 }
+
+?>

@@ -2,23 +2,22 @@
 
 class MyFisdap_Widgets_StudentSearch extends MyFisdap_Widgets_Base
 {
-    protected $registeredCallbacks = array('findStudents');
-    
-    public function render()
-    {
-        $searchFieldId = $this->getNamespacedName('searchField');
-        $searchButtonId = $this->getNamespacedName('searchButton');
-        $searchResultsId = $this->getNamespacedName('searchResults');
-        $spinnerId = $this->getNamespacedName('searchSpinner');
-        $clearContainerName = 'clearContainer_' . $this->widgetData->id;
-        $searchHandlerName = 'searchHandler_' . $this->widgetData->id;
-        
-        $initFieldName = 'initField_' . $this->widgetData->id;
-        $defaultViewName = 'defaultView_' . $this->widgetData->id;
-        $hiddenDivId = $this->getNamespacedName('hiddenResults');
-        $toggleHiddenName = 'toggleHidden_' . $this->widgetData->id;
-        
-        $html = <<<EOF
+	protected $registeredCallbacks = array('findStudents');
+	
+	public function render(){
+		$searchFieldId = $this->getNamespacedName('searchField');
+		$searchButtonId = $this->getNamespacedName('searchButton');
+		$searchResultsId = $this->getNamespacedName('searchResults');
+		$spinnerId = $this->getNamespacedName('searchSpinner');
+		$clearContainerName = 'clearContainer_' . $this->widgetData->id;
+		$searchHandlerName = 'searchHandler_' . $this->widgetData->id;
+		
+		$initFieldName = 'initField_' . $this->widgetData->id;
+		$defaultViewName = 'defaultView_' . $this->widgetData->id;
+		$hiddenDivId = $this->getNamespacedName('hiddenResults');
+		$toggleHiddenName = 'toggleHidden_' . $this->widgetData->id;
+		
+		$html = <<<EOF
 			<div class='student-search-widget'>
 				<div class='grid_10'>
 					<input type='text' id='{$searchFieldId}' value='First name, last name, or email'/>
@@ -162,55 +161,52 @@ class MyFisdap_Widgets_StudentSearch extends MyFisdap_Widgets_Base
 			</script>
 EOF;
 
-        return $html;
-    }
-    
-    public function findStudents($data)
-    {
-        $user = $this->getWidgetUser();
-        $students = \Fisdap\EntityUtils::getRepository('User')->findStudents($user->getProgramId(), $data['criteria']);
-        
-        $results = array(
-            'student_data' => array(),
-            'permissions' => array()
-        );
-        
-        $results['permissions']['account'] = $user->hasPermission('Edit Student Accounts');
-        $results['permissions']['schedule'] = $user->hasPermission('View Schedules');
-        $results['permissions']['skills'] = $user->hasPermission('View All Data');
-        
-        foreach ($students as $student) {
-            $atom = array();
-            
-            $atom['name'] = $student->first_name . ' ' . $student->last_name;
-            $atom['cert'] = $student->getCertification()->description;
-            
-            $atom['grad_date'] = $student->getGraduationDate()->format('m Y');
-            $atom['id'] = $student->id;
-            
-            $results['student_data'][] = $atom;
-        }
-        
-        return $results;
-    }
-    
-    public function getDefaultData()
-    {
-        return array();
-    }
-    
-    public static function userCanUseWidget($widgetId)
-    {
-        // Only instructors can view this widget if they have at least one of the following perms:
-        // Edit Student Accounts
-        // View All Data
-        // View Schedules
-        $user = \Fisdap\EntityUtils::getEntity('MyFisdapWidgetData', $widgetId)->user;
-        
-        if ($user->isInstructor()) {
-            return $user->hasPermission('Edit Student Accounts') && $user->hasPermission('View All Data') && $user->hasPermission('View Schedules');
-        }
-        
-        return false;
-    }
+		return $html;
+	}
+	
+	public function findStudents($data){
+		$user = $this->getWidgetUser();
+		$students = \Fisdap\EntityUtils::getRepository('User')->findStudents($user->getProgramId(), $data['criteria']);
+		
+		$results = array(
+			'student_data' => array(),
+			'permissions' => array()
+		);
+		
+		$results['permissions']['account'] = $user->hasPermission('Edit Student Accounts');
+		$results['permissions']['schedule'] = $user->hasPermission('View Schedules');
+		$results['permissions']['skills'] = $user->hasPermission('View All Data');
+		
+		foreach($students as $student){
+			$atom = array();
+			
+			$atom['name'] = $student->first_name . ' ' . $student->last_name;
+			$atom['cert'] = $student->getCertification()->description;
+			
+			$atom['grad_date'] = $student->getGraduationDate()->format('m Y');
+			$atom['id'] = $student->id;
+			
+			$results['student_data'][] = $atom;
+		}
+		
+		return $results;
+	}
+	
+	public function getDefaultData(){
+		return array();
+	}
+	
+	public static function userCanUseWidget($widgetId){
+		// Only instructors can view this widget if they have at least one of the following perms:
+		// Edit Student Accounts
+		// View All Data
+		// View Schedules
+		$user = \Fisdap\EntityUtils::getEntity('MyFisdapWidgetData', $widgetId)->user;
+		
+		if($user->isInstructor()){
+			return $user->hasPermission('Edit Student Accounts') && $user->hasPermission('View All Data') && $user->hasPermission('View Schedules');
+		}
+		
+		return false;
+	}
 }

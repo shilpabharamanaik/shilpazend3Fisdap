@@ -19,11 +19,12 @@
  */
 class Reports_View_Helper_OutputSettingsElement extends Zend_View_Helper_FormElement
 {
-    public function outputSettingsElement($name, $value = null, $attribs = null)
-    {
-        $outputTypes = array('html' => 'Web page', 'pdf' => 'PDF (for printing or archiving)', 'csv' => 'Tab-delimited (for use in Excel)');
-        
-        $html = "
+
+	public function outputSettingsElement($name, $value = null, $attribs = null)
+	{
+		$outputTypes = array('html' => 'Web page', 'pdf' => 'PDF (for printing or archiving)', 'csv' => 'Tab-delimited (for use in Excel)');
+		
+		$html = "
 			<div class='report-block'>
 				<div class='report-header'>Output</div>
 				<div class='grid_8 report-body'>
@@ -32,6 +33,7 @@ class Reports_View_Helper_OutputSettingsElement extends Zend_View_Helper_FormEle
 			</div>
 		";
 
-        return $html;
-    }
+		return $html;
+	}
+
 }

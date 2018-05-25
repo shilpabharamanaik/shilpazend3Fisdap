@@ -25,19 +25,19 @@ class Zend_View_Helper_YoutubeVideo extends Zend_View_Helper_Abstract
      */
     public function youtubeVideo($videoId, $viewscript = null, $width = 640, $height = 385)
     {
-        //$videoId = 'aYE2Ah5Ob5k';
-        
-        // Check to see if the user has hidden this video already.
-        $em = \Fisdap\EntityUtils::getEntityManager();
-        $user = \Fisdap\Entity\User::getLoggedInUser();
-        $videoView = $em->getRepository('Fisdap\Entity\VideoView')->findOneBy(array('user' => $user->id, 'video_key' => $videoId));
-        
-        // If they already have one, do nothing for right now.  Might want to
-        // throw in a link to view the video eventually though.
-        if ($videoView) {
-            return '';
-        } else {
-            $html .= '
+		//$videoId = 'aYE2Ah5Ob5k';
+		
+		// Check to see if the user has hidden this video already.
+		$em = \Fisdap\EntityUtils::getEntityManager();
+		$user = \Fisdap\Entity\User::getLoggedInUser();
+		$videoView = $em->getRepository('Fisdap\Entity\VideoView')->findOneBy(array('user' => $user->id, 'video_key' => $videoId));
+		
+		// If they already have one, do nothing for right now.  Might want to
+		// throw in a link to view the video eventually though.
+		if($videoView){
+			return '';
+		}else{
+			$html .= '
 				<script lang="text\javascript" src="/js/library/Fisdap/View/Helper/YoutubeVideo/YoutubeVideo.js"></script>
 				<script id="swfobjScript" lang="text\javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 				
@@ -53,14 +53,14 @@ class Zend_View_Helper_YoutubeVideo extends Zend_View_Helper_Abstract
 					swfobject.embedSWF("https://www.youtube.com/e/' . $videoId . '?wmode=transparent&enablejsapi=1&version=3", "youtube", "' . $width . '", "' . $height . '", "8", null, null, params, atts);
 				</script>';
 
-            $link = "<a href='#hideLander' id='hideVideo'>Don't show me this video again</a>.";
-            
-            //If we passed in a view script, render the layout of the video
-            if ($viewscript) {
-                return '<div id="youtube_player_div">' . $this->view->partial($viewscript, array('video' => $html, 'link' => $link)) . "</div>";
-            }
-            
-            return '<div id="youtube_video_div">' . $html . "<br>" . $link . '</div>';
-        }
+			$link = "<a href='#hideLander' id='hideVideo'>Don't show me this video again</a>.";
+			
+			//If we passed in a view script, render the layout of the video
+			if ($viewscript) {
+				return '<div id="youtube_player_div">' . $this->view->partial($viewscript, array('video' => $html, 'link' => $link)) . "</div>";
+			}
+			
+			return '<div id="youtube_video_div">' . $html . "<br>" . $link . '</div>';
+		}
     }
 }

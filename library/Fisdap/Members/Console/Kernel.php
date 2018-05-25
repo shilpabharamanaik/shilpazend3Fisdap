@@ -22,6 +22,7 @@ use Fisdap\Members\Console\Database\InitCommand;
 use Fisdap\Members\Console\Database\SeedCommand;
 use Fisdap\Members\Scheduler\Console\SendScheduleEmailsCommand;
 
+
 /**
  * Application Console Kernel
  *

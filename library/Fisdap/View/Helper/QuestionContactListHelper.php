@@ -19,26 +19,31 @@
  */
 class Zend_View_Helper_QuestionContactListHelper extends Zend_View_Helper_Abstract
 {
-    /**
-    * @return array of mailto array
-    */
+		/**
+		* @return array of mailto array 
+		*/
     public function questionContactListHelper()
     {
-        $questionMailTos = array();
-        $questionMailTos[] = array("who"=>"Mike Bowen",  "emailAddress"=>"mbowen@fisdap.net");
-        //$questionMailTos[] = array("who"=>" or ", "");
-        //	$questionMailTos[] = array("who"=>"Gabe Romero", "emailAddress"=>"gabe@fisdap.net");
-        $questionMailTos = $questionMailTos;
 
-        $result = "";
-        foreach ($questionMailTos as $questionMailTosArray) {
-            if ($questionMailTosArray["emailAddress"] != "") {
-                $result .= "<a href='mailto:".$questionMailTosArray["emailAddress"]."'>".$questionMailTosArray["who"]."</a>";
-            } else {
-                $result .= $questionMailTosArray["who"];
-            }
-        }
+			$questionMailTos = array();
+			$questionMailTos[] = array("who"=>"Mike Bowen",  "emailAddress"=>"mbowen@fisdap.net");
+			//$questionMailTos[] = array("who"=>" or ", "");
+		//	$questionMailTos[] = array("who"=>"Gabe Romero", "emailAddress"=>"gabe@fisdap.net");
+			$questionMailTos = $questionMailTos;
 
-        return $result;
+			$result = "";
+			foreach($questionMailTos as $questionMailTosArray) 
+			{
+				
+				if($questionMailTosArray["emailAddress"] != "") {
+					$result .= "<a href='mailto:".$questionMailTosArray["emailAddress"]."'>".$questionMailTosArray["who"]."</a>";
+				} else {
+					$result .= $questionMailTosArray["who"];					
+				}
+
+			}
+
+			return $result;
+			
     }
 }

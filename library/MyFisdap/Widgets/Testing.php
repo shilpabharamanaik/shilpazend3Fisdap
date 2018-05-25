@@ -141,6 +141,7 @@ class MyFisdap_Widgets_Testing extends MyFisdap_Widgets_Base
                                 "<div id='score-popup-$key' style='display: none;'>" .
                                 "Your " . $tests[$key]['name'] . " scores are hidden. To see your results, please contact your instructor." .
                                 "</div>";
+
                         }
                     } else {
                         // totals are not displayed for this test, so we can't show a score in the widget

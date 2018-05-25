@@ -17,13 +17,15 @@ class GoalCategoryOhio extends GoalCategoryBase
     const MED_ADMIN_SUBLING = 134;
     const MED_ADMIN_BOLUS = 136;
 
-    protected function forEachShift(&$shift)
+   protected function forEachShift(&$shift)
     {
         $meds = \Fisdap\Entity\Med::getAllByShiftSQL($shift['Shift_id']);
         $airways = \Fisdap\Entity\Airway::getAllByShiftSQL($shift['Shift_id']);
 
         if ($airways) {
+
             foreach ($airways as $airway) {
+
                 if (!\Fisdap\Entity\Airway::countsTowardGoalSQL($airway, $this->dataReq)) {
                     continue;
                 }
@@ -38,14 +40,16 @@ class GoalCategoryOhio extends GoalCategoryBase
         }
 
         if ($meds) {
+
             foreach ($meds as $med) {
+
                 if (!\Fisdap\Entity\Med::countsTowardGoalSQL($med, $this->dataReq)) {
                     continue;
                 }
 
                 $patient = \Fisdap\Entity\Patient::getExamInterviewTeamLeadArray($med['patient_id']);
-                $this->add(self::TOTAL_MED_ADMIN, $med['performed_by'], $patient);
-                                
+               	$this->add(self::TOTAL_MED_ADMIN, $med['performed_by'], $patient);
+								
 
                 //if this is Albuterol, add to bronchodilator goal
                 if ($med['route_id'] == 30) {
@@ -84,4 +88,5 @@ class GoalCategoryOhio extends GoalCategoryBase
             }
         }
     }
+
 }

@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -27,7 +27,7 @@ class SkillsTracker_Form_Element_IvSite extends Zend_Form_Element_Xhtml
     protected $_siteName;
     
     /**
-     * @var string the side of the iv site
+     * @var string the side of the iv site 
      */
     protected $_side;
     
@@ -42,8 +42,8 @@ class SkillsTracker_Form_Element_IvSite extends Zend_Form_Element_Xhtml
         if (!$this->_view) {
             $this->_view = $this->getView();
         }
-        
-        //add js file to do show/hiding
+		
+		//add js file to do show/hiding
         $this->_view->headScript()->appendFile("/js/library/SkillsTracker/Form/Element/iv-site.js");
     }
     
@@ -64,10 +64,10 @@ class SkillsTracker_Form_Element_IvSite extends Zend_Form_Element_Xhtml
             $this->_siteName = $ivSite->name;
             $this->_side = $ivSite->side;
         }
-        
-        if ($this->_siteName == "other") {
-            $this->_side = null;
-        }
+		
+		if ($this->_siteName == "other") {
+			$this->_side = null;
+		}
         
         return $this;
     }
@@ -79,12 +79,12 @@ class SkillsTracker_Form_Element_IvSite extends Zend_Form_Element_Xhtml
     public function getValue()
     {
         $em = \Fisdap\EntityUtils::getEntityManager();
-        
-        $params = array('name' => $this->_siteName);
-        if ($this->_side) {
-            $params['side'] = $this->_side;
-        }
-        
+		
+		$params = array('name' => $this->_siteName);
+		if ($this->_side) {
+			$params['side'] = $this->_side;
+		}
+		
         $ivSite = $em->getRepository('Fisdap\Entity\IvSite')->findOneBy($params);
         
         return $ivSite->id;

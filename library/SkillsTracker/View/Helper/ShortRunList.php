@@ -19,21 +19,21 @@
  */
 class SkillsTracker_View_Helper_ShortRunList extends Zend_View_Helper_Abstract
 {
-    /**
-     * @var string the html to be rendered
-     */
-    protected $_html;
+	/**
+	 * @var string the html to be rendered
+	 */
+	protected $_html;
 
-    /**
-     * @param array $runs array of arrays containing each run to be rendered in a view
-     *
-     * @return string the run list rendered as an html table
-     */
+	/**
+	 * @param array $runs array of arrays containing each run to be rendered in a view
+	 *
+	 * @return string the run list rendered as an html table
+	 */
     
-    public function shortRunList($shift, $runs = null)
+    public function shortRunList($shift, $runs = NULL)
     {
         //If no runs are given, find the runs for the shift.
-        if ($runs == null) {
+        if($runs == NULL){
             $runstemp = \Fisdap\EntityUtils::getRepository('Run')->findByShift($shift->id);
             $runPartials = array();
             foreach ($runstemp as $run) {
@@ -49,7 +49,7 @@ class SkillsTracker_View_Helper_ShortRunList extends Zend_View_Helper_Abstract
         }
         
         $this->_html .= $this->view->formHidden('shiftId', $shift->id);
-        $this->_html .= '
+		$this->_html .= '
             <table id="short-run-table" class="fisdap-table">
 			    <thead class="' . $shift->type . '">
 				    <tr>
@@ -68,6 +68,6 @@ class SkillsTracker_View_Helper_ShortRunList extends Zend_View_Helper_Abstract
                 </tbody>
             </table>';
 
-        return $this->_html;
+		return $this->_html;
     }
 }

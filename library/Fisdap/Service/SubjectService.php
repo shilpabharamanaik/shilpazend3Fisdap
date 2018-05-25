@@ -14,7 +14,7 @@ namespace Fisdap\Service;
  * Interface SubjectService
  * @package Fisdap\Service
  */
-interface SubjectService
-{
+interface SubjectService {
     public function makeSubjectIdsArray(\Doctrine\ORM\EntityRepository $repository, $subjectIds);
+
 }

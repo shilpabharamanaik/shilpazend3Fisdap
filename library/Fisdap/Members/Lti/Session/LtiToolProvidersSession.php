@@ -2,6 +2,7 @@
 
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Provides API for managing the 'ltiTools' session namespace
  *

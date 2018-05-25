@@ -17,24 +17,24 @@
 /**
  * @package Mobile
  */
-class Mobile_View_Helper_MobileStudentPicker extends Zend_View_Helper_Abstract
+class Mobile_View_Helper_MobileStudentPicker extends Zend_View_Helper_Abstract 
 {
-    /**
-     * @var string the html to be rendered
-     */
-    protected $_html;
-    
-    /**
-     * @param array $runs array of arrays containing each run to be
-     * rendered in a view for a mobile device
-     *
-     * @return string the run list rendered as an html table
-     */
-    public function mobileStudentPicker($searchString = null)
-    {
+	/**
+	 * @var string the html to be rendered
+	 */
+	protected $_html;
+	
+	/**
+	 * @param array $runs array of arrays containing each run to be
+	 * rendered in a view for a mobile device
+	 *
+	 * @return string the run list rendered as an html table
+	 */
+	public function mobileStudentPicker($searchString = null)
+	{
         $this->view->headScript()->appendFile("/js/library/Mobile/View/Helper/mobile-student-picker.js");
         
-        $this->_html = "<div id='mobile-student-picker'>";
+		$this->_html = "<div id='mobile-student-picker'>";
         $this->_html .= "<h2 class='page-title'>Find Student</h2>";
         $this->_html .= "<div class='island' style='margin-bottom:.5em;'>";
         $this->_html .= $this->view->formLabel("searchString", "Name:");
@@ -47,4 +47,5 @@ class Mobile_View_Helper_MobileStudentPicker extends Zend_View_Helper_Abstract
         
         return $this->_html;
     }
+    
 }

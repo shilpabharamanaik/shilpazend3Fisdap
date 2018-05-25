@@ -2,8 +2,7 @@
 
 class Fisdap_View_Helper_AgeSelector extends Zend_View_Helper_Abstract
 {
-    public function ageSelector($config = array(), $options = array())
-    {
+    public function ageSelector($config = array(), $options = array()) {
         $user = \Fisdap\Entity\User::getLoggedInUser();
         // JS / CSS for the widget
         $this->view->headScript()->appendFile("/js/library/Fisdap/View/Helper/age-definition-selector.js");
@@ -66,10 +65,11 @@ class Fisdap_View_Helper_AgeSelector extends Zend_View_Helper_Abstract
     {
         $errors = array();
         // validate date ranges
-        if ($config['als-type'] != 'fisdap' && $config['als-type'] != 'als_skill' && $config['als-type'] != 'california') {
+        if($config['als-type'] != 'fisdap' && $config['als-type'] != 'als_skill' && $config['als-type'] != 'california'){
             $errors['als-type'][] = 'Please select an ALS Skill definition type.';
         }
 
         return $errors;
     }
+
 }

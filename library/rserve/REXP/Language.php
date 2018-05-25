@@ -11,15 +11,14 @@
 /**
 * R Language type vector
 */
-class Rserve_REXP_Language extends Rserve_REXP_List
-{
-    public function isLanguage()
-    {
-        return true;
+class Rserve_REXP_Language extends Rserve_REXP_List {
+	
+	public function isLanguage() { 
+        return TRUE; 
     }
-    
-    public function getType()
-    {
-        return Rserve_Parser::XT_LANG;
-    }
+	
+	public function getType() {
+		return Rserve_Parser::XT_LANG;
+	}
+	
 }

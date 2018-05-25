@@ -8,6 +8,7 @@ use Fisdap\Entity\ProgramLegacy;
 use Fisdap\Entity\UserContext;
 use Fisdap\EntityUtils;
 
+
 /**
  * Form for editing a Fisdap Student account
  *
@@ -82,7 +83,7 @@ class Account_Form_Student extends Fisdap_Form_Base
 
         if ($serialId) {
             $this->serial = \Fisdap\EntityUtils::getEntity('SerialNumberLegacy', $serialId);
-        } elseif ($this->student) {
+        } else if ($this->student) {
             $this->serial = $this->student->getSerialNumber();
         } else {
             $this->serial = \Fisdap\EntityUtils::getEntity("SerialNumberLegacy");
@@ -121,8 +122,7 @@ class Account_Form_Student extends Fisdap_Form_Base
 			 $("#contactPhone").mask("999-999-9999");
 			 $("#stateLicenseExpirationDate").mask("99/99/9999");
 			 $("#licenseExpirationDate").mask("99/99/9999");
-			'
-        );
+			');
 
 
         //first name
@@ -350,6 +350,7 @@ class Account_Form_Student extends Fisdap_Form_Base
         if (!$this->student->id) {
             $gradDate->setLabel("What is your anticipated graduation date?");
             $futureDateOnly = true;
+
         }
         $gradDate->addValidator(new \Fisdap_Validate_GraduationDate(true, $futureDateOnly));
 
@@ -489,6 +490,7 @@ class Account_Form_Student extends Fisdap_Form_Base
 
 
         if (!$this->isLtiUser) {
+
             if ($this->isSecure && $this->instructorView) {
                 $passwordElements = array($newPassword, $confirmPassword);
             } else {
@@ -739,12 +741,12 @@ class Account_Form_Student extends Fisdap_Form_Base
             $serial = $student->getSerialNumber();
 
 
-            //set certification_level for the student's serial number
+          	//set certification_level for the student's serial number
 
-            if (!is_null($values['certLevel'])) {
-                $serial->set_certification_level($values['certLevel']);
+            if(!is_null($values['certLevel'])){
+              $serial->set_certification_level($values['certLevel']);
 
-                $serial->save();
+              $serial->save();
             }
 
             $student->user->first_name = $values['firstName'];
@@ -795,7 +797,7 @@ class Account_Form_Student extends Fisdap_Form_Base
                         $student->good_data = false;
                         break;
                     case -1:
-                        $student->good_data = null;
+                        $student->good_data = NULL;
                         break;
                 }
             }

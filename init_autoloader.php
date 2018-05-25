@@ -21,11 +21,14 @@ if (file_exists('vendor/autoload.php')) {
     $loader = include 'vendor/autoload.php';
 }
 
-$siteRootDir = dirname(__FILE__);
+$siteRootDir = __DIR__;
 //define('APPLICATION_PATH', $siteRootDir . '/application');
 set_include_path(
 $siteRootDir . '/library' . PATH_SEPARATOR
 . get_include_path()
 );
-
-//include_once (APPLICATION_PATH . '/Bootstrap.php');
+$container = require(APPLICATION_PATH . '/container.php');
+include_once (APPLICATION_PATH . '/Bootstrap.php');
+$bootsrtap = new Bootstrap();
+$bootstrap = $bootsrtap->setIlluminateContainer($container);
+$bootsrtap->run();

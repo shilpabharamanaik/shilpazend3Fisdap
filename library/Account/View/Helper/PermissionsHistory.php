@@ -36,6 +36,7 @@ class Account_View_Helper_PermissionsHistory extends Zend_View_Helper_Abstract
 
         // get every record of a permission change for this instructor and loop through those
         foreach ($instructor->getPermissionsHistory() as $record) {
+
             $this->_html .= '<div class="historyRecord">'; // open the historyRecord div
 
             // show the header (date/who changed it)

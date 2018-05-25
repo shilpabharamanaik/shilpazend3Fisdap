@@ -17,15 +17,15 @@
 /**
  * @package SkillsTracker
  */
-class SkillsTracker_View_Helper_LabPartnerLogin extends Zend_View_Helper_Abstract
+class SkillsTracker_View_Helper_LabPartnerLogin extends Zend_View_Helper_Abstract 
 {
-    /**
-     * @var string tde html to be rendered
-     */
-    protected $_html;
-    
-    public function labPartnerLogin()
-    {
+	/**
+	 * @var string tde html to be rendered
+	 */
+	protected $_html;
+	
+	public function labPartnerLogin()
+	{
         $this->_html .= "<div class='grid_6'>";
         $this->_html .= "<h3 class='section-header'>Add Lab Partner</h3>";
         $this->_html .= "<h3 class='subheader'>Login</h3>";
@@ -46,12 +46,12 @@ class SkillsTracker_View_Helper_LabPartnerLogin extends Zend_View_Helper_Abstrac
                     
         $this->_html .= "<div class='prefix_4 grid_8'>"
                     . "<div class='extra-small blue-button ok-wrapper'><a href='#' id='ok-link'>Ok</a></div>"
-                    . "<div class='extra-small gray-button cancel-wrapper'><a href='#' id='cancel-link'>Cancel</a></div>"
+					. "<div class='extra-small gray-button cancel-wrapper'><a href='#' id='cancel-link'>Cancel</a></div>"
                     . "</div>"
                     . "<div class='clear'></div>";
                     
         $this->_html .= "</div>"
-                     . "<div class='clear'></div>";
+		             . "<div class='clear'></div>";
 
         return $this->_html;
     }

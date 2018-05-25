@@ -21,7 +21,7 @@ class Account_View_Helper_UpgradeOrderSummary extends Zend_View_Helper_Abstract
 {
     protected $html;
 
-    public function upgradeOrderSummary($products, $programId = null)
+    public function upgradeOrderSummary($products, $programId = NULL)
     {
         $this->html = "<table class='upgrade-order-summary'>";
 
@@ -32,6 +32,7 @@ class Account_View_Helper_UpgradeOrderSummary extends Zend_View_Helper_Abstract
             $this->html .= "<td>".$product->name."</td>";
             $this->html .= "<td>$$price</td>";
             $this->html .= "</tr>";
+
         }
 
         $this->html .= "</table>";

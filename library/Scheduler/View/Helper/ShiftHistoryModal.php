@@ -17,31 +17,31 @@
 /**
  * @package Scheduler
  */
-class Scheduler_View_Helper_ShiftHistoryModal extends Zend_View_Helper_Abstract
+class Scheduler_View_Helper_ShiftHistoryModal extends Zend_View_Helper_Abstract 
 {
-    
-    /**
-     * @var string the html to be rendered
-     */
-    protected $_html;
-    
-    // will create an empty modal
-    public function shiftHistoryModal($addScripts = false)
-    {
-        // set up our modal
-        $this->view->headScript()->appendFile("/js/library/Scheduler/View/Helper/shift-history-modal.js");
-            
-        $this->_html =  "<div id='history-modal'>";
-        $this->_html .= 	"<div id='history-modal-content'></div>";
-        $this->_html .= "</div>";
-        
-        return $this->_html;
-    }
-    
-    // generates the content for the modal
-    public function generateShiftHistory($id, $quick_add = false)
-    {
-        $user = \Fisdap\Entity\User::getLoggedInUser();
+	
+	/**
+	 * @var string the html to be rendered
+	 */
+	protected $_html;
+	
+	// will create an empty modal
+	public function shiftHistoryModal($addScripts = false)
+	{
+		// set up our modal
+		$this->view->headScript()->appendFile("/js/library/Scheduler/View/Helper/shift-history-modal.js");
+			
+		$this->_html =  "<div id='history-modal'>";
+		$this->_html .= 	"<div id='history-modal-content'></div>";
+		$this->_html .= "</div>";
+		
+		return $this->_html;
+	}
+	
+	// generates the content for the modal
+	public function generateShiftHistory($id, $quick_add = false)
+	{
+		$user = \Fisdap\Entity\User::getLoggedInUser();
 
         // if this is a quick-add skill, we're looking at a shift id
         if ($quick_add) {
@@ -64,27 +64,27 @@ class Scheduler_View_Helper_ShiftHistoryModal extends Zend_View_Helper_Abstract
             }
         }
 
-        $returnContent  = "<img id='site-icon' class='icon' src='/images/icons/".$type."SiteIconColor.png'>";
-        $returnContent .= "<h4 class='table-label ".$type."'>";
-        $returnContent .= 	$location;
-        $returnContent .= "</h4>";
-        $returnContent .= "<h4 class='header' style='margin: 0 0 5px 30px;position:relative;top:-5px'>".
+		$returnContent  = "<img id='site-icon' class='icon' src='/images/icons/".$type."SiteIconColor.png'>";
+		$returnContent .= "<h4 class='table-label ".$type."'>";
+		$returnContent .= 	$location;
+		$returnContent .= "</h4>";
+		$returnContent .= "<h4 class='header' style='margin: 0 0 5px 30px;position:relative;top:-5px'>".
                             $title.
-                          "</h4>";
-                            
-        // make the table
-        $returnContent .= "<table class='history-table-header fisdap-table'>";
-        $returnContent .= 	"<thead>";
-        $returnContent .= 		"<tr>";
-        $returnContent .= 			"<th class='left-column'>Date</th>";
-        $returnContent .= 			"<th>Action</th>";
-        $returnContent .= 		"</tr>";
-        $returnContent .= 	"</thead>";
-        $returnContent .= "</table>";
-        
-        $returnContent .= "<div class='history-table-body'>";
-        $returnContent .= "<table class='fisdap-table'>";
-        $returnContent .= 	"<tbody>";
+						  "</h4>";
+							
+		// make the table
+		$returnContent .= "<table class='history-table-header fisdap-table'>";
+		$returnContent .= 	"<thead>";
+		$returnContent .= 		"<tr>";
+		$returnContent .= 			"<th class='left-column'>Date</th>";
+		$returnContent .= 			"<th>Action</th>";
+		$returnContent .= 		"</tr>";
+		$returnContent .= 	"</thead>";
+		$returnContent .= "</table>";
+		
+		$returnContent .= "<div class='history-table-body'>";
+		$returnContent .= "<table class='fisdap-table'>";
+		$returnContent .= 	"<tbody>";
 
         // if this is a quick-add shift, we only care about the creation
         if ($quick_add) {
@@ -100,6 +100,7 @@ class Scheduler_View_Helper_ShiftHistoryModal extends Zend_View_Helper_Abstract
                 }
 
                 if ($show_record) {
+
                     if ($initiator->user->id == $user->id) {
                         $initiator_description = "You";
                     } else {
@@ -138,15 +139,16 @@ class Scheduler_View_Helper_ShiftHistoryModal extends Zend_View_Helper_Abstract
                 }
             }
         }
-        
-        $returnContent .= 	"</tbody>";
-        $returnContent .= "</table>";
-        $returnContent .= "</div>";
-        
-        $returnContent .= "<div class='small gray-button'>";
-        $returnContent .= "<button id='historyCloseButton'>Ok</button>";
-        $returnContent .= "</div>";
-        
-        return $returnContent;
-    }
+		
+		$returnContent .= 	"</tbody>";
+		$returnContent .= "</table>";
+		$returnContent .= "</div>";
+		
+		$returnContent .= "<div class='small gray-button'>";
+		$returnContent .= "<button id='historyCloseButton'>Ok</button>";
+		$returnContent .= "</div>";
+		
+		return $returnContent;
+	}
+
 }

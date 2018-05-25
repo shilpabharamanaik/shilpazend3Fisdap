@@ -21,8 +21,7 @@ abstract class MyFisdap_Widgets_Base implements MyFisdap_Widgets_iWidget
      *
      * @param integer $widgetId ID of the MyFisdapWidgetData to load up and use.
      */
-    public function __construct($widgetId)
-    {
+    public function __construct($widgetId){
         $this->view = Zend_Layout::getMvcInstance()->getView();
 
         $this->widgetData = \Fisdap\EntityUtils::getEntity('MyFisdapWidgetData', $widgetId);
@@ -33,15 +32,14 @@ abstract class MyFisdap_Widgets_Base implements MyFisdap_Widgets_iWidget
     /**
      * This function loads up the data for the widget.
      */
-    public function loadData()
-    {
+    public function loadData(){
         // Check to see if the widget data actually has any data stored in it.  If it does not,
         // return the result of getDefaultData().
-        if ($this->widgetData->data == '') {
+        if($this->widgetData->data == ''){
             $this->data = $this->getDefaultData();
             // Save the default data down as soon as we get it
             $this->saveData();
-        } else {
+        }else{
             $this->data = unserialize($this->widgetData->data);
         }
     }
@@ -49,13 +47,12 @@ abstract class MyFisdap_Widgets_Base implements MyFisdap_Widgets_iWidget
     /**
      * This function saves down the data currently stored in $this->data.
      */
-    public function saveData()
-    {
+    public function saveData(){
         $widgetData = \Fisdap\EntityUtils::getEntity('MyFisdapWidgetData', $this->widgetId);
 
         $previousData = unserialize($this->widgetData->data);
 
-        if (!is_array($previousData)) {
+        if(!is_array($previousData)){
             $previousData = $this->getDefaultData();
         }
 
@@ -76,11 +73,10 @@ abstract class MyFisdap_Widgets_Base implements MyFisdap_Widgets_iWidget
      *
      * @retun Boolean true if the callback is registered, false if not.
      */
-    public function callbackIsRegistered($callbackName)
-    {
-        if (in_array($callbackName, $this->registeredCallbacks)) {
+    public function callbackIsRegistered($callbackName){
+        if(in_array($callbackName, $this->registeredCallbacks)){
             return true;
-        } else {
+        }else{
             return false;
         }
     }
@@ -91,8 +87,7 @@ abstract class MyFisdap_Widgets_Base implements MyFisdap_Widgets_iWidget
      *
      * @return String containing the HTML for the widget container.
      */
-    public function renderContainer()
-    {
+    public function renderContainer(){
         $widgetContents = $this->render();
 
         $header = $this->renderHeader();
@@ -115,8 +110,7 @@ EOF;
      * This function renders just the header.  This function should be overridden in the child
      * class if the widget requires a custom header.
      */
-    protected function renderHeader()
-    {
+    protected function renderHeader(){
         $minimizeLink = $this->renderMinimizeLink();
 
         $title = $this->renderTitle();
@@ -136,8 +130,7 @@ EOF;
         return $html;
     }
 
-    protected function renderTitle()
-    {
+    protected function renderTitle(){
         return "<span class='widget-title'>{$this->widgetData->widget->display_title}</span>";
     }
 
@@ -147,12 +140,11 @@ EOF;
      * @return String containing the HTML for the remove link, if appropriate.  If no remove link
      * is necessary, an empty string is returned.
      */
-    protected function renderRemoveLink()
-    {
+    protected function renderRemoveLink(){
         // Removal of widgets is disabled in Phase 1.
         return '';
 
-        if (!$this->widgetData->is_required) {
+        if(!$this->widgetData->is_required){
             $imgLink = "<img class='widget-remove' src='/images/icons/delete_white.png' id='delete_widget_{$this->widgetData->id}'/>";
             $imgLinkScript = "
 				<script>
@@ -164,7 +156,7 @@ EOF;
             $html = "<div class='widget-remove-container'>{$imgLink}{$imgLinkScript}</div>";
 
             return $html;
-        } else {
+        }else{
             return '';
         }
     }
@@ -175,9 +167,8 @@ EOF;
      * @param String containing the HTML and javascript necessary for the minimize/maximize links,
      * or an empty string if one is not allowed.
      */
-    protected function renderMinimizeLink()
-    {
-        if ($this->widgetData->widget->is_minimizable) {
+    protected function renderMinimizeLink(){
+        if($this->widgetData->widget->is_minimizable){
             $toHide = ($this->widgetData->is_collapsed)?"maximized":"minimized";
 
             $linkId = "minimize_widget_{$this->widgetData->id}";
@@ -189,13 +180,13 @@ EOF;
 
             $minimizeLinkScript = "<script>";
 
-            if ($this->widgetData->is_collapsed) {
+            if($this->widgetData->is_collapsed){
                 // Hide the appropriate arrow link, and hide the content too.
                 $minimizeLinkScript .= "
 					$('#{$linkId}_maximized').hide();
 					$('#widget_{$this->widgetData->id}_render').hide()
 				";
-            } else {
+            }else{
                 $minimizeLinkScript .= "
 					$('#{$linkId}_minimized').hide()
 				";
@@ -214,7 +205,7 @@ EOF;
 			</script>";
 
             return $minimizeLink . $minimizeLinkScript;
-        } else {
+        }else{
             return "";
         }
     }
@@ -223,9 +214,8 @@ EOF;
      * This function wraps the config options in a modal and displays that modal on clicking
      * the config icon.
      */
-    protected function renderConfigLink()
-    {
-        if ($this->widgetData->widget->has_configuration && ($this instanceof MyFisdap_Widgets_iConfigurable)) {
+    protected function renderConfigLink(){
+        if($this->widgetData->widget->has_configuration && ($this instanceof MyFisdap_Widgets_iConfigurable)){
             $configId = $this->getNamespacedName('configure_widget');
 
             $imgLink = "<img class='widget-config' src='/images/icons/gear_white.png' id='$configId'/>";
@@ -278,7 +268,7 @@ EOF;
 			";
 
             return $imgLink . $formContents . $script;
-        } else {
+        }else{
             return '';
         }
     }
@@ -326,13 +316,11 @@ EOF;
         return "";
     }
 
-    protected function getWidgetUser()
-    {
+    protected function getWidgetUser(){
         return $this->widgetData->user;
     }
 
-    protected function getWidgetProgram()
-    {
+    protected function getWidgetProgram(){
         return $this->widgetData->program;
     }
 
@@ -345,8 +333,7 @@ EOF;
      *
      * @return String containing the base name with the unique widget instance ID appended to the end.
      */
-    protected function getNamespacedName($base)
-    {
+    protected function getNamespacedName($base){
         return $base . '-' . $this->widgetData->id;
     }
 
@@ -356,13 +343,13 @@ EOF;
      *
      * @return boolean
      */
-    public static function userCanUseWidget($widgetId)
-    {
+    public static function userCanUseWidget($widgetId){
         return true;
     }
 
-    public function getDefaultData()
-    {
+    public function getDefaultData(){
         return array();
     }
 }
+
+?>

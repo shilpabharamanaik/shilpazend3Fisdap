@@ -13,16 +13,14 @@ namespace Fisdap\Service;
  *
  * @package Fisdap\Service
  */
-class AttachmentService
-{
+class AttachmentService {
     /**
      * Gets the preview image source and class for a given attachment
      *
      * @param $attachment
      * @return array
      */
-    public function getPreview($attachment)
-    {
+    public function getPreview($attachment) {
         $iconClasses = "stock-icon";
         switch ($attachment->mimeType) {
 
@@ -61,7 +59,7 @@ class AttachmentService
 
             // word docs
             case 'application/msword':
-            case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+            case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
                 $src = "/images/icons/word.svg";
                 $class = $iconClasses;
                 $type = "doc";
@@ -99,12 +97,11 @@ class AttachmentService
         return array('src' => $src, "class" => $class, 'type' => $type);
     }
 
-    public function getCheckboxRows(array $attachments, $class = null)
-    {
+    public function getCheckboxRows(array $attachments, $class = null) {
         $attachment_info_display_helper = new \Fisdap_View_Helper_AttachmentInfo();
         $rows = array();
 
-        foreach ($attachments as $attachment) {
+        foreach ($attachments as $attachment){
             $content = array();
             $content[] = '<img src="' . $this->getPreview($attachment)['src'] . '" class="thumbnail" />';
             $content[] = $attachment_info_display_helper->attachmentInfo($attachment, $class);

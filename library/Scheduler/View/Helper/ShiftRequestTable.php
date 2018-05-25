@@ -82,7 +82,8 @@ class Scheduler_View_Helper_ShiftRequestTable extends Zend_View_Helper_Abstract
                 // if this is a cover or a swap, add a little extra information
                 if ($request->request_type->name == 'cover') {
                     $requestArray['addl-info'] = "covered by ".$request->getRecipientName();
-                } elseif ($request->request_type->name == 'swap') {
+
+                } else if ($request->request_type->name == 'swap') {
                     $swap = $request->getCurrentSwap();
                     $requestArray['addl-info'] = "<div>swapping with ".$request->getRecipientName();
                     if ($swap) {
@@ -100,6 +101,7 @@ class Scheduler_View_Helper_ShiftRequestTable extends Zend_View_Helper_Abstract
                             $requestArray['tools'] .= "<img class='swap-history' src='/images/icons/swap-history.png' data-requestid=".$request->id." title='view swap history'>";
                         }
                     }
+
                 }
 
                 $requestPartials[] = array('request' => $requestArray, 'type' => $table_type);

@@ -2,6 +2,7 @@
 
 use Illuminate\Contracts\Queue\Job;
 
+
 /**
  * Interface HandlesJob
  *
@@ -17,4 +18,4 @@ interface HandlesJob
      * @param array|string $data Data about the Job
      */
     public function fire(Job $job, $data);
-}
+} 

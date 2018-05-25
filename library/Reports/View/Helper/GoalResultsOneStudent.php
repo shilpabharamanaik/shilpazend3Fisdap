@@ -14,17 +14,17 @@
  * @package Reports
  * @author Maciej
  */
-class Reports_View_Helper_GoalResultsOneStudent extends Zend_View_Helper_Abstract
+class Reports_View_Helper_GoalResultsOneStudent extends Zend_View_Helper_Abstract 
 {
-    /**
-     * @var string the html to be rendered
-     */
-    protected $_html;
-    
-    public function goalResultsOneStudent($goal, $goalsResults, $heading)
-    {
-        $this->_html='Detailed Goals report for one student coming soon..';
-        
-        return $this->_html;
-    }
+	/**
+	 * @var string the html to be rendered
+	 */
+	protected $_html;
+	
+	public function goalResultsOneStudent($goal, $goalsResults, $heading)
+	{
+		$this->_html='Detailed Goals report for one student coming soon..';
+		
+		return $this->_html;
+	}
 }

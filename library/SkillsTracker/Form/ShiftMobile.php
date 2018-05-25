@@ -20,18 +20,18 @@
  */
 class SkillsTracker_Form_ShiftMobile extends SkillsTracker_Form_Shift
 {
-    public function __construct($shiftId = null, $studentId = null, $programId = null, $types = null, $options = null)
-    {
-        parent::__construct($shiftId, $studentId, $programId, $types, $options);
-    }
+	public function __construct($shiftId = null, $studentId = null, $programId = null, $types = null, $options = null)
+	{
+		parent::__construct($shiftId, $studentId, $programId, $types, $options);
+	}
 
-    /**
-     * Returns class and style attributes for either standard or mobile interfaces
-     *
-     * @return array With class and style keys, or empty for mobile
-     */
-    public function getClassAndStyleAttribs()
-    {
-        return array('class'=>'select-mobile');
-    }
+	/**
+	 * Returns class and style attributes for either standard or mobile interfaces
+	 *
+	 * @return array With class and style keys, or empty for mobile
+	 */
+	public function getClassAndStyleAttribs()
+	{
+		return array('class'=>'select-mobile');
+	} 
 }

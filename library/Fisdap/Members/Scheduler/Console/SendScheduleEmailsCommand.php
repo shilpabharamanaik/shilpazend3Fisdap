@@ -12,6 +12,7 @@ use Illuminate\Console\Command;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Class SendScheduleEmailsCommand
  *
@@ -90,7 +91,7 @@ final class SendScheduleEmailsCommand extends Command
             $date = new \DateTime;
         }
 
-        if (! is_null($this->option('send-now-id'))) {
+        if ( ! is_null($this->option('send-now-id'))) {
             $job = (new SendScheduleEmail((int) $this->option('send-now-id'), $date));
             $this->dispatcher->dispatch($job);
         } else {

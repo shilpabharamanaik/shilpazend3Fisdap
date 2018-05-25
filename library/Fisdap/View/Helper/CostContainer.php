@@ -38,7 +38,7 @@ class Fisdap_View_Helper_CostContainer extends Zend_View_Helper_Abstract
             $totalCost = $order->getSubtotal();
             $discountedCost = $order->getTotalCost();
             if ($totalCost == $discountedCost) {
-                $discountedCost = null;
+                $discountedCost = NULL;
             }
         } else {
             $discounts = array();

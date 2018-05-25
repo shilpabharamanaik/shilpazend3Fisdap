@@ -19,7 +19,7 @@
  */
 class Fisdap_Form_Element_Countries extends Zend_Form_Element_Select
 {
-    protected static $_countries = array(
+	protected static $_countries = array(
         array('Afghanistan', 'AFG'),
         array('Aland Islands', 'ALA'),
         array('Albania', 'ALB'),
@@ -258,66 +258,66 @@ class Fisdap_Form_Element_Countries extends Zend_Form_Element_Select
         array('Zambia', 'ZMB'),
         array('Zimbabwe', 'ZWE'));
 
-    public function init()
-    {
+	public function init()
+	{
         $this->getView()->headScript()->appendFile("/js/library/Fisdap/Form/Element/countries.js");
-        $this->setAttrib("class", $this->getAttrib("class"). " country");
-        $this->setStateElementName("state");
-        
+		$this->setAttrib("class", $this->getAttrib("class"). " country");
+		$this->setStateElementName("state");
+		
         foreach (self::$_countries as $country) {
             $this->addMultiOption($country[1], $country[0]);
         }
-    }
+	}
 
-    /**
-     * Use the full name of the country rather than 3 char abbreviation
-     * @return \Fisdap_Form_Element_States
-     */
-    public function useFullNames()
-    {
+	/**
+	 * Use the full name of the country rather than 3 char abbreviation
+	 * @return \Fisdap_Form_Element_States
+	 */
+	public function useFullNames()
+	{
         $this->clearMultiOptions();
-        foreach (self::$_countries as $country) {
+		foreach (self::$_countries as $country) {
             $this->addMultiOption($country[1], $country[1]);
         }
 
-        return $this;
-    }
-    
-    public function setStateElementName($stateElementName)
-    {
-        $this->setAttrib("data-state", $stateElementName);
-        return $this;
-    }
+		return $this;
+	}
+	
+	public function setStateElementName($stateElementName)
+	{
+		$this->setAttrib("data-state", $stateElementName);
+		return $this;
+	}
 
-    /**
-     * Get the abbreviation for a country given the full name
-     *
-     * @param string $fullName the full name of the country
-     * @return string the abbreviation for the country
-     */
-    public static function getAbbreviation($fullName)
-    {
+	/**
+	 * Get the abbreviation for a country given the full name
+	 *
+	 * @param string $fullName the full name of the country
+	 * @return string the abbreviation for the country
+	 */
+	public static function getAbbreviation($fullName)
+	{
         foreach (self::$_countries as $country) {
             if ($country[0] == $fullName) {
                 return $country[1];
             }
         }
         return null;
-    }
+	}
 
-    /**
-     * Get the full name for a country given the abbreviation
-     *
-     * @param string $abbreviation the abbreviation for the country
-     * @return string the full name of the country
-     */
-    public static function getFullName($abbreviation)
-    {
-        foreach (self::$_countries as $country) {
+	/**
+	 * Get the full name for a country given the abbreviation
+	 *
+	 * @param string $abbreviation the abbreviation for the country
+	 * @return string the full name of the country
+	 */
+	public static function getFullName($abbreviation)
+	{
+		foreach (self::$_countries as $country) {
             if ($country[1] == $abbreviation) {
                 return $country[1];
             }
         }
         return null;
-    }
+	}
 }

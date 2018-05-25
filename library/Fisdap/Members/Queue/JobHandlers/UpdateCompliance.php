@@ -4,6 +4,7 @@ use Fisdap\Data\Requirement\DoctrineRequirementRepository;
 use Fisdap\Data\Requirement\RequirementRepository;
 use Illuminate\Contracts\Queue\Job;
 
+
 /**
  * Class UpdateCompliance
  *
@@ -62,8 +63,7 @@ class UpdateCompliance extends JobHandler
      * @param $cacheId string the id of the cache you want to update
      * @param $jobCount int the number of jobs to add to the count
      */
-    private function updateCache($cacheId, $jobCount)
-    {
+    private function updateCache($cacheId, $jobCount) {
         $jobStatus = $this->cache->load($cacheId);
         $newStatus['jobs'] = $jobStatus['jobs'] + $jobCount;
         $this->cache->save($newStatus, $cacheId, [], 0);

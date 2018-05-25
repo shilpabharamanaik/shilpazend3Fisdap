@@ -2,6 +2,7 @@
 
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Provides PDF Generation using the wkhtmltopdf binary. This is a refactor of former class wkhtmltopdf_Pdf
  *
@@ -136,7 +137,7 @@ class WkhtmlPdfGenerator implements PdfGenerator
         $descriptor = array(0 => array('pipe', 'r'), 1 => array('pipe', 'w'), 2 => array('pipe', 'w'));
 
         $cmd = realpath($this->getBinaryCommand()) . ' --version';
-        $process = proc_open($cmd, $descriptor, $pipes, null, null);
+        $process = proc_open($cmd, $descriptor, $pipes, NULL, NULL);
         if (is_resource($process)) {
             $content = stream_get_contents($pipes[1]);
             $out = preg_match('!.*?(\d+\.\d+\.\d+).*$!m', $content, $matches);
@@ -155,7 +156,7 @@ class WkhtmlPdfGenerator implements PdfGenerator
      * @todo - refactor this to use the Symfony Process component to manage process creation and output/error capture
      * {@inheritDoc}
      */
-    public function generatePdfFromHtmlString($html, $isCompleteHtmlDocument = true, $separateHeadContent = '')
+    public function generatePdfFromHtmlString($html, $isCompleteHtmlDocument = TRUE, $separateHeadContent = '')
     {
         // make sure options are set
         $this->validatePdfOptionsAndSetIfAbsent();
@@ -176,7 +177,7 @@ class WkhtmlPdfGenerator implements PdfGenerator
         $descriptor = array(0 => array('pipe', 'r'), 1 => array('pipe', 'w'), 2 => array('pipe', 'w'));
         $cmd = realpath($this->getBinaryCommand()) . " --margin-bottom 7mm --margin-top 7mm --margin-left 5mm --margin-right 5mm --page-size {$this->paperSize} --orientation {$this->pageOrientation} --dpi {$this->dpi} {$commandOptions} - -";
         $this->logger->debug('About to attempt wkhtmltopdf command: ' . $cmd);
-        $process = proc_open($cmd, $descriptor, $pipes, null, null);
+        $process = proc_open($cmd, $descriptor, $pipes, NULL, NULL);
 
         if (is_resource($process)) {
             fwrite($pipes[0], $html);
@@ -200,6 +201,7 @@ class WkhtmlPdfGenerator implements PdfGenerator
         } else {
             throw new \Exception("Failed to open wkthmltopdf process to generate PDF content");
         }
+
     }
 
     /**
@@ -228,7 +230,7 @@ class WkhtmlPdfGenerator implements PdfGenerator
 
         echo $this->pdfContent;
         flush();
-        return true;
+        return TRUE;
     }
 
 
@@ -285,7 +287,7 @@ class WkhtmlPdfGenerator implements PdfGenerator
      */
     public function getBinaryCommand()
     {
-        if (! file_exists($this->libraryCommand)) {
+        if ( ! file_exists($this->libraryCommand)) {
             throw new \Exception("{$this->libraryCommand} could not be found on the system");
         }
 

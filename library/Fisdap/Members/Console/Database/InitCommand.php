@@ -5,6 +5,7 @@ use Illuminate\Console\Command;
 use PDO;
 use Zend_Registry;
 
+
 /**
  * Class InitCommand
  *
@@ -20,7 +21,7 @@ class InitCommand extends Command
 
     public function fire()
     {
-        if (! preg_match('/development|testing/', APPLICATION_ENV)) {
+        if ( ! preg_match('/development|testing/', APPLICATION_ENV)) {
             echo "This script can only be executed in the 'development' or 'testing' environment";
             exit(1);
         }
@@ -30,7 +31,7 @@ class InitCommand extends Command
 
         // validate database connection
         $connectionHost = $em->getConnection()->getHost();
-        if (! preg_match('/^localhost$|^fisdapdb$/', $connectionHost)) {
+        if ( ! preg_match('/^localhost$|^fisdapdb$/', $connectionHost)) {
             echo 'This script can only be used with a local or in memory database.  Please check your Doctrine/environment configuration and try again.';
             exit(1);
         }

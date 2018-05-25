@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -62,11 +62,13 @@ class Fisdap_Form_Element_GraduationDate extends Zend_Form_Element_Xhtml
             return $this;
         }
         
-        if (isset($value['month'])) {
+        if(isset($value['month']))
+        {
             $this->_month = $value['month'];
         }
         
-        if (isset($value['year'])) {
+        if(isset($value['year']))
+        {
             $this->_year = $value['year'];
         }
         
@@ -76,7 +78,7 @@ class Fisdap_Form_Element_GraduationDate extends Zend_Form_Element_Xhtml
     
     /**
      * returns the value of this form element
-     *
+     * 
      * @return mixed array
      */
     public function getValue()
@@ -100,9 +102,9 @@ class Fisdap_Form_Element_GraduationDate extends Zend_Form_Element_Xhtml
                 $program = \Fisdap\Entity\ProgramLegacy::getCurrentProgram();
                 $years = $program->get_possible_graduation_years(false);
                 if (count($years) > 0) {
-                    $start = reset($years);
+                    $start = reset($years);                    
                 } else {
-                    $start = date("Y") - 5;
+                    $start = date("Y") - 5;                    
                 }
             } else {
                 $start = date("Y") - 5;
@@ -116,7 +118,7 @@ class Fisdap_Form_Element_GraduationDate extends Zend_Form_Element_Xhtml
         
         $options = array(0 => "Year");
         
-        for ($i = $start; $i <= $end; $i++) {
+        for($i = $start; $i <= $end; $i++) {
             $options[$i] = $i;
         }
         
@@ -177,21 +179,21 @@ class Fisdap_Form_Element_GraduationDate extends Zend_Form_Element_Xhtml
     public function setMonthRange($start = 1, $end = 12)
     {
         $options = array(0 => "Month");
-        
-        $months = Util_FisdapDate::get_short_month_names();
-        
-        foreach ($months as $i=>$month) {
-            //Skip this value if it's not in our month range
-            if ($i+1 < $start || $i+1 > $end) {
-                continue;
-            }
-            
-            $value = $i+1;
-            if ($value < 10) {
-                $value = "0" . $value;
-            }
-            $options[$value] = $month;
-        }
+		
+		$months = Util_FisdapDate::get_short_month_names();
+		
+		foreach ($months as $i=>$month) {
+			//Skip this value if it's not in our month range
+			if ($i+1 < $start || $i+1 > $end) {
+				continue;
+			}
+			
+			$value = $i+1;
+			if ($value < 10) {
+				$value = "0" . $value;
+			}
+			$options[$value] = $month;
+		}
 
         $this->setAttrib('monthAttribs', array('formOptions' => $options));
         return $this;

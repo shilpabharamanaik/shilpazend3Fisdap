@@ -8,4 +8,5 @@
  */
 class Fisdap_Reports_SkillsPracticeGoals extends Fisdap_Reports_LabPracticeGoals
 {
+	
 }

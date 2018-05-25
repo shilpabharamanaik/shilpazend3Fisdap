@@ -31,7 +31,7 @@ class MyFisdap_Form_TodoCreate extends Fisdap_Form_BaseJQuery
      */
     public static $elementDecorators = array(
         'ViewHelper',
-        array(array('break' => 'HtmlTag'), array('tag' => 'br', 'openOnly' => true, 'placement' => 'PREPEND')),
+		array(array('break' => 'HtmlTag'), array('tag' => 'br', 'openOnly' => true, 'placement' => 'PREPEND')),
         array('LabelDescription', array('escape' => false)),
         array(array('prompt' => 'HtmlTag'), array('tag'=>'div', 'class'=>'form-prompt')),
     );
@@ -117,5 +117,6 @@ class MyFisdap_Form_TodoCreate extends Fisdap_Form_BaseJQuery
         
         // date jquery decorator
         $this->setElementDecorators(self::$formJQueryElements, array('date'), true);
+        
     }
 }

@@ -46,7 +46,7 @@ class Account_View_Helper_ProductSummaryRow extends Zend_View_Helper_Abstract
 
         if ($moreAttempts) {
             $this->_html .= "<tr><td class='form-desc' colspan='2'>You will be adding 2 additional attempts for each exam.</td></tr>";
-        } elseif (!$include) {
+        } else if (!$include) {
             $this->_html .= "<tr><td class='form-desc' colspan='2'>Looks like you already have this product, so we don't need to add it to your account.</td></tr>";
         } else {
             $this->_html .= "<tr><td></td></tr>";

@@ -1,6 +1,6 @@
 <?php
 
-class Fisdap_Validate_AuthenticatePassword extends Zend_Validate_Abstract
+class Fisdap_Validate_AuthenticatePassword extends Zend\Validator\AbstractValidator
 {
     const NOT_AUTH = 'notAuth';
  
@@ -10,7 +10,7 @@ class Fisdap_Validate_AuthenticatePassword extends Zend_Validate_Abstract
  
     public function isValid($value)
     {
-        $authenticated = \Fisdap\Entity\User::authenticate_password(\Zend_Auth::getInstance()->getIdentity(), $value);
+        $authenticated = \Fisdap\Entity\User::authenticate_password(Zend\Authentication::getInstance()->getIdentity(), $value);
         
         if ($authenticated) {
             return true;

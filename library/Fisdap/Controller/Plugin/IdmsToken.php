@@ -11,6 +11,7 @@ use Zend_Controller_Request_Abstract;
 use Zend_Registry;
 use Zend_Session_Namespace;
 
+
 /**
  * Ensures that the current user has a valid IDMS token for use with the MRAPI Client
  *
@@ -61,7 +62,7 @@ class IdmsToken extends Zend_Controller_Plugin_Abstract
              * If no IDMS token exists in the session, or the token has expired,
              * get a new token and save it in the session
              */
-            if (! isset($this->idmsSessionNamespace->token)) {
+            if ( ! isset($this->idmsSessionNamespace->token)) {
                 $this->saveIdmsToken();
             } elseif ($this->idmsSessionNamespace->expiresAt <= time()) {
                 $this->logger->debug("IDMS token expired at {$this->idmsSessionNamespace->expiresAt}");
@@ -88,8 +89,7 @@ class IdmsToken extends Zend_Controller_Plugin_Abstract
 
         $idmsClient = new Client;
 
-        $idmsResponse = $idmsClient->post(
-            $idmsConfig['base_url'] . '/token',
+        $idmsResponse = $idmsClient->post($idmsConfig['base_url'] . '/token',
             [
                 'auth' => [
                     $idmsConfig['client_id'],
@@ -108,8 +108,7 @@ class IdmsToken extends Zend_Controller_Plugin_Abstract
         $this->idmsSessionNamespace->expiresAt = time() + $idmsResponse['expires_in'];
     }
 
-    public function clearIdmsToken()
-    {
-        $this->idmsSessionNamespace->token = null;
+    public function clearIdmsToken() {
+        $this->idmsSessionNamespace->token = NULL;
     }
 }

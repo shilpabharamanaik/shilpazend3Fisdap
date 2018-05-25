@@ -35,9 +35,9 @@ class SkillsTracker_View_Helper_AgeElement extends Zend_View_Helper_FormElement
         $months = isset($value['months']) ? $value['months'] : "";
         $years = isset($value['years']) ? $value['years'] : "";
     
-        
-        $this->html .= $this->view->formText($name . "[years]", $years, array('size' => $attribs['size'])) . " years ";
-        $this->html .= $this->view->formText($name . "[months]", $months, array('size' => $attribs['size'])) . " months";
+		
+		$this->html .= $this->view->formText($name . "[years]", $years, array('size' => $attribs['size'])) . " years ";
+		$this->html .= $this->view->formText($name . "[months]", $months, array('size' => $attribs['size'])) . " months";
         
         return $this->html;
     }

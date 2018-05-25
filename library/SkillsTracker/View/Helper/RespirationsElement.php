@@ -34,12 +34,12 @@ class SkillsTracker_View_Helper_respirationsElement extends Zend_View_Helper_For
         //get data from values
         $rate = isset($value['rate']) ? $value['rate'] : "";
         $quality = isset($value['quality']) ? $value['quality'] : 1;
-        
-        //get options for dropdown
-        $options = \Fisdap\Entity\VitalRespQuality::getFormOptions();
+		
+		//get options for dropdown
+		$options = \Fisdap\Entity\VitalRespQuality::getFormOptions();
     
-        $this->html .= $this->view->formText($name . "[rate]", $rate, array('size' => $attribs['size'])) . " ";
-        $this->html .= $this->view->formSelect($name . "[quality]", $quality, array(), $options);
+		$this->html .= $this->view->formText($name . "[rate]", $rate, array('size' => $attribs['size'])) . " ";
+		$this->html .= $this->view->formSelect($name . "[quality]", $quality, array(), $options);
         
         return $this->html;
     }
