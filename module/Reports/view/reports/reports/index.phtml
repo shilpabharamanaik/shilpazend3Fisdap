@@ -1,0 +1,39 @@
+  <?php
+    $title = 'All Reports';
+    $this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title); ?></h1>
+   
+    <div class="clear"></div>
+    
+    <div class="grid_12 island">
+        <h2 class="section-header"><?= $this->program->name ?>'s Reports</h2>
+        <div id='reports-filters'>
+            
+            <div id='category-filter'>
+                <select name="category" id="category">
+                    <option value="all">All categories</option>
+<?php               foreach ($this->categories as $category) { ?>
+                    <option value="<?= $category->id ?>"><?= $category->name ?></option>
+<?php               } ?>
+                </select>
+            </div>
+            <div class='clear'></div>
+        </div>
+        
+        <div id="reports-container">
+<?php
+        if (count($this->reports) < 1) {
+?>
+            <div class='info'>Your program does not currently have any active reports.</div>
+<?php
+        }
+        foreach ($this->reports as $report) {
+            $name = "<a href='/reports/index/display/report/".$report->class."'>".$report->name."</a>";
+            echo $this->partial("reportRow.phtml", array("report" => $report,
+                                                         "mode" => "index",
+                                                         "name" => $name));
+        }
+?>	
+        </div>
+    </div>
