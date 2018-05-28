@@ -17,10 +17,11 @@ use Fisdap\Entity\Permission;
 use Fisdap\Entity\PermissionCategory;
 use Fisdap\Entity\PermissionHistoryLegacy;
 use Fisdap\Entity\PermissionSubRole;
-use Fisdap\Entity\ScheduledTestsLegacy;
+//use Fisdap\Entity\ScheduledTestsLegacy;
+//use Fisdap\Entity\User;
 
-//use User\Entity\ScheduledTestsLegacy;
-use Fisdap\Entity\User;
+use User\Entity\ScheduledTestsLegacy;
+use User\Entity\User;
 
 class ScheduleController extends AbstractActionController
 {
@@ -60,20 +61,20 @@ class ScheduleController extends AbstractActionController
 
         $startDate = $endDate = '' ;
         $arrFnParam = ['programId'=>$userContext->getProgram()->getId(),];
-        if (count($stRepos->getFilteredTests($arrFnParam)) > 50) {
-
-            $start = new DateTime('-1 month');
-            $end = new DateTime('+3 months');
+        $stResults = $stRepos->getFilteredTests($arrFnParam);
+        if (count($stResults) > 50) {
+            $start = new \DateTime('-4 months');
+            $end = new \DateTime('+3 months');
 
             if (!$startDate) {
-                $startDate = $start->format("m/d/Y");
+                $arrFnParam['start_date'] = $start->format("m/d/Y");
             }
 
             if (!$endDate) {
-                $endDate = $end->format("m/d/Y");
+                $arrFnParam['end_date'] = $end->format("m/d/Y");
             }
+            $stResults = $stRepos->getFilteredTests($arrFnParam);
         }
-
 
         $arrViewData
             = [

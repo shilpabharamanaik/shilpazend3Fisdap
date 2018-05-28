@@ -29,7 +29,7 @@ use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 /**
  * Entity class for Users.
- * 
+ *
  * @Entity(repositoryClass="Fisdap\Data\User\DoctrineUserRepository")
  *
  * @Table(name="fisdap2_users")
@@ -974,7 +974,7 @@ class User extends EntityBaseClass implements Authenticatable
         }
 
         $user = self::getByUsername($userName);
-        
+
         \Zend_Registry::set('LoggedInUser', $user);
 
         /** @var CurrentUser $currentUser */
