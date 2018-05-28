@@ -4,6 +4,7 @@ use Fisdap\Api\Products\Finder\FindsProducts;
 use Fisdap\Api\Products\Finder\ProductsFinder;
 use Illuminate\Support\ServiceProvider;
 
+
 /**
  * Class ProductsServiceProvider
  *

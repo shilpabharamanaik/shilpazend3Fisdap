@@ -4,6 +4,7 @@ use Illuminate\Contracts\Queue\Job;
 use Illuminate\Queue\Jobs\RedisJob;
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Class JobHandlerLoggingHelpers
  *
@@ -41,8 +42,7 @@ trait JobHandlerLoggingHelpers
     {
         $this->startTime = microtime(true);
         $this->logger->notice(
-            'Starting ' . get_class($this) . ' job...',
-            ['jobId' => $job->getJobId(), 'pid' => getmypid()]
+            'Starting ' . get_class($this) . ' job...', ['jobId' => $job->getJobId(), 'pid' => getmypid()]
         );
     }
 

@@ -19,6 +19,7 @@ use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Class SendOrderToGreatPlains
  *
@@ -130,6 +131,7 @@ final class SendOrderToGreatPlains implements ShouldQueue
 
         try {
             if ($salesInvoiceBuilder = $this->salesInvoiceTransformer->transformToGPSalesInvoice($order)) {
+
                 $this->logger->debug('Created sales invoice builder', ['orderId' => $order->id]);
                 
                 $salesInvoice = $this->createSalesInvoiceCommand->handle($salesInvoiceBuilder);

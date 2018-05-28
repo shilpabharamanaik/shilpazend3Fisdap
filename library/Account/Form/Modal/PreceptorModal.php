@@ -32,7 +32,7 @@ class Account_Form_Modal_PreceptorModal extends Fisdap_Form_Base
         $this->site = $site;
         $this->user = \Fisdap\Entity\User::getLoggedInUser();
 
-        if ($preceptor_id) {
+        if($preceptor_id){
             $this->preceptor = \Fisdap\EntityUtils::getEntity("PreceptorLegacy", $preceptor_id);
         }
 
@@ -88,7 +88,7 @@ class Account_Form_Modal_PreceptorModal extends Fisdap_Form_Base
 
         $this->addElements(array($first_name, $last_name, $work_phone, $home_phone, $pager, $email));
 
-        if ($this->preceptor) {
+        if($this->preceptor){
             $preceptor_id = new Zend_Form_Element_Hidden("preceptor_id");
             $preceptor_id->setValue($this->preceptor->id);
             $this->addElement($preceptor_id);
@@ -100,18 +100,20 @@ class Account_Form_Modal_PreceptorModal extends Fisdap_Form_Base
                     'preceptor_home' => $this->preceptor->home_phone,
                     'preceptor_pager' => $this->preceptor->pager,
                     'preceptor_email' => $this->preceptor->email
-                ));
+                )   );
         }
 
         // Set the decorators for the form
         $this->setDecorators(array(
                 'FormErrors','PrepareElements',array('ViewScript', array('viewScript' => 'forms/site-sub-forms/modals/preceptor-modal.phtml')),'Form'
             ));
+
     }
 
     public function process($post)
     {
         if ($this->isValid($post)) {
+
             $program = \Fisdap\Entity\User::getLoggedInUser()->getProgram();
 
             $preceptor = ($this->preceptor) ? $this->preceptor : new \Fisdap\Entity\PreceptorLegacy;
@@ -126,13 +128,16 @@ class Account_Form_Modal_PreceptorModal extends Fisdap_Form_Base
             $preceptor->save();
 
 
-            if (!$this->preceptor) {
+            if(!$this->preceptor) {
                 $program->addPreceptor($preceptor, true);
             }
 
             return array("success" => true, "new_preceptor_id" => $preceptor->id);
-        } else {
+
+        }
+        else {
             return $this->getMessages();
         }
+
     } // end process()
 }

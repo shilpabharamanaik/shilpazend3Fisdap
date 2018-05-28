@@ -3,6 +3,7 @@
 use Illuminate\Queue\Failed\FailedJobProviderInterface;
 use Psr\Log\LoggerInterface;
 
+
 /**
  * Class LogFailedJobProvider
  *
@@ -80,5 +81,4 @@ class LogFailedJobProvider implements FailedJobProviderInterface
     public function flush()
     {
         // TODO: Implement flush() method.
-    }
-}
+}}

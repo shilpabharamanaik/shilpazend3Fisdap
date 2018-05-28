@@ -17,26 +17,26 @@
 /**
  * @package Account
  */
-class Account_View_Helper_CouponBox extends Zend_View_Helper_Abstract
+class Account_View_Helper_CouponBox extends Zend_View_Helper_Abstract 
 {
-    /**
-     * @var string the html to be rendered
-     */
-    protected $_html;
-    
-    /**
-     * @param \Fisdap\Entity\Coupon $coupon
-     * @return string the shift list rendered as an html table
-     */
-    public function couponBox($order = null, $coupon = null)
+	/**
+	 * @var string the html to be rendered
+	 */
+	protected $_html;
+	
+	/**
+	 * @param \Fisdap\Entity\Coupon $coupon
+	 * @return string the shift list rendered as an html table
+	 */
+	public function couponBox($order = null, $coupon = null)
     {
-        $this->view->headLink()->appendStylesheet("/css/library/Account/View/Helper/coupon-box.css");
+		$this->view->headLink()->appendStylesheet("/css/library/Account/View/Helper/coupon-box.css");
         $this->view->headScript()->appendFile("/js/library/Account/View/Helper/coupon-box.js");
-        
-        if ($order->id) {
-            $coupon = $order->coupon;
-        }
-        
+		
+		if ($order->id) {
+			$coupon = $order->coupon;
+		}
+		
         $this->_html = "<div id='couponBox'>";
         $this->_html .= $this->view->formLabel("coupon", "Coupon Code:");
         $this->_html .= $this->view->formText("coupon");
@@ -47,8 +47,8 @@ class Account_View_Helper_CouponBox extends Zend_View_Helper_Abstract
         $this->_html .= "<div class='coupon-errors'>" .  $coupon->description . "</div>";
         $this->_html .= "</div>";
         $this->_html .= "<div class='clear'></div>";
-        
-        
-        return $this->_html;
+		
+		
+		return $this->_html;
     }
 }

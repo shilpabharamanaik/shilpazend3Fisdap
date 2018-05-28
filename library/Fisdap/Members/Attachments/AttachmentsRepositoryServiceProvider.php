@@ -6,6 +6,7 @@ use Zend_Registry;
 use Fisdap\Attachments\Repository\AttachmentsRepository;
 use Fisdap\Attachments\Entity\Attachment;
 
+
 /**
  * Provides attachment repositories
  *
@@ -21,10 +22,10 @@ class AttachmentsRepositoryServiceProvider extends ServiceProvider
             AttachmentsRepository::class,
             function () {
                 /** @var DoctrineRepository $repo */
-                $repo = Zend_Registry::get('doctrine')->getEntityManager()->getRepository(Attachment::class);
-                $repo->setLogger(Zend_Registry::get('logger'));
+                $repo = \Zend_Registry::get('doctrine')->getEntityManager()->getRepository(Attachment::class);
+                $repo->setLogger(\Zend_Registry::get('logger'));
                 return $repo;
             }
         );
     }
-}
+} 

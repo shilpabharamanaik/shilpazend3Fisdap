@@ -7,6 +7,7 @@ use Zend_Cache_Core;
 use Zend_Cache_Manager;
 use Zend_Db_Adapter_Abstract;
 
+
 /**
  * Template for a job handler
  *
@@ -41,8 +42,7 @@ abstract class JobHandler implements HandlesJob
     protected $em;
 
 
-    public function __construct()
-    {
+    public function __construct() {
         // get the cache
         /** @var Zend_Cache_Manager $cacheManager */
         $cacheManager = \Zend_Registry::get('zendCacheManager');
@@ -62,9 +62,9 @@ abstract class JobHandler implements HandlesJob
     /**
      * Make sure we still have database connections open and active
      */
-    protected function reopenDBConnections()
-    {
-        if (! isset($this->em)) {
+    protected function reopenDBConnections() {
+
+        if ( ! isset($this->em)) {
             $this->em = \Fisdap\EntityUtils::getEntityManager();
         }
 

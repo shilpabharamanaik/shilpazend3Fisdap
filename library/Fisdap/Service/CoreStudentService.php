@@ -8,6 +8,7 @@
 
 namespace Fisdap\Service;
 
+
 use Fisdap\Data\User\UserRepository;
 use Fisdap\Entity\User;
 
@@ -30,10 +31,10 @@ class CoreStudentService implements StudentService
         if ($user->isInstructor()) {
             // we need to add student ID into the values of each array element
             // otherwise it gets lost when shuffle() is called
-            foreach ($students as $key => $studentId) {
+            foreach($students as $key => $studentId) {
                 $students[$key] = array('id' => $studentId);
             }
-        } elseif (!$user->isInstructor()) {
+        } else if (!$user->isInstructor()) {
             $this_student = $user->getCurrentRoleData();
             // put this student at the top of the keyed array
             $shuffledStudents[$this_student->id] = array(
@@ -75,7 +76,7 @@ class CoreStudentService implements StudentService
      *
      * @return array
      */
-    public function transformStudentIds(User $user, UserRepository $repository, array $student_ids, $anon = false)
+    public function transformStudentIds(User $user, UserRepository $repository, array $student_ids, $anon = FALSE)
     {
         $keyed_students = array();
 
@@ -96,4 +97,4 @@ class CoreStudentService implements StudentService
 
         return $keyed_students;
     }
-}
+} 

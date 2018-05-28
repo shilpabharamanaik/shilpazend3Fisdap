@@ -11,50 +11,49 @@ use GuzzleHttp\Client;
  */
 class Fisdap_Reports_Accreditation3c2 extends Fisdap_Reports_Report
 {
-    public $header = '';
+	public $header = '';
 
-    public $footer = '';
+	public $footer = '';
 
     public $formComponents = array(
-        'goalSetTable' => array(
-            'title' => 'Select a goal set',
-            'options' => array(
-                "excludeGoalSetTemplates" => array(2, 3),
+		'goalSetTable' => array(
+			'title' => 'Select a goal set',
+			'options' => array(
+				"excludeGoalSetTemplates" => array(2, 3),
                 "requiredGoalDefs" => array(137, 138) // Only show goal sets that have the Adult Dysp and Ped Dysp goal.
-            ),
-        ),
-        'shiftInformationForm' => array(
-            'title' => 'Select shift information',
-            'options' => array(
-                'pickAuditStatus' => true,
-                'selected' => array('sites' => array('0-Lab', '0-Clinical', '0-Field'),
-                    ),
-                'siteTypes' => array("Clinical", "Field", "Lab"),
-            ),
-        ),
-        'multistudentPicklist' => array(
-            'title' => 'Select one or more student(s)',
-            'options' =>  array(
-                'mode' => 'multiple',
-                'loadJSCSS' => true,
-                'loadStudents' => true,
-                'showTotal' => true,
-                'useSessionFilters' => true,
+			),
+		),
+		'shiftInformationForm' => array(
+			'title' => 'Select shift information',
+			'options' => array(
+				'pickAuditStatus' => TRUE,
+				'selected' => array('sites' => array('0-Lab', '0-Clinical', '0-Field'),
+					),
+				'siteTypes' => array("Clinical", "Field", "Lab"),
+			),
+		),
+		'multistudentPicklist' => array(
+			'title' => 'Select one or more student(s)',
+			'options' =>  array(
+				'mode' => 'multiple',
+				'loadJSCSS' => TRUE,
+				'loadStudents' => TRUE,
+				'showTotal' => TRUE,
+                'useSessionFilters' => TRUE,
                 'sessionNamespace' => "ReportStudentFilter",
-            ),
-        )
-    );
+			),
+		)
+	);
 
 
-    public $styles = array("/css/library/Fisdap/Reports/3c2.css");
+	public $styles = array("/css/library/Fisdap/Reports/3c2.css");
     public $scripts = array("/js/library/Fisdap/Utils/jspdf.min.js");
-    /**
+	/**
      * This report is only available to instructors
      */
-    public static function hasPermission($userContext)
-    {
-        return ($userContext->isInstructor());
-    }
+	 public static function hasPermission($userContext) {
+		  return ($userContext->isInstructor());
+	 }
 
     /**
      * Run a query and any processing logic that produces the data contained in the report
@@ -63,15 +62,13 @@ class Fisdap_Reports_Accreditation3c2 extends Fisdap_Reports_Report
      *
      * @return array
      */
-    public function runReport()
-    {
-        // Well, this should clearly be encapsulated in a class/service of its own,
+	public function runReport() {
+	    // Well, this should clearly be encapsulated in a class/service of its own,
         // buuuut since this is currently the only place we're hitting the API we'll do it here.
         $container = Zend_Registry::get('container');
         $idmsConfig = $container->make('config')->get('idms');
         $idmsClient = new Client;
-        $idmsResponse = $idmsClient->post(
-            $idmsConfig['base_url'] . '/token',
+        $idmsResponse = $idmsClient->post($idmsConfig['base_url'] . '/token',
             [
                 'auth' => [
                     $idmsConfig['client_id'],
@@ -92,8 +89,8 @@ class Fisdap_Reports_Accreditation3c2 extends Fisdap_Reports_Report
         $container->instance('Fisdap\Api\Client\Auth\UserAuthorization', $userAuthorization);
 
 
-        // set up the table! start with the header
-        $title = "CoAEMSP Summary Tracking";
+		// set up the table! start with the header
+		$title = "CoAEMSP Summary Tracking";
 
 
         $requirementsHeader = array(
@@ -392,14 +389,14 @@ class Fisdap_Reports_Accreditation3c2 extends Fisdap_Reports_Report
             ),
         );
 
-        $students = $this->getMultiStudentData();
+		$students = $this->getMultiStudentData();
         $studentIds = array();
         foreach ($students as $key => $value) {
             $studentIds[] = $key;
         }
 
-        // get the goalset
-        $goalSetId = $this->config['selected-goalset'];
+		// get the goalset
+		$goalSetId = $this->config['selected-goalset'];
 
         /** @var ReportsGateway $reportsGateway */
         $reportsGateway = $container->make('Fisdap\Api\Client\Reports\Gateway\ReportsGateway');
@@ -411,7 +408,7 @@ class Fisdap_Reports_Accreditation3c2 extends Fisdap_Reports_Report
             $this->getTypeIds(),
             $this->getSiteIds(),
             $studentIds,
-            ($this->config['auditStatus'] == 'audited') ? true : false
+            ($this->config['auditStatus'] == 'audited') ? TRUE : FALSE
         );
 
         // Grab the requirements for each of the goals/headers.
@@ -480,21 +477,21 @@ class Fisdap_Reports_Accreditation3c2 extends Fisdap_Reports_Report
             $table_data['body'][] = $dataRow;
         }
 
-        // add the table
-        $this->data[] = array(
-            "type" => "table",
-            "content" => $table_data,
-            "options" => array("noSort" => true, "noSearch" => true),
+		// add the table
+		$this->data[] = array(
+		    "type" => "table",
+			"content" => $table_data,
+			"options" => array("noSort" => TRUE, "noSearch" => TRUE),
         );
-    }
 
-    public function goalSetTableValidate($info)
-    {
-        // make sure we have a goal set
-        $goalSet = $this->config["selected-goalset"];
-        if ($goalSet <= 0) {
-            $this->valid = false;
-            $this->errors["selected-goalset"][] = "Please select a goal set.";
-        }
-    }
+	}
+
+	public function goalSetTableValidate($info) {
+		// make sure we have a goal set
+		$goalSet = $this->config["selected-goalset"];
+		if ($goalSet <= 0) {
+			$this->valid = false;
+			$this->errors["selected-goalset"][] = "Please select a goal set.";
+		}
+	}
 }

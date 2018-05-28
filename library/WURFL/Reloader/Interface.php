@@ -8,8 +8,8 @@
  * COPYING file distributed with this package.
  *
  * Copyright (c) 2008-2009, WURFL-Pro S.r.l., Rome, Italy
- *
- *
+ * 
+ *  
  *
  * @category   WURFL
  * @package    WURFL_Reloader
@@ -18,7 +18,9 @@
  * @version    $id$
  * @deprecated
  */
-interface WURFL_Reloader_Interface
-{
-    public function reload($wurflConfigurationPath);
+interface WURFL_Reloader_Interface {
+	function reload($wurflConfigurationPath);
 }
+
+
+?>

@@ -2,6 +2,7 @@
 
 use Fisdap\Data\Shift\DoctrineShiftLegacyRepository;
 
+
 /**
  * Temporary shift repository implementation to hold deprecated logic
  *
@@ -9,4 +10,5 @@ use Fisdap\Data\Shift\DoctrineShiftLegacyRepository;
  */
 class MembersShiftRepository extends DoctrineShiftLegacyRepository
 {
+
 }

@@ -20,6 +20,16 @@ return [
                     ],
                 ],
             ],
+			 'allreports' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route' => '/reports',
+                    'defaults' => [
+                        'controller' => Controller\ReportsController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [

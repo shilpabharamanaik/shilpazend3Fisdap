@@ -28,10 +28,11 @@ class Fisdap_Validate_MultipleEmails extends Zend_Validate_Abstract
         //Instantiate an email validator to check all the given emails
         $emailValidator = new \Zend_Validate_EmailAddress();
 
-        foreach ($emails as $email) {
+        foreach($emails as $email) {
             if (!$emailValidator->isValid($email)) {
                 $this->_error(self::INVALID);
                 return false;
+
             }
         }
         return true;

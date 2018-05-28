@@ -19,11 +19,11 @@ class Fisdap_View_Helper_TwitterWidget
     public function twitterWidget()
     {
         $this->view->headScript()->appendFile("/js/jScrollPane/jquery.mousewheel.js")
-                ->appendFile("/js/jScrollPane/jScrollPane-1.2.3.min.js")
-                ->appendFile("/js/twitter_ticker.js");
+				->appendFile("/js/jScrollPane/jScrollPane-1.2.3.min.js")
+				->appendFile("/js/twitter_ticker.js");
                 
         $this->view->headLink()->appendStylesheet("/css/twitter_ticker.css")
-                ->appendStylesheet("/js/jScrollPane/jScrollPane.css");
+				->appendStylesheet("/js/jScrollPane/jScrollPane.css");
 
         
         $html = '<div id="twitter-ticker" style="z-index:-1;">

@@ -33,19 +33,19 @@ class Account_View_Helper_OrderSummaryStudent extends Zend_View_Helper_Abstract
 
         // affiliation
         $this->_html .= '<td class="affiliationBox">'.
-                            '<h3 class="section-header no-border">Affiliation</h3>' .
+						    '<h3 class="section-header no-border">Affiliation</h3>' .
                             $accountDetails['cert'] .
-                            ' Account at: <br />' .
+						    ' Account at: <br />' .
                             $accountDetails['programName'] . '<br/>' .
                             $accountDetails['groupName'] . '<br/>' .
                             $accountDetails['graduationDate'] .
-                        '</td>';
+						'</td>';
 
         // products
         $this->_html .= '<td class="productsBox">'.
-                            '<h3 class="section-header no-border">Products</h3>'.
-                            '<a id="productDescriptionsLink" href="#">Product descriptions</a>'.
-                            '<ul>';
+						    '<h3 class="section-header no-border">Products</h3>'.
+						    '<a id="productDescriptionsLink" href="#">Product descriptions</a>'.
+						    '<ul>';
         foreach ($accountDetails['products'] as $product) {
             $this->_html .= '<li>' . $product['name'] . '</li>';
         }
@@ -65,4 +65,5 @@ class Account_View_Helper_OrderSummaryStudent extends Zend_View_Helper_Abstract
 
         return $this->_html;
     }
+
 }

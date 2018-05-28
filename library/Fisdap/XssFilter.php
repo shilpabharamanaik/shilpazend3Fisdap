@@ -24,19 +24,16 @@ class XssFilter
     protected $inputString = '';
     protected $allowedTags = array();
     
-    public function __construct($string = '', $allowedTags = array('a', 'em', 'strong', 'cite', 'blockquote', 'code', 'ul', 'ol', 'li', 'dl', 'dt', 'dd'))
-    {
+    public function __construct($string = '', $allowedTags = array('a', 'em', 'strong', 'cite', 'blockquote', 'code', 'ul', 'ol', 'li', 'dl', 'dt', 'dd')) {
         $this->inputString = $string;
         $this->allowedTags = $allowedTags;
     }
     
-    public function setInputString($string)
-    {
+    public function setInputString($string) {
         $this->inputString = $string;
     }
     
-    public function setAllowedTags($allowedTags = array())
-    {
+    public function setAllowedTags($allowedTags = array()) {
         if (is_array($allowedTags)) {
             $this->allowedTags = $allowedTags;
         }
@@ -51,18 +48,17 @@ class XssFilter
      *
      * @return string The filtered string
      */
-    public function filter()
-    {
+    public function filter() {
         $string = $this->inputString; // translation to Drupal function
         $allowed_tags = $this->allowedTags; // translation to Drupal function
         
         // Only operate on valid UTF-8 strings. This is necessary to prevent cross
         // site scripting issues on Internet Explorer 6.
         if (!$this->drupal_validate_utf8()) {
-            return '';
+          return '';
         }
         // Store the text format.
-        $this->_filter_xss_split($allowed_tags, true);
+        $this->_filter_xss_split($allowed_tags, TRUE);
         // Remove NULL characters (ignored by some browsers).
         $string = str_replace(chr(0), '', $string);
         // Remove Netscape 4 JS entities.
@@ -91,8 +87,7 @@ class XssFilter
     }
     
     // see http://api.drupal.org/api/drupal/includes!common.inc/function/_filter_xss_split/7
-    public function _filter_xss_split($m, $store = false)
-    {
+    public function _filter_xss_split($m, $store = FALSE) {
         static $allowed_html;
         
         if ($store) {
@@ -105,7 +100,8 @@ class XssFilter
         if (substr($string, 0, 1) != '<') {
             // We matched a lone ">" character.
             return '&gt;';
-        } elseif (strlen($string) == 1) {
+        }
+        elseif (strlen($string) == 1) {
             // We matched a lone "<" character.
             return '&lt;';
         }
@@ -150,10 +146,9 @@ class XssFilter
     }
 
     // see http://api.drupal.org/api/drupal/includes!bootstrap.inc/function/drupal_validate_utf8/7
-    private function drupal_validate_utf8()
-    {
+    private function drupal_validate_utf8() {
         if (strlen($this->inputString) == 0) {
-            return true;
+          return TRUE;
         }
         // With the PCRE_UTF8 modifier 'u', preg_match() fails silently on strings
         // containing invalid UTF-8 byte sequences. It does not reject character
@@ -162,8 +157,7 @@ class XssFilter
     }
     
     // see http://api.drupal.org/api/drupal/includes!bootstrap.inc/function/check_plain/7
-    public static function checkPlain($text)
-    {
+    static function checkPlain($text) {
         return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
     }
 }

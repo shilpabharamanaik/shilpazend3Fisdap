@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -44,8 +44,8 @@ class SkillsTracker_Form_Element_Respirations extends Zend_Form_Element_Xhtml
      */
     public function setValue($value)
     {
-        $this->_rate = $value['rate'];
-        $this->_quality = \Fisdap\Entity\VitalRespQuality::id_or_entity_helper($value['quality'], 'VitalRespQuality');
+		$this->_rate = $value['rate'];
+		$this->_quality = \Fisdap\Entity\VitalRespQuality::id_or_entity_helper($value['quality'], 'VitalRespQuality');
         
         return $this;
     }

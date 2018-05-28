@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -37,13 +37,13 @@ class Fisdap_Form_Element_Groups extends Zend_Form_Element_Xhtml
     public $helper = "groupsElement";
     
     public function init()
-    {
-        //jquery setup
+	{
+		//jquery setup
         if (!$this->_view) {
             $this->_view = $this->getView();
         }
-        
-        //add js file to populate the base list
+		
+		//add js file to populate the base list
         $this->_view->headScript()->appendFile("/js/library/Fisdap/Form/Element/groups.js");
         $this->_view->headScript()->appendFile("/css/library/Fisdap/Form/Element/groups.css");
     }
@@ -56,7 +56,7 @@ class Fisdap_Form_Element_Groups extends Zend_Form_Element_Xhtml
      */
     public function setValue($value)
     {
-        //$this->addJsFile("/js/library/Fisdap/Form/Element/groups.js");
+        		//$this->addJsFile("/js/library/Fisdap/Form/Element/groups.js");
 
         $this->_id = $value['id'];
         $this->_year = $value['year'];
@@ -65,7 +65,7 @@ class Fisdap_Form_Element_Groups extends Zend_Form_Element_Xhtml
     
     /**
      * returns the value of this form element
-     *
+     * 
      * @return array
      */
     public function getValue()

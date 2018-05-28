@@ -17,43 +17,42 @@
  * @license
  * @version    $id$
  */
-class WURFL_Logger_LoggerFactory
-{
-    public static function createUndetectedDeviceLogger($wurflConfig=null)
-    {
-        if (self::isLoggingConfigured($wurflConfig)) {
-            return self::createFileLogger($wurflConfig, "undetected_devices.log");
-        }
-        return new WURFL_Logger_NullLogger();
-    }
-    
-    public static function create($wurflConfig=null)
-    {
-        if (self::isLoggingConfigured($wurflConfig)) {
-            return self::createFileLogger($wurflConfig, "wurfl.log");
-        }
-        return new WURFL_Logger_NullLogger();
-    }
-    
+class WURFL_Logger_LoggerFactory {
+	
+	public static function createUndetectedDeviceLogger($wurflConfig=NULL) {	
+		if(self::isLoggingConfigured($wurflConfig)) {
+			return self::createFileLogger($wurflConfig, "undetected_devices.log");
+		}
+		return new WURFL_Logger_NullLogger ( );
+	}
+	
+	public static function create($wurflConfig=NULL) {
+		if(self::isLoggingConfigured($wurflConfig)) {
+			return self::createFileLogger($wurflConfig, "wurfl.log");
+		}
+		return new WURFL_Logger_NullLogger ( );				
+	}
+	
 
-    private static function createFileLogger($wurflConfig, $fileName)
-    {
-        $logFileName = self::createLogFile($wurflConfig->logDir, $fileName);
-        return new WURFL_Logger_FileLogger($logFileName);
-    }
-    
-    private static function isLoggingConfigured($wurflConfig)
-    {
-        if (is_null($wurflConfig)) {
-            return false;
-        }
-        $logDir = $wurflConfig->logDir;
-        return isset($wurflConfig->logDir) && is_writable($logDir);
-    }
-    
-        
-    private static function createLogFile($logDir, $fileName)
-    {
-        return $logDir . File . DIRECTORY_SEPARATOR . $fileName;
-    }
+	private static function createFileLogger($wurflConfig, $fileName) {
+		$logFileName = self::createLogFile ( $wurflConfig->logDir, $fileName );
+		return new WURFL_Logger_FileLogger ( $logFileName );
+	
+	}
+	
+	private static function isLoggingConfigured($wurflConfig) {	
+		if(is_null($wurflConfig)) {
+			return false;
+		}
+		$logDir = $wurflConfig->logDir;
+		return isset ( $wurflConfig->logDir ) && is_writable ( $logDir );
+	}
+	
+		
+	private static function createLogFile($logDir, $fileName) {		
+		return $logDir . File . DIRECTORY_SEPARATOR . $fileName;
+	}
+
 }
+
+?>

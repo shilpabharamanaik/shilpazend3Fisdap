@@ -5,6 +5,7 @@ use Fisdap\AppHealthChecks\HealthChecks\DatabaseHealthCheck;
 use Illuminate\Support\ServiceProvider;
 use Zend_Db_Adapter_Pdo_Mysql;
 
+
 /**
  * Class MembersHealthChecksServiceProvider
  *

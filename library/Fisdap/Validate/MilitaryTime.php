@@ -11,8 +11,8 @@ class Fisdap_Validate_MilitaryTime extends Zend_Validate_Abstract
     public function isValid($value)
     {
         if (preg_match("/^(2[0-3]|[0-1][0-9]){1}([0-5][0-9]){1}$/", $value)) {
-            return true;
-        }
+			return true;
+		}
 
 
         $this->_error(self::INVALID);

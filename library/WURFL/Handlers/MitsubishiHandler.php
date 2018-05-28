@@ -8,8 +8,8 @@
  * COPYING file distributed with this package.
  *
  * Copyright (c) 2008-2009, WURFL-Pro S.r.l., Rome, Italy
- *
- *
+ * 
+ * 
  *
  * @category   WURFL
  * @package    WURFL_Handlers
@@ -28,29 +28,27 @@
  * @license
  * @version    $id$
  */
-class WURFL_Handlers_MitsubishiHandler extends WURFL_Handlers_Handler
-{
-    public function __construct($wurflContext, $userAgentNormalizer = null)
-    {
-        parent::__construct($wurflContext, $userAgentNormalizer);
-    }
-    
-    /**
-     * Intercept all UAs starting with "Mitsu"
-     *
-     * @param string $userAgent
-     * @return string
-     */
-    public function canHandle($userAgent)
-    {
-        return WURFL_Handlers_Utils::checkIfStartsWith($userAgent, "Mitsu");
-    }
-    
-    public function lookForMatchingUserAgent($userAgent)
-    {
-        $tollerance = WURFL_Handlers_Utils::firstSpace($userAgent);
-        return WURFL_Handlers_Utils::risMatch(array_keys($this->userAgentsWithDeviceID), $userAgent, $tollerance);
-    }
-    
-    protected $prefix = "MITSUBISHI";
+class WURFL_Handlers_MitsubishiHandler extends WURFL_Handlers_Handler {
+	
+	function __construct($wurflContext, $userAgentNormalizer = null) {
+		parent::__construct ( $wurflContext, $userAgentNormalizer );
+	}
+	
+	/**
+	 * Intercept all UAs starting with "Mitsu"
+	 *
+	 * @param string $userAgent
+	 * @return string
+	 */
+	public function canHandle($userAgent) {
+		return WURFL_Handlers_Utils::checkIfStartsWith ( $userAgent, "Mitsu" );
+	}
+	
+	function lookForMatchingUserAgent($userAgent) {
+		$tollerance = WURFL_Handlers_Utils::firstSpace ( $userAgent );
+		return WURFL_Handlers_Utils::risMatch ( array_keys ( $this->userAgentsWithDeviceID ), $userAgent, $tollerance );
+	}
+	
+	protected $prefix = "MITSUBISHI";
 }
+?>

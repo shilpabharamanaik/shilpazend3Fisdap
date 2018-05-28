@@ -7,6 +7,7 @@
  */
 class Zend_View_Helper_ContextSwitcher extends Zend_View_Helper_Abstract
 {
+
     public function contextSwitcher($currentContext)
     {
         $user = $currentContext->getUser();
@@ -40,4 +41,5 @@ class Zend_View_Helper_ContextSwitcher extends Zend_View_Helper_Abstract
 
         return $html;
     }
+
 }

@@ -17,25 +17,25 @@
 /**
  * @package Account
  */
-class Account_View_Helper_OrderSummary extends Zend_View_Helper_Abstract
+class Account_View_Helper_OrderSummary extends Zend_View_Helper_Abstract 
 {
-    protected $_html;
-    
-    public function orderSummary($orderId, $mode = "serialNumber")
-    {
+	protected $_html;
+	
+	public function orderSummary($orderId, $mode = "serialNumber")
+	{
         $this->view->headLink()->appendStylesheet("/css/library/Account/View/Helper/order-summary.css");
         
         $order = \Fisdap\EntityUtils::getEntity('Order', $orderId);
         
-        $this->_html = "<a id='cancel-order' href='/account/orders/cancel-order'>Cancel Order</a>";
-        
+		$this->_html = "<a id='cancel-order' href='/account/orders/cancel-order'>Cancel Order</a>";
+		
         $this->_html .= $this->view->orderSummaryTable($order);
         
-        //Add a cost summary if the program is paying
-        if ($order->order_type->id == 1) {
-            $this->_html .= $this->view->partial("orderCostSummary.phtml", array("order" => $order));
-        }
-        
+		//Add a cost summary if the program is paying
+		if ($order->order_type->id == 1) {
+			$this->_html .= $this->view->partial("orderCostSummary.phtml", array("order" => $order));			
+		}
+		
         return $this->_html;
     }
 }

@@ -2,6 +2,7 @@
 
 use Fisdap\Data\Site\SiteLegacyRepository;
 
+
 /**
  * @package    Scheduler
  * @subpackage Forms
@@ -174,6 +175,7 @@ class Scheduler_Form_EditRequirement extends Fisdap_Form_Base
             'notificationForm' => $this->notification_form,
             'autoAssignForm' => $this->auto_assign_form
         ));
+
     }
 
     private function createChosen($element_name, $label, $width, $placeholder_text, $options, $multi = "multiple", $add_null = false)
@@ -254,6 +256,7 @@ class Scheduler_Form_EditRequirement extends Fisdap_Form_Base
                 $userContextIds_from_sites = $this->siteLegacyRepository->getUserContextsAttendingSites($site_ids, $current_users_program);
                 $compute_compliance_userContextIds = $requirement->assignRequirementToUserContexts($userContextIds_from_sites, new DateTime(), $compute_compliance_userContextIds, $sendNotification, $editor);
             }
+
         } // end regardlessofsite
 
         // ----------------------------- Step 4: Update the attachments -----------------------------
@@ -282,6 +285,7 @@ class Scheduler_Form_EditRequirement extends Fisdap_Form_Base
                         $compute_compliance_userContextIds[] = $attachment->user_context->id;
                     }
                 }
+
             }
         }
 

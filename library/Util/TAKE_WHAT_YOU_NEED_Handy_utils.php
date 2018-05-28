@@ -77,7 +77,7 @@
 //	}
 //
 //	/**
-//	 * Pushes (nondestructively) $element onto the $array, removing any old
+//	 * Pushes (nondestructively) $element onto the $array, removing any old 
 //	 * instances so that $element only occurs once.
 //	 * @param array $array
 //	 * @param mixed $element
@@ -92,7 +92,7 @@
 //	}
 //
 //	/**
-//	 * Works like PHP's in_array(), but will search recursively if it encounters
+//	 * Works like PHP's in_array(), but will search recursively if it encounters 
 //	 * arrays.
 //	 *
 //	 * @param mixed $needle The item to search for
@@ -157,7 +157,7 @@
 //			if ($value === $val) unset($array[$key]);
 //		}
 //	}
-//
+//	
 //}
 //
 ///**
@@ -244,13 +244,13 @@
 //	/**
 //	 * Get the configuration options for this server.
 //	 *
-//	 * Will read from the config file for the section determined by {@link
+//	 * Will read from the config file for the section determined by {@link 
 //	 * get_environment()}.
 //	 * @param string $config_file The config file name, no path.
 //	 * @param boolean $allow_changes TRUE if the config should be mutable.
 //	 * @param string | null $env The environment.
 //	 * @return Zend_Config
-//	 * @todo We should be storing this in Zend_Registry or something instead of
+//	 * @todo We should be storing this in Zend_Registry or something instead of 
 //	 * calling this function every time we need the config.
 //	 */
 //	public static function get_config($allow_changes = false, $env = null) {
@@ -354,8 +354,8 @@
 //	 * Increments numerical value at the end of a string containing number
 //	 * Accepts any string including one without numbers or just numbers. Ex 'Joe' => 'Joe1', '123' => '124'
 //	 * Preserves leading 0-s in the strings  Ex: 'Joe001' => 'Joe002',  'Joe009' => 'Joe010'
-//	 * Optionally takes second argument with amount by which to increment
-//	 * @return string Input string with incremented
+//	 * Optionally takes second argument with amount by which to increment 
+//	 * @return string Input string with incremented 
 //	 */
 //	public static function increment_string($strnum, $incby=1) {
 //		Assert::is_int($incby);

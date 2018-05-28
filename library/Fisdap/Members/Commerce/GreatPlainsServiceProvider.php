@@ -32,7 +32,7 @@ class GreatPlainsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(ApiClient::class, function () {
+        $this->app->singleton(ApiClient::class, function(){
             $gpApiConfig = $this->app->make('config')->get('great-plains-api');
 
             $apiClient = new AscendGreatPlainsHttpGateway(
@@ -46,42 +46,42 @@ class GreatPlainsServiceProvider extends ServiceProvider
             return new LoggerAscendGreatPlainsHttpGateway($this->app->make(LoggerInterface::class), $apiClient);
         });
 
-        $this->app->singleton(ApiEntityManagerInterface::class, function () {
+        $this->app->singleton(ApiEntityManagerInterface::class, function(){
             $entityManager = new ApiEntityManager();
             $entityManager->setApiClient($this->app->make(ApiClient::class));
 
             return $entityManager;
         });
 
-        $this->app->bind(CustomerRepositoryInterface::class, function () {
+        $this->app->bind(CustomerRepositoryInterface::class, function(){
             $customerRepository = new CustomerRepository();
             $customerRepository->setEntityManager($this->app->make(ApiEntityManagerInterface::class));
 
             return $customerRepository;
         });
 
-        $this->app->bind(CreateCustomerCommand::class, function () {
+        $this->app->bind(CreateCustomerCommand::class, function(){
             $customerTransformer = new CustomerTransformer();
             $createCustomerCommand = new CreateCustomerCommand($this->app->make(CustomerRepositoryInterface::class), $customerTransformer);
 
             return $createCustomerCommand;
         });
 
-        $this->app->bind(SalesInvoiceRepositoryInterface::class, function () {
+        $this->app->bind(SalesInvoiceRepositoryInterface::class, function(){
             $customerRepository = new SalesInvoiceRepository();
             $customerRepository->setEntityManager($this->app->make(ApiEntityManagerInterface::class));
 
             return $customerRepository;
         });
 
-        $this->app->bind(CreateSalesInvoiceCommand::class, function () {
+        $this->app->bind(CreateSalesInvoiceCommand::class, function(){
             $salesTransformer = new SalesInvoiceTransformer();
             $salesInvoiceRepository = $this->app->make(SalesInvoiceRepositoryInterface::class);
 
             return new CreateSalesInvoiceCommand($salesInvoiceRepository, $salesTransformer);
         });
 
-        $this->app->bind(UpdateCustomerCommand::class, function () {
+        $this->app->bind(UpdateCustomerCommand::class, function(){
             $customerTransformer = new CustomerTransformer();
             $updateCustomerCommand = new UpdateCustomerCommand($this->app->make(CustomerRepositoryInterface::class), $customerTransformer);
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Validation\ValidationServiceProvider as IlluminateValidationServiceProvider;
 
+
 /**
  * Class ValidationServiceProvider
  *
@@ -15,7 +16,7 @@ class ValidationServiceProvider extends IlluminateValidationServiceProvider
      */
     public function register()
     {
-        $this->registerValidationResolverHook();
+        //$this->registerValidationResolverHook();
 
         $this->registerValidationFactory();
     }

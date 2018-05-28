@@ -29,7 +29,7 @@ class Fisdap_View_Helper_MoodleGroupList extends Zend_View_Helper_Abstract
         
         $moodleGroups = \Fisdap\EntityUtils::getRepository("MoodleGroup")->findAll();
         
-        foreach ($moodleGroups as $group) {
+        foreach($moodleGroups as $group) {
             $this->_html .= "<tr><td>" . $group->program->name . "</td><td>" . $group->product->name . "</td><td>" . $group->moodle_group_id . "</td></tr>";
         }
         

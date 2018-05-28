@@ -20,13 +20,13 @@ use Fisdap\Entity\StudentLegacy;
  */
 class SkillsTracker_View_Helper_PracticeItemConfirmationTable extends Zend_View_Helper_Abstract
 {
-    /**
-     * @var string the html to be rendered
-     */
-    protected $_html;
-    
-    public function practiceItemConfirmationTable(StudentLegacy $student, array $items, array $shiftTypes)
-    {
+	/**
+	 * @var string the html to be rendered
+	 */
+	protected $_html;
+	
+	public function practiceItemConfirmationTable(StudentLegacy $student, array $items, array $shiftTypes)
+	{
         //$this->view->headScript()->appendFile('/js/library/SkillsTracker/View/Helper/add-preceptor-widget.js');
 
         $confirmButtonset = new Fisdap_Form_Element_jQueryUIButtonset('confirmed-filter');

@@ -5,9 +5,10 @@ use Fisdap\Members\Commerce\Events\OrderWasCompleted;
 use Fisdap\Members\Commerce\Listeners\SendOrderToGreatPlains;
 use Illuminate\Console\Command;
 
+
 /**
  * Class RetryAccountingOrderExportCommand
- *
+ * 
  * @package Fisdap\Members\Commerce
  * @author Sam Tape <stape@fisdap.net>
  * @author  Ben Getsug <bgetsug@fisdap.net>
@@ -69,7 +70,8 @@ class RetryAccountingOrderExportCommand extends Command
 
         $bar = $this->output->createProgressBar(count($orderIds));
 
-        foreach ($orderIds as $orderId) {
+        foreach($orderIds as $orderId) {
+
             if (!in_array($orderId, $failedOrderIds)) {
                 if (!$this->confirm("Order #$orderId is not marked as failed, do you wish to continue resending it to accounting? [y|N]")) {
                     continue;

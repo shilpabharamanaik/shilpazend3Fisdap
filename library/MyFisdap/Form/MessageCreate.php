@@ -19,7 +19,7 @@ class MyFisdap_Form_MessageCreate extends Fisdap_Form_Base
     /**
      * @var boolean Whether UserGroupFilter checkboxes are visible/usable or not
      */
-    public $userGroupFilterCheckboxes = false;
+    public $userGroupFilterCheckboxes = FALSE;
     
     /**
      * Constructs the Message Creation form
@@ -44,8 +44,7 @@ class MyFisdap_Form_MessageCreate extends Fisdap_Form_Base
     /**
      * Set the step number
      */
-    public function set_step($step)
-    {
+    public function set_step($step) {
         if (is_numeric($step)) {
             $this->step = $step;
         }
@@ -67,7 +66,7 @@ class MyFisdap_Form_MessageCreate extends Fisdap_Form_Base
         
         // If this is step 2 or later, add a confirmation checkbox and tell student picker not to do onload
         if ($this->step > 1) {
-            if ($this->user->staff != null && $this->user->staff->isStaff()) {
+            if ($this->user->staff != NULL && $this->user->staff->isStaff()) {
                 // staff get a checkbox
                 $confirmation = new Zend_Form_Element_Checkbox('confirmation');
                 $confirmation->setLabel("Are you sure you want to send this message?")
@@ -75,14 +74,14 @@ class MyFisdap_Form_MessageCreate extends Fisdap_Form_Base
                                 'ViewHelper',
                                 array(array('break' => 'HtmlTag'), array('tag' => 'br', 'openOnly' => true, 'placement' => 'PREPEND')),
                                 array('LabelDescription', array('escape' => false)),
-                                array(array('prompt' => 'HtmlTag'), array('tag'=>'div', 'class'=>'form-prompt', 'id' => 'message-create-confirmation')),
+                                array(array('prompt' => 'HtmlTag'), array('tag'=>'div', 'class'=>'form-prompt', 'id' => 'message-create-confirmation')),            
                             ));
             } else {
                 // instructors get a hidden/implicit value (we assume that submitting on step 2 means they want to actually send the message)
                 $confirmation = new Zend_Form_Element_Hidden('confirmation');
                 $confirmation->setValue('1');
                 $elements[] = $confirmation;
-                $toBeDecorated[] = 'confirmation';
+                $toBeDecorated[] = 'confirmation';                
             }
             $elements[] = $confirmation;
            
@@ -90,7 +89,7 @@ class MyFisdap_Form_MessageCreate extends Fisdap_Form_Base
             $confSubmit = new Fisdap_Form_Element_Submit('confirmation_submit');
             $confSubmit->setLabel('Post')
                     ->setAttrib('class', 'green-button medium')
-                    ->setAttrib('style', 'float: right');
+            		->setAttrib('style', 'float: right');
             $elements[] = $confSubmit;
             $toBeDecorated = array('confirmation_submit');
             
@@ -127,7 +126,7 @@ class MyFisdap_Form_MessageCreate extends Fisdap_Form_Base
         $toBeDecorated[] = 'body';
             
         // staff options
-        if ($this->user->staff != null && $this->user->staff->isStaff()) {
+        if ($this->user->staff != NULL && $this->user->staff->isStaff()) {
             // Big textarea for dumping a comma-separated list of user IDs
             $userIds = new Zend_Form_Element_Textarea('userIds');
             $userIds->setLabel("Comma-separated list of user IDs")
@@ -142,7 +141,7 @@ class MyFisdap_Form_MessageCreate extends Fisdap_Form_Base
         }
         
         // Staff get full array of filters
-        if ($this->user->staff != null && $this->user->staff->isStaff()) {
+        if ($this->user->staff != NULL && $this->user->staff->isStaff()) {
             $defaultFilters = array(
                                 'StudentFilter',
                                 'RoleFilter',
@@ -151,14 +150,14 @@ class MyFisdap_Form_MessageCreate extends Fisdap_Form_Base
                             );
             
             // Let's also allow staff to use the checkboxes on the user group filter
-            $this->userGroupFilterCheckboxes = true;
-        } elseif ($this->user->getCurrentRoleName() == 'instructor') {
+            $this->userGroupFilterCheckboxes = TRUE;
+        } else if($this->user->getCurrentRoleName() == 'instructor') {
             // instructors are not allowed to change program or use the Everyone option
             $defaultFilters = array(
                                 'RoleFilter',
                                 'StudentFilter'
                             );
-        }
+            }
         $this->addSubForm(new MyFisdap_Form_UserGroupFilter($defaultFilters, $this->programId), 'userGroupFilter');
         $this->getSubForm('userGroupFilter')->setDecorators(array(
             'FormElements',
@@ -169,7 +168,7 @@ class MyFisdap_Form_MessageCreate extends Fisdap_Form_Base
         $submit = new Fisdap_Form_Element_Submit('preview_submit');
         $submit->setLabel('Preview')
                 ->setAttrib('class', 'green-button medium')
-                ->setAttrib('style', 'float: right');
+        		->setAttrib('style', 'float: right');
         $elements[] = $submit;
         $toBeDecorated[] = 'preview_submit';
                 
@@ -187,6 +186,6 @@ class MyFisdap_Form_MessageCreate extends Fisdap_Form_Base
 
         
         // set element decorators
-        $this->setElementDecorators(self::$elementDecorators, $toBeDecorated, false);
+        $this->setElementDecorators(self::$elementDecorators, $toBeDecorated, false); 
     }
 }

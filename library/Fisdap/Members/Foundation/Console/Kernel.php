@@ -11,6 +11,7 @@ use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Throwable;
 use Fisdap\Members\Foundation\Bootstrap\BootProviders;
 
+
 /**
  * Foundation Console Kernel
  *
@@ -81,8 +82,7 @@ class Kernel implements KernelContract
     protected function defineConsoleSchedule()
     {
         $this->app->instance(
-            'Illuminate\Console\Scheduling\Schedule',
-            $schedule = new Schedule
+            'Illuminate\Console\Scheduling\Schedule', $schedule = new Schedule
         );
 
         $this->schedule($schedule);
@@ -175,8 +175,7 @@ class Kernel implements KernelContract
     public function queue($command, array $parameters = [])
     {
         $this->app['Illuminate\Contracts\Queue\Queue']->push(
-            'Illuminate\Foundation\Console\QueuedJob',
-            func_get_args()
+            'Illuminate\Foundation\Console\QueuedJob', func_get_args()
         );
     }
 

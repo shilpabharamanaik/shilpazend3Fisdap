@@ -44,13 +44,13 @@ class SkillsTracker_Form_ShiftAttachmentForm extends Fisdap_Form_Base
      */
     public $shiftAttachmentsRemaining;
 
-    /**
+	/**
      * @param $shiftAttachmentsGateway mixed additional Zend_Form options
-     * @param int $attachmentId the id of the shift attachment to edit
-     */
-    public function __construct($shiftAttachmentsGateway, $shift, $attachmentId = null, $tableType = null)
-    {
-        $this->shiftAttachmentsGateway = $shiftAttachmentsGateway;
+	 * @param int $attachmentId the id of the shift attachment to edit
+	 */
+	public function __construct($shiftAttachmentsGateway, $shift, $attachmentId = null, $tableType = null)
+	{
+		$this->shiftAttachmentsGateway = $shiftAttachmentsGateway;
         $this->shift = $shift;
         $this->shiftAttachmentsRemaining = $shiftAttachmentsGateway->getRemainingAllottedCount($shift->student->user_context->id);
 
@@ -60,18 +60,18 @@ class SkillsTracker_Form_ShiftAttachmentForm extends Fisdap_Form_Base
 
         $this->attachmentTableType = $tableType;
 
-        parent::__construct();
-    }
-    
-    public function init()
-    {
+		parent::__construct();
+	}
+	
+	public function init()
+	{
         parent::init();
 
         // this allows the form to deal with the file upload
         $this->setAttrib('enctype', 'multipart/form-data');
         $this->setAction("/attachments/save-attachment");
 
-        // if this is a new attachment, we need to let the user upload a file
+	    // if this is a new attachment, we need to let the user upload a file
         if (!$this->attachment) {
             // upload file field stuff
             $upload = new Zend_Form_Element_File('upload');
@@ -94,10 +94,10 @@ class SkillsTracker_Form_ShiftAttachmentForm extends Fisdap_Form_Base
         // the attachment category
         $category = new Zend_Form_Element_Select('category');
         $category->setLabel('Category:')
-                  ->setDescription('(optional)')
+				  ->setDescription('(optional)')
                   ->setAttribs(array("class" => "chzn-select"));
         $categoryOptions = array_map(
-            function ($n) {
+            function($n) {
                 return array("key" => $n->name, "value" => $n->name);
             },
             $this->shiftAttachmentsGateway->getCategories()
@@ -117,17 +117,17 @@ class SkillsTracker_Form_ShiftAttachmentForm extends Fisdap_Form_Base
         $shiftId = new Zend_Form_Element_Hidden('shiftId');
         $attachmentType = new Zend_Form_Element_Hidden('attachmentType');
         $tableType = new Zend_Form_Element_Hidden('tableType');
-        
-        $this->addElements(array($category, $name, $notes, $attachmentType, $shiftId, $tableType));
+		
+		$this->addElements(array($category, $name, $notes, $attachmentType, $shiftId, $tableType));
 
         // set element and form decorators
         $this->setElementDecorators(self::$hiddenElementDecorators, array('name', 'category', 'notes', 'tableType'), true);
-        $this->setElementDecorators(self::$hiddenElementDecorators, array('attachmentType', 'shiftId', 'attachmentId', 'fileName'), true);
+		$this->setElementDecorators(self::$hiddenElementDecorators, array('attachmentType', 'shiftId', 'attachmentId', 'fileName'), true);
         $this->setDecorators(array(
-            'PrepareElements',
-            array('ViewScript', array('viewScript' => "shiftAttachmentForm.phtml", 'viewModule' => 'skills-tracker')),
-            array('Form', array('class' => 'standard-form'))
-        ));
+			'PrepareElements',
+			array('ViewScript', array('viewScript' => "shiftAttachmentForm.phtml", 'viewModule' => 'skills-tracker')),
+			array('Form', array('class' => 'standard-form'))
+		));
 
         // set some defaults
         $this->setDefaults(array(
@@ -137,27 +137,27 @@ class SkillsTracker_Form_ShiftAttachmentForm extends Fisdap_Form_Base
         ));
 
         // if we are editing an existing attachment, lets grab the values
-        if ($this->attachment) {
+		if ($this->attachment) {
             $this->setDefaults(array(
                 'attachmentId' => $this->attachment->id,
                 'fileName' => $this->attachment->fileName,
                 'name' => $this->attachment->nickname ? $this->attachment->nickname : $this->attachment->fileName,
                 'category' => $this->attachment->categories,
-                'notes' => $this->attachment->notes,
-            ));
-        } else {
+				'notes' => $this->attachment->notes,
+			));
+		} else {
             $upload->removeDecorator("Label");
         }
-    }
-    
-    /**
-     * Validate the form, if valid, save the attachment, if not, return the error msgs
-     *
-     * @param array $data the POSTed data
-     * @return mixed either boolean true, or an array of error messages
-     */
-    public function process($data, $file = null)
-    {
+	}
+	
+	/**
+	 * Validate the form, if valid, save the attachment, if not, return the error msgs
+	 *
+	 * @param array $data the POSTed data
+	 * @return mixed either boolean true, or an array of error messages
+	 */
+	public function process($data, $file = null)
+	{
         // set up error data in case we need it
         $errorData = array("mode" => "error", "errors" => array());
 
@@ -172,7 +172,8 @@ class SkillsTracker_Form_ShiftAttachmentForm extends Fisdap_Form_Base
             if ($this->attachment) {
                 $savedAttachment = $this->shiftAttachmentsGateway->modify($this->shift->id, $this->attachment->id, $nickname, $notes, $categories);
                 $mode = "edit";
-            } elseif ($this->shift->id > 0) {
+
+            } else if ($this->shift->id > 0) {
                 // otherwise, we're creating a new shift attachment
 
                 // triple check to make sure we hit the limit while the modal was open
@@ -209,26 +210,26 @@ class SkillsTracker_Form_ShiftAttachmentForm extends Fisdap_Form_Base
                 $savedAttachment->preview = $attachmentService->getPreview($savedAttachment);
 
                 // get the updated mark-up for the shift attachment row
-                if ($data['tableType'] == 'signoff') {
+                if($data['tableType'] == 'signoff') {
                     $rows = $attachmentService->getCheckboxRows(array($savedAttachment), $this->shift->type);
                     $viewHelper = new \Fisdap_View_Helper_CheckmarkTableGeneric();
                     $html = $viewHelper->renderCheckmarkTableRows($rows);
                 } else {
-                    $html = $view->partial(
-                        'shiftAttachmentRow.phtml',
-                        array("attachment" => $savedAttachment,  "associatedEntityId" => $this->shift->id, "titleClass" => $this->shift->type)
-                    );
+                    $html = $view->partial('shiftAttachmentRow.phtml',
+                        array("attachment" => $savedAttachment,  "associatedEntityId" => $this->shift->id, "titleClass" => $this->shift->type));
                 }
 
                 return array("mode" => $mode, "html" => $html, "attachmentId" => $savedAttachment->id);
             }
 
             $errorData['errors']['attachmentModal'][] = $errorMessage;
-        } else {
+
+
+		} else {
             $errorData['errors'] = $this->getMessages();
         }
 
         // if we've gotten this far, something went wrong
         return $errorData;
-    }
+	}
 }

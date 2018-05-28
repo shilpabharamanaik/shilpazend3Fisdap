@@ -28,34 +28,34 @@
  * @license
  * @version    $id$
  */
-class WURFL_Handlers_VodafoneHandler extends WURFL_Handlers_Handler
-{
-    protected $prefix = "VODAFONE";
-    
-    public function __construct($wurflContext, $userAgentNormalizer = null)
-    {
-        parent::__construct($wurflContext, $userAgentNormalizer);
-    }
-    
-    /**
-     * Intercepting All User Agents Starting with "Vodafone"
-     *
-     * @param $string $userAgent
-     * @return boolean
-     */
-    public function canHandle($userAgent)
-    {
-        return WURFL_Handlers_Utils::checkIfStartsWith($userAgent, "Vodafone");
-    }
-    
-    /**
-     *
-     * @param string $userAgent
-     */
-    public function lookForMatchingUserAgent($userAgent)
-    {
-        $userAgents = array_keys($this->userAgentsWithDeviceID);
-        $tolerance = WURFL_Handlers_Utils::ordinalIndexOf($userAgent, "/", 3);
-        return WURFL_Handlers_Utils::risMatch(array_keys($this->userAgentsWithDeviceID), $userAgent, $tolerance);
-    }
+class WURFL_Handlers_VodafoneHandler extends WURFL_Handlers_Handler {
+	
+	protected $prefix = "VODAFONE";
+	
+	function __construct($wurflContext, $userAgentNormalizer = null) {
+		parent::__construct ( $wurflContext, $userAgentNormalizer );
+	}
+	
+	/**
+	 * Intercepting All User Agents Starting with "Vodafone"
+	 *
+	 * @param $string $userAgent
+	 * @return boolean
+	 */
+	function canHandle($userAgent) {
+		return WURFL_Handlers_Utils::checkIfStartsWith ( $userAgent, "Vodafone" );
+	}
+	
+	/** 
+	 * 
+	 * @param string $userAgent
+	 */
+	function lookForMatchingUserAgent($userAgent) {	
+		$userAgents = array_keys ( $this->userAgentsWithDeviceID );				
+		$tolerance = WURFL_Handlers_Utils::ordinalIndexOf($userAgent, "/", 3);		
+		return WURFL_Handlers_Utils::risMatch(array_keys($this->userAgentsWithDeviceID), $userAgent, $tolerance);
+	}
+
 }
+
+?>

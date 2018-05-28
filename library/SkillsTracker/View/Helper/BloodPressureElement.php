@@ -35,8 +35,8 @@ class SkillsTracker_View_Helper_BloodPressureElement extends Zend_View_Helper_Fo
         $systolic = isset($value['systolic']) ? $value['systolic'] : "";
         $diastolic = isset($value['diastolic']) ? $value['diastolic'] : "";
     
-        $this->html .= $this->view->formText($name . "[systolic]", $systolic, array('size' => $attribs['size'])) . "/";
-        $this->html .= $this->view->formText($name . "[diastolic]", $diastolic, array('size' => $attribs['size']));
+		$this->html .= $this->view->formText($name . "[systolic]", $systolic, array('size' => $attribs['size'])) . "/";
+		$this->html .= $this->view->formText($name . "[diastolic]", $diastolic, array('size' => $attribs['size']));
         
         return $this->html;
     }

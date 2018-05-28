@@ -2,6 +2,7 @@
 
 use Illuminate\Contracts\Foundation\Application;
 
+
 /**
  * Class BootProviders
  *

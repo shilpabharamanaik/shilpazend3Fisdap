@@ -6,6 +6,7 @@ use Fisdap\Entity\ReportConfiguration;
 use Fisdap_Reports_Report;
 use Illuminate\Contracts\Queue\Job;
 
+
 /**
  * Class RunReport
  *
@@ -71,7 +72,7 @@ class RunReport extends JobHandler
 
         // load the report configuration
         $this->reportConfig = \Fisdap\EntityUtils::getEntity('ReportConfiguration', $data['configurationId']);
-        if (! $this->reportConfig instanceof ReportConfiguration) {
+        if ( ! $this->reportConfig instanceof ReportConfiguration) {
             // can't run this job without the config loading properly, so report
             $this->log($job, 'Could not load report configuration entity', 'error');
 
@@ -136,7 +137,7 @@ class RunReport extends JobHandler
 
         // clean up
         unset($config, $report);
-        $this->job = $this->reportEntity = $this->reportConfig = null;
+        $this->job = $this->reportEntity = $this->reportConfig = NULL;
     }
 
 
@@ -148,8 +149,7 @@ class RunReport extends JobHandler
      *
      * @param Fisdap_Reports_Report $report The report, with data already calculated (ie $report->runReport() has been run)
      */
-    private function cacheReportParts(Fisdap_Reports_Report $report)
-    {
+    private function cacheReportParts(Fisdap_Reports_Report $report) {
         // save each data document within the $report->data
         $cachePrefix = 'reports_result_for_config_' . $this->reportConfig->id;
         $dataCacheIds = array();
@@ -162,19 +162,13 @@ class RunReport extends JobHandler
                     array(
                         'key' => $key,
                         'data' => $data,
-                    ),
-                    $cacheId,
-                    [],
-                    $this->resultsLifetime
-                );
+                    ), $cacheId, [], $this->resultsLifetime);
                 $i++;
             }
         } else {
             // huh? No tables
             $this->log(
-                $this->job,
-                'Found no data tables to cache. $report->data is: ' . print_r($report->data, true),
-                'debug'
+                $this->job, 'Found no data tables to cache. $report->data is: ' . print_r($report->data, TRUE), 'debug'
             );
         }
         // save header and footer
@@ -183,21 +177,13 @@ class RunReport extends JobHandler
             array(
                 'key' => 'header',
                 'data' => $report->header,
-            ),
-            $headerCacheId,
-            [],
-            $this->resultsLifetime
-        );
+            ), $headerCacheId, [], $this->resultsLifetime);
         $footerCacheId = $cachePrefix . '_footer';
         $this->cache->save(
             array(
                 'key' => 'footer',
                 'data' => $report->footer,
-            ),
-            $footerCacheId,
-            [],
-            $this->resultsLifetime
-        );
+            ), $footerCacheId, [], $this->resultsLifetime);
 
         // Save the master document
         $this->cache->save(
@@ -205,16 +191,11 @@ class RunReport extends JobHandler
                 'dataKeys' => $dataCacheIds,
                 'headerKey' => $headerCacheId,
                 'footerKey' => $footerCacheId,
-            ),
-            $cachePrefix,
-            [],
-            $this->resultsLifetime
-        );
+            ), $cachePrefix, [], $this->resultsLifetime);
     }
 
 
-    private function notifyReportFinished()
-    {
+    private function notifyReportFinished() {
         // the user: $this->reportConfig->user_context->user
         $path = '/reports/index/display/report/TestItemAnalysis/config/' . $this->reportConfig->id;
         $subject = 'Your ' . $this->reportEntity->name . ' report is ready';
@@ -239,4 +220,4 @@ class RunReport extends JobHandler
         $mail->addTo($this->reportConfig->user_context->user->email);
         $mail->send();
     }
-}
+} 

@@ -21,15 +21,14 @@ class Fisdap_Controller_Plugin_DebugBar extends Zend_Controller_Plugin_Abstract
     /**
      * @var StandardDebugBar
      */
-    protected $debugBar = null;
+    protected $debugBar = NULL;
 
     /**
      * @var boolean
      */
-    protected $debugBarEnabled = false;
+    protected $debugBarEnabled = FALSE;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->debugBarEnabled = (\Zend_Registry::isRegistered('debugBar'));
         if ($this->debugBarEnabled) {
             $this->debugBar = \Zend_Registry::get('debugBar');
@@ -39,8 +38,7 @@ class Fisdap_Controller_Plugin_DebugBar extends Zend_Controller_Plugin_Abstract
     /**
      * If we are in development and debug bar is enabled, then add it to the view
      */
-    public function preDispatch(Zend_Controller_Request_Abstract $request)
-    {
+    public function preDispatch(Zend_Controller_Request_Abstract $request) {
         // Don't do anything if the debugBar is not enabled.
         if (!$this->debugBarEnabled) {
             return;
@@ -89,8 +87,7 @@ class Fisdap_Controller_Plugin_DebugBar extends Zend_Controller_Plugin_Abstract
         $response->setBody(str_ireplace('</body>', $html, $response->getBody()));
     }
 
-    private function getRenderer()
-    {
+    private function getRenderer() {
         $renderer = $this->debugBar->getJavascriptRenderer();
 
         // Set baseUrl to tell Debug Bar where to get CSS/JS assets

@@ -22,17 +22,17 @@
 /**
  * @package Fisdap
  */
-class Zend_View_Helper_PageTitleHelper extends Zend_View_Helper_Abstract
+class Zend_View_Helper_PageTitleHelper extends Zend_View_Helper_Abstract 
 {
-    /**
-     * @var string
-     */
-    protected $_html= "";
-    
-    /**
-     * @var string
-     */
-    protected $_title = "";
+	/**
+	 * @var string
+	 */
+	protected $_html= "";
+	
+	/**
+	 * @var string
+	 */
+	protected $_title = "";
 
 
     /**
@@ -42,15 +42,14 @@ class Zend_View_Helper_PageTitleHelper extends Zend_View_Helper_Abstract
      *
      * @return string
      */
-    public function pageTitleHelper($title = "", $additionalContent = null, $breadCrumb = null)
-    {
-        if ($this->view->pageTitle) {
-            $this->_title = $this->view->pageTitle;
-        }
-        
-        if ($title) {
-            $this->_title = $title;
-        }
+    public function pageTitleHelper($title = "", $additionalContent = null, $breadCrumb = null) {
+		if ($this->view->pageTitle) {
+			$this->_title = $this->view->pageTitle;
+		}
+		
+		if ($title) {
+			$this->_title = $title;
+		}
 
         if ($this->_title) {
             $this->_html = "<h1>";
@@ -60,7 +59,7 @@ class Zend_View_Helper_PageTitleHelper extends Zend_View_Helper_Abstract
             $this->_html .= $this->_title . $additionalContent;
             $this->_html .= "</h1>";
 
-            return $this->_html;
+			return $this->_html;
         }
-    }
+    } 
 }

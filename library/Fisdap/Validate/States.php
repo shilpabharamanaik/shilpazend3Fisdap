@@ -10,8 +10,7 @@ class Fisdap_Validate_States extends Zend_Validate_Abstract
         self::REQUIRED => "Please choose a state/provence."
     );
 
-    public function __construct($countryElementName = "country")
-    {
+    public function __construct($countryElementName = "country") {
         $this->setCountryElementName($countryElementName);
     }
 

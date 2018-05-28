@@ -64,12 +64,12 @@ class Fisdap_View_Helper_MultistudentPicklist extends Zend_View_Helper_Abstract
      * );
      *
      * @param User $user the logged in user
-     * @param array|null $config a configuration for which students are selected
-     * @param array $options options outlining how the picker should render
-     * @param View|null $view the view
-     *
-     * @return string the html for the student picker
-     */
+	 * @param array|null $config a configuration for which students are selected
+	 * @param array $options options outlining how the picker should render
+	 * @param View|null $view the view
+	 *
+	 * @return string the html for the student picker
+	 */
     public function multistudentPicklist(User $user, $config = null, $options = array(), $view = null)
     {
         // set the view
@@ -105,15 +105,15 @@ class Fisdap_View_Helper_MultistudentPicklist extends Zend_View_Helper_Abstract
             "helpText" => $helpText,
             "user" => $user,
             "filters" => $filterForm,
-            "showTotal" => (isset($options['showTotal']) && $options['showTotal']) ? true : false,
-            "includeSubmit" => (isset($options['includeSubmit']) && $options['includeSubmit']) ? true : false,
-            "longLabel" => (isset($options['longLabel']) && $options['longLabel']) ? true : false,
-            "includeAnon" => (isset($options['includeAnon']) && $options['includeAnon']) ? true : false,
-            "studentVersion" => ($this->isStudentVersion($options, $user)) ? true : false,
+            "showTotal" => (isset($options['showTotal']) && $options['showTotal']) ? TRUE : FALSE,
+            "includeSubmit" => (isset($options['includeSubmit']) && $options['includeSubmit']) ? TRUE : FALSE,
+            "longLabel" => (isset($options['longLabel']) && $options['longLabel']) ? TRUE : FALSE,
+            "includeAnon" => (isset($options['includeAnon']) && $options['includeAnon']) ? TRUE : FALSE,
+            "studentVersion" => ($this->isStudentVersion($options, $user)) ? TRUE : FALSE,
         );
         if (!isset($mode) || $mode == 'multiple') {
             $html .= $this->view->partial('multistudent-picklist.phtml', 'default', $renderInfo);
-        } elseif ($mode == 'single') {
+        } else if ($mode == 'single') {
             $html .= $this->view->partial('multistudent-select.phtml', 'default', $renderInfo);
         }
 
@@ -131,7 +131,7 @@ class Fisdap_View_Helper_MultistudentPicklist extends Zend_View_Helper_Abstract
     private function getFilterDefaults($options)
     {
         $defaults = array();
-        $useBlankSlate = true;
+        $useBlankSlate = TRUE;
 
         // set the namespace and defaults, if we're set up to use session filters
         if (isset($options['useSessionFilters']) && $options['useSessionFilters']) {
@@ -141,7 +141,7 @@ class Fisdap_View_Helper_MultistudentPicklist extends Zend_View_Helper_Abstract
 
             // use the session variables instead of the blank slate defaults, if appropriate
             if ($session->activated) {
-                $useBlankSlate = false;
+                $useBlankSlate = FALSE;
                 $defaults['certificationLevels'] = $session->selectedCertifications;
                 $defaults['graduationStatus'] = $session->selectedStatus;
                 $defaults['graduationMonth'] = $session->selectedGradMonth;
@@ -150,7 +150,7 @@ class Fisdap_View_Helper_MultistudentPicklist extends Zend_View_Helper_Abstract
             }
         } else {
             // otherwise, we're not even tracking namespace
-            $defaults['namespace'] = null;
+            $defaults['namespace'] = NULL;
         }
 
         // set up the default state: all cert levels, active grad status, all grad dates, all sections
@@ -222,7 +222,7 @@ class Fisdap_View_Helper_MultistudentPicklist extends Zend_View_Helper_Abstract
      *
      * @return string the html for the student group filter
      */
-    private function getSectionElements($selectedSection = null)
+    private function getSectionElements($selectedSection = NULL)
     {
         $user = \Fisdap\Entity\User::getLoggedInUser();
         $classSectionRepository = \Fisdap\EntityUtils::getRepository('ClassSectionLegacy');
@@ -259,7 +259,7 @@ class Fisdap_View_Helper_MultistudentPicklist extends Zend_View_Helper_Abstract
         $filters .= $this->view->formLabel("", "", array());
 
         $filters .= $this->view->formSelect("graduationMonth", $defaultMonth, array(), $months);
-        $filters .= $this->view->formSelect("graduationYear", $defaultYear, array(), $years);
+        $filters .= $this->view->formSelect("graduationYear", $defaultYear,  array(), $years);
 
         return $filters;
     }
@@ -333,7 +333,7 @@ class Fisdap_View_Helper_MultistudentPicklist extends Zend_View_Helper_Abstract
      *
      * @return string | null the html for the help bubble
      */
-    private function getHelpText($helpText = null)
+    private function getHelpText($helpText = NULL)
     {
         // include help text if requested by helpText option
         if (isset($helpText)) {
@@ -375,6 +375,7 @@ class Fisdap_View_Helper_MultistudentPicklist extends Zend_View_Helper_Abstract
             $filterForm = "";
 
             return $rawStudents;
+
         } else {
             // or get the students for this program, filtered using the defaults given
             $rawStudents = \Fisdap\EntityUtils::getRepository('User')->getAllStudentsByProgram($user->getProgramId(), $filterDefaults);
@@ -407,12 +408,13 @@ class Fisdap_View_Helper_MultistudentPicklist extends Zend_View_Helper_Abstract
                 $students = explode(",", $config['multistudent_picklist_selected']);
                 if (count($students) > 1) {
                     $info = count($students) . ' students';
-                } elseif (count($students) == 1 && $students[0] > 0) {
+                } else if (count($students) == 1 && $students[0] > 0) {
                     $student = \Fisdap\EntityUtils::getEntity('StudentLegacy', $students[0]);
                     $info = $student->getFullname();
                 }
             }
-        } elseif ($options['mode'] == 'single') {
+
+        } else if ($options['mode'] == 'single') {
             $section = "Student";
             $student = \Fisdap\EntityUtils::getEntity('StudentLegacy', $config['student']);
             if ($student) {
@@ -491,7 +493,7 @@ class Fisdap_View_Helper_MultistudentPicklist extends Zend_View_Helper_Abstract
      */
     private function isStudentVersion($options, $user)
     {
-        return (isset($options['studentVersion']) && $options['studentVersion'] && $user->getCurrentRoleName() == 'student') ? true : false;
+        return (isset($options['studentVersion']) && $options['studentVersion'] && $user->getCurrentRoleName() == 'student') ? TRUE : FALSE;
     }
 
     /**
@@ -524,7 +526,7 @@ class Fisdap_View_Helper_MultistudentPicklist extends Zend_View_Helper_Abstract
     private function sortStudents($options, $rawStudents)
     {
         $selected = $selectable = array();
-        $longLabel = (isset($options['longLabel']) && $options['longLabel']) ? true : false;
+        $longLabel = (isset($options['longLabel']) && $options['longLabel']) ? TRUE : FALSE;
         foreach ($rawStudents as $student) {
             $label = $student['first_name'] . ' ' . $student['last_name'];
             if ($longLabel) {
@@ -609,10 +611,12 @@ class Fisdap_View_Helper_MultistudentPicklist extends Zend_View_Helper_Abstract
             $students = $this->sortStudents($options, $rawStudents);
 
             return array("anonChecked" => $anonChecked, "students" => $students);
+
         } else {
             // otherwise, don't load any students
             $students = array();
             return array("students" => $students);
         }
     }
+
 }

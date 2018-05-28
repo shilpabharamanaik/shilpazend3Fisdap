@@ -17,19 +17,19 @@
 /**
  * @package SkillsTracker
  */
-class SkillsTracker_View_Helper_PracticeSkillWidget extends Zend_View_Helper_Abstract
+class SkillsTracker_View_Helper_PracticeSkillWidget extends Zend_View_Helper_Abstract 
 {
-    /**
-     * @var string tde html to be rendered
-     */
-    protected $_html;
-    
-    public function practiceSkillWidget($shift, $partnerShifts)
-    {
-        $type = $shift->type;
-        $isInstructor = \Fisdap\Entity\User::getLoggedInUser()->isInstructor();
-        
-        $this->_html = "
+	/**
+	 * @var string tde html to be rendered
+	 */
+	protected $_html;
+	
+	public function practiceSkillWidget($shift, $partnerShifts)
+	{
+		$type = $shift->type;
+		$isInstructor = \Fisdap\Entity\User::getLoggedInUser()->isInstructor();
+		
+		$this->_html = "
             <div class='grid_12 island withTopMargin'>
                 <div id='lab-practice-table'>
                     <div class='table-header'>
@@ -37,32 +37,32 @@ class SkillsTracker_View_Helper_PracticeSkillWidget extends Zend_View_Helper_Abs
 				        <a href='#' class='$type' id='add-lab-partner" . ($isInstructor ? "-instructor" : null) . "' data-shiftid=" .  $shift->id . "' alt='+ Partner' title='add a partner'>Add Partner</a>
                     </div>
 			        <div id='lab-practice-container'>"
-                    . $this->view->practiceSkillTable($shift, true, false) .
-                    "</div>
+				    . $this->view->practiceSkillTable($shift, true, false) .
+			        "</div>
 
 			        <div class='clear'></div>
 		
 			        <div class='lab-partner-student-picker content-div'>
 				        <h2 class='page-sub-title'>Assign students for $type practice items</h2>" .
-                    ($isInstructor ? $this->view->multiStudentPicker(array(
-                        'targetFormId' => 'blah',
-                        'sourceLink' => '/skills-tracker/shifts/get-lab-partner-students',
-                        'additionalQueryArgs' => array("shiftId" => $shift->id),
-                        'canViewStudentNames' => true)) : null) .
-                        "<div class='extra-small blue-button'>
+				    ($isInstructor ? $this->view->multiStudentPicker(array(
+				    	'targetFormId' => 'blah',
+				    	'sourceLink' => '/skills-tracker/shifts/get-lab-partner-students',
+				    	'additionalQueryArgs' => array("shiftId" => $shift->id),
+				    	'canViewStudentNames' => true)) : null) .
+				        "<div class='extra-small blue-button'>
 				        	<a href='#' id='add-lab-partners-instructor'>Ok</a>
                         </div>
 			        </div>
                 </div>
 			</div>";
-            
-        foreach ($partnerShifts as $partnerShift) {
+			
+		foreach ($partnerShifts as $partnerShift) {
             // make sure we have a shift
             if ($partnerShift) {
                 $this->_html .= "<div class='grid_12 island'>" . $this->view->practiceSkillTable($partnerShift) . "</div>";
             }
-        }
-        
-        return $this->_html;
-    }
+		}
+		
+		return $this->_html;
+	}
 }

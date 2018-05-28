@@ -22,13 +22,13 @@
  */
 class Fisdap_Form_Element_CertificationLevelChosen extends Zend_Form_Element_Multiselect
 {
-    public function init()
+	public function init()
     {
-        $options = \Fisdap\Entity\CertificationLevel::getFormOptions(false, false, "description");
+        $options = \Fisdap\Entity\CertificationLevel::getFormOptions(false,false,"description");
         $this->setMultiOptions($options);
-        $this->setValue(array_keys($options));
-        $this->setAttrib("data-placeholder", "All certification levels...");
-        $this->getView()->jQuery()->addOnLoad("$('#{$this->getName()}').width(380).chosen();");
+		$this->setValue(array_keys($options));
+		$this->setAttrib("data-placeholder", "All certification levels...");
+		$this->getView()->jQuery()->addOnLoad("$('#{$this->getName()}').width(380).chosen();");
         //$this->setLabel("Certification level");
     }
 }

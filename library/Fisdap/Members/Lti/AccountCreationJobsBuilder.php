@@ -11,6 +11,7 @@ use Fisdap\Entity\Permission;
 use Fisdap\Entity\Product;
 use Fisdap\Entity\ProductPackage;
 
+
 /**
  * Class AccountCreationJobsBuilder
  *
@@ -109,24 +110,11 @@ final class AccountCreationJobsBuilder
         $isDemo = $roleName === 'instructor' ? true : false;
 
         $createUserJob = $this->buildCreateUserJob(
-            $firstName,
-            $lastName,
-            $username,
-            $email,
-            $ltiUserId,
-            $psgUserId,
-            $birthDate,
-            $genderId,
-            $ethnicityId,
-            $isDemo
+            $firstName, $lastName, $username, $email, $ltiUserId, $psgUserId, $birthDate, $genderId, $ethnicityId, $isDemo
         );
 
         $createUserJob->userContexts = [$this->buildCreateUserContextJob(
-            $programId,
-            $courseId,
-            $roleName,
-            $productsOrPackages,
-            $serialNumbers
+            $programId, $courseId, $roleName, $productsOrPackages, $serialNumbers
         )];
 
         return $createUserJob;
@@ -148,16 +136,8 @@ final class AccountCreationJobsBuilder
      * @return CreateUser
      */
     public function buildCreateUserJob(
-        $firstName,
-        $lastName,
-        $username,
-        $email,
-        $ltiUserId = null,
-        $psgUserId = null,
-        \DateTime $birthDate = null,
-        $genderId = null,
-        $ethnicityId = null,
-        $isDemo = false
+        $firstName, $lastName, $username, $email, $ltiUserId = null, $psgUserId = null, \DateTime $birthDate = null,
+        $genderId = null, $ethnicityId = null, $isDemo = false
     ) {
         return new CreateUser(
             $firstName,
@@ -192,12 +172,7 @@ final class AccountCreationJobsBuilder
      * @return CreateUserContext
      */
     public function buildCreateUserContextJob(
-        $programId,
-        $courseId,
-        $roleName,
-        array $productsOrPackages,
-        array $serialNumbers,
-        $userId = null
+        $programId, $courseId, $roleName, array $productsOrPackages, array $serialNumbers, $userId = null
     ) {
         $createUserContextJob = new CreateUserContext;
         $createUserContextJob->programId = $programId;

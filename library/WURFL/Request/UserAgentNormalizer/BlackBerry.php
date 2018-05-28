@@ -8,8 +8,8 @@
  * COPYING file distributed with this package.
  *
  * Copyright (c) 2008-2009, WURFL-Pro S.r.l., Rome, Italy
- *
- *
+ * 
+ *  
  *
  * @category   WURFL
  * @package    WURFL_Request_UserAgentNormalizer
@@ -19,22 +19,25 @@
  */
 
 
-class WURFL_Request_UserAgentNormalizer_BlackBerry implements WURFL_Request_UserAgentNormalizer_Interface
-{
+class WURFL_Request_UserAgentNormalizer_BlackBerry implements WURFL_Request_UserAgentNormalizer_Interface  {
 
-    /**
-     * This method returns the substring starting from "BlackBerry"
-     *
-     * @param string $userAgent
-     * @return string
-     */
-    public function normalize($userAgent)
-    {
-        $index = strpos($userAgent, "BlackBerry");
-        if ($index > 0) {
-            $userAgent = substr($userAgent, $index);
-        }
-        
-        return $userAgent;
-    }
+	/**
+	 * This method returns the substring starting from "BlackBerry"
+	 *
+	 * @param string $userAgent
+	 * @return string
+	 */
+	public function normalize($userAgent) {
+
+		$index = strpos($userAgent, "BlackBerry");
+		if ($index > 0) {
+			$userAgent = substr($userAgent, $index);
+		}
+		
+		return $userAgent;
+	}
+
 }
+
+
+?>

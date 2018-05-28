@@ -4,8 +4,7 @@ class MyFisdap_View_Helper_SectionHelper extends Zend_View_Helper_Abstract
 {
     public static $hasLoaded = false;
 
-    public function sectionHelper($sectionName, $sectionWidth)
-    {
+    public function sectionHelper($sectionName, $sectionWidth){
         $this->view->headScript()->appendFile("/js/my-fisdap/WidgetFunctions.js");
         $this->view->headLink()->appendStylesheet("/css/my-fisdap/widgetStyle.css");
 
@@ -45,9 +44,9 @@ class MyFisdap_View_Helper_SectionHelper extends Zend_View_Helper_Abstract
         return $html;
     }
 
-    private function loadStyles()
-    {
-        if (!self::$hasLoaded) {
+    private function loadStyles(){
+
+        if(!self::$hasLoaded){
             $publicWidgetCSSPath = realpath(APPLICATION_PATH . '/../public/css/my-fisdap/widget-styles');
 
             $scriptTag = "<style>";
@@ -56,7 +55,7 @@ class MyFisdap_View_Helper_SectionHelper extends Zend_View_Helper_Abstract
                 while (false !== ($entry = readdir($handle))) {
                     $explodedEntry = explode('.', $entry);
 
-                    if ($explodedEntry[1] == "css") {
+                    if($explodedEntry[1] == "css"){
                         $scriptTag .= "\n\n" . file_get_contents($publicWidgetCSSPath . '/' . $entry) . "\n\n";
                     }
                 }

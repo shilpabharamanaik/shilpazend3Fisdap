@@ -11,147 +11,139 @@
 /**
  * R List implementation
  */
-class Rserve_REXP_List extends Rserve_REXP_Vector implements ArrayAccess
-{
-    protected $names = array();
-    protected $is_named = false;
+class Rserve_REXP_List extends Rserve_REXP_Vector implements ArrayAccess {
 
-    public function setValues($values, $getNames = false)
-    {
-        $names = null;
-        if ($getNames) {
-            $names = array_keys($values);
-        }
-        $values = array_values($values);
-        parent::setValues($values);
-        if ($names) {
-            $this->setNames($names);
-        }
-    }
+	protected $names = array();
+	protected $is_named = FALSE;
 
-    /**
-     * Set names
-     * @param unknown_type $names
-     */
-    public function setNames($names)
-    {
-        if (count($this->values) != count($names)) {
-            throw new LengthException('Invalid names length');
-        }
-        $nn = array();
-        foreach ($names as $n) {
-            $nn[] = (string)$n;
-        }
-        $this->names = $nn;
-        $this->is_named = true;
-    }
+	public function setValues($values, $getNames = FALSE) {
+		$names = NULL;
+		if( $getNames ) {
+			$names = array_keys($values);
+		}
+		$values = array_values($values);
+		parent::setValues($values);
+		if($names) {
+			$this->setNames($names);
+		}
+	}
 
-    /**
-     * return array list of names
-     */
-    public function getNames()
-    {
-        return ($this->is_named) ? $this->names : array();
-    }
+	/**
+	 * Set names
+	 * @param unknown_type $names
+	 */
+	public function setNames($names) {
+		if(count($this->values) != count($names)) {
+			throw new LengthException('Invalid names length');
+		}
+		$nn = array();
+		foreach($names as $n) {
+			$nn[] = (string)$n;
+		}
+		$this->names = $nn;
+		$this->is_named = TRUE;
+	}
 
-    /**
-     * return TRUE if the list is named
-     */
-    public function isNamed()
-    {
-        return $this->is_named;
-    }
+	/**
+	 * return array list of names
+	 */
+	public function getNames() {
+		return ($this->is_named) ? $this->names : array();
+	}
 
-    /**
-     * Get the value for a given name entry, if list is not named, get the indexed element
-     * @param string $name
-     */
-    public function at($name)
-    {
-        if ($this->is_named) {
-            $i = array_search($name, $this->names);
-            if ($i < 0) {
-                return null;
-            }
-            return $this->values[$i];
-        }
-    }
+	/**
+	 * return TRUE if the list is named
+	 */
+	public function isNamed() {
+		return $this->is_named;
+	}
 
-    /**
-     * Return element at the index $i
-     * @param int $i
-     * @return mixed Rserve_REXP or native value
-     */
-    public function atIndex($i)
-    {
-        $i = (int)$i;
-        $n = count($this->values);
-        if (($i < 0) || ($i >= $n)) {
-            throw new OutOfBoundsException('Invalid index');
-        }
-        return $this->values[$i];
-    }
+	/**
+	 * Get the value for a given name entry, if list is not named, get the indexed element
+	 * @param string $name
+	 */
+	public function at($name) {
+		if( $this->is_named ) {
+			$i = array_search($name, $this->names);
+			if($i < 0) {
+				return NULL;
+			}
+			return $this->values[$i];
+		}
+	}
 
-    public function isList()
-    {
-        return true;
-    }
+	/**
+	 * Return element at the index $i
+	 * @param int $i
+	 * @return mixed Rserve_REXP or native value
+	 */
+	public function atIndex($i) {
+		$i = (int)$i;
+		$n = count($this->values);
+		if( ($i < 0) || ($i >= $n) ) {
+			throw new OutOfBoundsException('Invalid index');
+		}
+		return $this->values[$i];
+	}
 
-    public function offsetExists($offset)
-    {
-        if ($this->is_named) {
-            return array_search($offset, $this->names) >= 0;
-        } else {
-            return isset($this->names[$offset]);
-        }
-    }
+	public function isList() { 
+		return TRUE; 
+	}
 
-    public function offsetGet($offset)
-    {
-        return $this->at($offset);
-    }
+	public function offsetExists($offset) {
+		if($this->is_named) {
+			return array_search($offset, $this->names) >= 0;
+		} else {
+			return isset($this->names[$offset]);
+		}
+	}
 
-    public function offsetSet($offset, $value)
-    {
-        throw new Exception('assign not implemented');
-    }
+	public function offsetGet($offset) {
+		return $this->at($offset);
+	}
 
-    public function offsetUnset($offset)
-    {
-        throw new Exception('unset not implemented');
-    }
+	public function offsetSet($offset, $value) {
+		throw new Exception('assign not implemented');
+	}
 
-    public function getType()
-    {
-        if ($this->isNamed()) {
-            return Rserve_Parser::XT_LIST_TAG;
-        } else {
-            return Rserve_Parser::XT_LIST_NOTAG;
-        }
-    }
+	public function offsetUnset($offset) {
+		throw new Exception('unset not implemented');
+	}
 
-    public function toHTML()
-    {
-        $is_named = $this->is_named;
-        $s = '<div class="rexp xt_'.$this->getType().'">';
-        $n = $this->length();
-        $s .= '<ul class="list"><span class="typename">List of '.$n.'</span>';
-        for ($i = 0; $i < $n; ++$i) {
-            $s .= '<li>';
-            $idx = ($is_named) ? $this->names[$i] : $i;
-            $s .= '<div class="name">'.$idx.'</div>:<div class="value">';
-            $v = $this->values[$i];
-            if (is_object($v) and ($v instanceof Rserve_REXP)) {
-                $s .= $v->toHTML();
-            } else {
-                $s .= (string)$v;
-            }
-            $s .= '</div>';
-            $s .= '</li>';
-        }
-        $s .='</ul>';
-        $s .= $this->attrToHTML();
-        $s .= '</div>';
-        return $s;
-    }
+	public function getType() {
+		if( $this->isNamed() ) {
+			return Rserve_Parser::XT_LIST_TAG;
+		} else {
+			return Rserve_Parser::XT_LIST_NOTAG;
+		}
+	}
+
+	public function toHTML() {
+		$is_named = $this->is_named;
+		$s = '<div class="rexp xt_'.$this->getType().'">';
+		$n = $this->length();
+		$s .= '<ul class="list"><span class="typename">List of '.$n.'</span>';
+		for($i = 0; $i < $n; ++$i) {
+			$s .= '<li>';
+			$idx = ($is_named) ? $this->names[$i] : $i;
+			$s .= '<div class="name">'.$idx.'</div>:<div class="value">';
+			$v = $this->values[$i];
+			if(is_object($v) AND ($v instanceof Rserve_REXP)) {
+				$s .= $v->toHTML();
+			} else {
+				$s .= (string)$v;
+			}
+			$s .= '</div>';
+			$s .= '</li>';
+		}
+		$s .='</ul>';
+		$s .= $this->attrToHTML();
+		$s .= '</div>';
+		return $s;
+	}
+
+
 }
+
+
+?>

@@ -17,9 +17,11 @@
  * @license
  * @version    $id$
  */
-interface WURFL_Logger_Interface
-{
-    public function info($message);
-    public function log($message);
-    public function debug($message);
+interface WURFL_Logger_Interface {
+	
+	function info($message);
+	function log($message);
+	function debug($message);
 }
+
+?>

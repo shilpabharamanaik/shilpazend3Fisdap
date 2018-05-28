@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -21,19 +21,19 @@
  */
 class Fisdap_Form_Element_SaveButton extends Zend_Form_Element_Submit
 {
-    /**
-     * Set the label and html attributes for a save button
-     */
+	/**
+	 * Set the label and html attributes for a save button
+	 */
     public function init()
-    {
-        if (!$this->_view) {
-            $this->_view = $this->getView();
-        }
+	{
+		if (!$this->_view) {
+			$this->_view = $this->getView();
+		}
 
-        $this->_view->jQuery()->addOnLoad("$('input[type=submit].green-buttons').button().css('padding', '3px 10px').parent().addClass('green-buttons');");
+		$this->_view->jQuery()->addOnLoad("$('input[type=submit].green-buttons').button().css('padding', '3px 10px').parent().addClass('green-buttons');");
 
         //Set Element properties
         $this->setLabel('Save');
-        $this->setAttrib('class', 'green-buttons');
+		$this->setAttrib('class', 'green-buttons');
     }
 }

@@ -3,15 +3,15 @@
 class Mobile_Form_Login extends Fisdap_Form_Base
 {
     public static $checkboxDecorators = array(
-        'ViewHelper',
-        array('Label', array('placement' => 'APPEND')),
+		'ViewHelper',
+		array('Label', array('placement' => 'APPEND')),
         array(array('prompt' => 'HtmlTag'), array('tag'=>'div', 'class'=>'form-prompt'))
-    );
+	);    
     
     public function init()
     {
-        parent::init();
-        
+		parent::init();
+		
         $this->addElement('text', 'username', array(
             'label' => "Username:",
             'decorators' => parent::$elementDecorators,

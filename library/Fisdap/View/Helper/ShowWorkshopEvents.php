@@ -1,18 +1,21 @@
 <?php
 
-class Fisdap_View_Helper_ShowWorkshopEvents extends Zend_View_Helper_Abstract
+class Fisdap_View_Helper_ShowWorkshopEvents extends Zend_View_Helper_Abstract 
 {
+
     protected $_html;
     
     public function showWorkshopEvents()
     {
-        $this->view->headScript()->appendFile("/js/events/delete.js");
-        
+		
+	$this->view->headScript()->appendFile("/js/events/delete.js");
+		
         //Grab all existing workshops
         $workshops = \Fisdap\EntityUtils::getRepository("Workshop")->findAll();
         
         $workshopEventsPartials = array();
-        foreach ($workshops as $item) {
+        foreach($workshops as $item)
+        {
             $workshopEventsPartials[] = array('item' => $item);
         }
         
@@ -22,14 +25,17 @@ class Fisdap_View_Helper_ShowWorkshopEvents extends Zend_View_Helper_Abstract
                         <th>Edit</th><th>Delete</th></tr></thead>";
         $this->_html .= "<tbody>";
         if (count($workshopEventsPartials) > 0) {
-            $this->_html .= $this->view->partialLoop("workshopEventRow.phtml", $workshopEventsPartials);
-        } else {
-            $this->_html .= "<tr><td colspan='6'>Use links to create, format, and delete workshop events.</th></tr>";
-        }
-        
+	        $this->_html .= $this->view->partialLoop("workshopEventRow.phtml", $workshopEventsPartials);			
+		} else {
+			$this->_html .= "<tr><td colspan='6'>Use links to create, format, and delete workshop events.</th></tr>";
+		}
+		
         $this->_html .= "</tbody>";
         $this->_html .= "</table>";
         $this->_html .= "<p><a href='/events/update/'>Create New Workshop</a></p>";
         return $this->_html;
     }
+
+
+
 }

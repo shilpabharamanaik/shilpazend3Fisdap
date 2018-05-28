@@ -29,22 +29,21 @@
  */
 class Zend_View_Helper_SignatureHelper extends Zend_View_Helper_Abstract
 {
-    public function signatureHelper($signatureID = 0, $width = 300, $height = 55, $method = 'js')
-    {
-        if ($method == 'js') {
-            // Generate something unique so that we can show more than one signature
-            // per page.
-            $hash = str_replace(".", "", microtime(true));
+	public function signatureHelper($signatureID = 0, $width = 300, $height = 55, $method = 'js') {
+		if ($method == 'js') {
+			// Generate something unique so that we can show more than one signature
+			// per page.
+			$hash = str_replace(".", "", microtime(true));
 
             $this->view->headScript()->appendFile("/js/signaturePad/assets/json2.min.js");
-            $this->view->headScript()->appendFile("/js/signaturePad/assets/jquery.signaturepad.js");
-            $this->view->headLink()->appendStylesheet("/js/signaturePad/assets/jquery.signaturepad.css");
-            $this->view->headScript()->appendFile("/js/signaturePad/assets/flashcanvas.js", 'text/javascript', array('conditional' => 'lt IE 9'));
-            
-            $signature = \Fisdap\EntityUtils::getEntity('Signature', $signatureID);
+			$this->view->headScript()->appendFile("/js/signaturePad/assets/jquery.signaturepad.js");
+			$this->view->headLink()->appendStylesheet("/js/signaturePad/assets/jquery.signaturepad.css");
+			$this->view->headScript()->appendFile("/js/signaturePad/assets/flashcanvas.js", 'text/javascript', array('conditional' => 'lt IE 9'));
+			
+			$signature = \Fisdap\EntityUtils::getEntity('Signature', $signatureID);
 
             $width = $width + 2;
-            $html = <<<HTML
+			$html = <<<HTML
 				<div class="$hash-sigPad" style="width: {$width}px">
 					<div class="sig sigWrapper">
 						<canvas id="$hash-canvas" class="pad" width="$width" height="$height"></canvas>
@@ -56,15 +55,15 @@ class Zend_View_Helper_SignatureHelper extends Zend_View_Helper_Abstract
 					});
 				</script>
 HTML;
-        } elseif ($method == 'php') {
-            // Generate an image element where SRC points to a programatically-derived signature image
-            // useful for PDF generation because wkhtmltopdf doesn't handle the canvas elements or inline IMG SRC='data:..' elements.
-            $signature = \Fisdap\EntityUtils::getEntity('Signature', $signatureID);
-            $html = '<div style="width: ' . ($width + 2) . 'px"><div class="sig-image">';
-            $html .= '<img src="/pdf/sig-image/signatureId/' . $signature->id . '/width/' . $width . '/height/' . $height . '" />';
-            $html .= '</div></div>';
-        }
+		} else if ($method == 'php') {
+		    // Generate an image element where SRC points to a programatically-derived signature image
+			// useful for PDF generation because wkhtmltopdf doesn't handle the canvas elements or inline IMG SRC='data:..' elements.
+			$signature = \Fisdap\EntityUtils::getEntity('Signature', $signatureID);			
+			$html = '<div style="width: ' . ($width + 2) . 'px"><div class="sig-image">';
+			$html .= '<img src="/pdf/sig-image/signatureId/' . $signature->id . '/width/' . $width . '/height/' . $height . '" />';
+			$html .= '</div></div>';
+		}
 
-        return $html;
-    }
+		return $html;
+    } 
 }

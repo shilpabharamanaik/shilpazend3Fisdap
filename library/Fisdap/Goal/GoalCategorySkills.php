@@ -8,35 +8,35 @@ namespace Fisdap\Goal;
  */
 class GoalCategorySkills extends GoalCategoryBase
 {
-    // links to goalDefs
-    const ET_Intubation = 54;
-    const Live_Intubation = 75;
-    const Meds_ALL = 2;
-    const IV_PROCEDURE = 3;
-    const VENTILATIONS = 6;
-    const AIRWAY_SUCCESS = 92;
+	// links to goalDefs
+	const ET_Intubation = 54;
+	const Live_Intubation = 75;
+	const Meds_ALL = 2;
+	const IV_PROCEDURE = 3;
+	const VENTILATIONS = 6;
+	const AIRWAY_SUCCESS = 92;
     const ECG_INTERPRET = 118;
     const IO_PROCEDURE = 119;
     const MAN_DEFIB = 120;
     const CHEST_COMPRESSION = 121;
 
-    
-    public $skillsIds;
-    
-    public function __construct($studentId, $goalSet, &$data, $dataReqs, $studentName, $subCategory = null)
-    {
-        $this->skillsIds = array(
-            self::ET_Intubation,
-            self::Live_Intubation,
-        );
-        parent::__construct($studentId, $goalSet, $data, $dataReqs, $studentName, $subCategory = null);
-    }
-    
-    protected function forEachShift(&$shift)
-    {
-        $ivs = \Fisdap\Entity\Iv::getAllByShiftSQL($shift['Shift_id']);
-        $meds = \Fisdap\Entity\Med::getAllByShiftSQL($shift['Shift_id']);
-        $airways = \Fisdap\Entity\Airway::getAllByShiftSQL($shift['Shift_id']);
+	
+	public $skillsIds;
+	
+	public function __construct($studentId, $goalSet, &$data, $dataReqs, $studentName, $subCategory = NULL)
+	{
+		$this->skillsIds = array(
+			self::ET_Intubation,
+			self::Live_Intubation,
+		);
+		parent::__construct($studentId, $goalSet, $data, $dataReqs, $studentName, $subCategory = NULL);
+	}
+	
+	protected function forEachShift(&$shift)
+	{
+		$ivs = \Fisdap\Entity\Iv::getAllByShiftSQL($shift['Shift_id']);
+		$meds = \Fisdap\Entity\Med::getAllByShiftSQL($shift['Shift_id']);
+		$airways = \Fisdap\Entity\Airway::getAllByShiftSQL($shift['Shift_id']);
         $cardiac_interventions = \Fisdap\Entity\CardiacIntervention::getAllByShiftSQL($shift['Shift_id']);
 
         if ($ivs) {
@@ -96,23 +96,26 @@ class GoalCategorySkills extends GoalCategoryBase
 
         if ($cardiac_interventions) {
             foreach ($cardiac_interventions as $cardiac) {
-                $patient = \Fisdap\Entity\Patient::getExamInterviewTeamLeadArray($cardiac['patient_id']);
-                $this->add(self::ECG_INTERPRET, $cardiac['rhythm_performed_by'], $patient);
 
-                //if it had a manual defibrillation associated with the cardiac entry
-                if ($cardiac['procedure_id'] == 2 && $cardiac['procedure_method_id'] == 2) {
-                    $this->add(self::MAN_DEFIB, $cardiac['performed_by'], $patient);
-                }
+                    $patient = \Fisdap\Entity\Patient::getExamInterviewTeamLeadArray($cardiac['patient_id']);
+                    $this->add(self::ECG_INTERPRET, $cardiac['rhythm_performed_by'], $patient);
 
-                //if there were chest compressions of any kind
-                if ($cardiac['procedure_id'] == 1) {
-                    $this->add(self::CHEST_COMPRESSION, $cardiac['performed_by'], $patient);
-                }
+                    //if it had a manual defibrillation associated with the cardiac entry
+                    if ($cardiac['procedure_id'] == 2 && $cardiac['procedure_method_id'] == 2) {
+                        $this->add(self::MAN_DEFIB, $cardiac['performed_by'], $patient);
+                    }
+
+                    //if there were chest compressions of any kind
+                    if ($cardiac['procedure_id'] == 1) {
+                        $this->add(self::CHEST_COMPRESSION, $cardiac['performed_by'], $patient);
+                    }
             }
+
         }
 
 
-        return true;
-        //var_dump($goal->def);		var_dump($this->categoryGoals); exit;
-    }
+		return true;
+		//var_dump($goal->def);		var_dump($this->categoryGoals); exit;
+	}
+
 }

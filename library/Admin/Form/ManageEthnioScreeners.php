@@ -37,7 +37,7 @@ class Admin_Form_ManageEthnioScreeners extends Fisdap_Form_Base
         $this->addCssFile("/css/jquery.sliderCheckbox.css");
 
         //Loop over the screeners adding a text field and checkbox for each one
-        foreach ($this->screeners as $screener) {
+        foreach($this->screeners as $screener) {
             $slider = new Fisdap_Form_Element_jQueryCheckboxSlider("screenerActive_" . $screener->id);
             $slider->setChecked($screener->active)
                     ->setDecorators(array('ViewHelper'));
@@ -76,7 +76,7 @@ class Admin_Form_ManageEthnioScreeners extends Fisdap_Form_Base
         if ($this->isValid($post)) {
             $values = $this->getValues();
 
-            foreach ($this->screeners as $screener) {
+            foreach($this->screeners as $screener) {
                 $screener->active = $values['screenerActive_' . $screener->id];
                 $screener->screener_id = $values['screenerId_' . $screener->id];
             }
@@ -87,4 +87,5 @@ class Admin_Form_ManageEthnioScreeners extends Fisdap_Form_Base
         }
         return false;
     }
+
 }

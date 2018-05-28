@@ -95,7 +95,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
 
         $this->setVars($type, $user);
 
-        if (!$endDate && !$returnData) {
+        if(!$endDate && !$returnData){
             $endDate = $this->getEndDate($date, $type);
         }
 
@@ -111,11 +111,11 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
 
         // if we aren't viewing a list, we can clean up our array a bit (no need to key by year/month)
 
-        if ($type != "list") {
+        if($type != "list"){
             $simpleEvents = $events[$date->format("Y")][$date->format("n")];
 
-            for ($i = 1; $i <= 31; $i++) {
-                if ($events[$endDate->format("Y")][$endDate->format("n")][$i]) {
+            for($i = 1; $i <= 31; $i++){
+                if($events[$endDate->format("Y")][$endDate->format("n")][$i]){
                     $simpleEvents[$i] = $events[$endDate->format("Y")][$endDate->format("n")][$i];
                 }
             }
@@ -133,7 +133,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         $this->_html .= $this->getDateAttrib("year", "Y", $date);
         $this->_html .= $this->getEndDateAttribs($endDate) . ">";
 
-        if ($type == "month" || $type == "week") {
+        if($type == "month" || $type == "week"){
             $this->_html .= '<div class="clear"></div><div class="cal-wrapper-' . $type . '">';
             $this->_html .= $this->drawHeadings();
             $this->_html .= '<div class="clear"></div><div class="orange-cal-wrapper">';
@@ -157,7 +157,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         //Check to see if the student's calendar contains shifts they can't sign up for due to shift limits
         $limitHit = array();
         if ($this->student) {
-            foreach ($this->current_user_data['shift_limits'] as $shiftType => $limit) {
+            foreach($this->current_user_data['shift_limits'] as $shiftType => $limit) {
                 if ($limit && in_array($shiftType, $siteTypes)) {
                     $limitHit[] = $shiftType;
                 }
@@ -183,7 +183,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         $this->setVars($type);
         $date = $this->getStartDate($date, $type);
 
-        if (!$endDate) {
+        if(!$endDate){
             $endDate = $this->getEndDate($date, $type);
         }
 
@@ -193,11 +193,11 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
 
         // if we aren't viewing a list, we can clean up our array a bit (no need to key by year/month)
 
-        if ($type != "list") {
+        if($type != "list"){
             $simpleEvents = $events[$date->format("Y")][$date->format("n")];
 
-            for ($i = 1; $i <= 31; $i++) {
-                if ($events[$endDate->format("Y")][$endDate->format("n")][$i]) {
+            for($i = 1; $i <= 31; $i++){
+                if($events[$endDate->format("Y")][$endDate->format("n")][$i]){
                     $simpleEvents[$i] = $events[$endDate->format("Y")][$endDate->format("n")][$i];
                 }
             }
@@ -216,7 +216,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         $output .= $this->getDateAttrib("year", "Y", $date);
         $output .= $this->getEndDateAttribs($endDate) . ">";
 
-        if ($type == "month" || $type == "month-details" || $type == "week") {
+        if($type == "month" || $type == "month-details" || $type == "week"){
             $output .= '<div class="clear"></div><div class="cal-wrapper-' . $type . '">';
             $output .= $this->drawHeadings();
             $output .= '<div class="clear"></div><div class="orange-cal-wrapper">';
@@ -237,7 +237,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         $this->programId = $this->user->getProgramId();
         $certs = \Fisdap\EntityUtils::getEntity('CertificationLevel')->getAll($this->user->getProgram()->profession->id);
         $this->profession_cert_levels = array();
-        foreach ($certs as $cert) {
+        foreach($certs as $cert){
             $this->profession_cert_levels[] = array('type' => 2, 'description' => $cert->description, 'value' => $cert->id);
         }
     }
@@ -255,17 +255,21 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
     {
         $output = "";
 
-        if ($type == "month") {
+        if($type == "month"){
             $monthViewHelper = new Scheduler_View_Helper_MonthView();
             $output .= $monthViewHelper->monthView($startDate->format("m"), $startDate->format("Y"), $events, $locations, $this->view);
             $output .= '</div></div>';
-        } elseif ($type == "week") {
+        }
+        else if($type == "week"){
             $weekViewHelper = new Scheduler_View_Helper_WeekView();
             $output .= $weekViewHelper->weekView($startDate, $events, $locations, $this->view);
-        } elseif ($type == "day") {
+        }
+        else if($type == "day"){
             $dayViewHelper = new Scheduler_View_Helper_DayView();
             $output .= $dayViewHelper->dayView($startDate, $events, $this->view) . "</div>";
-        } elseif ($type == "month-details") {
+        }
+        else if($type == "month-details"){
+
             $monthDetailsViewHelper = new Scheduler_View_Helper_MonthDetailsView();
             $month_details_view = $monthDetailsViewHelper->monthDetailsView($startDate->format("m"), $startDate->format("Y"), $events, $this->view, $filter_set);
 
@@ -274,7 +278,8 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
             $output .= 	'<div id="month_details_day_names" class="no-pdf">' . $this->drawHeadings() . '<div class="clear"></div></div>';
             $output .= '<div class="orange-cal-wrapper">';
             $output .= $month_details_view['calendar'];
-        } else {
+        }
+        else {
             // got to be list!
             $listViewHelper = new Scheduler_View_Helper_ListView();
             $output .= $listViewHelper->listView($startDate, $endDate, $events, $this->view);
@@ -312,12 +317,14 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         $today_time = $today->format("U");
         $break = ($this->view_type == "day") ? "<br />" : "";
 
-        if ($start_date->format("U") > $today_time) {
+        if($start_date->format("U") > $today_time){
             $when = "Sign up opens on " . $break . $start_date->format("M j, Y") . ".";
-        } else {
-            if ($end_date->format("U") < $today_time) {
+        }
+        else {
+            if($end_date->format("U") < $today_time){
                 $when = "Sign up closed on " . $break . $end_date->format("M j, Y") . ".";
-            } else {
+            }
+            else {
                 //Ignore the time, and just compare dates
                 $when = ($end_date->format("Y-m-d") == $today->format("Y-m-d")) ? "Sign up by today." : "Sign up by " . $break . $end_date->format("M j, Y") . ".";
             }
@@ -332,7 +339,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         $permCount = count($perms);
         $permPos = 1;
 
-        foreach ($perms as $perm) {
+        foreach($perms as $perm){
             $img     = ($perm['can']) ? "approved" : "denied";
             $output .= '<img src="/images/icons/' . $img . '.png">';
             $output .= ucfirst($perm['name']);
@@ -346,8 +353,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         return $output;
     }
 
-    public function getRequestCode($code_type, $shared_preferences, $event_codes)
-    {
+    public function getRequestCode($code_type, $shared_preferences, $event_codes) {
         // see if a program-specific code exists for this event
         if ($shared_preferences[$code_type]) {
             return $shared_preferences[$code_type];
@@ -357,8 +363,8 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         return $event_codes[$code_type];
     }
 
-    public function getRequestPerms($requestTypes, $shared_preferences, $event_codes)
-    {
+    public function getRequestPerms($requestTypes, $shared_preferences, $event_codes) {
+
         $can = $this->getRequestCode('student_can_switch', $shared_preferences, $event_codes);
         $permission = $this->getRequestCode('switch_needs_permission', $shared_preferences, $event_codes);
 
@@ -369,9 +375,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
             $bit = $requestType['bit_value'];
             $needs_permission = (boolean)($permission & $bit) ? 1 : 0;
             $can_request = (boolean)($can & $bit) ? 1 : 0;
-            if ($can_request) {
-                $at_least_one_can = true;
-            }
+            if($can_request){$at_least_one_can = true;}
             $results[$requestType['id']] = array('name' => $requestType['name'], 'can' => $can_request, 'needs_permission' => $needs_permission);
         }
 
@@ -380,14 +384,15 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
 
     public function canUserSeeWindow($status, $who, $userCertLevel, $userGroups, $active_window)
     {
-        if ($this->student) {
+        if($this->student){
             $user_can_see = false;
-            if ($status == "open" && $active_window) {
-                if ($this->isCertInWindow($who['certs'], array($userCertLevel)) && $this->isGroupInWindow($who['groups'], $userGroups)) {
+            if($status == "open" && $active_window){
+                if($this->isCertInWindow($who['certs'], array($userCertLevel)) && $this->isGroupInWindow($who['groups'], $userGroups)){
                     $user_can_see = true;
                 }
             }
-        } else {
+        }
+        else {
             $user_can_see = true;
         }
 
@@ -401,15 +406,16 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
     public function isCertInWindow($windowCerts, $certsToFind)
     {
         $hasCert = false;
-        if ($windowCerts) {
-            foreach ($windowCerts as $certId) {
-                if ($certsToFind) {
-                    if (in_array($certId, $certsToFind)) {
+        if($windowCerts){
+            foreach($windowCerts as $certId){
+                if($certsToFind){
+                    if(in_array($certId, $certsToFind)){
                         $hasCert = true;
                     }
                 }
             }
-        } else {
+        }
+        else {
             $hasCert = true;
         }
 
@@ -424,14 +430,14 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
     {
         $hasGroup = false;
 
-        if (count($windowGroups) == 0) {
+        if(count($windowGroups) == 0){
             $hasGroup = true;
         }
 
-        if ($windowGroups) {
-            foreach ($windowGroups as $groupId) {
-                if ($groupsToFind) {
-                    if (in_array($groupId, $groupsToFind)) {
+        if($windowGroups){
+            foreach($windowGroups as $groupId){
+                if($groupsToFind){
+                    if(in_array($groupId, $groupsToFind)){
                         $hasGroup = true;
                     }
                 }
@@ -446,11 +452,8 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         $today = new \DateTime();
         $today = $today->format("U");
 
-        if ($start_date->format("U") > $today) {
-            $stat = "not-open-yet";
-        } else {
-            $stat = ($end_date->format("U") < $today) ? "closed" : "open";
-        }
+        if($start_date->format("U") > $today){ $stat = "not-open-yet"; }
+        else { $stat = ($end_date->format("U") < $today) ? "closed" : "open";}
         return $stat;
     }
 
@@ -462,20 +465,21 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         $group_ids = array();
 
         //If we don't have any constraints, default to the profession cert levels
-        if (!$constraints) {
-            foreach ($this->profession_cert_levels as $cert) {
+        if(!$constraints){
+            foreach($this->profession_cert_levels as $cert) {
                 $cert_levels[] = $cert['description'] . "s";
                 $cert_ids[] = $cert['value'];
             }
         } else {
-            foreach ($constraints as $constraint) {
+            foreach($constraints as $constraint){
                 $constraint_type_id = $constraint['constraint_type']['id'];
 
-                foreach ($constraint['values'] as $constraint_value) {
-                    if ($constraint_type_id == "2") {
+                foreach($constraint['values'] as $constraint_value) {
+                    if($constraint_type_id == "2"){
                         $cert_levels[] = $constraint_value['description'] . "s";
                         $cert_ids[] = $constraint_value['value'];
-                    } else {
+                    }
+                    else {
                         $student_groups[] = $constraint_value['description'];
                         $group_ids[] = $constraint_value['value'];
                     }
@@ -503,7 +507,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         if ($collection) {
             $description = $phrase;
             $count = 0;
-            foreach ($collection as $item) {
+            foreach($collection as $item){
                 $description .= ($count != 0) ? " or " . $item : $item;
                 $count++;
             }
@@ -520,8 +524,8 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
     {
         $output = "<div class='event-totals-wrapper'>";
 
-        if ($totals) {
-            foreach ($totals as $type => $counts) {
+        if($totals){
+            foreach($totals as $type => $counts){
                 $opacityClass = ($counts['total'] == 0) ? "has-opacity" : "";
                 $output .= "<div class='event-total " . $type . " " . $opacityClass . "'>";
                 $output .= 		"<img src='/images/icons/" . $type . "SiteIconColor.png'>";
@@ -546,20 +550,24 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
     public function getLocations($locations, $type)
     {
         $prioritizedLocations = $locations;
-        if ($type == "month" || $type == "week") {
+        if($type == "month" || $type == "week"){
+
             $prioritizedLocations = array();
             $locCount = count($locations);
 
-            if ($locCount > 12) {
-                if ($type == "week") {
+            if($locCount > 12){
+                if($type == "week"){
                     $limit = ($locCount > 28) ? 28 : $locCount;
                     $prioritizedLocations  = $this->prioritize($limit, $locations);
-                } else {
+                }
+                else {
                     $prioritizedLocations  = $this->prioritize(12, $locations);
                 }
-            } else {
+            }
+            else {
                 $prioritizedLocations  = $this->prioritize($locCount, $locations);
             }
+
         }
 
         return $prioritizedLocations;
@@ -576,14 +584,14 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         $prioritizedLocations = array();
 
         $counts = array();
-        foreach ($locations as $baseId => $loc) {
+        foreach($locations as $baseId => $loc){
             $counts[$baseId] = $loc['count'];
         }
 
         arsort($counts);
         $priority = array_slice($counts, 0, $max, true);
 
-        foreach ($priority as $baseId => $count) {
+        foreach($priority as $baseId => $count){
             $prioritizedLocations[$baseId] = $locations[$baseId];
         }
 
@@ -598,10 +606,11 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
      */
     public function getStartDate(\DateTime $date, $type)
     {
-        if ($type == "week") {
-            $weekStartDate = date('Y-m-d', strtotime('sunday last week', strtotime($date->format("m/j/Y"))));
+        if($type == "week"){
+            $weekStartDate = date('Y-m-d',strtotime('sunday last week', strtotime($date->format("m/j/Y"))));
             $date = new DateTime($weekStartDate);
-        } elseif ($type == "month" || $type == "month-details") {
+        }
+        else if($type == "month" || $type == "month-details"){
             $date = new DateTime($date->format("Y") . "-" . $date->format("m") . "-01");
         }
 
@@ -617,7 +626,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
      */
     public function getEndDate(\DateTime $date, $type)
     {
-        if ($type == "list") {
+        if($type == "list"){
             // they haven't specified an end date - we'll default to two weeks
             $startDate = $date;
             if ($date) {
@@ -626,10 +635,11 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
             } else {
                 $endDate = null;
             }
-        } else {
+        }
+        else {
 
             // just for this function
-            if ($type == "month-details") {
+            if($type == "month-details"){
                 $type = "month";
             }
 
@@ -654,14 +664,14 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
     {
         // is this a quick-add shift?
         $quick_add = (substr($event_id, 0, 8) == 'shift_id') ? true : false;
-        $shift_add = '';
-        $shifts = \Fisdap\EntityUtils::getEntity('ShiftLegacy', $event_id);
-        if ($shifts) {
-            $shift_add = $shifts->site->getMapAddress($shifts);
-        }
-    
-        $output = '<h3 class="event-title ' . $event['event_type'] . '">';
-        
+		$shift_add = '';		
+		$shifts = \Fisdap\EntityUtils::getEntity('ShiftLegacy', $event_id);
+		if($shifts){							
+			$shift_add = $shifts->site->getMapAddress($shifts);							
+		}
+	
+		$output = '<h3 class="event-title ' . $event['event_type'] . '">';
+		
         $durationPrint = $this->getDurationPrint($event['duration']);
 
         $includeSpecialIcons = ($this->view_type == "list" || $this->view_type == "day") ? true : false;
@@ -677,7 +687,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         $output .= ($includeSpecialIcons) ? $special_icons_html : "";
         $output .= ($includeSpecialIcons) ? "<div class='clear'></div>" : "";
         $output .= "</h3>";
-        $output .= "<div class='details_map_address' style='display:none;'>".$shift_add."</div>";
+		$output .= "<div class='details_map_address' style='display:none;'>".$shift_add."</div>";
 
         return $output;
     }
@@ -686,10 +696,11 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
     {
         $output = "";
 
-        if (is_numeric($duration) && floor($duration) != $duration) {
+        if(is_numeric( $duration ) && floor( $duration ) != $duration){
             // it has a decimal
             $durationPrint = $duration;
-        } else {
+        }
+        else {
             $durationPrint = intval($duration);
         }
 
@@ -724,11 +735,13 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
     {
         $output  = ($this->view_type != "list") ? '<div class="special-icon">' : '';
 
-        if ($my_shift && $quick_add && $student_created) {
+        if($my_shift && $quick_add && $student_created){
             $output .= "<img class='student-created-icon' src='/images/icons/my-student-created-shift.png' data-tooltip='My quick add shift'>";
-        } elseif ($my_shift && $quick_add && $instructor_created) {
+        }
+        else if ($my_shift && $quick_add && $instructor_created){
             $output .= "<img class='student-created-icon' src='/images/icons/my-instructor-created-shift.png' data-tooltip='My quick add shift created by an instructor'>";
-        } else {
+        }
+        else {
             $output .= ($my_shift) ? "<img class='my-shift-icon' src='/images/icons/my-shift.png' data-tooltip='My shift'>" : "";
             $output .= ($quick_add && $student_created) ? "<img class='student-created-icon' src='/images/icons/student-created-shift.png' data-tooltip='Quick add shift created by a student'>" : "";
             $output .= ($quick_add && $instructor_created) ? "<img class='student-created-icon' src='/images/icons/instructor-quick-add-shift.png' data-tooltip='Quick add shift created by an instructor'>" : "";
@@ -756,7 +769,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
     public function instructorOnlyList($instructors = array(), $month_details_view)
     {
         $output = "";
-        if ($instructors) {
+        if($instructors){
             $additional_inst_class = ($month_details_view) ? "month_details_instructors" : "";
             $instructor_title = ($month_details_view) ? "Inst" : "Instructor";
             $output .= '<p class="preceptor-list ' . $additional_inst_class . '">' . $instructor_title . '';
@@ -771,7 +784,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
     public function preceptorOnlyList($preceptors, $month_details_view)
     {
         $output = "";
-        if ($preceptors) {
+        if($preceptors){
             $additional_class = ($month_details_view) ? "month_details_preceptors" : "";
             $preceptor_title = ($month_details_view) ? "Pr" : "Preceptor";
             $output .= '<p class="preceptor-list ' . $additional_class . '">' . $preceptor_title . '';
@@ -796,11 +809,11 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         $output = '<div class="open-weebles">';
         $output .= ($assignmentCount > 0) ? "<div class='spacer'></div>" : "";
 
-        if ($hasOpenWindow && $has_active_window) {
+        if($hasOpenWindow && $has_active_window){
             $invisible = false;
         }
 
-        if (!$this->current_user_data['student_scheduler_permissions'][$event_type]) {
+        if(!$this->current_user_data['student_scheduler_permissions'][$event_type]){
             $invisible = true;
         }
 
@@ -814,18 +827,19 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
 
         $addS = (($openSlots != 1) && ($plusSlots > 0)) ? "s" : "";
 
-        if ($plusSlots > 0) {
+        if($plusSlots > 0){
             $altVal = $openSlots . ' ';
         }
 
         $altVal .= 'open slot' . $addS;
         $altVal .= ($invisible) ? " (not available for signup)" : "";
 
-        if ($plusSlots > 0) {
+        if($plusSlots > 0){
             $output .= $openWeebleImg . ' alt="' . $altVal . '" data-openSlot="openSlot-' . $eventId . '">';
             $output .= '<div class="plus-slots" data-toolTip="' .  $altVal . '"><p>x' . $openSlots . '</p></div>';
-        } else {
-            for ($i = 0; $i < $openSlotsToShow; $i++) {
+        }
+        else {
+            for($i = 0; $i < $openSlotsToShow; $i++){
                 $output .= $openWeebleImg . ' alt="' . $altVal . '" data-openSlot="openSlot' . $i . '-' . $eventId . '">';
             }
         }
@@ -848,7 +862,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
                 // if it's a student, only their weeble should appear red if they are out of compliance
                 if ($this->current_user_data['role_name'] == "student") {
                     // if this is the users shift AND they either have global_site_compliant or compliant set to 0, add them to the non compliant list
-                    if (($assignment['userContextId'] == $this->current_user_data['userContextId']) && (($assignment['global_site_compliant'] === 0) || ($assignment['compliant'] === 0))) {
+                    if (($assignment['userContextId'] == $this->current_user_data['userContextId']) && (($assignment['global_site_compliant'] === 0) || ($assignment['compliant'] === 0))){
                         $is_compliant = false;
                         $modal_access = true;
                     } else {
@@ -861,10 +875,11 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
                     $casey = (in_array($site_id, $this->current_user_data['admin_for'])) ? true : false;
 
                     // does this student belong to the current logged in user?
-                    if ($assignment['program_id'] == $this->current_user_data['program_id']) {
+                    if($assignment['program_id'] == $this->current_user_data['program_id']){
                         $modal_access = true;
                         $is_compliant = (($assignment['global_site_compliant'] === 0) || ($assignment['compliant'] === 0)) ? false : true;
-                    } else {
+                    }
+                    else {
                         $modal_access = $casey;
                         $is_compliant = ($assignment['global_site_compliant'] === 0) ? false : true;
                     }
@@ -878,11 +893,13 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
                 $assignment['compliance_modal'] = $modal_access;
                 $assignment['red'] = ($is_compliant) ? false : true;
 
-                if ($is_compliant) {
+                if($is_compliant){
                     $compliant[] = $assignment;
-                } else {
+                }
+                else {
                     $non_compliant[] = $assignment;
                 }
+
             }
         }
 
@@ -924,12 +941,12 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         $filledSlotsToShow = ($totalAssignments > $max_to_show) ? $max_to_show : $totalAssignments;
         $plusSlots = $totalAssignments - $filledSlotsToShow;
 
-        if ($plusSlots > 0) {
+        if($plusSlots > 0){
 
             // builds the tool tip
             $moreStudentNamesTooltip = "";
             $count = 0;
-            for ($i = 0; $i < $totalAssignments; $i++) {
+            for($i = 0; $i < $totalAssignments; $i++){
                 $assignment = array_shift($assignments);
                 $moreStudentNamesTooltip .= ($count != 0) ? "<br>" : "";
                 $moreStudentNamesTooltip .= substr($assignment['name'], 0, -1);
@@ -938,8 +955,9 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
 
             $output .= $closedWeebleImg . ' alt="' . $moreStudentNamesTooltip . '" data-closedSlot="' . $eventId . '-closed-weeble-sum">';
             $output .= '<div class="' . $plus_slots_class . '" data-toolTip="' . $moreStudentNamesTooltip . '"><p>x' . $totalAssignments . '</p></div>';
-        } else {
-            for ($i = 0; $i < $filledSlotsToShow; $i++) {
+        }
+        else {
+            for($i = 0; $i < $filledSlotsToShow; $i++){
                 $assignment = array_shift($assignments);
                 //$closedSlotName = str_replace("'", "", str_replace(' ', '', $assignment['name']));
                 $output .= $closedWeebleImg . '" alt="' . $assignment['name'] . ' ' . $assignment['certLevel'] . '" data-closedSlot="' . $assignment['id'] . '">';
@@ -989,7 +1007,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
         $field_limit = false;
         $clinical_limit = false;
 
-        if ($this->user->getCurrentRoleName() == 'instructor') {
+        if($this->user->getCurrentRoleName() == 'instructor'){
             $this->instructor = $this->user->getCurrentRoleData();
 
             $sc_lab = $this->instructor->hasPermission("Edit Lab Schedules");
@@ -1004,17 +1022,18 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
             $skills_tracker_permissions = array("lab" => $sk_lab, "clinical" => $sk_clinical, "field" => $sk_field, "view" => $sk_view);
 
             $admin_for = \Fisdap\EntityUtils::getRepository('SiteLegacy')->getAdminSites($program->id);
-        } else {
+        }
+        else {
             $this->student = true;
             $student_entity = $this->user->getCurrentRoleData();
             $has_skills_tracker = false;
 
-            foreach ($this->user->serial_numbers as $sn) {
-                if ($sn->hasProductAccess(1) || $sn->hasProductAccess(10)) {
+            foreach($this->user->serial_numbers as $sn){
+                if($sn->hasProductAccess(1) || $sn->hasProductAccess(10)){
                     $has_skills_tracker = true;
                 }
 
-                if ($sn->hasProductAccess(11)) {
+                if($sn->hasProductAccess(11)) {
                     // this is limited scheduler - we need to pay attention to shift limits
                     $lab_limit = $student_entity->atLimit('lab');
                     $field_limit = $student_entity->atLimit('field');
@@ -1089,7 +1108,7 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
     public function getFiltersAvailCertsConfig($cert_ids)
     {
         $configs = array();
-        foreach ($cert_ids as $cert_id) {
+        foreach($cert_ids as $cert_id){
             $cert = \Fisdap\EntityUtils::getEntity("CertificationLevel", $cert_id);
             $configs[$cert_id] = $cert->bit_value;
         }
@@ -1102,10 +1121,9 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
      * gets the html for displaying hte days of the week at the top of hte calendar
      * @return string the html to be rendered
     */
-    private function drawHeadings()
-    {
+    private function drawHeadings(){
         $returnContent = "";
-        foreach ($this->daysOfWeek as $day) {
+        foreach($this->daysOfWeek as $day){
             $returnContent .= "<div class='day-name'>" . $day . "</div>";
         }
         return $returnContent;
@@ -1118,4 +1136,5 @@ class Scheduler_View_Helper_CalendarView extends Zend_View_Helper_Abstract
     {
         return "<div class='no-shifts-msg'>No shifts. <div class='subtle-no-shifts-msg'>Either no shifts are scheduled or they have been filtered out of this view.</div></div>";
     }
+
 }

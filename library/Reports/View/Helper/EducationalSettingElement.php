@@ -19,9 +19,10 @@
  */
 class Reports_View_Helper_EducationalSettingElement extends Zend_View_Helper_FormElement
 {
-    public function educationalSettingElement($name, $value = null, $attribs = null)
-    {
-        $html = "
+
+	public function educationalSettingElement($name, $value = null, $attribs = null)
+	{
+		$html = "
 			<div class='report-block'>
 				<h3 class='section-header'>Choose your educational setting</h3>
 				<div class='grid_8 report-body'>
@@ -35,7 +36,8 @@ class Reports_View_Helper_EducationalSettingElement extends Zend_View_Helper_For
 				</div>
 			</div>
 		";
-        
-        return $html;
-    }
+		
+		return $html;
+	}
+
 }

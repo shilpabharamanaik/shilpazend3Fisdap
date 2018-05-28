@@ -3,9 +3,10 @@
 use Fisdap\Data\Order\OrderRepository;
 use Illuminate\Console\Command;
 
+
 /**
  * Class ListFailedAccountOrderExportsCommand
- *
+ * 
  * @package Fisdap\Members\Commerce
  * @author Sam Tape <stape@fisdap.net>
  * @author  Ben Getsug <bgetsug@fisdap.net>
@@ -55,7 +56,7 @@ class ListFailedAccountingOrderExportsCommand extends Command
 
         $orders = $this->orderRepository->getAllFailedAccountingExports();
 
-        $orders = array_map(function ($order) {
+        $orders = array_map(function($order){
             $order['order_date'] = $order['order_date']->format('Y-m-d H:i:s');
 
             return $order;

@@ -4,8 +4,7 @@
  * Class Zend_Session_SaveHandler_Couchbase
  * @author Ben Getsug (bgetsug@fisdap.net)
  */
-class Zend_Session_SaveHandler_Couchbase implements Zend_Session_SaveHandler_Interface
-{
+class Zend_Session_SaveHandler_Couchbase implements Zend_Session_SaveHandler_Interface {
 
     /**
      * Session save path
@@ -50,11 +49,10 @@ class Zend_Session_SaveHandler_Couchbase implements Zend_Session_SaveHandler_Int
 
         if ($config instanceof Zend_Config) {
             $config = $config->toArray();
-        } elseif (!is_array($config)) {
+        } else if (!is_array($config)) {
             throw new Zend_Session_SaveHandler_Exception(
                 '$config must be an instance of Zend_Config or array of key/value pairs containing '
-                . 'configuration options for Zend_Session_SaveHandler_Couchbase.'
-            );
+                . 'configuration options for Zend_Session_SaveHandler_Couchbase.');
         }
 
         // Couchbase configuration
@@ -65,19 +63,19 @@ class Zend_Session_SaveHandler_Couchbase implements Zend_Session_SaveHandler_Int
         $persistent = isset($config['persistent']) ? $config['persistent'] : true;
 
         //$this->_couchbase = new \Couchbase($hosts, $user, $password, $bucket, $persistent);
-        //print_r($config); exit;
-        //$bucketName = "beer-sample";
-        //echo Zend_Version::getLatest(); exit;
-        // Establish username and password for bucket-access
-        $authenticator = new \Couchbase\PasswordAuthenticator();
-        $authenticator->username('Administrator')->password('Fisdap123');
-        
-        // Connect to Couchbase Server
-        $cluster = new CouchbaseCluster('couchbase://127.0.0.1');
+		//print_r($config); exit;
+		//$bucketName = "beer-sample";
+		//echo Zend_Version::getLatest(); exit;
+		// Establish username and password for bucket-access
+		$authenticator = new \Couchbase\PasswordAuthenticator();
+		$authenticator->username('Administrator')->password('Fisdap123');
+		
+		// Connect to Couchbase Server
+		$cluster = new CouchbaseCluster('couchbase://127.0.0.1');
 
-        // Authenticate, then open bucket
-        $cluster->authenticate($authenticator);
-        $this->_couchbase = $cluster->openBucket($bucket);
+		// Authenticate, then open bucket
+		$cluster->authenticate($authenticator);
+		$this->_couchbase = $cluster->openBucket($bucket);
 
         $this->_sessionLifetime = isset($config['session']['lifetime']) ? $config['session']['lifetime'] : 28800;
     }
@@ -132,9 +130,7 @@ class Zend_Session_SaveHandler_Couchbase implements Zend_Session_SaveHandler_Int
      */
     public function write($id, $data)
     {
-        if ($id === null) {
-            return false;
-        }
+        if ($id === null) return false;
 
         try {
             // must cast $data as string

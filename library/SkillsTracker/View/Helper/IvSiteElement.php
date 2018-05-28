@@ -21,33 +21,34 @@
 class SkillsTracker_View_Helper_IvSiteElement extends Zend_View_Helper_FormElement
 {
 
-    /**
-     * @var string the HTML to be rendered
-     */
-    protected $html = "";
+	/**
+	 * @var string the HTML to be rendered
+	 */
+	protected $html = "";
 
-    /**
-     * The function to render the html
-     *
-     * @return string the HTML rendering the age date element
-     */
-    public function ivSiteElement($name, $value = null, $attribs = null)
-    {
-        $ivSite = \Fisdap\EntityUtils::getEntity('IvSite', $value);
+	/**
+	 * The function to render the html
+	 *
+	 * @return string the HTML rendering the age date element
+	 */
+	public function ivSiteElement($name, $value = null, $attribs = null)
+	{
+		$ivSite = \Fisdap\EntityUtils::getEntity('IvSite', $value);
 
-        $siteName = $ivSite->name;
-        $siteSide = $ivSite->side;
+		$siteName = $ivSite->name;
+		$siteSide = $ivSite->side;
 
-        $nameOptions = \Fisdap\Entity\IvSite::getFormOptions();
-        $sideOptions = array(
-            "left" => "left",
-            "right" => "right",
-        );
+		$nameOptions = \Fisdap\Entity\IvSite::getFormOptions();
+		$sideOptions = array(
+			"left" => "left",
+			"right" => "right",
+		);
 
 
-        $this->html .= "<div style='float:left; margin-top:.5em;'>" . $this->view->formSelect($name . "[name]", $siteName, array("class" => "site-name"), $nameOptions) . "</div>";
-        $this->html .= $this->view->formRadio($name . "[side]", $siteSide, array("class" => "site-side"), $sideOptions);
+		$this->html .= "<div style='float:left; margin-top:.5em;'>" . $this->view->formSelect($name . "[name]", $siteName, array("class" => "site-name"), $nameOptions) . "</div>";
+		$this->html .= $this->view->formRadio($name . "[side]", $siteSide, array("class" => "site-side"), $sideOptions);
 
-        return $this->html;
-    }
+		return $this->html;
+	}
+
 }
