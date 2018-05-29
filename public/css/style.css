@@ -274,6 +274,6 @@ clear: both;
 	margin-right:-2em;
 }
 
-a#staffDirectory {
-
+input[type="checkbox"], input[type="radio"]{
+margin: 4px 5px;
 }
