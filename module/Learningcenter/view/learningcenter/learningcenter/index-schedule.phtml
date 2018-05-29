@@ -26,5 +26,105 @@
 ?>
 <h1><?= $this->escapeHtml($title); ?></h1>
 
+<?= $this->headLink()
+    ->appendStylesheet('/css/library/LearningCenter/Form/test-filters.css')
+    ->appendStylesheet('/css/jquery.fancyFilters.css');
+?>
+<?= $this->headScript()
+    ->appendFile('/js/library/LearningCenter/Form/test-filters.js')
+    ->appendFile('/js/jquery.fancyFilters.js');
+?>
+
+<div class="grid_10 program-name">
+    <?= $this->programName?>
+</div>
+
+<div class="grid_2">
+    <a id='add-test-btn' href='/learning-center/test/edit'>New Test</a>
+</div>
+
+<div class="clear"></div>
+
+<div class="grid_12 island" style="margin-top:0.7em; padding-bottom:4em">
+
+    <div id='test-filters'>
+    <?php
+    //$this->filtersForm
+    ?>
+    </div>
+
+    <div id="scheduled-test-list-container">
+
+        <div id='scheduled-tests'>
+
+            <table class='fisdap-table' id='scheduled-test-list'>
+                <thead>
+                    <tr>
+                    <td>Date</td>
+                    <td>Test</td>
+                    <td>Students</td>
+                    <td>Contact</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </thead>
+                <tbody>
+        <?php
+            foreach ($scheduledTests as $objTest) {
+        ?>
+                <tr>
+                    <td><?=$objTest->start_date->format('m/d/Y')?></td>
+
+                <?php if ($objTest->publish_scores > 0): ?>
+                    <td><?=$objTest->test->test_name?></td>
+                <?php else: ?>
+                    <td>
+                        <?=$objTest->test->test_name?> - <span class='npublished'>scores not published</span>
+                    </td>
+                <?php endif; ?>
+
+                    <td class='student-cell'>
+                        <?=($objTest->get_scheduled_students())?count($objTest->get_scheduled_students()):0?>
+                    </td>
+                    <td class='contactCell'>
+                        <?=$objTest->contact_name?>
+                    </td>
+
+                    <td class='action'>
+                        <a href='/learning-center/test/edit/stid/<?=$objTest->id?>'>
+                            <img src='/images/icons/edit_black.png'><br />edit
+                        </a>
+                    </td>
+
+                    <td class='action'>
+                        <a href='/learning-center/test/details/stid/<?=$objTest->id?>'>
+                            <img src='/images/icons/details_black.png'><br />details
+                        </a>
+                    </td>
+
+                    <td class='action'>
+                        <a href='/learning-center/index/retrieve/stid/<?=$objTest->id?>'>
+                            <img src='/images/icons/scores_black.png'><br />scores
+                        </a>
+                    </td>
+
+                    <td class='action'>
+                        <a href='/learning-center/test/delete/stid/<?=$objTest->id?>'>
+                            <img src='/images/icons/delete-test_black.png'><br />delete
+                        </a>
+                    </td>
+
+                </tr>
+        <?php
+            }
+        ?>
+            </tbody></table>
+        </div>
+    </div>
+</div>
+
+
 
 <?php endif; ?>

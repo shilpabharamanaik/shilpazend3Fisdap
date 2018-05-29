@@ -63,7 +63,7 @@ class ScheduleController extends AbstractActionController
         $arrFnParam = ['programId'=>$userContext->getProgram()->getId(),];
         $stResults = $stRepos->getFilteredTests($arrFnParam);
         if (count($stResults) > 50) {
-            $start = new \DateTime('-4 months');
+            $start = new \DateTime('-12 months');
             $end = new \DateTime('+3 months');
 
             if (!$startDate) {
@@ -81,6 +81,7 @@ class ScheduleController extends AbstractActionController
                 'isInstructor' => $userContext->isInstructor(),
                 'instructorPermission' => $userContext->getRoleData()->hasPermission('Admin Exams', $this->entityManager),
                 'programName' => $userContext->getProgram()->getName(),
+                'scheduledTests' => $stResults
             ] ;
         $viewModel = new ViewModel($arrViewData);
         $viewModel->setTemplate('Learningcenter/learningcenter/index-schedule');
