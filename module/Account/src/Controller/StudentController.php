@@ -62,11 +62,11 @@ class StudentController extends AbstractActionController
         // Get the student's ID
         if ($userContext->isInstructor()) {
 			//echo "jhgjh";
-            $studentId = 413568; //$this->getParam('studentId', $this->globalSession->studentId);
+            $studentId = 327700; //$this->getParam('studentId', $this->globalSession->studentId);
             //$this->globalSession->studentId = $studentId;
 
             // set up single student picker for instructors
-            $config = array("student" => $studentId);
+           /* $config = array("student" => $studentId);
             $picklistOptions = array(
                 'mode'              => 'single',
                 'loadJSCSS'         => true,
@@ -74,7 +74,7 @@ class StudentController extends AbstractActionController
                 'useSessionFilters' => true,
                 'longLabel'         => true
             );
-			echo "FIlTER";
+			echo "FIlTER";*/
             //$this->view->studentPicker = $this->view->multistudentPicklist($this->user, $config, $picklistOptions);
         } else {
             $studentId = $userContext->getRoleData()->getId();
@@ -84,15 +84,18 @@ class StudentController extends AbstractActionController
 
         /** @var StudentLegacy $student */
         //$this->view->student = $student = EntityUtils::getEntity('StudentLegacy', $studentId);
+		//echo $studentId;
+		
 		$student = $this->entityManager->getRepository(StudentLegacy::class)->findOneById($studentId);
+		//print_r($student);
 		
         // Make sure this student is in this user's program
         if ($student && $student->getUserContext()->getProgram()->getId()
             && ($student->getUserContext()->getProgram()->getId() != $userContext->getProgram()->getId())
         ) {
             //reset the student id in the session and the view
-            $this->globalSession->studentId = 0;
-            $this->view->studentId = $studentId = null;
+           // $this->globalSession->studentId = 0;
+           // $this->view->studentId = $studentId = null;
         }
 
         $pageTitle = "Edit Student Accounts";

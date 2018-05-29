@@ -15,6 +15,7 @@ use User\Entity\UserRole;
 
 use User\Entity\Instructor;
 use User\Form\InstructorForm;
+use Account\Form\NewInstructorForm;
 
 use Fisdap\Entity\InstructorLegacy;
 use Fisdap\Entity\ProgramLegacy;
@@ -57,8 +58,8 @@ class InstructorController extends AbstractActionController
 
         $this->objUser = $this->entityManager->getRepository(User::class)
                             ->findOneByUsername($this->username);
-        $this->objUserRole = $this->entityManager->getRepository(UserRole::class)
-                            ->findOneByUserId($this->objUser->getId());
+        /*$this->objUserRole = $this->entityManager->getRepository(UserRole::class)
+                            ->findOneByUserId($this->objUser->getId()); */
     }
 
 
@@ -125,4 +126,50 @@ class InstructorController extends AbstractActionController
             'username' => $this->username,
         ]);
     }
+	
+	 public function newinstructorAction(){
+	  //If we have a SN, we're activating an account with products
+        /*if ($this->hasParam("sn")) {
+            $this->view->pageTitle = "Activate Your Account";
+            $serial = SerialNumberLegacy::getBySerialNumber($this->_getParam("sn"));
+
+            //Display an error if the given serial number is already in use
+            if ($serial->isActive()) {
+                $this->displayError("This serial number has already been activated by " . $serial->user->getName() . " on " . $serial->activation_date->format("m-d-Y"));
+                return;
+            }
+
+            $this->view->accountDetails = $serial->getAccountDetails();*/
+             $form = new NewInstructorForm();
+        /*} else {
+            //Otherwise, we're already logged in, creating a free account
+            $pageTitle = "Create a new Instructor";
+
+            //Display an error if the user does not have permission to create instructor accounts
+            if (!$this->objUser->hasPermission("Edit Instructor Accounts")) {
+                $this->displayError("You do not have permission to create instructor accounts. Please contact " . $this->objUser->getCurrentProgram()->getProgramContactName() . " for more information.");
+                return;
+            }
+             $form = new NewInstructorForm();
+
+        }
+/*
+        $request = $this->getRequest();
+
+        if ($request->isPost()) {
+            if ($userId = $this->view->form->process($request->getPost())) {
+                if ($this->hasParam("sn")) {
+                    $this->redirect("/account/new/user-agreement/userId/" . $userId);
+                } else {
+                    $this->flashMessenger->addMessage("Instructor Account successfully created.");
+                    $this->redirect("/account/new/instructor/");
+                }
+            }
+        }
+		 */
+		  return new ViewModel([
+            'form' => $form,
+        ]);  
+	 }
+	
 }

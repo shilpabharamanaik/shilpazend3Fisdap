@@ -1,0 +1,189 @@
+<?php
+    $title = 'Create a new Instructor';
+    $this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title); ?></h1>
+
+<?php
+    $form->get('firstName')->setAttributes(['value'=>'']);
+    $form->get('lastName')->setAttributes(['value'=>'']);
+    $form->get('email')->setAttributes(['value'=>'']);
+    $form->get('workPhone')->setAttributes(['value'=>'']);
+    $form->get('cellPhone')->setAttributes(['value'=>'']);
+    $form->get('homePhone')->setAttributes(['value'=>'']);
+
+?>
+<div class="grid_12 island">
+    <form id="instructorForm" enctype="application/x-www-form-urlencoded" method="post">
+       
+        <div class="grid_7">
+            <h3 class="section-header no-border">Contact Information</h3>
+            <div class="form-group">
+                <div class="form-prompt">
+                    <div id="firstName-label">
+                        <?= $this->formLabel($form->get('firstName')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('firstName')); ?>
+                        <?= $this->formElementErrors($form->get('firstName')); ?>
+                    </div>
+                </div>
+                <div class="form-prompt">
+                    <div id="lastName-label">
+                        <?= $this->formLabel($form->get('lastName')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('lastName')); ?>
+                        <?= $this->formElementErrors($form->get('lastName')); ?>
+                    </div>
+                </div>
+                <div class="form-prompt">
+                    <div id="email-label">
+                        <?= $this->formLabel($form->get('email')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('email')); ?>
+                        <?= $this->formElementErrors($form->get('email')); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group-title section-header no-border">Phone</div>
+
+                <div class="form-prompt">
+                    <div id="workPhone-label">
+                        <?= $this->formLabel($form->get('workPhone')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('workPhone')); ?>
+                        <?= $this->formElementErrors($form->get('workPhone')); ?>
+                    </div>
+                </div>
+
+                <div class="form-prompt">
+                    <div id="cellPhone-label">
+                        <?= $this->formLabel($form->get('cellPhone')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('cellPhone')); ?>
+                        <?= $this->formElementErrors($form->get('cellPhone')); ?>
+                    </div>
+                </div>
+
+                <div class="form-prompt">
+                    <div id="homePhone-label">
+                        <?= $this->formLabel($form->get('homePhone')); ?>
+                    </div>
+                    <div class="grid_9">
+                        <?= $this->formElement($form->get('homePhone')); ?>
+                        <?= $this->formElementErrors($form->get('homePhone')); ?>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-header">Roles &amp; Permissions</h3>
+            <div class="form-group">
+                <h4 class="section-header no-border">
+                    Roles <a id="roles-help" rel="#roles-help-popup" href="#roles-help-popup" title="Roles"><img class="question-mark" src="/images/icons/question_mark.svg"></a>
+                    <div id="roles-help-popup" style="display: none;">Select a role for this account, and we will recommend a list of permissions. You can override this recommendation by customizing the permissions.</div>
+                </h4>
+                <div class="form-prompt">
+				<div style="float:left; width:50%;">
+                     <?= $this->formElement($form->get('Rules')); ?>
+					 </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h4 class="section-header no-border">
+                    Program
+                    Permissions <a id="program-permissions-help" rel="#program-permissions-help-popup" href="#program-permissions-help-popup" title="Program Permissions"><img class="question-mark" src="/images/icons/question_mark.svg"></a>
+                    <div id="program-permissions-help-popup" style="display: none;">Order Accounts: Order new accounts for students or preceptors.<br><br>Edit Student Accounts: Change student account information, passwords, and graduation status.<br><br>Administer Exams: Schedule exams, administer exams, and view exam scores.<br><br>Edit Instructor Accounts: Change instructor account information, including passwords, and create new instructor accounts. (Note: All instructors can edit their own information and change their own password, but cannot change their own permissions or edit other instructor accounts unless this setting is turned on.)<br><br>Edit Program Settings: Change program info, as well as Scheduler, Compliance, and Skills Tracker settings. This also permits management of the following: field, clinical, and lab sites (including site-sharing), requirements, and student groups.</div>
+                </h4>
+                <div class="form-prompt">
+					<div style="float:left; width:50%;">
+						 <?= $this->formElement($form->get('programPermissions')); ?>
+					</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h4 class="section-header no-border">
+                    Skills Tracker Permissions
+                    <a id="st-permissions-help" rel="#st-permissions-help-popup" href="#st-permissions-help-popup" title="Skills Tracker Permissions"><img class="question-mark" src="/images/icons/question_mark.svg"></a>
+                    <div id="st-permissions-help-popup" style="display: none;">View All Data: View Field, Clinical, and Lab shift data. If you want an instructor to have view-only access to shift data, give them this permission, and do not give them Edit Data permissions.<br><br>Edit Field, Clinical, or Lab Data: Add, edit, and remove shift data of each type.<br><br>Edit Portfolio: Attach files and enter data related to Overall Competency in student portfolios.<br><br>Enter Evals: Enter evaluations and skill sheets.<br><br>Edit Evals: Edit evaluations and skill sheets after they have been entered.</div>
+                </h4>
+                <div class="form-prompt">
+                    <div style="float:left; width:50%;">
+					 <?= $this->formElement($form->get('skillsTrackerPermissions')); ?>
+					</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h4 class="section-header no-border">
+                    Scheduler
+                    Permissions <a id="schedule-permissions-help" rel="#schedule-permissions-help-popup" href="#schedule-permissions-help-popup" title="Scheduler Permissions"><img class="question-mark" src="/images/icons/question_mark.svg"></a>
+                    <div id="schedule-permissions-help-popup" style="display: none;">View Schedules: See shifts on the Calendar. If you want an instructor to have view-only access to the Calendar, give them this permission, and do not give them Edit Schedules permissions.<br><br>Edit Field, Clinical, or Lab Schedules: Create, edit, and remove shifts of each type, and assign/remove students from shifts of each type.<br><br>Edit Compliance Status: View and edit compliance status for all students and instructors with requirements in your program.</div>
+                </h4>
+                <div class="form-prompt">
+                    <div style="float:left; width:50%;">
+					 <?= $this->formElement($form->get('schedulePermissions')); ?>
+					</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h4 class="section-header no-border">Reports Permissions</h4>
+                <div class="form-prompt">
+                    <div style="float:left; width:50%;">
+					 <?= $this->formElement($form->get('reportsPermissions')); ?>
+					</div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_5">
+            <div class="password-section">
+              
+                <!-- The text and password here are to prevent FF from auto filling my login credentials because it ignores autocomplete="off"-->
+                <input type="text" class="hidden">
+                <input type="password" class="hidden">
+                <div class="form-group">
+                    <div class="form-group-title section-header no-border">Login Info</div>
+                    <div class="form-prompt"><label for="currentPassword" class="optional">Your Password</label>
+                        <br>
+                        <input type="password" name="currentPassword" id="currentPassword" value="" autocomplete="off">
+                    </div>
+                    <div class="form-prompt"><label for="newPassword" class="optional">New Password&nbsp;<span class="form-desc">(5+ characters)</span></label>
+                        <br>
+                        <input type="password" name="newPassword" id="newPassword" value="" autocomplete="off">
+                    </div>
+                    <div class="form-prompt"><label for="confirmPassword" class="optional">Confirm New Password</label>
+                        <br>
+                        <input type="password" name="confirmPassword" id="confirmPassword" value="" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group-title section-header no-border">
+                    Email Settings <a id="email-help" rel="#email-help-popup" href="#email-help-popup" title="Email Settings"><img class="question-mark" src="/images/icons/question_mark.svg"></a>
+                    <div id="email-help-popup" style="display: none;">Student Events: Receive copies of student narratives and your students' responses to critical thinking questions after they observe or perform a significant procedure or event (e.g. birth, chest decompression, intubation).<br><br>Late Patient Documentation Notices: Receive a daily summary email of which students have outstanding late shift data. Data is considered late until the student locks the shift.<br><br>Fisdap news and events: Subscribe to an email list to hear the latest about Fisdap, including quarterly newsletters and announcements about webinars, workshops, and feature upgrades.</div>
+                </div>
+                <div class="form-prompt">
+                   <?= $this->formElement($form->get('automatedEmails')); ?>
+                </div>
+                <div class="form-prompt" style="height: 65px;">
+                    Late Patient Documentation Notices
+                    <div class="prefix_1 grid_11">
+                        <?= $this->formElement($form->get('labEmails')); ?>
+						<?= $this->formElement($form->get('clinicalEmails')); ?>
+						<?= $this->formElement($form->get('fieldEmails')); ?>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_11">
+        </div>
+        <div class="grid_1 right green-buttons">
+            <input type="submit" name="save" id="save" value="Save" class="green-buttons ui-button ui-widget ui-state-default ui-corner-all" role="button" aria-disabled="false" style="padding: 3px 10px;">
+        </div>
+        <div class="clear"></div>
+    </form>
+</div>
+

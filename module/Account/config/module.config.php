@@ -46,6 +46,16 @@ return [
                     ],
                 ],
             ],
+			'newinstructor' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/account/new/instructor',
+                    'defaults' => [
+                        'controller' => Controller\InstructorController::class,
+                        'action'     => 'newinstructor',
+                    ],
+                ],
+            ],
 			'research-consent' => [
                 'type'    => Segment::class,
                 'options' => [
