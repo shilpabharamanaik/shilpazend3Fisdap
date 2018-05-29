@@ -44,13 +44,10 @@ class Fisdap_View_Helper_FisdapFormRadio extends Zend_View_Helper_FormElement
      *
      * @return string The radio buttons XHTML.
      */
-    public function fisdapFormRadio(
-        $name,
-        $value = null,
-        $attribs = null,
-        $options = null,
-        $listsep = "<br />\n"
-    ) {
+    public function fisdapFormRadio($name, $value = null, $attribs = null,
+        $options = null, $listsep = "<br />\n")
+    {
+
         $info = $this->_getInfo($name, $value, $attribs, $options, $listsep);
         extract($info); // name, value, attribs, options, listsep, disable
 

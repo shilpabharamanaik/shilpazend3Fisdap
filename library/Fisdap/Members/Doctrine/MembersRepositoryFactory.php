@@ -7,6 +7,7 @@ use Fisdap\Entity\User;
 use Fisdap\Members\Shifts\MembersShiftRepository;
 use Fisdap\Members\Users\MembersUserRepository;
 
+
 /**
  * Overrides repository classes specified in entity metadata
  *

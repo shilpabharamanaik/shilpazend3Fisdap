@@ -22,18 +22,18 @@ class Fisdap_Validate_NotInArray extends Zend_Validate_InArray
         $this->_setValue($value);
         if ($this->getRecursive()) {
             $iterator = new RecursiveIteratorIterator(new RecursiveArrayIterator($this->_haystack));
-            foreach ($iterator as $element) {
+            foreach($iterator as $element) {
                 if ($this->_strict) {
                     if ($element === $value) {
-                        $this->_error(self::IN_ARRAY);
+						$this->_error(self::IN_ARRAY);
                         return false;
                     }
-                } elseif ($element == $value) {
-                    $this->_error(self::IN_ARRAY);
+                } else if ($element == $value) {
+					$this->_error(self::IN_ARRAY);
                     return false;
                 }
             }
-            return true;
+			return true;
         } else {
             if (!in_array($value, $this->_haystack, $this->_strict)) {
                 return true;
@@ -43,4 +43,5 @@ class Fisdap_Validate_NotInArray extends Zend_Validate_InArray
         $this->_error(self::IN_ARRAY);
         return false;
     }
+
 }

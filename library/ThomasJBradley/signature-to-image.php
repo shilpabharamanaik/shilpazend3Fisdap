@@ -30,35 +30,33 @@
 */
 function sigJsonToImage($json, $options = array())
 {
-    $defaultOptions = array(
-        'imageSize' => array(198, 55)
-        ,'bgColour' => array(0xff, 0xff, 0xff)
-        ,'penWidth' => 2
-        ,'penColour' => array(0x14, 0x53, 0x94)
-        ,'drawMultiplier'=> 12
-    );
+	$defaultOptions = array(
+		'imageSize' => array(198, 55)
+		,'bgColour' => array(0xff, 0xff, 0xff)
+		,'penWidth' => 2
+		,'penColour' => array(0x14, 0x53, 0x94)
+		,'drawMultiplier'=> 12
+	);
 
-    $options = array_merge($defaultOptions, $options);
+	$options = array_merge($defaultOptions, $options);
 
-    $img = imagecreatetruecolor($options['imageSize'][0] * $options['drawMultiplier'], $options['imageSize'][1] * $options['drawMultiplier']);
-    $bg = imagecolorallocate($img, $options['bgColour'][0], $options['bgColour'][1], $options['bgColour'][2]);
-    $pen = imagecolorallocate($img, $options['penColour'][0], $options['penColour'][1], $options['penColour'][2]);
-    imagefill($img, 0, 0, $bg);
+	$img = imagecreatetruecolor($options['imageSize'][0] * $options['drawMultiplier'], $options['imageSize'][1] * $options['drawMultiplier']);
+	$bg = imagecolorallocate($img, $options['bgColour'][0], $options['bgColour'][1], $options['bgColour'][2]);
+	$pen = imagecolorallocate($img, $options['penColour'][0], $options['penColour'][1], $options['penColour'][2]);
+	imagefill($img, 0, 0, $bg);
 
-    if (is_string($json)) {
-        $json = json_decode(stripslashes($json));
-    }
+	if(is_string($json))
+		$json = json_decode(stripslashes($json));
 
-    foreach ($json as $v) {
-        drawThickLine($img, $v->lx * $options['drawMultiplier'], $v->ly * $options['drawMultiplier'], $v->mx * $options['drawMultiplier'], $v->my * $options['drawMultiplier'], $pen, $options['penWidth'] * ($options['drawMultiplier'] / 2));
-    }
+	foreach($json as $v)
+		drawThickLine($img, $v->lx * $options['drawMultiplier'], $v->ly * $options['drawMultiplier'], $v->mx * $options['drawMultiplier'], $v->my * $options['drawMultiplier'], $pen, $options['penWidth'] * ($options['drawMultiplier'] / 2));
 
-    $imgDest = imagecreatetruecolor($options['imageSize'][0], $options['imageSize'][1]);
-    imagecopyresampled($imgDest, $img, 0, 0, 0, 0, $options['imageSize'][0], $options['imageSize'][0], $options['imageSize'][0] * $options['drawMultiplier'], $options['imageSize'][0] * $options['drawMultiplier']);
+	$imgDest = imagecreatetruecolor($options['imageSize'][0], $options['imageSize'][1]);
+	imagecopyresampled($imgDest, $img, 0, 0, 0, 0, $options['imageSize'][0], $options['imageSize'][0], $options['imageSize'][0] * $options['drawMultiplier'], $options['imageSize'][0] * $options['drawMultiplier']);
 
-    imagedestroy($img);
+	imagedestroy($img);
 
-    return $imgDest;
+	return $imgDest;
 }
 
 /**
@@ -77,20 +75,20 @@ function sigJsonToImage($json, $options = array())
 */
 function drawThickLine($img, $startX, $startY, $endX, $endY, $colour, $thickness)
 {
-    $angle = (atan2(($startY - $endY), ($endX - $startX)));
+	$angle = (atan2(($startY - $endY), ($endX - $startX)));
 
-    $dist_x = $thickness * (sin($angle));
-    $dist_y = $thickness * (cos($angle));
+	$dist_x = $thickness * (sin($angle));
+	$dist_y = $thickness * (cos($angle));
 
-    $p1x = ceil(($startX + $dist_x));
-    $p1y = ceil(($startY + $dist_y));
-    $p2x = ceil(($endX + $dist_x));
-    $p2y = ceil(($endY + $dist_y));
-    $p3x = ceil(($endX - $dist_x));
-    $p3y = ceil(($endY - $dist_y));
-    $p4x = ceil(($startX - $dist_x));
-    $p4y = ceil(($startY - $dist_y));
+	$p1x = ceil(($startX + $dist_x));
+	$p1y = ceil(($startY + $dist_y));
+	$p2x = ceil(($endX + $dist_x));
+	$p2y = ceil(($endY + $dist_y));
+	$p3x = ceil(($endX - $dist_x));
+	$p3y = ceil(($endY - $dist_y));
+	$p4x = ceil(($startX - $dist_x));
+	$p4y = ceil(($startY - $dist_y));
 
-    $array = array(0=>$p1x, $p1y, $p2x, $p2y, $p3x, $p3y, $p4x, $p4y);
-    imagefilledpolygon($img, $array, (count($array)/2), $colour);
+	$array = array(0=>$p1x, $p1y, $p2x, $p2y, $p3x, $p3y, $p4x, $p4y);
+	imagefilledpolygon($img, $array, (count($array)/2), $colour);
 }

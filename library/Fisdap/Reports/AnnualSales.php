@@ -37,6 +37,7 @@ class Fisdap_Reports_AnnualSales extends Fisdap_Reports_Report
      */
     public function runReport()
     {
+
         ini_set('memory_limit', '2048M');
 
         $this->rewardPointService = new RewardPointService();
@@ -72,6 +73,7 @@ class Fisdap_Reports_AnnualSales extends Fisdap_Reports_Report
                 $allPrograms[$program['id']][$year] = $program['total'];
 
                 if (!in_array($program['name'], $allPrograms[$program['id']])) {
+                    
                     if ($programEntity->getProgramContactuser()) {
                         $contactEmail = $programEntity->getProgramContactUser()->getEmail();
                     } else {
@@ -174,8 +176,8 @@ class Fisdap_Reports_AnnualSales extends Fisdap_Reports_Report
         return $label;
     }
 
-    private function calculatePoints($programid)
-    {
+    private function calculatePoints($programid){
+
         $totalPoints =
             $this->rewardPointService->calculatePoints('donated', $programid) +
             $this->rewardPointService->calculatePoints('validated', $programid) +
@@ -188,20 +190,20 @@ class Fisdap_Reports_AnnualSales extends Fisdap_Reports_Report
         return $totalPoints;
     }
 
-    private function getDiscountText($programid)
-    {
+    private function getDiscountText($programid){
+
         $discounts = $this->rewardPointService->getDiscounts($programid, true, false);
 
         $discountArray = array();
 
-        foreach ($discounts as $discount) {
+        foreach($discounts as $discount){
             if (!($discount['Configuration'] & 2) && $discount['PercentOff'] > 0) {
                 $acct_type = $discount['Type'];
                 $prod_desc = $this->getProductDescription($discount['Configuration']);
 
-                if ($acct_type != 'All') {
+                if($acct_type != 'All'){
                     $discountArray[] = $discount['PercentOff']."% off $prod_desc for $acct_type accounts";
-                } else {
+                }else{
                     $discountArray[] = $discount['PercentOff']."% off $prod_desc for all accounts";
                 }
             }
@@ -210,8 +212,7 @@ class Fisdap_Reports_AnnualSales extends Fisdap_Reports_Report
         return $discountString;
     }
 
-    private function getProductDescription($config)
-    {
+    private function getProductDescription($config){
         $description = array();
 
         if (\Fisdap\Entity\SerialNumberLegacy::configurationHasProductAccess($config, 'tracking')) {
@@ -250,4 +251,7 @@ class Fisdap_Reports_AnnualSales extends Fisdap_Reports_Report
 
         return implode(', ', $description);
     }
+
+
+
 }

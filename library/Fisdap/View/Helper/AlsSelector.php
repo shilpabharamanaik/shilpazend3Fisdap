@@ -19,29 +19,28 @@
  */
 class Fisdap_View_Helper_AlsSelector extends Zend_View_Helper_Abstract
 {
-    public function alsSelector($config = array(), $options = array())
-    {
-        $user = \Fisdap\Entity\User::getLoggedInUser();
+    public function alsSelector($config = array(), $options = array()) {
+		$user = \Fisdap\Entity\User::getLoggedInUser();
         // JS / CSS for the widget
         $this->view->headScript()->appendFile("/js/library/Fisdap/View/Helper/als-definition-selector.js");
         $this->view->headLink()->appendStylesheet("/css/library/Fisdap/View/Helper/als-definition-selector.css");
 
-        // check which option is checked based on the configuration, default to "fisdap" definition
-        if ($config['als-type'] == "als_skill") {
-            $checkFisdap = "";
-            $checkALS = "checked='checked'";
-            $checkCA = "";
-        } elseif ($config['als-type'] == "california") {
-            $checkFisdap = "";
-            $checkALS = "";
-            $checkCA = "checked='checked'";
-        } else {
-            $checkFisdap = "checked='checked'";
-            $checkALS = "";
-            $checkCA = "";
-        }
+		// check which option is checked based on the configuration, default to "fisdap" definition
+		if ($config['als-type'] == "als_skill") {
+			$checkFisdap = "";
+			$checkALS = "checked='checked'";
+			$checkCA = "";
+		} else if ($config['als-type'] == "california") {
+			$checkFisdap = "";
+			$checkALS = "";
+			$checkCA = "checked='checked'";
+		} else {
+			$checkFisdap = "checked='checked'";
+			$checkALS = "";
+			$checkCA = "";
+		}
 
-        $html = "
+		$html = "
 			<div id='als-definition-selector' class='grid_6 definition-selector'>
 				<h4 class='sub-heading'>ALS definition:</h4>
 				<div id='als-def-radio' class='extra-small'>
@@ -68,37 +67,37 @@ class Fisdap_View_Helper_AlsSelector extends Zend_View_Helper_Abstract
         return 	$html;
     }
 
-    /**
-     * @param array $options
-     * @param array $config
-     * @return mixed
-     */
-    public function ALSSelectorSummary($options = array(), $config = array())
+	/**
+	 * @param array $options
+	 * @param array $config
+	 * @return mixed
+	 */
+	public function ALSSelectorSummary($options = array(), $config = array())
     {
-        // get the ALS definition
-        $type = $config['als-type'];
-        $friendlyName = "";
-        switch ($type) {
-            case 'fisdap':
-                $friendlyName = 'Fisdap';
-                break;
-            case 'als_skill':
-                $friendlyName = 'ALS Skill';
-                break;
-        }
-        $summary["ALS Definition"] = $friendlyName;
+		// get the ALS definition
+		$type = $config['als-type'];
+		$friendlyName = "";
+		switch($type){
+			case 'fisdap':
+				$friendlyName = 'Fisdap';
+				break;
+			case 'als_skill':
+				$friendlyName = 'ALS Skill';
+				break;
+		}
+		$summary["ALS Definition"] = $friendlyName;
 
-        return $summary;
-    }
+		return $summary;
+	}
 
-    public function ALSSelectorValidate($options = array(), $config = array())
-    {
-        $errors = array();
-        // validate date ranges
-        if ($config['als-type'] != 'fisdap' && $config['als-type'] != 'als_skill' && $config['als-type'] != 'california') {
-            $errors['als-type'][] = 'Please select an ALS Skill definition type.';
-        }
+	public function ALSSelectorValidate($options = array(), $config = array())
+	{
+		$errors = array();
+		// validate date ranges
+		if($config['als-type'] != 'fisdap' && $config['als-type'] != 'als_skill' && $config['als-type'] != 'california'){
+			$errors['als-type'][] = 'Please select an ALS Skill definition type.';
+		}
 
-        return $errors;
-    }
+		return $errors;
+	}
 }

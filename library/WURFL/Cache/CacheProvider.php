@@ -8,8 +8,8 @@
  * COPYING file distributed with this package.
  *
  * Copyright (c) 2008-2009, WURFL-Pro S.r.l., Rome, Italy
- *
- *
+ * 
+ *  
  *
  * @category   WURFL
  * @package    WURFL_Cache
@@ -30,27 +30,27 @@
  * @license
  * @version    $id$
  */
-interface WURFL_Cache_CacheProvider
-{
-    
-    /**
-     * Put the the computed data into the cache so that it can be
-     * retrieved later.
-     * @param string key for accesing the data
-     * @param mixed the actual data been stored
-     */
-    public function put($key, $value);
+interface WURFL_Cache_CacheProvider {
+	
+	/**
+	 * Put the the computed data into the cache so that it can be
+	 * retrieved later.
+	 * @param string key for accesing the data
+	 * @param mixed the actual data been stored
+	 */
+	function put($key, $value);
 
-    /**
-     * Get the previosly saved data.
-     * @param string key for accesing the data
-     * @return mixed the actual data been stored
-     */
-    public function get($key);
-    
-    /**
-     * Invalidates the Cache
-     *
-     */
-    public function clear();
+	/**
+	 * Get the previosly saved data.
+	 * @param string key for accesing the data
+	 * @return mixed the actual data been stored
+	 */
+	function get($key);
+	
+	/**
+	 * Invalidates the Cache
+	 *
+	 */
+	function clear();
 }
+?>

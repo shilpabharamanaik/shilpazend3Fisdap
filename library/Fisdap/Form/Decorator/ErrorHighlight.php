@@ -21,28 +21,28 @@
 class Fisdap_Form_Decorator_ErrorHighlight extends Zend_Form_Decorator_Abstract
 {
 
-    /**
+	/**
      * Decorate content and/or element to include an error class
      *
      * @param  string $content
      * @return string
      */
-    public function render($content)
-    {
-        $element = $this->getElement();
-        if ($element->hasErrors()) {
-            $label = $element->getDecorator('label');
-            $labelDesc = $element->getDecorator('LabelDescription');
-            if ($label) {
-                $class = $label->getOption('class');
-                $label->setOption('class', $class . ' form-element-error');
-            } elseif ($labelDesc) {
-                $class = $labelDesc->getOption('class');
-                $labelDesc->setOption('class', $class . ' form-element-error');
-            } else {
-                $element->setAttrib('class', ' form-element-error');
-            }
-        }
-        return $content;
-    }
+	public function render($content)
+	{
+		$element = $this->getElement();
+		if ($element->hasErrors()) {
+			$label = $element->getDecorator('label');
+			$labelDesc = $element->getDecorator('LabelDescription');
+			if ($label) {
+				$class = $label->getOption('class');
+				$label->setOption('class', $class . ' form-element-error');
+			} else if ($labelDesc) {
+				$class = $labelDesc->getOption('class');
+				$labelDesc->setOption('class', $class . ' form-element-error');
+			} else {
+				$element->setAttrib('class', ' form-element-error');
+			}
+		}
+		return $content;
+	}
 }

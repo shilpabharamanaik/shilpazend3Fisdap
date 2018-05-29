@@ -10,6 +10,7 @@ use Zend_Registry;
 use Doctrine\Common\DataFixtures\Loader as DoctrineLoader;
 use Nelmio\Alice\Fixtures\Loader as AliceLoader;
 
+
 /**
  * Class SeedCommand
  *
@@ -25,17 +26,17 @@ class SeedCommand extends Command
 
     public function fire()
     {
-        if (! preg_match('/development|testing/', APPLICATION_ENV)) {
+        if ( ! preg_match('/development|testing/', APPLICATION_ENV)) {
             $this->error("This script can only be executed in the 'development' or 'testing' environment");
             exit(1);
         }
 
         /** @var \Doctrine\ORM\EntityManagerInterface $em */
-        $em = Zend_Registry::get('doctrine')->getEntityManager();
+        $em = \Zend_Registry::get('doctrine')->getEntityManager();
 
         // validate database connection
         $connectionHost = $em->getConnection()->getHost();
-        if (! preg_match('/^localhost$|^fisdapdb$/', $connectionHost)) {
+        if ( ! preg_match('/^localhost$|^fisdapdb$/', $connectionHost)) {
             $this->error('This script can only be used with a local or in memory database.  Please check your Doctrine/environment configuration and try again.');
             exit(1);
         }
@@ -44,13 +45,13 @@ class SeedCommand extends Command
         // load fixtures
         $aliceLoader = new AliceLoader;
 
-        $fixtures = $aliceLoader->load(base_path('/vendor/fisdap/members-api/database/seeds/fixtures/') . 'UserContexts.yml');
+        $fixtures = $aliceLoader->load(base_path('/vendor/fisdap/members-api/database/seeds/fixtures/') . 'UserContexts.yml' );
 
         //// enumerated data
         $enumsDir = new DirectoryIterator(base_path('/vendor/fisdap/members-api/database/seeds/fixtures/enums'));
 
         foreach ($enumsDir as $fileinfo) {
-            if (!$fileinfo->isDot()) {
+            if (!$fileinfo->isDot() ) {
                 $filename = $fileinfo->getRealPath();
                 $enumFixtures = $aliceLoader->load($filename);
                 $fixtures = array_merge($fixtures, $enumFixtures);

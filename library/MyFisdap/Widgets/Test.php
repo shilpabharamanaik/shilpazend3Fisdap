@@ -2,11 +2,10 @@
 
 class MyFisdap_Widgets_Test extends MyFisdap_Widgets_Base
 {
-    protected $registeredCallbacks = array('ajaxRerouteTest');
-    
-    public function render()
-    {
-        $html = <<<EOF
+	protected $registeredCallbacks = array('ajaxRerouteTest');
+	
+	public function render(){
+		$html = <<<EOF
 			<input type='text' id='{$this->getNamespacedName('test-dummy')}' value='{$this->data['value']}' />
 			<input type='button' id='{$this->getNamespacedName('test-save')}' value='Update string' />
 			<input type='button' id='{$this->getNamespacedName('test-ajax')}' value='Set string to "something"' />
@@ -35,20 +34,18 @@ class MyFisdap_Widgets_Test extends MyFisdap_Widgets_Base
 				});
 			</script>
 EOF;
-        return $html;
-    }
-    
-    public function getDefaultData()
-    {
-        return array('value' => 'something');
-    }
-    
-    public function ajaxRerouteTest($data)
-    {
-        $this->data['value'] = $data['newValue'];
-        
-        $this->saveData();
-        
-        return true;
-    }
+		return $html;
+	}
+	
+	public function getDefaultData(){
+		return array('value' => 'something');
+	}
+	
+	public function ajaxRerouteTest($data){
+		$this->data['value'] = $data['newValue'];
+		
+		$this->saveData();
+		
+		return true;
+	}
 }

@@ -11,41 +11,34 @@
 /**
 * R Raw data
 */
-class Rserve_REXP_Raw extends Rserve_REXP
-{
-    protected $value;
-    
-    /**
-     * return int
-     */
-    public function length()
-    {
-        return strlen($value);
-    }
-    
-    public function setValue($value)
-    {
-        $this->value = $value;
-    }
-    
-    public function getValue($value)
-    {
-        return $this->value;
-    }
-    
-    public function isRaw()
-    {
-        return true;
-    }
-    
-    public function getType()
-    {
-        return Rserve_Parser::XT_RAW;
-    }
-    
-    public function toHTML()
-    {
-        $s = strlen($this->value) > 60 ? substr($this->value, 0, 60).' (truncated)': $this->value;
-        return '<div class="rexp xt_'.$this->getType().'"> <span class="typename">raw</span><div class="value">'.$s.'</div>'.$this->attrToHTML().'</div>';
-    }
+class Rserve_REXP_Raw extends Rserve_REXP {
+	
+	protected $value;
+	
+	/**
+	 * return int
+	 */
+	public function length() {
+		return strlen($value);
+	}
+	
+	public function setValue($value) {
+		$this->value = $value;
+	}
+	
+	public function getValue($value) {
+		return $this->value;
+	}
+	
+	public function  isRaw() { return TRUE; }
+	
+	public function getType() {
+		return Rserve_Parser::XT_RAW;
+	}
+	
+	public function toHTML() {
+		$s = strlen($this->value) > 60 ? substr($this->value,0,60).' (truncated)': $this->value;
+		return '<div class="rexp xt_'.$this->getType().'"> <span class="typename">raw</span><div class="value">'.$s.'</div>'.$this->attrToHTML().'</div>';	
+	}
+	
 }

@@ -105,6 +105,7 @@ class Admin_Form_CreateNotification extends Fisdap_Form_Base
             'Form',
 
         ));
+
     }
 
     /**
@@ -201,4 +202,5 @@ class Admin_Form_CreateNotification extends Fisdap_Form_Base
         }
         return false;
     }
+
 }

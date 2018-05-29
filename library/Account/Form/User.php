@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -95,8 +95,7 @@ class Account_Form_User extends Fisdap_Form_Base
             ->setValue(6)
             ->setAttribs(array("class" => "chzn-select",
                 "data-placeholder" => "Choose an ethnicity",
-                "style" => "width:250px;"));
-        ;
+                "style" => "width:250px;"));;
 
         $birthDate = new Zend_Form_Element_Text('birth_date');
         $birthDate->setLabel('Birth Date:')

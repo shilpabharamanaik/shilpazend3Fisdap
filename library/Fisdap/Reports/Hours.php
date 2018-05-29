@@ -15,7 +15,7 @@ class Fisdap_Reports_Hours extends Fisdap_Reports_Report
         'shiftInformationForm' => array(
             'title' => 'Select shift information',
             'options' => array(
-                'pickPatientType' => false,
+                'pickPatientType' => FALSE,
                 'selected' => array('sites' => array('0-Clinical', '0-Field'))
             ),
         ),
@@ -52,12 +52,12 @@ class Fisdap_Reports_Hours extends Fisdap_Reports_Report
         'multistudentPicklist' => array(
             'title' => 'Select one or more student(s)',
             'options' => array(
-                'loadJSCSS' => true,
-                'loadStudents' => true,
-                'showTotal' => true,
-                'studentVersion' => true,
-                'includeAnon' => true,
-                'useSessionFilters' => true,
+                'loadJSCSS' => TRUE,
+                'loadStudents' => TRUE,
+                'showTotal' => TRUE,
+                'studentVersion' => TRUE,
+                'includeAnon' => TRUE,
+                'useSessionFilters' => TRUE,
                 'sessionNamespace' => "ReportStudentFilter",
             ),
         ),
@@ -204,6 +204,7 @@ class Fisdap_Reports_Hours extends Fisdap_Reports_Report
         // if there is more than one row in the totals body, add a "totals" dynamic footer
         // uses sumFootRow() in display.js to calculate
         if (count($globalTotalsTable['content']['body']) > 1) {
+
             $globalTotalsTable['content']['foot']["sum"] = $this->addDynamicTotalsFooter((count($headerCols) - 1), count($this->masterColumns));
         }
         $this->data = array('totals' => $globalTotalsTable);
@@ -214,7 +215,7 @@ class Fisdap_Reports_Hours extends Fisdap_Reports_Report
         foreach ($filter['studentIds'] as $id) {
             if (!isset($data[$id])) {
                 // insert the student into the array, so they can be sorted and displayed with the rest
-                $data[$id] = null;
+                $data[$id] = NULL;
             }
         }
 
@@ -240,7 +241,7 @@ class Fisdap_Reports_Hours extends Fisdap_Reports_Report
                 }
 
                 $this->data[$studentId] = $studentTable;
-            } elseif (!isset($data[$studentId]) || !is_array($data[$studentId])) {
+            } else if (!isset($data[$studentId]) || !is_array($data[$studentId])) {
                 // no data for this student, so just returning an empty table
                 $studentTable = array(
                     'type' => 'table',
@@ -430,7 +431,7 @@ class Fisdap_Reports_Hours extends Fisdap_Reports_Report
                     $row[] = 0; // default ot outputting zero
                 }
             }
-            $output[] = $row;
+                $output[] = $row;
         }
 
         return $output;

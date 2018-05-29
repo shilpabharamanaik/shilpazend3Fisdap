@@ -81,6 +81,7 @@ class Reports_Form_YearRangeForm extends Fisdap_Form_Base
 
         // set element decorators
         $this->setElementDecorators(self::$basicElementDecorators, array('start_year', 'end_year'));
+
     }
 
     /**

@@ -80,10 +80,10 @@ class SkillsTracker_Form_Shift extends SkillsTracker_Form_Modal
      */
     public function __construct($shiftId = null, $studentId = null, $programId = null, $types = null, $options = null)
     {
-        if (isset($shiftId) && $shiftId!='') {
+        if(isset($shiftId) && $shiftId!=''){
             $shiftId = $shiftId;
             unset($_SESSION['shiftId']);
-        } elseif (isset($_SESSION['shiftId']) && $_SESSION['shiftId']!='') {
+        }elseif(isset($_SESSION['shiftId']) && $_SESSION['shiftId']!=''){
             $shiftId = $_SESSION['shiftId'];
         }
         $this->user = \Fisdap\Entity\User::getLoggedInUser();
@@ -92,7 +92,7 @@ class SkillsTracker_Form_Shift extends SkillsTracker_Form_Modal
 
         if ($studentId) {
             $this->studentId = $studentId;
-        } elseif (!$this->currentContext->isInstructor()) {
+        } else if (!$this->currentContext->isInstructor()) {
             $this->studentId = $this->currentContext->getRoleData()->id;
         }
 
@@ -101,7 +101,7 @@ class SkillsTracker_Form_Shift extends SkillsTracker_Form_Modal
         $this->types = $types;
 
         // if this is an existing, past and future shift and the student has skillstracker
-        // add !$this->shift->isFuture() condition to get attendence only for past students
+		// add !$this->shift->isFuture() condition to get attendence only for past students
         if ($this->shift->id && $this->shift->student->user_context->getPrimarySerialNumber()->hasSkillsTracker()) {
             $this->show_attendence = true;
         }
@@ -148,6 +148,7 @@ class SkillsTracker_Form_Shift extends SkillsTracker_Form_Modal
                 }
 
                 $this->types = $allowed_types;
+
             } else {
                 // If it's an insrtuctor, give them all three types
                 $this->types = array("lab", "clinical", "field");
@@ -159,7 +160,10 @@ class SkillsTracker_Form_Shift extends SkillsTracker_Form_Modal
 
         // Finally, make sure the site for THIS shift is available.
         if ($this->shift->id) {
+
+
             if (!in_array($this->shift->type, $this->types)) {
+
                 if (count($allowed_types) == 0) {
                     $current_options = array();
                 } else {
@@ -169,6 +173,8 @@ class SkillsTracker_Form_Shift extends SkillsTracker_Form_Modal
                 $current_options[ucfirst($this->shift->type)][$this->shift->site->id] = $this->shift->site->name;
 
                 $site->setMultiOptions($current_options);
+
+
             }
         }
 
@@ -328,6 +334,7 @@ class SkillsTracker_Form_Shift extends SkillsTracker_Form_Modal
                 'studentId' => $this->shift->student->id,
             ));
         }
+
     }
 
     /**
@@ -350,10 +357,12 @@ class SkillsTracker_Form_Shift extends SkillsTracker_Form_Modal
 
             // Only save these values if the shift exists and it's a quick-added shift
             if (!$this->shift->id || $this->shift->isQuickAdd()) {
+
                 $shift->site = \Fisdap\EntityUtils::getEntity('SiteLegacy', $values['site']);
                 $shift->base = \Fisdap\EntityUtils::getEntity('BaseLegacy', $values['base']);
                 $shift->type = $shift->site->type;
-            } elseif ($this->currentContext->isInstructor()) {
+
+            } else if ($this->currentContext->isInstructor()) {
 
                 // Reset the event_id if site, base, or start date has changed
 
@@ -364,11 +373,13 @@ class SkillsTracker_Form_Shift extends SkillsTracker_Form_Modal
 
                     // reset the creator of the shift.
                     $shift->set_creator($this->currentContext);
+
                 }
 
                 $shift->site = \Fisdap\EntityUtils::getEntity('SiteLegacy', $values['site']);
                 $shift->base = \Fisdap\EntityUtils::getEntity('BaseLegacy', $values['base']);
                 $shift->type = $shift->site->type;
+
             }
 
 

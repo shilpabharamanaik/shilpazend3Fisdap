@@ -16,8 +16,7 @@ namespace Fisdap\Service\DataExport;
  * Interface PdfGenerator
  * @package Fisdap\Service
  */
-interface PdfGenerator
-{
+interface PdfGenerator {
 
     /**
      * Generate PDF content from a string of HTML content
@@ -26,7 +25,7 @@ interface PdfGenerator
      * @param boolean $isCompleteHtmlDocument Is $htmlContent a complete HTML document, or just BODY content?
      * @param string $separateHeadContent A string containing HTML suitable for being put in the HEAD tag. Useful when $isCompleteHtmlDocument = FALSE
      */
-    public function generatePdfFromHtmlString($htmlContent, $isCompleteHtmlDocument = true, $separateHeadContent = '');
+    public function generatePdfFromHtmlString($htmlContent, $isCompleteHtmlDocument = TRUE, $separateHeadContent = '');
 
     /**
      * Generate PDF content from one or more HTML files on the system

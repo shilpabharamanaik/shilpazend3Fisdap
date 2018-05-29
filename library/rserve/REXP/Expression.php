@@ -8,15 +8,14 @@
 * This code is inspired from Java client for Rserve (Rserve package v0.6.2) developped by Simon Urbanek(c)
 */
 
-class Rserve_REXP_Factor extends Rserve_REXP_GenericVector
-{
-    public function isExpression()
-    {
-        return true;
-    }
-    
-    public function getType()
-    {
-        return Rserve_Parser::XT_VECTOR_EXP;
-    }
+class Rserve_REXP_Factor extends Rserve_REXP_GenericVector {
+	
+	public function isExpression() { 
+		return TRUE; 
+	}
+	
+	public function getType() {
+		return Rserve_Parser::XT_VECTOR_EXP;
+	}
+	
 }

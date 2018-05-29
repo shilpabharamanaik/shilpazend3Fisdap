@@ -11,17 +11,16 @@
 /**
 * wrapper for R Unknown type
 */
-class Rserve_REXP_Unknown extends Rserve_REXP
-{
-    protected $unknowntype;
-    
-    public function __construct($type)
-    {
-        $this->unknowntype = $type;
-    }
-    
-    public function getUnknownType()
-    {
-        return $this->unknowntype;
-    }
+class Rserve_REXP_Unknown extends Rserve_REXP {
+	
+	protected $unknowntype;
+	
+	public function __construct($type) {
+		$this->unknowntype = $type;
+	}
+	
+	public function getUnknownType() {
+		return $this->unknowntype;
+	}
+	
 }

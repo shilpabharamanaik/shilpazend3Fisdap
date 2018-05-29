@@ -40,7 +40,7 @@ class LearningCenter_Form_SubmitScores extends Fisdap_Form_Base
         $cert = new Fisdap_Form_Element_CertificationLevel("certificationLevels");
         $cert->setLabel("Certification Level:");
 
-        if ($this->filters['certificationLevels']) {
+        if($this->filters['certificationLevels']){
             $cert->setValue($this->filters['certificationLevels']);
         }
 
@@ -50,7 +50,7 @@ class LearningCenter_Form_SubmitScores extends Fisdap_Form_Base
         $grad = new Fisdap_Form_Element_GraduationDate("grad");
         $grad->useExistingGraduationYears();
 
-        if ($this->filters['graduationYear'] || $this->filters['graduationMonth']) {
+        if($this->filters['graduationYear'] || $this->filters['graduationMonth']){
             $value = array('year' => $this->filters['graduationYear'], 'month' => $this->filters['graduationMonth']);
             $grad->setValue($value);
         }
@@ -69,9 +69,9 @@ class LearningCenter_Form_SubmitScores extends Fisdap_Form_Base
         $status->setMultiOptions($options);
         $status->setLabel("Graduation Status:");
 
-        if ($this->filters['gradStatus']) {
+        if($this->filters['gradStatus']){
             $status->setValue($this->filters['gradStatus']);
-        } else {
+        }else{
             $status->setValue(array(1));
         }
 
@@ -90,7 +90,7 @@ class LearningCenter_Form_SubmitScores extends Fisdap_Form_Base
         $groupSelect->setAttribs(array("style"=>"width:250px"))
             ->setLabel('Groups:');
 
-        if ($this->filters['section']) {
+        if($this->filters['section']){
             $groupSelect->setValue($this->filters['section']);
         }
 
@@ -98,10 +98,11 @@ class LearningCenter_Form_SubmitScores extends Fisdap_Form_Base
 
         //create two radio buttonsets for each student
 
-        foreach ($this->users as $user) {
+        foreach($this->users as $user){
+
             $userScores = array();
 
-            if ($this->program_scores[$user['user_id']]) {
+            if($this->program_scores[$user['user_id']]){
                 $userScores = $this->program_scores[$user['user_id']];
             }
 
@@ -113,16 +114,16 @@ class LearningCenter_Form_SubmitScores extends Fisdap_Form_Base
             ));
             $writtenPassFail->setSeparator('');
             //set value to stored score if we have it
-            if ($this->program_scores[$user['user_id']]) {
+            if($this->program_scores[$user['user_id']]) {
                 foreach ($userScores as $score) {
                     if (in_array($score['type_id'], array(1, 3, 21))) {
                         $writtenPassFail->setValue($score['pass_or_fail']);
                         break;
-                    } else {
+                    }else{
                         $writtenPassFail->setValue(-1);
                     }
                 }
-            } else {
+            }else {
                 $writtenPassFail->setValue(-1);
             }
 
@@ -138,21 +139,22 @@ class LearningCenter_Form_SubmitScores extends Fisdap_Form_Base
             $practicalPassFail->setSeparator('');
 
             //set value to stored score if we have it
-            if ($this->program_scores[$user['user_id']]) {
+            if($this->program_scores[$user['user_id']]) {
                 foreach ($userScores as $score) {
                     if (in_array($score['type_id'], array(2, 4, 23))) {
                         $practicalPassFail->setValue($score['pass_or_fail']);
                         break;
-                    } else {
+                    }else{
                         $practicalPassFail->setValue(-1);
                     }
                 }
-            } else {
+            }else {
                 $practicalPassFail->setValue(-1);
             }
 
 
             $this->addElement($practicalPassFail);
+
         }
 
         $save = new Fisdap_Form_Element_SaveButton("save");
@@ -167,35 +169,37 @@ class LearningCenter_Form_SubmitScores extends Fisdap_Form_Base
         ));
     }
 
-    public function process($post)
-    {
-        if ($this->isValid($post)) {
+    public function process($post){
+
+        if($this->isValid($post)){
             $values = $this->getValues();
 
             // get repo to retrieve existing scores for each user
             $testScoreRepo = \Fisdap\EntityUtils::getRepository('TestScoreLegacy');
 
-            foreach ($this->users as $user) {
+            foreach($this->users as $user){
+
                 $userid = $user['user_id'];
 
                 $userScores = $testScoreRepo->getNremtScoresByUser($userid);
 
-                if (in_array($values['pass_fail_written_' . $userid], array('1', '0', '-1', 1, 0, -1), true)) {
+                if(in_array($values['pass_fail_written_' . $userid], array('1', '0', '-1', 1, 0, -1), TRUE)){
                     //if we have scores for this user look through those for one corresponding to written test types, if none, create a new one
-                    if ($userScores) {
-                        foreach ($userScores as $score) {
-                            if (in_array($score->test_type->id, array(3, 21, 1))) {
+                    if($userScores){
+                        foreach($userScores as $score){
+                            if(in_array($score->test_type->id, array(3, 21, 1))){
                                 $testScore = $score;
                                 break;
-                            } else {
+                            }else{
                                 $testScore = new \Fisdap\Entity\TestScoreLegacy();
                             }
                         }
-                    } else {
+                    }else {
                         $testScore = new \Fisdap\Entity\TestScoreLegacy();
                     }
                     //ugly, but we want to only update and save the entity if the value is different than the existing one
-                    if (($testScore->pass_or_fail != $values['pass_fail_written_' . $userid]) && (!is_null($testScore->pass_or_fail) || in_array($values['pass_fail_written_' . $userid], array('1', '0', 1, 0), true))) {
+                    if(($testScore->pass_or_fail != $values['pass_fail_written_' . $userid]) && (!is_null($testScore->pass_or_fail) || in_array($values['pass_fail_written_' . $userid], array('1', '0', 1, 0), TRUE))) {
+
                         $userEntity = \Fisdap\EntityUtils::getEntity('User', $userid);
 
                         //old users won't have a user context set, so we need to make this call to have one set before we access role data
@@ -211,9 +215,9 @@ class LearningCenter_Form_SubmitScores extends Fisdap_Form_Base
 
                         if ($user['cert_bit'] == 1) {
                             $testScore->set_test_type(3);
-                        } elseif ($user['cert_bit'] == 2) {
+                        } else if ($user['cert_bit'] == 2) {
                             $testScore->set_test_type(21);
-                        } elseif ($user['cert_bit'] == 4) {
+                        } else if ($user['cert_bit'] == 4) {
                             $testScore->set_test_type(1);
                         } else {
                             //default to 1
@@ -224,23 +228,24 @@ class LearningCenter_Form_SubmitScores extends Fisdap_Form_Base
                     }
                 }
 
-                if (in_array($values['pass_fail_practical_' . $userid], array('1', '0', "-1", 1, 0, -1), true)) {
+                if(in_array($values['pass_fail_practical_' . $userid], array('1', '0', "-1", 1, 0, -1), TRUE)){
 
                     //if we have scores for this user look through those for one corresponding to written test types, if none, create a new one
-                    if ($userScores) {
-                        foreach ($userScores as $score) {
-                            if (in_array($score->test_type->id, array(4, 23, 2))) {
+                    if($userScores){
+                        foreach($userScores as $score){
+                            if(in_array($score->test_type->id, array(4, 23, 2))){
                                 $testScore = $score;
                                 break;
-                            } else {
+                            }else{
                                 $testScore = new \Fisdap\Entity\TestScoreLegacy();
                             }
                         }
-                    } else {
+                    }else {
                         $testScore = new \Fisdap\Entity\TestScoreLegacy();
                     }
 
-                    if (($testScore->pass_or_fail != $values['pass_fail_practical_' . $userid]) && (!is_null($testScore->pass_or_fail) || in_array($values['pass_fail_practical_' . $userid], array('1', '0', 1, 0), true))) {
+                    if(($testScore->pass_or_fail != $values['pass_fail_practical_' . $userid]) && (!is_null($testScore->pass_or_fail) || in_array($values['pass_fail_practical_' . $userid], array('1', '0', 1, 0), TRUE))) {
+
                         $userEntity = \Fisdap\EntityUtils::getEntity('User', $userid);
 
                         //old users won't have a user context set, so we need to make this call to have one set before we access role data
@@ -255,9 +260,9 @@ class LearningCenter_Form_SubmitScores extends Fisdap_Form_Base
                         // 1 = EMT, 2 = AEMT, 4 = Paramedic
                         if ($user['cert_bit'] == 1) {
                             $testScore->set_test_type(4);
-                        } elseif ($user['cert_bit'] == 2) {
+                        } else if ($user['cert_bit'] == 2) {
                             $testScore->set_test_type(23);
-                        } elseif ($user['cert_bit'] == 4) {
+                        } else if ($user['cert_bit'] == 4) {
                             $testScore->set_test_type(2);
                         } else {
                             //default to 1
@@ -272,4 +277,5 @@ class LearningCenter_Form_SubmitScores extends Fisdap_Form_Base
         }
         return false;
     }
+
 }

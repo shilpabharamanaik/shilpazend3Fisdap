@@ -3,6 +3,7 @@
 use Illuminate\Contracts\Queue\Job;
 use Illuminate\Queue\Capsule\Manager as Queue;
 
+
 /**
  * Class SaveRequirement
  *

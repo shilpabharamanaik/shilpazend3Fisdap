@@ -17,19 +17,20 @@
 /**
  * @package SkillsTracker
  */
-class SkillsTracker_View_Helper_AddPreceptorWidget extends Zend_View_Helper_Abstract
+class SkillsTracker_View_Helper_AddPreceptorWidget extends Zend_View_Helper_Abstract 
 {
-    /**
-     * @var string the html to be rendered
-     */
-    protected $_html;
-    
-    public function addPreceptorWidget($studentId, $siteId)
-    {
+	/**
+	 * @var string the html to be rendered
+	 */
+	protected $_html;
+	
+	public function addPreceptorWidget($studentId, $siteId)
+	{
         $this->view->headScript()->appendFile('/js/library/SkillsTracker/View/Helper/add-preceptor-widget.js');
         
         $form = new SkillsTracker_Form_AddPreceptor($studentId, $siteId);
         
         return "<div id='preceptorDialog'>" . $form . "</div>";
+        
     }
 }

@@ -35,13 +35,13 @@ class SkillsTracker_View_Helper_PupilsElement extends Zend_View_Helper_FormEleme
         $equal = isset($value['equal']) ? $value['equal'] : "-1";
         $round = isset($value['round']) ? $value['round'] : "-1";
         $reactive = isset($value['reactive']) ? $value['reactive'] : "-1";
-        
-        $options = array(-1 => 'N\A', 0 => 'No', 1 => 'Yes');
+		
+		$options = array(-1 => 'N\A', 0 => 'No', 1 => 'Yes');
     
-        
-        $this->html .= "Equal? " . $this->view->formRadio($name . "[equal]", $equal, array(), $options, " ") . "<br>";
-        $this->html .= "Round? " . $this->view->formRadio($name . "[round]", $round, array(), $options, " ") . "<br>";
-        $this->html .= "Reactive to Light? " . $this->view->formRadio($name . "[reactive]", $reactive, array(), $options, " ") . "<br>";
+		
+		$this->html .= "Equal? " . $this->view->formRadio($name . "[equal]", $equal, array(), $options, " ") . "<br>";
+		$this->html .= "Round? " . $this->view->formRadio($name . "[round]", $round, array(), $options, " ") . "<br>";
+		$this->html .= "Reactive to Light? " . $this->view->formRadio($name . "[reactive]", $reactive, array(), $options, " ") . "<br>";
         
         return $this->html;
     }

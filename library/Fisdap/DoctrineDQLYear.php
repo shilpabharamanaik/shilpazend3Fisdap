@@ -13,8 +13,7 @@ use Doctrine\ORM\Query\SqlWalker;
 use Doctrine\ORM\Query\Parser;
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
 
-class DoctrineDQLYear extends FunctionNode
-{
+class DoctrineDQLYear extends FunctionNode {
     private $arg;
 
     public function getSql(SqlWalker $sqlWalker)
@@ -31,4 +30,4 @@ class DoctrineDQLYear extends FunctionNode
 
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
-}
+} 

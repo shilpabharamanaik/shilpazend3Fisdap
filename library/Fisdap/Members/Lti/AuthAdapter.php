@@ -1,7 +1,8 @@
 <?php namespace Fisdap\Members\Lti;
 
-use Zend_Auth_Adapter_Exception;
-use Zend_Auth_Result;
+use Zend\Authentication\Adapter\Exception\ExceptionInterface;
+use Zend\Authentication\Result;
+
 
 /**
  * Zend_Auth Adapter for LTI launches
@@ -9,7 +10,7 @@ use Zend_Auth_Result;
  * @package Fisdap\Members\Lti
  * @author  Ben Getsug <bgetsug@fisdap.net>
  */
-final class AuthAdapter implements \Zend_Auth_Adapter_Interface
+final class AuthAdapter implements Zend\Authentication\Adapter\AdapterInterface
 {
     /**
      * @var string
@@ -36,6 +37,6 @@ final class AuthAdapter implements \Zend_Auth_Adapter_Interface
      */
     public function authenticate()
     {
-        return new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, $this->username, []);
+        return new Zend\Authentication\Result(Zend\Authentication\Result::SUCCESS, $this->username, []);
     }
 }

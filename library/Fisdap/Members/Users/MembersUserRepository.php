@@ -2,6 +2,7 @@
 
 use Fisdap\Data\User\DoctrineUserRepository;
 
+
 /**
  * Temporary user repository implementation to hold deprecated logic
  *
@@ -9,4 +10,5 @@ use Fisdap\Data\User\DoctrineUserRepository;
  */
 class MembersUserRepository extends DoctrineUserRepository
 {
+
 }

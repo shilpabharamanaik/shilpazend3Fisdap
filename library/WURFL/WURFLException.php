@@ -8,8 +8,8 @@
  * COPYING file distributed with this package.
  *
  * Copyright (c) 2008-2009, WURFL-Pro S.r.l., Rome, Italy
- *
- *
+ * 
+ *  
  *
  * @category   WURFL
  * @package    WURFL
@@ -17,6 +17,7 @@
  * @license
  * @version    $id$
  */
-class WURFL_WURFLException extends Exception
-{
+class WURFL_WURFLException extends Exception  {
 }
+
+?>

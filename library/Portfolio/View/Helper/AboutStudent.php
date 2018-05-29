@@ -107,6 +107,7 @@ class Portfolio_View_Helper_AboutStudent extends Zend_View_Helper_Abstract
 
         // Info
         if (isset($helpers['info']) || in_array('info', $helpers)) {
+
             $studentCertification = ucfirst($student->getCertification('formatted'));
             $studentGraduationMonth = Util_FisdapDate::get_short_month_name($student->graduation_month);
             $this->_html .= "
@@ -129,6 +130,7 @@ class Portfolio_View_Helper_AboutStudent extends Zend_View_Helper_Abstract
 
         // Student self-description
         if (isset($helpers['description']) || in_array('description', $helpers)) {
+
             $this->_html .= "<div id='description' class='section-body'>
                                        <div id='student_description_display'>";
             if ($student->portfolioDetails->first()->portfolio_description == '') {

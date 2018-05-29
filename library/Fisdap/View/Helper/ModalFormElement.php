@@ -31,6 +31,7 @@ class Fisdap_View_Helper_ModalFormElement extends Zend_View_Helper_FormElement
      */
     public function modalFormElement($element)
     {
+
         $this->html  = '<div class="form-prompt">';
         $this->html .= '<label class="label" for="'.$element->getName().'">'.
                             $element->getLabel();

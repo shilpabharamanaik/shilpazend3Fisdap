@@ -18,7 +18,7 @@ class Fisdap_Reports_RadHours extends Fisdap_Reports_Report
         'shiftInformationForm' => array(
             'title' => 'Select shift information',
             'options' => array(
-                'pickPatientType' => false,
+                'pickPatientType' => FALSE,
                 'selected' => array('sites' => array('0-Clinical'))
             ),
         ),
@@ -26,11 +26,11 @@ class Fisdap_Reports_RadHours extends Fisdap_Reports_Report
             'title' => 'Select one or more student(s)',
             'options' => array(
                 'mode' => 'multiple',
-                'loadJSCSS' => true,
-                'loadStudents' => true,
-                'showTotal' => true,
-                'studentVersion' => true,
-                'useSessionFilters' => true,
+                'loadJSCSS' => TRUE,
+                'loadStudents' => TRUE,
+                'showTotal' => TRUE,
+                'studentVersion' => TRUE,
+                'useSessionFilters' => TRUE,
                 'sessionNamespace' => "ReportStudentFilter",
             ),
         ),

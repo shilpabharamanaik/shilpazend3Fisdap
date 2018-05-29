@@ -39,7 +39,7 @@ class Fisdap_View_Helper_GroupsElement extends Zend_View_Helper_FormElement
         $program = \Fisdap\Entity\ProgramLegacy::getCurrentProgram();
         $classSectionRepository = \Fisdap\EntityUtils::getRepository('ClassSectionLegacy');
         $classSectionYears = $classSectionRepository->getUniqueYears($program->id);
-        $classSections = $classSectionRepository->getNamesByProgram($program->id, $year);
+		$classSections = $classSectionRepository->getNamesByProgram($program->id, $year);
         
         $this->html .= $this->view->formSelect($name . "[year]", $year, array(), $classSectionYears);
         $this->html .= $this->view->formSelect($name . "[id]", $id, array(), $classSections);

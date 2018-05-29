@@ -8,8 +8,8 @@
  * COPYING file distributed with this package.
  *
  * Copyright (c) 2008-2009, WURFL-Pro S.r.l., Rome, Italy
- *
- *
+ * 
+ * 
  *
  * @category   WURFL
  * @package    WURFL_Handlers
@@ -20,7 +20,7 @@
 
 /**
  * SendoUserAgentHandler
- *
+ * 
  *
  * @category   WURFL
  * @package    WURFL_Handlers
@@ -28,17 +28,16 @@
  * @license
  * @version    $id$
  */
-class WURFL_Handlers_SendoHandler extends WURFL_Handlers_Handler
-{
-    public function __construct($wurflContext, $userAgentNormalizer = null)
-    {
-        parent::__construct($wurflContext, $userAgentNormalizer);
-    }
-    
-    public function canHandle($userAgent)
-    {
-        return (strpos($userAgent, "Sendo") === 0);
-    }
-    
-    protected $prefix = "SENDO";
+class WURFL_Handlers_SendoHandler extends WURFL_Handlers_Handler {
+	
+	function __construct($wurflContext, $userAgentNormalizer = null) {
+		parent::__construct ( $wurflContext, $userAgentNormalizer );
+	}
+	
+	public function canHandle($userAgent) {
+		return (strpos ( $userAgent, "Sendo" ) === 0);
+	}
+	
+	protected $prefix = "SENDO";
 }
+?>

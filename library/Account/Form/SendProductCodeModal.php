@@ -79,8 +79,7 @@ class Account_Form_SendProductCodeModal extends SkillsTracker_Form_Modal
 							}, 'json');
                             
                             $(this).dialog('close');
-						}"
-                    ))),
+						}"))),
                 ),
             )),
         ));
@@ -119,7 +118,7 @@ class Account_Form_SendProductCodeModal extends SkillsTracker_Form_Modal
                     $upgradeable = !($configuration == $productService::PRECEPTOR_TRAINING_CONFIG ||
                         $configuration == $productService::PARAMEDIC_TRANSITION_CONFIG ||
                         $configuration == $productService::EMTB_TRANSITION_CONFIG ||
-                        $configuration == $productService::AEMT_TRANSITION_CONFIG);
+                        $configuration == $productService::AEMT_TRANSITION_CONFIG );
                     $mail->addTo($email)
                         ->setSubject("Invitation to purchase a Fisdap account")
                         ->setViewParam('productCode', $productCode)

@@ -19,9 +19,13 @@ class Bootstrap
     /**
      * @var Container
      */
-    protected $container;
-
+	protected $container;
 	
+	public function __construct() {
+        global $container;
+
+        $this->container = $container;
+    }
 	public static function run(){
         self::prepare();
 
@@ -31,10 +35,10 @@ class Bootstrap
 
 
     public static function prepare(){
-		echo "Bootstap";exit;
-        self::setIlluminateContainer();
+		//echo "Bootstap";exit;
+        //self::setIlluminateContainer();
 
-        self::_initXhprof();
+        //self::_initXhprof();
         self::_initDebugBar();
 
         self::_initHost();

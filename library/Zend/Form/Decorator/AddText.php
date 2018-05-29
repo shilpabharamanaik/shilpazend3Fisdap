@@ -21,33 +21,33 @@
 */
 class Zend_Form_Decorator_AddText extends Zend_Form_Decorator_Abstract
 {
-    public function render($content)
-    {
-        $placement = $this->getPlacement();
-        $text = $this->getOption('text');
-        $class = $this->getOption('class');
-        $tag = $this->getOption('tag');
-        //$notags = $this->getOption('no_tags');
+	public function render($content)
+	{
+		$placement = $this->getPlacement();
+		$text = $this->getOption('text');
+		$class = $this->getOption('class');
+		$tag = $this->getOption('tag');
+		//$notags = $this->getOption('no_tags');
 
-        if (!$class) {
-            $class = 'add_text';
-        }
-        if (is_null($tag)) {
-            $tag = 'div';
-        }
-        
-        //$element = $this->getElement();
-        if ($tag) {
-            $output = "<$tag class =\"$class\">$text</$tag>";
-        } else {
-            $output = $text;
-        }
-        switch ($placement) {
-            case 'PREPEND':
-                return $output . $content;
-            case 'APPEND':
-            default:
-                return $content . $output;
-        }
-    }
+		if (!$class) {
+			$class = 'add_text';
+		}
+		if (is_null($tag)) {
+			$tag = 'div';
+		}
+		
+		//$element = $this->getElement();
+		if ($tag) {
+			$output = "<$tag class =\"$class\">$text</$tag>";
+		} else {
+			$output = $text;	
+		}
+		switch ($placement) {
+			case 'PREPEND':
+				return $output . $content;
+			case 'APPEND' :
+			default :
+				return $content . $output;
+		}
+	}
 }

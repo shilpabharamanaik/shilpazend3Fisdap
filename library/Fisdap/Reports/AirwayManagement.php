@@ -7,7 +7,7 @@
  * Refer to Fisdap_Reports_Report for more documentation
  *
  * @author Hammer :)
- *
+ * 
  */
 
 class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
@@ -51,10 +51,10 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
 
 
     /*
-     *
+	 *
      * Actually runs our report.
      * Grabs the data (filtered based on user specs), parses it, & dumps it into table(s).
-     *
+     * 
      */
     public function runReport()
     {
@@ -109,13 +109,8 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
             $eureka_dates = $student_table['eureka_dates'];
 
             // grab our table title (this is also where our eureka graphs are generated)
-            $table_title = $this->getDetailedTableTitle(
-                $data['student_name'],
-                count($data['managements']),
-                $student_id,
-                $eureka_attempts,
-                $eureka_dates
-            );
+            $table_title = $this->getDetailedTableTitle($data['student_name'], count($data['managements']), $student_id,
+                $eureka_attempts, $eureka_dates);
 
             // get the defaults for the table columns and footer
             $cols = array(
@@ -228,7 +223,9 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
                 'foot' => array('0' => $et_footer)
             );
             $this->data['et_' . $student_id] = array("type" => "table", "content" => $et_data_table);
+
         } // end foreach student data
+
     } // end runDetailedReport
 
 
@@ -255,11 +252,13 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
             if ($data['managements']) {
                 foreach ($data['managements'] as $shift_id => $shift_am_data) {
                     foreach ($shift_am_data['attempts'] as $attempt) {
+
                         if ($attempt['performed']) {
                             // the student performed this attempt, add it to our array (regardless of success)
                             $attempts_array[$attempt_number] = ($attempt['success_boolean'] === true) ? 1 : 0;
                             $attempt_number++;
                         }
+
                     } // end for each shift attempts
                 } // end for each management
             } // end if managements
@@ -289,6 +288,7 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
             $et_cell = array("data" => $et_string, "class" => $success_data['class']);
             $success_cell = array("data" => $success_data['rate'], "class" => $success_data['class']);
             $table_body[] = array($name_cell, $attempt_cell, $et_cell, $success_cell);
+
         } // end foreach student data
 
         // make the single table and add it to the report
@@ -302,6 +302,7 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
             'body' => $table_body
         );
         $this->data['airway_management_summary'] = array("type" => "table", "content" => $data_table);
+
     } // end runSummaryReport
 
 
@@ -340,6 +341,7 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
                         // add to our eureka arrays for later use
                         $eureka_attempts[$attempt_number] = ($attempt['success_boolean'] === true) ? 1 : 0;
                         $eureka_dates[$attempt_number] = $attempt['attempt_date'];
+
                     } else {
                         $attempt_number = "Observed";
                         $attempt_class = "";
@@ -357,11 +359,16 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
                         array("data" => $attempt['age'], "title" => $attempt['age_title']),
                         array("data" => $attempt['success'], "class" => "airway_management_success_cell")
                     );
+
                 } // end foreach shift attempts
+
             } // end foreach airway management
+
         } // end if airway managements
 
         return array("body" => $table_body, "eureka_attempts" => $eureka_attempts, "eureka_dates" => $eureka_dates);
+
+
     } // end buildStudentTable
 
 
@@ -387,15 +394,8 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
             $eureka_helper = new Fisdap_View_Helper_EurekaGraph();
             $all_graph_id = "airway_management_eureka_all_attempts_" . $student_id;
             $all_eureka_msg = $this->getEurekaMsg($name, true);
-            $all_time_attempts = $eureka_helper->eurekaGraph(
-                $eureka_attempts,
-                $eureka_dates,
-                20,
-                20,
-                $all_graph_id,
-                true,
-                $all_eureka_msg
-            );
+            $all_time_attempts = $eureka_helper->eurekaGraph($eureka_attempts, $eureka_dates, 20, 20, $all_graph_id,
+                true, $all_eureka_msg);
 
             // generates the HTML for the eureka graph for just the last 20 attempts
             $coa_attempts = $this->getCoaEurekaGraph($eureka_attempts, $eureka_dates, $name, $student_id);
@@ -410,9 +410,11 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
             $table_title .= $coa_attempts;
             $table_title .= "</div>";
             $table_title .= "</div>";
+
         }
 
         return $table_title;
+
     } // end getDetailedTableTitle
 
     /*
@@ -449,17 +451,11 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
         $coa_eureka_helper = new Fisdap_View_Helper_EurekaGraph();
         $graph_id = "airway_management_eureka_coa_attempts_" . $student_id;
         $eureka_msg = $this->getEurekaMsg($name, false);
-        $eureka_graph = $coa_eureka_helper->eurekaGraph(
-            $coa_attempts,
-            $coa_dates,
-            20,
-            20,
-            $graph_id,
-            true,
-            $eureka_msg
-        );
+        $eureka_graph = $coa_eureka_helper->eurekaGraph($coa_attempts, $coa_dates, 20, 20, $graph_id, true,
+            $eureka_msg);
 
         return $eureka_graph;
+
     } // end getCoaEurekaGraph
 
 
@@ -488,6 +484,7 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
         $msg .= "</a>";
 
         return $msg;
+
     } // end getEurekaMsg
 
 
@@ -532,6 +529,7 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
         }
 
         return array("rate" => $success_rate, "class" => $success_goal_class);
+
     } // end getSuccessDataForSummary
 
 
@@ -560,16 +558,11 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
 
         // Run a query to get data.
         $repo = \Fisdap\EntityUtils::getRepository('AirwayManagement');
-        $raw_data = $repo->getDataForReport(
-            $student_ids,
-            $site_ids,
-            $start_date,
-            $end_date,
-            $patient_type,
-            $audited_only
-        );
+        $raw_data = $repo->getDataForReport($student_ids, $site_ids, $start_date, $end_date, $patient_type,
+            $audited_only);
 
         return $raw_data;
+
     } // end getAirwayManagementRawData
 
 
@@ -616,19 +609,20 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
                 if ($include_attempt) {
                     // is this the first time we've seen this shift?
                     if (!$parsed_data[$stu_id]['managements'][$shift_id]) {
-                        $parsed_data[$stu_id]['managements'][$shift_id] = $this->initAMShiftArray(
-                            $shift,
-                            $summary_helper
-                        );
+                        $parsed_data[$stu_id]['managements'][$shift_id] = $this->initAMShiftArray($shift,
+                            $summary_helper);
                     }
 
                     $parsed_am_data = $this->parseAttemptData($am_data, $shift['start_datetime'], $goal_set);
                     $parsed_data[$stu_id]['managements'][$shift_id]['attempts'][$am_data['id']] = $parsed_am_data;
                 }
+
             } // end foreach raw data
+
         } // end if raw data
 
         return $parsed_data;
+
     } // end parseAMData
 
 
@@ -674,6 +668,7 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
         $parsed_data['procedures'] = $this->getAMAttemptProcedures($source, $attempt, $attempt['patient']['airways']);
 
         return $parsed_data;
+
     } // end getParsedAMAttemptData
 
 
@@ -694,17 +689,20 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
 
         // this came from the patient care form, gather a bit more info
         if ($source == 2 && isset($patient['age'])) {
+
             $age = ((intval($patient['age']) * 12) + (intval($patient['months']))) / 12;
 
             $age_data['age'] = $goal_set->getAgeFieldName($age, true);
             $age_data['age_title'] = $patient['age'] . " y ";
             $age_data['age_title'] .= ($patient['months']) ? $patient['months'] . " mo" : "";
+
         } else {
             $age_data['age'] = "N/A";
             $age_data['age_title'] = null;
         }
 
         return $age_data;
+
     } // end getAMAgeValue
 
 
@@ -738,6 +736,7 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
         }
 
         return $procedures;
+
     } // end getAMAttemptProcedures
 
 
@@ -759,6 +758,7 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
         }
 
         return $data_framework;
+
     } // end getAMDataFramework
 
     public function parseETData($data_framework, $raw_data)
@@ -773,6 +773,7 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
                     } else {
                         return $a['patient']['id'] > $b['patient']['id'];
                     }
+
                 } else {
                     return $a['shift']['start_datetime'] > $b['shift']['start_datetime'];
                 }
@@ -802,10 +803,8 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
 
                 // is this the first time we've seen this shift?
                 if (!$parsed_data[$stu_id]['managements'][$shift_id]) {
-                    $parsed_data[$stu_id]['managements'][$shift_id] = $this->initETShiftArray(
-                        $shift,
-                        $summary_helper
-                    );
+                    $parsed_data[$stu_id]['managements'][$shift_id] = $this->initETShiftArray($shift,
+                        $summary_helper);
                 }
 
                 // If attempts is null, assume only one attempt
@@ -827,9 +826,11 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
                     }
                 }
             } // end foreach raw data
+
         } // end if raw data
 
         return $parsed_data;
+
     } // end parseETData
 
     public function parseETAttemptData($attempt, $shift_start_datetime, $goal_set, $success)
@@ -865,6 +866,7 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
         $parsed_data['procedures'] = $attempt['procedure']['name'];
 
         return $parsed_data;
+
     } // end getParsedETAttemptData
 
     public function initETShiftArray($shift, $helper)
@@ -872,15 +874,12 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
         $am_shift_array = array();
         $shift_info_data_array = $this->getAMShiftInfoDataArray($shift);
         $summary_options = array('display_size' => 'large', 'sortable' => true);
-        $am_shift_array['shift_info_display'] = $helper->shiftSummaryDisplayHelper(
-            $shift_info_data_array,
-            null,
-            null,
-            $summary_options
-        );
+        $am_shift_array['shift_info_display'] = $helper->shiftSummaryDisplayHelper($shift_info_data_array, null, null,
+            $summary_options);
         $am_shift_array['attempts'] = array();
 
         return $am_shift_array;
+
     }
 
     public function getETAgeValue($patient, $goal_set)
@@ -889,17 +888,20 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
 
         // this came from the patient care form, gather a bit more info
         if (isset($patient['age'])) {
+
             $age = ((intval($patient['age']) * 12) + (intval($patient['months']))) / 12;
 
             $age_data['age'] = $goal_set->getAgeFieldName($age, true);
             $age_data['age_title'] = $patient['age'] . " y ";
             $age_data['age_title'] .= ($patient['months']) ? $patient['months'] . " mo" : "";
+
         } else {
             $age_data['age'] = "N/A";
             $age_data['age_title'] = null;
         }
 
         return $age_data;
+
     } // end getAMAgeValue
 
     /**
@@ -923,6 +925,7 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
         }
 
         return $goal_set;
+
     } // end getGoalSetForAirwayManagement
 
 
@@ -940,15 +943,12 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
         $am_shift_array = array();
         $shift_info_data_array = $this->getAMShiftInfoDataArray($shift);
         $summary_options = array('display_size' => 'large', 'sortable' => true);
-        $am_shift_array['shift_info_display'] = $helper->shiftSummaryDisplayHelper(
-            $shift_info_data_array,
-            null,
-            null,
-            $summary_options
-        );
+        $am_shift_array['shift_info_display'] = $helper->shiftSummaryDisplayHelper($shift_info_data_array, null, null,
+            $summary_options);
         $am_shift_array['attempts'] = array();
 
         return $am_shift_array;
+
     } // end initAMShiftArray
 
 
@@ -969,6 +969,7 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
         $shift_info_data['site_name'] = $shift_data['site']['name'];
         $shift_info_data['base_name'] = $shift_data['base']['name'];
         return $shift_info_data;
+
     } // end getAMShiftInfoDataArray
 
 
@@ -983,6 +984,7 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
         $img = "<img class='airway_management_success_img' src='/images/icons/";
         $img .= ($value === true) ? "scenario-valid.png'>" : "scenario-invalid.png'>";
         return $img;
+
     } // end getAMSuccessImg
 
 
@@ -998,5 +1000,8 @@ class Fisdap_Reports_AirwayManagement extends Fisdap_Reports_Report
     {
         $html = (($type == 2 && !$performed) || !$performed) ? "<span class='airway_management_na_success'>N/A</span>" : $success_img;
         return $html;
+
     } // end getAMSuccessDisplay
+
+
 } // end AirwayManagement class

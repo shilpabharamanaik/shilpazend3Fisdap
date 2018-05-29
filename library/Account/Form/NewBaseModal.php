@@ -20,118 +20,120 @@
  */
 class Account_Form_NewBaseModal extends Fisdap_Form_BaseJQuery
 {
-    public static $gridElementDecorators = array(
-        'ViewHelper',
-        array(array('element' => 'HtmlTag'), array('tag' => 'div', 'class' => 'grid_3 mostInputs')),
+
+	public static $gridElementDecorators = array(
+		'ViewHelper',
+		array(array('element' => 'HtmlTag'), array('tag' => 'div', 'class' => 'grid_3 mostInputs')),
         array('Label', array('tag' => 'div', 'class' => 'grid_2 leftLabels', 'escape' => false)),
 
-    );
+	);
 
-    public static $activeElementDecorators = array(
-        'ViewHelper',
-        array(array('element' => 'HtmlTag'), array('tag' => 'div', 'class' => 'grid_3 activateInput')),
+	public static $activeElementDecorators = array(
+		'ViewHelper',
+		array(array('element' => 'HtmlTag'), array('tag' => 'div', 'class' => 'grid_3 activateInput')),
         array('Label', array('tag' => 'div', 'class' => 'grid_2 activateLabel', 'escape' => false)),
-    );
+	);
 
-    public static $zipElementDecorators = array(
-        'ViewHelper',
-        array(array('element' => 'HtmlTag'), array('tag' => 'div', 'class' => 'grid_3 baseZipInput')),
+	public static $zipElementDecorators = array(
+		'ViewHelper',
+		array(array('element' => 'HtmlTag'), array('tag' => 'div', 'class' => 'grid_3 baseZipInput')),
         array('Label', array('tag' => 'div', 'class' => 'grid_2 baseZipLabel', 'escape' => false)),
 
-    );
+	);
 
-    public static $typeElementDecorators = array(
-        'ViewHelper',
-        array(array('element' => 'HtmlTag'), array('tag' => 'div', 'class' => '')),
+	public static $typeElementDecorators = array(
+		'ViewHelper',
+		array(array('element' => 'HtmlTag'), array('tag' => 'div', 'class' => '')),
         array('Label', array('tag' => 'div', 'class' => 'typeLabel', 'escape' => false)),
-    );
+	);
 
-    public $site_id;
+	public $site_id;
 
-    public $program;
+	public $program;
 
-    public function __construct($siteId = null, $options = null)
-    {
-        $this->site_id = $siteId;
-        $this->program = \Fisdap\Entity\ProgramLegacy::getCurrentProgram();
-        parent::__construct($options);
-    }
+	public function __construct($siteId = null, $options = null)
+	{
+		$this->site_id = $siteId;
+		$this->program = \Fisdap\Entity\ProgramLegacy::getCurrentProgram();
+		parent::__construct($options);
+	}
 
-    public function init()
-    {
+	public function init()
+	{
+
         parent::init();
-        $this->setAttrib('id', 'baseForm');
+		$this->setAttrib('id', 'baseForm');
 
 
-        $site = \Fisdap\EntityUtils::getEntity("SiteLegacy", $data['base_siteId']);
-        $token = $site->name;
+	$site = \Fisdap\EntityUtils::getEntity("SiteLegacy", $data['base_siteId']);
+	$token = $site->name;
 
-        $name = new Zend_Form_Element_Text('base_name');
-        $name->setLabel('Name:')
-             //->addValidator('Identical', true, array('token' => $token))
-             ->setRequired(true)
-             ->setAttrib('class', 'long baseName')
-             ->addErrorMessage("Please enter a name. The base name cannot be the same as the name of the site.");
+       $name = new Zend_Form_Element_Text('base_name');
+		$name->setLabel('Name:')
+			 //->addValidator('Identical', true, array('token' => $token))
+			 ->setRequired(true)
+			 ->setAttrib('class', 'long baseName')
+			 ->addErrorMessage("Please enter a name. The base name cannot be the same as the name of the site.");
 
-        $address = new Zend_Form_Element_Text('base_address');
-        $address->setLabel('Address:')
-             ->setAttrib('class', 'long baseCity');
+		$address = new Zend_Form_Element_Text('base_address');
+		$address->setLabel('Address:')
+			 ->setAttrib('class', 'long baseCity');
 
-        $city = new Zend_Form_Element_Text('base_city');
-        $city->setLabel('City:')
-             ->setAttrib('class', 'long baseCity');
+		$city = new Zend_Form_Element_Text('base_city');
+		$city->setLabel('City:')
+			 ->setAttrib('class', 'long baseCity');
 
-        $state = new Fisdap_Form_Element_States('base_state');
-        $state->setLabel('State:')
-              ->setCountry($this->program->country);
+		$state = new Fisdap_Form_Element_States('base_state');
+		$state->setLabel('State:')
+			  ->setCountry($this->program->country);
 
-        $zip = new Zend_Form_Element_Text('base_zip');
-        $zip->setLabel('Zip:')
-            ->addValidator('LessThan', true, array('max' => '99999'))
-            ->addErrorMessage('Please choose a valid zip code.');
-
-
-
-        $siteId = new Zend_Form_Element_Hidden('base_siteId');
-        $siteId->setValue($this->site_id);
-
-        $baseId = new Zend_Form_Element_Hidden('base_id_input');
-        $baseId->setValue("noBase");
+		$zip = new Zend_Form_Element_Text('base_zip');
+		$zip->setLabel('Zip:')
+			->addValidator('LessThan', true, array('max' => '99999'))
+			->addErrorMessage('Please choose a valid zip code.');
 
 
-        $this->addElements(array(
-            $name,
-            $address,
-            $city,
-            $state,
-            $zip,
-            $siteId,
-            $baseId,
-            $address
-        ));
 
-        $this->setElementDecorators(self::$gridElementDecorators, array('base_name', 'base_city', 'base_address', 'base_state'), true);
-        $this->setElementDecorators(self::$zipElementDecorators, array('base_zip'), true);
+		$siteId = new Zend_Form_Element_Hidden('base_siteId');
+		$siteId->setValue($this->site_id);
 
-        $viewscript = newBaseModal.phtml;
+		$baseId = new Zend_Form_Element_Hidden('base_id_input');
+		$baseId->setValue("noBase");
 
-        $this->setDecorators(array(
-            'PrepareElements',
-            array('ViewScript', array('viewScript' => "newBaseModal.phtml")),
-            'Form',
-            array('DialogContainer', array(
-                'id'          => 'newBaseDialog',
-                'class'          => 'newBaseDialog',
-                'jQueryParams' => array(
-                    'tabPosition' => 'top',
-                    'modal' => true,
-                    'autoOpen' => false,
-                    'resizable' => false,
-                    'width' => 550,
-                    'title' => 'Add New Base',
-                    'open' => new Zend_Json_Expr("function(event, ui) { $('button').css('color', '#000000'); }"),
-                    'buttons' => array(array("text" => "Cancel", "className" => "gray-button", "click" => new Zend_Json_Expr("function() { $(this).dialog('close'); }")),array("text" => "Save", "id" => "save-btn", "class" => "gray-button small", "click" => new Zend_Json_Expr(
-                        "function() {
+
+		$this->addElements(array(
+			$name,
+			$address,
+			$city,
+			$state,
+			$zip,
+			$siteId,
+			$baseId,
+			$address
+		));
+
+		$this->setElementDecorators(self::$gridElementDecorators, array('base_name', 'base_city', 'base_address', 'base_state'), true);
+		$this->setElementDecorators(self::$zipElementDecorators, array('base_zip'), true);
+
+		$viewscript = newBaseModal.phtml;
+
+		$this->setDecorators(array(
+			'PrepareElements',
+			array('ViewScript', array('viewScript' => "newBaseModal.phtml")),
+			'Form',
+			array('DialogContainer', array(
+				'id'          => 'newBaseDialog',
+				'class'          => 'newBaseDialog',
+				'jQueryParams' => array(
+					'tabPosition' => 'top',
+					'modal' => true,
+					'autoOpen' => false,
+					'resizable' => false,
+					'width' => 550,
+					'title' => 'Add New Base',
+					'open' => new Zend_Json_Expr("function(event, ui) { $('button').css('color', '#000000'); }"),
+					'buttons' => array(array("text" => "Cancel", "className" => "gray-button", "click" => new Zend_Json_Expr("function() { $(this).dialog('close'); }")),array("text" => "Save", "id" => "save-btn", "class" => "gray-button small", "click" => new Zend_Json_Expr(
+						"function() {
 							var saveBtn = $('#newBaseDialog').parent().find('.ui-dialog-buttonpane').find('button').hide();
 							var throbber =  $(\"<img id='throbber' src='/images/throbber_small.gif'>\");
 							saveBtn.parent().append(throbber);
@@ -225,60 +227,65 @@ class Account_Form_NewBaseModal extends Fisdap_Form_BaseJQuery
 
 
 
-						}"
-                    ))),
-                ),
-            )),
-        ));
-    }
+						}"))),
+				),
+			)),
+		));
 
-    /**
-     * Validate the form, if valid, save the new base, if not, return the error msgs
-     *
-     * @param array $data the POSTed data
-     * @return mixed either boolean true, or an array of error messages
-     */
-    public function process($data)
-    {
-        if ($this->isValid($data)) {
-            $user = \Fisdap\Entity\User::getLoggedInUser();
-            $programId = $user->getProgramId();
-            $program = \Fisdap\EntityUtils::getEntity("ProgramLegacy", $programId);
+	}
 
-            $site = \Fisdap\EntityUtils::getEntity("SiteLegacy", $data['base_siteId']);
+	/**
+	 * Validate the form, if valid, save the new base, if not, return the error msgs
+	 *
+	 * @param array $data the POSTed data
+	 * @return mixed either boolean true, or an array of error messages
+	 */
+	public function process($data)
+	{
 
-            $returnArray = array();
+		if($this->isValid($data)){
+			$user = \Fisdap\Entity\User::getLoggedInUser();
+			$programId = $user->getProgramId();
+			$program = \Fisdap\EntityUtils::getEntity("ProgramLegacy", $programId);
 
-            if ($data['base_id_input'] == "noBase") {
-                $base = new \Fisdap\Entity\BaseLegacy;
-                $returnArray['newBase'] = true;
-            } else {
-                $base = \Fisdap\EntityUtils::getEntity("BaseLegacy", $data['base_id_input']);
-                $returnArray['newBase'] = false;
-            }
+			$site = \Fisdap\EntityUtils::getEntity("SiteLegacy", $data['base_siteId']);
 
-            $base->name = $data['base_name'];
-            $base->address = $data['base_address'];
-            $base->city = $data['base_city'];
-            $base->state = $data['base_state'];
-            $base->zip = $data['base_zip'];
-            $base->site = $site;
-            $base->save();
-            $program->addBase($base, true);
+			$returnArray = array();
 
-            // if this is an admin program for this site, add this
-            // base to the other programs, too
-            if ($program->isAdmin($site->id)) {
-                foreach ($site->site_shares as $share) {
-                    $share->program->addBase($base, true);
-                }
-            }
+			if($data['base_id_input'] == "noBase"){
+				$base = new \Fisdap\Entity\BaseLegacy;
+				$returnArray['newBase'] = true;
+			}
+			else {
+				$base = \Fisdap\EntityUtils::getEntity("BaseLegacy", $data['base_id_input']);
+				$returnArray['newBase'] = false;
+			}
 
-            $returnArray['optionText'] = "<option value='" . $base->id . "'>" . $base->name . "</option>";
-            $returnArray['baseId'] = $base->id;
-            return $returnArray;
-        } else {
-            return $this->getMessages();
-        }
-    }
+			$base->name = $data['base_name'];
+			$base->address = $data['base_address'];
+			$base->city = $data['base_city'];
+			$base->state = $data['base_state'];
+			$base->zip = $data['base_zip'];
+			$base->site = $site;
+			$base->save();
+			$program->addBase($base, true);
+
+			// if this is an admin program for this site, add this
+			// base to the other programs, too
+			if ($program->isAdmin($site->id)) {
+				foreach ($site->site_shares as $share) {
+					$share->program->addBase($base, true);
+				}
+			}
+
+			$returnArray['optionText'] = "<option value='" . $base->id . "'>" . $base->name . "</option>";
+			$returnArray['baseId'] = $base->id;
+			return $returnArray;
+
+
+		}
+		else {
+			return $this->getMessages();
+		}
+	}
 }

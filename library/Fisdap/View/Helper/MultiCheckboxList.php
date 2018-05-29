@@ -38,156 +38,152 @@ require_once 'Zend/View/Helper/FormElement.php';
  */
 class Fisdap_View_Helper_MultiCheckboxList extends Zend_View_Helper_FormElement
 {
-    /**
-     * Input type to use
-     * @var string
-     */
-    protected $_inputType = 'checkbox';
+	/**
+	 * Input type to use
+	 * @var string
+	 */
+	protected $_inputType = 'checkbox';
 
-    /**
-     * Whether or not this element represents an array collection by default
-     * @var bool
-     */
-    protected $_isArray = true;
+	/**
+	 * Whether or not this element represents an array collection by default
+	 * @var bool
+	 */
+	protected $_isArray = true;
 
-    /**
-     * Generates a set of radio button elements.
-     *
-     * @access public
-     *
-     * @param string|array $name If a string, the element name.  If an
-     * array, all other parameters are ignored, and the array elements
-     * are extracted in place of added parameters.
-     *
-     * @param mixed $value The radio value to mark as 'checked'.
-     *
-     * @param array $options An array of key-value pairs where the array
-     * key is the radio value, and the array value is the radio text.
-     *
-     * @param array|string $attribs Attributes added to each radio.
-     *
-     * @return string The radio buttons XHTML.
-     */
-    public function multiCheckboxList(
-        $name,
-        $value = null,
-        $attribs = null,
-        $options = null,
-        $listsep = "<br />\n"
-    ) {
-        $info = $this->_getInfo($name, $value, $attribs, $options, $listsep);
-        extract($info); // name, value, attribs, options, listsep, disable
-        
-        // retrieve attributes for labels (prefixed with 'label_' or 'label')
-        $label_attribs = array();
-        foreach ($attribs as $key => $val) {
-            $tmp = false;
-            $keyLen = strlen($key);
-            if ((6 < $keyLen) && (substr($key, 0, 6) == 'label_')) {
-                $tmp = substr($key, 6);
-            } elseif ((5 < $keyLen) && (substr($key, 0, 5) == 'label')) {
-                $tmp = substr($key, 5);
-            }
+	/**
+	 * Generates a set of radio button elements.
+	 *
+	 * @access public
+	 *
+	 * @param string|array $name If a string, the element name.  If an
+	 * array, all other parameters are ignored, and the array elements
+	 * are extracted in place of added parameters.
+	 *
+	 * @param mixed $value The radio value to mark as 'checked'.
+	 *
+	 * @param array $options An array of key-value pairs where the array
+	 * key is the radio value, and the array value is the radio text.
+	 *
+	 * @param array|string $attribs Attributes added to each radio.
+	 *
+	 * @return string The radio buttons XHTML.
+	 */
+	public function multiCheckboxList($name, $value = null, $attribs = null,
+		$options = null, $listsep = "<br />\n") {
 
-            if ($tmp) {
-                // make sure first char is lowercase
-                $tmp[0] = strtolower($tmp[0]);
-                $label_attribs[$tmp] = $val;
-                unset($attribs[$key]);
-            }
-        }
+		$info = $this->_getInfo($name, $value, $attribs, $options, $listsep);
+		extract($info); // name, value, attribs, options, listsep, disable
+		
+		// retrieve attributes for labels (prefixed with 'label_' or 'label')
+		$label_attribs = array();
+		foreach ($attribs as $key => $val) {
+			$tmp = false;
+			$keyLen = strlen($key);
+			if ((6 < $keyLen) && (substr($key, 0, 6) == 'label_')) {
+				$tmp = substr($key, 6);
+			} else if ((5 < $keyLen) && (substr($key, 0, 5) == 'label')) {
+				$tmp = substr($key, 5);
+			}
 
-        $labelPlacement = 'append';
-        foreach ($label_attribs as $key => $val) {
-            switch (strtolower($key)) {
-            case 'placement':
-                unset($label_attribs[$key]);
-                $val = strtolower($val);
-                if (in_array($val, array('prepend', 'append'))) {
-                    $labelPlacement = $val;
-                }
-                break;
-            }
-        }
+			if ($tmp) {
+				// make sure first char is lowercase
+				$tmp[0] = strtolower($tmp[0]);
+				$label_attribs[$tmp] = $val;
+				unset($attribs[$key]);
+			}
+		}
 
-        // the radio button values and labels
-        $options = (array)$options;
+		$labelPlacement = 'append';
+		foreach ($label_attribs as $key => $val) {
+			switch (strtolower($key)) {
+			case 'placement':
+				unset($label_attribs[$key]);
+				$val = strtolower($val);
+				if (in_array($val, array('prepend', 'append'))) {
+					$labelPlacement = $val;
+				}
+				break;
+			}
+		}
 
-        // build the element
-        $xhtml = '';
-        $list  = array();
+		// the radio button values and labels
+		$options = (array)$options;
 
-        // should the name affect an array collection?
-        $name = $this->view->escape($name);
-        if ($this->_isArray && ('[]' != substr($name, -2))) {
-            $name .= '[]';
-        }
+		// build the element
+		$xhtml = '';
+		$list  = array();
 
-        // ensure value is an array to allow matching multiple times
-        $value = (array)$value;
+		// should the name affect an array collection?
+		$name = $this->view->escape($name);
+		if ($this->_isArray && ('[]' != substr($name, -2))) {
+			$name .= '[]';
+		}
 
-        // XHTML or HTML end tag?
-        $endTag = ' />';
-        if (($this->view instanceof Zend_View_Abstract) && !$this->view->doctype()->isXhtml()) {
-            $endTag= '>';
-        }
+		// ensure value is an array to allow matching multiple times
+		$value = (array)$value;
 
-        //Grab the number of columns to use and calculate percentage width, default to 50%
-        if (isset($attribs['numColumns'])) {
-            $percentage = round((100/$attribs['numColumns']), 2);
-        } else {
-            $percentage = 50;
-        }
+		// XHTML or HTML end tag?
+		$endTag = ' />';
+		if (($this->view instanceof Zend_View_Abstract) && !$this->view->doctype()->isXhtml()) {
+			$endTag= '>';
+		}
 
-        // add radio buttons to the list.
-        require_once 'Zend/Filter/Alnum.php';
-        $filter = new Zend_Filter_Alnum();
-        foreach ($options as $opt_value => $opt_label) {
+		//Grab the number of columns to use and calculate percentage width, default to 50%
+		if (isset($attribs['numColumns'])) {
+			$percentage = round((100/$attribs['numColumns']), 2);
+		} else {
+			$percentage = 50;
+		}
 
-            // Should the label be escaped?
-            if ($escape) {
-                $opt_label = $this->view->escape($opt_label);
-            }
+		// add radio buttons to the list.
+		require_once 'Zend/Filter/Alnum.php';
+		$filter = new Zend_Filter_Alnum();
+		foreach ($options as $opt_value => $opt_label) {
 
-            // is it disabled?
-            $disabled = '';
-            if (true === $disable) {
-                $disabled = ' disabled="disabled"';
-            } elseif (is_array($disable) && in_array($opt_value, $disable)) {
-                $disabled = ' disabled="disabled"';
-            }
+			// Should the label be escaped?
+			if ($escape) {
+				$opt_label = $this->view->escape($opt_label);
+			}
 
-            // is it checked?
-            $checked = '';
-            if (in_array($opt_value, $value)) {
-                $checked = ' checked="checked"';
-            }
+			// is it disabled?
+			$disabled = '';
+			if (true === $disable) {
+				$disabled = ' disabled="disabled"';
+			} else if (is_array($disable) && in_array($opt_value, $disable)) {
+				$disabled = ' disabled="disabled"';
+			}
 
-            // generate ID
-            $optId = $id . '-' . $filter->filter($opt_value);
+			// is it checked?
+			$checked = '';
+			if (in_array($opt_value, $value)) {
+				$checked = ' checked="checked"';
+			}
 
-            // Wrap the radios in labels
-            $radio = '<div style="float:left; width:' . $percentage . '%;"><label'
-                    . $this->_htmlAttribs($label_attribs) . ' for="' . $optId . '">'
-                    . (('prepend' == $labelPlacement) ? $opt_label : '')
-                    . '<input type="' . $this->_inputType . '"'
-                    . ' name="' . $name . '"'
-                    . ' id="' . $optId . '"'
-                    . ' value="' . $this->view->escape($opt_value) . '"'
-                    . $checked
-                    . $disabled
-                    . $this->_htmlAttribs($attribs)
-                    . $endTag
-                    . (('append' == $labelPlacement) ? $opt_label : '')
-                    . '</label></div>';
+			// generate ID
+			$optId = $id . '-' . $filter->filter($opt_value);
 
-            // add to the array of radio buttons
-            $list[] = $radio;
-        }
+			// Wrap the radios in labels
+			$radio = '<div style="float:left; width:' . $percentage . '%;"><label'
+					. $this->_htmlAttribs($label_attribs) . ' for="' . $optId . '">'
+					. (('prepend' == $labelPlacement) ? $opt_label : '')
+					. '<input type="' . $this->_inputType . '"'
+					. ' name="' . $name . '"'
+					. ' id="' . $optId . '"'
+					. ' value="' . $this->view->escape($opt_value) . '"'
+					. $checked
+					. $disabled
+					. $this->_htmlAttribs($attribs)
+					. $endTag
+					. (('append' == $labelPlacement) ? $opt_label : '')
+					. '</label></div>';
 
-        // done!
-        $xhtml .= implode($listsep, $list);
+			// add to the array of radio buttons
+			$list[] = $radio;
+		}
 
-        return $xhtml;
-    }
+		// done!
+		$xhtml .= implode($listsep, $list);
+
+		return $xhtml;
+	}
 }

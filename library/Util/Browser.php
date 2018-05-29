@@ -1,13 +1,11 @@
 <?php
 
-class Util_Browser
-{
+class Util_Browser {
 
-    /**
-     * detects whether a browser supports svg images
-     */
-    public static function supportsSVG()
-    {
+	/**
+	 * detects whether a browser supports svg images
+	 */
+	public static function supportsSVG() {
         $supportsSVG = true;
 
         // Browser checking
@@ -20,5 +18,8 @@ class Util_Browser
         }
 
         return $supportsSVG;
-    }
+	}
+
 }
+
+?>

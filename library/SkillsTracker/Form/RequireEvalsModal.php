@@ -74,6 +74,7 @@ class SkillsTracker_Form_RequireEvalsModal extends Fisdap_Form_BaseJQuery
         }
 
         foreach ($field_evals as $eval) {
+
             $id = $eval['id'];
 
             $require = new Zend_Form_Element_Checkbox($id.'_field_require');
@@ -88,6 +89,7 @@ class SkillsTracker_Form_RequireEvalsModal extends Fisdap_Form_BaseJQuery
         }
 
         foreach ($clinical_evals as $eval) {
+
             $id = $eval['id'];
 
             $require = new Zend_Form_Element_Checkbox($id.'_clinical_require');
@@ -102,6 +104,7 @@ class SkillsTracker_Form_RequireEvalsModal extends Fisdap_Form_BaseJQuery
         }
 
         foreach ($lab_evals as $eval) {
+
             $id = $eval['id'];
 
             $require = new Zend_Form_Element_Checkbox($id.'_lab_require');
@@ -191,11 +194,11 @@ class SkillsTracker_Form_RequireEvalsModal extends Fisdap_Form_BaseJQuery
 
 
 
-						}"
-                        ))),
+						}"))),
                 ),
             )),
         ));
+
     }
 
     /**
@@ -216,6 +219,7 @@ class SkillsTracker_Form_RequireEvalsModal extends Fisdap_Form_BaseJQuery
 
 
             foreach ($this->field_evals as $eval) {
+
                 $id = (int)$eval['id'];
 
                 //check if an eval marked as required is already known as a required eval, if not, create it.
@@ -230,16 +234,19 @@ class SkillsTracker_Form_RequireEvalsModal extends Fisdap_Form_BaseJQuery
                     $new_required_eval = new \Fisdap\Entity\ProgramRequiredShiftEvaluations($program, $eval_def, 'field');
 
                     $this->programReqRepo->store($new_required_eval);
-                } elseif ($data[$id . "_field_require"] == 0 && in_array($id, $required_field_eval_ids)) {
+
+                } else if ($data[$id . "_field_require"] == 0 && in_array($id, $required_field_eval_ids)) {
                     $key = array_search($id, $required_field_eval_ids);
 
                     //delete existing required eval entity
                     $existing_required_eval = \Fisdap\EntityUtils::getEntity('ProgramRequiredShiftEvaluations', $key);
                     $this->programReqRepo->destroy($existing_required_eval);
+
                 }
             }
 
             foreach ($this->clinical_evals as $eval) {
+
                 $id = (int)$eval['id'];
 
                 if ($data[$id . "_clinical_require"] == 1 && !in_array($id, $required_clinical_eval_ids)) {
@@ -251,16 +258,19 @@ class SkillsTracker_Form_RequireEvalsModal extends Fisdap_Form_BaseJQuery
                     $new_required_eval = new \Fisdap\Entity\ProgramRequiredShiftEvaluations($program, $eval_def, "clinical");
 
                     $this->programReqRepo->store($new_required_eval);
-                } elseif ($data[$id . "_clinical_require"] == 0 && in_array($id, $required_clinical_eval_ids)) {
+
+                } else if ($data[$id . "_clinical_require"] == 0 && in_array($id, $required_clinical_eval_ids)) {
                     $key = array_search($id, $required_clinical_eval_ids);
 
                     //delete existing required eval entity
                     $existing_required_eval = \Fisdap\EntityUtils::getEntity('ProgramRequiredShiftEvaluations', $key);
                     $this->programReqRepo->destroy($existing_required_eval);
+
                 }
             }
 
             foreach ($this->lab_evals as $eval) {
+
                 $id = (int)$eval['id'];
 
                 if ($data[$id . "_lab_require"] == 1 && !in_array($id, $required_lab_eval_ids)) {
@@ -272,12 +282,14 @@ class SkillsTracker_Form_RequireEvalsModal extends Fisdap_Form_BaseJQuery
                     $new_required_eval = new \Fisdap\Entity\ProgramRequiredShiftEvaluations($program, $eval_def, "lab");
 
                     $this->programReqRepo->store($new_required_eval);
-                } elseif ($data[$id . "_lab_require"] == 0 && in_array($id, $required_lab_eval_ids)) {
+
+                } else if ($data[$id . "_lab_require"] == 0 && in_array($id, $required_lab_eval_ids)) {
                     $key = array_search($id, $required_lab_eval_ids);
 
                     //delete existing required eval entity
                     $existing_required_eval = \Fisdap\EntityUtils::getEntity('ProgramRequiredShiftEvaluations', $key);
                     $this->programReqRepo->destroy($existing_required_eval);
+
                 }
             }
 

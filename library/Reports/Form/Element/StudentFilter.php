@@ -19,24 +19,23 @@
  */
 class Reports_Form_Element_StudentFilter extends Zend_Form_Element_Xhtml
 {
-    /**
-     * @var string the view helper that will render this composite element
-     */
-    public $helper = "studentFilterElement";
-    
-    public function init()
-    {
-        $this->getView()->headScript()->appendFile("/js/library/Reports/Form/Element/student-filter.js");
-    }
-    
-    public function __construct($name, $options = null, $studentListType = 'select')
-    {
-        if ($studentListType == 'select') {
-            $this->helper = 'studentFilterElement';
-        } elseif ($studentListType == 'checkboxes') {
-            $this->helper = 'studentGroupFilterElement';
-        }
-        
-        parent::__construct($name, $options);
-    }
+	/**
+	 * @var string the view helper that will render this composite element
+	 */
+	public $helper = "studentFilterElement";
+	
+	public function init(){
+		$this->getView()->headScript()->appendFile("/js/library/Reports/Form/Element/student-filter.js");
+	}
+	
+	public function __construct($name, $options = null, $studentListType = 'select')
+	{
+		if ($studentListType == 'select') {
+			$this->helper = 'studentFilterElement';
+		} else if ($studentListType == 'checkboxes') {
+			$this->helper = 'studentGroupFilterElement';
+		}
+		
+		parent::__construct($name, $options);
+	}
 }

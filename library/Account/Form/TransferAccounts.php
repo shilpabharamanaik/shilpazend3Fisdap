@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -119,6 +119,7 @@ class Account_Form_TransferAccounts extends Fisdap_Form_Base
                 $sn->save();
             }
             return true;
+
         }
 
         return false;

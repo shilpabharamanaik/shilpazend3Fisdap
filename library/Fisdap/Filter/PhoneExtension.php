@@ -1,6 +1,5 @@
 <?php
-
-class Fisdap_Filter_PhoneExtension implements Zend_Filter_Interface
+class Fisdap_Filter_PhoneExtension implements Zend\Filter\FilterInterface
 {
     public function filter($value)
     {

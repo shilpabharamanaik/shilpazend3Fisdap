@@ -4,8 +4,9 @@ use Fisdap\Data\User\UserRepository;
 use Fisdap\Entity\User;
 use Fisdap_Auth_Adapter_Db;
 use Fisdap_Controller_Base;
-use Zend_Auth;
+use Zend\Authentication;
 use Zend_Session_Namespace;
+
 
 /**
  * Class CommonAuthController
@@ -43,7 +44,7 @@ abstract class CommonAuthController extends Fisdap_Controller_Base
     {
         // Get our authentication adapter and check credentials
         $adapter = new Fisdap_Auth_Adapter_Db($username, $password, $hashed);
-        $auth = Zend_Auth::getInstance();
+        $auth = Zend\Authentication::getInstance();
         $result = $auth->authenticate($adapter);
 
         return $result;

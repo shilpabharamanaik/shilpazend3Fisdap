@@ -22,7 +22,7 @@
  */
 class Fisdap_Form_Element_DateRange extends Zend_Form_Element_Xhtml
 {
-    /**
+	/**
      * @var string start date
      */
     protected $_startDate;
@@ -44,9 +44,9 @@ class Fisdap_Form_Element_DateRange extends Zend_Form_Element_Xhtml
     public function init($label = "Date range:")
     {
         $this->setLabel($label);
-        $this->setDefaultStart("today");
-        $this->setDefaultEnd("+1 month");
-        $this->addValidator(new \Fisdap_Validate_DateFormat());
+		$this->setDefaultStart("today");
+		$this->setDefaultEnd("+1 month");
+		$this->addValidator(new \Fisdap_Validate_DateFormat());
     }
     
     /**
@@ -57,7 +57,8 @@ class Fisdap_Form_Element_DateRange extends Zend_Form_Element_Xhtml
      */
     public function setValue($value)
     {
-        if (isset($value['startDate'])) {
+        if(isset($value['startDate']))
+        {
             if ($value['startDate'] instanceof \DateTime) {
                 $this->_startDate = $value['startDate']->format("m/d/Y");
             } else {
@@ -65,7 +66,8 @@ class Fisdap_Form_Element_DateRange extends Zend_Form_Element_Xhtml
             }
         }
         
-        if (isset($value['endDate'])) {
+        if(isset($value['endDate']))
+        {
             if ($value['endDate'] instanceof \DateTime) {
                 $this->_endDate = $value['endDate']->format("m/d/Y");
             } else {
@@ -79,15 +81,15 @@ class Fisdap_Form_Element_DateRange extends Zend_Form_Element_Xhtml
     
     /**
      * returns the value of this form element
-     *
+     * 
      * @return mixed array
      */
     public function getValue()
     {
         return array('startDate' => $this->_startDate, 'endDate' => $this->_endDate);
     }
-    
-    /**
+	
+	/**
      * Set the default start date
      * @param string $defaultStart this param will be passed into new \Datetime if not null
      */
@@ -96,8 +98,8 @@ class Fisdap_Form_Element_DateRange extends Zend_Form_Element_Xhtml
         $this->setAttrib('defaultStart', $defaultStart);
         return $this;
     }
-    
-    /**
+	
+	/**
      * Set the default end date
      * @param string $defaultEnd this param will be passed into new \Datetime if not null
      */
@@ -106,4 +108,5 @@ class Fisdap_Form_Element_DateRange extends Zend_Form_Element_Xhtml
         $this->setAttrib('defaultEnd', $defaultEnd);
         return $this;
     }
+    
 }

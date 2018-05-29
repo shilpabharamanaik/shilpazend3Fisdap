@@ -49,8 +49,8 @@ class SkillsTracker_Form_Settings extends Fisdap_Form_Base
         $program = \Fisdap\Entity\ProgramLegacy::getCurrentProgram();
         $this->hasNewPracticeCategory = count(\Fisdap\EntityUtils::getRepository("PracticeCategory")->findBy(array("program" => $program, "name" => "History Taking and Physical Examination")));
         $definitions = \Fisdap\EntityUtils::getRepository('PracticeDefinition')->getProgramDefinitions($program);
-        foreach ($definitions as $definition) {
-            if (in_array($definition->skillsheet->id, $this->ppcpSkillsheets)) {
+        foreach($definitions as $definition){
+            if(in_array($definition->skillsheet->id, $this->ppcpSkillsheets)){
                 $this->hasNewPPCP = false;
                 break;
             }
@@ -123,17 +123,17 @@ class SkillsTracker_Form_Settings extends Fisdap_Form_Base
 
         $rawGroups = \Fisdap\EntityUtils::getRepository('CertificationLevel')->getAllCertificationLevelInfo(\Fisdap\Entity\ProgramLegacy::getCurrentProgram()->profession->id);
         $count = 0;
-        foreach ($rawGroups as $group) {
+        foreach($rawGroups as $group){
             $group['categories'] = \Fisdap\EntityUtils::getRepository('PracticeCategory')->getAllByProgram($program->id, $group['id']);
             $this->groups[] = $group;
         }
         ksort($this->groups);
 
-        foreach ($this->groups as $goalGroup) {
-            foreach ($goalGroup['categories'] as $practiceCat) {
+        foreach($this->groups as $goalGroup){
+            foreach($goalGroup['categories'] as $practiceCat){
                 $categoryName = new Zend_Form_Element_Text('category' . $practiceCat->id . '_cat_name');
 
-                foreach ($practiceCat->practice_definitions as $practiceDef) {
+                foreach($practiceCat->practice_definitions as $practiceDef){
                     // active checkbox
                     $active = new Zend_Form_Element_Checkbox('category' . $practiceCat->id . '_definition' . $practiceDef->id . '_active');
                     $active->setAttribs(array("class" => "slider-checkbox"));
@@ -166,7 +166,7 @@ class SkillsTracker_Form_Settings extends Fisdap_Form_Base
                             "multiple" => "multiple",
                             "tabindex" => count($skills)));
                     $practice_skills = $practiceDef->getPracticeSkillIds();
-                    if ($practiceDef->airway_management_credit === true) {
+                    if($practiceDef->airway_management_credit === true){
                         $practice_skills[] = '0airway_management';
                     }
                     $skillSelect->setValue($practice_skills);
@@ -197,6 +197,7 @@ class SkillsTracker_Form_Settings extends Fisdap_Form_Base
                 $this->addElements(array($categoryName));
 
                 $this->setDefaults(array('category' . $practiceCat->id . '_cat_name' => $practiceCat->name));
+
             }
         }
 
@@ -311,7 +312,7 @@ class SkillsTracker_Form_Settings extends Fisdap_Form_Base
 
         if ($program->program_settings->allow_signoff_on_patient) {
             $this->setDefault('signoff_location', 'patient');
-        } elseif ($program->program_settings->allow_signoff_on_shift) {
+        } else if ($program->program_settings->allow_signoff_on_shift) {
             $this->setDefault('signoff_location', 'shift');
         } else {
             $this->setDefault('disable_educator_signoff', true);
@@ -330,7 +331,7 @@ class SkillsTracker_Form_Settings extends Fisdap_Form_Base
 
         $finalProcArray = array();
 
-        foreach ($allProcs as $procId => $procName) {
+        foreach($allProcs as $procId => $procName){
             $checkboxName = 'procedure_' . $procedureType . '_' . $procId;
             $procElement = new Zend_Form_Element_Checkbox($checkboxName);
 
@@ -397,7 +398,7 @@ class SkillsTracker_Form_Settings extends Fisdap_Form_Base
         if ($data['signoff_location'] == 'shift') {
             $program->program_settings->allow_signoff_on_patient = false;
             $program->program_settings->allow_signoff_on_shift = true;
-        } elseif ($data['signoff_location'] == 'patient') {
+        } else if ($data['signoff_location'] == 'patient') {
             $program->program_settings->allow_signoff_on_patient = true;
             $program->program_settings->allow_signoff_on_shift = false;
         } else {
@@ -421,19 +422,20 @@ class SkillsTracker_Form_Settings extends Fisdap_Form_Base
 
 
         // save the lab skills stuff!
-        foreach ($this->groups as $goalGroup) {
-            foreach ($goalGroup['categories'] as $practiceCat) {
+        foreach($this->groups as $goalGroup){
+            foreach($goalGroup['categories'] as $practiceCat){
                 // save each category name!
-                if ($data['category' . $practiceCat->id . '_cat_name']) {
+                if($data['category' . $practiceCat->id . '_cat_name']){
                     $practiceCat->name = $data['category' . $practiceCat->id . '_cat_name'];
-                } else {
+                }
+                else {
                     // for IE, quick fix because IE can't seem to handle normal things
                     $practiceCat->name = $practiceCat->name;
                 }
                 $practiceCat->save(false);
 
                 // save each practice definition
-                foreach ($practiceCat->practice_definitions as $practiceDef) {
+                foreach($practiceCat->practice_definitions as $practiceDef){
                     if (isset($data['category' . $practiceCat->id . '_definition' . $practiceDef->id . '_name'])) {
                         $practiceDef->name = $data['category' . $practiceCat->id . '_definition' . $practiceDef->id . '_name'];
                         $practiceDef->active = $data['category' . $practiceCat->id . '_definition' . $practiceDef->id . '_active'];
@@ -445,25 +447,28 @@ class SkillsTracker_Form_Settings extends Fisdap_Form_Base
                         $selected_skills = $data['category' . $practiceCat->id . '_definition' . $practiceDef->id . '_practice_skills'];
 
                         // remove airway_management from this list, since it isn't really a skill
-                        if ($selected_skills) {
-                            if (in_array("0airway_management", $selected_skills)) {
+                        if($selected_skills){
+                            if(in_array("0airway_management", $selected_skills)){
                                 $selected_skills_without_am = array_diff($selected_skills, array('0airway_management'));
                                 // give this LPD airway_management credit
                                 $practiceDef->airway_management_credit = true;
-                            } else {
+                            }
+                            else {
                                 // make this LPD false for airway_management credit
                                 $selected_skills_without_am = $selected_skills;
                                 $practiceDef->airway_management_credit = false;
                             }
-                        } else {
+                        }
+                        else {
                             // make this LPD false for airway_management credit
                             $selected_skills_without_am = $selected_skills;
                             $practiceDef->airway_management_credit = false;
                         }
 
-                        if (count($selected_skills_without_am) == 0) {
+                        if(count($selected_skills_without_am) == 0){
                             $practiceDef->practice_skills->clear();
-                        } else {
+                        }
+                        else {
                             $practiceDef->setPracticeSkillIds($selected_skills_without_am);
                         }
 
@@ -474,10 +479,12 @@ class SkillsTracker_Form_Settings extends Fisdap_Form_Base
         }
 
         $program->save();
+
+
     }
 
-    private function savePracticeDefintions($data)
-    {
+    private function savePracticeDefintions($data){
+
     }
 
     /**
@@ -486,16 +493,15 @@ class SkillsTracker_Form_Settings extends Fisdap_Form_Base
      *
      * @param type Array POST data from the settings form.
      */
-    private function saveIncludedProcedures($data)
-    {
+    private function saveIncludedProcedures($data){
         $programId = \Fisdap\Entity\User::getLoggedInUser()->getProgramId();
 
         $newProcedures = array();
 
-        foreach ($data as $fieldName => $value) {
+        foreach($data as $fieldName => $value){
             $splitName = explode("_", $fieldName);
 
-            if ($splitName[0] == 'procedure' && count($splitName) == 3) {
+            if($splitName[0] == 'procedure' && count($splitName) == 3){
                 $entBaseName = "Program" . $splitName[1];
 
                 $entName = "\\Fisdap\\Entity\\" . $entBaseName;
@@ -514,8 +520,8 @@ class SkillsTracker_Form_Settings extends Fisdap_Form_Base
         // up to date), associate them with the program entity...
         $program = \Fisdap\EntityUtils::getEntity('ProgramLegacy', $programId);
 
-        foreach ($newProcedures as $procedureType => $allowedProcedures) {
-            switch ($procedureType) {
+        foreach($newProcedures as $procedureType => $allowedProcedures){
+            switch($procedureType){
                 case "ProgramAirwayProcedure":
                     $programProcedureProperty = "airway_procedures";
                     break;
@@ -537,7 +543,7 @@ class SkillsTracker_Form_Settings extends Fisdap_Form_Base
 
                     $program->$programProcedureProperty->clear();
 
-                    foreach ($allowedProcedures as $procedure) {
+                    foreach($allowedProcedures as $procedure){
                         $program->$programProcedureProperty->add($procedure);
                     }
             }

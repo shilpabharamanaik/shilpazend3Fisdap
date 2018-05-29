@@ -5,6 +5,7 @@ use Fisdap\Entity\ProgramLegacy;
 use Fisdap\Entity\Requirement;
 use Fisdap\Entity\User;
 
+
 /**
  * This produces a modal form for assigning requirement(s) to student(s)
  *
@@ -36,7 +37,7 @@ class Scheduler_Form_RequirementAssignModal extends Fisdap_Form_BaseJQuery
     /**
      * @var null The Zend Cache backend to use for retrieving information about queued jobs
      */
-    private $cache = null;
+    private $cache = NULL;
 
 
     /**
@@ -48,9 +49,7 @@ class Scheduler_Form_RequirementAssignModal extends Fisdap_Form_BaseJQuery
      */
     public function __construct(
         RequirementRepository $requirementRepository,
-        $msp = null,
-        $requirement_ids = null,
-        $options = null
+        $msp = null, $requirement_ids = null, $options = null
     ) {
         $this->requirementRepository = $requirementRepository;
         $this->user = User::getLoggedInUser();
@@ -80,8 +79,7 @@ class Scheduler_Form_RequirementAssignModal extends Fisdap_Form_BaseJQuery
 
         if ($this->requirement_ids) {
             $req_attachment_data = $this->requirementRepository->getAttachedUserContextIdsByRequirements(
-                $this->requirement_ids,
-                $this->user->getProgramId()
+                $this->requirement_ids, $this->user->getProgramId()
             );
 
             if ($req_attachment_data) {

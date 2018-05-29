@@ -2,12 +2,12 @@
 
 /**
  * This widget shows Lab Skills, Graduation Requirements, and Airway Management Goals
- * on various panels.
- *
+ * on various panels.  
+ * 
  * It features the ability to render each goals area on a panel.  By default, the widget
  * will render the last panel that the user selected. If no previous panel has been selected
  * by the user, the Lab Skills Requirement panel will be displayed. Any page has the ability
- * to override this functionality by passing parameters to the renderContainer method.
+ * to override this functionality by passing parameters to the renderContainer method. 
  * See the comments in the renderContainer method for details of these parameters.
  *
  * Each panel should live in a renderPanel method. So for airway, the method would be:
@@ -18,9 +18,9 @@ class MyFisdap_Widgets_GoalsWidget extends MyFisdap_Widgets_Base implements MyFi
 {
 
     /**
-     * An ordered list of the available panels by their method name. If the user has
+     * An ordered list of the available panels by their method name. If the user has 
      * not previously selected a panel, then the first in the list is displayed.
-     *
+     * 
      * @var array
      */
     private $panels = array(
@@ -40,17 +40,16 @@ class MyFisdap_Widgets_GoalsWidget extends MyFisdap_Widgets_Base implements MyFi
      * @param array $options Optional options for the rendering of the widget
      * @return String containing the HTML for the widget container.
      */
-    public function renderContainer()
-    {
+    public function renderContainer() {
 
         // Grab the optional arguments
         $args = func_get_args();
 
-        // Take any arguments passed into the renderContainer method
+        // Take any arguments passed into the renderContainer method 
         // and pass them through to the render method
         $widgetContents = call_user_func_array(array($this,'render'), $args);
 
-        // Take any arguments passed into the renderContainer method
+        // Take any arguments passed into the renderContainer method 
         // and pass them through to the renderHeader method
         $header = call_user_func_array(array($this,'renderHeader'), $args);
 
@@ -79,8 +78,7 @@ EOF;
      * @param array $options Optional options for the rendering of the widget in JSON object format
      * @return string HTML of the widget body
      */
-    public function render()
-    {
+    public function render(){
         $widgetSession = new \Zend_Session_Namespace("WidgetData");
 
         // Goals widget can take a long time to query MySQL. Allow for a longer timeout.
@@ -91,10 +89,11 @@ EOF;
         // Grab the widgetOptions, decode them from JSON
         $args = func_get_args();
 
-        $widgetOptions = json_decode($args[0], true);
+        $widgetOptions = json_decode($args[0],TRUE);
         
         // Check if we have an explicit student id to use instead of the logged in user
-        if ($widgetOptions && isset($widgetOptions) && array_key_exists('explicitStudentId', $widgetOptions)) {
+        if($widgetOptions && isset($widgetOptions) && array_key_exists('explicitStudentId', $widgetOptions))
+        {
             
             // Set the Session user id
             $widgetSession->user_id = \Fisdap\EntityUtils::getEntity('StudentLegacy', $widgetOptions['explicitStudentId'])->user->id;
@@ -105,6 +104,7 @@ EOF;
         $html .= call_user_func_array(array($this, 'renderPanels'), $args);
 
         return $html;
+
     }
 
     /**
@@ -113,8 +113,7 @@ EOF;
      * @param array $options Optional options for the rendering of the widget
      * @return string HTML for all of the panels
      */
-    public function renderPanels()
-    {
+    public function renderPanels() {
 
         // Grab the optional arguments
         $args = func_get_args();
@@ -173,11 +172,12 @@ EOF;
 
         // some panels may be in different positions depending on program/student data
         // this function will handle the new arrangement
-        $widgetOptions = json_decode($args[0], true);
+        $widgetOptions = json_decode($args[0],TRUE);
         $panels = $this->arrangePanels($widgetOptions);
 
         // Loop through and render each panel's html
-        foreach ($panels as $panel) {
+        foreach($panels as $panel)
+        {
             $html .= '<div class="widget-panel" data-widget-panel-title="'.$panel['title'].'">';
             $html .= call_user_func_array(array($this, $panel['method']), $args);
             $html .= '</div>';
@@ -188,18 +188,21 @@ EOF;
 
     public function calculateReversedShiftDistance($shiftToValue, $panels)
     {
-    
+	
         // If nothing else, assume no shift
         $distance = 0;
 
         // Calculate the distance needed to shift
-        foreach ($panels as $key => $row) {
+        foreach ($panels as $key => $row)
+        {
             // Check for a match
-            if ($row['method'] == $shiftToValue) {
+            if($row['method'] == $shiftToValue)
+            {
                 // Calculate the reverse shift less one, since we're already at that item
                 $distance = count($panels)-$key-1;
                 break;
             }
+
         }
 
         return $distance;
@@ -210,7 +213,7 @@ EOF;
     {
         
         // Reverse the array so we can use array_pop
-        $panels = array_reverse($panels);
+        $panels = array_reverse($panels); 
 
         // Calculate the distance we need to shift
         $shiftDistance = $this->calculateReversedShiftDistance($shiftToValue, $panels);
@@ -219,9 +222,10 @@ EOF;
         $remainder = array();
 
         // Loop through until we get to the panel we want to shift to
-        for ($i=0;$i<$shiftDistance;$i++) {
+        for($i=0;$i<$shiftDistance;$i++)
+        {
             // Hold on to the remainders so we can append them later
-            array_push($remainder, array_pop($panels));
+            array_push($remainder,array_pop($panels));
         }
 
         // Return a re-assembled array of panels in the new order
@@ -234,10 +238,9 @@ EOF;
      * @param array $options Optional options for the rendering of the widget
      * @return string HTML of the lab skills panel
      */
-    public function renderPanelLab()
-    {
+    public function renderPanelLab() {
         $args = func_get_args();
-        $widgetOptions = json_decode($args[0], true);
+        $widgetOptions = json_decode($args[0],TRUE);
         $studentId = ($widgetOptions['explicitStudentId']) ? $widgetOptions['explicitStudentId'] : $this->widgetData->user->getCurrentRoleData()->id;
 
         $html = '';
@@ -261,7 +264,7 @@ EOF;
         $count = 1;
         
         // Several layers of output here.  Loop through each category, storing output to be appended later
-        foreach ($labResults['category_data'] as $categoryId => $categoryData) {
+        foreach($labResults['category_data'] as $categoryId => $categoryData){
 
             // This is aggregate category data that we'll fill in on our way through the results
             $category = array(
@@ -277,8 +280,8 @@ EOF;
             );
             // First, we loop over all of the active definitions for this category.
             // We need this data precalculated for each category but do not output it yet.
-            // We will use this data to aggregate a total for that category
-            foreach ($categoryData['definitions'] as $defId) {
+            // We will use this data to aggregate a total for that category 
+            foreach($categoryData['definitions'] as $defId){
                 $category['html'] .= "<div class='grid_12 goal-row'>";
                 
                 // Get the values from the lab results for this student...
@@ -304,7 +307,7 @@ EOF;
                 }
 
                 // Generate the Eureka goals image if we need it
-                if ($stats['eureka_goal'] > 0 && $stats['eureka_window'] > 0) {
+                if($stats['eureka_goal'] > 0 && $stats['eureka_window'] > 0){
                     $metEurekaOuttext = ($stats['met_eureka']?'Met':'Not Met');
                     $metEurekaClass = ($stats['met_eureka']?'eureka-goal-met':'eureka-goal-notmet');
                     $category['html'] .= "
@@ -312,7 +315,7 @@ EOF;
                             <a href='/reports/lab-practice' class='open_eureka {$metEurekaClass}' data-defId='{$defId}' data-studentId='" . $this->getUser()->getCurrentRoleData()->id . "'>{$metEurekaOuttext}</a>
                         </div>
                     ";
-                } else {
+                }else{
                     $category['html'] .= "<div class='grid_1 centered-txt'>&nbsp;</div>";
                 }
                 
@@ -329,9 +332,9 @@ EOF;
                 $percentClass = $this->getPercentClass($percent);
                 
                 // Generate the checkbox html if we need it
-                if ($percent == 100) {
+                if($percent == 100){
                     $checkImage = "<div class='goal-complete-checkmark'><img src='/images/icons/checkmark-dark-gray.png'/></div>";
-                } else {
+                }else{
                     $checkImage = '';
                 }
 
@@ -347,7 +350,8 @@ EOF;
                     ";
 
                 // Generate the html for the peer goals, if needed
-                if ($stats['peer_goal'] > 0) {
+                if($stats['peer_goal'] > 0){
+
                     $category['html'] .= "
                         <div class='grid_2'>
                             <span class='percent_subtext'>
@@ -355,14 +359,14 @@ EOF;
                             </span>
                         </div>
                     ";
-                } else {
+                }else{
                     $category['html'] .= "<div class='grid_2 no-goal'><span class='grid_2 no-peer-goal percent_subtext'>N/A</span></div>";
                 }
                 
                 // Generate the html for the instructor goals
-                if ($stats['instructor_goal'] > 0) {
+                if($stats['instructor_goal'] > 0){
                     $category['html'] .= "<div class='grid_2 category_heading'><span class='percent_subtext'>" . "{$stats['instructor_actual']} of {$stats['instructor_goal']}" . "</span></div>";
-                } else {
+                }else{
                     $category['html'] .= "<div class='grid_2'><span class='percent_subtext'>N/A</span></div>";
                 }
                 
@@ -380,15 +384,15 @@ EOF;
             // Get the percent class
             $categoryPercentClass = $this->getPercentClass($categoryPercent);
 
-            // Generate the checkbox html if we need it
+            // Generate the checkbox html if we need it            
             $categoryCheckImage = '';
-            if ($categoryPercent == 100) {
+            if($categoryPercent == 100){
                 $categoryCheckImage = "<div class='goal-complete-checkmark'><img src='/images/icons/checkmark-dark-gray.png'/></div>";
-            }
+            }             
 
             // Generate the peer goals html for this category
             $categoryPeerHtml = '';
-            if ($category['peer']['goal'] > 0) {
+            if($category['peer']['goal'] > 0) {
                 $categoryPeerHtml = "
                     <div class='grid_2'>
                         <span class='percent_subtext'>
@@ -404,9 +408,9 @@ EOF;
 
             // Generate the instructor goals html for this category
             $categoryInstructorHtml = '';
-            if ($category['instructor']['goal'] > 0) {
+            if($category['instructor']['goal'] > 0){
                 $categoryInstructorHtml .= "<div class='grid_2 category_heading'><span class='percent_subtext'>" . "{$category['instructor']['actual']} of {$category['instructor']['goal']}" . "</span></div>";
-            } else {
+            }else{
                 $categoryInstructorHtml .= "<div class='grid_2'><span class='percent_subtext'>N/A</span></div>";
             }
 
@@ -444,6 +448,7 @@ EOF;
                 </div>
                 <span class='clear'></span>
             ";
+
         }
         
 
@@ -461,6 +466,7 @@ EOF;
         $html .= $view->eurekaModal();
         
         return $html;
+        
     }
 
     /**
@@ -469,22 +475,21 @@ EOF;
      * @param array $options Optional options for the rendering of the widget
      * @return string HTML of the graduation requirements panel
      */
-    public function renderPanelGraduation()
-    {
+    public function renderPanelGraduation(){
         $args = func_get_args();
-        $widgetOptions = json_decode($args[0], true);
+        $widgetOptions = json_decode($args[0],TRUE);
         $studentId = ($widgetOptions['explicitStudentId']) ? $widgetOptions['explicitStudentId'] : $this->widgetData->user->getCurrentRoleData()->id;
         $goalData = $this->getGoalSetData();
         $html = '';
         $goalSet = \Fisdap\EntityUtils::getEntity('GoalSet', $this->data['goalSetId']);
 
-        if (!$goalData) {
-            if ($this->widgetData->user->isInstructor()) {
+        if(!$goalData){
+            if($this->widgetData->user->isInstructor()){
                 return "You are currently logged in with an Instructor account- unable to display goals for you.";
-            } else {
+            }else{
                 return "We're sorry, we were unable to fetch goals for the \"{$goalSet->name}\" goal set.  Please check with your instructor to make sure this goal is configured correctly.";
             }
-        } else {
+        }else{
             $html .= "<div class='goals-widget-background'>";
             
             // $html .= "<div class='grid_12'><span class='grid_4'>&nbsp;</span><span class='grid_6 percent_font title_heading'>Performed</span><span class='grid_2 observed_heading'>Observed</span></div>";
@@ -507,7 +512,8 @@ EOF;
             $keys = array_keys($goalData);
 
             // Loop through each category
-            for ($i=0; $i<count($goalData); $i++) {
+            for($i=0; $i<count($goalData); $i++){
+
                 $category = array(
                     'html' => '',
                     'performed' => 0,
@@ -524,7 +530,7 @@ EOF;
                 // Get goal data for the key
                 $goals = $goalData[$key];
 
-                if ($key == "Airway Management") {
+                if($key == "Airway Management"){
                     // do things a bit differently for Airway Management
                     $cat_performed = 0;
                     $cat_required = 0;
@@ -532,8 +538,9 @@ EOF;
                     $am_required = $goals[3];
                     krsort($goals);
 
-                    foreach ($goals as $goal_key => $am_goal_data) {
-                        if ($goal_key == 0) {
+                    foreach($goals as $goal_key => $am_goal_data){
+
+                        if($goal_key == 0){
                             // coa success goal
                             $performed = $am_goal_data['success_count'];
                             $hidden_performed = $performed;
@@ -541,7 +548,8 @@ EOF;
                             $name = "Success (over last 20 attempts)";
                             $req =  $am_goal_data['window'];
                             $observed = "N/A";
-                        } elseif ($goal_key == 1) {
+                        }
+                        else if($goal_key == 1){
                             // et success goal
                             $performed = $am_goal_data['success_count'];
                             $hidden_performed = $performed;
@@ -549,7 +557,8 @@ EOF;
                             $name = "ET Success (over last 10 attempts)";
                             $req =  $am_goal_data['window'];
                             $observed = "N/A";
-                        } elseif ($goal_key == 2) {
+                        }
+                        else if($goal_key == 2){
                             // attempts goal
                             $percent_done = $am_goal_data['goal_percent'];
                             $performed = $am_goal_data['performed'];
@@ -561,7 +570,7 @@ EOF;
                             $category['observed'] = $observed;
                         }
 
-                        if ($goal_key != 3) {
+                        if($goal_key != 3) {
                             $cat_performed = $cat_performed + $hidden_performed;
                             $cat_required = $cat_required + $req;
 
@@ -574,22 +583,26 @@ EOF;
                                                  "performed" => $performed, "required" => $req, "observed" => $observed);
                             $category['html'] .= $this->getViewForPartials()->partial("widgets/goals-widget-grad-panel-goal-row.phtml", array("params" => $view_params));
                         }
+
                     }
 
                     $category['performed'] += $cat_performed;
                     $category['required'] += $cat_required;
-                } else {
+                }
+                else {
 
                     // Loops through items in that category
                     foreach ($goals as $goalKey => $goal) {
+
                         if ($goal->requirementDesc > 0) {
+
                             $percent = floor(($goal->percentDone * 100));
                             $scaledPercent = $this->getScaledPercent($percent, 2);
 
                             $percentClass = $this->getPercentClass($percent);
 
                             // Increment the category totals for later use
-                            // If they performed higher than the goal, don't count extras toward total completion
+			    // If they performed higher than the goal, don't count extras toward total completion
                             if ($goal->performedCount > $goal->requirementDesc) {
                                 $category['performed'] += $goal->requirementDesc;
                             } else {
@@ -603,17 +616,18 @@ EOF;
                             $category['html'] .= $this->getViewForPartials()->partial("widgets/goals-widget-grad-panel-goal-row.phtml", array("params" => $view_params));
                         }
                     }
+
                 }
 
 
 
                 $categoryPercent = $this->getPercent($category['performed'], $category['required'], array('lower'=>0, 'upper'=>100));
                 $categoryPercentClass = $this->getPercentClass($categoryPercent);
-                $categoryScaledPercent = $this->getScaledPercent($categoryPercent, 2);
+                $categoryScaledPercent = $this->getScaledPercent($categoryPercent,2);
                 
-                // Generate the checkbox html if we need it
+                // Generate the checkbox html if we need it            
                 $categoryCheckImage = '';
-                if ($categoryPercent == 100) {
+                if($categoryPercent == 100){
                     $categoryCheckImage = "<div class='goal-complete-checkmark'><img src='/images/icons/checkmark-dark-gray.png'/></div>";
                 }
 
@@ -668,15 +682,15 @@ EOF;
             $subjectTypeMessage = \Fisdap\Entity\Subject::getSubjectTypeDescription($settings->subject_types_in_mygoals);
 
             $shiftTypes = array();
-            if ($settings->include_lab_in_mygoals) {
+            if($settings->include_lab_in_mygoals){
                 $shiftTypes[] = 'lab';
             }
             
-            if ($settings->include_clinical_in_mygoals) {
+            if($settings->include_clinical_in_mygoals){
                 $shiftTypes[] = 'clinical';
             }
             
-            if ($settings->include_field_in_mygoals) {
+            if($settings->include_field_in_mygoals){
                 $shiftTypes[] = 'field';
             }
             $shiftTypeMessage = \Util_String::addAndToList(implode(", ", $shiftTypes)) . " " . \Util_String::pluralize("setting", count($shiftTypes));
@@ -690,7 +704,7 @@ EOF;
             
             $html .= "</div>";
             
-            return $html;
+            return $html; 
         }
     }
 
@@ -705,7 +719,7 @@ EOF;
         // set up/get some values
         $args = func_get_args();
         
-        $widgetOptions = json_decode($args[0], true);
+        $widgetOptions = json_decode($args[0],TRUE);
         $studentId = ($widgetOptions['explicitStudentId']) ? $widgetOptions['explicitStudentId'] : $this->widgetData->user->getCurrentRoleData()->id;
         
         $goal_set = \Fisdap\EntityUtils::getEntity('GoalSet', $this->data['goalSetId']);
@@ -747,7 +761,7 @@ EOF;
         // et success progress bar
         $et_success_progress = array();
 
-        $et_success_precent = $this->getPercent($et_totals['success_count'], 10);
+        $et_success_precent = $this->getPercent($et_totals['success_count'],10);
         
         $et_success_progress['percent'] = $et_success_precent;
         $et_success_progress['width'] = $this->getScaledPercent($et_success_precent, 2.5);
@@ -756,7 +770,7 @@ EOF;
         // coa success progress bar
         $coa_success_progress = array();
         
-        $coa_success_precent = $this->getPercent($coa_eureka['count'], 20);
+        $coa_success_precent = $this->getPercent($coa_eureka['count'],20);
         
         $coa_success_progress['percent'] = $coa_success_precent;
         $coa_success_progress['width'] = $this->getScaledPercent($coa_success_precent, 2.5);
@@ -793,34 +807,35 @@ EOF;
     {
         // now deal with the CoA attempts
         $total_attempts = count($eureka_attempts);
-        $starting_point = $total_attempts - 20;
-        
-        $coa_attempts = array();
-        $coa_dates = array();
+		$starting_point = $total_attempts - 20;
+		
+		$coa_attempts = array();
+		$coa_dates = array();
         $coa_success_count = 0;
-        
-        if ($starting_point < 0) {
-            $coa_attempts = $eureka_attempts;
-            $coa_dates = $eureka_dates;
-            if ($eureka_attempts) {
-                foreach ($eureka_attempts as $attempt) {
-                    if ($attempt === 1) {
+		
+		if($starting_point < 0){
+			$coa_attempts = $eureka_attempts;
+			$coa_dates = $eureka_dates;
+            if($eureka_attempts){
+                foreach($eureka_attempts as $attempt){
+                    if($attempt === 1){
                         $coa_success_count++;
                     }
                 }
             }
-        } else {
-            for ($i = $starting_point; $i < $total_attempts; $i++) {
-                if (isset($eureka_attempts[$i])) {
-                    $coa_attempts[] = $eureka_attempts[$i];
-                    $coa_dates[] = $eureka_dates[$i];
+		}
+		else {
+			for($i = $starting_point; $i < $total_attempts; $i++){
+				if(isset($eureka_attempts[$i])){
+					$coa_attempts[] = $eureka_attempts[$i];
+					$coa_dates[] = $eureka_dates[$i];
                     
-                    if ($eureka_attempts[$i]) {
+                    if($eureka_attempts[$i]){
                         $coa_success_count++;
                     }
-                }
-            }
-        }
+				}
+			}
+		}
         
         $helper = new Fisdap_View_Helper_EurekaGraph();
         $id = "airway_management_eureka_coa_attempts_" . $student_id;
@@ -836,16 +851,17 @@ EOF;
         $html = "";
 
         
-        if ($data) {
-            foreach ($data as $count) {
+        if($data){
+            foreach($data as $count){
                 $total = $total + $count;
             }
             
             $i = 0;
-            foreach ($data as $type => $count) {
+            foreach($data as $type => $count){
                 $percents[$type] = array("count" => $count, "percent" => $this->getPercent($count, $total));
                 $i++;
             }
+            
         }
         
         $opacity_style = ($total == 0) ? "opacity:0.3;" : "";
@@ -857,9 +873,9 @@ EOF;
         $html .=    "<canvas id='pie_chart' width='145' height='145' style='" . $opacity_style . " " . $extra_top_margin_style . "'></canvas>";
         $html .=    "<div class='pie_chart_legend' style='" . $extra_top_margin_style . "'>";
         
-        if ($percents) {
+        if($percents){
             $count = 0;
-            foreach ($percents as $type => $tally) {
+            foreach($percents as $type => $tally){
                 $html .=    "<div class='pic_chart_legend_color_box' data-value='" . $tally['percent'] . "' data-color='" . $colors[$count] . "' style='background-color:" . $colors[$count] . "'></div>";
                 $html .=    "<div class='pic_chart_data_legend_label'>" . $type . " <span class='legend_percent'>(" . $tally['count'] . ")</span></div>";
                 $count++;
@@ -876,43 +892,43 @@ EOF;
      * Determine the user to target in this widget's data
      * @return \Fisdap\Entity\User The user that the widget's data should reflect
      */
-    private function getUser()
-    {
+    private function getUser(){
         $user = \Fisdap\Entity\User::getLoggedInUser();
         
         // In this case, pull the user from the session...
-        if ($user->isInstructor()) {
+        if($user->isInstructor()){
 
             // This gets set in the ShiftsController.  Kind of gross, but it works.
             $widgetSession = new \Zend_Session_Namespace("WidgetData");
 
             // Only use the session if we locate a user_id
-            if ($widgetSession->user_id) {
+            if($widgetSession->user_id) {
                 return \Fisdap\EntityUtils::getEntity('User', $widgetSession->user_id);
             } else {
                 return $user;
             }
-        } else {
+
+        }else{
             return $user;
         }
     }
 
     /**
      * Helper function to fetch and sort the Graduation Requirements goal set data.
-     *
+     * 
      * @return array A full goal set for the student, sorted alphabetically by goal type, and then
      * by percent done descending by skills performed.
      */
-    public function getGoalSetData()
-    {
+    public function getGoalSetData(){
         $goalSet = \Fisdap\EntityUtils::getEntity('GoalSet', $this->data['goalSetId']);
         
         // Patch this in here, too.  Need to be able to pull up the default goal set correctly
-        // in case it hasn't been set yet, or set incorrectly (there were 2 goal sets named
+        // in case it hasn't been set yet, or set incorrectly (there were 2 goal sets named 
         // "National Standard Curriculum", so we cant search by that any more.
         if (!$goalSet->id) {
             $goalSet = $this->getDefaultGoalset();
             $this->data['goalSetId'] = $goalSet->id;
+            
         }
         
         // Filter the available shift types to only include ones the program has configured
@@ -920,15 +936,15 @@ EOF;
         
         $settings = $this->getWidgetProgram()->program_settings;
         
-        if ($settings->include_lab_in_mygoals) {
+        if($settings->include_lab_in_mygoals){
             $shiftTypes[] = 'lab';
         }
         
-        if ($settings->include_clinical_in_mygoals) {
+        if($settings->include_clinical_in_mygoals){
             $shiftTypes[] = 'clinical';
         }
         
-        if ($settings->include_field_in_mygoals) {
+        if($settings->include_field_in_mygoals){
             $shiftTypes[] = 'field';
         }
 
@@ -941,7 +957,7 @@ EOF;
         );
         
         // if($this->widgetData->user->isInstructor()){
-        // return false;
+            // return false;
         // }
         
         $student = $this->getUser()->getCurrentRoleData();
@@ -950,9 +966,9 @@ EOF;
 
         $goalData = $goals->getGoalsResults(null, true, false);
 
-        if (is_array($goalData)) {
+        if(is_array($goalData)){
             // Sort and clean up the goals report a little...
-            foreach ($goalData as $key => $goals) {
+            foreach($goalData as $key => $goals){
                 usort($goalData[$key], array('self', 'sortGoalDataByScore'));
             }
             // Sort by keys to make them alphabetical...
@@ -966,8 +982,8 @@ EOF;
      * Get the default Graduation Requirements goal set for the user's program'
      * @return array The default graduation requirements goal set for the program and certification level
      */
-    private function getDefaultGoalset()
-    {
+    private function getDefaultGoalset(){
+
         $goalSet = $this->getUser()->getCurrentRoleData()->getGoalSet();
 
         return $goalSet;
@@ -977,16 +993,15 @@ EOF;
      * Helper function to sort the Graduation Requirements goal data by score.
      * @param \Fisdap\Entity\Goal $a first goal to compare
      * @param \Fisdap\Entity\Goal $b second goal to compare
-     *
+     * 
      * @return 0 if equal, -1 if a > b,  or 1 if a < b.
      */
-    public function sortGoalDataByScore($a, $b)
-    {
+    public function sortGoalDataByScore($a, $b){
         // Weird bug- if this function throws any sort of exception, it breaks saying
         // usort(): Array was modified by the user comparison function.
         // Just making sure we have objects before we start comparing them.
-        if (is_object($a) && is_object($b)) {
-            if ($a->percentDone == $b->percentDone) {
+        if(is_object($a) && is_object($b)){
+            if($a->percentDone == $b->percentDone){
                 return 0;
             }
             
@@ -1000,8 +1015,7 @@ EOF;
      * Override the configuration form id for the Graduation Requirements
      * @return [type] [description]
      */
-    public function getConfigurationFormId()
-    {
+    public function getConfigurationFormId(){
         return $this->getNamespacedName('goals-report-config-form');
     }
     
@@ -1009,8 +1023,7 @@ EOF;
      * [getConfigurationForm description]
      * @return [type] [description]
      */
-    public function getConfigurationForm()
-    {
+    public function getConfigurationForm(){
         $programSets = \Fisdap\EntityUtils::getRepository('Goal')->getProgramGoalSets($this->getWidgetProgram()->id, true);
         
         $form = "
@@ -1019,10 +1032,10 @@ EOF;
                 <div class='inline-label'>Goal Set:</div><select name='goalSetId' id='goalSetId' class='chzn-select'>
         ";
         
-        foreach ($programSets as $ps) {
-            if ($ps->id == $this->data['goalSetId']) {
+        foreach($programSets as $ps){
+            if($ps->id == $this->data['goalSetId']){
                 $form .= "<option value='{$ps->id}' SELECTED='SELECTED'>{$ps->name}</option>";
-            } else {
+            }else{
                 $form .= "<option value='{$ps->id}'>{$ps->name}</option>";
             }
         }
@@ -1047,16 +1060,15 @@ EOF;
     
     /**
      * This function calculates and returns the necessary values for the lab skills goal progress lines.
-     *
+     * 
      * @param unknown_type $labResults
      * @param unknown_type $categoryId
      * @param unknown_type $defId
-     *
+     * 
      * @return Array containing the percentage complete, goal total, instructor signoff count,
      * total signoff count, and whether or not the eureka point has been hit.
      */
-    private function getStudentStatistics(&$labResults, $categoryId, $defId)
-    {
+    private function getStudentStatistics(&$labResults, $categoryId, $defId){
         $user = $this->getUser();
         
         $items = $labResults['item_data'][$categoryId][$defId][$user->getCurrentRoleData()->id];
@@ -1070,22 +1082,26 @@ EOF;
         $returnValues['instructor_goal'] = $defRecord['instructor_goal'];
         $returnValues['instructor_actual'] = 0;
         
-        if (is_array($items)) {
+        if(is_array($items)){
             $itemList = array();
             
-            foreach ($items as $itemId => $item) {
-                if ($item['evaluator_type_id'] == 2) {
-                    if ($item['passed']) {
+            foreach($items as $itemId => $item){
+                if($item['evaluator_type_id'] == 2){
+                    if($item['passed']){
                         $returnValues['peer_actual']++;
                         array_push($itemList, 1);
-                    } else {
+                    }
+                    else {
                         array_push($itemList, 0);
                     }
-                } elseif ($item['evaluator_type_id'] == 1 && $item['confirmed']) {
-                    if ($item['passed']) {
+
+                }
+                else if($item['evaluator_type_id'] == 1 && $item['confirmed']){
+                    if($item['passed']){
                         $returnValues['instructor_actual']++;
                         array_push($itemList, 1);
-                    } else {
+                    }
+                    else {
                         array_push($itemList, 0);
                     }
                 }
@@ -1104,11 +1120,10 @@ EOF;
     
     /**
      * This function gets the lab skills results pracice items for the user
-     *
+     * 
      * @return array Lab skills practice item results
      */
-    private function getLabGoalResults()
-    {
+    private function getLabGoalResults(){
         $itemRepo = \Fisdap\EntityUtils::getRepository('PracticeItem');
         
         $user = $this->getUser();
@@ -1124,11 +1139,10 @@ EOF;
     
     /**
      * Render the left and right links to flip through different widget pages
-     *
+     * 
      * @return string The html of the left-right links in the header
      */
-    protected function renderRotateLinks()
-    {
+    protected function renderRotateLinks() {
         $html = <<<EOF
             <span class='widget-rotate'>
                 <img src='/images/icons/arrow_rotate_left_white.png' class='widget-rotate-left' alt='Previous'> <a href="javascript:void(0);" class='widget-rotate-left'>Previous</a><span class="separator-vertical"> | </span><a href="javascript:void(0);" class='widget-rotate-right'>Next</a> <img src='/images/icons/arrow_rotate_right_white.png' class='widget-rotate-right' alt='Next'>
@@ -1139,19 +1153,19 @@ EOF;
 
     /**
      * Renders the widget header. Overridden from parent class to add rotate buttons.
-     *
+     * 
      * @return string HTML of the header
      */
-    protected function renderHeader()
-    {
+    protected function renderHeader(){
 
         // Grab the widgetOptions, decode them from JSON
         $args = func_get_args();
 
-        $widgetOptions = json_decode($args[0], true);
+        $widgetOptions = json_decode($args[0],TRUE);
 
         // Check we want this not to be minimizable
-        if ($widgetOptions && isset($widgetOptions) && array_key_exists('allowMinimize', $widgetOptions) && $widgetOptions['allowMinimize']===false) {
+        if($widgetOptions && isset($widgetOptions) && array_key_exists('allowMinimize', $widgetOptions) && $widgetOptions['allowMinimize']===FALSE)
+        {
             $minimizeLink = "";
         } else {
             $minimizeLink = $this->renderMinimizeLink();
@@ -1186,7 +1200,7 @@ EOF;
         $panels = $this->arrangePanels($widgetOptions);
         $titleText = $panels[0]['title'];
 
-        if ($titleText == "Lab Goals") {
+        if($titleText == "Lab Goals") {
             $program = \Fisdap\Entity\ProgramLegacy::getCurrentProgram();
             $titleText = $program->hasSkillsPractice() ? "Skills Practice Goals" : "Lab Goals";
         }
@@ -1209,15 +1223,18 @@ EOF;
         // there is at least one LPI instance in the DB for the student.
 
         // If we have an explicit panel name, use that
-        if ($explicitPanelName !== null) {
-            $this->panels = $this->shiftToPanel('renderPanel'.$explicitPanelName, $this->panels);
-        } else {
-            if (count($lpis) > 0) {
+        if($explicitPanelName !== null)
+        {
+            $this->panels = $this->shiftToPanel('renderPanel'.$explicitPanelName,$this->panels);
+        }
+        else
+        {
+            if(count($lpis) > 0){
                 // If student has LPIs, use lab skills
-                $this->panels = $this->shiftToPanel('renderPanelLab', $this->panels);
+                $this->panels = $this->shiftToPanel('renderPanelLab',$this->panels);
             } else {
                 // Otherwise use grad reqs
-                $this->panels = $this->shiftToPanel('renderPanelGraduation', $this->panels);
+                $this->panels = $this->shiftToPanel('renderPanelGraduation',$this->panels);
             }
         }
 
@@ -1226,24 +1243,23 @@ EOF;
 
     /**
      * This function returns the CSS class for the given percent.
-     *
+     * 
      * @param integer $percent to find the class for.
      */
-    private function getPercentClass($percent)
-    {
-        if ($percent >= 0 && $percent < 15) {
+    private function getPercentClass($percent){
+        if($percent >= 0 && $percent < 15){
             $percentClass = 'percent_0-14';
-        } elseif ($percent >= 15 && $percent < 30) {
+        }elseif($percent >= 15 && $percent < 30){
             $percentClass = 'percent_15-30';
-        } elseif ($percent >= 30 && $percent < 45) {
+        }elseif($percent >= 30 && $percent < 45){
             $percentClass = 'percent_30-44';
-        } elseif ($percent >= 45 && $percent < 65) {
+        }elseif($percent >= 45 && $percent < 65){
             $percentClass = 'percent_45-64';
-        } elseif ($percent >= 65 && $percent < 85) {
+        }elseif($percent >= 65 && $percent < 85){
             $percentClass = 'percent_65-84';
-        } elseif ($percent >= 85 && $percent < 100) {
+        }elseif($percent >= 85 && $percent < 100){
             $percentClass = 'percent_85-99';
-        } elseif ($percent >= 100) {
+        }elseif($percent >= 100){
             $percentClass = 'percent_100';
         }
         
@@ -1256,17 +1272,18 @@ EOF;
     public function getPercent($actual, $goal, $options=array())
     {
         // Calculate the percentage
-        if ($goal == 0) {
+        if($goal == 0) {
             $percent =  100;
         } else {
             $percent =  floor(($actual / $goal) * 100);
         }
 
         // Apply upper and lower bounds to the percentage
-        if (isset($options['lower'])) {
+        if(isset($options['lower'])) 
+        {
             $percent = max($percent, $options['lower']);
         }
-        if (isset($options['upper'])) {
+        if(isset($options['upper'])) {
             $percent = min($percent, $options['upper']);
         }
         
@@ -1281,7 +1298,7 @@ EOF;
      */
     public function getScaledPercent($percent, $scalar)
     {
-        if ($scalar == 0) {
+        if($scalar == 0){
             return 100;
         } else {
             return ($percent / $scalar > 1) ? $percent / $scalar : 1;
@@ -1289,12 +1306,12 @@ EOF;
     }
 
     /**
-     * This function wraps the config options in a modal and displays that modal on clicking
+     * This function wraps the config options in a modal and displays that modal on clicking 
      * the config icon.
      */
-    protected function renderConfigLink()
-    {
-        if ($this->widgetData->widget->has_configuration && ($this instanceof MyFisdap_Widgets_iConfigurable)) {
+    protected function renderConfigLink(){
+        if($this->widgetData->widget->has_configuration && ($this instanceof MyFisdap_Widgets_iConfigurable)){
+
             $args = func_get_args();
 
             $widgetOptions = json_encode($args[0][0], JSON_FORCE_OBJECT);
@@ -1360,7 +1377,7 @@ EOF;
             ";
             
             return $imgLink . $formContents . $script;
-        } else {
+        }else{
             return '';
         }
     }
@@ -1370,18 +1387,18 @@ EOF;
      * @param integer $widgetId ID of the widget data entry, used to pull back the user assigned to that widget instance.
      * @return boolean True if the user can view this widget, false if it shouldn't show up.
      */
-    public static function userCanUseWidget($widgetId)
-    {
+    public static function userCanUseWidget($widgetId){
+        
         $widgetData = \Fisdap\EntityUtils::getEntity('MyFisdapWidgetData', $widgetId);
         
         $user = $widgetData->user;
-        // var_dump($user);die;
-        if ($widgetData->section == 'lab-skills-widgets') {
+// var_dump($user);die;
+        if($widgetData->section == 'lab-skills-widgets') {
             return true;
-        } elseif ($widgetData->section == 'goals-widget') {
+        } elseif($widgetData->section == 'goals-widget' ){
             return true;
         } else {
-            if (!$user->isInstructor()) {
+            if(!$user->isInstructor()) {
                 return true;
             } else {
                 return false;
@@ -1400,15 +1417,15 @@ EOF;
         $path_required = $script_pieces[0] . "/application/modules/my-fisdap/views/scripts";
         $add_path = true;
 
-        if ($view->getScriptPaths()) {
-            foreach ($view->getScriptPaths() as $path) {
-                if ($path == $path_required) {
+        if($view->getScriptPaths()){
+            foreach($view->getScriptPaths() as $path){
+                if($path == $path_required){
                     $add_path = false;
                 }
             }
         }
 
-        if ($add_path) {
+        if($add_path){
             $view->addScriptPath($path_required);
         }
 

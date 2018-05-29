@@ -8,8 +8,8 @@
  * COPYING file distributed with this package.
  *
  * Copyright (c) 2008-2009, WURFL-Pro S.r.l., Rome, Italy
- *
- *
+ * 
+ *  
  *
  * @category   WURFL
  * @package    WURFL_Request_UserAgentNormalizer
@@ -18,17 +18,19 @@
  * @version    $id$
  */
 
-class WURFL_Request_UserAgentNormalizer_Null implements WURFL_Request_UserAgentNormalizer_Interface
-{
+class WURFL_Request_UserAgentNormalizer_Null implements WURFL_Request_UserAgentNormalizer_Interface  {
 
-    
-    /**
-     *
-     * @param string $userAgent
-     * @return string
-     */
-    public function normalize($userAgent)
-    {
-        return $userAgent;
-    }
+	
+	/**
+	 * 
+	 * @param string $userAgent
+	 * @return string
+	 */
+	public function normalize($userAgent) {		
+		return $userAgent;
+	}
+	
 }
+
+
+?>

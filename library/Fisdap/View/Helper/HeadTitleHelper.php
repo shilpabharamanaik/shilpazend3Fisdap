@@ -20,10 +20,9 @@
  *
  * @return string the title of the page
  */
-class Zend_View_Helper_HeadTitleHelper extends Zend_View_Helper_Abstract
-{
-    public function headTitleHelper()
-    {
+class Zend_View_Helper_HeadTitleHelper extends Zend_View_Helper_Abstract 
+{ 
+    public function headTitleHelper() {
         $title = "Fisdap";
         
         if ($this->view->pageTitle) {
