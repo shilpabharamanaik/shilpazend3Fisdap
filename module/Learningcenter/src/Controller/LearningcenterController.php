@@ -13,8 +13,8 @@ use Fisdap\Entity\Product;
 use Fisdap\Entity\ProgramLegacy;
 use Fisdap\Entity\SerialNumberLegacy;
 
-use Fisdap\Entity\UserContext;
-use Fisdap\Entity\User;
+use User\Entity\UserContext;
+use User\Entity\User;
 
 class LearningcenterController extends AbstractActionController
 {
