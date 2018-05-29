@@ -58,8 +58,8 @@ class InstructorController extends AbstractActionController
 
         $this->objUser = $this->entityManager->getRepository(User::class)
                             ->findOneByUsername($this->username);
-        /*$this->objUserRole = $this->entityManager->getRepository(UserRole::class)
-                            ->findOneByUserId($this->objUser->getId()); */
+        $this->objUserRole = $this->entityManager->getRepository(UserRole::class)
+                            ->findOneByUserId($this->objUser->getId());
     }
 
 
@@ -126,7 +126,7 @@ class InstructorController extends AbstractActionController
             'username' => $this->username,
         ]);
     }
-	
+
 	 public function newinstructorAction(){
 	  //If we have a SN, we're activating an account with products
         /*if ($this->hasParam("sn")) {
@@ -169,7 +169,7 @@ class InstructorController extends AbstractActionController
 		 */
 		  return new ViewModel([
             'form' => $form,
-        ]);  
+        ]);
 	 }
-	
+
 }
