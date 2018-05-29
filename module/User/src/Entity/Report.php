@@ -82,10 +82,10 @@ class Report extends Enumerated
      *	Returns an array of categories relevent to THIS user
      *	@return array
      */
-    public function getCategories()
+    public function getCategories($userobj)
     {
         $categories = array();
-        $program = User::getLoggedInUser()->getCurrentProgram();
+        $program = $userobj->getCurrentProgram();
         foreach ($this->categories as $category) {
             if ($category->profession == $program->profession) {
                 $categories[$category->id] = $category;
@@ -98,10 +98,10 @@ class Report extends Enumerated
      *	Returns a pretty string of categories relevent to THIS user
      *	@return string
      */
-    public function getCategoryList()
+    public function getCategoryList($userobj)
     {
         $categories = array();
-        foreach ($this->getCategories() as $category) {
+        foreach ($this->getCategories($userobj) as $category) {
             $categories[] = $category->name;
         }
         return implode(", ", $categories);
@@ -111,18 +111,18 @@ class Report extends Enumerated
      *	Returns a pretty string of category ids relevent to THIS user
      *	@return string
      */
-    public function getCategoryIds()
+    public function getCategoryIds($userobj)
     {
         $categories = array();
-        foreach ($this->getCategories() as $category) {
+        foreach ($this->getCategories($userobj) as $category) {
             $categories[] = $category->id;
         }
         return implode(",", $categories);
     }
     
-    public function getDescription()
+    public function getDescription($userobj)
     {
-        $student = (User::getLoggedInUser()->getCurrentRoleName() == 'student');
+        $student = ($userobj->getCurrentRoleName() == 'student');
         if ($student && !is_null($this->student_description)) {
             return $this->student_description;
         }

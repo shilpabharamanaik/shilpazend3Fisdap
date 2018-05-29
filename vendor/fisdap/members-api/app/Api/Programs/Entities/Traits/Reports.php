@@ -2,8 +2,8 @@
 
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\OneToMany;
-use Fisdap\Entity\ProgramReport;
-use Fisdap\EntityUtils;
+use User\Entity\ProgramReport;
+//use Fisdap\EntityUtils;
 
 
 /**
@@ -21,13 +21,30 @@ trait Reports
     protected $reports;
     
     
-    public function getActiveReports()
+    public function getActiveReports($entitymanager = null)
     {
+		
         $active_reports = array();
-
         // get all the reports available to this profession
-        $reports = EntityUtils::getRepository('Report')->getAvailableReportsByProfession($this->profession->id);
+		if(null != $entitymanager){  
+			//$reports = $entitymanager->getRepository(Reports::class)->getAvailableReportsByProfession($this->profession->id);		
+		$qb = $entitymanager->createQueryBuilder();
+        $qb->select("r")
+            //->from("\Fisdap\Entity\Report", "r")
+            ->from("\User\Entity\Report", "r")
+            ->join("r.categories", "c")
+            ->join("c.profession", "p")
+            ->where("p.id = ?1")
+            ->andWhere("r.standalone = 0")
+            ->setParameter(1, $this->profession->id)
+            ->orderBy("r.name");
 
+        $reports = $qb->getQuery()->getResult();	
+//echo "shilpa";// var_dump($result);		
+		}
+		else{
+			$reports = EntityUtils::getRepository('Report')->getAvailableReportsByProfession($this->profession->id);
+		}
         // loop through all available reports add the active ones
         foreach ($reports as $report) {
             // default to active in case there is no link
@@ -48,6 +65,7 @@ trait Reports
 
 
         @usort($active_reports, array('self', 'sortReportsByName'));
+		//echo "sss"; var_dump($active_reports);
         return $active_reports;
     }
 

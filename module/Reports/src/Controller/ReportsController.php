@@ -10,8 +10,9 @@ use Zend\Mvc\MvcEvent;
 use User\Entity\User;
 use User\Entity\UserContext;
 use User\Entity\ProgramLegacy;
+use User\Traits\Reports;
 use User\Entity\InstructorLegacy;
-use Fisdap\Api\Programs\Entities\Traits\Reports;
+use Fisdap\Api\Programs\Entities\Traits;
 class ReportsController extends AbstractActionController
 {
 	use Reports;
@@ -55,19 +56,18 @@ class ReportsController extends AbstractActionController
 		$program = $userContext->program;
 		$pageTitle = "All Reports";
 		$categories = $program->profession->report_categories;
-		echo "123";
 		// get the reports for this user
-		$reports = $program->getActiveReports();
+		$reports = $program->getActiveReports($this->entityManager);
 		//print_r($reports); exit;
 		$visible_reports = array();
-		/*foreach ($reports as $report) {
+		foreach ($reports as $report) {
 			$reportClass = 'Fisdap_Reports_' . $report->class;
-            if (class_exists($reportClass) && $reportClass::hasPermission($this->userContext)) {
+            //if (class_exists($reportClass) && $reportClass::hasPermission($this->userContext)) {
 				$visible_reports[] = $report;
-			}
+			//}
 		}
-		$this->view->reports = $visible_reports;
-		*/
+		$reports = $visible_reports;
+		
 		
 		// stuff we need for plugins
 		//$this->view->headScript()->appendFile("/js/jquery.fieldtag.js");
@@ -76,7 +76,7 @@ class ReportsController extends AbstractActionController
 		//$this->view->tour_id = ($this->user->getCurrentRoleName() == 'instructor') ? 11 : 12;
 		$arrViewData = [
                     'program' => $program,
-                    'categories' => $categories] ;
+                    'categories' => $categories, 'reports' => $reports, 'userobj' => $this->objUser] ;
 
             $viewModel = new ViewModel($arrViewData);
             return $viewModel;

@@ -1,0 +1,18 @@
+<div class="report-row">
+	<div class="<?= ($this->mode == "index") ? "grid_12" : "grid_10" ?>">
+		<h4 class='dark-gray report-title'><?= $this->name ?></h4>
+		<div class='report-desc'>
+			<?= $this->report->getDescription() ?>
+		</div>
+		<div class="report-categories medium-gray" data-categoryids="<?= $this->report->getCategoryIds() ?>">
+			Categories: <?= $this->report->getCategoryList() ?>
+		</div>
+	</div>
+<?php if ($this->mode != "index") { ?>
+	<div class="grid_2">
+		<?= $this->formCheckbox("toggle_" . $this->report->id, 1, array("class" => "active-toggle"), array($this->active)) ?>
+	</div>
+<?php } ?>
+	<div class="clear"></div>
+</div>
+<div class="clear"></div>
