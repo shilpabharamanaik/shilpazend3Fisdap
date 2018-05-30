@@ -12,6 +12,7 @@ $userSession = new Container('user');
 		$globalSession = new Container('global');
 		$entityManager = unserialize($globalSession->entityManager);
 		$objUser = $entityManager->getRepository(User::class)->findOneByUsername($username);
+		if(!empty($objUser)){
 		$userContext = $objUser->getCurrentUserContext();
 		if ($userContext->id) {
             $profession = $userContext->getProgram()->profession->name;
@@ -78,7 +79,7 @@ $userSession = new Container('user');
 			/*$ret .= " | "
                  . "<a class='logout' style='font-weight: 900;' href='$logoutLink'>"
                  . "<img src='/images/icons/logout-orange-20px.png' class='logout-img' title='$logoutText' /></a>"; */
-
+		}
  ?>
 <html lang="en">
     <head>
