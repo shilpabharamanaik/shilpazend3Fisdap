@@ -1,5 +1,85 @@
 <?= $this->doctype() ?>
+<?php 
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Session\SessionManager;
+use Zend\View\Model\ViewModel;
+use Zend\Session\Container;
+use Zend\Mvc\MvcEvent; 
+use User\Entity\User;
+use User\Entity\UserContext; 
+$userSession = new Container('user');
+        $username = $userSession->username;
+		$globalSession = new Container('global');
+		$entityManager = unserialize($globalSession->entityManager);
+		$objUser = $entityManager->getRepository(User::class)->findOneByUsername($username);
+		$userContext = $objUser->getCurrentUserContext();
+		if ($userContext->id) {
+            $profession = $userContext->getProgram()->profession->name;
+        } else {
+            $profession = "EMS";
+        }
+		if (RELEASE_STAGE != 'Prod') {
+            $releaseStageHtml = ' <span style="font-weight: bold; color: white; background-color: red;">&nbsp;' . strtoupper(RELEASE_STAGE) . '&nbsp;</span>';
+        } else {
+            $releaseStageHtml = null;
+        }
+		$masqText = '';
+		$ret = "Hi, <span class='user_first_name'>". $objUser->getFirstName()
+				 . "</span>! (<span class='user_name'>" .$username. "</span>) ";
+		if ($objUser->isStaff()) {
+			$masqText = " | <a href='/login/masquerade' title='Masquerade as another user'><img src='/images/masquerade.png' class='masquerade' alt='masquerade' title='masquerade' /></a> ";
+			$gearsText = " | <a href='#'><img src='/images/icons/gear_gray_small.png' id='staff-settings'  alt='settings' title='settings' /></a>";
+		}
+		else{
+			$user = $userContext->getUser();
+			$html = "<div id='context-switcher'>" . $userContext->getDescription();
+			//echo count($user->userContexts);
+			if (count($user->userContexts) > 1) {
+            $html .= " <img class='context-switcher-trigger' src='/images/icons/arrow_down.svg'>";
 
+            // menu
+            $html .= "<div class='context-switcher-menu'>";
+            $html .= "<img class='ticker' src='/images/ticker.png'>";
+            $html .= "<ul>";
+            foreach ($user->userContexts as $context) {
+                // only show non-current contexts
+                if ($context->getId() != $userContext->getId()) {
+                    $html .= "<li>";
+                    $html .= "<h5 class='section-header no-border'>".$context->getDescription()."</h5>";
+                    $html .= "<a class='switch-context' data-contextId='".$context->getId()."'>switch to this account</a>";
+                    $html .= "</li>";
+                }
+            }
+            $html .= "</ul></div>";
+        }
+
+        $html .= "</div>";
+			$gearsText = " | " . $html;
+		}
+		  if ($userContext->getRoleData()->hasPermission("Edit Student Accounts", $entityManager)) {
+                $studentSearch = " | "
+                               . "<form class='header-search-form' id='student-search' action='JavaScript:postSearchForm()' method='POST' autocomplete='off'>"
+                               . "<input class='header-search-box fancy-input' type='text' id='search-string' name='search-string'></form>"
+                               . "<img src='/images/icons/magnifying-glass-dark-gray.png' class='magnifying-glass' title='Search for students' />";
+            }
+			$popup = " | "
+            . "<a href='http://www.fisdap.net/support/system-status' target='_blank' title='Open system status in a new window.'>"
+            . "<img src='/images/icons/bell-icon.png' class='notification-bell' /></a>"
+            . "<div class='notification-popup-container-main'>";
+			$notifications = $popup;
+			$ret .= $masqText;
+			$ret .= $gearsText;
+			//$ret .= $programSelectText;
+
+            $ret .= $studentSearch;
+
+            //$ret .= $notifications;
+
+			/*$ret .= " | "
+                 . "<a class='logout' style='font-weight: 900;' href='$logoutLink'>"
+                 . "<img src='/images/icons/logout-orange-20px.png' class='logout-img' title='$logoutText' /></a>"; */
+
+ ?>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -51,62 +131,58 @@
         <div id='header_nav' class='header_nav'>
             <div id='header_upper_nav'>
                 <a href='https://www.fisdap.net'><div id='site-title'>FISDAP</div></a>
-                <div id='user_info' class='user_info'> $this->view->profileLink()</div>
+                <div id='user_info' class='user_info'> <?php echo $ret; ?></div>
                 <div class='clear'></div>
-                <div id='subtitle'> Online Tools for $profession Education${releaseStageHtml}</div><div class='clear'></div>
+                <div id='subtitle'> Online Tools for <?php echo $profession; ?> Education <?php echo $releaseStageHtml; ?></div><div class='clear'></div>
             </div>
-
-
-
-       <ul class="main_navigation">
-    <li class="active">
-        <a title="MyFisdap" href="/my-fisdap" style="position: relative; top: 2px;">MyFisdap</a>
-
-    </li>
-    <li>
-        <a title="Shifts" href="/skills-tracker" style="position: relative; top: 2px;">Shifts</a>
-        <ul style="text-align: center; width: 225px; position: absolute; top: 112px; left: 117.35px; display: none;">
-            <li>
-                <a href="/scheduler">Schedule</a>
-            </li>
-            <li>
-                <a href="/skills-tracker/shifts">Skills &amp; Pt. Care</a>
-            </li>
-        </ul>
-    </li>
-    <li>
-        <a title="Learning Center" href="/learning-center" style="position: relative; top: 2px;">Learning Center</a>
-        <ul style="text-align: center; width: 255px; position: absolute; top: 112px; left: 241.2px; display: none;">
-            <li>
-                <a href="/learning-center/index/schedule">Test Schedule</a>
-            </li>
-            <li>
-                <a href="/learning-center/index/retrieve">Retrieve Scores</a>
-            </li>
-        </ul>
-    </li>
-    <li>
-        <a title="Reports" href="/reports/index/splash" style="position: relative; top: 2px;">Reports</a>
-        <ul style="text-align: center; width: 230px; position: absolute; top: 112px; left: 392.55px; display: none;">
-            <li>
-                <a href="/reports/index/legacy">Evals &amp; Skill Sheets</a>
-            </li>
-            <li>
-                <a href="/reports">Reports</a>
-            </li>
-        </ul>
-    </li>
-    <li>
-        <a title="Account" href="/account" style="position: relative; top: 2px;">Account</a>
-    </li>
-    <li>
-        <a title="Community" href="/community" style="position: relative; top: 2px;">Community</a>
-    </li>
-    <li>
-        <a title="Help" href="/help" style="position: relative; top: 2px;">Help</a>
-    </li>
-</ul>
-        </div>
+			<ul class="main_navigation">
+				<li class="active">
+					<a title="MyFisdap" href="/my-fisdap" style="position: relative; top: 2px;">MyFisdap</a>
+				</li>
+				<li>
+					<a title="Shifts" href="/skills-tracker" style="position: relative; top: 2px;">Shifts</a>
+					<ul style="text-align: center; width: 225px; position: absolute; top: 112px; left: 117.35px; display: none;">
+						<li>
+							<a href="/scheduler">Schedule</a>
+						</li>
+						<li>
+							<a href="/skills-tracker/shifts">Skills &amp; Pt. Care</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a title="Learning Center" href="/learning-center" style="position: relative; top: 2px;">Learning Center</a>
+					<ul style="text-align: center; width: 255px; position: absolute; top: 112px; left: 241.2px; display: none;">
+						<li>
+							<a href="/learning-center/index/schedule">Test Schedule</a>
+						</li>
+						<li>
+							<a href="/learning-center/index/retrieve">Retrieve Scores</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a title="Reports" href="/reports/index/splash" style="position: relative; top: 2px;">Reports</a>
+					<ul style="text-align: center; width: 230px; position: absolute; top: 112px; left: 392.55px; display: none;">
+						<li>
+							<a href="/reports/index/legacy">Evals &amp; Skill Sheets</a>
+						</li>
+						<li>
+							<a href="/reports">Reports</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a title="Account" href="/account" style="position: relative; top: 2px;">Account</a>
+				</li>
+				<li>
+					<a title="Community" href="/community" style="position: relative; top: 2px;">Community</a>
+				</li>
+				<li>
+					<a title="Help" href="/help" style="position: relative; top: 2px;">Help</a>
+				</li>
+			</ul>
+					</div>
 
             <div id='header_subnav' class='header_subnav'></div>
             <div style='clear: both;'></div>

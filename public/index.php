@@ -78,7 +78,7 @@ if (file_exists(__DIR__ . '/../config/development.config.php')) {
     $appConfig = ArrayUtils::merge($appConfig, require __DIR__ . '/../config/development.config.php');
 }
 $application  = Application::init($appConfig);
-require __DIR__ . '/../init_autoloader.php';
+//require __DIR__ . '/../init_autoloader.php';
 //echo "aaa";exit;
 // Run the application!
 $application->run();

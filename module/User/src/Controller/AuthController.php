@@ -6,9 +6,12 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Authentication\Result;
 use Zend\Uri\Uri;
-use User\Form\LoginForm;
+use User\Form\LoginForm; 
+use Zend\Session\SessionManager;
+use Zend\Session\Container;
+use Zend\Mvc\MvcEvent; 
 use User\Entity\User;
-
+use User\Entity\UserContext; 
 /**
  * This controller is responsible for letting the user to log in and log out.
  */
@@ -40,6 +43,8 @@ class AuthController extends AbstractActionController
         $this->entityManager = $entityManager;
         $this->authManager = $authManager;
         $this->userManager = $userManager;
+		$globalSession = new Container('global');
+		$globalSession->entityManager = serialize($entityManager);
     }
 
     /**

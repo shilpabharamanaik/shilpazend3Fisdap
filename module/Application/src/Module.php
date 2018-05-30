@@ -10,9 +10,29 @@ namespace Application;
 class Module
 {
     const VERSION = '3.0.3-dev';
-
     public function getConfig()
     {
         return include __DIR__ . '/../config/module.config.php';
+    }
+	 public function getViewHelperConfig()
+    {
+        return array(
+            'factories' => array(
+                'test_helper' => function($a, $b) {
+                    $helper = new View\Helper\Testhelper ;
+                    return $helper;
+                }
+            )
+        );   
+   }
+   public function getControllerConfig()
+    {
+        return [
+            'factories' => [
+                Controller\IndexController::class => function () {
+                    return new Controller\IndexController();
+                },
+            ],
+        ];
     }
 }

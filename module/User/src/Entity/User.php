@@ -161,7 +161,7 @@ class User
      * @var ArrayCollection|UserContext[]
      * @OneToMany(targetEntity="UserContext", mappedBy="user", cascade={"persist","remove","detach"}, fetch="EAGER")
      */
-    protected $userContexts;
+    public $userContexts;
 
     /**
      * @var ArrayCollection|SerialNumberLegacy[]
