@@ -91,9 +91,7 @@ class Zend_Tool_Project_Context_Content_Engine
                 if ($content != null) {
                     break;
                 }
-
             }
-
         }
 
         if ($content == null) {
@@ -102,5 +100,4 @@ class Zend_Tool_Project_Context_Content_Engine
 
         return $content;
     }
-
 }

@@ -19,63 +19,61 @@
  */
 class Zend_View_Helper_PhoneNumberHelper extends Zend_View_Helper_Abstract
 {
-	/**
-	 * @var string
-	 */
-	protected $_html= "";
+    /**
+     * @var string
+     */
+    protected $_html= "";
 
-	/**
-	 * @param string $number the phone number you want to format
-	 * @param string $country the country that this phone number is from
-	 * @return string the formatted number
-	 */
-    public function phoneNumberHelper($number = "", $country = "USA") {
-		if ($country == "USA") {
-			return $this->formatNumberForUS($number);
-		} else {
-			return $number;
-		}
+    /**
+     * @param string $number the phone number you want to format
+     * @param string $country the country that this phone number is from
+     * @return string the formatted number
+     */
+    public function phoneNumberHelper($number = "", $country = "USA")
+    {
+        if ($country == "USA") {
+            return $this->formatNumberForUS($number);
+        } else {
+            return $number;
+        }
     }
 
-	/**
-	 * Add the parens and dashes to make a United States phone number look pretty
-	 *
-	 * @param $number
-	 * @return string
-	 */
-	private function formatNumberForUS($number)
-	{
-		$format = false;
-		$original_number = $number;
-		$number = preg_replace('[\D]', '', $number);
+    /**
+     * Add the parens and dashes to make a United States phone number look pretty
+     *
+     * @param $number
+     * @return string
+     */
+    private function formatNumberForUS($number)
+    {
+        $format = false;
+        $original_number = $number;
+        $number = preg_replace('[\D]', '', $number);
 
-		if($number){
-			if(is_numeric($number)){
-				if(strlen($number) >= 10){
-					$format = true;
-				}
-			}
-		}
+        if ($number) {
+            if (is_numeric($number)) {
+                if (strlen($number) >= 10) {
+                    $format = true;
+                }
+            }
+        }
 
-		if($format){
+        if ($format) {
+            $formatted_number = "(";
+            $formatted_number .= substr($number, 0, 3);
+            $formatted_number .= ") ";
+            $formatted_number .= substr($number, 3, 3);
+            $formatted_number .= "-";
+            $formatted_number .= substr($number, 6, 4);
 
-			$formatted_number = "(";
-			$formatted_number .= substr($number, 0, 3);
-			$formatted_number .= ") ";
-			$formatted_number .= substr($number, 3, 3);
-			$formatted_number .= "-";
-			$formatted_number .= substr($number, 6, 4);
+            if (strlen($number) > 10) {
+                $formatted_number .= " x";
+                $formatted_number .= substr($number, 10, strlen($number));
+            }
+        } else {
+            $formatted_number = $original_number;
+        }
 
-			if(strlen($number) > 10){
-				$formatted_number .= " x";
-				$formatted_number .= substr($number, 10, strlen($number));
-			}
-		}
-		else {
-			$formatted_number = $original_number;
-		}
-
-		return $formatted_number;
-	}
-
+        return $formatted_number;
+    }
 }

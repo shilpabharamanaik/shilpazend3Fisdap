@@ -62,9 +62,9 @@ class LearningCenter_IndexController extends Fisdap_Controller_Private
             default:
                 break;
         }
-		if($serialNumber){
-			$this->addMedrillsToView($serialNumber);
-		}
+        if ($serialNumber) {
+            $this->addMedrillsToView($serialNumber);
+        }
     }
 
 
@@ -175,8 +175,8 @@ class LearningCenter_IndexController extends Fisdap_Controller_Private
         $this->view->research101Link = \Fisdap\MoodleUtils::getUrl("research101");
 
         // Pilot Testing
-            $this->view->hasPilotTesting = true;
-            $this->view->pilotTestingLink = \Fisdap\MoodleUtils::getUrl('pilot_testing');
+        $this->view->hasPilotTesting = true;
+        $this->view->pilotTestingLink = \Fisdap\MoodleUtils::getUrl('pilot_testing');
 
         // Transition Course
         if ($serialNumber->hasTransitionCourse()) {
@@ -209,22 +209,27 @@ class LearningCenter_IndexController extends Fisdap_Controller_Private
             $this->view->preceptorTrainingLink = \Fisdap\MoodleUtils::getUrl("preceptor_training");
         }
         $this->view->scheduleASecureExam = Util_GetLegacyTopNavLinks::getLink(
-            Util_GetLegacyTopNavLinks::SCHEDULE_A_SECURE_EXAM, $this->view->serverUrl()
+            Util_GetLegacyTopNavLinks::SCHEDULE_A_SECURE_EXAM,
+            $this->view->serverUrl()
         );
         $this->view->reviewStudentScoreAndLearningPerscription = "/learning-center/index/retrieve";
         $this->view->trainingVideo = Util_GetLegacyTopNavLinks::getLink(
-            Util_GetLegacyTopNavLinks::TRAINING_VIDEO, $this->view->serverUrl()
+            Util_GetLegacyTopNavLinks::TRAINING_VIDEO,
+            $this->view->serverUrl()
         );
         $this->view->recordNREMTResults = "/learning-center/index/submit-scores";
         $this->view->testingFAQs = "/learning-center/index/faq";
         $this->view->visitFisdapsTestBank = Util_GetLegacyTopNavLinks::getLink(
-            Util_GetLegacyTopNavLinks::VISIT_FISDAPS_TEST_BANK, $this->view->serverUrl()
+            Util_GetLegacyTopNavLinks::VISIT_FISDAPS_TEST_BANK,
+            $this->view->serverUrl()
         );
         $this->view->viewRewardsPointsBalance = Util_GetLegacyTopNavLinks::getLink(
-            Util_GetLegacyTopNavLinks::VIEW_REWARDS_POINTS_BALANCE, $this->view->serverUrl()
+            Util_GetLegacyTopNavLinks::VIEW_REWARDS_POINTS_BALANCE,
+            $this->view->serverUrl()
         );
         $this->view->submitATestOnLine = Util_GetLegacyTopNavLinks::getLink(
-            Util_GetLegacyTopNavLinks::SUBMIT_A_TEST_ITEM_ONLINE, $this->view->serverUrl()
+            Util_GetLegacyTopNavLinks::SUBMIT_A_TEST_ITEM_ONLINE,
+            $this->view->serverUrl()
         );
         $this->view->research101Link = \Fisdap\MoodleUtils::getUrl("research101");
         $this->view->testItemAnalysisLink = "/reports/index/display/report/TestItemAnalysis";
@@ -297,7 +302,6 @@ class LearningCenter_IndexController extends Fisdap_Controller_Private
         $stRepos = \Fisdap\EntityUtils::getRepository('ScheduledTestsLegacy');
         // if there are more than 50 scheduled tests program-wide, limit the date range
         if (count($stRepos->getFilteredTests(array())) > 50) {
-
             $start = new DateTime('-1 month');
             $end = new DateTime('+3 months');
 
@@ -343,7 +347,8 @@ class LearningCenter_IndexController extends Fisdap_Controller_Private
 
         $moodleRepos = \Fisdap\EntityUtils::getRepository('MoodleTestDataLegacy');
         $options = $moodleRepos->getMoodleTestList(
-            array('extraGroups' => array('pilot_tests', 'retired')), 'productArray'
+            array('extraGroups' => array('pilot_tests', 'retired')),
+            'productArray'
         );
 
         //This is only temporary, I swear. Please don't hate me.
@@ -441,15 +446,12 @@ class LearningCenter_IndexController extends Fisdap_Controller_Private
 
         //process submitted form
         if ($request->isPost() && isset($this->view->scoresForm)) {
-
             if ($this->view->scoresForm->process($request->getPost()) == true) {
                 $this->flashMessenger->addMessage("Your students' NREMT results have been saved.");
                 // reload the page
                 $this->_redirect("/learning-center/index/submit-scores");
             }
         }
-
-
     }
 
     public function getSubmitScoresFormAction()

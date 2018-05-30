@@ -129,7 +129,8 @@ class Version20151207174608 extends AbstractMigration
         $ATCdescription = "Transition to the National Education Standards at the AEMT level with this ".
             "CECBEMS-approved online course, which you can submit for 24 hours of continuing ".
             "education upon completion.";
-        $this->addSql('UPDATE fisdap2_product SET description = "'.$ATCdescription.'" WHERE id = 15 LIMIT 1');    }
+        $this->addSql('UPDATE fisdap2_product SET description = "'.$ATCdescription.'" WHERE id = 15 LIMIT 1');
+    }
 
     /**
      * @param Schema $schema

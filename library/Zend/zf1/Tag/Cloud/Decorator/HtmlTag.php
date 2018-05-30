@@ -131,7 +131,7 @@ class Zend_Tag_Cloud_Decorator_HtmlTag extends Zend_Tag_Cloud_Decorator_Tag
      */
     public function getEncoding()
     {
-         return $this->_encoding;
+        return $this->_encoding;
     }
 
     /**
@@ -176,12 +176,12 @@ class Zend_Tag_Cloud_Decorator_HtmlTag extends Zend_Tag_Cloud_Decorator_Tag
     {
         return $this->_fontSizeUnit;
     }
-     /**
-     * Set the HTML tags surrounding the <a> element
-     *
-     * @param  array $htmlTags
-     * @return Zend_Tag_Cloud_Decorator_HtmlTag
-     */
+    /**
+    * Set the HTML tags surrounding the <a> element
+    *
+    * @param  array $htmlTags
+    * @return Zend_Tag_Cloud_Decorator_HtmlTag
+    */
     public function setHtmlTags(array $htmlTags)
     {
         $this->_htmlTags = $htmlTags;

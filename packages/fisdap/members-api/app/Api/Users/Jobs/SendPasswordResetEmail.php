@@ -24,9 +24,9 @@ final class SendPasswordResetEmail extends Job implements RequestHydrated
      */
     private $passwordReset;
 
-   /**
-    * @param PasswordReset $passwordReset
-    */
+    /**
+     * @param PasswordReset $passwordReset
+     */
     public function setPasswordReset(PasswordReset $passwordReset)
     {
         $this->passwordReset = $passwordReset;

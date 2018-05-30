@@ -78,7 +78,7 @@ class Zend_CodeGenerator_Php_Property_DefaultValue extends Zend_CodeGenerator_Ph
      */
     protected function _init()
     {
-        if(count(self::$_constants) == 0) {
+        if (count(self::$_constants) == 0) {
             $reflect = new ReflectionClass(get_class($this));
             self::$_constants = $reflect->getConstants();
             unset($reflect);
@@ -259,7 +259,6 @@ class Zend_CodeGenerator_Php_Property_DefaultValue extends Zend_CodeGenerator_Ph
                 }
                 $value = $rii->getSubIterator()->getArrayCopy();
             }
-
         }
 
         $output = '';
@@ -267,7 +266,7 @@ class Zend_CodeGenerator_Php_Property_DefaultValue extends Zend_CodeGenerator_Ph
         switch ($type) {
             case self::TYPE_BOOLEAN:
             case self::TYPE_BOOL:
-                $output .= ( $value ? 'true' : 'false' );
+                $output .= ($value ? 'true' : 'false');
                 break;
             case self::TYPE_STRING:
                 $output .= "'" . addcslashes($value, "'") . "'";
@@ -302,7 +301,6 @@ class Zend_CodeGenerator_Php_Property_DefaultValue extends Zend_CodeGenerator_Ph
                     } else {
                         $outputParts[] = (is_int($n) ? $n : "'" . addcslashes($n, "'") . "'") . ' => ' . $partV;
                     }
-
                 }
                 $output .= implode(',' . PHP_EOL . str_repeat($this->_indentation, $this->_arrayDepth+1), $outputParts);
                 if ($curArrayMultiblock == true) {

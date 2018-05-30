@@ -107,7 +107,8 @@ class Zend_Barcode_Object_Royalmail extends Zend_Barcode_Object_ObjectAbstract
      * @return void
      */
     protected function _checkParams()
-    {}
+    {
+    }
 
     /**
      * Prepare array to draw barcode
@@ -148,7 +149,7 @@ class Zend_Barcode_Object_Royalmail extends Zend_Barcode_Object_ObjectAbstract
         $values   = str_split($text);
         $rowvalue = 0;
         $colvalue = 0;
-        foreach($values as $row) {
+        foreach ($values as $row) {
             $rowvalue += $this->_rows[$row];
             $colvalue += $this->_columns[$row];
         }

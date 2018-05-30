@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -44,8 +44,8 @@ class SkillsTracker_Form_Element_BloodPressure extends Zend_Form_Element_Xhtml
      */
     public function setValue($value)
     {
-		$this->_systolic = $value['systolic'];
-		$this->_diastolic = $value['diastolic'];
+        $this->_systolic = $value['systolic'];
+        $this->_diastolic = $value['diastolic'];
         
         return $this;
     }
@@ -55,7 +55,7 @@ class SkillsTracker_Form_Element_BloodPressure extends Zend_Form_Element_Xhtml
      * @return int the ID of the subject
      */
     public function getValue()
-    {      
+    {
         return array('systolic' => $this->_systolic, 'diastolic' => $this->_diastolic);
     }
 }

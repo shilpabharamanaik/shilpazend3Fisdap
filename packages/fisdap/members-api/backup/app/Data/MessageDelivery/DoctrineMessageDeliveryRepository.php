@@ -7,7 +7,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineMessageDeliveryRepository
  *
@@ -52,7 +51,7 @@ class DoctrineMessageDeliveryRepository extends DoctrineRepository implements Me
         // if we have messageIds, then specify additional WHERE clause
         if (is_array($messageIds)) {
             // make sure we escape, we're not sure if doctrine
-            foreach($messageIds as $key => $id) {
+            foreach ($messageIds as $key => $id) {
                 $messageIds[$key] = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $id) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
             }
             $qb->andWhere($qb->expr()->in('md.id', $messageIds));
@@ -80,8 +79,8 @@ class DoctrineMessageDeliveryRepository extends DoctrineRepository implements Me
     {
         $qb = $this->_em->createQueryBuilder();
 
-		$user = \Fisdap\Entity\User::getLoggedInUser();
-		$schedulerBeta = $user->getCurrentProgram()->scheduler_beta;
+        $user = \Fisdap\Entity\User::getLoggedInUser();
+        $schedulerBeta = $user->getCurrentProgram()->scheduler_beta;
 
         // starting date for finding shifts is today
         $today = new \DateTime('now');
@@ -93,8 +92,8 @@ class DoctrineMessageDeliveryRepository extends DoctrineRepository implements Me
 
         $qb->select(array(
                         'shift.id AS shift_id', 'shift.start_date', 'shift.start_time', 'shift.start_datetime', 'shift.hours', 'shift.type', 'shift.event_id', 'shift.entry_time',
-						'site.name AS site_name',
-						'site.abbreviation AS site_abbreviation',
+                        'site.name AS site_name',
+                        'site.abbreviation AS site_abbreviation',
                         'base.name AS base_name',
                         'stu.first_name', 'stu.last_name'
                     ))
@@ -103,14 +102,14 @@ class DoctrineMessageDeliveryRepository extends DoctrineRepository implements Me
            ->innerJoin('shift.base', 'base')
            ->innerJoin('shift.student', 'stu');
 
-		if ($schedulerBeta) {
-			$qb->where('shift.start_datetime >= ?1') // we only want shifts in the next four days
-			   ->andWhere('shift.start_datetime < ?2');
-		} else {
-			$qb->where('shift.start_date >= ?1') // we only want shifts in the next four days
-			   ->andWhere('shift.start_date < ?2');
-		}
-		$qb->setParameter(1, $todayParam)
+        if ($schedulerBeta) {
+            $qb->where('shift.start_datetime >= ?1') // we only want shifts in the next four days
+               ->andWhere('shift.start_datetime < ?2');
+        } else {
+            $qb->where('shift.start_date >= ?1') // we only want shifts in the next four days
+               ->andWhere('shift.start_date < ?2');
+        }
+        $qb->setParameter(1, $todayParam)
            ->setParameter(2, $endParam)
            ->andWhere('shift.trade = 0'); // @todo IS THIS ACCURATE?
 
@@ -118,7 +117,7 @@ class DoctrineMessageDeliveryRepository extends DoctrineRepository implements Me
             $qb->innerJoin('stu.user_context', 'context')
                 ->andWhere('context.id = ?3')
                 ->setParameter(3, $scopeId);
-        } else if ($scope == 'program') {
+        } elseif ($scope == 'program') {
             $qb->innerJoin('stu.program', 'program')
                 ->andWhere('program.id = ?3')
                 ->setParameter(3, $scopeId);
@@ -127,12 +126,12 @@ class DoctrineMessageDeliveryRepository extends DoctrineRepository implements Me
         // if we have entityIds, then specify additional WHERE clause
         if (is_array($entityIds)) {
             // make sure we escape, we're not sure if doctrine does escaping on its own
-            foreach($entityIds as $key => $id) {
+            foreach ($entityIds as $key => $id) {
                 $entityIds[$key] = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $id) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
             }
             if ($entityType == 'shift') {
                 $entityCol = 'shift.id';
-            } else if ($entityType == 'event') {
+            } elseif ($entityType == 'event') {
                 $entityCol = 'shift.event_id';
             }
             $qb->andWhere($qb->expr()->in($entityCol, $entityIds));
@@ -147,28 +146,27 @@ class DoctrineMessageDeliveryRepository extends DoctrineRepository implements Me
 
         $shiftLegacyRepo = \Fisdap\EntityUtils::getRepository('ShiftLegacy');
 
-        foreach($results as $key => $result){
-			//Convert the start_datetime into two separate fields if we're using the beta
-			if ($schedulerBeta) {
-				if(is_string($result['start_datetime'])){
-					$startDatetime = new \DateTime($result['start_datetime']);
-				}
-				else {
-					$startDatetime = $result['start_datetime'];
-				}
-				
-				$result['start_date'] = $startDatetime->format('Y-m-d');
-				$result['start_time'] = $startDatetime->format('Hi');
-			} else {
-				$result['start_date'] = $result['start_date']->format("Y-m-d");
-			}
+        foreach ($results as $key => $result) {
+            //Convert the start_datetime into two separate fields if we're using the beta
+            if ($schedulerBeta) {
+                if (is_string($result['start_datetime'])) {
+                    $startDatetime = new \DateTime($result['start_datetime']);
+                } else {
+                    $startDatetime = $result['start_datetime'];
+                }
+                
+                $result['start_date'] = $startDatetime->format('Y-m-d');
+                $result['start_time'] = $startDatetime->format('Hi');
+            } else {
+                $result['start_date'] = $result['start_date']->format("Y-m-d");
+            }
 
-        	$preceptorResults[$key] = $result;
-        	$preceptorResults[$key]['preceptor_name'] = $shiftLegacyRepo->getShiftEventPreceptor($result['shift_id']);
+            $preceptorResults[$key] = $result;
+            $preceptorResults[$key]['preceptor_name'] = $shiftLegacyRepo->getShiftEventPreceptor($result['shift_id']);
         }
 
         usort($preceptorResults, array(get_class($this), 'sortByDateTimeSite'));
-		return $preceptorResults;
+        return $preceptorResults;
     }
 
     /**
@@ -179,10 +177,11 @@ class DoctrineMessageDeliveryRepository extends DoctrineRepository implements Me
      *
      * @return array Array of actual valid recipient User IDs
      */
-    public function getValidRecipients($attemptedRecipients = array(), $programId = null) {
+    public function getValidRecipients($attemptedRecipients = array(), $programId = null)
+    {
         // escape incoming data
-        foreach($attemptedRecipients as $key => $recipient) {
-	    $id = ($recipient instanceof \Fisdap\Entity\User) ? $recipient->id : $recipient;
+        foreach ($attemptedRecipients as $key => $recipient) {
+            $id = ($recipient instanceof \Fisdap\Entity\User) ? $recipient->id : $recipient;
             if (is_numeric($id)) {
                 $attemptedRecipients[$key] = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $id) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
             }
@@ -212,44 +211,45 @@ class DoctrineMessageDeliveryRepository extends DoctrineRepository implements Me
 
         // format back into a flat array
         $flatResults = array();
-        foreach($results as $result) {
+        foreach ($results as $result) {
             $flatResults[] = $result['id'];
         }
 
         return $flatResults;
     }
 
-	/*
-	 * Get valid recipients directly via MYSQL query, no doctrine
-	 */
-    public function getValidRecipientsNoDoctrine($attemptedRecipients = array(), $programId = null) {
+    /*
+     * Get valid recipients directly via MYSQL query, no doctrine
+     */
+    public function getValidRecipientsNoDoctrine($attemptedRecipients = array(), $programId = null)
+    {
         // escape incoming data
-        foreach($attemptedRecipients as $key => $id) {
+        foreach ($attemptedRecipients as $key => $id) {
             if (is_numeric($id)) {
                 $attemptedRecipients[$key] = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $id) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
             }
         }
 
-		$params = array();
-		$query = "SELECT u.id FROM fisdap2_users AS u
+        $params = array();
+        $query = "SELECT u.id FROM fisdap2_users AS u
 			LEFT JOIN fisdap2_user_roles AS ur ON ur.user_id = u.id
 			LEFT JOIN ProgramData AS p ON ur.program_id = p.Program_id
 			WHERE u.id IN (" . implode(', ', $attemptedRecipients) . ")";
 
         if ($programId != null && is_numeric($programId)) {
-			$query .= " AND p.Program_id = ?";
-			$params[] = $programId;
-		}
+            $query .= " AND p.Program_id = ?";
+            $params[] = $programId;
+        }
 
-		//  run with Zend's $db adapter for mysql
-		$db = \Zend_Registry::get('db');
+        //  run with Zend's $db adapter for mysql
+        $db = \Zend_Registry::get('db');
 
-		// insert
-		$statement = $db->query($query, $params);
+        // insert
+        $statement = $db->query($query, $params);
 
         // format back into a flat array
         $flatResults = array();
-        while($row = $statement->fetch()) {
+        while ($row = $statement->fetch()) {
             $flatResults[] = $row['id'];
         }
 
@@ -264,7 +264,8 @@ class DoctrineMessageDeliveryRepository extends DoctrineRepository implements Me
      *
      * @return array Array of MessageDelivery entities
      */
-    public function getByMessage($messageId) {
+    public function getByMessage($messageId)
+    {
         // construct the query
         $qb = $this->_em->createQueryBuilder();
 
@@ -282,35 +283,36 @@ class DoctrineMessageDeliveryRepository extends DoctrineRepository implements Me
         return $results;
     }
 
-	/**
-	 * Function to be used as a callback to a call to usort.  Sorts an array
-	 * of skills based on their stored orders.
-	 * @param type $a
-	 * @param type $b
-	 * @return 0 if the elements are equal, -1 if A comes before B, and 1 if B
-	 * comes before A.
-	 */
-	public static function sortByDateTimeSite($a, $b) {
-	    // if the dates are the same, order by time
-	    if ($a['start_date'] == $b['start_date']) {
-		$padded_a_time = str_pad($a['start_time'], 4, '0', STR_PAD_LEFT);
-		$padded_b_time = str_pad($b['start_time'], 4, '0', STR_PAD_LEFT);
-		// if the date and time is the same, order by site
-		if ($padded_a_time == $padded_b_time) {
-		    // if the site is the same, too, we don't need to order these
-		    if ($a['site_abbreviation'] == $b['site_abbreviation']) {
-			return 0;
-		    }
+    /**
+     * Function to be used as a callback to a call to usort.  Sorts an array
+     * of skills based on their stored orders.
+     * @param type $a
+     * @param type $b
+     * @return 0 if the elements are equal, -1 if A comes before B, and 1 if B
+     * comes before A.
+     */
+    public static function sortByDateTimeSite($a, $b)
+    {
+        // if the dates are the same, order by time
+        if ($a['start_date'] == $b['start_date']) {
+            $padded_a_time = str_pad($a['start_time'], 4, '0', STR_PAD_LEFT);
+            $padded_b_time = str_pad($b['start_time'], 4, '0', STR_PAD_LEFT);
+            // if the date and time is the same, order by site
+            if ($padded_a_time == $padded_b_time) {
+                // if the site is the same, too, we don't need to order these
+                if ($a['site_abbreviation'] == $b['site_abbreviation']) {
+                    return 0;
+                }
 
-		    // order by site
-		    return $a['site_abbreviation'] < $b['site_abbreviation'] ? -1 : 1;
-		}
+                // order by site
+                return $a['site_abbreviation'] < $b['site_abbreviation'] ? -1 : 1;
+            }
 
-		// order by time
-		return $padded_a_time < $padded_b_time ? -1 : 1;
-	    }
+            // order by time
+            return $padded_a_time < $padded_b_time ? -1 : 1;
+        }
 
-	    // order by date
-	    return $a['start_date'] < $b['start_date'] ? -1 : 1;
-	}
+        // order by date
+        return $a['start_date'] < $b['start_date'] ? -1 : 1;
+    }
 }

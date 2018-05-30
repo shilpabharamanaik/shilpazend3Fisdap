@@ -440,7 +440,6 @@ class Zend_Barcode_Renderer_Image extends Zend_Barcode_Renderer_RendererAbstract
             }
             imagestring($this->_resource, $font, $positionX, $positionY, $text, $color);
         } else {
-
             if (!function_exists('imagettfbbox')) {
                 require_once 'Zend/Barcode/Renderer/Exception.php';
                 throw new Zend_Barcode_Renderer_Exception(

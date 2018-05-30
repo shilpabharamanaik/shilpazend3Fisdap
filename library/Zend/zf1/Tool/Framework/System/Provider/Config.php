@@ -76,7 +76,8 @@ class Zend_Tool_Framework_System_Provider_Config extends Zend_Tool_Framework_Pro
         if ($userConfig->exists()) {
             require_once "Zend/Tool/Framework/Exception.php";
             throw new Zend_Tool_Framework_Exception(
-                "A configuration already exists, cannot create a new one.");
+                "A configuration already exists, cannot create a new one."
+            );
         }
 
         $homeDirectory = $this->_detectHomeDirectory();
@@ -103,7 +104,7 @@ class Zend_Tool_Framework_System_Provider_Config extends Zend_Tool_Framework_Pro
     protected function _detectHomeDirectory()
     {
         $envVars = array("ZF_HOME", "HOME", "HOMEPATH");
-        foreach($envVars AS $env) {
+        foreach ($envVars as $env) {
             $homeDirectory = getenv($env);
             if ($homeDirectory != false && file_exists($homeDirectory)) {
                 return $homeDirectory;
@@ -127,7 +128,7 @@ class Zend_Tool_Framework_System_Provider_Config extends Zend_Tool_Framework_Pro
 
         $i = 0;
         $tree = "";
-        foreach($configArray AS $k => $v) {
+        foreach ($configArray as $k => $v) {
             $i++;
             $tree .= $this->_printTree($k, $v, 1, count($configArray)==$i);
         }
@@ -208,7 +209,6 @@ class Zend_Tool_Framework_System_Provider_Config extends Zend_Tool_Framework_Pro
 
     protected function _doEnable($className)
     {
-
         $userConfig = $this->_loadUserConfigIfExists();
 
         if (!isset($userConfig->basicloader)) {

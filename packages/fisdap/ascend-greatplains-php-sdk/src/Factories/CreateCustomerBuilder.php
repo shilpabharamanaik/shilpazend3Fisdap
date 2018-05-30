@@ -99,7 +99,6 @@ class CreateCustomerBuilder implements CreateCustomerBuilderInterface
         $addressCollection = new AddressCollection();
 
         foreach ($this->addresses as $address) {
-
             $address = new Address(
                 $address[AddressInterface::ID_FIELD],
                 $address[AddressInterface::LINE_1_FIELD],

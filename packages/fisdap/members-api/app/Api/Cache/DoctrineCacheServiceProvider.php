@@ -6,7 +6,6 @@ use Doctrine\Common\Cache\RedisCache;
 use Doctrine\ORM\EntityManager;
 use Illuminate\Support\ServiceProvider;
 
-
 /**
  * Configures Doctrine Cache
  *
@@ -18,7 +17,9 @@ final class DoctrineCacheServiceProvider extends ServiceProvider
 {
     public function boot(EntityManager $em)
     {
-        if (env('MRAPI_DOCTRINE_DEVMODE') === true) return;
+        if (env('MRAPI_DOCTRINE_DEVMODE') === true) {
+            return;
+        }
 
         // use redis for metadata cache
         $redisConfig = $this->app['config']['doctrine.cache.redis'];
@@ -35,7 +36,7 @@ final class DoctrineCacheServiceProvider extends ServiceProvider
         
         // use Couchbase for query cache
         $couchbaseConfig = $this->app['config']['doctrine.cache.couchbase'];
-		//print_r($couchbaseConfig);exit;
+        //print_r($couchbaseConfig);exit;
         /* $couchbase = new Couchbase(
             $couchbaseConfig['hosts'],
             $couchbaseConfig['user'],
@@ -43,16 +44,16 @@ final class DoctrineCacheServiceProvider extends ServiceProvider
             $couchbaseConfig['bucket'],
             $couchbaseConfig['persistent']
         ); */
-		
-		$cluster = new \CouchbaseCluster($couchbaseConfig['hosts'][0]);
-		$authenticator = new \Couchbase\PasswordAuthenticator();
-		$authenticator->username($couchbaseConfig['user'])->password($couchbaseConfig['password']);
-		$cluster->authenticate($authenticator);
-		$bucket = $cluster->openBucket($couchbaseConfig['bucket']);
-		
-		// Retrieve a document
-	
-	    $couchbaseCache = new CouchbaseCache();
+        
+        $cluster = new \CouchbaseCluster($couchbaseConfig['hosts'][0]);
+        $authenticator = new \Couchbase\PasswordAuthenticator();
+        $authenticator->username($couchbaseConfig['user'])->password($couchbaseConfig['password']);
+        $cluster->authenticate($authenticator);
+        $bucket = $cluster->openBucket($couchbaseConfig['bucket']);
+        
+        // Retrieve a document
+    
+        $couchbaseCache = new CouchbaseCache();
         $couchbaseCache->setCouchbase($bucket);
         
         $em->getConfiguration()->setQueryCacheImpl($couchbaseCache);

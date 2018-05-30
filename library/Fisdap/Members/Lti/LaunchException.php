@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Members\Lti;
 
-
 /**
  * Class LaunchException
  *

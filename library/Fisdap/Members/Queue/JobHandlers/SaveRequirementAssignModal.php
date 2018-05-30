@@ -4,7 +4,6 @@ use Fisdap\Data\Requirement\RequirementRepository;
 use Illuminate\Contracts\Queue\Job;
 use Illuminate\Queue\Capsule\Manager as Queue;
 
-
 /**
  * Processes requests made from the RequirementAssignModal on the Manage Requirements page
  *
@@ -51,7 +50,11 @@ class SaveRequirementAssignModal extends JobHandler
         // Process the Requirement Assign Modal
         $form = new \Scheduler_Form_RequirementAssignModal($this->requirementRepository);
         $compute_compliance_userContextIds = $form->process(
-            $requirement_ids, $userContextIds, $due_date, $program_id, $assigner_userContextId
+            $requirement_ids,
+            $userContextIds,
+            $due_date,
+            $program_id,
+            $assigner_userContextId
         );
 
         // now we queue up the users in batches for compliance recalculation
@@ -66,8 +69,6 @@ class SaveRequirementAssignModal extends JobHandler
                 $this->updateCache($cacheId, 1);
                 $this->queue->push('UpdateCompliance', ["cacheId" => $cacheId, "userContextIds" => $batch]);
                 $batch = [];
-
-
             }
         }
 
@@ -89,7 +90,8 @@ class SaveRequirementAssignModal extends JobHandler
      * @param $cacheId string the id of the cache you want to update
      * @param $jobCount int the number of jobs to add to the count
      */
-    private function updateCache($cacheId, $jobCount) {
+    private function updateCache($cacheId, $jobCount)
+    {
         $jobStatus = $this->cache->load($cacheId);
         $newStatus['jobs'] = $jobStatus['jobs'] + $jobCount;
         $this->cache->save($newStatus, $cacheId, [], 0);

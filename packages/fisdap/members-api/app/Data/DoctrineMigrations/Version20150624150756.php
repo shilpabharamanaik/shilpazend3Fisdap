@@ -548,7 +548,6 @@ class Version20150624150756 extends AbstractMigration
         $this->addSql('insert into fisdap2_goals (goal_set_id, goal_def_id, number_required, team_lead, interview, exam) values (1571, 13, 2, 0, 1, 1)');
         $this->addSql('insert into fisdap2_goals (goal_set_id, goal_def_id, number_required, team_lead, interview, exam) values (1571, 14, 2, 0, 1, 1)');
         $this->addSql('insert into fisdap2_goals (goal_set_id, goal_def_id, number_required, team_lead, interview, exam) values (1571, 15, 30, 0, 1, 1)');
-
     }
 
     /**
@@ -666,6 +665,5 @@ class Version20150624150756 extends AbstractMigration
         $this->addSql('delete from fisdap2_goals where goal_set_id = 1563 and goal_def_id in (7,8,9,10,11,12,13,14,15) limit 9');
 
         $this->addSql('delete from fisdap2_goals where goal_set_id = 1571 and goal_def_id in (7,8,9,10,11,12,13,14,15) limit 9');
-
     }
 }

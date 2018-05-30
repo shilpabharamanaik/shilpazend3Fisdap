@@ -106,4 +106,3 @@ class Zend_Pdf_Resource_GraphicsState extends Zend_Pdf_Resource
 
     /** @todo add other Graphics State features support */
 }
-

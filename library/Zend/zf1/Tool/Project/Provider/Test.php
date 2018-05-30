@@ -38,7 +38,6 @@ require_once 'Zend/Tool/Project/Provider/Exception.php';
  */
 class Zend_Tool_Project_Provider_Test extends Zend_Tool_Project_Provider_Abstract
 {
-
     protected $_specialties = array('Application', 'Library');
 
     /**
@@ -136,23 +135,17 @@ class Zend_Tool_Project_Provider_Test extends Zend_Tool_Project_Provider_Abstrac
         $currentDirectoryResource = $testLibraryDirectoryResource;
 
         while ($nameOrNamespacePart = array_shift($fsParts)) {
-
             if (count($fsParts) > 0) {
-
                 if (($libraryDirectoryResource = $currentDirectoryResource->search(array('TestLibraryNamespaceDirectory' => array('namespaceName' => $nameOrNamespacePart)))) === false) {
                     $currentDirectoryResource = $currentDirectoryResource->createResource('TestLibraryNamespaceDirectory', array('namespaceName' => $nameOrNamespacePart));
                 } else {
                     $currentDirectoryResource = $libraryDirectoryResource;
                 }
-
             } else {
-
                 if (($libraryFileResource = $currentDirectoryResource->search(array('TestLibraryFile' => array('forClassName' => $libraryClassName)))) === false) {
                     $libraryFileResource = $currentDirectoryResource->createResource('TestLibraryFile', array('forClassName' => $libraryClassName));
                 }
-
             }
-
         }
 
         return $libraryFileResource;
@@ -160,12 +153,10 @@ class Zend_Tool_Project_Provider_Test extends Zend_Tool_Project_Provider_Abstrac
 
     public function enable()
     {
-
     }
 
     public function disable()
     {
-
     }
 
     /**
@@ -192,7 +183,5 @@ class Zend_Tool_Project_Provider_Test extends Zend_Tool_Project_Provider_Abstrac
             $testLibraryResource->create();
             $this->_storeProfile();
         }
-
     }
-
 }

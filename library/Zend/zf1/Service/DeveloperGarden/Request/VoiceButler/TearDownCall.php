@@ -33,8 +33,7 @@ require_once 'Zend/Service/DeveloperGarden/Request/VoiceButler/VoiceButlerAbstra
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Request_VoiceButler_TearDownCall
-    extends Zend_Service_DeveloperGarden_Request_VoiceButler_VoiceButlerAbstract
+class Zend_Service_DeveloperGarden_Request_VoiceButler_TearDownCall extends Zend_Service_DeveloperGarden_Request_VoiceButler_VoiceButlerAbstract
 {
     /**
      * the session id

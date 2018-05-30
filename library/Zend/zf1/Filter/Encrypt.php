@@ -78,7 +78,7 @@ class Zend_Filter_Encrypt implements Zend_Filter_Interface
     {
         if (is_string($options)) {
             $adapter = $options;
-        } else if (isset($options['adapter'])) {
+        } elseif (isset($options['adapter'])) {
             $adapter = $options['adapter'];
             unset($options['adapter']);
         } else {

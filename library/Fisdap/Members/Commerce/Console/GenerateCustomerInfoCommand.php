@@ -9,7 +9,6 @@ use Happyr\DoctrineSpecification\Spec;
 use Illuminate\Console\Command;
 use Psr\Log\LoggerInterface;
 
-
 /**
  * Class GenerateCustomerInfoCommand
  *
@@ -91,8 +90,10 @@ class GenerateCustomerInfoCommand extends Command
 
         foreach ($orders as $order) {
 
-            // If this is a free order, skip 
-            if ($order->staff_free_order || $order->total_cost == 0) continue;
+            // If this is a free order, skip
+            if ($order->staff_free_order || $order->total_cost == 0) {
+                continue;
+            }
 
             $this->logger->info(
                 "Found completed order ID {$order->id} with missing customer_id for program ID {$order->program->getId()} ({$order->program->name})"
@@ -106,7 +107,8 @@ class GenerateCustomerInfoCommand extends Command
 
             $this->orderRepository->update($program);
 
-            $this->logger->notice("Generated customer name and ID for program ID {$program->getId()}",
+            $this->logger->notice(
+                "Generated customer name and ID for program ID {$program->getId()}",
                 ['customer_id' => $program->customer_id, 'customer_name' => $program->customer_name]
             );
         }

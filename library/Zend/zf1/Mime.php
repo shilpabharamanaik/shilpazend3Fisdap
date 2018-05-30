@@ -424,8 +424,7 @@ class Zend_Mime
         $str,
         $lineLength = self::LINELENGTH,
         $lineEnd = self::LINEEND
-    )
-    {
+    ) {
         $out = '';
         $str = self::_encodeQuotedPrintable($str);
 
@@ -486,9 +485,11 @@ class Zend_Mime
      * @return string
      */
     public static function encodeQuotedPrintableHeader(
-        $str, $charset, $lineLength = self::LINELENGTH, $lineEnd = self::LINEEND
-    )
-    {
+        $str,
+        $charset,
+        $lineLength = self::LINELENGTH,
+        $lineEnd = self::LINEEND
+    ) {
         // Reduce line-length by the length of the required delimiter, charsets and encoding
         $prefix     = sprintf('=?%s?Q?', $charset);
         $lineLength = $lineLength - strlen($prefix) - 3;
@@ -497,7 +498,9 @@ class Zend_Mime
 
         // Mail-Header required chars have to be encoded also:
         $str = str_replace(
-            array('?', ' ', '_', ','), array('=3F', '=20', '=5F', '=2C'), $str
+            array('?', ' ', '_', ','),
+            array('=3F', '=20', '=5F', '=2C'),
+            $str
         );
 
         // initialize first line, we need it anyways
@@ -563,16 +566,20 @@ class Zend_Mime
      * @return string
      */
     public static function encodeBase64Header(
-        $str, $charset, $lineLength = self::LINELENGTH, $lineEnd = self::LINEEND
-    )
-    {
+        $str,
+        $charset,
+        $lineLength = self::LINELENGTH,
+        $lineEnd = self::LINEEND
+    ) {
         $prefix          = '=?' . $charset . '?B?';
         $suffix          = '?=';
         $remainingLength = $lineLength - strlen($prefix) - strlen($suffix);
 
         $encodedValue = self::encodeBase64($str, $remainingLength, $lineEnd);
         $encodedValue = str_replace(
-            $lineEnd, $suffix . $lineEnd . ' ' . $prefix, $encodedValue
+            $lineEnd,
+            $suffix . $lineEnd . ' ' . $prefix,
+            $encodedValue
         );
         $encodedValue = $prefix . $encodedValue . $suffix;
 
@@ -589,9 +596,10 @@ class Zend_Mime
      * @return string
      */
     public static function encodeBase64(
-        $str, $lineLength = self::LINELENGTH, $lineEnd = self::LINEEND
-    )
-    {
+        $str,
+        $lineLength = self::LINELENGTH,
+        $lineEnd = self::LINEEND
+    ) {
         return rtrim(chunk_split(base64_encode($str), $lineLength, $lineEnd));
     }
 

@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -19,11 +19,11 @@
  */
 class Fisdap_Form_Element_Bases extends Zend_Form_Element_Select
 {
-	public function init()
-	{
-		$options = array(-1 => "All Bases");
-		$this->setMultiOptions($options);
-		$this->setAttrib('class', 'bases');
-		$this->setRegisterInArrayValidator(false);
-	}
+    public function init()
+    {
+        $options = array(-1 => "All Bases");
+        $this->setMultiOptions($options);
+        $this->setAttrib('class', 'bases');
+        $this->setRegisterInArrayValidator(false);
+    }
 }

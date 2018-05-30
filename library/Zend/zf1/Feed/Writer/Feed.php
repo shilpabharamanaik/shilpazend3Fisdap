@@ -62,8 +62,7 @@ require_once 'Zend/Feed/Writer/Feed/FeedAbstract.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Writer_Feed extends Zend_Feed_Writer_Feed_FeedAbstract
-implements Iterator, Countable
+class Zend_Feed_Writer_Feed extends Zend_Feed_Writer_Feed_FeedAbstract implements Iterator, Countable
 {
 
     /**
@@ -259,7 +258,7 @@ implements Iterator, Countable
      * Attempt to build and return the feed resulting from the data set
      *
      * @param string $type             The feed type "rss" or "atom" to export as
-		 * @param bool   $ignoreExceptions
+         * @param bool   $ignoreExceptions
      * @return string
      */
     public function export($type, $ignoreExceptions = false)
@@ -278,5 +277,4 @@ implements Iterator, Countable
         }
         return $renderer->render()->saveXml();
     }
-
 }

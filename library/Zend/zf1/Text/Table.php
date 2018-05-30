@@ -123,7 +123,7 @@ class Zend_Text_Table
         // Set options
         if (is_array($options)) {
             $this->setOptions($options);
-        } else if ($options instanceof Zend_Config) {
+        } elseif ($options instanceof Zend_Config) {
             $this->setConfig($options);
         }
 
@@ -401,8 +401,10 @@ class Zend_Text_Table
                 $result .= $this->_decorator->getTopLeft();
 
                 foreach ($columnWidths as $columnNum => $columnWidth) {
-                    $result .= str_repeat($this->_decorator->getHorizontal(),
-                                          $columnWidth);
+                    $result .= str_repeat(
+                        $this->_decorator->getHorizontal(),
+                                          $columnWidth
+                    );
 
                     if (($columnNum + 1) === $numColumns) {
                         $result .= $this->_decorator->getTopRight();
@@ -416,9 +418,9 @@ class Zend_Text_Table
                 // Else check if we have to draw the row separator
                 if ($this->_autoSeparate & self::AUTO_SEPARATE_ALL) {
                     $drawSeparator = true;
-                } else if ($rowNum === 1 && $this->_autoSeparate & self::AUTO_SEPARATE_HEADER) {
+                } elseif ($rowNum === 1 && $this->_autoSeparate & self::AUTO_SEPARATE_HEADER) {
                     $drawSeparator = true;
-                } else if ($rowNum === ($numRows - 1) && $this->_autoSeparate & self::AUTO_SEPARATE_FOOTER) {
+                } elseif ($rowNum === ($numRows - 1) && $this->_autoSeparate & self::AUTO_SEPARATE_FOOTER) {
                     $drawSeparator = true;
                 } else {
                     $drawSeparator = false;
@@ -435,8 +437,10 @@ class Zend_Text_Table
                     // Loop through all column widths
                     foreach ($this->_columnWidths as $columnNum => $columnWidth) {
                         // Add the horizontal line
-                        $result .= str_repeat($this->_decorator->getHorizontal(),
-                                              $columnWidth);
+                        $result .= str_repeat(
+                            $this->_decorator->getHorizontal(),
+                                              $columnWidth
+                        );
 
                         // If this is the last line, break out
                         if (($columnNum + 1) === $totalNumColumns) {
@@ -499,8 +503,10 @@ class Zend_Text_Table
                 $result .= $this->_decorator->getBottomLeft();
 
                 foreach ($columnWidths as $columnNum => $columnWidth) {
-                    $result .= str_repeat($this->_decorator->getHorizontal(),
-                                          $columnWidth);
+                    $result .= str_repeat(
+                        $this->_decorator->getHorizontal(),
+                                          $columnWidth
+                    );
 
                     if (($columnNum + 1) === $numColumns) {
                         $result .= $this->_decorator->getBottomRight();
@@ -528,6 +534,5 @@ class Zend_Text_Table
         } catch (Exception $e) {
             trigger_error($e->getMessage(), E_USER_ERROR);
         }
-
     }
 }

@@ -165,7 +165,7 @@ class Zend_Wildfire_Channel_HttpHeaders extends Zend_Controller_Plugin_Abstract 
     protected function _initProtocol($uri)
     {
         switch ($uri) {
-            case Zend_Wildfire_Protocol_JsonStream::PROTOCOL_URI;
+            case Zend_Wildfire_Protocol_JsonStream::PROTOCOL_URI:
                 return new Zend_Wildfire_Protocol_JsonStream();
         }
         require_once 'Zend/Wildfire/Exception.php';
@@ -184,15 +184,16 @@ class Zend_Wildfire_Channel_HttpHeaders extends Zend_Controller_Plugin_Abstract 
             return false;
         }
 
-        foreach ( $this->_protocols as $protocol ) {
-
+        foreach ($this->_protocols as $protocol) {
             $payload = $protocol->getPayload($this);
 
             if ($payload) {
-                foreach( $payload as $message ) {
-
-                    $this->getResponse()->setHeader(self::$_headerPrefix.$message[0],
-                                                    $message[1], true);
+                foreach ($payload as $message) {
+                    $this->getResponse()->setHeader(
+                        self::$_headerPrefix.$message[0],
+                                                    $message[1],
+                        true
+                    );
                 }
             }
         }
@@ -280,7 +281,8 @@ class Zend_Wildfire_Channel_HttpHeaders extends Zend_Controller_Plugin_Abstract 
                         $this->getRequest()->getHeader('User-Agent'),
                         $m
                     ) ||
-                    (($header = $this->getRequest()->getHeader('X-FirePHP-Version'))
+                    (
+                        ($header = $this->getRequest()->getHeader('X-FirePHP-Version'))
                      && preg_match_all('/^([\.\d]*)$/si', $header, $m)
                    ))
                );

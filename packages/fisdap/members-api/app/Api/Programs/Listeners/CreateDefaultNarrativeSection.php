@@ -6,7 +6,6 @@ use Fisdap\Entity\NarrativeSectionDefinition;
 use Fisdap\Logging\Events\EventLogging;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-
 /**
  * Class CreateDefaultNarrativeSection
  *

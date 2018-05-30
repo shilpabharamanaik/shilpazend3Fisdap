@@ -33,8 +33,7 @@ require_once 'Zend/Service/DeveloperGarden/Request/RequestAbstract.php';
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Request_ConferenceCall_UpdateConferenceRequest
-    extends Zend_Service_DeveloperGarden_Request_RequestAbstract
+class Zend_Service_DeveloperGarden_Request_ConferenceCall_UpdateConferenceRequest extends Zend_Service_DeveloperGarden_Request_RequestAbstract
 {
     /**
      * conference id
@@ -81,7 +80,10 @@ class Zend_Service_DeveloperGarden_Request_ConferenceCall_UpdateConferenceReques
      * @param Zend_Service_DeveloperGarden_ConferenceCall_ConferenceSchedule $conferenceSchedule
      * @param integer $account
      */
-    public function __construct($environment, $conferenceId, $ownerId = null,
+    public function __construct(
+        $environment,
+        $conferenceId,
+        $ownerId = null,
         Zend_Service_DeveloperGarden_ConferenceCall_ConferenceDetail $conferenceDetails = null,
         Zend_Service_DeveloperGarden_ConferenceCall_ConferenceSchedule $conferenceSchedule = null,
         $account = null

@@ -109,10 +109,10 @@ class Zend_Feed_Writer_Entry
                 }
                 $author['uri'] = $name['uri'];
             }
-        /**
-         * @deprecated
-         * Array notation (above) is preferred and will be the sole supported input from ZF 2.0
-         */
+            /**
+             * @deprecated
+             * Array notation (above) is preferred and will be the sole supported input from ZF 2.0
+             */
         } else {
             if (empty($name) || !is_string($name)) {
                 require_once 'Zend/Feed/Exception.php';
@@ -144,7 +144,7 @@ class Zend_Feed_Writer_Entry
      */
     public function addAuthors(array $authors)
     {
-        foreach($authors as $author) {
+        foreach ($authors as $author) {
             $this->addAuthor($author);
         }
     }
@@ -295,7 +295,7 @@ class Zend_Feed_Writer_Entry
      */
     public function setCommentCount($count)
     {
-        if ( !is_numeric($count) || (int) $count < 0) {
+        if (!is_numeric($count) || (int) $count < 0) {
             require_once 'Zend/Feed/Exception.php';
             throw new Zend_Feed_Exception('Invalid parameter: "count" must be a non-empty integer number');
         }

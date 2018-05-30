@@ -573,7 +573,6 @@ class Zend_Service_Technorati
             $tmp = (int) $options['current'];
             $options['current'] = $tmp ? 'yes' : 'no';
         }
-
     }
 
     /**
@@ -664,7 +663,8 @@ class Zend_Service_Technorati
                  */
                 require_once 'Zend/Service/Technorati/Exception.php';
                 throw new Zend_Service_Technorati_Exception(
-                            "Invalid value '" . $options['days'] . "' for 'days' option");
+                            "Invalid value '" . $options['days'] . "' for 'days' option"
+                );
             }
         }
     }
@@ -777,7 +777,8 @@ class Zend_Service_Technorati
              */
             require_once 'Zend/Service/Technorati/Exception.php';
             throw new Zend_Service_Technorati_Exception(
-                        "Invalid value '{$options[$name]}' for '$name' option");
+                        "Invalid value '{$options[$name]}' for '$name' option"
+            );
         }
     }
 
@@ -797,7 +798,8 @@ class Zend_Service_Technorati
              */
             require_once 'Zend/Service/Technorati/Exception.php';
             throw new Zend_Service_Technorati_Exception(
-                        "Empty value for '$name' option");
+                        "Empty value for '$name' option"
+            );
         }
     }
 
@@ -864,7 +866,8 @@ class Zend_Service_Technorati
             require_once 'Zend/Service/Technorati/Exception.php';
             throw new Zend_Service_Technorati_Exception(
                         "Invalid value '" . $options['format'] . "' for 'format' option. " .
-                        "Zend_Service_Technorati supports only 'xml'");
+                        "Zend_Service_Technorati supports only 'xml'"
+            );
         }
     }
 
@@ -880,7 +883,9 @@ class Zend_Service_Technorati
      */
     protected function _validateOptionLimit(array $options)
     {
-        if (!isset($options['limit'])) return;
+        if (!isset($options['limit'])) {
+            return;
+        }
 
         $options['limit'] = (int) $options['limit'];
         if ($options['limit'] < self::PARAM_LIMIT_MIN_VALUE ||
@@ -890,7 +895,8 @@ class Zend_Service_Technorati
              */
             require_once 'Zend/Service/Technorati/Exception.php';
             throw new Zend_Service_Technorati_Exception(
-                        "Invalid value '" . $options['limit'] . "' for 'limit' option");
+                        "Invalid value '" . $options['limit'] . "' for 'limit' option"
+            );
         }
     }
 
@@ -905,7 +911,9 @@ class Zend_Service_Technorati
      */
     protected function _validateOptionStart(array $options)
     {
-        if (!isset($options['start'])) return;
+        if (!isset($options['start'])) {
+            return;
+        }
 
         $options['start'] = (int) $options['start'];
         if ($options['start'] < self::PARAM_START_MIN_VALUE) {
@@ -914,7 +922,8 @@ class Zend_Service_Technorati
              */
             require_once 'Zend/Service/Technorati/Exception.php';
             throw new Zend_Service_Technorati_Exception(
-                        "Invalid value '" . $options['start'] . "' for 'start' option");
+                        "Invalid value '" . $options['start'] . "' for 'start' option"
+            );
         }
     }
 
@@ -990,7 +999,10 @@ class Zend_Service_Technorati
             require_once 'Zend/Service/Technorati/Exception.php';
             throw new Zend_Service_Technorati_Exception(sprintf(
                         'Invalid response status code (HTTP/%s %s %s)',
-                        $response->getVersion(), $response->getStatus(), $response->getMessage()));
+                        $response->getVersion(),
+                $response->getStatus(),
+                $response->getMessage()
+            ));
         }
     }
 
@@ -1013,7 +1025,8 @@ class Zend_Service_Technorati
             require_once 'Zend/Service/Technorati/Exception.php';
             throw new Zend_Service_Technorati_Exception(
                         "The following parameters are invalid: '" .
-                        implode("', '", $difference) . "'");
+                        implode("', '", $difference) . "'"
+            );
         }
     }
 

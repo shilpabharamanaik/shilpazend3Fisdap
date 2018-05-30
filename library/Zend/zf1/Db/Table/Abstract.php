@@ -46,7 +46,6 @@ require_once 'Zend/Db.php';
  */
 abstract class Zend_Db_Table_Abstract
 {
-
     const ADAPTER          = 'db';
     const DEFINITION        = 'definition';
     const DEFINITION_CONFIG_NAME = 'definitionConfigName';
@@ -276,7 +275,7 @@ abstract class Zend_Db_Table_Abstract
      * @param array $options
      * @return Zend_Db_Table_Abstract
      */
-    public function setOptions(Array $options)
+    public function setOptions(array $options)
     {
         foreach ($options as $key => $value) {
             switch ($key) {
@@ -421,9 +420,14 @@ abstract class Zend_Db_Table_Abstract
      * @param string $onUpdate
      * @return Zend_Db_Table_Abstract
      */
-    public function addReference($ruleKey, $columns, $refTableClass, $refColumns,
-                                 $onDelete = null, $onUpdate = null)
-    {
+    public function addReference(
+        $ruleKey,
+        $columns,
+        $refTableClass,
+        $refColumns,
+                                 $onDelete = null,
+        $onUpdate = null
+    ) {
         $reference = array(self::COLUMNS         => (array) $columns,
                            self::REF_TABLE_CLASS => $refTableClass,
                            self::REF_COLUMNS     => (array) $refColumns);
@@ -536,7 +540,7 @@ abstract class Zend_Db_Table_Abstract
      * @param array $defaultValues
      * @return Zend_Db_Table_Abstract
      */
-    public function setDefaultValues(Array $defaultValues)
+    public function setDefaultValues(array $defaultValues)
     {
         foreach ($defaultValues as $defaultName => $defaultValue) {
             if (array_key_exists($defaultName, $this->_metadata)) {
@@ -773,7 +777,7 @@ abstract class Zend_Db_Table_Abstract
     {
         if (! $this->_name) {
             $this->_name = get_class($this);
-        } else if (strpos($this->_name, '.')) {
+        } elseif (strpos($this->_name, '.')) {
             list($this->_schema, $this->_name) = explode('.', $this->_name);
         }
     }
@@ -888,9 +892,9 @@ abstract class Zend_Db_Table_Abstract
                 require_once 'Zend/Db/Table/Exception.php';
                 throw new Zend_Db_Table_Exception("A table must have a primary key, but none was found for table '{$this->_name}'");
             }
-        } else if (!is_array($this->_primary)) {
+        } elseif (!is_array($this->_primary)) {
             $this->_primary = array(1 => $this->_primary);
-        } else if (isset($this->_primary[0])) {
+        } elseif (isset($this->_primary[0])) {
             array_unshift($this->_primary, null);
             unset($this->_primary[0]);
         }
@@ -930,7 +934,6 @@ abstract class Zend_Db_Table_Abstract
         $referenceMapNormalized = array();
 
         foreach ($this->_referenceMap as $rule => $map) {
-
             $referenceMapNormalized[$rule] = array();
 
             foreach ($map as $key => $value) {
@@ -1160,7 +1163,9 @@ abstract class Zend_Db_Table_Abstract
                             $type = $this->_metadata[$col]['DATA_TYPE'];
                             $where[] = $this->_db->quoteInto(
                                 $this->_db->quoteIdentifier($col, true) . ' = ?',
-                                $oldPrimaryKey[$refCol], $type);
+                                $oldPrimaryKey[$refCol],
+                                $type
+                            );
                         }
                         $rowsAffected += $this->update($newRefs, $where);
                         break;
@@ -1184,7 +1189,7 @@ abstract class Zend_Db_Table_Abstract
         $depTables = $this->getDependentTables();
         if (!empty($depTables)) {
             $resultSet = $this->fetchAll($where);
-            if (count($resultSet) > 0 ) {
+            if (count($resultSet) > 0) {
                 foreach ($resultSet as $row) {
                     /**
                      * Execute cascading deletes against dependent tables
@@ -1192,7 +1197,8 @@ abstract class Zend_Db_Table_Abstract
                     foreach ($depTables as $tableClass) {
                         $t = self::getTableFromString($tableClass, $this);
                         $t->_cascadeDelete(
-                            get_class($this), $row->getPrimaryKey()
+                            get_class($this),
+                            $row->getPrimaryKey()
                         );
                     }
                 }
@@ -1225,7 +1231,6 @@ abstract class Zend_Db_Table_Abstract
 
         foreach ($this->_getReferenceMapNormalized() as $map) {
             if ($map[self::REF_TABLE_CLASS] == $parentTableClassname && isset($map[self::ON_DELETE])) {
-
                 $where = array();
 
                 // CASCADE or CASCADE_RECURSE
@@ -1236,7 +1241,9 @@ abstract class Zend_Db_Table_Abstract
                         $type = $this->_metadata[$col]['DATA_TYPE'];
                         $where[] = $this->_db->quoteInto(
                             $this->_db->quoteIdentifier($col, true) . ' = ?',
-                            $primaryKey[$refCol], $type);
+                            $primaryKey[$refCol],
+                            $type
+                        );
                     }
                 }
 
@@ -1261,7 +1268,6 @@ abstract class Zend_Db_Table_Abstract
                 if (in_array($map[self::ON_DELETE], array(self::CASCADE, self::CASCADE_RECURSE))) {
                     $rowsAffected += $this->delete($where);
                 }
-
             }
         }
         return $rowsAffected;
@@ -1313,7 +1319,7 @@ abstract class Zend_Db_Table_Abstract
             }
             if ($numberTerms == 0) {
                 $numberTerms = $keyValuesCount;
-            } else if ($keyValuesCount != $numberTerms) {
+            } elseif ($keyValuesCount != $numberTerms) {
                 require_once 'Zend/Db/Table/Exception.php';
                 throw new Zend_Db_Table_Exception("Missing value(s) for the primary key");
             }
@@ -1337,7 +1343,9 @@ abstract class Zend_Db_Table_Abstract
                     $columnName = $this->_db->quoteIdentifier($keyNames[$keyPosition], true);
                     $whereAndTerms[] = $this->_db->quoteInto(
                         $tableName . '.' . $columnName . ' = ?',
-                        $keyValue, $type);
+                        $keyValue,
+                        $type
+                    );
                 }
                 $whereOrTerms[] = '(' . implode(' AND ', $whereAndTerms) . ')';
             }
@@ -1384,7 +1392,6 @@ abstract class Zend_Db_Table_Abstract
             if ($count !== null || $offset !== null) {
                 $select->limit($count, $offset);
             }
-
         } else {
             $select = $where;
         }
@@ -1431,7 +1438,6 @@ abstract class Zend_Db_Table_Abstract
             }
 
             $select->limit(1, ((is_numeric($offset)) ? (int) $offset : null));
-
         } else {
             $select = $where->limit(1, $where->getPart(Zend_Db_Select::LIMIT_OFFSET));
         }
@@ -1620,5 +1626,4 @@ abstract class Zend_Db_Table_Abstract
 
         return new $tableName($options);
     }
-
 }

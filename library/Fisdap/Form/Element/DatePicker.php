@@ -19,8 +19,8 @@
  */
 class Fisdap_Form_Element_DatePicker extends Zend_Form_Element_Text
 {
-	public function init()
-	{
-		$this->getView()->jQuery()->addOnLoad("$('#" . $this->getName() . "').datepicker();");
-	}
+    public function init()
+    {
+        $this->getView()->jQuery()->addOnLoad("$('#" . $this->getName() . "').datepicker();");
+    }
 }

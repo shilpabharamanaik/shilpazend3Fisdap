@@ -3,7 +3,6 @@
 use Fisdap\Attachments\Core\ConfigProvider\LaravelConfigProvider;
 use Illuminate\Config\Repository;
 
-
 class LaravelConfigProviderCest
 {
     /**

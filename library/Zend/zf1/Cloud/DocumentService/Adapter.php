@@ -57,7 +57,7 @@ interface Zend_Cloud_DocumentService_Adapter
      */
     public function deleteCollection($name, $options = null);
 
-       /**
+    /**
      * List collections.
      *
      * @param  array  $options

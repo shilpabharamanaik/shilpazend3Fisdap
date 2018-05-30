@@ -92,7 +92,8 @@ class Zend_Service_Ebay_Finding extends Zend_Service_Ebay_Abstract
                  */
                 require_once 'Zend/Service/Ebay/Finding/Exception.php';
                 throw new Zend_Service_Ebay_Finding_Exception(
-                    'Application Id is missing.');
+                    'Application Id is missing.'
+                );
             }
         }
 
@@ -112,7 +113,8 @@ class Zend_Service_Ebay_Finding extends Zend_Service_Ebay_Abstract
              */
             require_once 'Zend/Service/Ebay/Finding/Exception.php';
             throw new Zend_Service_Ebay_Finding_Exception(
-                'Client object must extend Zend_Rest_Client.');
+                'Client object must extend Zend_Rest_Client.'
+            );
         }
         $this->_client = $client;
 

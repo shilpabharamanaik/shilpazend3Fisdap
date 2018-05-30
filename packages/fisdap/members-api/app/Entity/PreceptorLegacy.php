@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
-
 /**
  * Legacy Entity class for Preceptors.
  *
@@ -116,7 +115,6 @@ class PreceptorLegacy extends EntityBaseClass
 
     public function init()
     {
-
     }
 
     public function getId()
@@ -307,7 +305,6 @@ class PreceptorLegacy extends EntityBaseClass
 
     public static function getPatientsByPreceptor($preceptorId)
     {
-
         $students = EntityUtils::getRepository('PreceptorLegacy')->getPreceptorPatients($preceptorId);
 
         return $students;
@@ -322,8 +319,10 @@ class PreceptorLegacy extends EntityBaseClass
     public static function getSortedPreceptorSelect($run)
     {
         $selectOptions = array("-1" => "Choose a preceptor...");
-        foreach (self::getPreceptorFormOptions($run->student->program->id,
-            $run->shift->site->id) as $preceptorId => $preceptorName) {
+        foreach (self::getPreceptorFormOptions(
+            $run->student->program->id,
+            $run->shift->site->id
+        ) as $preceptorId => $preceptorName) {
             $selectOptions[$preceptorId] = $preceptorName;
         }
         return $selectOptions;
@@ -359,7 +358,6 @@ class PreceptorLegacy extends EntityBaseClass
         }
 
         if ($format) {
-
             $formatted_number = "(";
             $formatted_number .= substr($number, 0, 3);
             $formatted_number .= ") ";

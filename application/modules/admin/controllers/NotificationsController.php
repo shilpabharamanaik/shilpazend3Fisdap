@@ -9,17 +9,17 @@ use Fisdap\EntityUtils;
  */
 class Admin_NotificationsController extends Fisdap_Controller_Staff
 {
-	public function init()
+    public function init()
     {
-        parent::init();	
+        parent::init();
     }
-	
-	public function indexAction()
-	{
-		$this->view->pageTitle = "Notification Center";
+    
+    public function indexAction()
+    {
+        $this->view->pageTitle = "Notification Center";
         $this->view->pageTitleLinkURL = "/admin/notifications/history";
         $this->view->pageTitleLinkText = "<< Back to notification history";
-		$this->view->headScript()->appendFile("/js/tableSorter/jquery.tablesorter.min.js");
+        $this->view->headScript()->appendFile("/js/tableSorter/jquery.tablesorter.min.js");
 
         $this->view->form = new Admin_Form_CreateNotification();
 
@@ -101,6 +101,4 @@ class Admin_NotificationsController extends Fisdap_Controller_Staff
 
         $this->_helper->json($notification->id);
     }
-
-
 }

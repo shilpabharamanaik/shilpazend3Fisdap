@@ -232,7 +232,7 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
         $data = array();
 
         // signal that we are reading
-        if (!$this->_isSubscribed($queue)){
+        if (!$this->_isSubscribed($queue)) {
             $this->_subscribe($queue);
         }
 

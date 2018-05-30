@@ -106,5 +106,4 @@ class Zend_Server_Reflection_Method extends Zend_Server_Reflection_Function_Abst
         $this->_classReflection = new Zend_Server_Reflection_Class(new ReflectionClass($this->_class), $this->getNamespace(), $this->getInvokeArguments());
         $this->_reflection = new ReflectionMethod($this->_classReflection->getName(), $this->getName());
     }
-
 }

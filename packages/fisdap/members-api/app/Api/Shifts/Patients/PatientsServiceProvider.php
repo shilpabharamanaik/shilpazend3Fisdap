@@ -20,7 +20,7 @@ class PatientsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-		$router = app('router'); // Router Instance
+        $router = app('router'); // Router Instance
         parent::boot();
     }
 
@@ -30,16 +30,21 @@ class PatientsServiceProvider extends ServiceProvider
     public function map(Router $router)
     {
         // Cardiac Endpoints
-        $router->group([
+        $router->group(
+            [
                 'prefix' => 'patients/cardiac/'
             ],
-            function(Router $router) {
-                $router->get('witness-statuses', [
+            function (Router $router) {
+                $router->get(
+                    'witness-statuses',
+                    [
                         'as'   => 'patients.cardiac.witness-statuses',
                         'uses' => CardiacController::class . '@getWitnessStatuses'
                     ]
                 );
-                $router->get('pulse-returns', [
+                $router->get(
+                    'pulse-returns',
+                    [
                         'as'   => 'patients.cardiac.pulse-returns',
                         'uses' => CardiacController::class . '@getPulseReturns'
                     ]
@@ -48,51 +53,70 @@ class PatientsServiceProvider extends ServiceProvider
         );
 
         // Non-specific Endpoints (Enumerations)
-        $router->group([
+        $router->group(
+            [
                 'prefix' => 'patients'
             ],
-            function(Router $router) {
-                $router->get('ambulance-response-modes', [
+            function (Router $router) {
+                $router->get(
+                    'ambulance-response-modes',
+                    [
                         'as'   => 'patients.ambulance-response-mode',
                         'uses' => EnumerationsController::class . '@getAmbulanceResponseModes'
                     ]
                 );
-                $router->get('impressions', [
+                $router->get(
+                    'impressions',
+                    [
                         'as'   => 'patients.impressions',
                         'uses' => EnumerationsController::class . '@getImpressions'
                     ]
                 );
-                $router->get('complaints', [
+                $router->get(
+                    'complaints',
+                    [
                         'as'   => 'patients.complaints',
                         'uses' => EnumerationsController::class . '@getComplaints'
                     ]
                 );
-                $router->get('subjects', [
+                $router->get(
+                    'subjects',
+                    [
                         'as'   => 'patients.subjects',
                         'uses' => EnumerationsController::class . '@getSubjects'
                     ]
                 );
-                $router->get('criticalities', [
+                $router->get(
+                    'criticalities',
+                    [
                         'as'   => 'patients.criticalities',
                         'uses' => EnumerationsController::class . '@getPatientsCriticalities'
                     ]
                 );
-                $router->get('dispositions', [
+                $router->get(
+                    'dispositions',
+                    [
                         'as'   => 'patients.dispositions',
                         'uses' => EnumerationsController::class . '@getDispositions'
                     ]
                 );
-                $router->get('airway-management-sources', [
+                $router->get(
+                    'airway-management-sources',
+                    [
                         'as'   => 'patients.airway-management-sources',
                         'uses' => EnumerationsController::class . '@getAirwayManagementSources'
                     ]
                 );
-                $router->get('mental-alertness', [
+                $router->get(
+                    'mental-alertness',
+                    [
                         'as'   => 'patients.mental-alertness',
                         'uses' => EnumerationsController::class . '@getMentalAlertness'
                     ]
                 );
-                $router->get('mental-orientations', [
+                $router->get(
+                    'mental-orientations',
+                    [
                         'as'   => 'patients.mental-orientations',
                         'uses' => EnumerationsController::class . '@getMentalOrientations'
                     ]
@@ -101,9 +125,3 @@ class PatientsServiceProvider extends ServiceProvider
         );
     }
 }
-
-
-
-
-
-

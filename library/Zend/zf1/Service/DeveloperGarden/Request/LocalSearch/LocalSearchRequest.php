@@ -33,8 +33,7 @@ require_once 'Zend/Service/DeveloperGarden/Request/RequestAbstract.php';
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Request_LocalSearch_LocalSearchRequest
-    extends Zend_Service_DeveloperGarden_Request_RequestAbstract
+class Zend_Service_DeveloperGarden_Request_LocalSearch_LocalSearchRequest extends Zend_Service_DeveloperGarden_Request_RequestAbstract
 {
     /**
      * array of search parameters
@@ -65,7 +64,8 @@ class Zend_Service_DeveloperGarden_Request_LocalSearch_LocalSearchRequest
      * @param integer $account
      * @return Zend_Service_DeveloperGarden_Request_RequestAbstract
      */
-    public function __construct($environment,
+    public function __construct(
+        $environment,
         Zend_Service_DeveloperGarden_LocalSearch_SearchParameters $searchParameters,
         $account = null
     ) {
@@ -109,5 +109,4 @@ class Zend_Service_DeveloperGarden_Request_LocalSearch_LocalSearchRequest
     {
         return $this->_searchParameters;
     }
-
 }

@@ -136,7 +136,7 @@ class Zend_Test_PHPUnit_Constraint_DomQuery37 extends PHPUnit_Framework_Constrai
      * @param  null|string  Assertion type
      * @param  string       (optional) String to match (needle), may be required depending on assertion type
      * @return bool
-     * 
+     *
      * NOTE:
      * Drastic changes up to PHPUnit 3.5.15 this was:
      *     public function evaluate($other, $assertType = null)
@@ -144,7 +144,7 @@ class Zend_Test_PHPUnit_Constraint_DomQuery37 extends PHPUnit_Framework_Constrai
      *     public function evaluate($other, $description = '', $returnResult = FALSE)
      * We use the new interface for PHP-strict checking, but emulate the old one
      */
-    public function evaluate($content, $assertType = '', $match = FALSE)
+    public function evaluate($content, $assertType = '', $match = false)
     {
         if (strstr($assertType, 'Not')) {
             $this->setNegate(true);
@@ -222,7 +222,7 @@ class Zend_Test_PHPUnit_Constraint_DomQuery37 extends PHPUnit_Framework_Constrai
      *     protected function fail($other, $description, PHPUnit_Framework_ComparisonFailure $comparisonFailure = NULL)
      * We use the new interface for PHP-strict checking
      */
-    public function fail($other, $description, PHPUnit_Framework_ComparisonFailure $cannot_be_used = NULL)
+    public function fail($other, $description, PHPUnit_Framework_ComparisonFailure $cannot_be_used = null)
     {
         require_once 'Zend/Test/PHPUnit/Constraint/Exception.php';
         switch ($this->_assertType) {

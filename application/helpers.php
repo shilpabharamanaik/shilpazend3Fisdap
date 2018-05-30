@@ -8,7 +8,6 @@
 
 use Illuminate\Support\Str;
 
-
 if (!function_exists('config_path')) {
     /**
      * Get the configuration path.
@@ -51,7 +50,7 @@ if (!function_exists('storage_path')) {
 }
 
 
-if ( ! function_exists('env')) {
+if (! function_exists('env')) {
     /**
      * Gets the value of an environment variable. Supports boolean, empty and null.
      *
@@ -87,9 +86,10 @@ if ( ! function_exists('env')) {
 }
 
 
-if ( ! function_exists('bitwiseConstants')) {
-    function bitwiseConstants($value) {
-        if ( preg_match('/\$|;/', $value)) {
+if (! function_exists('bitwiseConstants')) {
+    function bitwiseConstants($value)
+    {
+        if (preg_match('/\$|;/', $value)) {
             throw new \Exception(
                 "The string '$value' is does not contain a valid set of constants and/or bitwise operators'"
             );

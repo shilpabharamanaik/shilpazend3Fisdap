@@ -131,7 +131,6 @@ class Zend_Validate_Int extends Zend_Validate_Abstract
                 $this->_error(self::NOT_INT);
                 return false;
             }
-
         } else {
             try {
                 if (!Zend_Locale_Format::isInteger($value, array('locale' => $this->_locale))) {

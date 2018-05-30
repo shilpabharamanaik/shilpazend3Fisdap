@@ -43,7 +43,7 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
 
         if ($this->studentId) {
             $this->globalSession->studentId = $this->studentId;
-        } else if (!$this->studentId && $this->user) {
+        } elseif (!$this->studentId && $this->user) {
             $this->studentId = $this->user->getCurrentRoleData()->id;
         }
 
@@ -145,12 +145,14 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
     public function detailedShiftReportAction()
     {
         $shift = \Fisdap\EntityUtils::getEntity(
-            'ShiftLegacy', $this->_getParam('shiftId')
+            'ShiftLegacy',
+            $this->_getParam('shiftId')
         );
         $student = $shift->student;
 
         $this->program = \Fisdap\EntityUtils::getEntity(
-            'ProgramLegacy', $this->user->getProgramId()
+            'ProgramLegacy',
+            $this->user->getProgramId()
         );
         $this->view->program = $this->program;
 
@@ -159,7 +161,9 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
         $this->view->shift = $shift;
 
         $this->view->shiftModal = new SkillsTracker_Form_Shift(
-            $shift->id, null, $this->user->getProgramId()
+            $shift->id,
+            null,
+            $this->user->getProgramId()
         );
         $this->view->shiftLockModal = new SkillsTracker_Form_LockShift(
             $shift->id
@@ -676,7 +680,7 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
         $student = \Fisdap\EntityUtils::getEntity("StudentLegacy", $formValues['studentId']);
 
         $startDateTime = date_create_from_format("m/d/Y Hi", $formValues['date'] . " " . str_pad($formValues['time'], 4, '0', STR_PAD_LEFT));
-       	$endDateTime = is_object($startDateTime) ? clone($startDateTime) : null;
+        $endDateTime = is_object($startDateTime) ? clone($startDateTime) : null;
         $endDateTime->add(new \DateInterval("PT" . (int)($formValues['hours'] * 3600) . "S"));
 
         $hasConflict = $student->user_context->hasConflict($startDateTime, $endDateTime);
@@ -749,7 +753,7 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
 
             $this->_helper->json($skills);
         } else {
-            $this->_helper->json(array('error' => TRUE, 'message' => 'Shift not found. Shift ID provided was: ' . $shiftID));
+            $this->_helper->json(array('error' => true, 'message' => 'Shift not found. Shift ID provided was: ' . $shiftID));
         }
     }
 
@@ -931,7 +935,7 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
     {
         $type = $this->_getParam('type');
         $student_id = $this->_getParam('student_id');
-        $shift_id = NULL;
+        $shift_id = null;
         if (is_numeric($type)) {
             $shift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $type);
             $shift_id = $shift->id;
@@ -944,7 +948,6 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
 
     public function examInterviewFormAction()
     {
-
         $this->view->pageTitle = "Exam Interview Tool";
 
         $student_id = $this->_getParam('studentId');
@@ -1017,116 +1020,116 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
         }
     }
 
-	public function auditShiftAction()
-	{
-		$shiftId = $this->_getParam('shiftId');
-		$audit = $this->_getParam('audit');
-		$lockedFlag = $this->_getParam('lockedFlag');
+    public function auditShiftAction()
+    {
+        $shiftId = $this->_getParam('shiftId');
+        $audit = $this->_getParam('audit');
+        $lockedFlag = $this->_getParam('lockedFlag');
 
-		$shift = \Fisdap\EntityUtils::getEntity('ShiftLegacy', $shiftId);
+        $shift = \Fisdap\EntityUtils::getEntity('ShiftLegacy', $shiftId);
 
-		if (!$shift->isEditable() || $this->user->getCurrentRoleName() != 'instructor') {
-			$this->_helper->json(false);
-			return;
-		}
+        if (!$shift->isEditable() || $this->user->getCurrentRoleName() != 'instructor') {
+            $this->_helper->json(false);
+            return;
+        }
 
-		$shift->audited = $audit;
+        $shift->audited = $audit;
 
-		//If the locked flag is set, be sure to lock this shift
-		if ($lockedFlag) {
-			$shift->lockShift(true);
-		}
+        //If the locked flag is set, be sure to lock this shift
+        if ($lockedFlag) {
+            $shift->lockShift(true);
+        }
 
-		$shift->save();
+        $shift->save();
 
-		$this->_helper->json($shift->locked);
-	}
+        $this->_helper->json($shift->locked);
+    }
 
-	public function getEvaluatorListAction()
-	{
-		$evaluatorType = \Fisdap\EntityUtils::getEntity("EvaluatorType", $this->_getParam("evaluatorTypeId"));
-		$shift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $this->_getParam("shiftId"));
+    public function getEvaluatorListAction()
+    {
+        $evaluatorType = \Fisdap\EntityUtils::getEntity("EvaluatorType", $this->_getParam("evaluatorTypeId"));
+        $shift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $this->_getParam("shiftId"));
 
-		if ($evaluatorType->id == 1) {
-			$users = \Fisdap\EntityUtils::getRepository("User")->getAllInstructorsByProgram($shift->student->program->id);
-		} else if ($evaluatorType->id == 2) {
-			$users = \Fisdap\EntityUtils::getRepository("User")->getAllStudentsByProgram($shift->student->program->id, array("graduationStatus" => array(1)));
-		}
+        if ($evaluatorType->id == 1) {
+            $users = \Fisdap\EntityUtils::getRepository("User")->getAllInstructorsByProgram($shift->student->program->id);
+        } elseif ($evaluatorType->id == 2) {
+            $users = \Fisdap\EntityUtils::getRepository("User")->getAllStudentsByProgram($shift->student->program->id, array("graduationStatus" => array(1)));
+        }
 
-		$this->_helper->json($users);
-	}
+        $this->_helper->json($users);
+    }
 
-	public function getPracticeFormAction()
-	{
-		$itemId = $this->_getParam("practiceItemId");
-		$defId = $this->_getParam("practiceDefinitionId");
-		$shiftId = $this->_getParam("shiftId");
-		$primaryShiftId = $this->_getParam("primary_shift_id");
+    public function getPracticeFormAction()
+    {
+        $itemId = $this->_getParam("practiceItemId");
+        $defId = $this->_getParam("practiceDefinitionId");
+        $shiftId = $this->_getParam("shiftId");
+        $primaryShiftId = $this->_getParam("primary_shift_id");
 
-		$item = $labDef = $shift = null;
+        $item = $labDef = $shift = null;
 
-		if ($defId && $shiftId) {
-			$labDef = \Fisdap\EntityUtils::getEntity("PracticeDefinition", $defId);
-			$shift = \Fisdap\EntityUtils::getEntity('ShiftLegacy', $shiftId);
-		} else if ($itemId) {
-			$item = \Fisdap\EntityUtils::getEntity("PracticeItem", $itemId);
-			$labDef = $item->practice_definition;
-			$shift = $item->shift;
-		}
+        if ($defId && $shiftId) {
+            $labDef = \Fisdap\EntityUtils::getEntity("PracticeDefinition", $defId);
+            $shift = \Fisdap\EntityUtils::getEntity('ShiftLegacy', $shiftId);
+        } elseif ($itemId) {
+            $item = \Fisdap\EntityUtils::getEntity("PracticeItem", $itemId);
+            $labDef = $item->practice_definition;
+            $shift = $item->shift;
+        }
 
-		// Send back either the practice form or the URL for the new skillsheet, depending on if one has been assigned to the def
-		if($labDef->skillsheet){
-			// Determine whether or not we have a filled out eval to load...
-			if($item->eval_session){
-				$data = array(
-						'postUrl' => $this->view->serverUrl() . '/skills-tracker/shifts/post-save-lab-eval',
-						'psid' => $primaryShiftId,
-						'esid' => $item->eval_session->id,
-						'source' => 'lab',
-						'lpii' => $item->id,
-						'pdi' => $defId
-				);
+        // Send back either the practice form or the URL for the new skillsheet, depending on if one has been assigned to the def
+        if ($labDef->skillsheet) {
+            // Determine whether or not we have a filled out eval to load...
+            if ($item->eval_session) {
+                $data = array(
+                        'postUrl' => $this->view->serverUrl() . '/skills-tracker/shifts/post-save-lab-eval',
+                        'psid' => $primaryShiftId,
+                        'esid' => $item->eval_session->id,
+                        'source' => 'lab',
+                        'lpii' => $item->id,
+                        'pdi' => $defId
+                );
 
-				$this->view->action('get-eval-view-url', 'oldfisdap', null, $data);
-			}else{
-				$hookId = 0;
-				// The hooks are mapped based on certification level.
-				switch($shift->student->getCertification()->id){
-					case 1:
-						$hookId = 124;
-						break;
-					case 3:
-						$hookId = 126;
-						break;
-					case 5:
-						$hookId = 125;
-						break;
-				}
+                $this->view->action('get-eval-view-url', 'oldfisdap', null, $data);
+            } else {
+                $hookId = 0;
+                // The hooks are mapped based on certification level.
+                switch ($shift->student->getCertification()->id) {
+                    case 1:
+                        $hookId = 124;
+                        break;
+                    case 3:
+                        $hookId = 126;
+                        break;
+                    case 5:
+                        $hookId = 125;
+                        break;
+                }
 
-				$data = array(
-						'edid' => $labDef->skillsheet->id,
-						'ehid' => $hookId,
-						'psid' => $primaryShiftId,
-						'subject' => $shift->student->user->id,
-						'sid' => $shift->id,
-						'source' => 'lab',
-						'postUrl' => $this->view->serverUrl() . '/skills-tracker/shifts/post-save-lab-eval',
-						'pdi' => $defId
-				);
+                $data = array(
+                        'edid' => $labDef->skillsheet->id,
+                        'ehid' => $hookId,
+                        'psid' => $primaryShiftId,
+                        'subject' => $shift->student->user->id,
+                        'sid' => $shift->id,
+                        'source' => 'lab',
+                        'postUrl' => $this->view->serverUrl() . '/skills-tracker/shifts/post-save-lab-eval',
+                        'pdi' => $defId
+                );
 
-				// This is a bit strange, but not sure how to avoid.  The get-eval-url action
-				// spits out json formatted data, which will still return to the browser.
-				// Long story short, you don't need to re-pack the data into a new json call.
-				$this->view->action('get-eval-url', 'oldfisdap', null, $data);
-				//$this->_helper->json(array("data" => $labDef->toArray(), "link" => $evalURL));
-			}
-		}else{
-			$form = new \SkillsTracker_Form_PracticeModal($itemId, $labDef->id, $shiftId);
-			$this->_helper->json(array("data" => $labDef->toArray(), "form" => $form->__toString()));
-		}
-	}
+                // This is a bit strange, but not sure how to avoid.  The get-eval-url action
+                // spits out json formatted data, which will still return to the browser.
+                // Long story short, you don't need to re-pack the data into a new json call.
+                $this->view->action('get-eval-url', 'oldfisdap', null, $data);
+                //$this->_helper->json(array("data" => $labDef->toArray(), "link" => $evalURL));
+            }
+        } else {
+            $form = new \SkillsTracker_Form_PracticeModal($itemId, $labDef->id, $shiftId);
+            $this->_helper->json(array("data" => $labDef->toArray(), "form" => $form->__toString()));
+        }
+    }
 
-	public function postSaveLabEvalAction()
+    public function postSaveLabEvalAction()
     {
         $lpi = null;
 
@@ -1169,54 +1172,54 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
         //If the evaluator is a student, add the skill credit immediately, if instructor, check confirmation status and add/remove relevant skills
         if ($lpi->evaluator_type->id == 2) {
             $lpi->confirmAttachSkills(true, $lpi->passed);
-        }else if($lpi->evaluator_type->id == 1){
-            if($lpi->confirmed == 1){
+        } elseif ($lpi->evaluator_type->id == 1) {
+            if ($lpi->confirmed == 1) {
                 $lpi->confirmAttachSkills($lpi->confirmed, $lpi->passed);
-            }else if($lpi->confirmed == 0){
+            } elseif ($lpi->confirmed == 0) {
                 $lpi->unconfirmDeleteSkills();
             }
         }
 
         $lpi->save();
-	}
+    }
 
-	public function validatePracticeAction()
-	{
-		$formValues = $this->_getAllParams();
-		$form = new \SkillsTracker_Form_PracticeModal($formValues['practiceItemId'], $formValues['practiceDefinitionId'], $formValues['shiftId']);
-		$this->_helper->json($form->process($formValues));
-	}
+    public function validatePracticeAction()
+    {
+        $formValues = $this->_getAllParams();
+        $form = new \SkillsTracker_Form_PracticeModal($formValues['practiceItemId'], $formValues['practiceDefinitionId'], $formValues['shiftId']);
+        $this->_helper->json($form->process($formValues));
+    }
 
-	public function generateLabPracticeWidgetAction()
-	{
-		$shift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $this->_getParam("shiftId"));
-		$defaultDef = \Fisdap\EntityUtils::getEntity("PracticeDefinition", $this->_getParam("selectedDefId"));
+    public function generateLabPracticeWidgetAction()
+    {
+        $shift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $this->_getParam("shiftId"));
+        $defaultDef = \Fisdap\EntityUtils::getEntity("PracticeDefinition", $this->_getParam("selectedDefId"));
 
-		if($defaultDef){
-			$this->session->defaultDefinitions[$shift->student->id] = $defaultDef->id;
-		}
+        if ($defaultDef) {
+            $this->session->defaultDefinitions[$shift->student->id] = $defaultDef->id;
+        }
 
-		//If we're generating a lab partner widget, save it in the session
-		if ($this->globalSession->shiftId != $shift->id) {
-			$this->_helper->json($this->generateLabPartnerWidgetJson(\Fisdap\EntityUtils::getEntity("ShiftLegacy", $this->globalSession->shiftId), $shift, true, $defaultDef->id));
-			return;
-		}
+        //If we're generating a lab partner widget, save it in the session
+        if ($this->globalSession->shiftId != $shift->id) {
+            $this->_helper->json($this->generateLabPartnerWidgetJson(\Fisdap\EntityUtils::getEntity("ShiftLegacy", $this->globalSession->shiftId), $shift, true, $defaultDef->id));
+            return;
+        }
 
-		//Otherwise, this must be the shift that belongs to the page
-		$this->_helper->json($this->view->practiceSkillTable($shift, false, false, $defaultDef->id));
-	}
+        //Otherwise, this must be the shift that belongs to the page
+        $this->_helper->json($this->view->practiceSkillTable($shift, false, false, $defaultDef->id));
+    }
 
-	/**
-	 * AJAX responder to validate the lab partner signin form for students
-	 */
-	public function validateLabPartnerAction(JblRestApiUserAuthentication $jblAuthenticator)
-	{
-		$shift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $this->globalSession->shiftId);
-		$username = $this->_getParam("username");
-		$password = $this->_getParam("password");
+    /**
+     * AJAX responder to validate the lab partner signin form for students
+     */
+    public function validateLabPartnerAction(JblRestApiUserAuthentication $jblAuthenticator)
+    {
+        $shift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $this->globalSession->shiftId);
+        $username = $this->_getParam("username");
+        $password = $this->_getParam("password");
 
         //check if the username looks like an email address
-        $is_email = strpbrk($username,"@");
+        $is_email = strpbrk($username, "@");
 
         //if it does, try JBL authenticator, if not, try Fisdap auth directly.
         if ($is_email) {
@@ -1229,7 +1232,7 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
                 if ($userEntity) {
                     // Now authenticate via Fisdap db
                     // the third argument here is saying that the password is already hashed
-                    if (\Fisdap\Entity\User::authenticate_password($userEntity->username, $userEntity->password, TRUE)) {
+                    if (\Fisdap\Entity\User::authenticate_password($userEntity->username, $userEntity->password, true)) {
                         $user = $userEntity;
                     }
                 }
@@ -1244,219 +1247,217 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
             }
         }
 
-		//Don't allow the user to add his/herself as a lab partner
-		if ($shift->student->user->username == $user->username) {
-			$this->_helper->json($this->view->errorContainer(array("You cannot add yourself as a lab partner. <a href='#' id='try-again'>Try again?</a>")));
-		}
+        //Don't allow the user to add his/herself as a lab partner
+        if ($shift->student->user->username == $user->username) {
+            $this->_helper->json($this->view->errorContainer(array("You cannot add yourself as a lab partner. <a href='#' id='try-again'>Try again?</a>")));
+        }
 
-		//Don't allow the user to add an instructor
-		if ($user->isInstructor()) {
-			$this->_helper->json($this->view->errorContainer(array("You cannot add an instructor as a lab partner. <a href='#' id='try-again'>Try again?</a>")));
-		}
+        //Don't allow the user to add an instructor
+        if ($user->isInstructor()) {
+            $this->_helper->json($this->view->errorContainer(array("You cannot add an instructor as a lab partner. <a href='#' id='try-again'>Try again?</a>")));
+        }
 
-		//Don't allow the user to add a lab partner not in their program
-		if ($shift->student->program->id != $user->getCurrentRoleData()->program->id) {
-			$this->_helper->json($this->view->errorContainer(array("You cannot add a lab partner whose Fisdap account is at a different school. <a href='#' id='try-again'>Try again?</a>")));
-		}
+        //Don't allow the user to add a lab partner not in their program
+        if ($shift->student->program->id != $user->getCurrentRoleData()->program->id) {
+            $this->_helper->json($this->view->errorContainer(array("You cannot add a lab partner whose Fisdap account is at a different school. <a href='#' id='try-again'>Try again?</a>")));
+        }
 
-		//Attempt to find any shifts for the new lab partner that occur on the same day as the given shift
-		$shifts = \Fisdap\EntityUtils::getRepository("ShiftLegacy")->getShiftsByStartDate($user->getCurrentRoleData()->id, $shift->start_datetime->format('Y-m-d'), $shift->type);
+        //Attempt to find any shifts for the new lab partner that occur on the same day as the given shift
+        $shifts = \Fisdap\EntityUtils::getRepository("ShiftLegacy")->getShiftsByStartDate($user->getCurrentRoleData()->id, $shift->start_datetime->format('Y-m-d'), $shift->type);
 
-		if (count($shifts) == 0) {
-			//If the student has no shifts and their program allows it, create a shift for them
-			$permission = "can_students_create_" . $shift->type;
-			if ($user->getCurrentProgram()->$permission) {
-				$newShift = $shift->copyShiftForLabPartner($user->getCurrentRoleData());
-				$newShift->save();
+        if (count($shifts) == 0) {
+            //If the student has no shifts and their program allows it, create a shift for them
+            $permission = "can_students_create_" . $shift->type;
+            if ($user->getCurrentProgram()->$permission) {
+                $newShift = $shift->copyShiftForLabPartner($user->getCurrentRoleData());
+                $newShift->save();
 
-				$this->_helper->json($this->generateLabPartnerWidgetJson($shift, $newShift));
-			} else {
-				//Otherwise tell them we can't do anything
-				$this->_helper->json($this->view->errorContainer(array("You do no have a shift today and we cannot create one for you because of your program settings. <a href='#' id='try-again'>Try again?</a>")));
-			}
-		} else if (count($shifts) == 1) {
-			//If the student has exactly one shift, return the practice widget for that shift
-			$this->_helper->json($this->generateLabPartnerWidgetJson($shift, $shifts[0]));
-		} else {
-			//if the student has more than one shift, return a list that they can choose from
-			$chooseShiftsBox = "<h3 class='practice-header'>Choose a shift for " . $shifts[0]->student->user->getName() . "</h3><div class='notice'>" . $shifts[0]->student->user->getName() . " has more than one lab shift today, please choose one to add lab practice:<br /><br /><ul>";
-			foreach($shifts as $existingShift) {
-				$chooseShiftsBox .= "<li><a href='#' class='pick-lab-shift' data-shiftid='" . $existingShift->id . "'>" . $existingShift->getShortSummary() . "</a></li>";
-			}
-			$chooseShiftsBox .= "</div>";
-			$this->_helper->json($chooseShiftsBox);
-		}
-	}
+                $this->_helper->json($this->generateLabPartnerWidgetJson($shift, $newShift));
+            } else {
+                //Otherwise tell them we can't do anything
+                $this->_helper->json($this->view->errorContainer(array("You do no have a shift today and we cannot create one for you because of your program settings. <a href='#' id='try-again'>Try again?</a>")));
+            }
+        } elseif (count($shifts) == 1) {
+            //If the student has exactly one shift, return the practice widget for that shift
+            $this->_helper->json($this->generateLabPartnerWidgetJson($shift, $shifts[0]));
+        } else {
+            //if the student has more than one shift, return a list that they can choose from
+            $chooseShiftsBox = "<h3 class='practice-header'>Choose a shift for " . $shifts[0]->student->user->getName() . "</h3><div class='notice'>" . $shifts[0]->student->user->getName() . " has more than one lab shift today, please choose one to add lab practice:<br /><br /><ul>";
+            foreach ($shifts as $existingShift) {
+                $chooseShiftsBox .= "<li><a href='#' class='pick-lab-shift' data-shiftid='" . $existingShift->id . "'>" . $existingShift->getShortSummary() . "</a></li>";
+            }
+            $chooseShiftsBox .= "</div>";
+            $this->_helper->json($chooseShiftsBox);
+        }
+    }
 
-	/**
-	 * Given the existing shift, and the shift that we want to add the widget for, save it
-	 * in the session and then return the widget in JSON.
-	 * @param \Fisdap\Entity\Shift $shift the shift owned by the logged in user
-	 * @param \Fisdap\Entity\Shift $newShift the shift practice widget being added
-	 * @param boolean $widgetRefresh boolean to determine if we're adding a new widget or refreshing an existing one.
-	 */
-	private function generateLabPartnerWidgetJson($shift, $newShift, $widgetRefresh = false, $defaultDef = null)
-	{
-		//Don't allow a lab partner who already has a lab widget saved to add another
-		if (count($this->session->labPartnerShifts[$shift->id])) {
-			foreach($this->session->labPartnerShifts[$shift->id] as $labPartnerShiftId) {
-				$labPartnerShift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $labPartnerShiftId);
-				if ($labPartnerShift->student->id == $newShift->student->id && !$widgetRefresh) {
-					return;
-				}
-			}
-		}
+    /**
+     * Given the existing shift, and the shift that we want to add the widget for, save it
+     * in the session and then return the widget in JSON.
+     * @param \Fisdap\Entity\Shift $shift the shift owned by the logged in user
+     * @param \Fisdap\Entity\Shift $newShift the shift practice widget being added
+     * @param boolean $widgetRefresh boolean to determine if we're adding a new widget or refreshing an existing one.
+     */
+    private function generateLabPartnerWidgetJson($shift, $newShift, $widgetRefresh = false, $defaultDef = null)
+    {
+        //Don't allow a lab partner who already has a lab widget saved to add another
+        if (count($this->session->labPartnerShifts[$shift->id])) {
+            foreach ($this->session->labPartnerShifts[$shift->id] as $labPartnerShiftId) {
+                $labPartnerShift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $labPartnerShiftId);
+                if ($labPartnerShift->student->id == $newShift->student->id && !$widgetRefresh) {
+                    return;
+                }
+            }
+        }
 
-		//Save the lab partner in the session if we're not refreshing a widget
-		if (!$widgetRefresh) {
-			$this->session->labPartnerShifts[$shift->id][] = $newShift->id;
-		}
+        //Save the lab partner in the session if we're not refreshing a widget
+        if (!$widgetRefresh) {
+            $this->session->labPartnerShifts[$shift->id][] = $newShift->id;
+        }
 
-		//Return the view helper in JSON format
-		return $this->view->practiceSkillTable($newShift, null, true, $defaultDef);
-	}
+        //Return the view helper in JSON format
+        return $this->view->practiceSkillTable($newShift, null, true, $defaultDef);
+    }
 
-	/**
-	 * AJAX Responder to create multiple practice widgets give a list of student IDs
-	 */
-	public function generateMultiplePracticeWidgetsAction()
-	{
-		$studentIds = $this->_getParam("studentIds");
-		$widgets = array();
-		$thisShift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $this->globalSession->shiftId);
+    /**
+     * AJAX Responder to create multiple practice widgets give a list of student IDs
+     */
+    public function generateMultiplePracticeWidgetsAction()
+    {
+        $studentIds = $this->_getParam("studentIds");
+        $widgets = array();
+        $thisShift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $this->globalSession->shiftId);
 
 
-		foreach($studentIds as $id) {
-			//Attempt to find any shifts for the new lab partner that occur on the same day as the given shift
-			$shifts = \Fisdap\EntityUtils::getRepository("ShiftLegacy")->getShiftsByStartDate($id, $thisShift->start_datetime->format('Y-m-d'), $thisShift->type);
+        foreach ($studentIds as $id) {
+            //Attempt to find any shifts for the new lab partner that occur on the same day as the given shift
+            $shifts = \Fisdap\EntityUtils::getRepository("ShiftLegacy")->getShiftsByStartDate($id, $thisShift->start_datetime->format('Y-m-d'), $thisShift->type);
 
-			if (count($shifts) == 0) {
-				$newShift = $thisShift->copyShiftForLabPartner(\Fisdap\EntityUtils::getEntity("StudentLegacy", $id));
-				// save and flush so we have the new shift id available for immediate use
-				$newShift->save();
-				$widgets[] = $this->generateLabPartnerWidgetJson($thisShift, $newShift);
-
-			} else if (count($shifts) == 1) {
-				$widgets[] = $this->generateLabPartnerWidgetJson($thisShift, $shifts[0]);
-
-			} else {
-				$chooseShiftsBox = "<h3 class='practice-header'>Choose a shift for " . $shifts[0]->student->user->getName() . "</h3><div class='notice'>" . $shifts[0]->student->user->getName() . " has more than one lab shift today, please choose one to add lab practice:<br /><br /><ul>";
-				foreach($shifts as $existingShift) {
-					$chooseShiftsBox .= "<li><a href='#' class='pick-lab-shift' data-shiftid='" . $existingShift->id . "'>" . $existingShift->getShortSummary() . "</a></li>";
-				}
-				$chooseShiftsBox .= "</div>";
-				$widgets[] = $chooseShiftsBox;
-			}
-		}
+            if (count($shifts) == 0) {
+                $newShift = $thisShift->copyShiftForLabPartner(\Fisdap\EntityUtils::getEntity("StudentLegacy", $id));
+                // save and flush so we have the new shift id available for immediate use
+                $newShift->save();
+                $widgets[] = $this->generateLabPartnerWidgetJson($thisShift, $newShift);
+            } elseif (count($shifts) == 1) {
+                $widgets[] = $this->generateLabPartnerWidgetJson($thisShift, $shifts[0]);
+            } else {
+                $chooseShiftsBox = "<h3 class='practice-header'>Choose a shift for " . $shifts[0]->student->user->getName() . "</h3><div class='notice'>" . $shifts[0]->student->user->getName() . " has more than one lab shift today, please choose one to add lab practice:<br /><br /><ul>";
+                foreach ($shifts as $existingShift) {
+                    $chooseShiftsBox .= "<li><a href='#' class='pick-lab-shift' data-shiftid='" . $existingShift->id . "'>" . $existingShift->getShortSummary() . "</a></li>";
+                }
+                $chooseShiftsBox .= "</div>";
+                $widgets[] = $chooseShiftsBox;
+            }
+        }
         \Fisdap\EntityUtils::getEntityManager()->flush();
 
-		$this->_helper->json($widgets);
-	}
+        $this->_helper->json($widgets);
+    }
 
-	public function removeLabPartnerWidgetAction()
-	{
-		$shiftId = $this->getParam("shiftId");
-		if (count($this->session->labPartnerShifts[$this->globalSession->shiftId])) {
-			//Loop over lab partners and remove this shift
-			foreach($this->session->labPartnerShifts[$this->globalSession->shiftId] as $i => $labPartnerShiftId) {
-				if ($labPartnerShiftId == $shiftId) {
-					unset($this->session->labPartnerShifts[$this->globalSession->shiftId][$i]);
-				}
-			}
-		}
+    public function removeLabPartnerWidgetAction()
+    {
+        $shiftId = $this->getParam("shiftId");
+        if (count($this->session->labPartnerShifts[$this->globalSession->shiftId])) {
+            //Loop over lab partners and remove this shift
+            foreach ($this->session->labPartnerShifts[$this->globalSession->shiftId] as $i => $labPartnerShiftId) {
+                if ($labPartnerShiftId == $shiftId) {
+                    unset($this->session->labPartnerShifts[$this->globalSession->shiftId][$i]);
+                }
+            }
+        }
 
-		$this->_helper->json(true);
-	}
+        $this->_helper->json(true);
+    }
 
-	public function getLabPartnerStudentForm()
-	{
-		$this->_helper->json($this->view->labPartnerLogin());
-	}
+    public function getLabPartnerStudentForm()
+    {
+        $this->_helper->json($this->view->labPartnerLogin());
+    }
 
-	public function deletePracticeItemAction()
-	{
-		$item = \Fisdap\EntityUtils::getEntity("PracticeItem", $this->_getParam("practiceItemId"));
-		$item->shift->removePracticeItem($item);
-		$item->shift->save();
-		
-		$this->_helper->json(count($item->shift->practice_items));
-	}
+    public function deletePracticeItemAction()
+    {
+        $item = \Fisdap\EntityUtils::getEntity("PracticeItem", $this->_getParam("practiceItemId"));
+        $item->shift->removePracticeItem($item);
+        $item->shift->save();
+        
+        $this->_helper->json(count($item->shift->practice_items));
+    }
 
-	public function updatePracticePatientTypeAction()
-	{
-		$item = \Fisdap\EntityUtils::getEntity("PracticeItem", $this->_getParam("practiceItemId"));
-		$item->patient_type = $this->_getParam("patientTypeId");
-		$item->save();
-		
-		$am = $item->getAirwayManagement();
-		if($am !== false){
-			// update the existing airway management record
-			$am->subject = \Fisdap\EntityUtils::getEntity('Subject', $this->_getParam("patientTypeId"));
-			$am->save();
-		}
-		
-		$this->_helper->json(true);
-	}
+    public function updatePracticePatientTypeAction()
+    {
+        $item = \Fisdap\EntityUtils::getEntity("PracticeItem", $this->_getParam("practiceItemId"));
+        $item->patient_type = $this->_getParam("patientTypeId");
+        $item->save();
+        
+        $am = $item->getAirwayManagement();
+        if ($am !== false) {
+            // update the existing airway management record
+            $am->subject = \Fisdap\EntityUtils::getEntity('Subject', $this->_getParam("patientTypeId"));
+            $am->save();
+        }
+        
+        $this->_helper->json(true);
+    }
 
-	public function getLabPartnerStudentsAction()
-	{
-		$filters = $this->_getAllParams();
+    public function getLabPartnerStudentsAction()
+    {
+        $filters = $this->_getAllParams();
 
-		$repos = \Fisdap\EntityUtils::getRepository('User');
-		$programId = \Fisdap\Entity\User::getLoggedInUser()->getProgramId();
-		$shift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $filters['shiftId']);
+        $repos = \Fisdap\EntityUtils::getRepository('User');
+        $programId = \Fisdap\Entity\User::getLoggedInUser()->getProgramId();
+        $shift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $filters['shiftId']);
 
-		//$students = $repos->getAllStudentsByShiftDate($programId, $shift->start_datetime->format("Y-m-d"), $filters);
-		$students = $repos->getAllStudentsByProgram($programId, $filters);
+        //$students = $repos->getAllStudentsByShiftDate($programId, $shift->start_datetime->format("Y-m-d"), $filters);
+        $students = $repos->getAllStudentsByProgram($programId, $filters);
 
 
-		$returnData = array();
-		$returnData['columns'] = array('Name');
+        $returnData = array();
+        $returnData['columns'] = array('Name');
 
-		//Build an array of students that already have a widget on the page
-		$existingStudents = array($shift->student->id);
-		if (count($this->session->labPartnerShifts[$shift->id])) {
-			foreach($this->session->labPartnerShifts[$shift->id] as $i => $labPartnerShiftId) {
-				$labPartnerShift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $labPartnerShiftId);
-				$existingStudents[] = $labPartnerShift->student->id;
-			}
-		}
+        //Build an array of students that already have a widget on the page
+        $existingStudents = array($shift->student->id);
+        if (count($this->session->labPartnerShifts[$shift->id])) {
+            foreach ($this->session->labPartnerShifts[$shift->id] as $i => $labPartnerShiftId) {
+                $labPartnerShift = \Fisdap\EntityUtils::getEntity("ShiftLegacy", $labPartnerShiftId);
+                $existingStudents[] = $labPartnerShift->student->id;
+            }
+        }
 
-		foreach($students as $student){
-			//Skip the students that already have a widget on the page
-			if (in_array($student['id'], $existingStudents)) {
-				continue;
-			}
+        foreach ($students as $student) {
+            //Skip the students that already have a widget on the page
+            if (in_array($student['id'], $existingStudents)) {
+                continue;
+            }
 
-			$atom = array();
-			$atom['id'] = $student['id'];
-			$atom['Name'] = $student['first_name'] . " " . $student['last_name'];
+            $atom = array();
+            $atom['id'] = $student['id'];
+            $atom['Name'] = $student['first_name'] . " " . $student['last_name'];
 
-			$returnData['students'][] = $atom;
-		}
+            $returnData['students'][] = $atom;
+        }
 
-		$this->_helper->json($returnData);
-	}
+        $this->_helper->json($returnData);
+    }
 
-	/**
-	 * AJAX call to unconfirm a practice item. The current user
-	 * must be an instructor with edit eval permissions to do this.
-	 */
-	public function unconfirmPracticeItemAction()
-	{
-		$item = \Fisdap\EntityUtils::getEntity("PracticeItem", $this->_getParam("practiceItemId"));
+    /**
+     * AJAX call to unconfirm a practice item. The current user
+     * must be an instructor with edit eval permissions to do this.
+     */
+    public function unconfirmPracticeItemAction()
+    {
+        $item = \Fisdap\EntityUtils::getEntity("PracticeItem", $this->_getParam("practiceItemId"));
 
-		if ($this->user->isInstructor() && $this->user->hasPermission("Edit Evals")) {
-			$item->confirmed = false;
+        if ($this->user->isInstructor() && $this->user->hasPermission("Edit Evals")) {
+            $item->confirmed = false;
             $item->unconfirmDeleteSkills();
-			$item->save();
+            $item->save();
 
-			$this->_helper->json(true);
-			return;
-		}
+            $this->_helper->json(true);
+            return;
+        }
 
-		$this->_helper->json(false);
-	}
+        $this->_helper->json(false);
+    }
 
     public function confirmPracticeItemsAction()
     {
@@ -1488,7 +1489,7 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
         $this->view->studentPicker = $this->getStudentPicker();
 
         // set up evaluator buttonset
-		$instructorId = $this->user->getCurrentRoleData()->id;
+        $instructorId = $this->user->getCurrentRoleData()->id;
         $buttonset = new Fisdap_Form_Element_jQueryUIButtonset('evaluator');
         $buttonset->setOptions([$instructorId => 'Me', 0 => 'Any instructor'])
             ->setDecorators(['ViewHelper'])
@@ -1511,13 +1512,13 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
         $confirmed = filter_var($this->getParam('confirmed'), FILTER_VALIDATE_BOOLEAN);
 
         //Getting entities here to update because we need to also update attached eval sessions and attach associated skills once confirmed.
-        foreach($itemIds as $itemId) {
+        foreach ($itemIds as $itemId) {
             $item = \Fisdap\EntityUtils::getEntity('PracticeItem', $itemId);
             $item->confirmed = $confirmed;
             $passed = $item->passed;
-            if($confirmed == true) {
+            if ($confirmed == true) {
                 $item->confirmAttachSkills($confirmed, $passed);
-            }else if ($confirmed == false){
+            } elseif ($confirmed == false) {
                 $item->unconfirmDeleteSkills();
             }
             $item->save(false);
@@ -1527,16 +1528,16 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
         $this->_helper->json(true);
     }
 
-	public function generatePracticeItemConfirmationTableAction()
-	{
-		$student = Fisdap\EntityUtils::getEntity('StudentLegacy', $this->getParam('studentId'));
-		$evaluatorId = $this->getParam('evaluator');
+    public function generatePracticeItemConfirmationTableAction()
+    {
+        $student = Fisdap\EntityUtils::getEntity('StudentLegacy', $this->getParam('studentId'));
+        $evaluatorId = $this->getParam('evaluator');
         $this->session->evaluator = $evaluatorId;
 
         $permissibleTypes = $this->getInstructorPermissibleShiftTypes();
 
-		$this->_helper->json($this->getPracticeItemConfirmationTable($student, $permissibleTypes, $evaluatorId));
-	}
+        $this->_helper->json($this->getPracticeItemConfirmationTable($student, $permissibleTypes, $evaluatorId));
+    }
 
     /**
      * Get an array of shift types that the logged in user is allowed to edit
@@ -1546,7 +1547,7 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
     private function getInstructorPermissibleShiftTypes()
     {
         $permissibleTypes = [];
-        foreach(['Field', 'Clinical', 'Lab'] as $type) {
+        foreach (['Field', 'Clinical', 'Lab'] as $type) {
             if ($this->user->hasPermission("Edit " . $type . " Data")) {
                 $permissibleTypes[] = strtolower($type);
             }
@@ -1562,39 +1563,40 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
      *
      * @return string HTML rendering of the view helper
      */
-	private function getPracticeItemConfirmationTable(StudentLegacy $studentLegacy, array $permissibleShiftTypes, $evaluatorId = null)
-	{
-		//get practice items
-		$instructorId = $evaluatorId ? $evaluatorId : null;
-		$items = \Fisdap\EntityUtils::getRepository('PracticeItem')->getItemsByStudentEvaluatorShiftTypes($studentLegacy, $permissibleShiftTypes, $instructorId);
+    private function getPracticeItemConfirmationTable(StudentLegacy $studentLegacy, array $permissibleShiftTypes, $evaluatorId = null)
+    {
+        //get practice items
+        $instructorId = $evaluatorId ? $evaluatorId : null;
+        $items = \Fisdap\EntityUtils::getRepository('PracticeItem')->getItemsByStudentEvaluatorShiftTypes($studentLegacy, $permissibleShiftTypes, $instructorId);
 
-		return $this->view->practiceItemConfirmationTable($studentLegacy, $items, $permissibleShiftTypes);
-	}
+        return $this->view->practiceItemConfirmationTable($studentLegacy, $items, $permissibleShiftTypes);
+    }
 
-	private function getSkillEntity($type, $id){
-		$skillEntity = \Fisdap\EntityUtils::getEntity($type, $id);
-		if($skillEntity){
-			return $skillEntity;
-		}else{
-			$fullEntName = "\\Fisdap\\Entity\\" . $type;
-			return new $fullEntName();
-		}
-	}
+    private function getSkillEntity($type, $id)
+    {
+        $skillEntity = \Fisdap\EntityUtils::getEntity($type, $id);
+        if ($skillEntity) {
+            return $skillEntity;
+        } else {
+            $fullEntName = "\\Fisdap\\Entity\\" . $type;
+            return new $fullEntName();
+        }
+    }
 
-	/**
-	 * Check to see if a shift has been locked
-	 * @param integer $shiftId the ID of the shift
-	 */
-	private function checkPermissions($shiftId)
-	{
-		$shift = \Fisdap\EntityUtils::getEntity('ShiftLegacy', $shiftId);
+    /**
+     * Check to see if a shift has been locked
+     * @param integer $shiftId the ID of the shift
+     */
+    private function checkPermissions($shiftId)
+    {
+        $shift = \Fisdap\EntityUtils::getEntity('ShiftLegacy', $shiftId);
 
-		if ($this->user->getCurrentRoleName() == 'student') {
-			if ($shift->locked) {
-				$this->displayError("This shift has been locked. In order to add patient care information, please contact your instructor in order to unlock it.");
-			}
-		}
-	}
+        if ($this->user->getCurrentRoleName() == 'student') {
+            if ($shift->locked) {
+                $this->displayError("This shift has been locked. In order to add patient care information, please contact your instructor in order to unlock it.");
+            }
+        }
+    }
 
     /**
      * Get an instance of the student picker with some default settings
@@ -1612,10 +1614,10 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
         if (empty($picklistOptions)) {
             $picklistOptions = array(
                 'mode' => 'single',
-                'loadJSCSS' => TRUE,
-                'loadStudents' => TRUE,
-                'useSessionFilters' => TRUE,
-                'longLabel' => TRUE
+                'loadJSCSS' => true,
+                'loadStudents' => true,
+                'useSessionFilters' => true,
+                'longLabel' => true
             );
         }
 
@@ -1652,5 +1654,4 @@ class SkillsTracker_ShiftsController extends Fisdap_Controller_SkillsTracker_Pri
         }
         return $attachments;
     }
-
 }

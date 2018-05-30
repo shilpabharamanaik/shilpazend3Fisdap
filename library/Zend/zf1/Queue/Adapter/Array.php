@@ -243,7 +243,6 @@ class Zend_Queue_Adapter_Array extends Zend_Queue_Adapter_AdapterAbstract
                     $data[] = $msg;
                     $count++;
                 }
-
             }
         }
 

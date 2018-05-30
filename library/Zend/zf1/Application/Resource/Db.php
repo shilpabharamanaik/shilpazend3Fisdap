@@ -141,7 +141,7 @@ class Zend_Application_Resource_Db extends Zend_Application_Resource_ResourceAbs
         ) {
             $this->_db = Zend_Db::factory($adapter, $this->getParams());
 
-            if ($this->_db instanceof Zend_Db_Adapter_Abstract 
+            if ($this->_db instanceof Zend_Db_Adapter_Abstract
                 && $this->isDefaultTableAdapter()
             ) {
                 Zend_Db_Table::setDefaultAdapter($this->_db);
@@ -185,7 +185,7 @@ class Zend_Application_Resource_Db extends Zend_Application_Resource_ResourceAbs
                     $metadataCache = $cacheManager->getCache($cache);
                 }
             }
-        } else if ($cache instanceof Zend_Cache_Core) {
+        } elseif ($cache instanceof Zend_Cache_Core) {
             $metadataCache = $cache;
         }
 

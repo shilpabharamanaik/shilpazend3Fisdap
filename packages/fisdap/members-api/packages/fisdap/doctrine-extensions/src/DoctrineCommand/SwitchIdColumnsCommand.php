@@ -21,7 +21,7 @@ class SwitchIdColumnsCommand extends Command
 {
     use EntityModificationUtilities;
 
-    CONST BACKUP_PROPERTY_PREFIX = 'uuidbackup_';
+    const BACKUP_PROPERTY_PREFIX = 'uuidbackup_';
 
     /**
      * @var array Array of target entities for filling UUID data
@@ -36,12 +36,12 @@ class SwitchIdColumnsCommand extends Command
     /**
      * @var bool Should we find and fill columns that represent doctrine relationships to the target column?
      */
-    protected $doRelationships = FALSE;
+    protected $doRelationships = false;
 
     /**
      * @var bool Should we actually write new entity files?
      */
-    protected $fileChanges = TRUE;
+    protected $fileChanges = true;
 
     /**
      * @var string Any migration code generated during entity modification for *applying* the migration
@@ -82,7 +82,8 @@ class SwitchIdColumnsCommand extends Command
             ))
             ->addOption('do-relationships', null, InputOption::VALUE_NONE, 'Should we find and switch ID columns for entities that are related to the target entities?')
             ->addOption('no-file-changes', null, InputOption::VALUE_NONE, 'If set, do not actually make file changes. Useful for testing')
-            ->setHelp(<<<EOT
+            ->setHelp(
+                <<<EOT
 Set a new column as the ID column for entities
 EOT
             );
@@ -102,10 +103,10 @@ EOT
             $this->newIdPropertyName = $input->getArgument('new-id-property-name');
         }
         if ($input->getOption('no-file-changes')) {
-            $this->fileChanges = FALSE; // do not make file changes, ie testing mode
+            $this->fileChanges = false; // do not make file changes, ie testing mode
         }
         if ($input->getOption('do-relationships')) {
-            $this->doRelationships = TRUE;
+            $this->doRelationships = true;
         }
 
         // CONSTRUCTION STUFF
@@ -127,7 +128,7 @@ EOT
 
 
         // DO WORK
-        foreach($this->targetEntities as $entityClass) {
+        foreach ($this->targetEntities as $entityClass) {
             // Load the entity's class file
             $entityReflection = new \ReflectionClass($entityClass);
             $entityCodeString = $this->readEntityFileFromReflection($entityReflection);
@@ -174,9 +175,9 @@ EOT
                         // MYSQL: Make migration to rename columns\
                         $relatedTableName = $this->allMetadata[$relatedEntityClass]->getTableName();
                         // need: the *column name* of the *Existing* relationship ID property, ie shift_id
-                        $propertyColumnName = $this->getPropertyColumnName($property, $relatedEntityClass, TRUE);
+                        $propertyColumnName = $this->getPropertyColumnName($property, $relatedEntityClass, true);
                         $constraints = $this->getForeignKeyConstraintsDirectly($relatedTableName, $propertyColumnName);
-                        $this->generateRelatedSchemaChangeMigrationCode($constraints, $relatedTableName, $propertyColumnName, $property . '_', FALSE);
+                        $this->generateRelatedSchemaChangeMigrationCode($constraints, $relatedTableName, $propertyColumnName, $property . '_', false);
 
                         // MODIFY ENTITY CODE
                         $relatedEntityReflection = new \ReflectionClass($relatedEntityClass);
@@ -192,7 +193,6 @@ EOT
                         } else {
                             //$output->writeln($relatedEntityCodeString);
                         }
-
                     }
                 }
             }
@@ -208,7 +208,7 @@ EOT
             $this->createDoctrineMigrationFile(
                 $this->migrationUpCode,
                 $this->migrationDownCode,
-                FALSE /// do not use percona-online-schema-change
+                false /// do not use percona-online-schema-change
             );
         }
     }
@@ -220,7 +220,8 @@ EOT
      * @param $entityCodeString string PHP code representing the entity class
      * @return string the modified Entity code
      */
-    private function removeOldIdProperty($oldPropertyName, $entityCodeString) {
+    private function removeOldIdProperty($oldPropertyName, $entityCodeString)
+    {
         // Find where the property is in the string
         $oldPropertyString = 'protected $' . $oldPropertyName . ';';
         $propertyPosition = stripos($entityCodeString, $oldPropertyString);
@@ -257,7 +258,8 @@ EOT
      *
      * @return string the modified Entity code
      */
-    private function renameNewIdPropertyToOld($oldPropertyName, $oldColumnName, $entityClass, $entityCodeString) {
+    private function renameNewIdPropertyToOld($oldPropertyName, $oldColumnName, $entityClass, $entityCodeString)
+    {
         // Change name of the property
         $newPropertyString = 'protected $' . $this->newIdPropertyName . ';';
         $renamedNewPropertyString = 'protected $' . $oldPropertyName . ';';
@@ -307,7 +309,8 @@ EOT
      * @param $entityCodeString string PHP code representing the entity class
      * @return string the modified Entity code
      */
-    private function addIdAnnotationToNewIdProperty($entityCodeString) {
+    private function addIdAnnotationToNewIdProperty($entityCodeString)
+    {
         // find the position of the new ID property
         $newPropertyString = 'protected $' . $this->newIdPropertyName . ';';
         $newPropertyPos = stripos($entityCodeString, $newPropertyString);
@@ -340,7 +343,8 @@ EOT
      * @param $entityCodeString string PHP code representing the entity class
      * @return string the modified Entity code
      */
-    private function updatePrePersistMethodToUseNewIdProperty($oldPropertyName, $entityCodeString) {
+    private function updatePrePersistMethodToUseNewIdProperty($oldPropertyName, $entityCodeString)
+    {
         // find location of generateUuidLifecycleCallback() method
         $prepersistFuncPosition = stripos($entityCodeString, "function generateUuidLifecycleCallback(");
 
@@ -365,7 +369,8 @@ EOT
      * @param $oldIdColumn
      * @param string $propertyPrefix
      */
-    private function generateTargetSchemaChangeMigrationCode($constraints, $tableName, $oldIdColumn, $propertyPrefix = '') {
+    private function generateTargetSchemaChangeMigrationCode($constraints, $tableName, $oldIdColumn, $propertyPrefix = '')
+    {
         $constraintCodes = $this->generateForeignKeyMigrationCode($constraints);
         $dropConstraintSQL = '';
         foreach ($constraintCodes['drop'] as $table => $statements) {
@@ -428,7 +433,8 @@ EOT;
      * @param $oldIdColumn
      * @param string $propertyPrefix
      */
-    private function generateRelatedSchemaChangeMigrationCode($constraints, $tableName, $oldIdColumn, $propertyPrefix = '') {
+    private function generateRelatedSchemaChangeMigrationCode($constraints, $tableName, $oldIdColumn, $propertyPrefix = '')
+    {
         $constraintCodes = $this->generateForeignKeyMigrationCode($constraints);
         $addConstraintsSQL = '';
         foreach ($constraintCodes['add'] as $table => $statements) {
@@ -481,7 +487,8 @@ EOT;
      * @param $column
      * @return string
      */
-    private function getMySqlColumnDefinition($table, $column) {
+    private function getMySqlColumnDefinition($table, $column)
+    {
         $sql = "SELECT COLUMN_TYPE, IS_NULLABLE, COLUMN_DEFAULT
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE TABLE_SCHEMA = 'FISDAP'
@@ -506,10 +513,11 @@ AND COLUMN_NAME = '{$column}'";
      * @param $constraints array Nice constraints array
      * @return array
      */
-    private function generateForeignKeyMigrationCode($constraints) {
+    private function generateForeignKeyMigrationCode($constraints)
+    {
         $code = ['drop' => [], 'add' => []];
-        foreach($constraints as $constraintTable => $constraintProperties) {
-            foreach($constraintProperties as $foreignKeyInfo) {
+        foreach ($constraints as $constraintTable => $constraintProperties) {
+            foreach ($constraintProperties as $foreignKeyInfo) {
                 $code['drop'][$constraintTable][] = "DROP FOREIGN KEY {$foreignKeyInfo['constraintName']}";
                 $code['add'][$constraintTable][] = "ADD CONSTRAINT {$foreignKeyInfo['constraintName']} FOREIGN KEY ({$foreignKeyInfo['columnName']}) REFERENCES {$foreignKeyInfo['referencedTable']}({$foreignKeyInfo['referencedColumn']})";
             }
@@ -525,7 +533,8 @@ AND COLUMN_NAME = '{$column}'";
      * @param $alter
      * @return string
      */
-    private function makeConventionalForeignKeyMigrationString($table, $alter) {
+    private function makeConventionalForeignKeyMigrationString($table, $alter)
+    {
         return "        \$this->addSql('ALTER TABLE {$table} {$alter}');";
     }
 

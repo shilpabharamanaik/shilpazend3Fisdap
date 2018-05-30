@@ -34,8 +34,7 @@ require_once 'Zend/Service/DeveloperGarden/Request/RequestAbstract.php';
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Service_DeveloperGarden_Request_SendSms_SendSmsAbstract
-    extends Zend_Service_DeveloperGarden_Request_RequestAbstract
+abstract class Zend_Service_DeveloperGarden_Request_SendSms_SendSmsAbstract extends Zend_Service_DeveloperGarden_Request_RequestAbstract
 {
     /**
      * the number or numbers to receive this sms

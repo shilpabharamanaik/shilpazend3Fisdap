@@ -2,7 +2,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrinePermissionRepository
  *
@@ -21,7 +20,7 @@ class DoctrinePermissionRepository extends DoctrineRepository implements Permiss
     public function getPermissions($exclude = 0, $include = false)
     {
         $results = $this->findAll();
-        if($include){
+        if ($include) {
             $includedResults = array();
         }
 
@@ -30,17 +29,16 @@ class DoctrinePermissionRepository extends DoctrineRepository implements Permiss
             foreach ($results as $i => $result) {
                 if ($result->bit_value & $exclude) {
                     unset($results[$i]);
-                    if($include){
+                    if ($include) {
                         $includedResults[] = $result;
                     }
                 }
             }
         }
 
-        if($include){
+        if ($include) {
             return $includedResults;
-        }
-        else {
+        } else {
             return $results;
         }
     }
@@ -125,7 +123,7 @@ class DoctrinePermissionRepository extends DoctrineRepository implements Permiss
     {
         $rawPerms = $this->getPermissionNames();
         $formOptions = array();
-        foreach($rawPerms as $perm){
+        foreach ($rawPerms as $perm) {
             $formOptions[$perm[$keyField]] = $perm[$valueField];
         }
         return $formOptions;
@@ -145,7 +143,7 @@ class DoctrinePermissionRepository extends DoctrineRepository implements Permiss
     {
         $rawPerms = $this->getPermissionNames();
         $formOptions = array();
-        foreach($rawPerms as $perm){
+        foreach ($rawPerms as $perm) {
             $formOptions[$perm[$categoryNameField]][$perm[$keyField]] = $perm[$valueField];
         }
         return $formOptions;

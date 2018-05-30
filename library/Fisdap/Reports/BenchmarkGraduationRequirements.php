@@ -17,19 +17,19 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
         'shiftInformationForm' => array(
             'title' => 'Select shift information',
             'options' => array(
-                'pickAuditStatus' => TRUE
+                'pickAuditStatus' => true
             )
         ),
         'multistudentPicklist' => array(
             'title' => 'Select one or more student(s)',
             'options' =>  array(
                 'mode' => 'multiple',
-                'loadJSCSS' => TRUE,
-                'loadStudents' => TRUE,
-                'showTotal' => TRUE,
-                'studentVersion' => TRUE,
-                'includeAnon' => TRUE,
-                'useSessionFilters' => TRUE,
+                'loadJSCSS' => true,
+                'loadStudents' => true,
+                'showTotal' => true,
+                'studentVersion' => true,
+                'includeAnon' => true,
+                'useSessionFilters' => true,
                 'sessionNamespace' => "ReportStudentFilter",
             ),
         )
@@ -42,7 +42,8 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
     //protected $logger;
 
     // Constructor
-    public function __construct($report, $config = array()) {
+    public function __construct($report, $config = array())
+    {
         /* Initialize action controller here */
         parent::__construct($report, $config);
 
@@ -62,7 +63,7 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
         $subject_types = $program_settings->subject_types_in_mygoals;
 
         $chosen_subject_types = array();
-        foreach ($subject_types as $subject){
+        foreach ($subject_types as $subject) {
             $chosen_subject_types[] = $subject;
         }
         $this->formComponents['shiftInformationForm']['options']['selected']['types'] = $chosen_subject_types;
@@ -78,9 +79,10 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
      * OR return a string and it will be rendered as HTML
      * @return array
      */
-    public function runReport() {
+    public function runReport()
+    {
         // Set the mysql timeout higher
-        \Fisdap\EntityUtils::getEntityManager()->getConnection()->exec( "SET SESSION wait_timeout = 100000" );
+        \Fisdap\EntityUtils::getEntityManager()->getConnection()->exec("SET SESSION wait_timeout = 100000");
         \Zend_Registry::get('db')->query("SET SESSION wait_timeout = 100000");
 
         // DEBUG
@@ -106,15 +108,15 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
         $rawStudents = \Fisdap\Entity\StudentLegacy::getBenchmarkStudents($dataOptions['startDate']->format('Y-m-d'), $dataOptions['endDate']->format('Y-m-d'));
 
         $dataOptions['startDate'] = new \DateTime('15 years ago');
-		$dataOptions['endDate'] = new \DateTime();
+        $dataOptions['endDate'] = new \DateTime();
 
         $cleanedStudents = array();
 
-        foreach($rawStudents as $label => $student ) {
+        foreach ($rawStudents as $label => $student) {
             $cleanedStudents[] = $student['Student_id'];
         }
 
-        $this->config['multistudent_picklist_selected'] = implode(",",$cleanedStudents);
+        $this->config['multistudent_picklist_selected'] = implode(",", $cleanedStudents);
 
         $students = $this->getMultiStudentData($sortableByLast);
         $goalsResults = array();
@@ -140,11 +142,9 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
         foreach ($goalCategories as $goalCategory) {
             // var_dump($goalCategory);
 
-            if($goalCategory == "Airway Management"){
+            if ($goalCategory == "Airway Management") {
                 $this->getAirwayManagementTable($students, $goalsResults);
-            }
-            else {
-
+            } else {
                 $title = $goalCategory;
 
                 // set up the crazy table header
@@ -185,7 +185,7 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
                 if (!empty($subHeaderRow)) {
                     $table_data['head'][] = $subHeaderRow;
                 } else {
-                    foreach($table_data['head'][0] as $i => $headerRow) {
+                    foreach ($table_data['head'][0] as $i => $headerRow) {
                         $table_data['head'][0][$i]["rowspan"] = 1;
                         //$headerRow['rowspan'] = 1;
                     }
@@ -268,8 +268,7 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
         $am_goal = 0;
 
         // step through each of our students to build the rows of our single table
-        foreach($students as $student_id => $student_display_name_options){
-
+        foreach ($students as $student_id => $student_display_name_options) {
             $am_data = $goal_results[$student_id]['Airway Management'];
             $am_goal = $am_data['number_required'];
 
@@ -301,7 +300,6 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
 
 
             $table_body[] = $student_row;
-
         } // end foreach student
 
         // make the table and add it to the report
@@ -325,7 +323,7 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
 
         $data_table = array('title' => $title,'nullMsg' => $null_msg,'head' => array('0' => $super_header, '1' => $sub_header),'body' => $table_body);
 
-        if(count($students) > 1) {
+        if (count($students) > 1) {
             $footer = array();
             $footer[] = array("data" => "Averages:", "class" => "right");
             $footer[] = array("data" => "", "class" => "center");
@@ -344,10 +342,10 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
         $data_table['foot']['notes'] = $footer_note;
 
         $this->data[] = array("type" => "table","content" => $data_table);
-
     }
 
-    public function goalSetTableValidate($info) {
+    public function goalSetTableValidate($info)
+    {
         // make sure we have a goal set
         $goalSet = $this->config["selected-goalset"];
         if ($goalSet <= 0) {
@@ -362,7 +360,8 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
      * Useful in listing saved Report Configurations as a saved report history
      * Override this if your report should display something different!
      */
-    public function getShortConfigLabel() {
+    public function getShortConfigLabel()
+    {
         //var_export($this->config);
         // get the student name or # of students
 
@@ -376,7 +375,7 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
             if ($student) {
                 $studentsLabel = $student->user->getName();
             }
-        } else if (isset($this->config['multistudent_picklist_selected'])) {
+        } elseif (isset($this->config['multistudent_picklist_selected'])) {
             $students = explode(",", $this->config['multistudent_picklist_selected']);
             if (count($students) > 1) {
                 $studentsLabel = count($students) . ' students';
@@ -385,7 +384,9 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
                 $studentsLabel = $student->user->getName();
             }
 
-            if ($this->config['anonymous'] == 1) { $studentsLabel .= ", anon."; }
+            if ($this->config['anonymous'] == 1) {
+                $studentsLabel .= ", anon.";
+            }
         }
 
         // get the goalset
@@ -393,7 +394,7 @@ class Fisdap_Reports_BenchmarkGraduationRequirements extends Fisdap_Reports_Repo
         $goalSet = \Fisdap\EntityUtils::getEntity('GoalSet', $goalSetId);
 
         $goalsLabel = '';
-        if(strlen(trim($goalSet->name))>0) {
+        if (strlen(trim($goalSet->name))>0) {
             $goalsLabel = ", " . $goalSet->name;
         }
 

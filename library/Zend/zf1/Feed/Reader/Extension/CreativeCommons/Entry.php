@@ -70,13 +70,15 @@ class Zend_Feed_Reader_Extension_CreativeCommons_Entry extends Zend_Feed_Reader_
 
         if ($list->length) {
             foreach ($list as $license) {
-                    $licenses[] = $license->nodeValue;
+                $licenses[] = $license->nodeValue;
             }
 
             $licenses = array_unique($licenses);
         } else {
             $cc = new Zend_Feed_Reader_Extension_CreativeCommons_Feed(
-                $this->_domDocument, $this->_data['type'], $this->_xpath
+                $this->_domDocument,
+                $this->_data['type'],
+                $this->_xpath
             );
             $licenses = $cc->getLicenses();
         }

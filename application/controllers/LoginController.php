@@ -8,7 +8,6 @@ use Fisdap\JBL\Authentication\JblRestApiUserAuthentication;
 use Fisdap\JBL\Authentication\Exceptions\AuthenticationFailedException;
 use Fisdap\Members\Lti\Session\LtiToolProvidersSession;
 
-
 /**
  * Class LoginController
  */
@@ -62,7 +61,6 @@ final class LoginController extends CommonAuthController
                 $url = User::getLoggedInUser()->getRedirectionPage();
                 $this->redirect($url);
             }
-
         }
 
         $this->view->form = $form = new Fisdap_Form_Login;
@@ -84,7 +82,6 @@ final class LoginController extends CommonAuthController
                 // authenticate via Fisdap db
                 $result = $this->authenticate($username, $password);
                 if ($result->isValid()) {
-
                     $user = $this->userRepository->getOneByUsername($username);
 
                     $this->setCurrentUserContext($user);
@@ -105,7 +102,7 @@ final class LoginController extends CommonAuthController
                     if ($user) {
                         // authenticate via Fisdap db
                         // the third argument here is saying that the password is already hashed
-                        $result = $this->authenticate($user->username, $user->password, TRUE);
+                        $result = $this->authenticate($user->username, $user->password, true);
                         if ($result->isValid()) {
                             $this->setCurrentUserContext($user);
                             $this->currentUser->setUser($user);
@@ -117,7 +114,6 @@ final class LoginController extends CommonAuthController
                     $errorMsg = "Please set up your Fisdap account by logging in through Navigate.";
                     $form->setDescription($errorMsg);
                     return;
-
                 } catch (Exception $e) {
                     // if we have a problem connecting to the JBL authentication server, show that message
                     if (!($e instanceof AuthenticationFailedException)) {
@@ -193,7 +189,6 @@ final class LoginController extends CommonAuthController
                 $url = User::getLoggedInUser()->getRedirectionPage();
                 $this->redirect($url);
             }
-
         } else {
             if ($redirect = $this->getParam('redirect')) {
                 switch ($redirect) {
@@ -217,7 +212,7 @@ final class LoginController extends CommonAuthController
                 }
                 $this->redirect($redirectUrl);
                 return;
-            } else if ($this->globalSession->newProgramRedirect == true) {
+            } elseif ($this->globalSession->newProgramRedirect == true) {
                 $this->redirect('/new');
                 return;
             }
@@ -251,7 +246,6 @@ final class LoginController extends CommonAuthController
 
                 if ($request->isPost() || $username) {
                     if ($form->isValid($request->getPost()) || $username) {
-
                         $formValues = $form->getValues();
 
                         if (!$username) {
@@ -261,12 +255,11 @@ final class LoginController extends CommonAuthController
                         $newUser = User::getByUsername($username);
                         if ($newUser->id) {
                             if (Fisdap_Auth_Adapter_Db::masquerade($newUser)) {
-
                                 $location = 'internal/user_switcher/switch.php?new_username=' . $username;
 
                                 $this->_redirectToLegacy($location);
 
-                                //$this->processSuccessfulLogin($password, $formValues['ImSecure']); // send to fisdap-old integration and redirect
+                            //$this->processSuccessfulLogin($password, $formValues['ImSecure']); // send to fisdap-old integration and redirect
                             } else {
                                 $form->setDescription('masquerade failed!!!!');
                             }

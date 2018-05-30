@@ -34,12 +34,12 @@ class SkillsTracker_View_Helper_temperatureElement extends Zend_View_Helper_Form
         //get data from values
         $temperature = isset($value['temperature']) ? $value['temperature'] : "";
         $units = isset($value['units']) ? $value['units'] : "F";
-		
-		//get options for dropdown
-		$options = \Fisdap\Entity\VitalPulseQuality::getFormOptions();
+        
+        //get options for dropdown
+        $options = \Fisdap\Entity\VitalPulseQuality::getFormOptions();
     
-		$this->html .= $this->view->formText($name . "[temperature]", $temperature, array('temperature' => $attribs['temperature'])) . " ";
-		$this->html .= $this->view->formSelect($name . "[units]", $units, array(), array('F' => 'F', 'C' => 'C'));
+        $this->html .= $this->view->formText($name . "[temperature]", $temperature, array('temperature' => $attribs['temperature'])) . " ";
+        $this->html .= $this->view->formSelect($name . "[units]", $units, array(), array('F' => 'F', 'C' => 'C'));
         
         return $this->html;
     }

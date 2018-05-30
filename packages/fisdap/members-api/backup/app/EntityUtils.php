@@ -1,6 +1,5 @@
 <?php namespace Fisdap;
 
-
 /**
  * Collection of static methods handy for Entities.
  *
@@ -27,7 +26,7 @@ class EntityUtils
      */
     public static function getEntityMetadata($className)
     {
-        if(!class_exists($className)){
+        if (!class_exists($className)) {
             // Try to add on the namespace, see if that helps...
             $className = self::getFullEntityName($className);
         }
@@ -55,7 +54,7 @@ class EntityUtils
     public static function getEntity($entityName, $id=false)
     {
         // id can be array of ids too
-        if(is_array($id)) {
+        if (is_array($id)) {
             $entities = array();
             foreach ($id as $i => $oneId) {
                 $entities[$i] = self::getEntity($entityName, $oneId);
@@ -66,9 +65,9 @@ class EntityUtils
 
         $entityManager = self::getEntityManager();
 
-        if(strpos($entityName, "\\") === false){
+        if (strpos($entityName, "\\") === false) {
             $fullEntityName = self::getFullEntityName($entityName);
-        }else{
+        } else {
             $fullEntityName = $entityName;
         }
 
@@ -164,7 +163,7 @@ class EntityUtils
      */
     public static function isDatabaseField($entityClass, $field)
     {
-        if(!isset(self::$dbFields[$entityClass])) {
+        if (!isset(self::$dbFields[$entityClass])) {
             self::loadEntityMetadataReflfield($entityClass);
         }
 
@@ -203,7 +202,6 @@ class EntityUtils
      */
     protected static function getFullEntityName($baseName)
     {
-
         if (strpos($baseName, "Fisdap\\Entity\\") === false) {
             return "\\Fisdap\\Entity\\" . $baseName;
         }
@@ -230,7 +228,7 @@ class EntityUtils
         // First, check to see if the entity has a "name" field...
         $metadata = self::getEntityMetadata($entityName);
 
-        if(array_key_exists('name', $metadata->fieldNames)){
+        if (array_key_exists('name', $metadata->fieldNames)) {
             $entName = self::getFullEntityName($entityName);
 
             $dql = "SELECT e FROM $entName e WHERE e.name LIKE :name";
@@ -240,7 +238,7 @@ class EntityUtils
 
             $result = $query->getResult();
 
-            if($result){
+            if ($result) {
                 return array_pop($result);
             }
         }
@@ -326,7 +324,7 @@ class EntityUtils
     public static function entityAddMappedFields(&$fields, $metadata)
     {
         // find association field that are stored separately
-        foreach($metadata->associationMappings as $fieldName => $props) {
+        foreach ($metadata->associationMappings as $fieldName => $props) {
             if (isset($props['joinColumns'])) {
                 foreach ($props['joinColumns'] as $cols) {
                     if (!isset($metadata->columnNames[$cols['name']])) {
@@ -340,7 +338,7 @@ class EntityUtils
 
     public static function getAllData($entity)
     {
-        if(!class_exists($entity)){
+        if (!class_exists($entity)) {
             // Try to add on the namespace, see if that helps...
             $entity = self::getFullEntityName($entity);
         }
@@ -357,8 +355,9 @@ class EntityUtils
      * @param $entity
      * @return array
      */
-    public static function getAllDataArray($entity) {
-        if(!class_exists($entity)){
+    public static function getAllDataArray($entity)
+    {
+        if (!class_exists($entity)) {
             // Try to add on the namespace, see if that helps...
             $entity = self::getFullEntityName($entity);
         }

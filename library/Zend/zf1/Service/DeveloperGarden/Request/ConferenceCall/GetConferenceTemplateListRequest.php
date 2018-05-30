@@ -33,8 +33,7 @@ require_once 'Zend/Service/DeveloperGarden/Request/RequestAbstract.php';
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Request_ConferenceCall_GetConferenceTemplateListRequest
-    extends Zend_Service_DeveloperGarden_Request_RequestAbstract
+class Zend_Service_DeveloperGarden_Request_ConferenceCall_GetConferenceTemplateListRequest extends Zend_Service_DeveloperGarden_Request_RequestAbstract
 {
     /**
      * unique owner id

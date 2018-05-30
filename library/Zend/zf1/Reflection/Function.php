@@ -77,7 +77,8 @@ class Zend_Reflection_Function extends ReflectionFunction
      */
     public function getContents($includeDocblock = true)
     {
-        return implode("\n",
+        return implode(
+            "\n",
             array_splice(
                 file($this->getFileName()),
                 $this->getStartLine($includeDocblock),

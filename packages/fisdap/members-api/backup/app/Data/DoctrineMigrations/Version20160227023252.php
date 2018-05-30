@@ -3,10 +3,9 @@
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
-
 /**
  * Adding service accounts and permissions
- * 
+ *
  * @author Ben Getsug <bgetsug@fisdap.net>
  */
 class Version20160227023252 extends AbstractMigration

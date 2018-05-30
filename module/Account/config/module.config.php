@@ -46,7 +46,7 @@ return [
                     ],
                 ],
             ],
-			'newinstructor' => [
+            'newinstructor' => [
                 'type'    => Segment::class,
                 'options' => [
                     'route'    => '/account/new/instructor',
@@ -56,7 +56,7 @@ return [
                     ],
                 ],
             ],
-			'research-consent' => [
+            'research-consent' => [
                 'type'    => Segment::class,
                 'options' => [
                     'route' => '/account/new/research-consent',
@@ -76,7 +76,7 @@ return [
         'factories' => [
             Controller\AccountController::class => Controller\Factory\AccountControllerFactory::class,
             Controller\InstructorController::class => Controller\Factory\InstructorControllerFactory::class,
-			Controller\StudentController::class => Controller\Factory\StudentControllerFactory::class,
+            Controller\StudentController::class => Controller\Factory\StudentControllerFactory::class,
         ],
     ],
 

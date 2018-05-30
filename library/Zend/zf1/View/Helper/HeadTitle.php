@@ -195,7 +195,7 @@ class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_
 
         $items = array();
 
-        if($this->_translate && $translator = $this->getTranslator()) {
+        if ($this->_translate && $translator = $this->getTranslator()) {
             foreach ($this as $item) {
                 $items[] = $translator->translate($item, $locale);
             }
@@ -207,11 +207,11 @@ class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_
 
         $separator = $this->getSeparator();
         $output = '';
-        if(($prefix = $this->getPrefix())) {
+        if (($prefix = $this->getPrefix())) {
             $output  .= $prefix;
         }
         $output .= implode($separator, $items);
-        if(($postfix = $this->getPostfix())) {
+        if (($postfix = $this->getPostfix())) {
             $output .= $postfix;
         }
 

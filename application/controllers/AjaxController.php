@@ -6,7 +6,6 @@ use Fisdap\EntityUtils;
 use Fisdap\Api\Users\CurrentUser\CurrentUser;
 use Fisdap\Entity\NotificationUserView;
 
-
 /**
  * Class to handle all AJAX requests for the moment
  * @package Fisdap
@@ -35,7 +34,7 @@ class AjaxController extends Fisdap_Controller_Base
             foreach ($students as $student) {
                 $users[] = array('value' => $student->getLongName(), 'id' => $student->id);
             }
-        } else if ($role == "instructor") {
+        } elseif ($role == "instructor") {
             $instructors = \Fisdap\EntityUtils::getRepository('User')->findInstructors($this->user->getProgramId(), $term, 10);
 
             foreach ($instructors as $instructor) {
@@ -283,7 +282,7 @@ class AjaxController extends Fisdap_Controller_Base
             $session->selectedSection = $filters['section'];
 
             // set the flag so we know this namespace has been written to at least once
-            $session->activated = TRUE;
+            $session->activated = true;
         }
 
         $students = \Fisdap\EntityUtils::getRepository('User')->getAllStudentsByProgram(\Fisdap\Entity\User::getLoggedInUser()->getProgramId(), $filters);
@@ -333,16 +332,16 @@ class AjaxController extends Fisdap_Controller_Base
             // default maximum number of attempts left (but just hasn't accessed moodle yet)
             if ($moodleQuizId) {
                 // check if the user matches against at least one of the products associated with this quiz
-                $hasProductAccess = FALSE;
+                $hasProductAccess = false;
                 if (count($moodleTestData->products) > 0) {
                     foreach ($moodleTestData->products as $product) {
                         if ($student['configuration'] & $product->configuration) {
-                            $hasProductAccess = TRUE;
+                            $hasProductAccess = true;
                         }
                     }
                 } else {
                     // there is no product associated wtih the moodletestdata entity, so we assume everyone has access
-                    $hasProductAccess = TRUE;
+                    $hasProductAccess = true;
                 }
 
                 if ($hasProductAccess) {
@@ -387,7 +386,6 @@ class AjaxController extends Fisdap_Controller_Base
             // reset the portfolio student id
             $portfolioNamespace = new Zend_Session_Namespace("portfolioVars");
             $portfolioNamespace->studentId = null;
-
         }
         $this->_helper->json(true);
     }
@@ -456,7 +454,7 @@ class AjaxController extends Fisdap_Controller_Base
             }
 
             // Set some test results display options based on values from MoodleTestData
-            if ($test->help_text != '' && $test->help_text != NULL) {
+            if ($test->help_text != '' && $test->help_text != null) {
                 $overallDisplayOptions[$selectedTestId]['customHelpBubble'] = $test->help_text;
             }
             $overallDisplayOptions[$selectedTestId]['showTotals'] = $test->show_totals;
@@ -540,7 +538,6 @@ class AjaxController extends Fisdap_Controller_Base
         header('Content-type: application/javascript');
         echo $jsonpCallback . "(" . json_encode(true) . ");";
         return;
-
     }
 
     public function buildSortFunction($field)
@@ -558,7 +555,7 @@ class AjaxController extends Fisdap_Controller_Base
         //Check to make sure the program exists and does not already have definitions
         if (!$program->id) {
             $success = 0;
-        } else if (count($program->practice_definitions)) {
+        } elseif (count($program->practice_definitions)) {
             $success = 0;
         } else {
             $populator = new Util_PracticePopulator();
@@ -721,5 +718,4 @@ class AjaxController extends Fisdap_Controller_Base
         $email = $this->getParam('email');
         $this->_helper->json($this->view->fisdapGravatar($email));
     }
-
 }

@@ -6,7 +6,6 @@ use Fisdap\Logging\ProcessesDebugLogs;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Http\Request;
 
-
 /**
  * Facilitates adding debugging info to all responses
  *
@@ -42,8 +41,10 @@ class DebugResponse
         $response = $next($request);
 
         // optionally add log messages
-        if ($this->container->bound(DebugMonologProcessor::class) and in_array('application/json',
-                $request->getAcceptableContentTypes())
+        if ($this->container->bound(DebugMonologProcessor::class) and in_array(
+            'application/json',
+                $request->getAcceptableContentTypes()
+        )
         ) {
             /** @var DebugMonologProcessor $logCollector */
             $logCollector = $this->container->make(ProcessesDebugLogs::class);

@@ -174,9 +174,9 @@ class Zend_Locale_Math
     public static function normalize($value)
     {
         $convert = localeconv();
-        $value = str_replace($convert['thousands_sep'], "",(string) $value);
+        $value = str_replace($convert['thousands_sep'], "", (string) $value);
         $value = str_replace($convert['positive_sign'], "", $value);
-        $value = str_replace($convert['decimal_point'], ".",$value);
+        $value = str_replace($convert['decimal_point'], ".", $value);
         if (!empty($convert['negative_sign']) and (strpos($value, $convert['negative_sign']))) {
             $value = str_replace($convert['negative_sign'], "", $value);
             $value = "-" . $value;

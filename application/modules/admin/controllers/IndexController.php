@@ -2,7 +2,6 @@
 
 class Admin_IndexController extends Fisdap_Controller_Staff
 {
-
     public function init()
     {
         parent::init();
@@ -32,7 +31,7 @@ class Admin_IndexController extends Fisdap_Controller_Staff
         //check for POST data
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $this->view->isPost = TRUE;
+            $this->view->isPost = true;
             $post = $request->getPost();
 
             $filters = array();
@@ -48,9 +47,8 @@ class Admin_IndexController extends Fisdap_Controller_Staff
             $end = new DateTime($filters['endDate']);
 
             $programs = \Fisdap\EntityUtils::getRepository('ProgramLegacy')->getProgramsByCreatedRange($start, $end);
-
         } else {
-            $this->view->isPost = FALSE;
+            $this->view->isPost = false;
         }
 
         $returnText = "";
@@ -96,7 +94,6 @@ class Admin_IndexController extends Fisdap_Controller_Staff
         }
 
         foreach ($programs as $program) {
-
             $returnText .= "<tr>";
 
             $returnText .= "<td class='id'>" . $program->id . "</td>";
@@ -117,7 +114,6 @@ class Admin_IndexController extends Fisdap_Controller_Staff
             }
 
             $returnText .= "</tr>";
-
         }
 
         $returnText .= "</tbody></table></div></div>";
@@ -215,13 +211,11 @@ class Admin_IndexController extends Fisdap_Controller_Staff
         // if this current logged in program is currently using Scheduler 2.0 and DOES NOT have an events,
         // their 'scheduler_beta' flagged can be switch off.
         if (\Fisdap\Entity\User::getLoggedInUser()->isStaff()) {
-
             $program = \Fisdap\Entity\User::getLoggedInUser()->getProgram();
             if (!$program->scheduler_beta) {
                 $this->displayError("This program is already using Scheduler 1.0.");
                 return;
             } else {
-
                 if (!\Fisdap\EntityUtils::getRepository('EventLegacy')->programHasEvents($program->id)) {
                     $program->scheduler_beta = 0;
                     $program->save();
@@ -261,7 +255,7 @@ class Admin_IndexController extends Fisdap_Controller_Staff
         //check for POST data
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $this->view->isPost = TRUE;
+            $this->view->isPost = true;
             $post = $request->getPost();
 
             // make sure form is valid
@@ -269,13 +263,12 @@ class Admin_IndexController extends Fisdap_Controller_Staff
                 $this->view->users = $form->process($post);
             }
         } else {
-            $this->view->isPost = FALSE;
+            $this->view->isPost = false;
         }
     }
 
     public function getUsersFromSearchAction()
     {
-
         $search = $this->_getParam('searchString');
         $users = \Fisdap\EntityUtils::getRepository('User')->searchUsers($search);
         $returnText = "";
@@ -390,9 +383,5 @@ class Admin_IndexController extends Fisdap_Controller_Staff
             </script>';
 
         return $returnText;
-
     }
 }
-
-
-

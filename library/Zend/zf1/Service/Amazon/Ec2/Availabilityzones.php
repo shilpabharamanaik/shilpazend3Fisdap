@@ -48,11 +48,11 @@ class Zend_Service_Amazon_Ec2_Availabilityzones extends Zend_Service_Amazon_Ec2_
         $params = array();
         $params['Action'] = 'DescribeAvailabilityZones';
 
-        if(is_array($zoneName) && !empty($zoneName)) {
-            foreach($zoneName as $k=>$name) {
+        if (is_array($zoneName) && !empty($zoneName)) {
+            foreach ($zoneName as $k=>$name) {
                 $params['ZoneName.' . ($k+1)] = $name;
             }
-        } elseif($zoneName) {
+        } elseif ($zoneName) {
             $params['ZoneName.1'] = $zoneName;
         }
 

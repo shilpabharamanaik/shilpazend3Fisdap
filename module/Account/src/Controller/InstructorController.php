@@ -127,8 +127,9 @@ class InstructorController extends AbstractActionController
         ]);
     }
 
-	 public function newinstructorAction(){
-	  //If we have a SN, we're activating an account with products
+    public function newinstructorAction()
+    {
+        //If we have a SN, we're activating an account with products
         /*if ($this->hasParam("sn")) {
             $this->view->pageTitle = "Activate Your Account";
             $serial = SerialNumberLegacy::getBySerialNumber($this->_getParam("sn"));
@@ -140,7 +141,7 @@ class InstructorController extends AbstractActionController
             }
 
             $this->view->accountDetails = $serial->getAccountDetails();*/
-             $form = new NewInstructorForm();
+        $form = new NewInstructorForm();
         /*} else {
             //Otherwise, we're already logged in, creating a free account
             $pageTitle = "Create a new Instructor";
@@ -166,10 +167,9 @@ class InstructorController extends AbstractActionController
                 }
             }
         }
-		 */
-		  return new ViewModel([
+         */
+        return new ViewModel([
             'form' => $form,
         ]);
-	 }
-
+    }
 }

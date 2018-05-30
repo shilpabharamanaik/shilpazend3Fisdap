@@ -9,7 +9,6 @@ use Fisdap\Data\Repository\Repository;
 use Fisdap\Entity\Notification;
 use Fisdap\Entity\UserContext;
 
-
 /**
  * Interface NotificationRepository
  *

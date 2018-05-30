@@ -130,28 +130,28 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
     /**
      * @return string
      */
-    public function getImgAlt ()
+    public function getImgAlt()
     {
         return $this->_imgAlt;
     }
     /**
      * @return string
      */
-    public function getStartImage ()
+    public function getStartImage()
     {
         return $this->_startImage;
     }
     /**
      * @return int
      */
-    public function getDotNoiseLevel ()
+    public function getDotNoiseLevel()
     {
         return $this->_dotNoiseLevel;
     }
     /**
      * @return int
      */
-    public function getLineNoiseLevel ()
+    public function getLineNoiseLevel()
     {
         return $this->_lineNoiseLevel;
     }
@@ -247,7 +247,7 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
      * @param string $startImage
      * @return Zend_Captcha_Image
      */
-    public function setStartImage ($startImage)
+    public function setStartImage($startImage)
     {
         $this->_startImage = $startImage;
         return $this;
@@ -259,7 +259,7 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
      * @param int $dotNoiseLevel
      * @return Zend_Captcha_Image
      */
-    public function setDotNoiseLevel ($dotNoiseLevel)
+    public function setDotNoiseLevel($dotNoiseLevel)
     {
         $this->_dotNoiseLevel = $dotNoiseLevel;
         return $this;
@@ -271,7 +271,7 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
      * @param int $lineNoiseLevel
      * @return Zend_Captcha_Image
      */
-    public function setLineNoiseLevel ($lineNoiseLevel)
+    public function setLineNoiseLevel($lineNoiseLevel)
     {
         $this->_lineNoiseLevel = $lineNoiseLevel;
         return $this;
@@ -367,7 +367,7 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
      * @param string $imgAlt
      * @return Zend_Captcha_Image
      */
-    public function setImgAlt ($imgAlt)
+    public function setImgAlt($imgAlt)
     {
         $this->_imgAlt = $imgAlt;
         return $this;
@@ -438,7 +438,7 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
         $id = parent::generate();
         $tries = 5;
         // If there's already such file, try creating a new ID
-        while($tries-- && file_exists($this->getImgDir() . $id . $this->getSuffix())) {
+        while ($tries-- && file_exists($this->getImgDir() . $id . $this->getSuffix())) {
             $id = $this->_generateRandomId();
             $this->_setId($id);
         }
@@ -489,11 +489,11 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
         $fsize = $this->getFontSize();
 
         $img_file   = $this->getImgDir() . $id . $this->getSuffix();
-        if(empty($this->_startImage)) {
+        if (empty($this->_startImage)) {
             $img        = imagecreatetruecolor($w, $h);
         } else {
             $img = imagecreatefrompng($this->_startImage);
-            if(!$img) {
+            if (!$img) {
                 require_once 'Zend/Captcha/Exception.php';
                 throw new Zend_Captcha_Exception("Can not load start image");
             }
@@ -508,12 +508,12 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
         $y = ($h - ($textbox[7] - $textbox[1])) / 2;
         imagefttext($img, $fsize, 0, $x, $y, $text_color, $font, $word);
 
-       // generate noise
+        // generate noise
         for ($i=0; $i<$this->_dotNoiseLevel; $i++) {
-           imagefilledellipse($img, mt_rand(0,$w), mt_rand(0,$h), 2, 2, $text_color);
+            imagefilledellipse($img, mt_rand(0, $w), mt_rand(0, $h), 2, 2, $text_color);
         }
-        for($i=0; $i<$this->_lineNoiseLevel; $i++) {
-           imageline($img, mt_rand(0,$w), mt_rand(0,$h), mt_rand(0,$w), mt_rand(0,$h), $text_color);
+        for ($i=0; $i<$this->_lineNoiseLevel; $i++) {
+            imageline($img, mt_rand(0, $w), mt_rand(0, $h), mt_rand(0, $w), mt_rand(0, $h), $text_color);
         }
 
         // transformed image
@@ -571,10 +571,10 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
 
         // generate noise
         for ($i=0; $i<$this->_dotNoiseLevel; $i++) {
-            imagefilledellipse($img2, mt_rand(0,$w), mt_rand(0,$h), 2, 2, $text_color);
+            imagefilledellipse($img2, mt_rand(0, $w), mt_rand(0, $h), 2, 2, $text_color);
         }
         for ($i=0; $i<$this->_lineNoiseLevel; $i++) {
-           imageline($img2, mt_rand(0,$w), mt_rand(0,$h), mt_rand(0,$w), mt_rand(0,$h), $text_color);
+            imageline($img2, mt_rand(0, $w), mt_rand(0, $h), mt_rand(0, $w), mt_rand(0, $h), $text_color);
         }
 
         imagepng($img2, $img_file);
@@ -589,7 +589,7 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
     {
         $expire = time() - $this->getExpiration();
         $imgdir = $this->getImgDir();
-        if(!$imgdir || strlen($imgdir) < 2) {
+        if (!$imgdir || strlen($imgdir) < 2) {
             // safety guard
             return;
         }

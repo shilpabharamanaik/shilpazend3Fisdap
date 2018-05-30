@@ -38,7 +38,6 @@ require_once 'Zend/Tool/Project/Context/Filesystem/Abstract.php';
  */
 class Zend_Tool_Project_Context_Filesystem_File extends Zend_Tool_Project_Context_Filesystem_Abstract
 {
-
     protected $_fileOnlyContext = null;
 
     protected $_filesystemName = null;
@@ -170,5 +169,4 @@ class Zend_Tool_Project_Context_Filesystem_File extends Zend_Tool_Project_Contex
             $this->_filesystemName = 'file.txt';
         }
     }
-
 }

@@ -2,7 +2,6 @@
 
 use Illuminate\Console\Command;
 
-
 /**
  * Class UpCommand
  *

@@ -37,8 +37,7 @@ require_once 'Zend/Application/Resource/ResourceAbstract.php';
  * @author     Dolf Schimmel
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Application_Resource_Navigation
-    extends Zend_Application_Resource_ResourceAbstract
+class Zend_Application_Resource_Navigation extends Zend_Application_Resource_ResourceAbstract
 {
     const DEFAULT_REGISTRY_KEY = 'Zend_Navigation';
 

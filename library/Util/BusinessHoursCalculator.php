@@ -4,7 +4,8 @@
  * Class Util_BusinessHoursCalculator
  * A class to help us deal with the business hours
  */
-class Util_BusinessHoursCalculator {
+class Util_BusinessHoursCalculator
+{
     const SECONDS_PER_MINUTE = 60;
     const SECONDS_PER_HOUR = 3600;
     const SECONDS_PER_DAY = 86400;
@@ -53,7 +54,8 @@ class Util_BusinessHoursCalculator {
      * @param DateTime $end
      * @return int
      */
-    public function calculateOnHours(DateTime $start, DateTime $end) {
+    public function calculateOnHours(DateTime $start, DateTime $end)
+    {
         $onSeconds = $this->calculateOnSeconds($start, $end);
 
         return $onSeconds/self::SECONDS_PER_HOUR;
@@ -66,7 +68,8 @@ class Util_BusinessHoursCalculator {
      * @param DateTime $end
      * @return int
      */
-    public function calculateOffHours(DateTime $start, DateTime $end) {
+    public function calculateOffHours(DateTime $start, DateTime $end)
+    {
         $totalSeconds = $end->format("U") - $start->format("U");
         $onSeconds = $this->calculateOnSeconds($start, $end);
 
@@ -79,7 +82,8 @@ class Util_BusinessHoursCalculator {
      * @param DateTime $end
      * @return integer
      */
-    protected function calculateOnSeconds(DateTime $start, DateTime $end) {
+    protected function calculateOnSeconds(DateTime $start, DateTime $end)
+    {
         $seconds = 0;
 
         // if the start time is on a business day, calculate the seconds until the end of business
@@ -88,7 +92,7 @@ class Util_BusinessHoursCalculator {
             if ($this->isInBusinessTime($start)) {
                 // Start date is during business day
                 $seconds += $this->getEndOfBusinessDay($start)->format("U") - $start->format("U");
-            } else if ($this->isBeforeStartOfBusiness($start)) {
+            } elseif ($this->isBeforeStartOfBusiness($start)) {
                 // Start date is before start of business day
                 $seconds += $this->getSecondsInBusinessDay();
             }
@@ -100,7 +104,7 @@ class Util_BusinessHoursCalculator {
             if ($this->isInBusinessTime($end)) {
                 // End date is during business day
                 $seconds += $end->format("U") - $this->getStartOfBusinessDay($end)->format("U");
-            } else if ($this->isAfterEndOfBusiness($end)) {
+            } elseif ($this->isAfterEndOfBusiness($end)) {
                 // End date is after end of business day
                 $seconds += $this->getSecondsInBusinessDay();
             }
@@ -142,7 +146,8 @@ class Util_BusinessHoursCalculator {
         $endOfDay->setTime(
             $this->endOfBusiness['hour'],
             $this->endOfBusiness['minute'],
-            $this->endOfBusiness['second']);
+            $this->endOfBusiness['second']
+        );
         return $endOfDay;
     }
 
@@ -158,7 +163,8 @@ class Util_BusinessHoursCalculator {
         $startOfDay->setTime(
             $this->startOfBusiness['hour'],
             $this->startOfBusiness['minute'],
-            $this->startOfBusiness['second']);
+            $this->startOfBusiness['second']
+        );
         return $startOfDay;
     }
 
@@ -211,11 +217,12 @@ class Util_BusinessHoursCalculator {
 
     /**
      * Is the given date a business day?
-     * 
+     *
      * @param DateTime $date
      * @return boolean
      */
-    protected function isBusinessDay($date) {
+    protected function isBusinessDay($date)
+    {
         $weekday = $date->format("N");
         if (in_array($weekday, $this->excludedDays) === true) {
             return false;
@@ -229,7 +236,8 @@ class Util_BusinessHoursCalculator {
      *
      * @return int
      */
-    protected function getSecondsInBusinessDay() {
+    protected function getSecondsInBusinessDay()
+    {
         $endTime = $this->endOfBusiness['hour'] * self::SECONDS_PER_HOUR +
             $this->endOfBusiness['minute'] * self::SECONDS_PER_MINUTE +
             $this->endOfBusiness['second'];
@@ -245,7 +253,8 @@ class Util_BusinessHoursCalculator {
      * @param array $time
      * @return array properly-formatted business time with hour, minute, and second elements
      */
-    protected function formatBusinessTime(array $time) {
+    protected function formatBusinessTime(array $time)
+    {
         // set the default as the beginning of the day (midnight)
         $businessTime = array("hour" => 0, "minute" => 0, "second" => 0);
 

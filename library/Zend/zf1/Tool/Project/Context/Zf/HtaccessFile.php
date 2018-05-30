@@ -83,5 +83,4 @@ RewriteRule ^(.*)$ %{ENV:BASE}index.php [NC,L]
 EOS;
         return $output;
     }
-
 }

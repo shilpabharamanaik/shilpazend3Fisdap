@@ -97,15 +97,15 @@ class Zend_Mail_Storage_Maildir extends Zend_Mail_Storage_Abstract
         }
 
         $flags = array_flip($flags);
-           foreach ($this->_files as $file) {
-               foreach ($flags as $flag => $v) {
-                   if (!isset($file['flaglookup'][$flag])) {
-                       continue 2;
-                   }
-               }
-               ++$count;
-           }
-           return $count;
+        foreach ($this->_files as $file) {
+            foreach ($flags as $flag => $v) {
+                if (!isset($file['flaglookup'][$flag])) {
+                    continue 2;
+                }
+            }
+            ++$count;
+        }
+        return $count;
     }
 
     /**
@@ -332,7 +332,7 @@ class Zend_Mail_Storage_Maildir extends Zend_Mail_Storage_Abstract
         if ($dh) {
             $this->_getMaildirFiles($dh, $dirname . '/new/', array(Zend_Mail_Storage::FLAG_RECENT));
             closedir($dh);
-        } else if (file_exists($dirname . '/new/')) {
+        } elseif (file_exists($dirname . '/new/')) {
             /**
              * @see Zend_Mail_Storage_Exception
              */
@@ -357,7 +357,7 @@ class Zend_Mail_Storage_Maildir extends Zend_Mail_Storage_Abstract
             }
 
             @list($uniq, $info) = explode(':', $entry, 2);
-            @list(,$size) = explode(',', $uniq, 2);
+            @list(, $size) = explode(',', $uniq, 2);
             if ($size && $size[0] == 'S' && $size[1] == '=') {
                 $size = substr($size, 2);
             }

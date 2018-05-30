@@ -30,8 +30,7 @@ require_once 'Zend/Queue.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Cloud_QueueService_Adapter_ZendQueue
-    extends Zend_Cloud_QueueService_Adapter_AbstractAdapter
+class Zend_Cloud_QueueService_Adapter_ZendQueue extends Zend_Cloud_QueueService_Adapter_AbstractAdapter
 {
     /**
      * Options array keys for the Zend_Queue adapter.
@@ -56,7 +55,7 @@ class Zend_Cloud_QueueService_Adapter_ZendQueue
      * @param  array|Zend_Config $options
      * @return void
      */
-    public function __construct ($options = array())
+    public function __construct($options = array())
     {
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();

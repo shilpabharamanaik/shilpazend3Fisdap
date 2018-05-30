@@ -16,7 +16,6 @@ use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 use Fisdap\MoodleUtils;
 
-
 /**
  * Entity class for Orders
  *
@@ -246,7 +245,6 @@ class Order extends EntityBaseClass
                     $this->addOrderConfiguration($newConfig);
                     $newConfig->calculateFinalPrice();
                 }
-
             }
         }
     }
@@ -564,7 +562,7 @@ class Order extends EntityBaseClass
         $namePieces = preg_split("/\s/", $this->name);
         if (count($namePieces) == 2) {
             return $namePieces[1];
-        } else if (count($namePieces) == 3) {
+        } elseif (count($namePieces) == 3) {
             return $namePieces[2];
         }
         return null;
@@ -703,7 +701,6 @@ class Order extends EntityBaseClass
     {
         // check order configurations for funny PT case
         foreach ($this->order_configurations as $config) {
-
             $products = $config->getProductArray(true);
             $hasPreceptorTraining = in_array("9", $products);
 
@@ -712,7 +709,6 @@ class Order extends EntityBaseClass
             if (count($products) > 1 && $hasPreceptorTraining && !$this->upgrade_purchase) {
                 $this->addPreceptorTrainingConfig($config->quantity);
             }
-
         }
 
         //Mark order as completed
@@ -763,7 +759,7 @@ class Order extends EntityBaseClass
         $header = $this->formatForPdf($this->getHtmlHeadForPdf($view, array("/css/account/orders/view-invoice.css")));
         //Obsolete: $pdfOptions['pdfContents'] = \Util_PdfGenerationHelper::formatForPdf($view->partial("order-invoice.phtml", array("order" => $this)));
         $pdfContents = $this->formatForPdf($view->partial("order-invoice.phtml", array("order" => $this)));
-        $pdfGenerator->generatePdfFromHtmlString($pdfContents, FALSE, $header);
+        $pdfGenerator->generatePdfFromHtmlString($pdfContents, false, $header);
 
         //$pdf = \Util_PdfGenerationHelper::getPdf($pdfOptions, false);
         $pdf = $pdfGenerator->getPdfContent();
@@ -1083,7 +1079,7 @@ class Order extends EntityBaseClass
                         ->sendHtmlTemplate('account-upgrade.phtml');
                 }
             }
-        } else if ($this->individual_purchase) {
+        } elseif ($this->individual_purchase) {
             $subject = $this->upgrade_purchase ? "Upgrades to your Fisdap account" : "Your new Fisdap account";
 
             $mail = new \Fisdap_TemplateMailer();
@@ -1140,7 +1136,6 @@ class Order extends EntityBaseClass
 
     public static function validateProductCode($code)
     {
-
         return true;
     }
 
@@ -1150,7 +1145,8 @@ class Order extends EntityBaseClass
         return $ini->paypal->params->toArray();
     }
 
-    public function getAssociatedDiscounts() {
+    public function getAssociatedDiscounts()
+    {
         $associatedDiscounts = array();
         foreach ($this->order_configurations as $config) {
             $discounts = unserialize($config->discounts);

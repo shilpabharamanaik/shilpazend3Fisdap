@@ -92,7 +92,7 @@ class Zend_Cache_Backend_ZendPlatform extends Zend_Cache_Backend implements Zend
             $lifetime = $this->_directives['lifetime'];
         }
         $res = output_cache_get($id, $lifetime);
-        if($res) {
+        if ($res) {
             return $res[0];
         } else {
             return false;
@@ -274,7 +274,7 @@ class Zend_Cache_Backend_ZendPlatform extends Zend_Cache_Backend implements Zend
             } else {
                 if ($mode == Zend_Cache::CLEANING_MODE_ALL) {
                     $result = ($this->_remove($file)) && ($result);
-                } else if ($mode == Zend_Cache::CLEANING_MODE_OLD) {
+                } elseif ($mode == Zend_Cache::CLEANING_MODE_OLD) {
                     // Files older than lifetime get deleted from cache
                     if ($this->_directives['lifetime'] !== null) {
                         if ((time() - @filemtime($file)) > $this->_directives['lifetime']) {
@@ -313,5 +313,4 @@ class Zend_Cache_Backend_ZendPlatform extends Zend_Cache_Backend implements Zend
         }
         return true;
     }
-
 }

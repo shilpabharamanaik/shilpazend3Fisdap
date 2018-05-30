@@ -78,8 +78,7 @@ require_once 'Zend/Service/DeveloperGarden/Response/VoiceButler/CallStatus2Respo
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_VoiceCall
-    extends Zend_Service_DeveloperGarden_Client_ClientAbstract
+class Zend_Service_DeveloperGarden_VoiceCall extends Zend_Service_DeveloperGarden_Client_ClientAbstract
 {
     /**
      * wsdl file
@@ -122,8 +121,15 @@ class Zend_Service_DeveloperGarden_VoiceCall
      * @param string $greeter
      * @return Zend_Service_DeveloperGarden_Response_VoiceButler_NewCallResponse
      */
-    public function newCall($aNumber, $bNumber, $expiration, $maxDuration,
-        $account = null, $privacyA = null, $privacyB = null, $greeter = null
+    public function newCall(
+        $aNumber,
+        $bNumber,
+        $expiration,
+        $maxDuration,
+        $account = null,
+        $privacyA = null,
+        $privacyB = null,
+        $greeter = null
     ) {
         $request = new Zend_Service_DeveloperGarden_Request_VoiceButler_NewCall(
                 $this->getEnvironment()
@@ -161,8 +167,16 @@ class Zend_Service_DeveloperGarden_VoiceCall
      * @param string $greeter
      * @return Zend_Service_DeveloperGarden_Response_VoiceButler_NewCallSequencedResponse
      */
-    public function newCallSequenced($aNumber, $bNumber, $expiration, $maxDuration,
-        $maxWait, $account = null, $privacyA = null, $privacyB = null, $greeter = null
+    public function newCallSequenced(
+        $aNumber,
+        $bNumber,
+        $expiration,
+        $maxDuration,
+        $maxWait,
+        $account = null,
+        $privacyA = null,
+        $privacyB = null,
+        $greeter = null
     ) {
         $request = new Zend_Service_DeveloperGarden_Request_VoiceButler_NewCallSequenced(
                 $this->getEnvironment()

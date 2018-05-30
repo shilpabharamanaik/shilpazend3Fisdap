@@ -345,5 +345,4 @@ class Zend_Cache_Backend_WinCache extends Zend_Cache_Backend implements Zend_Cac
             'get_list' => true
         );
     }
-
 }

@@ -10,5 +10,4 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineAirwayRepository extends DoctrineRepository implements AirwayRepository
 {
-
 }

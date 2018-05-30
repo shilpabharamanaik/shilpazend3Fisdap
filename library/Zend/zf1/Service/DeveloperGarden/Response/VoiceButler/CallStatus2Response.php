@@ -33,8 +33,7 @@ require_once 'Zend/Service/DeveloperGarden/Response/VoiceButler/CallStatusRespon
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Response_VoiceButler_CallStatus2Response
-    extends Zend_Service_DeveloperGarden_Response_VoiceButler_CallStatusResponse
+class Zend_Service_DeveloperGarden_Response_VoiceButler_CallStatus2Response extends Zend_Service_DeveloperGarden_Response_VoiceButler_CallStatusResponse
 {
     /**
      * returns the phone number of the second participant, who was called.

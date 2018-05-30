@@ -4,7 +4,6 @@ use Fisdap\Api\Client\Gateway\CommonHttpGateway;
 use Fisdap\Api\Client\Gateway\GetOneById;
 use Fisdap\Api\Client\Gateway\RetrievesById;
 
-
 /**
  * Http implementation of a ShiftsGateway
  *
@@ -24,11 +23,13 @@ class HttpStudentsGateway extends CommonHttpGateway implements StudentsGateway, 
      */
     public function getShifts(
         $studentId,
-        array $includes = null, array $includeIds = null,
+        array $includes = null,
+        array $includeIds = null,
         array $states = null,
         array $types = null,
         array $startingBetween = null,
-        $firstResult = null, $maxResults = null
+        $firstResult = null,
+        $maxResults = null
     ) {
         $query = [];
 

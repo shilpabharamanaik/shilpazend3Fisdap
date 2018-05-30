@@ -16,7 +16,7 @@ APPLICATION_PATH . '/models' . PATH_SEPARATOR
 
 if (!defined('APPLICATION_ENV')) {
     if (file_exists('/etc/fisdap/env')) {
-        define('APPLICATION_ENV',  trim(file_get_contents('/etc/fisdap/env')));
+        define('APPLICATION_ENV', trim(file_get_contents('/etc/fisdap/env')));
     } else {
         define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'development'));
     }
@@ -26,7 +26,7 @@ if (!defined('APPLICATION_ENV')) {
 require(APPLICATION_PATH . '/helpers.php');
 
 // Define release stage & set PHP error reporting level per environment
-switch(APPLICATION_ENV) {
+switch (APPLICATION_ENV) {
     case 'production':
         define('RELEASE_STAGE', 'Prod');
         error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE);

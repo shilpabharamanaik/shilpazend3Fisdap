@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
-
 /**
  * @Entity
  * @Table(name="fisdap2_slots")
@@ -99,15 +98,14 @@ class Slot extends EntityBaseClass
     {
         $windows = array();
         
-        if($this->windows){
-            foreach($this->windows as $window){
-                if($window->program->id == $programId){
-                    if($window->active){
+        if ($this->windows) {
+            foreach ($this->windows as $window) {
+                if ($window->program->id == $programId) {
+                    if ($window->active) {
                         $windows[] = $window;
                     }
                 }
             }
-            
         }
         
         return $windows;
@@ -129,7 +127,6 @@ class Slot extends EntityBaseClass
                     $assignments[] = $assignment;
                 }
             }
-            
         }
         
         return $assignments;
@@ -141,62 +138,60 @@ class Slot extends EntityBaseClass
     public function getDefaultWindowArray($user, $window_id = null)
     {
         $has_existing_window = false;
-		
-		if($window_id){
-			$window = EntityUtils::getEntity('Window', $window_id);
-			$has_existing_window = true;
-		}
-		
-		// will set to our standard default values
-		if(!$has_existing_window){
-			$today = new \DateTime();
-			$window = EntityUtils::getEntity('Window');
-			$window->program = $program;
-			$window->set_offset_type_start(EntityUtils::getEntity('OffsetType', 1));
-			$window->set_offset_type_end(2);
-			$window->offset_value_start = array($today->format("Y-m-d"));
-			$window->offset_value_end = array(1, "week");
-			
-			$constraintWindow = $window;
-			
-			// we'll always need to limit by cert level
-			$levelConstraint = EntityUtils::getEntity('WindowConstraint');
-			$levelConstraint->set_constraint_type(2);
-			$certLevelConstraints = $user->getCurrentRoleData()->program->profession->certifications;
-			
-			foreach ($certLevelConstraints as $cert) {
-				$constraintValue = EntityUtils::getEntity('WindowConstraintValue');
-				$constraintValue->value = $cert->id;
-				$levelConstraint->addValue($constraintValue);
-			}
-			$constraintWindow->addConstraint($levelConstraint);
-		}
-		
-		$return_array = $window->toArray();
-		$return_array['offset_type_start'] = $window->offset_type_start->toArray();
-		$return_array['offset_type_end'] = $window->offset_type_end->toArray();
-		
-		if($has_existing_window){
-			$return_array['cert_constraint'] = array();
-			$return_array['group_constraint'] = array();
-			
-			foreach($window->constraints as $constraint){
-				$constraint_type = ($constraint->constraint_type->id == 1) ? "cert_constraint" : "group_constraint";
-				foreach($constraint->values as $val){
-					$return_array[$type][] = $val->value;
-				}
-			}
-		}
-		else {
-			$return_array['cert_constraint'] = $levelConstraint->toArray();
-			$return_array['cert_constraint']['values'] = array();
-			
-			foreach($levelConstraint->values as $val){
-				$return_array['cert_constraint']['values'][] = $val->toArray();
-			}
-		}
-		
-		return $return_array;
+        
+        if ($window_id) {
+            $window = EntityUtils::getEntity('Window', $window_id);
+            $has_existing_window = true;
+        }
+        
+        // will set to our standard default values
+        if (!$has_existing_window) {
+            $today = new \DateTime();
+            $window = EntityUtils::getEntity('Window');
+            $window->program = $program;
+            $window->set_offset_type_start(EntityUtils::getEntity('OffsetType', 1));
+            $window->set_offset_type_end(2);
+            $window->offset_value_start = array($today->format("Y-m-d"));
+            $window->offset_value_end = array(1, "week");
+            
+            $constraintWindow = $window;
+            
+            // we'll always need to limit by cert level
+            $levelConstraint = EntityUtils::getEntity('WindowConstraint');
+            $levelConstraint->set_constraint_type(2);
+            $certLevelConstraints = $user->getCurrentRoleData()->program->profession->certifications;
+            
+            foreach ($certLevelConstraints as $cert) {
+                $constraintValue = EntityUtils::getEntity('WindowConstraintValue');
+                $constraintValue->value = $cert->id;
+                $levelConstraint->addValue($constraintValue);
+            }
+            $constraintWindow->addConstraint($levelConstraint);
+        }
+        
+        $return_array = $window->toArray();
+        $return_array['offset_type_start'] = $window->offset_type_start->toArray();
+        $return_array['offset_type_end'] = $window->offset_type_end->toArray();
+        
+        if ($has_existing_window) {
+            $return_array['cert_constraint'] = array();
+            $return_array['group_constraint'] = array();
+            
+            foreach ($window->constraints as $constraint) {
+                $constraint_type = ($constraint->constraint_type->id == 1) ? "cert_constraint" : "group_constraint";
+                foreach ($constraint->values as $val) {
+                    $return_array[$type][] = $val->value;
+                }
+            }
+        } else {
+            $return_array['cert_constraint'] = $levelConstraint->toArray();
+            $return_array['cert_constraint']['values'] = array();
+            
+            foreach ($levelConstraint->values as $val) {
+                $return_array['cert_constraint']['values'][] = $val->toArray();
+            }
+        }
+        
+        return $return_array;
     }
-    
 }

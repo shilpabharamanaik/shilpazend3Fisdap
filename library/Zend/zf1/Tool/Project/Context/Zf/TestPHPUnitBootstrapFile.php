@@ -84,5 +84,4 @@ EOS
             ));
         return $codeGenerator->generate();
     }
-
 }

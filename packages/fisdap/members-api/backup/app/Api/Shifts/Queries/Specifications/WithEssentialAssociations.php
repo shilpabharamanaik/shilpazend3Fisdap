@@ -6,7 +6,6 @@ use Fisdap\Queries\Specifications\WithAssociations;
 use Happyr\DoctrineSpecification\BaseSpecification;
 use Happyr\DoctrineSpecification\Spec;
 
-
 /**
  * Joins signoff, verification, attendance, creator, and slot assignment to shifts
  *

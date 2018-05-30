@@ -56,7 +56,7 @@ class Zend_Tool_Project_Profile_Resource_SearchConstraints
      * @param array $option
      * @return Zend_Tool_Project_Profile_Resource_SearchConstraints
      */
-    public function setOptions(Array $option)
+    public function setOptions(array $option)
     {
         foreach ($option as $optionName => $optionValue) {
             if (is_int($optionName)) {
@@ -113,5 +113,4 @@ class Zend_Tool_Project_Profile_Resource_SearchConstraints
         $value = array('name' => $name, 'params' => $params);
         return new ArrayObject($value, ArrayObject::ARRAY_AS_PROPS);
     }
-
 }

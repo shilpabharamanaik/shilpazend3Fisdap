@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Client\Students\Gateway;
 
-
 /**
  * Contract for shifts gateways
  *
@@ -25,10 +24,12 @@ interface StudentsGateway
      */
     public function getShifts(
         $studentId,
-        array $includes = null, array $includeIds = null,
+        array $includes = null,
+        array $includeIds = null,
         array $states = null,
         array $types = null,
         array $startingBetween = null,
-        $firstResult = null, $maxResults = null
+        $firstResult = null,
+        $maxResults = null
     );
 }

@@ -94,5 +94,4 @@ class Zend_CodeGenerator_Php_Docblock_Tag_Return extends Zend_CodeGenerator_Php_
         $output = '@return ' . $this->_datatype . ' ' . $this->_description;
         return $output;
     }
-
 }

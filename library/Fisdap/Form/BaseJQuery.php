@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -35,18 +35,17 @@ class Fisdap_Form_BaseJQuery extends ZendX_JQuery_Form
     );
     
     /**
-	 * @var array decorators for jQuery form elements
-	 */
-	public static $strippedFormJQueryElements = array(
+     * @var array decorators for jQuery form elements
+     */
+    public static $strippedFormJQueryElements = array(
         'ErrorHighlight',
         array('UiWidgetElement', array('tag' => '')), // it necessary to include for jquery elements
-	);
+    );
     
     const NSC_DIAMOND = "<img class='nsc-diamond' src='/images/nsc_diamond.png'>";
    
     public function init()
     {
-        
         parent::init();
     }
     

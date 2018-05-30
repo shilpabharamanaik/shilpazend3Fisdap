@@ -14,7 +14,6 @@ use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 use League\Flysystem\FilesystemInterface;
 
-
 class ProcessAttachmentCest
 {
     /**

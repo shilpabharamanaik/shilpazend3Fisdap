@@ -276,7 +276,7 @@ class Zend_Queue_Adapter_PlatformJobQueue extends Zend_Queue_Adapter_AdapterAbst
 
     public function isJobIdExist($id)
     {
-         return (($this->_zendQueue->getJob($id))? true : false);
+        return (($this->_zendQueue->getJob($id))? true : false);
     }
 
     /********************************************************************
@@ -294,7 +294,7 @@ class Zend_Queue_Adapter_PlatformJobQueue extends Zend_Queue_Adapter_AdapterAbst
      */
     public function getCapabilities()
     {
-         return array(
+        return array(
             'create'                => false,
             'delete'                => false,
             'getQueues'             => false,

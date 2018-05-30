@@ -117,11 +117,10 @@ class Version20160420172153 extends AbstractMigration
         $this->addSql("insert into fisdap2_goals (goal_set_id, goal_def_id, number_required, max_last_data, percent_successful, team_lead, interview, exam) values (3, 78, 0, null, null, 1, 1, 1)");
         $this->addSql("insert into fisdap2_goals (goal_set_id, goal_def_id, number_required, max_last_data, percent_successful, team_lead, interview, exam) values (3, 76, 50, null, null, 1, 1, 1)");
         $this->addSql("insert into fisdap2_goals (goal_set_id, goal_def_id, number_required, max_last_data, percent_successful, team_lead, interview, exam) values (3, 79, 0, null, null, 1, 1, 1)");
-
-
     }
 
-    public function down(Schema $schema){
+    public function down(Schema $schema)
+    {
 
         //remove new default ohio goalset
         $this->addSql("delete from fisdap2_goal_sets where id = 3");
@@ -137,6 +136,5 @@ class Version20160420172153 extends AbstractMigration
 
         //delete the added goal_defs
         $this->addSql("delete from fisdap2_goal_defs where id in (118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133)");
-
     }
 }

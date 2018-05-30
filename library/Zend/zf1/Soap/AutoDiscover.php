@@ -110,11 +110,11 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
         $this->_reflection = new Zend_Server_Reflection();
         $this->setComplexTypeStrategy($strategy);
 
-        if($uri !== null) {
+        if ($uri !== null) {
             $this->setUri($uri);
         }
 
-        if($wsdlClass !== null) {
+        if ($wsdlClass !== null) {
             $this->setWsdlClass($wsdlClass);
         }
     }
@@ -150,7 +150,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
      */
     public function getUri()
     {
-        if($this->_uri !== null) {
+        if ($this->_uri !== null) {
             $uri = $this->_uri;
         } else {
             $schema     = $this->getSchema();
@@ -205,7 +205,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
      */
     public function setOperationBodyStyle(array $operationStyle=array())
     {
-        if(!isset($operationStyle['use'])) {
+        if (!isset($operationStyle['use'])) {
             require_once "Zend/Soap/AutoDiscover/Exception.php";
             throw new Zend_Soap_AutoDiscover_Exception("Key 'use' is required in Operation soap:body style.");
         }
@@ -223,10 +223,10 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
      */
     public function setBindingStyle(array $bindingStyle=array())
     {
-        if(isset($bindingStyle['style'])) {
+        if (isset($bindingStyle['style'])) {
             $this->_bindingStyle['style'] = $bindingStyle['style'];
         }
-        if(isset($bindingStyle['transport'])) {
+        if (isset($bindingStyle['transport'])) {
             $this->_bindingStyle['transport'] = $bindingStyle['transport'];
         }
         return $this;
@@ -253,7 +253,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
      */
     protected function getHostName()
     {
-        if(isset($_SERVER['HTTP_HOST'])) {
+        if (isset($_SERVER['HTTP_HOST'])) {
             $host = $_SERVER['HTTP_HOST'];
         } else {
             $host = $_SERVER['SERVER_NAME'];
@@ -279,7 +279,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
         } else {
             $requestUri = $_SERVER['SCRIPT_NAME'];
         }
-        if( ($pos = strpos($requestUri, "?")) !== false) {
+        if (($pos = strpos($requestUri, "?")) !== false) {
             $requestUri = substr($requestUri, 0, $pos);
         }
 
@@ -295,7 +295,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
     public function setComplexTypeStrategy($strategy)
     {
         $this->_strategy = $strategy;
-        if($this->_wsdl instanceof  Zend_Soap_Wsdl) {
+        if ($this->_wsdl instanceof  Zend_Soap_Wsdl) {
             $this->_wsdl->setComplexTypeStrategy($strategy);
         }
 
@@ -435,11 +435,11 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
         $wsdl->addMessage($function->getName() . 'In', $args);
 
         $isOneWayMessage = false;
-        if($prototype->getReturnType() == "void") {
+        if ($prototype->getReturnType() == "void") {
             $isOneWayMessage = true;
         }
 
-        if($isOneWayMessage == false) {
+        if ($isOneWayMessage == false) {
             // Add the output message (return value)
             $args = array();
             if ($this->_bindingStyle['style'] == 'document') {
@@ -457,7 +457,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
                 );
                 // Add the wrapper element part, which must be named 'parameters'
                 $args['parameters'] = array('element' => $wsdl->addElement($element));
-            } else if ($prototype->getReturnType() != "void") {
+            } elseif ($prototype->getReturnType() != "void") {
                 // RPC style: add the return value as a typed part
                 $args['return'] = array('type' => $wsdl->getType($prototype->getReturnType()));
             }
@@ -465,7 +465,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
         }
 
         // Add the portType operation
-        if($isOneWayMessage == false) {
+        if ($isOneWayMessage == false) {
             $portOperation = $wsdl->addPortOperation($port, $function->getName(), 'tns:' . $function->getName() . 'In', 'tns:' . $function->getName() . 'Out');
         } else {
             $portOperation = $wsdl->addPortOperation($port, $function->getName(), 'tns:' . $function->getName() . 'In', false);
@@ -481,10 +481,10 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
         }
 
         // Add the binding operation
-        if($isOneWayMessage == false) {
-            $operation = $wsdl->addBindingOperation($binding, $function->getName(),  $this->_operationBodyStyle, $this->_operationBodyStyle);
+        if ($isOneWayMessage == false) {
+            $operation = $wsdl->addBindingOperation($binding, $function->getName(), $this->_operationBodyStyle, $this->_operationBodyStyle);
         } else {
-            $operation = $wsdl->addBindingOperation($binding, $function->getName(),  $this->_operationBodyStyle);
+            $operation = $wsdl->addBindingOperation($binding, $function->getName(), $this->_operationBodyStyle);
         }
         $wsdl->addSoapOperation($operation, $uri . '#' .$function->getName());
 
@@ -527,7 +527,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
      */
     public function dump($filename)
     {
-        if($this->_wsdl !== null) {
+        if ($this->_wsdl !== null) {
             return $this->_wsdl->dump($filename);
         } else {
             /**
@@ -546,7 +546,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
      */
     public function toXml()
     {
-        if($this->_wsdl !== null) {
+        if ($this->_wsdl !== null) {
             return $this->_wsdl->toXml();
         } else {
             /**

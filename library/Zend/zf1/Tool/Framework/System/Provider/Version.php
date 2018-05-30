@@ -31,8 +31,7 @@ require_once 'Zend/Version.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Framework_System_Provider_Version
-    implements Zend_Tool_Framework_Provider_Interface, Zend_Tool_Framework_Registry_EnabledInterface
+class Zend_Tool_Framework_System_Provider_Version implements Zend_Tool_Framework_Provider_Interface, Zend_Tool_Framework_Registry_EnabledInterface
 {
 
     /**
@@ -60,10 +59,9 @@ class Zend_Tool_Framework_System_Provider_Version
      */
     public function show($mode = self::MODE_MINI, $nameIncluded = true)
     {
-
         $versionInfo = $this->_splitVersion();
 
-        switch($mode) {
+        switch ($mode) {
             case self::MODE_MINOR:
                 unset($versionInfo['mini']);
                 break;
@@ -107,5 +105,4 @@ class Zend_Tool_Framework_System_Provider_Version
         list($major, $minor, $mini) = explode('.', Zend_Version::VERSION);
         return array('major' => $major, 'minor' => $minor, 'mini' => $mini);
     }
-
 }

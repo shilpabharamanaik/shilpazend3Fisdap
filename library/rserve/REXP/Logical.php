@@ -11,22 +11,25 @@
 /**
 * R Double vector
 */
-class Rserve_REXP_Logical extends Rserve_REXP_Vector {
-	
-	public function isInteger() { 
-		return true; 
-	}
-	
-	public function isNumeric() { 
-		return true; 
-	}
-	
-	public function isLogical() { 
-		return true; 
-	}
-	
-	public function getType() {
-		return Rserve_Parser::XT_ARRAY_BOOL;
-	}
-	
+class Rserve_REXP_Logical extends Rserve_REXP_Vector
+{
+    public function isInteger()
+    {
+        return true;
+    }
+    
+    public function isNumeric()
+    {
+        return true;
+    }
+    
+    public function isLogical()
+    {
+        return true;
+    }
+    
+    public function getType()
+    {
+        return Rserve_Parser::XT_ARRAY_BOOL;
+    }
 }

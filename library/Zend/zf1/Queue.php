@@ -370,8 +370,7 @@ class Zend_Queue implements Countable
     {
         if ($this->isSupported('delete')) {
             $deleted = $this->getAdapter()->delete($this->getName());
-        }
-        else {
+        } else {
             $deleted = true;
         }
 
@@ -504,7 +503,7 @@ class Zend_Queue implements Countable
     public function getQueues()
     {
         if (!$this->isSupported('getQueues')) {
-            throw new Zend_Queue_Exception( __FUNCTION__ . '() is not supported by ' . get_class($this->getAdapter()));
+            throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . get_class($this->getAdapter()));
         }
 
         return $this->getAdapter()->getQueues();

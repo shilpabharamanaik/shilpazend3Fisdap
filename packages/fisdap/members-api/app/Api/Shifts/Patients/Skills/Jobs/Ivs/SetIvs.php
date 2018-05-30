@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Shifts\Patients\Skills\Jobs\Ivs;
 
-
 use Doctrine\ORM\EntityManagerInterface;
 use Fisdap\Api\Shifts\Patients\Skills\AbstractSkills;
 use Fisdap\Entity\Iv;
@@ -14,7 +13,7 @@ use Swagger\Annotations as SWG;
  * Class SetIvs
  * @package Fisdap\Api\Shifts\Patients\Skills\Jobs\Ivs
  * @author  Isaac White <isaac.white@ascendlearning.com>
- * 
+ *
  * @SWG\Definition(
  *     definition="Iv",
  *     description="This is a model representation of Iv for storage.",
@@ -55,7 +54,8 @@ final class SetIvs extends AbstractSkills
      */
     public $size;
 
-    public function setIvId($ivId) {
+    public function setIvId($ivId)
+    {
         $this->ivId = $ivId;
     }
 
@@ -68,8 +68,7 @@ final class SetIvs extends AbstractSkills
     public function handle(
         EntityManagerInterface $em,
         EventDispatcher $eventDispatcher
-    )
-    {
+    ) {
         $this->em = $em;
 
         // Try to grab an existing Iv. If not found, create a new one.
@@ -101,5 +100,3 @@ final class SetIvs extends AbstractSkills
         ];
     }
 }
-
-

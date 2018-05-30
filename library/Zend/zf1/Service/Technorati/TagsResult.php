@@ -78,7 +78,8 @@ class Zend_Service_Technorati_TagsResult extends Zend_Service_Technorati_Result
      *
      * @return  string
      */
-    public function getTag() {
+    public function getTag()
+    {
         return $this->_tag;
     }
 
@@ -87,7 +88,8 @@ class Zend_Service_Technorati_TagsResult extends Zend_Service_Technorati_Result
      *
      * @return  int
      */
-    public function getPosts() {
+    public function getPosts()
+    {
         return $this->_posts;
     }
 }

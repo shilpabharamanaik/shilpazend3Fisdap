@@ -85,7 +85,7 @@ class Zend_Wildfire_Plugin_FirePhp_Message
      * @param mixed $message The message
      * @return void
      */
-    function __construct($style, $message)
+    public function __construct($style, $message)
     {
         $this->_style = $style;
         $this->_message = $message;
@@ -211,12 +211,12 @@ class Zend_Wildfire_Plugin_FirePhp_Message
      */
     public function setOption($key, $value)
     {
-      if(!array_key_exists($key,$this->_options)) {
-        throw new Zend_Wildfire_Exception('Option with name "'.$key.'" does not exist!');
-      }
-      $previous = $this->_options[$key];
-      $this->_options[$key] = $value;
-      return $previous;
+        if (!array_key_exists($key, $this->_options)) {
+            throw new Zend_Wildfire_Exception('Option with name "'.$key.'" does not exist!');
+        }
+        $previous = $this->_options[$key];
+        $this->_options[$key] = $value;
+        return $previous;
     }
 
     /**
@@ -227,10 +227,10 @@ class Zend_Wildfire_Plugin_FirePhp_Message
      */
     public function getOption($key)
     {
-      if(!array_key_exists($key,$this->_options)) {
-        throw new Zend_Wildfire_Exception('Option with name "'.$key.'" does not exist!');
-      }
-      return $this->_options[$key];
+        if (!array_key_exists($key, $this->_options)) {
+            throw new Zend_Wildfire_Exception('Option with name "'.$key.'" does not exist!');
+        }
+        return $this->_options[$key];
     }
 
     /**
@@ -240,7 +240,6 @@ class Zend_Wildfire_Plugin_FirePhp_Message
      */
     public function getOptions()
     {
-      return $this->_options;
+        return $this->_options;
     }
 }
-

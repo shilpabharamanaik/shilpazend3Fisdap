@@ -4,10 +4,9 @@ use Fisdap\Attachments\Categories\Repository\AttachmentCategoriesRepository;
 use Fisdap\Attachments\Core\LogsAttachmentEvents;
 use Fisdap\Attachments\Core\TypeMapper\MapsAttachmentTypes;
 
-
 /**
  * Class AttachmentCategoryCommandCestTemplate
- * 
+ *
  * @author  Ben Getsug <bgetsug@fisdap.net>
  */
 abstract class AttachmentCategoryCommandCestTemplate

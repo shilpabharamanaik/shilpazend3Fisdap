@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Fisdap\Entity\OrderPermission;
 
-
 /**
  * Class Commerce
  *

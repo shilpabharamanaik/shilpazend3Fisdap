@@ -56,7 +56,7 @@ class Zend_Service_Rackspace_Servers_SharedIpGroupList implements Countable, Ite
      * @param  array $list
      * @return void
      */
-    public function __construct($service,$list = array())
+    public function __construct($service, $list = array())
     {
         if (!($service instanceof Zend_Service_Rackspace_Servers) || !is_array($list)) {
             require_once 'Zend/Service/Rackspace/Servers/Exception.php';
@@ -74,7 +74,7 @@ class Zend_Service_Rackspace_Servers_SharedIpGroupList implements Countable, Ite
     private function constructFromArray(array $list)
     {
         foreach ($list as $share) {
-            $this->addSharedIpGroup(new Zend_Service_Rackspace_Servers_SharedIpGroup($this->service,$share));
+            $this->addSharedIpGroup(new Zend_Service_Rackspace_Servers_SharedIpGroup($this->service, $share));
         }
     }
     /**
@@ -83,15 +83,15 @@ class Zend_Service_Rackspace_Servers_SharedIpGroupList implements Countable, Ite
      * @param  Zend_Service_Rackspace_Servers_SharedIpGroup $shared
      * @return Zend_Service_Rackspace_Servers_SharedIpGroupList
      */
-    protected function addSharedIpGroup (Zend_Service_Rackspace_Servers_SharedIpGroup $share)
+    protected function addSharedIpGroup(Zend_Service_Rackspace_Servers_SharedIpGroup $share)
     {
         $this->shared[] = $share;
         return $this;
     }
     /**
      * To Array
-     * 
-     * @return array 
+     *
+     * @return array
      */
     public function toArray()
     {

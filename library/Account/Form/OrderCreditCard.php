@@ -5,7 +5,6 @@ use Fisdap\Entity\Order;
 use Fisdap\Entity\OrderTransaction;
 use Fisdap\Entity\User;
 
-
 /**
  * Form for ordering accounts via Credit Card
  *
@@ -225,7 +224,7 @@ class Account_Form_OrderCreditCard extends Fisdap_Form_Base
                 if (count($namePieces) == 2) {
                     $defaults['first'] = $namePieces[0];
                     $defaults['last'] = $namePieces[1];
-                } else if (count($namePieces) == 3) {
+                } elseif (count($namePieces) == 3) {
                     $defaults['first'] = $namePieces[0];
                     $defaults['middle'] = $namePieces[1];
                     $defaults['last'] = $namePieces[2];
@@ -296,7 +295,7 @@ class Account_Form_OrderCreditCard extends Fisdap_Form_Base
             if (count($namePieces) == 2) {
                 $defaults['first'] = $namePieces[0];
                 $defaults['last'] = $namePieces[1];
-            } else if (count($namePieces) == 3) {
+            } elseif (count($namePieces) == 3) {
                 $defaults['first'] = $namePieces[0];
                 $defaults['middle'] = $namePieces[1];
                 $defaults['last'] = $namePieces[2];
@@ -402,7 +401,6 @@ class Account_Form_OrderCreditCard extends Fisdap_Form_Base
 
             $this->order->process();
         } else {
-
             if ($result->errors->deepSize() > 0) {
                 foreach ($result->errors->deepAll() as $error) {
                     $this->logger->error($error->message, ['code' => $error->code]);

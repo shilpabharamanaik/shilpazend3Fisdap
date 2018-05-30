@@ -28,7 +28,6 @@
  */
 class Zend_Tool_Project_Provider_Model extends Zend_Tool_Project_Provider_Abstract
 {
-
     public static function createResource(Zend_Tool_Project_Profile $profile, $modelName, $moduleName = null)
     {
         if (!is_string($modelName)) {
@@ -144,7 +143,6 @@ class Zend_Tool_Project_Provider_Model extends Zend_Tool_Project_Provider_Abstra
             if ($testingEnabled) {
                 // $testModelResource = Zend_Tool_Project_Provider_Test::createApplicationResource($this->_loadedProfile, $name, 'index', $module);
             }
-
         } catch (Exception $e) {
             $response->setException($e);
             return;
@@ -152,15 +150,12 @@ class Zend_Tool_Project_Provider_Model extends Zend_Tool_Project_Provider_Abstra
 
         // do the creation
         if ($request->isPretend()) {
-
             $response->appendContent('Would create a model at '  . $modelResource->getContext()->getPath());
 
             if ($testModelResource) {
                 $response->appendContent('Would create a model test file at ' . $testModelResource->getContext()->getPath());
             }
-
         } else {
-
             $response->appendContent('Creating a model at ' . $modelResource->getContext()->getPath());
             $modelResource->create();
 
@@ -171,8 +166,5 @@ class Zend_Tool_Project_Provider_Model extends Zend_Tool_Project_Provider_Abstra
 
             $this->_storeProfile();
         }
-
     }
-
-
 }

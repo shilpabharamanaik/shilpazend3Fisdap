@@ -2,7 +2,6 @@
 
 use Fisdap\Api\Client\Attachments\Gateway\HttpAttachmentsGatewayTemplate;
 
-
 /**
  * HTTP implementation of a ShiftAttachmentsGateway
  *

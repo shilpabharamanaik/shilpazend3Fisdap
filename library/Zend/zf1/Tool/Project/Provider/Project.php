@@ -31,11 +31,9 @@ require_once 'Zend/Tool/Project/Provider/Abstract.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Project_Provider_Project
-    extends Zend_Tool_Project_Provider_Abstract
+class Zend_Tool_Project_Provider_Project extends Zend_Tool_Project_Provider_Abstract
     //implements Zend_Tool_Framework_Provider_DocblockManifestInterface
 {
-
     protected $_specialties = array('Info');
 
     /**
@@ -96,7 +94,8 @@ class Zend_Tool_Project_Provider_Project
         $response->appendContent('Note: ', array('separator' => false, 'color' => 'yellow'));
         $response->appendContent(
             'This command created a web project, '
-            . 'for more information setting up your VHOST, please see docs/README');
+            . 'for more information setting up your VHOST, please see docs/README'
+        );
 
         if (!Zend_Tool_Project_Provider_Test::isPHPUnitAvailable()) {
             $response->appendContent('Testing Note: ', array('separator' => false, 'color' => 'yellow'));

@@ -198,5 +198,4 @@ class Zend_Feed_Writer_Deleted
         }
         return $this->_data['comment'];
     }
-
 }

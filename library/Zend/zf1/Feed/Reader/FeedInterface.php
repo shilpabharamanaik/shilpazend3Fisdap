@@ -118,5 +118,4 @@ interface Zend_Feed_Reader_FeedInterface extends Iterator, Countable
      * @return Zend_Feed_Reader_Collection_Category
      */
     public function getCategories();
-
 }

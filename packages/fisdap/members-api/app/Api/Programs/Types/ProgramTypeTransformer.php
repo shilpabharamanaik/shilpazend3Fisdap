@@ -4,7 +4,6 @@ use Fisdap\Entity\ProgramLegacy;
 use Fisdap\Entity\ProgramTypeLegacy;
 use Fisdap\Fractal\Transformer;
 
-
 /**
  * Prepares program type data for JSON output
  *
@@ -26,4 +25,4 @@ final class ProgramTypeTransformer extends Transformer
 
         return $programType;
     }
-} 
+}

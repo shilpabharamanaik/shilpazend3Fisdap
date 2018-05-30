@@ -41,7 +41,6 @@ class Zend_Tool_Project_Provider_ProjectProvider extends Zend_Tool_Project_Provi
      */
     public static function createResource(Zend_Tool_Project_Profile $profile, $projectProviderName, $actionNames = null)
     {
-
         if (!is_string($projectProviderName)) {
             /**
              * @see Zend_Tool_Project_Provider_Exception
@@ -82,16 +81,17 @@ class Zend_Tool_Project_Provider_ProjectProvider extends Zend_Tool_Project_Provi
         $projectProvider = self::createResource($profile, $name, $actions);
 
         if ($this->_registry->getRequest()->isPretend()) {
-            $this->_registry->getResponse()->appendContent('Would create a project provider named ' . $name
+            $this->_registry->getResponse()->appendContent(
+                'Would create a project provider named ' . $name
                 . ' in location ' . $projectProvider->getPath()
                 );
         } else {
-            $this->_registry->getResponse()->appendContent('Creating a project provider named ' . $name
+            $this->_registry->getResponse()->appendContent(
+                'Creating a project provider named ' . $name
                 . ' in location ' . $projectProvider->getPath()
                 );
             $projectProvider->create();
             $this->_storeProfile();
         }
-
     }
 }

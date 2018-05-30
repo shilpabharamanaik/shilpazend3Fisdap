@@ -2,13 +2,12 @@
 
 use Swagger\Annotations as SWG;
 
-
 /**
  * Class Billing
  *
  * @package Fisdap\Api\Programs\Jobs\Models
  * @author  Ben Getsug <bgetsug@fisdap.net>
- *          
+ *
  * @SWG\Definition(definition="ProgramBilling", required={"email", "contactName", "address1", "city", "state", "zip"})
  */
 final class Billing
@@ -89,5 +88,4 @@ final class Billing
      * @SWG\Property(type="string")
      */
     public $fax = null;
-    
 }

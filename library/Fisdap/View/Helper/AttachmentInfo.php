@@ -23,7 +23,8 @@ class Fisdap_View_Helper_AttachmentInfo extends Zend_View_Helper_Abstract
 {
     protected $_html;
 
-    public function attachmentInfo($attachment, $titleClass) {
+    public function attachmentInfo($attachment, $titleClass)
+    {
         $title = $attachment->nickname ? $attachment->nickname : $attachment->fileName;
         $categoryString = is_array($attachment->categories) ? implode(", ", $attachment->categories) : "";
         $notes = strlen($attachment->notes) < 80 ?  $attachment->notes : substr($attachment->notes, 0, 79) . "...";
@@ -35,7 +36,8 @@ class Fisdap_View_Helper_AttachmentInfo extends Zend_View_Helper_Abstract
         return $html;
     }
 
-    public function attachmentDownloadPreviewLink($attachment, $associatedEntityId, $imageClass) {
+    public function attachmentDownloadPreviewLink($attachment, $associatedEntityId, $imageClass)
+    {
         $downloadLink = "/download/download-attachment/attachment/".$attachment->id."/attachmentType/shift/associatedEntityId/".$associatedEntityId;
         $html = "<div class='download-preview $imageClass' title='download attachment'>".
                 "<a href='$downloadLink' target='_blank'>".

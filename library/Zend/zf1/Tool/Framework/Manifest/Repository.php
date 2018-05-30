@@ -31,8 +31,7 @@ require_once 'Zend/Tool/Framework/Registry/EnabledInterface.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Framework_Manifest_Repository
-    implements Zend_Tool_Framework_Registry_EnabledInterface, IteratorAggregate, Countable
+class Zend_Tool_Framework_Manifest_Repository implements Zend_Tool_Framework_Registry_EnabledInterface, IteratorAggregate, Countable
 {
 
     /**
@@ -112,7 +111,6 @@ class Zend_Tool_Framework_Manifest_Repository
                     $providerRepository->addProvider($provider);
                 }
             }
-
         }
 
         // load actions if interface supports that method
@@ -168,7 +166,6 @@ class Zend_Tool_Framework_Manifest_Repository
      */
     public function process()
     {
-
         foreach ($this->_manifests as $manifest) {
             if ($manifest instanceof Zend_Tool_Framework_Manifest_MetadataManifestable) {
                 $metadatas = $manifest->getMetadata();
@@ -193,7 +190,6 @@ class Zend_Tool_Framework_Manifest_Repository
 
                     $this->addMetadata($metadata);
                 }
-
             }
         }
 
@@ -213,9 +209,8 @@ class Zend_Tool_Framework_Manifest_Repository
      * @param bool $includeNonExistentProperties
      * @return Zend_Tool_Framework_Manifest_Metadata[]
      */
-    public function getMetadatas(Array $searchProperties = array(), $includeNonExistentProperties = true)
+    public function getMetadatas(array $searchProperties = array(), $includeNonExistentProperties = true)
     {
-
         $returnMetadatas = array();
 
         // loop through the metadatas so that we can search each individual one
@@ -241,7 +236,6 @@ class Zend_Tool_Framework_Manifest_Repository
             // all searching has been accounted for, if we reach this point, then the metadata
             // is good and we can return it
             $returnMetadatas[] = $metadata;
-
         }
 
         return $returnMetadatas;
@@ -255,7 +249,7 @@ class Zend_Tool_Framework_Manifest_Repository
      * @param bool $includeNonExistentProperties
      * @return Zend_Tool_Framework_Manifest_Metadata
      */
-    public function getMetadata(Array $searchProperties = array(), $includeNonExistentProperties = true)
+    public function getMetadata(array $searchProperties = array(), $includeNonExistentProperties = true)
     {
         $metadatas = $this->getMetadatas($searchProperties, $includeNonExistentProperties);
         return array_shift($metadatas);
@@ -309,5 +303,4 @@ class Zend_Tool_Framework_Manifest_Repository
     {
         return new ArrayIterator($this->_metadatas);
     }
-
 }

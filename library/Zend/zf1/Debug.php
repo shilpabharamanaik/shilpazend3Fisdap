@@ -89,7 +89,7 @@ class Zend_Debug
                     . PHP_EOL . $output
                     . PHP_EOL;
         } else {
-            if(!extension_loaded('xdebug')) {
+            if (!extension_loaded('xdebug')) {
                 $flags = ENT_QUOTES;
                 // PHP 5.4.0+
                 if (defined('ENT_SUBSTITUTE')) {
@@ -109,5 +109,4 @@ class Zend_Debug
         }
         return $output;
     }
-
 }

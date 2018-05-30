@@ -53,5 +53,4 @@ class Zend_Tool_Project_Context_Zf_ViewScriptsDirectory extends Zend_Tool_Projec
     {
         return 'ViewScriptsDirectory';
     }
-
 }

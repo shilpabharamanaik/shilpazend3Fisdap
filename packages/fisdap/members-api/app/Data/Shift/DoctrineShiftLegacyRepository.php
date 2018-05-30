@@ -4,7 +4,6 @@ use Fisdap\Attachments\Associations\Repositories\RepositoryAttachmentsSupport;
 use Fisdap\Attachments\Associations\Repositories\StoresAttachments;
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineShiftLegacyRepository
  *
@@ -23,7 +22,7 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
      */
     public function getShiftIdsByStudent($student, $params=null)
     {
-        if(is_integer($student)) {
+        if (is_integer($student)) {
             $studentId = $student;
         } else {
             $studentId = $student->id;
@@ -84,7 +83,8 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
             ->getResult();
     }
 
-    public function getUpcomingShifts($studentId, $hours=72){
+    public function getUpcomingShifts($studentId, $hours=72)
+    {
         $secs = $hours * 60 * 60;
 
         $sql = "SELECT sh.*, CONVERT_TZ(TIMESTAMPADD(HOUR, BigBroInc, TIMESTAMPADD(SECOND, hours * 3600, TIMESTAMP(StartDate, CONCAT(StartTime, '00')))), CONCAT(standard_offset, ':00'), '-06:00') as deadline FROM ShiftData sh, StudentData st, ProgramData p, fisdap2_program_settings ps, fisdap2_timezone t WHERE st.Student_id = sh.Student_id AND st.Program_id = p.Program_id AND p.Program_id = ps.program_id AND ps.timezone_id = t.id AND Completed = 0 AND late = 0 AND BigBroStuReminders = 1 AND sh.Student_id = $studentId HAVING deadline > NOW() AND deadline < TIMESTAMP(NOW(), '$hours:00:00')";
@@ -105,14 +105,15 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
      * Certain filters are supported by passing values in through $filter array
      * @author jmortenson
      */
-    public function getShiftsFields($filter = array(), $fields = array()) {
+    public function getShiftsFields($filter = array(), $fields = array())
+    {
         $qb = $this->_em->createQueryBuilder();
         $qb->from('\Fisdap\Entity\ShiftLegacy', 'sh');
 
         // add fields
         $joins = array();
-        foreach($fields as $table => $names) {
-            switch($table) {
+        foreach ($fields as $table => $names) {
+            switch ($table) {
                 case 'attend':
                     $qb->innerJoin('sh.attendence', 'attend');
                     $joins['attend'] = 'attend';
@@ -128,11 +129,12 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
                 case 'st':
                     $qb->leftJoin('sh.student', 'st');
                     $joins['st'] = 'st';
+                    // no break
                 case 'sh':
                 default:
                     break;
             }
-            foreach($names as $field => $name) {
+            foreach ($names as $field => $name) {
                 if (is_string($field)) {
                     $qb->addSelect($table . '.' . $field . ' AS ' . $name);
                 } else {
@@ -174,7 +176,7 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
                     ->setParameter('program_ids', $filter['programIds']);
             } else {
                 $qb->andWhere('p.id = :program_ids')
-                    ->setParameter('program_ids',array_shift($filter['programIds']));
+                    ->setParameter('program_ids', array_shift($filter['programIds']));
             }
         }
 
@@ -205,7 +207,7 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
             if (count($filter['siteIds']) > 1) {
                 $qb->andWhere($qb->expr()->in('site.id', ':site_ids'))
                     ->setParameter('site_ids', $filter['siteIds']);
-            } else if (count($filter['siteIds']) == 1) {
+            } elseif (count($filter['siteIds']) == 1) {
                 $qb->andWhere('site.id = :siteid')
                     ->setParameter('siteid', array_shift($filter['siteIds']));
             }
@@ -219,7 +221,7 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
 
     public function getShiftsByStudent($studentId, $filter = null)
     {
-        if(!$filter){
+        if (!$filter) {
             $filter = array("type" => array(),
                             "attendance" => array(),
                             "date" => "all",
@@ -229,7 +231,7 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
         // handle $filter['type'] being passed in as a string instead of array
         if (is_array($filter['type'])) {
             $types = $filter['type'];
-        } else if ($filter['type']) {
+        } elseif ($filter['type']) {
             $types = array($filter['type']);
         }
         $pending = $filter['pending'];
@@ -292,7 +294,7 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
 				sh.student_id = {$studentId}
 		";
 
-        switch($date) {
+        switch ($date) {
             case "past":
                 $sql .= " AND sh.start_datetime <= '".date("Y-m-d H:i:s")."'";
                 break;
@@ -330,8 +332,6 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
         $result = $conn->query($sql);
 
         return $result;
-
-
     }
 
     public function getShiftEntitiesByStudent($studentId, $filter = 'all')
@@ -357,7 +357,7 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
             ->orderBy('sh.start_date', 'DESC')
             ->setParameter(1, $studentId);
 
-        switch($filter) {
+        switch ($filter) {
             case "pending":
                 $qb->andWhere('sh.locked = 0')
                     ->andWhere('sh.start_date <= CURRENT_DATE()');
@@ -414,14 +414,15 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
     {
         if ($a->skill_order == $b->skill_order) {
             return 0;
-        } else if ($a->skill_order > $b->skill_order) {
+        } elseif ($a->skill_order > $b->skill_order) {
             return 1;
         } else {
             return -1;
         }
     }
 
-    public function getStudentLateShifts($studentId){
+    public function getStudentLateShifts($studentId)
+    {
         $sql = "
 			SELECT
 				Shift_id as id
@@ -438,7 +439,8 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
         return $conn->query($sql);
     }
 
-    public function getStudentLateShiftArray($studentId){
+    public function getStudentLateShiftArray($studentId)
+    {
         $qb = $this->_em->createQueryBuilder();
 
         $qb->select("s.id, s.start_datetime, s.hours, s.end_datetime, si.abbreviation as site_abbreviation, ba.name as base_name")
@@ -457,7 +459,8 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
     }
 
     // get late shifts for students in a particular program whose grad status is 'In Progress'
-    public function getLateShiftAllStudents($programId){
+    public function getLateShiftAllStudents($programId)
+    {
         $sql = "
 			SELECT
 				sd.Student_id as student_id,
@@ -529,26 +532,27 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
         return array_pop($result);
     }
 
-    public function getPendingTradeDrops($classSectionId=null, $user=null){
-        if($user == null){
+    public function getPendingTradeDrops($classSectionId=null, $user=null)
+    {
+        if ($user == null) {
             $user = \Fisdap\Entity\User::getLoggedInUser();
         }
 
-        if($user->isInstructor()){
+        if ($user->isInstructor()) {
             $programId = $user->getCurrentProgram()->id;
 
             $shiftTypes = array();
-            if($user->hasPermission('Edit Clinic Schedules')){
+            if ($user->hasPermission('Edit Clinic Schedules')) {
                 $shiftTypes[] = 'clinical';
             }
-            if($user->hasPermission('Edit Field Schedules')){
+            if ($user->hasPermission('Edit Field Schedules')) {
                 $shiftTypes[] = 'field';
             }
-            if($user->hasPermission('Edit Lab Schedules')){
+            if ($user->hasPermission('Edit Lab Schedules')) {
                 $shiftTypes[] = 'lab';
             }
 
-            $cutoff_date = date("Y-m-d",mktime(0, 0, 0, date("m")  , date("d")-7, date("Y")));
+            $cutoff_date = date("Y-m-d", mktime(0, 0, 0, date("m"), date("d")-7, date("Y")));
 
             if ($classSectionId > 0) {
                 $sectionTable = ", SectStudents ss ";
@@ -580,9 +584,7 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
             } else {
                 return false;
             }
-
-
-        }else{
+        } else {
             return false;
         }
     }
@@ -592,7 +594,8 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
      *	@param count determines what we're looking to return (just the total number of preceptors, or an actual name)
      *	@param fromEvent determines if we're looking for runs with preceptors, or if we're looking for an event preceptor
      */
-    public function getShiftEventPreceptor($shiftId){
+    public function getShiftEventPreceptor($shiftId)
+    {
         $sql = "
 			SELECT
 				pd.FirstName,
@@ -611,9 +614,9 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
 
         $row = $result->fetch();
 
-        if($row){
+        if ($row) {
             return $row['FirstName'] . " " . $row['LastName'];
-        }else{
+        } else {
             return false;
         }
     }
@@ -732,7 +735,7 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
 
         $result = $qb->getQuery()->getScalarResult();
 
-        if(!empty($result)){
+        if (!empty($result)) {
             $has_data = true;
         } else {
             // double check make sure there are no airway_managements for this shift, either
@@ -745,7 +748,6 @@ class DoctrineShiftLegacyRepository extends DoctrineRepository implements ShiftL
             $airway_managements = $qb->getQuery()->getScalarResult();
 
             $has_data = !empty($airway_managements);
-
         }
 
         return $has_data;

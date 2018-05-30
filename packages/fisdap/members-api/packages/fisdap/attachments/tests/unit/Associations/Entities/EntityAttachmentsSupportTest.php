@@ -5,7 +5,6 @@ use Fisdap\Attachments\Associations\Entities\EntityAttachmentsSupport;
 use Fisdap\Attachments\Associations\Entities\HasAttachments;
 use Fisdap\Attachments\Entity\Attachment;
 
-
 class EntityAttachmentsSupportTest extends \Codeception\TestCase\Test implements HasAttachments
 {
     use EntityAttachmentsSupport;

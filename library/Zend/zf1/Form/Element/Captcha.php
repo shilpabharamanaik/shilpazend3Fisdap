@@ -149,7 +149,7 @@ class Zend_Form_Element_Captcha extends Zend_Form_Element_Xhtml
         }
         parent::setOptions($options);
 
-        if(null !== $captcha) {
+        if (null !== $captcha) {
             $this->setCaptcha($captcha, $captchaOptions);
         }
         return $this;

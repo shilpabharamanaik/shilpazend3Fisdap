@@ -72,15 +72,15 @@ class ExportOrdersCommand extends Command
 
         $orders = $this->orderRepository->getAllOrders(['startDate' => $startDate, 'endDate' => $endDate]);
 
-        foreach($orders as $order) {
+        foreach ($orders as $order) {
             $discounts = $this->discountLegacyRepository->getCurrentDiscounts($order->program->id, $order->order_date);
 
-            // If this is a free order, skip 
+            // If this is a free order, skip
             if ($order->isFreeOrder()) {
                 continue;
             }
 
-            switch($order->payment_method->id) {
+            switch ($order->payment_method->id) {
                 case 1:
                     $type = 'Invoice';
                     break;
@@ -111,7 +111,7 @@ class ExportOrdersCommand extends Command
                     if ($individualPrice > $config->package->price) {
                         $packageProducts = $this->productRepository->getProducts($config->package->configuration, true, false, false, true, $order->program->profession->id);
 
-                        foreach($packageProducts as $product) {
+                        foreach ($packageProducts as $product) {
                             $price = $product->quickbooks_info->package_discount_price;
 
                             $row = [];
@@ -137,7 +137,7 @@ class ExportOrdersCommand extends Command
                 //If there are still products left, add them to the invoice/sales receipt
                 if ($configuration > 0) {
                     $products = $this->productRepository->getProducts($configuration, true, false, false, true, $order->program->profession->id);
-                    foreach($products as $product) {
+                    foreach ($products as $product) {
                         //Add row for this item
                         $row = [];
                         $row[] = $type;

@@ -25,7 +25,7 @@ final class DeleteIv extends AbstractSkills implements RequestHydrated
     public function handle(IvRepository $ivRepository)
     {
         $iv = $ivRepository->find($this->id);
-        if($iv) {
+        if ($iv) {
             $ivRepository->destroy($iv);
         }
 

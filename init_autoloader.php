@@ -28,7 +28,7 @@ $siteRootDir . '/library' . PATH_SEPARATOR
 . get_include_path()
 );
 $container = require(APPLICATION_PATH . '/container.php');
-include_once (APPLICATION_PATH . '/Bootstrap.php');
+include_once(APPLICATION_PATH . '/Bootstrap.php');
 $bootsrtap = new Bootstrap();
 $bootstrap = $bootsrtap->setIlluminateContainer($container);
 $bootsrtap->run();

@@ -11,17 +11,20 @@
 /**
 * R Double vector
 */
-class Rserve_REXP_Double extends Rserve_REXP_Vector {
-	
-	public function isInteger() { 
-		return false; 
-	}
-	
-	public function isNumeric() { 
-		return true; 
-	}
-	
-	public function getType() {
-		return Rserve_Parser::XT_ARRAY_DOUBLE;
-	}
+class Rserve_REXP_Double extends Rserve_REXP_Vector
+{
+    public function isInteger()
+    {
+        return false;
+    }
+    
+    public function isNumeric()
+    {
+        return true;
+    }
+    
+    public function getType()
+    {
+        return Rserve_Parser::XT_ARRAY_DOUBLE;
+    }
 }

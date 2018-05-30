@@ -3,7 +3,6 @@
 use Illuminate\Redis\Database;
 use Illuminate\Support\ServiceProvider;
 
-
 /**
  * Class RedisServiceProvider
  *

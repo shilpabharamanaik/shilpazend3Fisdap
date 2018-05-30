@@ -37,7 +37,6 @@ class SkillsTracker_View_Helper_ShiftList extends Zend_View_Helper_Abstract
      */
     public function shiftList($studentId, $studentsGateway, $filter = null, $isInstructor = false, $messages = array())
     {
-
         if (!$filter) {
             $filter = array("type" => array(),
                 "attendance" => array(),
@@ -79,7 +78,6 @@ class SkillsTracker_View_Helper_ShiftList extends Zend_View_Helper_Abstract
         }
 
         if ($shiftCount || $anyShiftsPresent) {
-
             if (!$attachmentsAdded) {
                 $this->_html .= '<div class="notice">An error has occurred. We could not retrieve attachment data.</div>';
             }
@@ -129,7 +127,6 @@ class SkillsTracker_View_Helper_ShiftList extends Zend_View_Helper_Abstract
 
             $this->_html .= $this->view->quickLinksHelper($quickLinks);
             $this->_html .= '</div>';
-
         } else {
             $this->_html .= '<div class="grid_12">';
             $this->_html .= $this->view->youtubeVideo("fo2xAqPM-mU", "shiftListBlankState.phtml");
@@ -163,7 +160,6 @@ class SkillsTracker_View_Helper_ShiftList extends Zend_View_Helper_Abstract
 
     protected function showShiftsTable($shifts)
     {
-
         $this->_html .= '<table id="shift-table" ';
 
         if ($this->isInstructor) {
@@ -222,7 +218,6 @@ class SkillsTracker_View_Helper_ShiftList extends Zend_View_Helper_Abstract
 
         $this->_html .= '</tbody></table>';
         //$this->_html .= '</div>';
-
     }
 
     /**

@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -44,8 +44,8 @@ class SkillsTracker_Form_Element_Temperature extends Zend_Form_Element_Xhtml
      */
     public function setValue($value)
     {
-		$this->_temperature = $value['temperature'];
-		$this->_units = $value['units'];
+        $this->_temperature = $value['temperature'];
+        $this->_units = $value['units'];
         
         return $this;
     }

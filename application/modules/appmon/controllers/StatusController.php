@@ -6,7 +6,6 @@ use Illuminate\Contracts\Container\Container;
 use Illuminate\Http\Response as HttpResponse;
 use Psr\Log\LoggerInterface;
 
-
 /**
  * Appmon_StatusController class
  *
@@ -101,7 +100,6 @@ class Appmon_StatusController extends Zend_Controller_Action
 
             $this->_helper->json($data, true);
         } else {
-
             $data['completedChecks'] = $this->completedChecks;
 
             $this->view->assign($data);
@@ -121,7 +119,6 @@ class Appmon_StatusController extends Zend_Controller_Action
 
         // resolve from IoC and run check()
         foreach ($enabledChecks as $enabledCheck) {
-
             try {
                 /** @var ChecksHealth $check */
                 $check = $this->container->make($enabledCheck);

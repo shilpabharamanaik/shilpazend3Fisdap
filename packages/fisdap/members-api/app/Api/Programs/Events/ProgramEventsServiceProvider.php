@@ -11,7 +11,6 @@ use Illuminate\Contracts\Pipeline\Pipeline as PipelineContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Pipeline\Pipeline;
 
-
 /**
  * Registers events related to programs (Program Entity)
  *
@@ -40,7 +39,7 @@ final class ProgramEventsServiceProvider extends ServiceProvider
     {
         $this->app->when(EstablishProgramSettings::class)
             ->needs(PipelineContract::class)
-            ->give(function() {
+            ->give(function () {
                 return new Pipeline($this->app);
             });
     }

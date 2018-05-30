@@ -10,5 +10,4 @@ use Fisdap\Data\Repository\Repository;
  */
 interface MentalOrientationRepository extends Repository
 {
-
 }

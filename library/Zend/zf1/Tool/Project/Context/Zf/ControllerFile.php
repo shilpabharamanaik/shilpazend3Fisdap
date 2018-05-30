@@ -123,7 +123,6 @@ class Zend_Tool_Project_Context_Zf_ControllerFile extends Zend_Tool_Project_Cont
 
 
         if ($className == 'ErrorController') {
-
             $codeGenFile = new Zend_CodeGenerator_Php_File(array(
                 'fileName' => $this->getPath(),
                 'classes' => array(
@@ -187,7 +186,6 @@ EOS
                         ))
                     )
                 ));
-
         }
 
         // store the generator into the registry so that the addAction command can use the same object later
@@ -219,5 +217,4 @@ EOS
         $class = array_shift($codeGenFileClasses);
         return $class;
     }
-
 }

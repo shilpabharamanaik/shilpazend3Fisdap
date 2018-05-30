@@ -70,4 +70,3 @@ abstract class Zend_Pdf_Resource_Image extends Zend_Pdf_Resource
      */
     abstract public function getProperties();
 }
-

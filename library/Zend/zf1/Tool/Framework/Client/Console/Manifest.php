@@ -57,8 +57,8 @@ require_once 'Zend/Tool/Framework/Registry/EnabledInterface.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Framework_Client_Console_Manifest
-    implements Zend_Tool_Framework_Registry_EnabledInterface,
+class Zend_Tool_Framework_Client_Console_Manifest implements
+    Zend_Tool_Framework_Registry_EnabledInterface,
                Zend_Tool_Framework_Manifest_MetadataManifestable
 {
 
@@ -140,7 +140,6 @@ class Zend_Tool_Framework_Client_Console_Manifest
 
             // create the metadatas for the per provider specialites in providerSpecaltyNames
             foreach ($providerSignature->getSpecialties() as $specialty) {
-
                 $metadatas[] = new Zend_Tool_Framework_Metadata_Tool(array(
                     'name'            => 'specialtyName',
                     'value'           =>  $ccToDashedFilter->filter($specialty),
@@ -150,12 +149,10 @@ class Zend_Tool_Framework_Client_Console_Manifest
                     'specialtyName'   => $specialty,
                     'clientReference' => $this->_registry->getClient()
                     ));
-
             }
 
             // $actionableMethod is keyed by the methodName (but not used)
             foreach ($providerSignature->getActionableMethods() as $actionableMethodData) {
-
                 $methodLongParams  = array();
                 $methodShortParams = array();
 
@@ -167,7 +164,6 @@ class Zend_Tool_Framework_Client_Console_Manifest
 
                     // simply lower the character, (its only 1 char after all)
                     $methodShortParams[$parameterInfoData['name']] = strtolower($parameterInfoData['name'][0]);
-
                 }
 
                 // create metadata for the long name cliActionableMethodLongParameters
@@ -193,9 +189,7 @@ class Zend_Tool_Framework_Client_Console_Manifest
                     'reference'       => &$actionableMethodData,
                     'clientReference' => $this->_registry->getClient()
                     ));
-
             }
-
         }
 
         return $metadatas;
@@ -205,5 +199,4 @@ class Zend_Tool_Framework_Client_Console_Manifest
     {
         return 10000;
     }
-
 }

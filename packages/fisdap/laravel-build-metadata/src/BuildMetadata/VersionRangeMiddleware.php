@@ -10,7 +10,6 @@ use Illuminate\Http\Response as HttpResponse;
 use vierbergenlars\SemVer\expression;
 use vierbergenlars\SemVer\version;
 
-
 /**
  * Ensures version in build metadata matches SemVer range specified in header
  *
@@ -66,7 +65,6 @@ class VersionRangeMiddleware
         }
 
         if ($versionRangeHeader !== null) {
-
             try {
                 $build = new BuildMetadata();
                 $build->load();
@@ -75,8 +73,7 @@ class VersionRangeMiddleware
 
                 $range = new expression($versionRangeHeader);
 
-                if ( ! $range->satisfiedBy($version)) {
-
+                if (! $range->satisfiedBy($version)) {
                     return new JsonResponse(
                         [
                             'error' => [
@@ -90,9 +87,7 @@ class VersionRangeMiddleware
                         HttpResponse::HTTP_PRECONDITION_FAILED
                     );
                 }
-
             } catch (\RuntimeException $e) {
-
                 return new JsonResponse(
                     [
                         'error' => [

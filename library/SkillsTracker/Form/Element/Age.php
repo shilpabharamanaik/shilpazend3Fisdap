@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -44,14 +44,13 @@ class SkillsTracker_Form_Element_Age extends Zend_Form_Element_Xhtml
      */
     public function setValue($value)
     {
-        while($value['months'] - 12 >= 0){
+        while ($value['months'] - 12 >= 0) {
             $value['months'] = $value['months'] - 12;
-            $value['years'] = $value['years'] + 1;       
+            $value['years'] = $value['years'] + 1;
         }
         $this->_months = $value['months'];
         $this->_years = $value['years'];
         return $this;
-
     }
     
     /**

@@ -123,7 +123,7 @@ class Zend_Reflection_File implements Reflector
         while (count($includePaths) > 0) {
             $filePath = array_shift($includePaths) . DIRECTORY_SEPARATOR . $fileName;
 
-            if ( ($foundRealpath = realpath($filePath)) !== false) {
+            if (($foundRealpath = realpath($filePath)) !== false) {
                 break;
             }
         }
@@ -339,8 +339,8 @@ class Zend_Reflection_File implements Reflector
                 // Maintain the count of open braces
                 if ($token == '{') {
                     $openBraces++;
-                } else if ($token == '}') {
-                    if ( $embeddedVariableTrapped ) {
+                } elseif ($token == '}') {
+                    if ($embeddedVariableTrapped) {
                         $embeddedVariableTrapped = false;
                     } else {
                         $openBraces--;
@@ -412,12 +412,13 @@ class Zend_Reflection_File implements Reflector
      * @param  array $tokens Array of tokenizer tokens
      * @return void
      */
-    protected function _checkFileDocBlock($tokens) {
+    protected function _checkFileDocBlock($tokens)
+    {
         foreach ($tokens as $token) {
             $type    = $token[0];
             $value   = $token[1];
             $lineNum = $token[2];
-            if(($type == T_OPEN_TAG) || ($type == T_WHITESPACE)) {
+            if (($type == T_OPEN_TAG) || ($type == T_WHITESPACE)) {
                 continue;
             } elseif ($type == T_DOC_COMMENT) {
                 $this->_docComment = $value;

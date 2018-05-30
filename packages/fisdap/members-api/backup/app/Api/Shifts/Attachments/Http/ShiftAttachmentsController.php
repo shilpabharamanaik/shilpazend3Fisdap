@@ -4,7 +4,6 @@ use Fisdap\Api\Http\Controllers\Controller;
 use Fisdap\Api\Shifts\Attachments\Http\Middleware\ShiftAttachmentCreationUserContextLimit;
 use Fisdap\Fractal\ResponseHelpers;
 
-
 /**
  * Handles HTTP transport for additional attachment-related routes specific to shifts
  *

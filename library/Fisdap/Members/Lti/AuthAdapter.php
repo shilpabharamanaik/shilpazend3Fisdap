@@ -3,7 +3,6 @@
 use Zend\Authentication\Adapter\Exception\ExceptionInterface;
 use Zend\Authentication\Result;
 
-
 /**
  * Zend_Auth Adapter for LTI launches
  *

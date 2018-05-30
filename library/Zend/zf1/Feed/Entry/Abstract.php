@@ -122,5 +122,4 @@ abstract class Zend_Feed_Entry_Abstract extends Zend_Feed_Element
 
         parent::__construct($element);
     }
-
 }

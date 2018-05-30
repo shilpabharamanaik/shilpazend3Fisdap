@@ -43,7 +43,7 @@ class Zend_Test_PHPUnit_Db_Operation_DeleteAll implements PHPUnit_Extensions_Dat
      */
     public function execute(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
     {
-        if(!($connection instanceof Zend_Test_PHPUnit_Db_Connection)) {
+        if (!($connection instanceof Zend_Test_PHPUnit_Db_Connection)) {
             require_once "Zend/Test/PHPUnit/Db/Exception.php";
             throw new Zend_Test_PHPUnit_Db_Exception("Not a valid Zend_Test_PHPUnit_Db_Connection instance, ".get_class($connection)." given!");
         }

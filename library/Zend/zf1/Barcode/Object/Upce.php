@@ -40,7 +40,6 @@ require_once 'Zend/Validate/Barcode.php';
  */
 class Zend_Barcode_Object_Upce extends Zend_Barcode_Object_Ean13
 {
-
     protected $_parities = array(
         0 => array(
             0 => array('B','B','B','A','A','A'),

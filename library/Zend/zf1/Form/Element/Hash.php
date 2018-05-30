@@ -249,10 +249,10 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
     protected function _generateHash()
     {
         $this->_hash = md5(
-            mt_rand(1,1000000)
+            mt_rand(1, 1000000)
             .  $this->getSalt()
             .  $this->getName()
-            .  mt_rand(1,1000000)
+            .  mt_rand(1, 1000000)
         );
         $this->setValue($this->_hash);
     }

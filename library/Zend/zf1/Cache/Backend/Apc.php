@@ -351,5 +351,4 @@ class Zend_Cache_Backend_Apc extends Zend_Cache_Backend implements Zend_Cache_Ba
             'get_list' => true
         );
     }
-
 }

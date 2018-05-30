@@ -4,7 +4,6 @@ use Illuminate\Routing\Controller;
 use Log;
 use Request;
 
-
 /**
  * Logs request information for testing/debugging purposes
  *

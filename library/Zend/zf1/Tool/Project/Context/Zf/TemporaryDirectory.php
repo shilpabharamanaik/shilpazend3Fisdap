@@ -53,5 +53,4 @@ class Zend_Tool_Project_Context_Zf_TemporaryDirectory extends Zend_Tool_Project_
     {
         return 'TemporaryDirectory';
     }
-
 }

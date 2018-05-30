@@ -3,7 +3,6 @@
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
-
 /**
  * Add a courseId column to the UserContexts table
  *

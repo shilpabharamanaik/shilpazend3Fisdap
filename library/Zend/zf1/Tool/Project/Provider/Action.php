@@ -36,9 +36,7 @@ require_once 'Zend/Tool/Framework/Provider/Pretendable.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Project_Provider_Action
-    extends Zend_Tool_Project_Provider_Abstract
-    implements Zend_Tool_Framework_Provider_Pretendable
+class Zend_Tool_Project_Provider_Action extends Zend_Tool_Project_Provider_Abstract implements Zend_Tool_Framework_Provider_Pretendable
 {
 
     /**
@@ -52,7 +50,6 @@ class Zend_Tool_Project_Provider_Action
      */
     public static function createResource(Zend_Tool_Project_Profile $profile, $actionName, $controllerName, $moduleName = null)
     {
-
         if (!is_string($actionName)) {
             throw new Zend_Tool_Project_Provider_Exception('Zend_Tool_Project_Provider_Action::createResource() expects \"actionName\" is the name of a action resource to create.');
         }
@@ -128,7 +125,6 @@ class Zend_Tool_Project_Provider_Action
      */
     public function create($name, $controllerName = 'Index', $viewIncluded = true, $module = null)
     {
-
         $this->_loadProfile();
 
         // get request/response object
@@ -204,7 +200,6 @@ class Zend_Tool_Project_Provider_Action
             if ($testActionMethodResource) {
                 $response->appendContent('Would create an action test in ' . $testActionMethodResource->getParentResource()->getContext()->getPath());
             }
-
         } else {
             $response->appendContent(
                 'Creating an action named ' . $name .
@@ -234,9 +229,6 @@ class Zend_Tool_Project_Provider_Action
                 $viewResource->create();
                 $this->_storeProfile();
             }
-
         }
-
     }
-
 }

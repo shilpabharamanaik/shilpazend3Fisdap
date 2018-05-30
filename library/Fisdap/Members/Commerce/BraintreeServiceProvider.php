@@ -3,7 +3,6 @@
 use Braintree_Configuration;
 use Illuminate\Support\ServiceProvider;
 
-
 /**
  * Class BraintreeServiceProvider
  *

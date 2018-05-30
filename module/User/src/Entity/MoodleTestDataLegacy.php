@@ -627,15 +627,15 @@ EOT;
                                 u.firstname DESC,
                                 attempt_number ASC
                         ";
-            
+
                         $res = $moodleConnection->fetchAll($qry);
-            
+
                         foreach($res as $row){
                             $studentAttemptsArray[$studentUsername]['student_data']['first_name'] = $row['firstname'];
                             $studentAttemptsArray[$studentUsername]['student_data']['last_name'] = $row['lastname'];
-            
+
                             $studentAttemptsArray[$studentUsername]['attempt_data'][$row['attempt_number']][$row['question']] = $row['grade'];
-            
+
                             $studentAttemptsArray[$studentUsername]['attempt_ids'][$row['attempt_number']] = $row['attempt_id'];
                            }
             */

@@ -49,9 +49,11 @@ interface Zend_Cloud_StorageService_Adapter
      * @param  array $options
      * @return boolean
      */
-    public function storeItem($destinationPath,
+    public function storeItem(
+        $destinationPath,
                               $data,
-                              $options = null);
+                              $options = null
+    );
 
     /**
      * Delete an item in the storage service.

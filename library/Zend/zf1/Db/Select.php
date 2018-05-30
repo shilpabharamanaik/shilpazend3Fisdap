@@ -43,7 +43,6 @@ require_once 'Zend/Db/Expr.php';
  */
 class Zend_Db_Select
 {
-
     const DISTINCT       = 'distinct';
     const COLUMNS        = 'columns';
     const FROM           = 'from';
@@ -904,7 +903,7 @@ class Zend_Db_Select
             $c = is_string($k) ? $k : end($name);
         } else {
             // Extract just the last name of a qualified table name
-            $dot = strrpos($name,'.');
+            $dot = strrpos($name, '.');
             $c = ($dot === false) ? $name : substr($name, $dot+1);
         }
         for ($i = 2; array_key_exists($c, $this->_parts[self::FROM]); ++$i) {
@@ -1233,7 +1232,7 @@ class Zend_Db_Select
             $order = array();
             foreach ($this->_parts[self::ORDER] as $term) {
                 if (is_array($term)) {
-                    if(is_numeric($term[0]) && strval(intval($term[0])) == $term[0]) {
+                    if (is_numeric($term[0]) && strval(intval($term[0])) == $term[0]) {
                         $order[] = (int)trim($term[0]) . ' ' . $term[1];
                     } else {
                         $order[] = $this->_adapter->quoteIdentifier($term[0], true) . ' ' . $term[1];
@@ -1352,5 +1351,4 @@ class Zend_Db_Select
         }
         return (string)$sql;
     }
-
 }

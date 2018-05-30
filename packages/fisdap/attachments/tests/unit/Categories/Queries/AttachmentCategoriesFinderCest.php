@@ -5,7 +5,6 @@ use Fisdap\Attachments\Categories\Queries\AttachmentCategoriesFinder;
 use Fisdap\Attachments\Categories\Repository\AttachmentCategoriesRepository;
 use Fisdap\Attachments\Core\TypeMapper\MapsAttachmentTypes;
 
-
 class AttachmentCategoriesFinderCest
 {
     /**

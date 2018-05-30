@@ -18,7 +18,8 @@
 /**
  * @package Fisdap
  */
-class Zend_View_Helper_EvalJsHookHelper extends Zend_View_Helper_Abstract {
+class Zend_View_Helper_EvalJsHookHelper extends Zend_View_Helper_Abstract
+{
 
     /**
      * @param integer $hookId ID of the hook to generate a link for.
@@ -26,7 +27,8 @@ class Zend_View_Helper_EvalJsHookHelper extends Zend_View_Helper_Abstract {
      * to.
      * @return string the html to render
      */
-    public function evalJsHookHelper($program_id, $shift_type) {
+    public function evalJsHookHelper($program_id, $shift_type)
+    {
         // figure out which hooks we're looking at by type
         $eval_hooks = array();
         switch ($shift_type) {
@@ -81,5 +83,4 @@ class Zend_View_Helper_EvalJsHookHelper extends Zend_View_Helper_Abstract {
 
         return $js;
     }
-
 }

@@ -97,8 +97,10 @@ class Zend_Feed_Atom extends Zend_Feed_Abstract
                                               . '> element found, cannot parse feed.');
             }
 
-            $doc = new DOMDocument($this->_element->version,
-                                   $this->_element->actualEncoding);
+            $doc = new DOMDocument(
+                $this->_element->version,
+                                   $this->_element->actualEncoding
+            );
             $feed = $doc->appendChild($doc->createElement('feed'));
             $feed->appendChild($doc->importNode($element, true));
             $element = $feed;
@@ -335,15 +337,19 @@ class Zend_Feed_Atom extends Zend_Feed_Abstract
             }
 
             if (isset($dataentry->comments)) {
-                $comments = $this->_element->createElementNS('http://wellformedweb.org/CommentAPI/',
+                $comments = $this->_element->createElementNS(
+                    'http://wellformedweb.org/CommentAPI/',
                                                              'wfw:comment',
-                                                             $dataentry->comments);
+                                                             $dataentry->comments
+                );
                 $entry->appendChild($comments);
             }
             if (isset($dataentry->commentRss)) {
-                $comments = $this->_element->createElementNS('http://wellformedweb.org/CommentAPI/',
+                $comments = $this->_element->createElementNS(
+                    'http://wellformedweb.org/CommentAPI/',
                                                              'wfw:commentRss',
-                                                             $dataentry->commentRss);
+                                                             $dataentry->commentRss
+                );
                 $entry->appendChild($comments);
             }
 
@@ -359,8 +365,10 @@ class Zend_Feed_Atom extends Zend_Feed_Abstract
     public function saveXml()
     {
         // Return a complete document including XML prologue.
-        $doc = new DOMDocument($this->_element->ownerDocument->version,
-                               $this->_element->ownerDocument->actualEncoding);
+        $doc = new DOMDocument(
+            $this->_element->ownerDocument->version,
+                               $this->_element->ownerDocument->actualEncoding
+        );
         $doc->appendChild($doc->importNode($this->_element, true));
         $doc->formatOutput = true;
 

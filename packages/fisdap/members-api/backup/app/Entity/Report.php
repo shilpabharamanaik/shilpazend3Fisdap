@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
-
 /**
  * Entity class for Reports.
  *
@@ -33,101 +32,100 @@ class Report extends Enumerated
      * @Column(type="string", nullable=false)
      */
     protected $name;
-	
-	/**
+    
+    /**
      * @var string
      * @Column(type="string", nullable=false)
      */
     protected $class;
-	
-	/**
+    
+    /**
      * @Column(type="text", nullable=true)
      */
     protected $description;
-	
-	/**
+    
+    /**
      * @Column(type="text", nullable=true)
      */
     protected $student_description;
-	
-	/**
-	 * @var boolean
-	 * @Column(type="boolean", nullable=false)
-	 */
-	protected $standalone = false;
-	
-	/**
-	 * @ManyToMany(targetEntity="ReportCategory")
-	 * @JoinTable(name="fisdap2_category_report",
+    
+    /**
+     * @var boolean
+     * @Column(type="boolean", nullable=false)
+     */
+    protected $standalone = false;
+    
+    /**
+     * @ManyToMany(targetEntity="ReportCategory")
+     * @JoinTable(name="fisdap2_category_report",
      *  joinColumns={@JoinColumn(name="report_id", referencedColumnName="id")},
      *  inverseJoinColumns={@JoinColumn(name="category_id",referencedColumnName="id")})
-	 */
+     */
     protected $categories;
 
     public function init()
     {
         $this->categories = new ArrayCollection();
     }
-	
-	/**
-	 *	Returns report class of given report class name
-	 *	@return \Fisdap\Entity\Report
-	 */
-	public static function getByClass($class)
-	{
-		$repo = EntityUtils::getEntityManager()->getRepository("\Fisdap\Entity\Report");
-		return $repo->findOneByClass($class);
-	}
-	
-	/**
-	 *	Returns an array of categories relevent to THIS user
-	 *	@return array
-	 */
-	public function getCategories()
-	{
-		$categories = array();
-		$program = User::getLoggedInUser()->getCurrentProgram();
-		foreach ($this->categories as $category) {
-			if ($category->profession == $program->profession) {
-				$categories[$category->id] = $category;
-			}
-		}
-		return $categories;
-	}
-	
-	/**
-	 *	Returns a pretty string of categories relevent to THIS user
-	 *	@return string
-	 */
-	public function getCategoryList()
-	{
-		$categories = array();
-		foreach ($this->getCategories() as $category) {
-			$categories[] = $category->name;
-		}
-		return implode(", ", $categories);
-	}
-	
-	/**
-	 *	Returns a pretty string of category ids relevent to THIS user
-	 *	@return string
-	 */
-	public function getCategoryIds()
-	{
-		$categories = array();
-		foreach ($this->getCategories() as $category) {
-			$categories[] = $category->id;
-		}
-		return implode(",", $categories);
-	}
-	
-	public function getDescription()
-	{
-		$student = (User::getLoggedInUser()->getCurrentRoleName() == 'student');
-		if ($student && !is_null($this->student_description)) {
-			return $this->student_description;
-		}
-		return $this->description;
-	}
-
+    
+    /**
+     *	Returns report class of given report class name
+     *	@return \Fisdap\Entity\Report
+     */
+    public static function getByClass($class)
+    {
+        $repo = EntityUtils::getEntityManager()->getRepository("\Fisdap\Entity\Report");
+        return $repo->findOneByClass($class);
+    }
+    
+    /**
+     *	Returns an array of categories relevent to THIS user
+     *	@return array
+     */
+    public function getCategories()
+    {
+        $categories = array();
+        $program = User::getLoggedInUser()->getCurrentProgram();
+        foreach ($this->categories as $category) {
+            if ($category->profession == $program->profession) {
+                $categories[$category->id] = $category;
+            }
+        }
+        return $categories;
+    }
+    
+    /**
+     *	Returns a pretty string of categories relevent to THIS user
+     *	@return string
+     */
+    public function getCategoryList()
+    {
+        $categories = array();
+        foreach ($this->getCategories() as $category) {
+            $categories[] = $category->name;
+        }
+        return implode(", ", $categories);
+    }
+    
+    /**
+     *	Returns a pretty string of category ids relevent to THIS user
+     *	@return string
+     */
+    public function getCategoryIds()
+    {
+        $categories = array();
+        foreach ($this->getCategories() as $category) {
+            $categories[] = $category->id;
+        }
+        return implode(",", $categories);
+    }
+    
+    public function getDescription()
+    {
+        $student = (User::getLoggedInUser()->getCurrentRoleName() == 'student');
+        if ($student && !is_null($this->student_description)) {
+            return $this->student_description;
+        }
+        return $this->description;
+    }
 }

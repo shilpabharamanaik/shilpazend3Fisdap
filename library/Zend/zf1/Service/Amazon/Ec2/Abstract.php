@@ -98,11 +98,11 @@ abstract class Zend_Service_Amazon_Ec2_Abstract extends Zend_Service_Amazon_Abst
      */
     public function __construct($accessKey=null, $secretKey=null, $region=null)
     {
-        if(!$region) {
+        if (!$region) {
             $region = self::$_defaultRegion;
         } else {
             // make rue the region is valid
-            if(!empty($region) && !in_array(strtolower($region), self::$_validEc2Regions, true)) {
+            if (!empty($region) && !in_array(strtolower($region), self::$_validEc2Regions, true)) {
                 require_once 'Zend/Service/Amazon/Exception.php';
                 throw new Zend_Service_Amazon_Exception('Invalid Amazon Ec2 Region');
             }
@@ -121,7 +121,7 @@ abstract class Zend_Service_Amazon_Ec2_Abstract extends Zend_Service_Amazon_Abst
      */
     public static function setRegion($region)
     {
-        if(in_array(strtolower($region), self::$_validEc2Regions, true)) {
+        if (in_array(strtolower($region), self::$_validEc2Regions, true)) {
             self::$_defaultRegion = $region;
         } else {
             require_once 'Zend/Service/Amazon/Exception.php';
@@ -166,8 +166,6 @@ abstract class Zend_Service_Amazon_Ec2_Abstract extends Zend_Service_Amazon_Abst
             $request->setParameterPost($params);
 
             $httpResponse = $request->request();
-            
-
         } catch (Zend_Http_Client_Exception $zhce) {
             $message = 'Error in request to AWS service: ' . $zhce->getMessage();
             throw new Zend_Service_Amazon_Ec2_Exception($message, $zhce->getCode(), $zhce);
@@ -239,7 +237,7 @@ abstract class Zend_Service_Amazon_Ec2_Abstract extends Zend_Service_Amazon_Abst
         unset($paramaters['Signature']);
 
         $arrData = array();
-        foreach($paramaters as $key => $value) {
+        foreach ($paramaters as $key => $value) {
             $arrData[] = $key . '=' . str_replace("%7E", "~", rawurlencode($value));
         }
 
@@ -272,6 +270,5 @@ abstract class Zend_Service_Amazon_Ec2_Abstract extends Zend_Service_Amazon_Abst
             $message = $xpath->evaluate('string(Message/text())', $node);
             throw new Zend_Service_Amazon_Ec2_Exception($message, 0, $code);
         }
-
     }
 }

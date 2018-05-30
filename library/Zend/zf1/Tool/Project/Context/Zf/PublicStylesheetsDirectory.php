@@ -53,5 +53,4 @@ class Zend_Tool_Project_Context_Zf_PublicStylesheetsDirectory extends Zend_Tool_
     {
         return 'PublicStylesheetsDirectory';
     }
-
 }

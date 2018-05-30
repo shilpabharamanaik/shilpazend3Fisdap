@@ -8,7 +8,6 @@ use Illuminate\Cache\Repository as Cache;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Support\ServiceProvider;
 
-
 /**
  * Provides product-related services
  *
@@ -29,7 +28,7 @@ final class ProductsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(FindsProducts::class, function() {
+        $this->app->singleton(FindsProducts::class, function () {
             return new CachingProductsFinder(
                 $this->app->make(AuthManager::class),
                 $this->app->make(ProductsFinder::class),

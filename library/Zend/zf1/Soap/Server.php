@@ -94,8 +94,8 @@ class Zend_Soap_Server implements Zend_Server_Interface
 
     /**
      * WS-I compliant
-     * 
-     * @var boolean 
+     *
+     * @var boolean
      */
     protected $_wsiCompliant;
     
@@ -195,7 +195,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
      */
     public function setOptions($options)
     {
-        if($options instanceof Zend_Config) {
+        if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         }
 
@@ -223,6 +223,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
                     break;
                 case 'featues':
                     trigger_error(__METHOD__ . ': the option "featues" is deprecated as of 1.10.x and will be removed with 2.0.0; use "features" instead', E_USER_NOTICE);
+                    // no break
                 case 'features':
                     $this->setSoapFeatures($value);
                     break;
@@ -284,9 +285,9 @@ class Zend_Soap_Server implements Zend_Server_Interface
     }
     /**
      * Set WS-I compliant
-     * 
+     *
      * @param  boolean $value
-     * @return Zend_Soap_Server 
+     * @return Zend_Soap_Server
      */
     public function setWsiCompliant($value)
     {
@@ -297,10 +298,10 @@ class Zend_Soap_Server implements Zend_Server_Interface
     }
     /**
      * Gt WS-I compliant
-     * 
+     *
      * @return boolean
      */
-    public function getWsiCompliant() 
+    public function getWsiCompliant()
     {
         return $this->_wsiCompliant;
     }
@@ -625,12 +626,12 @@ class Zend_Soap_Server implements Zend_Server_Interface
      */
     public function setObject($object)
     {
-        if(!is_object($object)) {
+        if (!is_object($object)) {
             require_once 'Zend/Soap/Server/Exception.php';
             throw new Zend_Soap_Server_Exception('Invalid object argument ('.gettype($object).')');
         }
 
-        if(isset($this->_object)) {
+        if (isset($this->_object)) {
             require_once 'Zend/Soap/Server/Exception.php';
             throw new Zend_Soap_Server_Exception('An object has already been registered with this soap server instance');
         }
@@ -640,7 +641,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
             $this->_object = new Zend_Soap_Server_Proxy($object);
         } else {
             $this->_object = $object;
-        }    
+        }
 
         return $this;
     }
@@ -737,7 +738,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
 
             $dom = new DOMDocument();
             try {
-                if(strlen($xml) == 0 || (!$dom = Zend_Xml_Security::scan($xml, $dom))) {
+                if (strlen($xml) == 0 || (!$dom = Zend_Xml_Security::scan($xml, $dom))) {
                     require_once 'Zend/Soap/Server/Exception.php';
                     throw new Zend_Soap_Server_Exception('Invalid XML');
                 }
@@ -823,7 +824,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
             if ($this->_wsiCompliant) {
                 require_once 'Zend/Soap/Server/Proxy.php';
                 array_unshift($args, 'Zend_Soap_Server_Proxy');
-            } 
+            }
             call_user_func_array(array($server, 'setClass'), $args);
         }
 
@@ -987,7 +988,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
             } else {
                 $message = 'Unknown error';
             }
-        } elseif(is_string($fault)) {
+        } elseif (is_string($fault)) {
             $message = $fault;
         } else {
             $message = 'Unknown error';
@@ -997,7 +998,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
             'VersionMismatch', 'MustUnderstand', 'DataEncodingUnknown',
             'Sender', 'Receiver', 'Server'
         );
-        if(!in_array($code, $allowedFaultModes)) {
+        if (!in_array($code, $allowedFaultModes)) {
             $code = "Receiver";
         }
 

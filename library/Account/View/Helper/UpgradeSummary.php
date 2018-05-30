@@ -28,7 +28,8 @@ class Account_View_Helper_UpgradeSummary extends Zend_View_Helper_Abstract
         $this->_html .= $this->view->partial(
             "upgradeProductSummary.phtml",
             array("products" => $addedProducts,
-                "showPrice" => $showPrice));
+                "showPrice" => $showPrice)
+        );
 
         return $this->_html;
     }

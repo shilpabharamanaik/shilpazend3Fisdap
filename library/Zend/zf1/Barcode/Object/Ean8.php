@@ -65,7 +65,7 @@ class Zend_Barcode_Object_Ean8 extends Zend_Barcode_Object_Ean13
         return $quietZone + $startCharacter + $middleCharacter + $encodedData + $stopCharacter + $quietZone;
     }
 
-        /**
+    /**
      * Prepare array to draw barcode
      * @return array
      */

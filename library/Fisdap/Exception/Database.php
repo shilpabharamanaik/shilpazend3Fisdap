@@ -28,7 +28,4 @@ class Fisdap_Exception_Database extends Fisdap_Exception_Exception
     {
         return $this->sql_message;
     }
-
 }
-
-?>

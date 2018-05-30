@@ -74,7 +74,6 @@ class Zend_Tool_Project_Context_Zf_TestLibraryFile extends Zend_Tool_Project_Con
      */
     public function getContents()
     {
-
         $filter = new Zend_Filter_Word_DashToCamelCase();
 
         $className = $filter->filter($this->_forClassName) . 'Test';
@@ -103,5 +102,4 @@ class Zend_Tool_Project_Context_Zf_TestLibraryFile extends Zend_Tool_Project_Con
 
         return $codeGenFile->generate();
     }
-
 }

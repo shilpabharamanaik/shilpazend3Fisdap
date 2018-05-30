@@ -53,5 +53,4 @@ class Zend_Tool_Project_Context_Zf_PublicImagesDirectory extends Zend_Tool_Proje
     {
         return 'PublicImagesDirectory';
     }
-
 }

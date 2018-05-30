@@ -82,13 +82,13 @@ class Zend_Cache_Frontend_Class extends Zend_Cache_Core
      */
     protected $_cachedEntity = null;
 
-     /**
-      * The class name of the cached object or cached abstract class
-      *
-      * Used to differentiate between different classes with the same method calls.
-      *
-      * @var string
-      */
+    /**
+     * The class name of the cached object or cached abstract class
+     *
+     * Used to differentiate between different classes with the same method calls.
+     *
+     * @var string
+     */
     protected $_cachedEntityLabel = '';
 
     /**
@@ -238,7 +238,10 @@ class Zend_Cache_Frontend_Class extends Zend_Cache_Core
                 $data   = array($output, $return);
 
                 $this->save(
-                    $data, $id, $this->_tags, $this->_specificLifetime,
+                    $data,
+                    $id,
+                    $this->_tags,
+                    $this->_specificLifetime,
                     $this->_priority
                 );
             } catch (Exception $e) {

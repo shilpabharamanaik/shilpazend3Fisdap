@@ -73,5 +73,4 @@ class Zend_Markup_Renderer_Html_Url extends Zend_Markup_Renderer_Html_HtmlAbstra
 
         return "<a href=\"{$uri}\"{$attributes}>{$text}</a>";
     }
-
 }

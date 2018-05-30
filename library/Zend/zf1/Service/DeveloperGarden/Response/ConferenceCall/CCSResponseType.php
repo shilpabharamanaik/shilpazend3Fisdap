@@ -33,7 +33,6 @@ require_once 'Zend/Service/DeveloperGarden/Response/BaseType.php';
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Response_ConferenceCall_CCSResponseType
-    extends Zend_Service_DeveloperGarden_Response_BaseType
+class Zend_Service_DeveloperGarden_Response_ConferenceCall_CCSResponseType extends Zend_Service_DeveloperGarden_Response_BaseType
 {
 }

@@ -23,7 +23,7 @@ class AddUuidsCommand extends Command
     /**
      * @var bool Should we change files on the filesystem?
      */
-    protected $fileChanges = TRUE;
+    protected $fileChanges = true;
 
     /**
      * @var array Array of target entities for adding UUID properties
@@ -58,7 +58,7 @@ class AddUuidsCommand extends Command
     /**
      * @var boolean Should migration code use Percona Online Schema Change syntax?
      */
-    protected $usePerconaOnlineSchemaChange = FALSE;
+    protected $usePerconaOnlineSchemaChange = false;
 
     /**
      * @var object Doctrine entity manager
@@ -80,7 +80,8 @@ class AddUuidsCommand extends Command
             ->addOption('do-relationships', null, InputOption::VALUE_NONE, 'If set, find all entities with an association on the target entities\' @id property and add UUID-relationship columns to them')
             ->addOption('no-file-changes', null, InputOption::VALUE_NONE, 'If set, do not actually make file changes. Useful for testing')
             ->addOption('use-pt-online-schema-change', null, InputOption::VALUE_NONE, 'If set, generate migration code that uses pt-online-schema-change')
-            ->setHelp(<<<EOT
+            ->setHelp(
+                <<<EOT
 Adds UUID properties to existing entities as part of a migration to UUIDs. Modifies the entities and generates a Doctrine Migration
 EOT
             );
@@ -100,10 +101,10 @@ EOT
             $this->uuidPropertyName = $input->getArgument('uuid-property-name');
         }
         if ($input->getOption('no-file-changes')) {
-            $this->fileChanges = FALSE; // do not make file changes, ie testing mode
+            $this->fileChanges = false; // do not make file changes, ie testing mode
         }
         if ($input->getOption('use-pt-online-schema-change')) {
-            $this->usePerconaOnlineSchemaChange = TRUE;
+            $this->usePerconaOnlineSchemaChange = true;
         }
 
         // CONSTRUCTION STUFF
@@ -122,7 +123,7 @@ EOT
 
         // DO WORK
         // modify TARGET entities & generate migration code
-        foreach($this->targetEntities as $entityClass) {
+        foreach ($this->targetEntities as $entityClass) {
             $this->addUuidToEntity($entityClass);
             $this->generateMigrationCode($entityClass);
 
@@ -139,7 +140,6 @@ EOT
             $this->migrationDownCode,
             $this->usePerconaOnlineSchemaChange
         );
-
     }
 
     /**
@@ -148,7 +148,8 @@ EOT
      * @param $entityClass string Entity class (needs to be instantiable via new \ReflectionClass($entityClass)
      * @throws \Exception
      */
-    private function addUuidToRelatedEntities($entityClass) {
+    private function addUuidToRelatedEntities($entityClass)
+    {
         // Identify the @id column fo the entity
         $identifiers = $this->allMetadata[$entityClass]->getIdentifierFieldNames();
         if (count($identifiers) > 1) {
@@ -170,17 +171,17 @@ EOT
         $relatedEntities = [];
         if ($resultCode == 0) {
             $listAssociationsCommandOutput = json_decode($listAssociationsCommandOutput->fetch());
-            foreach($listAssociationsCommandOutput->onEntity as $relatedEntity => $properties) {
+            foreach ($listAssociationsCommandOutput->onEntity as $relatedEntity => $properties) {
                 $relatedEntities[$relatedEntity] = $properties;
             }
-            foreach($listAssociationsCommandOutput->onOthers as $relatedEntity => $properties) {
+            foreach ($listAssociationsCommandOutput->onOthers as $relatedEntity => $properties) {
                 $relatedEntities[$relatedEntity] = $properties;
             }
         }
 
         // add uuid to each one
         foreach ($relatedEntities as $relatedEntityClass => $properties) {
-            foreach($properties as $property) {
+            foreach ($properties as $property) {
                 $propertyPrefix = $property . '_';
                 $entityReflection = new \ReflectionClass($relatedEntityClass);
                 $entityCodeString = $this->readEntityFileFromReflection($entityReflection);
@@ -192,7 +193,7 @@ EOT
                 }
 
                 // make migration code
-                $this->generateMigrationCode($relatedEntityClass, $propertyPrefix, FALSE);
+                $this->generateMigrationCode($relatedEntityClass, $propertyPrefix, false);
             }
         }
     }
@@ -202,7 +203,8 @@ EOT
      *
      * @param $entityClass string Entity class (needs to be instantiable via new \ReflectionClass($entityClass)
      */
-    private function addUuidToEntity($entityClass) {
+    private function addUuidToEntity($entityClass)
+    {
         //fwrite(STDOUT, $entityClass . PHP_EOL); exit;
         $entityReflection = new \ReflectionClass($entityClass);
         $entityCodeString = $this->readEntityFileFromReflection($entityReflection);
@@ -211,7 +213,7 @@ EOT
         $entityCodeString = $this->addUuidPropertyToEntity($entityCodeString);
 
         // Make sure entity definition docblock contains lifecycle callback
-        if (stripos($entityCodeString, "@HasLifecycleCallbacks") === FALSE) {
+        if (stripos($entityCodeString, "@HasLifecycleCallbacks") === false) {
             $entityCodeString = $this->addLifecycleCallbackAnnotationToEntity($entityCodeString);
         }
 
@@ -232,7 +234,8 @@ EOT
      * @param $propertyPrefix string A prefix to be added to the property name that will be created on the entity
      * @param $unique boolean Should indexes created be set to UNIQUE?
      */
-    private function generateMigrationCode($entityClass, $propertyPrefix = '', $unique = TRUE) {
+    private function generateMigrationCode($entityClass, $propertyPrefix = '', $unique = true)
+    {
         $tableName = $this->allMetadata[$entityClass]->getTableName();
         if ($this->usePerconaOnlineSchemaChange) {
             $this->generateOnlineSchemaChangeMigrationCode($entityClass, $tableName, $propertyPrefix, $unique);
@@ -241,7 +244,8 @@ EOT
         }
     }
 
-    private function generateConventionalMigrationCode($entityClass, $tableName, $propertyPrefix = '', $unique = TRUE) {
+    private function generateConventionalMigrationCode($entityClass, $tableName, $propertyPrefix = '', $unique = true)
+    {
         if ($unique) {
             $uniqueString = 'UNIQUE';
             $indexKeyPrefix = 'uniq_';
@@ -261,10 +265,10 @@ EOT;
         // {$entityClass} {$this->autogeneratedHelpText}
         \$this->addSql('ALTER TABLE {$tableName} DROP COLUMN {$propertyPrefix}{$this->uuidPropertyName}');
 EOT;
-
     }
 
-    private function generateOnlineSchemaChangeMigrationCode($entityClass, $tableName, $propertyPrefix = '', $unique = TRUE) {
+    private function generateOnlineSchemaChangeMigrationCode($entityClass, $tableName, $propertyPrefix = '', $unique = true)
+    {
         if ($unique) {
             $uniqueString = 'UNIQUE';
             $indexKeyPrefix = 'uniq_';
@@ -350,7 +354,4 @@ EOT;
         $entityCodeString = substr_replace($entityCodeString, $uuidGenerateCallback, ($lastBracketPos - 1), 0);
         return $entityCodeString;
     }
-
-
-
 }

@@ -295,5 +295,4 @@ class Zend_Tool_Framework_Client_Request
     {
         return $this->_isDispatchable;
     }
-
 }

@@ -18,7 +18,6 @@ use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 use Swagger\Annotations as SWG;
 
-
 /**
  * A Job (Command) for creating role data (RoleData Entities)
  *
@@ -144,7 +143,9 @@ final class CreateRoleData extends Job implements RequestHydrated
 
     private function activateSerialNumbers()
     {
-        if ($this->serialNumbers === null) return;
+        if ($this->serialNumbers === null) {
+            return;
+        }
 
         $serialNumbers = [];
 

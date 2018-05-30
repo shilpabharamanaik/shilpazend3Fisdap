@@ -246,7 +246,8 @@ abstract class Zend_Markup_Renderer_RendererAbstract
             if (empty($options['name'])) {
                 require_once 'Zend/Markup/Renderer/Exception.php';
                 throw new Zend_Markup_Renderer_Exception(
-                        'No alias was provided but tag was defined as such');
+                        'No alias was provided but tag was defined as such'
+                );
             }
 
             $this->_markups[$name] = array(
@@ -698,5 +699,4 @@ abstract class Zend_Markup_Renderer_RendererAbstract
      * @return void
      */
     abstract public function addDefaultFilters();
-
 }

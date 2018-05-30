@@ -124,5 +124,4 @@ class Zend_CodeGenerator_Php_Docblock_Tag_Param extends Zend_CodeGenerator_Php_D
             . (($this->_description != null) ? ' ' . $this->_description : '');
         return $output;
     }
-
 }

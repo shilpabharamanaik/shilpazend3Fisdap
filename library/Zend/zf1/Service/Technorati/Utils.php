@@ -75,7 +75,8 @@ class Zend_Service_Technorati_Utils
              */
             require_once 'Zend/Service/Technorati/Exception.php';
             throw new Zend_Service_Technorati_Exception(
-                "Invalid URL $uri, only HTTP(S) protocols can be used");
+                "Invalid URL $uri, only HTTP(S) protocols can be used"
+            );
         }
 
         return $uri;
@@ -111,7 +112,7 @@ class Zend_Service_Technorati_Utils
 
         // due to a BC break as of ZF 1.5 it's not safe to use Zend_Date::isDate() here
         // see ZF-2524, ZF-2334
-        if (@strtotime($input) !== FALSE) {
+        if (@strtotime($input) !== false) {
             return new Zend_Date($input);
         } else {
             /**

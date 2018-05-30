@@ -154,11 +154,11 @@ class Zend_Service_DeveloperGarden_BaseUserService extends Zend_Service_Develope
     protected function _buildModuleString($module, $environment)
     {
         $moduleString = $module;
-        switch($environment) {
-            case self::ENV_PRODUCTION :
+        switch ($environment) {
+            case self::ENV_PRODUCTION:
                 $moduleString .= 'Production';
                 break;
-            case self::ENV_SANDBOX :
+            case self::ENV_SANDBOX:
                 $moduleString .= 'Sandbox';
                 break;
             default:

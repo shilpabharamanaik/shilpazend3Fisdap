@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping as ORM;
+
 //use Fisdap\EntityUtils;
 
 
@@ -24,7 +25,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class StudentLegacy extends RoleData
 {
-    CONST STUDENT_MAILING_LIST_ID = 2;
+    const STUDENT_MAILING_LIST_ID = 2;
 
     /**
      * @Id
@@ -32,25 +33,25 @@ class StudentLegacy extends RoleData
      * @GeneratedValue
      */
     protected $id;
-	
-	 /**
-     * @var string
-     * @Column(type="string")
-     */
+    
+    /**
+    * @var string
+    * @Column(type="string")
+    */
     protected $firstname;
-	
-	/**
+    
+    /**
      * @var string
      * @Column(type="string")
      */
     protected $lastname;
-	
-	/**
+    
+    /**
      * @var string
      * @Column(type="string")
      */
     protected $username;
-	
+    
 
     /**
      * @codeCoverageIgnore
@@ -130,7 +131,7 @@ class StudentLegacy extends RoleData
      */
     protected $email;
 
-	/**
+    /**
      * @var string
      * @Column(type="string")
      */
@@ -260,7 +261,7 @@ class StudentLegacy extends RoleData
     /**
      * @Column(type="boolean", nullable=true);
      */
-    protected $good_data = NULL;
+    protected $good_data = null;
 
     /**
      * @ManyToOne(targetEntity="GraduationStatus", cascade={"persist"})
@@ -368,13 +369,10 @@ class StudentLegacy extends RoleData
 
     public function remove_groups($flush = false)
     {
-
         foreach ($this->classSectionStudent as $section) {
             $this->classSectionStudent->removeElement($section);
             $section->delete($flush);
         }
-
-
     }
 
 
@@ -763,7 +761,7 @@ class StudentLegacy extends RoleData
      */
     public function getSerialNumber()
     {
-		        foreach ($this->user->serial_numbers as $serial_number) {
+        foreach ($this->user->serial_numbers as $serial_number) {
             if ($serial_number->student_id == $this->id) {
                 return $serial_number;
             }
@@ -866,8 +864,8 @@ class StudentLegacy extends RoleData
 
         return $filtered_classmates;
     }
-	
-	public function exchangeArray(array $data)
+    
+    public function exchangeArray(array $data)
     {
         $this->firstName = (!empty($data['firstName'])) ? $data['firstName'] : null;
         $this->lastName = (!empty($data['lastName'])) ? $data['lastName'] : null;
@@ -876,10 +874,10 @@ class StudentLegacy extends RoleData
         $this->cellPhone  = (!empty($data['cellPhone'])) ? $data['cellPhone'] : null;
         $this->workPhone  = (!empty($data['workPhone'])) ? $data['workPhone'] : null;
     }
-	public function saveStudent(Student $student)
+    public function saveStudent(Student $student)
     {
-		echo "123";
-		print_r($student);
+        echo "123";
+        print_r($student);
         /*$data = [
             'artist' => $album->artist,
             'title'  => $album->title,

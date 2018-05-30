@@ -2,7 +2,6 @@
 
 use Fisdap\BuildMetadata\BuildMetadata;
 
-
 /**
  * Class Appmon_BuildController
  *

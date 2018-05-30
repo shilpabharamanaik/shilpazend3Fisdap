@@ -120,9 +120,12 @@ class Zend_Gdata extends Zend_Gdata_App
      *                                    by passing false to the
      *                                    useObjectMapping() function.
      */
-    public static function import($uri, $client = null,
-        $className='Zend_Gdata_Feed', $useObjectMapping = true)
-    {
+    public static function import(
+        $uri,
+        $client = null,
+        $className='Zend_Gdata_Feed',
+        $useObjectMapping = true
+    ) {
         $app = new Zend_Gdata($client);
         $requestData = $app->decodeRequest('GET', $uri);
         $response = $app->performHttpRequest($requestData['method'], $requestData['url']);
@@ -157,7 +160,8 @@ class Zend_Gdata extends Zend_Gdata_App
             require_once 'Zend/Gdata/App/InvalidArgumentException.php';
             throw new Zend_Gdata_App_InvalidArgumentException(
                     'You must specify the location as either a string URI ' .
-                    'or a child of Zend_Gdata_Query');
+                    'or a child of Zend_Gdata_Query'
+            );
         }
         return parent::getFeed($uri, $className);
     }
@@ -182,7 +186,8 @@ class Zend_Gdata extends Zend_Gdata_App
             require_once 'Zend/Gdata/App/InvalidArgumentException.php';
             throw new Zend_Gdata_App_InvalidArgumentException(
                     'You must specify the location as either a string URI ' .
-                    'or a child of Zend_Gdata_Query');
+                    'or a child of Zend_Gdata_Query'
+            );
         }
         return parent::getEntry($uri, $className);
     }
@@ -232,10 +237,9 @@ class Zend_Gdata extends Zend_Gdata_App
         $client = parent::getHttpClient();
         if ($client->getClientLoginToken() ||
             $client->getAuthSubToken()) {
-                return true;
+            return true;
         }
 
         return false;
     }
-
 }

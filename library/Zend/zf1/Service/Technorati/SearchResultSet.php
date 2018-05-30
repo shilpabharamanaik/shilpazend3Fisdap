@@ -57,7 +57,9 @@ class Zend_Service_Technorati_SearchResultSet extends Zend_Service_Technorati_Re
         parent::__construct($dom, $options);
 
         $result = $this->_xpath->query('/tapi/document/result/querycount/text()');
-        if ($result->length == 1) $this->_queryCount = (int) $result->item(0)->data;
+        if ($result->length == 1) {
+            $this->_queryCount = (int) $result->item(0)->data;
+        }
 
         $this->_totalResultsReturned  = (int) $this->_xpath->evaluate("count(/tapi/document/item)");
         $this->_totalResultsAvailable = (int) $this->_queryCount;

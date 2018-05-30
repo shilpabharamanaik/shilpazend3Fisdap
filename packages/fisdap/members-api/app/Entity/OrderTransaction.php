@@ -9,10 +9,9 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Order Transaction History
- * 
+ *
  * @Entity
  * @Table(name="fisdap2_order_transactions")
  * @HasLifecycleCallbacks
@@ -20,36 +19,36 @@ use Doctrine\ORM\Mapping\Table;
 class OrderTransaction extends EntityBaseClass
 {
     /**
-	 * @var integer
-	 * @Id
-	 * @Column(type="integer")
-	 * @GeneratedValue
-	 */
-	protected $id;
-	
-	/**
-	 * @var \Fisdap\Entity\Order
-	 * @ManyToOne(targetEntity="Order", inversedBy="order_transactions")
-	 */
-	protected $order;
-	
-	/**
-	 * @var boolean
-	 * @Column(type="boolean")
-	 */
-	protected $success = false;
-	
-	/**
-	 * @var string
-	 * @Column(type="text")
-	 */
-	protected $response = "";
-	
-	/**
-	 * @var \DateTime
-	 * @Column(type="datetime")
-	 */
-	protected $timestamp;
+     * @var integer
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
+    
+    /**
+     * @var \Fisdap\Entity\Order
+     * @ManyToOne(targetEntity="Order", inversedBy="order_transactions")
+     */
+    protected $order;
+    
+    /**
+     * @var boolean
+     * @Column(type="boolean")
+     */
+    protected $success = false;
+    
+    /**
+     * @var string
+     * @Column(type="text")
+     */
+    protected $response = "";
+    
+    /**
+     * @var \DateTime
+     * @Column(type="datetime")
+     */
+    protected $timestamp;
 
     /**
      * @return Braintree_Result_Successful

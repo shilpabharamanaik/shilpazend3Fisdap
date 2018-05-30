@@ -23,7 +23,6 @@ if (APPLICATION_ENV == 'development') {
 
     // get home directory path, if we're in one
     if (preg_match('/^(\/home\/\w+\/)/', __DIR__, $homeMatches)) {
-
         define('IN_HOME_DIR', true);
 
         $homeConfigPath = isset($homeMatches[1]) ? $homeMatches[1] . 'fisdap_configs/' : null;
@@ -47,7 +46,6 @@ $systemConfigFiles = is_dir(SYSTEM_CONFIG_PATH) ? scandir(SYSTEM_CONFIG_PATH) : 
 $config = [];
 
 foreach ($configFiles as $configFile) {
-
     if (isset($homeConfigFiles)) {
         if (in_array($configFile, $homeConfigFiles)) {
             // use user-defined config file

@@ -81,10 +81,14 @@ class Zend_Service_Technorati_CosmosResultSet extends Zend_Service_Technorati_Re
         parent::__construct($dom, $options);
 
         $result = $this->_xpath->query('/tapi/document/result/inboundlinks/text()');
-        if ($result->length == 1) $this->_inboundLinks = (int) $result->item(0)->data;
+        if ($result->length == 1) {
+            $this->_inboundLinks = (int) $result->item(0)->data;
+        }
 
         $result = $this->_xpath->query('/tapi/document/result/inboundblogs/text()');
-        if ($result->length == 1) $this->_inboundBlogs = (int) $result->item(0)->data;
+        if ($result->length == 1) {
+            $this->_inboundBlogs = (int) $result->item(0)->data;
+        }
 
         $result = $this->_xpath->query('/tapi/document/result/weblog');
         if ($result->length == 1) {
@@ -101,7 +105,7 @@ class Zend_Service_Technorati_CosmosResultSet extends Zend_Service_Technorati_Re
                 // fetched URL often doens't include schema
                 // and this issue causes the following line to fail
                 $this->_url = Zend_Service_Technorati_Utils::normalizeUriHttp($result->item(0)->data);
-            } catch(Zend_Service_Technorati_Exception $e) {
+            } catch (Zend_Service_Technorati_Exception $e) {
                 if ($this->getWeblog() instanceof Zend_Service_Technorati_Weblog) {
                     $this->_url = $this->getWeblog()->getUrl();
                 }
@@ -127,7 +131,8 @@ class Zend_Service_Technorati_CosmosResultSet extends Zend_Service_Technorati_Re
      *
      * @return  Zend_Uri_Http
      */
-    public function getUrl() {
+    public function getUrl()
+    {
         return $this->_url;
     }
 
@@ -136,7 +141,8 @@ class Zend_Service_Technorati_CosmosResultSet extends Zend_Service_Technorati_Re
      *
      * @return  Zend_Service_Technorati_Weblog
      */
-    public function getWeblog() {
+    public function getWeblog()
+    {
         return $this->_weblog;
     }
 

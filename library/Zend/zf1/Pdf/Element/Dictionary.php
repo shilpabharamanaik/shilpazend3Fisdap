@@ -56,7 +56,7 @@ class Zend_Pdf_Element_Dictionary extends Zend_Pdf_Element
     {
         if ($val === null) {
             return;
-        } else if (!is_array($val)) {
+        } elseif (!is_array($val)) {
             require_once 'Zend/Pdf/Exception.php';
             throw new Zend_Pdf_Exception('Argument must be an array');
         }
@@ -155,7 +155,7 @@ class Zend_Pdf_Element_Dictionary extends Zend_Pdf_Element
                 throw new Zend_Pdf_Exception('Wrong data');
             }
 
-            if (strlen($outStr) - $lastNL > 128)  {
+            if (strlen($outStr) - $lastNL > 128) {
                 $outStr .= "\n";
                 $lastNL = strlen($outStr);
             }

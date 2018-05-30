@@ -2,7 +2,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineUserContextRepository
  *
@@ -10,5 +9,4 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineUserContextRepository extends DoctrineRepository implements UserContextRepository
 {
-
 }

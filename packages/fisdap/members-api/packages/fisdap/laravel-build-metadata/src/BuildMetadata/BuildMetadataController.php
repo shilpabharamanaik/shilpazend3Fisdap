@@ -4,9 +4,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-
 /**
- * Handles HTTP transport for build metadata 
+ * Handles HTTP transport for build metadata
  *
  * @package Fisdap\BuildMetadata
  * @author  Ben Getsug
@@ -36,4 +35,4 @@ class BuildMetadataController extends Controller
             return view('build-metadata::build', (array) $build);
         }
     }
-} 
+}

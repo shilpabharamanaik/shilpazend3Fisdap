@@ -66,7 +66,7 @@ class Zend_Service_Amazon_Authentication_V2 extends Zend_Service_Amazon_Authenti
         $parameters['SignatureVersion'] = $this->_signatureVersion;
         $parameters['Version']          = $this->_apiVersion;
         $parameters['SignatureMethod']  = $this->_signatureMethod;
-        if(!isset($parameters['Timestamp'])) {
+        if (!isset($parameters['Timestamp'])) {
             $parameters['Timestamp']    = gmdate('Y-m-d\TH:i:s\Z', time()+10);
         }
 
@@ -79,7 +79,8 @@ class Zend_Service_Amazon_Authentication_V2 extends Zend_Service_Amazon_Authenti
      * Set http request type to POST or GET
      * @param string $method
      */
-    public function setHttpMethod($method = "POST") {
+    public function setHttpMethod($method = "POST")
+    {
         $this->_httpMethod = strtoupper($method);
     }
 
@@ -123,7 +124,7 @@ class Zend_Service_Amazon_Authentication_V2 extends Zend_Service_Amazon_Authenti
         unset($paramaters['Signature']);
 
         $arrData = array();
-        foreach($paramaters as $key => $value) {
+        foreach ($paramaters as $key => $value) {
             $arrData[] = $key . '=' . str_replace('%7E', '~', rawurlencode($value));
         }
 

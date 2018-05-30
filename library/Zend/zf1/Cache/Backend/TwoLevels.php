@@ -76,7 +76,7 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
      * - If true, automatically fill the fast cache when a cache record was not found in fast cache, but did
      *   exist in slow cache. This can be usefull when a non-persistent cache like APC or Memcached got
      *   purged for whatever reason.
-     * 
+     *
      * =====> (boolean) auto_refresh_fast_cache
      * - If true, auto refresh the fast cache when a cache record is hit
      *
@@ -295,7 +295,7 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
      */
     public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = array())
     {
-        switch($mode) {
+        switch ($mode) {
             case Zend_Cache::CLEANING_MODE_ALL:
                 $boolFast = $this->_fastBackend->clean(Zend_Cache::CLEANING_MODE_ALL);
                 $boolSlow = $this->_slowBackend->clean(Zend_Cache::CLEANING_MODE_ALL);
@@ -523,7 +523,6 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
 
     private function _getFastFillingPercentage($mode)
     {
-
         if ($mode == 'saving') {
             // mode saving
             if ($this->_fastBackendFillingPercentage === null) {
@@ -544,5 +543,4 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
         }
         return $this->_fastBackendFillingPercentage;
     }
-
 }

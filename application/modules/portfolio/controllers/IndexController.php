@@ -6,7 +6,6 @@ use Fisdap\Data\Slot\SlotAssignmentRepository;
 use Fisdap\Entity\SiteLegacy;
 use Fisdap\Service\ProductService;
 
-
 class Portfolio_IndexController extends Fisdap_Controller_Private
 {
     public function init()
@@ -29,10 +28,10 @@ class Portfolio_IndexController extends Fisdap_Controller_Private
         // set up single student picker for instructors
         $picklistOptions = array(
             'mode' => 'single',
-            'loadJSCSS' => TRUE,
-            'loadStudents' => TRUE,
-            'useSessionFilters' => TRUE,
-            'longLabel' => TRUE
+            'loadJSCSS' => true,
+            'loadStudents' => true,
+            'useSessionFilters' => true,
+            'longLabel' => true
         );
 
         // Used for exporting...
@@ -48,9 +47,9 @@ class Portfolio_IndexController extends Fisdap_Controller_Private
                 if ($this->getParam('studentId') > 0) {
                     // look in the get first
                     $this->student = \Fisdap\EntityUtils::getEntity('StudentLegacy', $this->_getParam('studentId'));
-                } else if ($this->getParam('userContextId') > 0) {
+                } elseif ($this->getParam('userContextId') > 0) {
                     $this->student = \Fisdap\EntityUtils::getEntity("UserContext", $this->_getParam('userContextId'))->getRoleData();
-                } else if ($this->globalSession->studentId > 0) {
+                } elseif ($this->globalSession->studentId > 0) {
                     // otherwise, the student might be in the session
                     $this->student = \Fisdap\EntityUtils::getEntity('StudentLegacy', $this->globalSession->studentId);
                 } else {
@@ -71,8 +70,8 @@ class Portfolio_IndexController extends Fisdap_Controller_Private
                 $this->view->errorMessage = "You do not have permission to access the requested page.";
                 $this->render("error");
                 return;
-                // If the student doesn't have skills tracker OR beta scheduler, show an error.
-            } else if (!$this->student->getSerialNumber()->hasSkillsTracker() &&
+            // If the student doesn't have skills tracker OR beta scheduler, show an error.
+            } elseif (!$this->student->getSerialNumber()->hasSkillsTracker() &&
                 !($this->student->getSerialNumber()->hasScheduler() && $this->view->beta_scheduler)
             ) {
                 if ($this->view->beta_scheduler) {
@@ -531,9 +530,7 @@ class Portfolio_IndexController extends Fisdap_Controller_Private
                         ${$context}[$key]['score'] = 'N/A';
                         ${$context}[$key]['learning_rx'] = 'N/A';
                     }
-
                 }
-
             }
         }
 
@@ -623,7 +620,9 @@ class Portfolio_IndexController extends Fisdap_Controller_Private
         $this->checkProducts("compliance");
 
         $userComplianceAccordion = new Portfolio_View_Helper_UserComplianceAccordion(
-            $requirementRepository, $eventLegacyRepository, $this->view
+            $requirementRepository,
+            $eventLegacyRepository,
+            $this->view
         );
         $this->view->registerHelper($userComplianceAccordion, 'userComplianceAccordion');
 
@@ -657,7 +656,7 @@ class Portfolio_IndexController extends Fisdap_Controller_Private
         foreach ($req_associations as $req_id => $info) {
             // if this requirement is associated with sites and the user is non-compliant,
             // take those sites out of the site array
-            if ($info['site'] && array_search($req_id, $compliant_reqs) === FALSE) {
+            if ($info['site'] && array_search($req_id, $compliant_reqs) === false) {
                 foreach ($info['site'] as $type) {
                     foreach ($type as $site_id => $site) {
                         unset($sites[$site_id]);
@@ -686,8 +685,8 @@ class Portfolio_IndexController extends Fisdap_Controller_Private
         $type = $this->getParam('type');
 
         if ($type == 'accordion') {
-            $req_associations = $requirementRepository->getRequirementAssociations($this->view->student->program->id);			
-			      $user_context = \Fisdap\EntityUtils::getEntity("UserContext", $this->view->student->user_context->id);
+            $req_associations = $requirementRepository->getRequirementAssociations($this->view->student->program->id);
+            $user_context = \Fisdap\EntityUtils::getEntity("UserContext", $this->view->student->user_context->id);
             $viewHelper = new Portfolio_View_Helper_UserComplianceAccordion($requirementRepository, $eventLegacyRepository, $this->view);
 
             $html = $viewHelper->userComplianceAccordion($user_context, $filterBy, $req_associations);
@@ -777,8 +776,8 @@ class Portfolio_IndexController extends Fisdap_Controller_Private
 
     public function checkProducts($product)
     {
-		if ($product == "skills-tracker") {
-            if ( !empty($this->student) && !$this->student->getSerialNumber()->hasSkillsTracker() &&
+        if ($product == "skills-tracker") {
+            if (!empty($this->student) && !$this->student->getSerialNumber()->hasSkillsTracker() &&
                 $this->student->getSerialNumber()->hasScheduler()
             ) {
                 $this->_redirect("/portfolio/index/compliance");
@@ -823,5 +822,4 @@ class Portfolio_IndexController extends Fisdap_Controller_Private
             "menu" => true
         );
     }
-
 }

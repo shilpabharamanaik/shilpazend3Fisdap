@@ -8,8 +8,8 @@
  * COPYING file distributed with this package.
  *
  * Copyright (c) 2008-2009, WURFL-Pro S.r.l., Rome, Italy
- * 
- *  
+ *
+ *
  *
  * @category   WURFL
  * @package    WURFL_Request
@@ -17,23 +17,23 @@
  * @license
  * @version    $id$
  */
-class WURFL_Request_GenericRequest {
-	
-	function __construct($userAgent, $userAgentProfile=null, $xhtmlDevice=null){
-		$this->userAgent = $userAgent;
-		$this->userAgentProfile = $userAgentProfile;
-		$this->xhtmlDevice = $xhtmlDevice;
-		$this->id = md5($this->userAgent);
-	}
-	
-	function __get($name){
-		return $this->$name;
-	}
-	
-	private $userAgent;
-	private $userAgentProfile;
-	private $xhtmlDevice;
-	private $id;
+class WURFL_Request_GenericRequest
+{
+    public function __construct($userAgent, $userAgentProfile=null, $xhtmlDevice=null)
+    {
+        $this->userAgent = $userAgent;
+        $this->userAgentProfile = $userAgentProfile;
+        $this->xhtmlDevice = $xhtmlDevice;
+        $this->id = md5($this->userAgent);
+    }
+    
+    public function __get($name)
+    {
+        return $this->$name;
+    }
+    
+    private $userAgent;
+    private $userAgentProfile;
+    private $xhtmlDevice;
+    private $id;
 }
-
-?>

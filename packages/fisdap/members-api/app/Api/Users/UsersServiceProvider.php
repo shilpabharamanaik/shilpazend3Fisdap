@@ -6,7 +6,6 @@ use Fisdap\Api\Users\Http\UsersController;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
-
 /**
  * Enables user-related routes, providing REST API endpoint documentation for each, and provides user-related services
  *
@@ -21,7 +20,7 @@ final class UsersServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-		$router = app('router'); // Router Instance
+        $router = app('router'); // Router Instance
         parent::boot();
     }
 
@@ -36,7 +35,7 @@ final class UsersServiceProvider extends ServiceProvider
      */
     public function map()
     {
-		$router = app('router'); // Router Instance
+        $router = app('router'); // Router Instance
         $router->get('users/{userId}', [
             'middleware' => [
                 'userIdMatchesRouteId'

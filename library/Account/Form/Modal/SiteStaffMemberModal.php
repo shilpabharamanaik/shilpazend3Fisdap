@@ -42,7 +42,7 @@ class Account_Form_Modal_SiteStaffMemberModal extends Fisdap_Form_Base
         $this->site_id = $site_id;
         $this->user = \Fisdap\Entity\User::getLoggedInUser();
 
-        if($staff_member_id){
+        if ($staff_member_id) {
             $this->staff_member = \Fisdap\EntityUtils::getEntity("SiteStaffMember", $staff_member_id);
         }
 
@@ -126,7 +126,7 @@ class Account_Form_Modal_SiteStaffMemberModal extends Fisdap_Form_Base
         $this->addElements(array($first_name, $last_name, $title, $phone, $pager, $email, $bases, $notes));
 
         // populate the form if we're editing an existing staff member
-        if($this->staff_member){
+        if ($this->staff_member) {
             $staff_member_id = new Zend_Form_Element_Hidden("staff_member_id");
             $staff_member_id->setValue($this->staff_member->id);
             $this->addElement($staff_member_id);
@@ -141,14 +141,13 @@ class Account_Form_Modal_SiteStaffMemberModal extends Fisdap_Form_Base
                     'staff_member_email' => $this->staff_member->email,
                     'staff_member_notes' => $this->staff_member->notes,
                     'staff_member_bases' => array_keys($this->staff_member->getBases())
-                )   );
+                ));
         }
 
         // Set the decorators for the form
         $this->setDecorators(array(
                 'FormErrors','PrepareElements',array('ViewScript', array('viewScript' => 'forms/site-sub-forms/modals/staff-member-modal.phtml')),'Form'
             ));
-
     }
 
     /**
@@ -186,11 +185,8 @@ class Account_Form_Modal_SiteStaffMemberModal extends Fisdap_Form_Base
             $staff_member->updateBases(($post['staff_member_bases']) ? ($post['staff_member_bases']) : array());
 
             return array("success" => true, "new_staff_member_id" => $staff_member->id);
-
-        }
-        else {
+        } else {
             return $this->getMessages();
         }
-
     } // end process()
 }

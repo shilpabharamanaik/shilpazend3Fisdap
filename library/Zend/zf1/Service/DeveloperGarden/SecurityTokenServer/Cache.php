@@ -55,14 +55,14 @@ class Zend_Service_DeveloperGarden_SecurityTokenServer_Cache
      */
     private static $_wsdlCache = null;
 
-// @codeCoverageIgnoreStart
+    // @codeCoverageIgnoreStart
     /**
      * Constructor overriding - make sure that a developer cannot instantiate
      */
     protected function __construct()
     {
     }
-// @codeCoverageIgnoreEnd
+    // @codeCoverageIgnoreEnd
 
     /**
      * returns stored token from cache or null
@@ -99,7 +99,8 @@ class Zend_Service_DeveloperGarden_SecurityTokenServer_Cache
      * @param Zend_Service_DeveloperGarden_Response_SecurityTokenServer_Interface $tokenValue
      * @return void
      */
-    public static function setTokenToCache($tokenId,
+    public static function setTokenToCache(
+        $tokenId,
         Zend_Service_DeveloperGarden_Response_SecurityTokenServer_Interface $tokenValue
     ) {
         if (!array_key_exists($tokenId, self::$_storedToken)) {

@@ -106,7 +106,7 @@ abstract class Zend_Cache_Backend_ZendServer extends Zend_Cache_Backend implemen
         $tmp = $this->_fetch('internal-metadatas---' . $id);
         if ($tmp !== false) {
             if (!is_array($tmp) || !isset($tmp['mtime'])) {
-                Zend_Cache::throwException('Cache metadata for \'' . $id . '\' id is corrupted' );
+                Zend_Cache::throwException('Cache metadata for \'' . $id . '\' id is corrupted');
             }
             return $tmp['mtime'];
         }

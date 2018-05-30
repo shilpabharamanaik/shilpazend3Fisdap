@@ -1,49 +1,54 @@
 <?php
 
-class Rserve_REXP_Dataframe extends Rserve_REXP_Vector {
-	
-	/**
+class Rserve_REXP_Dataframe extends Rserve_REXP_Vector
+{
+    
+    /**
     * R names() => columns names
     * @return array()
     */
-    public function getNames() {
-		$n =  $this->getAttribute('names');
-		if($n) {
-			return $n->getValues();
-		}
-		return NULL;
-	}
-	
-	/**
+    public function getNames()
+    {
+        $n =  $this->getAttribute('names');
+        if ($n) {
+            return $n->getValues();
+        }
+        return null;
+    }
+    
+    /**
     * R rownames()
-    * @return array() 
+    * @return array()
     */
-    public function getRowNames() {
-		$n  = $this->getAttribute('row.names');
-		if($n) {
-			return $n->getValues();
-		}
-		return NULL;
-	}
-	
-	/**
+    public function getRowNames()
+    {
+        $n  = $this->getAttribute('row.names');
+        if ($n) {
+            return $n->getValues();
+        }
+        return null;
+    }
+    
+    /**
      * Number of rows
-	 * @return int 
-	 */
-	public function nrow() {
-		$v = $this->getValues();
-        if( is_array($v) ) {
-          $v = $v[0]; 
-          return $v->length(); 
+     * @return int
+     */
+    public function nrow()
+    {
+        $v = $this->getValues();
+        if (is_array($v)) {
+            $v = $v[0];
+            return $v->length();
         }
         return 0;
-	}
+    }
 
     /**
     * Number of columns
     * @return int
     */
-    public function ncol() {
+    public function ncol()
+    {
         return $this->length();
     }
 }

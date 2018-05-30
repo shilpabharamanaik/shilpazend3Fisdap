@@ -99,9 +99,12 @@ class Zend_Test_PHPUnit_Db_DataSet_DbTable extends PHPUnit_Extensions_Database_D
     {
         if ($this->data === null) {
             $this->data = $this->_table->fetchAll(
-                $this->_where, $this->_order, $this->_count, $this->_offset
+                $this->_where,
+                $this->_order,
+                $this->_count,
+                $this->_offset
             );
-            if($this->data instanceof Zend_Db_Table_Rowset_Abstract) {
+            if ($this->data instanceof Zend_Db_Table_Rowset_Abstract) {
                 $this->data = $this->data->toArray();
             }
         }
@@ -112,7 +115,7 @@ class Zend_Test_PHPUnit_Db_DataSet_DbTable extends PHPUnit_Extensions_Database_D
      */
     protected function createTableMetaData()
     {
-        if ($this->tableMetaData === NULL) {
+        if ($this->tableMetaData === null) {
             $this->loadData();
             $this->tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($this->tableName, $this->_columns);
         }

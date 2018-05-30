@@ -6,7 +6,6 @@ use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
 use Illuminate\Support\ServiceProvider;
 use Fisdap\Api\Jobs\RequestHydrated as RequestHydrated;
 
-
 /**
  * Provides additional functionality for Job classes
  *

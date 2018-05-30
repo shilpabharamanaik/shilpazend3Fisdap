@@ -34,42 +34,42 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
     const RACKSPACE_ZONE_UK   = 'UK';
     const MONITOR_CPU_SAMPLES = 3;
     /**
-     * Rackspace Servers Instance 
-     * 
+     * Rackspace Servers Instance
+     *
      * @var Zend_Service_Rackspace_Servers
      */
     protected $rackspace;
     /**
      * Rackspace access user
-     * 
-     * @var string 
+     *
+     * @var string
      */
     protected $accessUser;
 
     /**
      * Rackspace access key
-     * 
-     * @var string 
+     *
+     * @var string
      */
     protected $accessKey;
     /**
      * Rackspace Region
-     * 
-     * @var string 
+     *
+     * @var string
      */
     protected $region;
     /**
      * Flavors
-     * 
-     * @var array 
+     *
+     * @var array
      */
     protected $flavors;
     /**
      * Map array between Rackspace and Infrastructure status
-     * 
-     * @var array 
+     *
+     * @var array
      */
-    protected $mapStatus = array (
+    protected $mapStatus = array(
         'ACTIVE'             => Zend_Cloud_Infrastructure_Instance::STATUS_RUNNING,
         'SUSPENDED'          => Zend_Cloud_Infrastructure_Instance::STATUS_STOPPED,
         'BUILD'              => Zend_Cloud_Infrastructure_Instance::STATUS_REBUILD,
@@ -138,7 +138,7 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
         }
 
         try {
-            $this->rackspace = new Zend_Service_Rackspace_Servers($this->accessUser,$this->accessKey, $this->region);
+            $this->rackspace = new Zend_Service_Rackspace_Servers($this->accessUser, $this->accessKey, $this->region);
         } catch (Exception  $e) {
             require_once 'Zend/Cloud/Infrastructure/Exception.php';
             throw new Zend_Cloud_Infrastructure_Exception('Error on create: ' . $e->getMessage(), $e->getCode(), $e);
@@ -147,17 +147,16 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
         if (isset($options[self::HTTP_ADAPTER])) {
             $this->rackspace->getHttpClient()->setAdapter($options[self::HTTP_ADAPTER]);
         }
-        
     }
     /**
      * Convert the attributes of Rackspace server into attributes of Infrastructure
-     * 
+     *
      * @param  array $attr
-     * @return array|boolean 
+     * @return array|boolean
      */
     protected function convertAttributes($attr)
     {
-        $result = array();       
+        $result = array();
         if (!empty($attr) && is_array($attr)) {
             $result[Zend_Cloud_Infrastructure_Instance::INSTANCE_ID]      = $attr['id'];
             $result[Zend_Cloud_Infrastructure_Instance::INSTANCE_NAME]    = $attr['name'];
@@ -177,8 +176,8 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
      * Return a list of the available instancies
      *
      * @return InstanceList|boolean
-     */ 
-    public function listInstances() 
+     */
+    public function listInstances()
     {
         $this->adapterResult = $this->rackspace->listServers(true);
         if ($this->adapterResult===false) {
@@ -196,7 +195,7 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
      *
      * @param  string
      * @return string|boolean
-     */ 
+     */
     public function statusInstance($id)
     {
         $this->adapterResult = $this->rackspace->getServer($id);
@@ -208,16 +207,16 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
     }
     /**
      * Return the public DNS name/Ip address of the instance
-     * 
+     *
      * @param  string $id
-     * @return string|boolean 
+     * @return string|boolean
      */
-    public function publicDnsInstance($id) 
+    public function publicDnsInstance($id)
     {
         $this->adapterResult = $this->rackspace->getServerPublicIp($id);
         if (empty($this->adapterResult)) {
             return false;
-        }    
+        }
         return $this->adapterResult[0];
     }
     /**
@@ -225,10 +224,10 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
      *
      * @param string $id
      * @return boolean
-     */ 
+     */
     public function rebootInstance($id)
     {
-        return $this->rackspace->rebootServer($id,true);
+        return $this->rackspace->rebootServer($id, true);
     }
     /**
      * Create a new instance
@@ -236,7 +235,7 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
      * @param string $name
      * @param array $options
      * @return Instance|boolean
-     */ 
+     */
     public function createInstance($name, $options)
     {
         if (empty($name)) {
@@ -259,7 +258,7 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
             unset($options['files']);
         }
         $options['name']= $name;
-        $this->adapterResult = $this->rackspace->createServer($options,$metadata,$files);
+        $this->adapterResult = $this->rackspace->createServer($options, $metadata, $files);
         if ($this->adapterResult===false) {
             return false;
         }
@@ -270,7 +269,7 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
      *
      * @param  string $id
      * @return boolean
-     */ 
+     */
     public function stopInstance($id)
     {
         require_once 'Zend/Cloud/Infrastructure/Exception.php';
@@ -282,7 +281,7 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
      *
      * @param  string $id
      * @return boolean
-     */ 
+     */
     public function startInstance($id)
     {
         require_once 'Zend/Cloud/Infrastructure/Exception.php';
@@ -294,7 +293,7 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
      *
      * @param  string $id
      * @return boolean
-     */ 
+     */
     public function destroyInstance($id)
     {
         $this->adapterResult= $this->rackspace->deleteServer($id);
@@ -304,7 +303,7 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
      * Return a list of all the available instance images
      *
      * @return ImageList|boolean
-     */ 
+     */
     public function imagesInstance()
     {
         $this->adapterResult = $this->rackspace->listImages(true);
@@ -317,17 +316,17 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
         
         foreach ($images as $image) {
             if (strtolower($image['status'])==='active') {
-                if (strpos($image['name'],'Windows')!==false) {
+                if (strpos($image['name'], 'Windows')!==false) {
                     $platform = Zend_Cloud_Infrastructure_Image::IMAGE_WINDOWS;
                 } else {
                     $platform = Zend_Cloud_Infrastructure_Image::IMAGE_LINUX;
                 }
-                if (strpos($image['name'],'x64')!==false) {
+                if (strpos($image['name'], 'x64')!==false) {
                     $arch = Zend_Cloud_Infrastructure_Image::ARCH_64BIT;
                 } else {
                     $arch = Zend_Cloud_Infrastructure_Image::ARCH_32BIT;
                 }
-                $result[]= array (
+                $result[]= array(
                     Zend_Cloud_Infrastructure_Image::IMAGE_ID           => $image['id'],
                     Zend_Cloud_Infrastructure_Image::IMAGE_NAME         => $image['name'],
                     Zend_Cloud_Infrastructure_Image::IMAGE_DESCRIPTION  => $image['name'],
@@ -336,11 +335,11 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
                 );
             }
         }
-        return new Zend_Cloud_Infrastructure_ImageList($result,$this->adapterResult);
+        return new Zend_Cloud_Infrastructure_ImageList($result, $this->adapterResult);
     }
     /**
      * Return all the available zones
-     * 
+     *
      * @return array
      */
     public function zonesInstance()
@@ -350,12 +349,12 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
     /**
      * Return the system information about the $metric of an instance
      * NOTE: it works only for Linux servers
-     * 
+     *
      * @param  string $id
      * @param  string $metric
      * @param  null|array $options
      * @return array|boolean
-     */ 
+     */
     public function monitorInstance($id, $metric, $options = null)
     {
         if (!function_exists("ssh2_connect")) {
@@ -370,7 +369,7 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
             require_once 'Zend/Cloud/Infrastructure/Exception.php';
             throw new Zend_Cloud_Infrastructure_Exception('You must specify the metric to monitor');
         }
-        if (!in_array($metric,$this->validMetrics)) {
+        if (!in_array($metric, $this->validMetrics)) {
             require_once 'Zend/Cloud/Infrastructure/Exception.php';
             throw new Zend_Cloud_Infrastructure_Exception(sprintf('The metric "%s" is not valid', $metric));
         }
@@ -400,7 +399,7 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
             Zend_Cloud_Infrastructure_Instance::SSH_PASSWORD => $options['password']
         );
         $exec_time= time();
-        $result= $this->deployInstance($id,$params,$cmd);
+        $result= $this->deployInstance($id, $params, $cmd);
         
         if (empty($result)) {
             return false;
@@ -410,36 +409,36 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
         $num     = 0;
         $average = 0;
 
-        $outputs= explode("\n",$result);
+        $outputs= explode("\n", $result);
         foreach ($outputs as $output) {
             if (!empty($output)) {
                 switch ($metric) {
                     case Zend_Cloud_Infrastructure_Instance::MONITOR_CPU:
-                        if (preg_match('/(\d+\.\d)%us/', $output,$match)) {
+                        if (preg_match('/(\d+\.\d)%us/', $output, $match)) {
                             $usage = (float) $match[1];
                         }
                         break;
                     case Zend_Cloud_Infrastructure_Instance::MONITOR_RAM:
-                        if (preg_match('/(\d+)k total/', $output,$match)) {
+                        if (preg_match('/(\d+)k total/', $output, $match)) {
                             $total = (integer) $match[1];
                         }
-                        if (preg_match('/(\d+)k used/', $output,$match)) {
+                        if (preg_match('/(\d+)k used/', $output, $match)) {
                             $used = (integer) $match[1];
                         }
                         if ($total>0) {
                             $usage= (float) $used/$total;
-                        }    
+                        }
                         break;
                     case Zend_Cloud_Infrastructure_Instance::MONITOR_DISK:
-                        if (preg_match('/(\d+)%/', $output,$match)) {
+                        if (preg_match('/(\d+)%/', $output, $match)) {
                             $usage = (float) $match[1];
                         }
                         break;
                 }
                 
-                $monitor['series'][] = array (
+                $monitor['series'][] = array(
                     'timestamp' => $exec_time,
-                    'value'     => number_format($usage,2).'%'
+                    'value'     => number_format($usage, 2).'%'
                 );
                 
                 $average += $usage;
@@ -449,13 +448,13 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
         }
         
         if ($num>0) {
-            $monitor['average'] = number_format($average/$num,2).'%';
+            $monitor['average'] = number_format($average/$num, 2).'%';
         }
         return $monitor;
     }
     /**
-     * Get the adapter 
-     * 
+     * Get the adapter
+     *
      * @return Zend_Service_Rackspace_Servers
      */
     public function getAdapter()
@@ -464,8 +463,8 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
     }
     /**
      * Get last HTTP request
-     * 
-     * @return string 
+     *
+     * @return string
      */
     public function getLastHttpRequest()
     {
@@ -473,8 +472,8 @@ class Zend_Cloud_Infrastructure_Adapter_Rackspace extends Zend_Cloud_Infrastruct
     }
     /**
      * Get the last HTTP response
-     * 
-     * @return Zend_Http_Response 
+     *
+     * @return Zend_Http_Response
      */
     public function getLastHttpResponse()
     {

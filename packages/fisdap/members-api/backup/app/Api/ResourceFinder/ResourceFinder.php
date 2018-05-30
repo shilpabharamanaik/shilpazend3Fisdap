@@ -6,7 +6,6 @@ use Fisdap\Data\Repository\Repository;
 use Fisdap\Queries\Specifications\CommonSpec;
 use Happyr\DoctrineSpecification\Spec;
 
-
 /**
  * Template for a resource finder
  *
@@ -24,7 +23,8 @@ abstract class ResourceFinder implements FindsResources
     /**
      * @inheritdoc
      */
-    public function findById($id, array $associations = null, array $associationIds = null, $asArray = false) {
+    public function findById($id, array $associations = null, array $associationIds = null, $asArray = false)
+    {
         $spec = CommonSpec::makeSpecWithAssociations($associations, $associationIds);
         $spec->andX(new ById($id));
 

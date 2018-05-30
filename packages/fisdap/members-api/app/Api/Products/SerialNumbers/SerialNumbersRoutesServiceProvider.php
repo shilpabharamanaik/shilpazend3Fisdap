@@ -4,7 +4,6 @@ use Fisdap\Api\Products\SerialNumbers\Http\SerialNumbersController;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
-
 /**
  * Registers routes for serial numbers
  *
@@ -21,7 +20,7 @@ final class SerialNumbersRoutesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-		$router = app('router'); // Router Instance
+        $router = app('router'); // Router Instance
         parent::boot();
     }
 

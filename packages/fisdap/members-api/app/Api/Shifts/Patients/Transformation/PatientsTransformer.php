@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Shifts\Patients\Transformation;
 
-
 use Fisdap\Entity\Patient;
 use Fisdap\Fractal\Transformer;
 
@@ -93,18 +92,20 @@ final class PatientsTransformer extends Transformer
             $transformed = self::appendIfExists($transformed, 'signoff', $patient['signoff']->toArray());
 
             $ratings = [];
-            foreach((array) $transformed['signoff']['ratings'] as $rating) {
+            foreach ((array) $transformed['signoff']['ratings'] as $rating) {
                 $ratings[] = $rating->toArray();
             }
             $transformed['signoff']['ratings'] = $ratings;
 
-            if ($patient['verification']) $transformed['signoff']['verification'] = $patient['verification']->toArray();
+            if ($patient['verification']) {
+                $transformed['signoff']['verification'] = $patient['verification']->toArray();
+            }
 
             // This is only needed to return the signature string after creation.
             // Because of the way pre and post persist works, the string being returned after creation is
             // the compressed string. In order to figure out which situation we're in, I'm checking the encoding
             // of the string.
-            if(isset($transformed['signoff']['verification']['signatureString'])) {
+            if (isset($transformed['signoff']['verification']['signatureString'])) {
                 $sigString = $transformed['signoff']['verification']['signatureString'];
 
                 if (!mb_detect_encoding($sigString, 'UTF-8', true)) {
@@ -114,7 +115,7 @@ final class PatientsTransformer extends Transformer
         }
         $narrativeSections = [];
         $sections = [];
-        foreach((array) $patient['narrative']['sections'] as $section) {
+        foreach ((array) $patient['narrative']['sections'] as $section) {
             $sections[] = $section->toArray();
         }
         $narrativeSections = self::appendIfExists($narrativeSections, 'sections', $sections);

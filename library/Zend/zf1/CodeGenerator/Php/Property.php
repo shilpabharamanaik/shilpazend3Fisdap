@@ -175,5 +175,4 @@ class Zend_CodeGenerator_Php_Property extends Zend_CodeGenerator_Php_Member_Abst
         }
         return $output;
     }
-
 }

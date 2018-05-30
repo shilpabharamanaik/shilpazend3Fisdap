@@ -4,7 +4,6 @@ use Couchbase;
 use Illuminate\Cache\TaggableStore;
 use Illuminate\Contracts\Cache\Store;
 
-
 /**
  * Couchbase storage driver for Laravel cache facility
  *

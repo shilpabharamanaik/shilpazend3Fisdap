@@ -57,4 +57,3 @@ class Zend_XmlRpc_Value_Nil extends Zend_XmlRpc_Value_Scalar
         return null;
     }
 }
-

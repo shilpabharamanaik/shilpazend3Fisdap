@@ -33,7 +33,8 @@ class Fisdap_View_Helper_ProductShields extends Zend_View_Helper_Abstract
         }
     }
 
-    public function productShields($configuration, $student) {
+    public function productShields($configuration, $student)
+    {
         $user = User::getLoggedInUser();
         $productService = new ProductService();
 
@@ -41,8 +42,8 @@ class Fisdap_View_Helper_ProductShields extends Zend_View_Helper_Abstract
         $titles = $productService->getProductTitles($configuration);
 
         $this->_html = "<div class='product-icons-container'>";
-        foreach($icons as $product => $icon) {
-            switch($product) {
+        foreach ($icons as $product => $icon) {
+            switch ($product) {
                 case "skills_tracker":
                     $link = ($user->hasPermission("View All Data")) ? "/skills-tracker/shifts/index/studentId/" . $student->id : "";
                     break;
@@ -73,14 +74,19 @@ class Fisdap_View_Helper_ProductShields extends Zend_View_Helper_Abstract
         return $this->_html;
     }
 
-    public function getLinkShield($icon, $title, $link = "") {
+    public function getLinkShield($icon, $title, $link = "")
+    {
         $shieldText = "";
 
-        if ($link) { $shieldText .= "<a title='$title' href='$link'>"; }
+        if ($link) {
+            $shieldText .= "<a title='$title' href='$link'>";
+        }
 
         $shieldText .= "<img class='product-shield' alt='$title' src='$icon'>";
 
-        if ($link) { $shieldText .= "</a>"; }
+        if ($link) {
+            $shieldText .= "</a>";
+        }
 
         return $shieldText;
     }

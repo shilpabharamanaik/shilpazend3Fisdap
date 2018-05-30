@@ -102,8 +102,10 @@ class Zend_Service_Amazon_SimpleDb_Response
                 $this->_xpath = false;
             } else {
                 $this->_xpath = new DOMXPath($document);
-                $this->_xpath->registerNamespace('sdb',
-                    $this->getNamespace());
+                $this->_xpath->registerNamespace(
+                    'sdb',
+                    $this->getNamespace()
+                );
             }
         }
 

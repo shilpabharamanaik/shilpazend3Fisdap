@@ -107,5 +107,4 @@ class Zend_Tool_Project_Context_Zf_ViewControllerScriptsDirectory extends Zend_T
             ->addFilter(new Zend_Filter_StringToLower());
         return $filter->filter($controllerName);
     }
-
 }

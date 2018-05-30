@@ -64,7 +64,7 @@ class Zend_Translate_Plural
             return $return;
         }
 
-        switch($locale) {
+        switch ($locale) {
             case 'bo':
             case 'dz':
             case 'id':

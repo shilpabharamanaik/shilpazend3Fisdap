@@ -1,9 +1,8 @@
 <?php namespace Fisdap\Members\Commerce\Events;
 
-
 /**
  * Class OrderWasCompleted
- * 
+ *
  * @package Fisdap\Members\Commerce\Events
  * @author Sam Tape <sctape@gmail.com>
  */

@@ -80,7 +80,7 @@ require_once 'Zend/Service/DeveloperGarden/Response/SmsValidation/InvalidateResp
  */
 class Zend_Service_DeveloperGarden_SmsValidation extends Zend_Service_DeveloperGarden_Client_ClientAbstract
 {
-// @codeCoverageIgnoreStart
+    // @codeCoverageIgnoreStart
     /**
      * wsdl file
      *
@@ -189,5 +189,5 @@ class Zend_Service_DeveloperGarden_SmsValidation extends Zend_Service_DeveloperG
                     ->getValidatedNumbers($request)
                     ->parse();
     }
-// @codeCoverageIgnoreEnd
+    // @codeCoverageIgnoreEnd
 }

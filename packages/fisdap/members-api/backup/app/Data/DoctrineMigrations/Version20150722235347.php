@@ -60,9 +60,6 @@ class Version20150722235347 extends AbstractMigration
         $this->addSql("UPDATE fisdap2_practice_definitions_defaults set skillsheet_id = 1601 WHERE skillsheet_id = 654 and certification_level_id = 3");
         $this->addSql("UPDATE fisdap2_practice_definitions_defaults set skillsheet_id = 1602 WHERE skillsheet_id = 655 and certification_level_id = 3");
         $this->addSql("UPDATE fisdap2_practice_definitions_defaults set skillsheet_id = 1599 WHERE skillsheet_id = 627 and certification_level_id = 3");
-
-
-
     }
 
     /**
@@ -71,7 +68,7 @@ class Version20150722235347 extends AbstractMigration
     public function down(Schema $schema)
     {
         // this down() migration is auto-generated, please modify it to your needs
-// this up() migration is auto-generated, please modify it to your needs
+        // this up() migration is auto-generated, please modify it to your needs
         //Update practice definition defaults names / goals
         $this->addSql("UPDATE fisdap2_practice_definitions_defaults set name = 'Alternative Airway Device Adult' where name = 'Supraglottic Airway Device Adult' and certification_level_id = 3");
         $this->addSql("UPDATE fisdap2_practice_definitions_defaults set name = 'Team Leader', peer_goal = 10, instructor_goal = 5, eureka_window = 20, eureka_goal = 18 where name = 'Team Leader - Adult' and certification_level_id = 3");
@@ -116,6 +113,5 @@ class Version20150722235347 extends AbstractMigration
         $this->addSql("UPDATE fisdap2_practice_definitions_defaults set skillsheet_id = 654 WHERE skillsheet_id = 1601 and certification_level_id = 3");
         $this->addSql("UPDATE fisdap2_practice_definitions_defaults set skillsheet_id = 655 WHERE skillsheet_id = 1602 and certification_level_id = 3");
         $this->addSql("UPDATE fisdap2_practice_definitions_defaults set skillsheet_id = 627 WHERE skillsheet_id = 1599 and certification_level_id = 3");
-
     }
 }

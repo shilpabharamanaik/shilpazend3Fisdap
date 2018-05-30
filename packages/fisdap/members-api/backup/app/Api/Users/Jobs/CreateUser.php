@@ -16,7 +16,6 @@ use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 use Swagger\Annotations as SWG;
 
-
 /**
  * A Job (Command) for creating a new user (User Entity)
  *
@@ -24,7 +23,7 @@ use Swagger\Annotations as SWG;
  *
  * @package Fisdap\Api\Users\Jobs
  * @author  Ben Getsug <bgetsug@fisdap.net>
- *          
+ *
  * @SWG\Definition(
  *     definition="User",
  *     required={"firstName", "lastName", "username", "email"}

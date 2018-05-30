@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Fisdap\Entity\BaseLegacy;
 use Fisdap\Entity\ProgramBaseLegacy;
 
-
 /**
  * Class Bases
  *

@@ -49,5 +49,4 @@ class Zend_Markup_Renderer_Html_Code extends Zend_Markup_Renderer_Html_HtmlAbstr
     {
         return highlight_string($text, true);
     }
-
 }

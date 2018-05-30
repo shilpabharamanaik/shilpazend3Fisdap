@@ -63,5 +63,4 @@ class Zend_Tool_Project_Context_Zf_ConfigFile extends Zend_Tool_Project_Context_
     {
         return '';
     }
-
 }

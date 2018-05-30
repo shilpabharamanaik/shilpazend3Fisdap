@@ -7,7 +7,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineObjectiveLegacyRepository
  *
@@ -16,32 +15,30 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineObjectiveLegacyRepository extends DoctrineRepository implements ObjectiveLegacyRepository
 {
-	public function getFormOptions($na = false, $sort=true)
-	{
-		$options = array();
-		$results = $this->findAll();
-	
-		foreach($results as $result) {
-			if ($result->id != -1) {
-				$tempOptions[$result->id] = $result->description;
-			}
-		}
-	
-		if($sort){
-			asort($tempOptions);
-		}
-	
-		if ($na) {
-			$options[0] = "N/A";
-			foreach($tempOptions as $id => $name) {
-				$options[$id] = $name;
-			}
-		} else {
-			$options = $tempOptions;
-		}
-	
-		return $options;
-	}
+    public function getFormOptions($na = false, $sort=true)
+    {
+        $options = array();
+        $results = $this->findAll();
+    
+        foreach ($results as $result) {
+            if ($result->id != -1) {
+                $tempOptions[$result->id] = $result->description;
+            }
+        }
+    
+        if ($sort) {
+            asort($tempOptions);
+        }
+    
+        if ($na) {
+            $options[0] = "N/A";
+            foreach ($tempOptions as $id => $name) {
+                $options[$id] = $name;
+            }
+        } else {
+            $options = $tempOptions;
+        }
+    
+        return $options;
+    }
 }
-
-

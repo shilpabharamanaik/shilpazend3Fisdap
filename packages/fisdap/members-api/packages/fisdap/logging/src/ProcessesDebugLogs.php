@@ -2,7 +2,6 @@
 
 use Monolog\Handler\HandlerInterface;
 
-
 /**
  * Contract for Monolog Processor that captures all logs during a request for use in debugging output
  *

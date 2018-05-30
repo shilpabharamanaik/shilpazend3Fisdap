@@ -8,21 +8,20 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Entity class for Legacy Marketing Billboards.
- * 
+ *
  * @Entity
  * @Table(name="TestBPTopics")
  */
 class TestBlueprintTopicsLegacy extends EntityBaseClass
 {
-	/**
-	 * @Id
-	 * @Column(name="tbpTopic_id", type="integer")
-	 * @GeneratedValue
-	 */
-	protected $id;
+    /**
+     * @Id
+     * @Column(name="tbpTopic_id", type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
 
     /**
      * @Column(name="Name", type="string")

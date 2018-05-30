@@ -3,7 +3,6 @@
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Guard;
 
-
 /**
  * Monolog Processor that adds extra user-identifying information to log messages
  *

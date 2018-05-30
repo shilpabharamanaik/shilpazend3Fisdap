@@ -109,9 +109,7 @@ class CreateSalesInvoiceBuilder implements CreateSalesInvoiceBuilderInterface
         $salesInvoiceLinesCollection = new SalesInvoiceLinesCollection();
 
         if ($this->lines && is_array($this->lines)) {
-
             foreach ($this->lines as $line) {
-
                 $salesInvoiceLine = new SalesInvoiceLine(
                     $line[SalesInvoiceLineInterface::ITEM_ID_FIELD],
                     $line[SalesInvoiceLineInterface::QUANTITY_FIELD],
@@ -122,7 +120,6 @@ class CreateSalesInvoiceBuilder implements CreateSalesInvoiceBuilderInterface
                 );
 
                 $salesInvoiceLinesCollection->append($salesInvoiceLine);
-
             }
         }
         return $salesInvoiceLinesCollection;
@@ -138,9 +135,7 @@ class CreateSalesInvoiceBuilder implements CreateSalesInvoiceBuilderInterface
         $salesInvoicePaymentsCollection = new SalesInvoicePaymentsCollection();
 
         if ($this->payments && is_array($this->payments)) {
-
             foreach ($this->payments as $payment) {
-
                 $salesInvoicePayment = new SalesInvoicePayment(
                     $payment[SalesInvoicePaymentInterface::PAYMENT_AMOUNT_FIELD],
                     $payment[SalesInvoicePaymentInterface::PAYMENT_CARD_TYPE_FIELD],

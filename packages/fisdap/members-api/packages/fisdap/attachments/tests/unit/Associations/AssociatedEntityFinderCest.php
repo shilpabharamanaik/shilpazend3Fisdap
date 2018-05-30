@@ -7,7 +7,6 @@ use Fisdap\Attachments\Configuration\AttachmentConfig;
 use Fisdap\Attachments\Core\Kernel\AttachmentsKernel;
 use Illuminate\Container\Container;
 
-
 class AssociatedEntityFinderCest
 {
     /**
@@ -37,7 +36,8 @@ class AssociatedEntityFinderCest
         $this->containerMock = Mockery::mock(Container::class);
         $this->attachmentsKernelMock = Mockery::mock(AttachmentsKernel::class);
         $this->associatedEntityFinder = new AssociatedEntityFinder(
-            $this->containerMock, $this->attachmentsKernelMock
+            $this->containerMock,
+            $this->attachmentsKernelMock
         );
         $this->associatedEntityMock = Mockery::mock(HasAttachments::class);
     }

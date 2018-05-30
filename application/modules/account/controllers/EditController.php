@@ -121,7 +121,6 @@ class Account_EditController extends Fisdap_Controller_Private
         $request = $this->getRequest();
 
         if ($request->isPost()) {
-
             if ($this->view->form->process($request->getPost()) === true) {
                 $this->flashMessenger->addMessage("Your changes have been saved.");
 
@@ -186,7 +185,6 @@ class Account_EditController extends Fisdap_Controller_Private
         $request = $this->getRequest();
 
         if ($request->isPost()) {
-
             $processResult = $form->process($request->getPost());
 
             if ($processResult === true || $processResult > 0) {
@@ -357,7 +355,6 @@ class Account_EditController extends Fisdap_Controller_Private
         $request = $this->getRequest();
 
         if ($request->isPost()) {
-
             if ($this->view->form->process($request->getPost()) === true) {
                 $this->flashMessenger->addMessage("The account has been transferred.");
                 $this->_redirect("/account/edit/transfer-account");
@@ -401,13 +398,11 @@ class Account_EditController extends Fisdap_Controller_Private
             }
 
             $returnText .= "</div>";
-
         } else {
             $returnText = "<div class='error'>No users were found.</div>";
         }
 
         $this->_helper->json($returnText);
-
     }
 
     public function mergeAccountAction()
@@ -440,7 +435,7 @@ class Account_EditController extends Fisdap_Controller_Private
         $retVal = array();
         $studentId = $this->getParam('id');
         $student = EntityUtils::getEntity("StudentLegacy", $studentId);
-        if($student == null) {
+        if ($student == null) {
             $this->_helper->json(null);
             return;
         }
@@ -467,7 +462,7 @@ GROUP BY user.id
 
 EOT;
 
-        $dbConnection = \Fisdap\MoodleUtils::getConnection('secure_testing', TRUE);
+        $dbConnection = \Fisdap\MoodleUtils::getConnection('secure_testing', true);
         $statement = $dbConnection->query($testQuery);
         $testData = $statement->fetch();
 
@@ -503,13 +498,11 @@ EOT;
 
                 $retVal['products_result'] = $this->view->productShields($newConfig, $student);
             }
-
         } else {
             $retVal = null;
         }
 
         $this->_helper->json($retVal);
-
     }
 
 
@@ -532,7 +525,6 @@ EOT;
         }
 
         foreach ($students as $student_data) {
-
             $atom = array();
             $atom['id'] = $student_data['id'];
             $atom['Name'] = $student_data['first_name'] . " " . $student_data['last_name'];
@@ -646,7 +638,6 @@ EOT;
 
         return array("table" => $returnText, "outlook" => $this->view->studentEmailsOutlook,
                      "other" => $this->view->studentEmailsOther);
-
     }
 
 
@@ -766,7 +757,8 @@ EOT;
             $sn = $student->getUserContext()->getPrimarySerialNumber();
             $iconText = $this->view->productShields($sn->configuration, $student);
             $products = \Fisdap\Entity\Product::getProductSummary(
-                $sn->configuration, $student->program->profession->id
+                $sn->configuration,
+                $student->program->profession->id
             );
 
             if (is_null($student->good_data)) {
@@ -781,7 +773,6 @@ EOT;
             $returnText .= "<td class='address'>" . $student->address . "</td>";
             $returnText .= "<td class='emergency-contact'>" . $student->contact_name . "</td>";
             $returnText .= "</tr>";
-
         }
 
         $returnText .= "</tbody></table></div></div>";
@@ -790,6 +781,5 @@ EOT;
         $this->view->studentEmailsOther = implode(",", $emails);
 
         return $returnText;
-
     }
 }

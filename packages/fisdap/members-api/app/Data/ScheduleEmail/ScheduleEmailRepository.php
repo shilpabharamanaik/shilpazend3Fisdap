@@ -8,7 +8,6 @@
 use Doctrine\ORM\Internal\Hydration\IterableResult;
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface ScheduleEmailRepository
  *

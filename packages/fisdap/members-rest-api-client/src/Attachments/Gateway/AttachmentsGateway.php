@@ -2,7 +2,6 @@
 
 use Fisdap\Api\Client\Gateway\Gateway;
 
-
 /**
  * Contract for attachments gateways
  *
@@ -25,7 +24,13 @@ interface AttachmentsGateway extends Gateway
      * @return object
      */
     public function create(
-        $associatedEntityId, $userContextId, $filePath, $id = null, $nickname = null, $notes = null, array $categories = null
+        $associatedEntityId,
+        $userContextId,
+        $filePath,
+        $id = null,
+        $nickname = null,
+        $notes = null,
+        array $categories = null
     );
 
 

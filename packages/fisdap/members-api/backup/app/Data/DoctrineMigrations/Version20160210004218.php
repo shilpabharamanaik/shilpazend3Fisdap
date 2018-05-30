@@ -3,7 +3,6 @@
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
-
 /**
  * Adding column for non-PSG LTI user IDs
  *

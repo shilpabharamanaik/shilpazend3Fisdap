@@ -176,12 +176,12 @@ class Zend_Application_Resource_Multidb extends Zend_Application_Resource_Resour
         $this->_defaultDb = $adapter;
     }
 
-   /**
-     * Set the default metadata cache
-     *
-     * @param string|Zend_Cache_Core $cache
-     * @return Zend_Application_Resource_Multidb
-     */
+    /**
+      * Set the default metadata cache
+      *
+      * @param string|Zend_Cache_Core $cache
+      * @return Zend_Application_Resource_Multidb
+      */
     protected function _setDefaultMetadataCache($cache)
     {
         $metadataCache = null;
@@ -197,7 +197,7 @@ class Zend_Application_Resource_Multidb extends Zend_Application_Resource_Resour
                     $metadataCache = $cacheManager->getCache($cache);
                 }
             }
-        } else if ($cache instanceof Zend_Cache_Core) {
+        } elseif ($cache instanceof Zend_Cache_Core) {
             $metadataCache = $cache;
         }
 

@@ -500,5 +500,4 @@ class Zend_Markup_Parser_Bbcode implements Zend_Markup_Parser_ParserInterface
             --$this->_searchedStoppers[$stopper];
         }
     }
-
 }

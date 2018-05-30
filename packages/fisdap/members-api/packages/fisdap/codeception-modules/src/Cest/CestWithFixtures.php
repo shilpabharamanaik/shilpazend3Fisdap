@@ -2,7 +2,6 @@
 
 use Nelmio\Alice\Fixtures;
 
-
 /**
  * Class CestWithFixtures
  *
@@ -39,8 +38,12 @@ abstract class CestWithFixtures
      */
     public function __construct()
     {
-        if (is_null(static::$defaultEntityName)) throw new \Exception("The 'defaultEntityName' property must be set on the Cest");
-        if (is_null(static::$defaultFixtureFilenames)) throw new \Exception("The 'defaultFixtureFilenames' property must be set on the Cest");
+        if (is_null(static::$defaultEntityName)) {
+            throw new \Exception("The 'defaultEntityName' property must be set on the Cest");
+        }
+        if (is_null(static::$defaultFixtureFilenames)) {
+            throw new \Exception("The 'defaultFixtureFilenames' property must be set on the Cest");
+        }
     }
 
 
@@ -68,4 +71,4 @@ abstract class CestWithFixtures
         $response = json_decode($I->grabResponse(), true);
         die(PHP_EOL . var_export($response) . PHP_EOL);
     }
-} 
+}

@@ -48,7 +48,7 @@ require_once 'Zend/Pdf/Resource/Font/Simple/Standard.php';
  */
 class Zend_Pdf_Resource_Font_Simple_Standard_Symbol extends Zend_Pdf_Resource_Font_Simple_Standard
 {
-  /**** Instance Variables ****/
+    /**** Instance Variables ****/
 
 
     /**
@@ -179,10 +179,10 @@ class Zend_Pdf_Resource_Font_Simple_Standard_Symbol extends Zend_Pdf_Resource_Fo
 
 
 
-  /**** Public Interface ****/
+    /**** Public Interface ****/
 
 
-  /* Object Lifecycle */
+    /* Object Lifecycle */
 
     /**
      * Object constructor
@@ -348,7 +348,9 @@ class Zend_Pdf_Resource_Font_Simple_Standard_Symbol extends Zend_Pdf_Resource_Fo
           0xf8fe =>   0xbd, 0xf8ff =>   0xbe);
         require_once 'Zend/Pdf/Cmap.php';
         $this->_cmap = Zend_Pdf_Cmap::cmapWithTypeData(
-            Zend_Pdf_Cmap::TYPE_BYTE_ENCODING_STATIC, $cmapData);
+            Zend_Pdf_Cmap::TYPE_BYTE_ENCODING_STATIC,
+            $cmapData
+        );
 
 
         /* Resource dictionary */
@@ -367,7 +369,7 @@ class Zend_Pdf_Resource_Font_Simple_Standard_Symbol extends Zend_Pdf_Resource_Fo
     }
 
 
-  /* Information and Conversion Methods */
+    /* Information and Conversion Methods */
 
     /**
      * Convert string encoding from local encoding to font encoding. Overridden

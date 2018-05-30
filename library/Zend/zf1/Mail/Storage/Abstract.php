@@ -215,152 +215,152 @@ abstract class Zend_Mail_Storage_Abstract implements Countable, ArrayAccess, See
      *
      * @return   int
      */
-     public function count()
-     {
+    public function count()
+    {
         return $this->countMessages();
-     }
+    }
 
 
-     /**
-      * ArrayAccess::offsetExists()
-      *
-      * @param    int     $id
-      * @return   boolean
-      */
-     public function offsetExists($id)
-     {
+    /**
+     * ArrayAccess::offsetExists()
+     *
+     * @param    int     $id
+     * @return   boolean
+     */
+    public function offsetExists($id)
+    {
         try {
             if ($this->getMessage($id)) {
                 return true;
             }
-        } catch(Zend_Mail_Storage_Exception $e) {}
+        } catch (Zend_Mail_Storage_Exception $e) {
+        }
 
         return false;
-     }
+    }
 
 
-     /**
-      * ArrayAccess::offsetGet()
-      *
-      * @param    int $id
-      * @return   Zend_Mail_Message message object
-      */
-     public function offsetGet($id)
-     {
+    /**
+     * ArrayAccess::offsetGet()
+     *
+     * @param    int $id
+     * @return   Zend_Mail_Message message object
+     */
+    public function offsetGet($id)
+    {
         return $this->getMessage($id);
-     }
+    }
 
 
-     /**
-      * ArrayAccess::offsetSet()
-      *
-      * @param    id     $id
-      * @param    mixed  $value
-      * @throws   Zend_Mail_Storage_Exception
-      * @return   void
-      */
-     public function offsetSet($id, $value)
-     {
+    /**
+     * ArrayAccess::offsetSet()
+     *
+     * @param    id     $id
+     * @param    mixed  $value
+     * @throws   Zend_Mail_Storage_Exception
+     * @return   void
+     */
+    public function offsetSet($id, $value)
+    {
         /**
          * @see Zend_Mail_Storage_Exception
          */
         require_once 'Zend/Mail/Storage/Exception.php';
         throw new Zend_Mail_Storage_Exception('cannot write mail messages via array access');
-     }
+    }
 
 
-     /**
-      * ArrayAccess::offsetUnset()
-      *
-      * @param    int   $id
-      * @return   boolean success
-      */
-     public function offsetUnset($id)
-     {
+    /**
+     * ArrayAccess::offsetUnset()
+     *
+     * @param    int   $id
+     * @return   boolean success
+     */
+    public function offsetUnset($id)
+    {
         return $this->removeMessage($id);
-     }
+    }
 
 
-     /**
-      * Iterator::rewind()
-      *
-      * Rewind always gets the new count from the storage. Thus if you use
-      * the interfaces and your scripts take long you should use reset()
-      * from time to time.
-      *
-      * @return   void
-      */
-     public function rewind()
-     {
+    /**
+     * Iterator::rewind()
+     *
+     * Rewind always gets the new count from the storage. Thus if you use
+     * the interfaces and your scripts take long you should use reset()
+     * from time to time.
+     *
+     * @return   void
+     */
+    public function rewind()
+    {
         $this->_iterationMax = $this->countMessages();
         $this->_iterationPos = 1;
-     }
+    }
 
 
-     /**
-      * Iterator::current()
-      *
-      * @return   Zend_Mail_Message current message
-      */
-     public function current()
-     {
+    /**
+     * Iterator::current()
+     *
+     * @return   Zend_Mail_Message current message
+     */
+    public function current()
+    {
         return $this->getMessage($this->_iterationPos);
-     }
+    }
 
 
-     /**
-      * Iterator::key()
-      *
-      * @return   int id of current position
-      */
-     public function key()
-     {
+    /**
+     * Iterator::key()
+     *
+     * @return   int id of current position
+     */
+    public function key()
+    {
         return $this->_iterationPos;
-     }
+    }
 
 
-     /**
-      * Iterator::next()
-      *
-      * @return   void
-      */
-     public function next()
-     {
+    /**
+     * Iterator::next()
+     *
+     * @return   void
+     */
+    public function next()
+    {
         ++$this->_iterationPos;
-     }
+    }
 
 
-     /**
-      * Iterator::valid()
-      *
-      * @return   boolean
-      */
-     public function valid()
-     {
+    /**
+     * Iterator::valid()
+     *
+     * @return   boolean
+     */
+    public function valid()
+    {
         if ($this->_iterationMax === null) {
-          $this->_iterationMax = $this->countMessages();
+            $this->_iterationMax = $this->countMessages();
         }
         return $this->_iterationPos && $this->_iterationPos <= $this->_iterationMax;
-     }
+    }
 
 
-     /**
-      * SeekableIterator::seek()
-      *
-      * @param  int $pos
-      * @return void
-      * @throws OutOfBoundsException
-      */
-     public function seek($pos)
-     {
+    /**
+     * SeekableIterator::seek()
+     *
+     * @param  int $pos
+     * @return void
+     * @throws OutOfBoundsException
+     */
+    public function seek($pos)
+    {
         if ($this->_iterationMax === null) {
-          $this->_iterationMax = $this->countMessages();
+            $this->_iterationMax = $this->countMessages();
         }
 
         if ($pos > $this->_iterationMax) {
             throw new OutOfBoundsException('this position does not exist');
         }
         $this->_iterationPos = $pos;
-     }
-
+    }
 }

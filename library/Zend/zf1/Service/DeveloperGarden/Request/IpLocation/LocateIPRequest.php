@@ -38,8 +38,7 @@ require_once 'Zend/Service/DeveloperGarden/IpLocation/IpAddress.php';
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Request_IpLocation_LocateIPRequest
-    extends Zend_Service_DeveloperGarden_Request_RequestAbstract
+class Zend_Service_DeveloperGarden_Request_IpLocation_LocateIPRequest extends Zend_Service_DeveloperGarden_Request_RequestAbstract
 {
     /**
      * the ip addresses to lookup for

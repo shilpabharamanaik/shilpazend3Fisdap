@@ -37,8 +37,7 @@ require_once 'Zend/Feed/Pubsubhubbub/HttpResponse.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
-    implements Zend_Feed_Pubsubhubbub_CallbackInterface
+abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract implements Zend_Feed_Pubsubhubbub_CallbackInterface
 {
     /**
      * An instance of Zend_Feed_Pubsubhubbub_Model_SubscriptionInterface used

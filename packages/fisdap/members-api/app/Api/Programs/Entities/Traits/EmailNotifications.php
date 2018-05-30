@@ -2,7 +2,6 @@
 
 use Doctrine\ORM\Mapping\Column;
 
-
 /**
  * Class EmailNotifications
  *

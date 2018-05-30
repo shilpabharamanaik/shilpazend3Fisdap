@@ -33,8 +33,7 @@ require_once 'Zend/Service/DeveloperGarden/Request/RequestAbstract.php';
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Request_SmsValidation_Validate
-    extends Zend_Service_DeveloperGarden_Request_RequestAbstract
+class Zend_Service_DeveloperGarden_Request_SmsValidation_Validate extends Zend_Service_DeveloperGarden_Request_RequestAbstract
 {
     /**
      * the keyword to be used for validation
@@ -55,7 +54,7 @@ class Zend_Service_DeveloperGarden_Request_SmsValidation_Validate
      *
      * @return string $keyword
      */
-    public function getKeyword ()
+    public function getKeyword()
     {
         return $this->keyword;
     }

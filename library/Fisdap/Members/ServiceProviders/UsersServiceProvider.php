@@ -8,7 +8,6 @@ use Fisdap\Api\Users\UserContexts\Permissions\Events\PermissionsWereSet;
 use Fisdap\Api\Users\UserContexts\Permissions\Listeners\RecordPermissionsHistory;
 use Fisdap\Members\Foundation\Support\Providers\EventServiceProvider;
 
-
 /**
  * Class UsersServiceProvider
  *

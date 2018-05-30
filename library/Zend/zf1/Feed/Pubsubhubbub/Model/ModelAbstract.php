@@ -59,5 +59,4 @@ class Zend_Feed_Pubsubhubbub_Model_ModelAbstract
             $this->_db = $tableGateway;
         }
     }
-
 }

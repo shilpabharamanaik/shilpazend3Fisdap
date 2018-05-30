@@ -8,29 +8,29 @@
  * COPYING file distributed with this package.
  *
  * Copyright (c) 2008-2009, WURFL-Pro S.r.l., Rome, Italy
- * 
- *  
+ *
+ *
  *
  * @category   WURFL
  * @package    WURFL_Xml
  * @copyright  WURFL-PRO SRL, Rome, Italy
  * @license
  * @version    $id$
- * @deprecated 
+ * @deprecated
  */
-final class WURFL_Xml_ParsingResult {
-	
-	private $devicesMap;
-	private $groupIDCapabilitiesMap;
-	
-	public function __construct($devicesMap, $groupIDCapabilitiesMap=null) {
-		$this->devicesMap = $devicesMap;
-		$this->groupIDCapabilitiesMap = $groupIDCapabilitiesMap;	
-	}
-	
-	public function __get($name) {
-		return $this->$name;
-	}
+final class WURFL_Xml_ParsingResult
+{
+    private $devicesMap;
+    private $groupIDCapabilitiesMap;
+    
+    public function __construct($devicesMap, $groupIDCapabilitiesMap=null)
+    {
+        $this->devicesMap = $devicesMap;
+        $this->groupIDCapabilitiesMap = $groupIDCapabilitiesMap;
+    }
+    
+    public function __get($name)
+    {
+        return $this->$name;
+    }
 }
-
-?>

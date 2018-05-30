@@ -53,5 +53,4 @@ class Zend_Tool_Project_Context_Zf_TestApplicationBootstrapFile extends Zend_Too
     {
         return 'TestApplicationBootstrapFile';
     }
-
 }

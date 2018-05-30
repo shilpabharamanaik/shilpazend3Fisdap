@@ -29,26 +29,30 @@
  * @license
  * @version    $id$
  */
-abstract class WURFL_Xml_PersistenceProvider_AbstractPersistenceProvider implements WURFL_Xml_PersistenceProvider {
-	
-	const APPLICATION_PREFIX = "WURFL_"; 
-	protected $persistenceIdentifier;
-	
-	/**
+abstract class WURFL_Xml_PersistenceProvider_AbstractPersistenceProvider implements WURFL_Xml_PersistenceProvider
+{
+    const APPLICATION_PREFIX = "WURFL_";
+    protected $persistenceIdentifier;
+    
+    /**
      * Saves the object.
      *
      * @param string $objectId
      * @param mixed $object
-     * @return 
+     * @return
      */
-    public function save($objectId, $object) {}
-	
+    public function save($objectId, $object)
+    {
+    }
+    
     /**
      * Returns the object identified by $objectId
      *
      * @param string $objectId
      */
-    public function load($objectId){}
+    public function load($objectId)
+    {
+    }
 
     
     /**
@@ -57,14 +61,18 @@ abstract class WURFL_Xml_PersistenceProvider_AbstractPersistenceProvider impleme
      *
      * @param string $objectId
      */
-    public function remove($objectId){}
+    public function remove($objectId)
+    {
+    }
 
 
     /**
      * Removes all entry from the Persistence Provider
      *
      */
-    public function clear(){}
+    public function clear()
+    {
+    }
     
     
     /**
@@ -72,39 +80,38 @@ abstract class WURFL_Xml_PersistenceProvider_AbstractPersistenceProvider impleme
      *
      * @return boolean
      */
- 	public function isWURFLLoaded() {
+    public function isWURFLLoaded()
+    {
         return $this->load(WURFL_Xml_XMLResourceManager::WURFL_LOADED);
     }
-	
+    
     /**
      * Sets a flag
      *
-     * @return 
+     * @return
      */
-    public function setWURFLLoaded($loaded=TRUE) {
+    public function setWURFLLoaded($loaded=true)
+    {
         $this->save(WURFL_Xml_XMLResourceManager::WURFL_LOADED, $loaded);
     }
-	
-	/**
-	 * Encode the Object Id using the Persistence Identifier
-	 *
-	 * @param string $input
-	 */
-	protected function encode($input) {
-		return self::APPLICATION_PREFIX . $this->persistenceIdentifier . "_" . $input;  	
-	}
-	
-	/**
-	 * Decode the Object Id
-	 *
-	 * @param unknown_type $input
-	 */
-	protected function decode($input) {
-		return substr($input, sizeof(self::APPLICATION_PREFIX . $this->persistenceIdentifier));
-	}
-	
-	
-	
-	
+    
+    /**
+     * Encode the Object Id using the Persistence Identifier
+     *
+     * @param string $input
+     */
+    protected function encode($input)
+    {
+        return self::APPLICATION_PREFIX . $this->persistenceIdentifier . "_" . $input;
+    }
+    
+    /**
+     * Decode the Object Id
+     *
+     * @param unknown_type $input
+     */
+    protected function decode($input)
+    {
+        return substr($input, sizeof(self::APPLICATION_PREFIX . $this->persistenceIdentifier));
+    }
 }
-?>

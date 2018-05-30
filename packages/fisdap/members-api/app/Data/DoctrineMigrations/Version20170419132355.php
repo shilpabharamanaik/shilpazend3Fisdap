@@ -49,9 +49,6 @@ class Version20170419132355 extends AbstractMigration
         /* We need nsc_type' and goal_def_id' */
         $this->addSql("INSERT INTO fisdap2_impression (name,nsc_type,goal_def_id) VALUES ('GI Bleed','abdomen','19')");
         $this->addSql("INSERT INTO fisdap2_impression (name,nsc_type,goal_def_id) VALUES ('Trauma - Unspecified','trauma','17')");
-
-
-
     }
 
     /**
@@ -60,6 +57,5 @@ class Version20170419132355 extends AbstractMigration
     public function down(Schema $schema)
     {
         // this down() migration is auto-generated, please modify it to your needs
-
     }
 }

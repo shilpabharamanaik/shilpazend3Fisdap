@@ -896,7 +896,8 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
     {
         $this->_incrementAssertionCount();
         if ($module != $this->request->getModuleName()) {
-            $msg = sprintf('Failed asserting last module used <"%s"> was "%s"',
+            $msg = sprintf(
+                'Failed asserting last module used <"%s"> was "%s"',
                 $this->request->getModuleName(),
                 $module
             );
@@ -935,7 +936,8 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
     {
         $this->_incrementAssertionCount();
         if ($controller != $this->request->getControllerName()) {
-            $msg = sprintf('Failed asserting last controller used <"%s"> was "%s"',
+            $msg = sprintf(
+                'Failed asserting last controller used <"%s"> was "%s"',
                 $this->request->getControllerName(),
                 $controller
             );
@@ -956,7 +958,8 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
     {
         $this->_incrementAssertionCount();
         if ($controller == $this->request->getControllerName()) {
-            $msg = sprintf('Failed asserting last controller used <"%s"> was NOT "%s"',
+            $msg = sprintf(
+                'Failed asserting last controller used <"%s"> was NOT "%s"',
                 $this->request->getControllerName(),
                 $controller
             );
@@ -1014,7 +1017,8 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
         $this->_incrementAssertionCount();
         $router = $this->frontController->getRouter();
         if ($route != $router->getCurrentRouteName()) {
-            $msg = sprintf('Failed asserting matched route was "%s", actual route is %s',
+            $msg = sprintf(
+                'Failed asserting matched route was "%s", actual route is %s',
                 $route,
                 $router->getCurrentRouteName()
             );

@@ -75,7 +75,7 @@ class Zend_Pdf_Resource_Font_Type0 extends Zend_Pdf_Resource_Font
      *
      * @return string
      */
-    static private function getToUnicodeCMapData()
+    private static function getToUnicodeCMapData()
     {
         return '/CIDInit /ProcSet findresource begin '              . "\n"
              . '12 dict begin '                                     . "\n"
@@ -97,7 +97,7 @@ class Zend_Pdf_Resource_Font_Type0 extends Zend_Pdf_Resource_Font
              . 'CMapName currentdict /CMap defineresource pop '     . "\n"
              . 'end '
              . 'end ';
-            }
+    }
 
     /**
      * Object constructor
@@ -138,7 +138,6 @@ class Zend_Pdf_Resource_Font_Type0 extends Zend_Pdf_Resource_Font
 
         $toUnicode = $this->_objectFactory->newStreamObject(self::getToUnicodeCMapData());
         $this->_resource->ToUnicode = $toUnicode;
-
     }
 
     /**
@@ -250,7 +249,7 @@ class Zend_Pdf_Resource_Font_Type0 extends Zend_Pdf_Resource_Font
      * @param string $charEncoding Character encoding of resulting text.
      * @return string
      */
-        public function decodeString($string, $charEncoding)
+    public function decodeString($string, $charEncoding)
     {
         return iconv('UTF-16BE', $charEncoding, $string);
     }

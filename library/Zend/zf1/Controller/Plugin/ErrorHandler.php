@@ -97,7 +97,7 @@ class Zend_Controller_Plugin_ErrorHandler extends Zend_Controller_Plugin_Abstrac
      * @param  Array $options
      * @return void
      */
-    public function __construct(Array $options = array())
+    public function __construct(array $options = array())
     {
         $this->setErrorHandler($options);
     }
@@ -108,7 +108,7 @@ class Zend_Controller_Plugin_ErrorHandler extends Zend_Controller_Plugin_Abstrac
      * @param  array $options
      * @return Zend_Controller_Plugin_ErrorHandler
      */
-    public function setErrorHandler(Array $options = array())
+    public function setErrorHandler(array $options = array())
     {
         if (isset($options['module'])) {
             $this->setErrorHandlerModule($options['module']);
@@ -211,7 +211,7 @@ class Zend_Controller_Plugin_ErrorHandler extends Zend_Controller_Plugin_Abstrac
     {
         $this->_handleError($request);
     }
-	
+    
     /**
      * Post dispatch hook -- check for exceptions and dispatch error handler if
      * necessary

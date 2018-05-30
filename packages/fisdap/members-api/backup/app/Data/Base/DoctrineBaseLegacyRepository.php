@@ -2,7 +2,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLegacyRepository
 {
     public function getBaseAssociationsByProgram($siteId, $programId, $active = true)
@@ -70,7 +69,6 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
         } else {
             return $inactive;
         }
-
     }
 
     public function getBasesByProgram($programId, $active = true)
@@ -97,11 +95,11 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
             ->setParameter(1, $programId);
 
         if ($siteId != "all") {
-            if($siteId){
+            if ($siteId) {
                 //Temp array to store possible site types
                 $types = array();
-                foreach($siteId as $i => $site) {
-                    switch($site) {
+                foreach ($siteId as $i => $site) {
+                    switch ($site) {
                         case "0-Field":
                             $types[] = "field";
                             unset($siteId[$i]);
@@ -139,11 +137,12 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
         foreach ($associations as $association) {
             $base = $association['base'];
 
-            if(is_null($site)){
-                if(!$bases[$base['site']['id']]){$bases[$base['site']['id']] = array();}
+            if (is_null($site)) {
+                if (!$bases[$base['site']['id']]) {
+                    $bases[$base['site']['id']] = array();
+                }
                 $bases[$base['site']['id']][$base['id']] = $this->convertDefaultDepartment($base['name']);
-            }
-            else {
+            } else {
                 $bases[$base['id']] =  $this->convertDefaultDepartment($base['name']);
             }
         }
@@ -210,15 +209,15 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
     {
         $defaults = $this->getDefaults();
 
-        if($false_if_not_found){
+        if ($false_if_not_found) {
             return ($defaults[$name]) ? $defaults[$name] : false;
         }
 
         return ($defaults[$name]) ? $defaults[$name] : $name;
     }
 
-    public function mergeBases($target_base_id, $merge_base_id) {
-
+    public function mergeBases($target_base_id, $merge_base_id)
+    {
         $targetBase = \Fisdap\EntityUtils::getEntity("BaseLegacy", $target_base_id);
         $oldBase = \Fisdap\EntityUtils::getEntity("BaseLegacy", $merge_base_id);
 
@@ -241,12 +240,12 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
 
         // delete old base
         $oldBase->delete(false);
-
     }
 
 
 
-    public function mergeEventData($targetBase, $oldBase) {
+    public function mergeEventData($targetBase, $oldBase)
+    {
         $qb = $this->_em->createQueryBuilder();
 
         $qb->update('\Fisdap\Entity\EventLegacy', 'e')
@@ -258,7 +257,8 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
         return $qb->getQuery()->execute();
     }
 
-    public function mergeRepeatInfo($targetBase, $oldBase) {
+    public function mergeRepeatInfo($targetBase, $oldBase)
+    {
         $qb = $this->_em->createQueryBuilder();
 
         $qb->update('\Fisdap\Entity\RepeatInfo', 'r')
@@ -270,7 +270,8 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
         return $qb->getQuery()->execute();
     }
 
-    public function mergeShiftData($targetBase, $oldBase) {
+    public function mergeShiftData($targetBase, $oldBase)
+    {
         $qb = $this->_em->createQueryBuilder();
 
         $qb->update('\Fisdap\Entity\ShiftLegacy', 's')
@@ -282,7 +283,8 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
         return $qb->getQuery()->execute();
     }
 
-    public function mergeAutoEmails($targetBase, $oldBase) {
+    public function mergeAutoEmails($targetBase, $oldBase)
+    {
         $qb = $this->_em->createQueryBuilder();
 
         $qb->update('\Fisdap\Entity\ScheduleEmail', 'e')
@@ -296,7 +298,7 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
 
     public function getAccordionData($site_id, $program_id, $network_program_ids)
     {
-        if(!$network_program_ids){
+        if (!$network_program_ids) {
             $network_program_ids = $program_id;
         }
 
@@ -309,13 +311,13 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
         $current_program_ids = array();
         $other_program_ids = array();
 
-        if($data){
-            foreach($data as $pb){
+        if ($data) {
+            foreach ($data as $pb) {
                 $default_department = $this->convertDefaultDepartment($pb['base']['name'], true);
                 $base_name = ($default_department === false) ? $pb['base']['name'] : $default_department;
                 $is_default = ($default_department === false) ? false : true;
 
-                if($is_default){
+                if ($is_default) {
                     $default_departments_found[$pb['base']['name']] = $default_department;
                 }
 
@@ -332,18 +334,15 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
                                     "state" => $pb['base']['state'],
                                     "zip" => $pb['base']['zip']);
 
-                if($program_id == $base_program_id){
+                if ($program_id == $base_program_id) {
                     $current_program_ids[] = $pb['base']['id'];
 
                     $return_data['current_program'][$key] = $data_array;
                     unset($return_data['other_programs'][$this->getBaseOrderKey(false, $base_name, $pb['base']['id'])]);
-                }
-
-                else if(!in_array($pb['base']['id'], $current_program_ids)) {
+                } elseif (!in_array($pb['base']['id'], $current_program_ids)) {
                     $other_program_ids[] = $pb['base']['id'];
                     $return_data['other_programs'][$key] = $data_array;
                 }
-
             }
         }
 
@@ -360,7 +359,6 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
 
     public function getBaseIdsByProgramAndSites($site_ids, $program_id, $active = true)
     {
-
         $qb = $this->_em->createQueryBuilder();
 
         $qb->select('partial b.{id}, partial s.{id}, partial p.{id}, partial psa.{id}, partial pro.{id}')
@@ -372,7 +370,7 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
             ->where('s.id IN (' . implode($site_ids, ",") . ')')
             ->andWhere('pro.id = ?1');
 
-        if($active){
+        if ($active) {
             $qb->andWhere('p.active = true');
         }
 
@@ -401,32 +399,34 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
             ->leftJoin('p.program', 'pro');
 
 
-        if(is_array($programId)){
+        if (is_array($programId)) {
             $qb->where('pro.id IN (' . implode($programId, ",") . ')');
-        }
-        else{
+        } else {
             $qb->where('pro.id = ?1');
             $qb->setParameter(1, $programId);
         }
 
-        if($siteId){
+        if ($siteId) {
             $qb->andWhere('b.site = ?2');
         }
 
-        if($type){
+        if ($type) {
             $qb->andWhere('b.type = ?3');
         }
 
 
-        if($siteId){ $qb->setParameter(2, $siteId);}
-        if($type){$qb->setParameter(3, $type);}
+        if ($siteId) {
+            $qb->setParameter(2, $siteId);
+        }
+        if ($type) {
+            $qb->setParameter(3, $type);
+        }
 
-        if(!$all){
+        if (!$all) {
             if ($active) {
                 $qb->andWhere('p.active = true');
                 $qb->andWhere('psa.active = true');
-            }
-            else {
+            } else {
                 $qb->andWhere('p.active = false');
             }
         }
@@ -461,20 +461,20 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
         $program = $qb->getQuery()->getSingleResult();
 
         $addresses = array();
-        foreach($baseAddresses as $baseAddress) {
+        foreach ($baseAddresses as $baseAddress) {
             $addressPieces = array();
 
             //address
             if ($baseAddress['base_address']) {
                 $addressPieces[] = $baseAddress['base_address'];
-            } else if ($baseAddress['site_address']) {
+            } elseif ($baseAddress['site_address']) {
                 $addressPieces[] = $baseAddress['site_address'];
             }
 
             //city
             if ($baseAddress['base_city']) {
                 $addressPieces[] = $baseAddress['base_city'];
-            } else if ($baseAddress['site_city']) {
+            } elseif ($baseAddress['site_city']) {
                 $addressPieces[] = $baseAddress['site_city'];
             } else {
                 $addressPieces[] = $program['program_city'];
@@ -483,7 +483,7 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
             //state
             if ($baseAddress['base_state']) {
                 $addressPieces[] = $baseAddress['base_state'];
-            } else if ($baseAddress['site_state']) {
+            } elseif ($baseAddress['site_state']) {
                 $addressPieces[] = $baseAddress['site_state'];
             } else {
                 $addressPieces[] = $program['program_state'];
@@ -492,7 +492,7 @@ class DoctrineBaseLegacyRepository extends DoctrineRepository implements BaseLeg
             //zip
             if ($baseAddress['base_zip']) {
                 $addressPieces[] = $baseAddress['base_zip'];
-            } else if ($baseAddress['site_zip']) {
+            } elseif ($baseAddress['site_zip']) {
                 $addressPieces[] = $baseAddress['site_zip'];
             }
 

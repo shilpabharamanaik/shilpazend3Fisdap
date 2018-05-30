@@ -70,7 +70,7 @@ class Zend_Tool_Project_Profile extends Zend_Tool_Project_Profile_Resource_Conta
      *
      * @param array $options
      */
-    public function setOptions(Array $options)
+    public function setOptions(array $options)
     {
         $this->setAttributes($options);
     }

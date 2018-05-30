@@ -186,11 +186,11 @@ class Zend_XmlRpc_Client
     }
 
 
-   /**
-     * The request of the last method call
-     *
-     * @return Zend_XmlRpc_Request
-     */
+    /**
+      * The request of the last method call
+      *
+      * @return Zend_XmlRpc_Request
+      */
     public function getLastRequest()
     {
         return $this->_lastRequest;
@@ -268,7 +268,7 @@ class Zend_XmlRpc_Client
         }
 
         $http = $this->getHttpClient();
-        if($http->getUri() === null) {
+        if ($http->getUri() === null) {
             $http->setUri($this->_serverAddress);
         }
 
@@ -293,7 +293,8 @@ class Zend_XmlRpc_Client
             require_once 'Zend/XmlRpc/Client/HttpException.php';
             throw new Zend_XmlRpc_Client_HttpException(
                                     $httpResponse->getMessage(),
-                                    $httpResponse->getStatus());
+                                    $httpResponse->getStatus()
+            );
         }
 
         if ($response === null) {
@@ -340,8 +341,7 @@ class Zend_XmlRpc_Client
                     $params = array($params);
                 }
 
-                foreach ($params as $key => $param)
-                {
+                foreach ($params as $key => $param) {
                     if ($param instanceof Zend_XmlRpc_Value) {
                         continue;
                     }
@@ -384,8 +384,10 @@ class Zend_XmlRpc_Client
              * @see Zend_XmlRpc_Client_FaultException
              */
             require_once 'Zend/XmlRpc/Client/FaultException.php';
-            throw new Zend_XmlRpc_Client_FaultException($fault->getMessage(),
-                                                        $fault->getCode());
+            throw new Zend_XmlRpc_Client_FaultException(
+                $fault->getMessage(),
+                                                        $fault->getCode()
+            );
         }
 
         return $this->_lastResponse->getReturnValue();

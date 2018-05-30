@@ -163,5 +163,4 @@ class Zend_View_Helper_FormErrors extends Zend_View_Helper_FormElement
     {
         return $this->_htmlElementStart;
     }
-
 }

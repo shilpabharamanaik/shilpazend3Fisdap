@@ -7,74 +7,73 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
-
 /**
  * Entity class for Subject.
- * 
+ *
  * @Entity
  * @Table(name="fisdap2_subject")
  */
 class Subject extends Enumerated
 {
-	/**
-	 * @var string
-	 * @Column(type="string")
-	 */
-	protected $type;
-	
-	public static function getFormOptions($na = false, $sort=true, $displayName = "name")
-	{
-		$options = array();
-		
-		$query = "SELECT DISTINCT s.name FROM \Fisdap\Entity\Subject s";
-		$results = EntityUtils::getEntityManager()->createQuery($query)->getResult();
-		
+    /**
+     * @var string
+     * @Column(type="string")
+     */
+    protected $type;
+    
+    public static function getFormOptions($na = false, $sort=true, $displayName = "name")
+    {
+        $options = array();
+        
+        $query = "SELECT DISTINCT s.name FROM \Fisdap\Entity\Subject s";
+        $results = EntityUtils::getEntityManager()->createQuery($query)->getResult();
+        
         if ($na) {
             $options[0] = "Unset";
         }
         
-		foreach($results as $result) {
-			$options[$result['name']] = $result['name'];
-		}
-		
-		return $options;
-	}
-	
-	public static function getSelectOptions($unset = false)
-	{
-		$options = array();
-		
-		if ($unset) {
-			$options[0] = "Unset";
-		}
-		
-		foreach (self::getAllSubjectTypes() as $subject) {
-			$options[$subject->id] = $subject->name . " (" . $subject->type. ")";
-		}
-		
-		return $options;
-	}
-	
-	protected $caption;
-	
-	public function get_caption()
-	{
-		return ucfirst($this->type) . ' ' . $this->name . 's';
-	}
-	
-	public static function getAllSubjectTypes()
-	{
-		return EntityUtils::getRepository('Subject')->findAll();
-	}
-	
-	public static function getAllSubjectTypeCaptions()
-	{
-		$types = self::getAllSubjectTypes();
-		foreach ($types as $type) {
-			echo $ret[$type->id] = $type->get_caption();
-		}
-		return $ret;
-	}
+        foreach ($results as $result) {
+            $options[$result['name']] = $result['name'];
+        }
+        
+        return $options;
+    }
+    
+    public static function getSelectOptions($unset = false)
+    {
+        $options = array();
+        
+        if ($unset) {
+            $options[0] = "Unset";
+        }
+        
+        foreach (self::getAllSubjectTypes() as $subject) {
+            $options[$subject->id] = $subject->name . " (" . $subject->type. ")";
+        }
+        
+        return $options;
+    }
+    
+    protected $caption;
+    
+    public function get_caption()
+    {
+        return ucfirst($this->type) . ' ' . $this->name . 's';
+    }
+    
+    public static function getAllSubjectTypes()
+    {
+        return EntityUtils::getRepository('Subject')->findAll();
+    }
+    
+    public static function getAllSubjectTypeCaptions()
+    {
+        $types = self::getAllSubjectTypes();
+        foreach ($types as $type) {
+            echo $ret[$type->id] = $type->get_caption();
+        }
+        return $ret;
+    }
 
     /**
      * Given a subject type name, return the number of types with that name
@@ -103,7 +102,9 @@ class Subject extends Enumerated
         $allTypes = self::getAllSubjectTypes();
 
         // if all possible subject types are chosen, return "all"
-        if (count($options) >= count($allTypes)) { return "all"; }
+        if (count($options) >= count($allTypes)) {
+            return "all";
+        }
 
         // otherwise, get the descriptions of the options we're looking at and group them by name
         foreach ($allTypes as $type) {
@@ -130,19 +131,19 @@ class Subject extends Enumerated
     }
 
 
-	/**
-	 * @return array
-	 */
-	public function getType()
-	{
-		return $this->type;
-	}
+    /**
+     * @return array
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 
-	/**
-	 * @return array
-	 */
-	public function toArray()
-	{
-		return array_merge(parent::toArray(), ['type' => $this->getType()]);
-	}
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array_merge(parent::toArray(), ['type' => $this->getType()]);
+    }
 }

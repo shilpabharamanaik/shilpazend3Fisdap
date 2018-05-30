@@ -33,8 +33,7 @@ require_once 'Zend/Service/DeveloperGarden/Response/ConferenceCall/ConferenceCal
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Response_ConferenceCall_GetConferenceTemplateResponse
-    extends Zend_Service_DeveloperGarden_Response_ConferenceCall_ConferenceCallAbstract
+class Zend_Service_DeveloperGarden_Response_ConferenceCall_GetConferenceTemplateResponse extends Zend_Service_DeveloperGarden_Response_ConferenceCall_ConferenceCallAbstract
 {
     /**
      * response data

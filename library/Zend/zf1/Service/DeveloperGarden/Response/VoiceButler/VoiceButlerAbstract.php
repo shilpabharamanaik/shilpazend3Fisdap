@@ -33,8 +33,7 @@ require_once 'Zend/Service/DeveloperGarden/Response/ResponseAbstract.php';
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Service_DeveloperGarden_Response_VoiceButler_VoiceButlerAbstract
-    extends Zend_Service_DeveloperGarden_Response_ResponseAbstract
+abstract class Zend_Service_DeveloperGarden_Response_VoiceButler_VoiceButlerAbstract extends Zend_Service_DeveloperGarden_Response_ResponseAbstract
 {
     /**
      * the return from the sms request

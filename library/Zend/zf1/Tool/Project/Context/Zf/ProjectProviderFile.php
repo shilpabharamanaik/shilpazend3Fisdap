@@ -61,7 +61,6 @@ class Zend_Tool_Project_Context_Zf_ProjectProviderFile extends Zend_Tool_Project
      */
     public function init()
     {
-
         $this->_projectProviderName = $this->_resource->getAttribute('projectProviderName');
         $this->_actionNames = $this->_resource->getAttribute('actionNames');
         $this->_filesystemName = ucfirst($this->_projectProviderName) . 'Provider.php';
@@ -116,7 +115,6 @@ class Zend_Tool_Project_Context_Zf_ProjectProviderFile extends Zend_Tool_Project
      */
     public function getContents()
     {
-
         $filter = new Zend_Filter_Word_DashToCamelCase();
 
         $className = $filter->filter($this->_projectProviderName) . 'Provider';
@@ -148,5 +146,4 @@ class Zend_Tool_Project_Context_Zf_ProjectProviderFile extends Zend_Tool_Project
 
         return $codeGenFile->generate();
     }
-
 }

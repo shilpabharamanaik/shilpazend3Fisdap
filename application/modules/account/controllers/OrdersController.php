@@ -19,7 +19,6 @@ use Fisdap\Service\ProductService;
 use Fisdap\Controller\Plugin\IdmsToken;
 use Illuminate\Contracts\Events\Dispatcher;
 
-
 /**
  * Class Account_OrdersController
  */
@@ -62,8 +61,7 @@ class Account_OrdersController extends Fisdap_Controller_Private
         OrderRepository $orderRepository,
         CertificationLevelRepository $certificationLevelRepository,
         ClassSectionLegacyRepository $classSectionLegacyRepository
-    )
-    {
+    ) {
         $this->orderRepository = $orderRepository;
         $this->certificationLevelRepository = $certificationLevelRepository;
         $this->classSectionLegacyRepository = $classSectionLegacyRepository;
@@ -174,7 +172,9 @@ class Account_OrdersController extends Fisdap_Controller_Private
         /** @var Zend_Controller_Request_Http $request */
         $request = $this->getRequest();
 
-        if (!$request->isPost()) return;
+        if (!$request->isPost()) {
+            return;
+        }
 
         if ($this->view->form->process($request->getPost(), $dispatcher) === true) {
             if ($order->completed) {
@@ -466,12 +466,12 @@ class Account_OrdersController extends Fisdap_Controller_Private
                     if ($isStaff) {
                         $productCell .= $downgradeCheckbox . $reduceAttemptsCheckbox;
                     }
-                } else if ($product->configuration & $student['configuration']) {
+                } elseif ($product->configuration & $student['configuration']) {
                     $productCell = '<img style="width: 1em;" src="/images/check.png">';
                     if ($isStaff) {
                         $productCell .= $downgradeCheckbox;
                     }
-                } else if ($product->configuration & $student['configuration_blacklist']) {
+                } elseif ($product->configuration & $student['configuration_blacklist']) {
                     $productCell = "N/A";
                 } else {
                     $productCell = $this->view->formCheckbox("products_" . $student['id'] . "[]", $product->configuration, array("checked" => true));
@@ -526,7 +526,6 @@ class Account_OrdersController extends Fisdap_Controller_Private
                     $this->processUpgradeOrder($configuration, $couponCode);
                 }
             }
-
         } else {
             // if the form has not been posted, get some info to set up the form
             $currentConfig = $this->userContext->getPrimarySerialNumber()->configuration;
@@ -554,7 +553,6 @@ class Account_OrdersController extends Fisdap_Controller_Private
             // if the url contained an activation code, pass it to the view
             // we'll use javascript to give them the activation code tab, post code validation
             $this->view->activationCode = $this->_getParam("code");
-
         }
     }
 
@@ -565,19 +563,19 @@ class Account_OrdersController extends Fisdap_Controller_Private
 
         $this->view->pageTitle = "Confirm Upgrade";
         $this->view->orderId = $this->orderId;
-		$this->view->order = $order = $this->orderRepository->getOneById($this->orderId);
+        $this->view->order = $order = $this->orderRepository->getOneById($this->orderId);
         $this->view->instructor = $this->userContext->isInstructor();
         $this->view->is_staff = $this->userContext->getUser()->isStaff();
 
-        $warning = $this->_getParam('warning', FALSE);
+        $warning = $this->_getParam('warning', false);
         if ($warning) {
             $this->view->warningText = $warning;
         }
 
         if ($this->user->isStaff()) {
-            $this->view->enableInstantOrderCompletion = TRUE;
+            $this->view->enableInstantOrderCompletion = true;
         } else {
-            $this->view->enableInstantOrderCompletion = FALSE;
+            $this->view->enableInstantOrderCompletion = false;
         }
     }
 
@@ -829,17 +827,17 @@ class Account_OrdersController extends Fisdap_Controller_Private
         $form = new \Account_Form_EditGradGroupModal();
         $this->_helper->json($form->process($data, $codes));
     }
-	public function deleteGradGroupsAction()
-	{
-		$formValues = $this->getAllParams();
+    public function deleteGradGroupsAction()
+    {
+        $formValues = $this->getAllParams();
         $data = $formValues['data'];
         $codes = $formValues['codes'];
-		foreach ($codes as $code) {
+        foreach ($codes as $code) {
             $serial = SerialNumberLegacy::getBySerialNumber($code);
-			$serial->delete();
-		}
-		$this->_helper->json(true);
-	}
+            $serial->delete();
+        }
+        $this->_helper->json(true);
+    }
 
     public function sendEmailsAction()
     {
@@ -879,7 +877,6 @@ class Account_OrdersController extends Fisdap_Controller_Private
         $returnArray = [];
 
         foreach ($codes as $code) {
-
             $codeObject = SerialNumberLegacy::getBySerialNumber($code);
             $products = $productRepository->getProducts($codeObject->configuration, true, true);
             $returnArray[] = [
@@ -945,7 +942,7 @@ class Account_OrdersController extends Fisdap_Controller_Private
         $upgradeable = !($configuration == $productService::PRECEPTOR_TRAINING_CONFIG ||
             $configuration == $productService::PARAMEDIC_TRANSITION_CONFIG ||
             $configuration == $productService::EMTB_TRANSITION_CONFIG ||
-            $configuration == $productService::AEMT_TRANSITION_CONFIG );
+            $configuration == $productService::AEMT_TRANSITION_CONFIG);
         $viewParams = [
             "productCode" => $productCode,
             "orderer" => $productCode->order_configuration->order->user,
@@ -1138,7 +1135,6 @@ class Account_OrdersController extends Fisdap_Controller_Private
             !$this->user->isStaff() &&
             $this->userContext->getProgram()->order_permission->name == "Cannot Order Accounts"
         ) {
-
             $this->displayError("You do not have permission to view or place orders.");
             return;
         }
@@ -1178,7 +1174,7 @@ class Account_OrdersController extends Fisdap_Controller_Private
      * @param ProductRepository $productRepository
      * @param ProductService    $productService
      */
-    function validateActivationCodeAction(ProductRepository $productRepository, ProductService $productService)
+    public function validateActivationCodeAction(ProductRepository $productRepository, ProductService $productService)
     {
         $code = $this->_getParam("code");
         $thisStudent = $this->userContext->getRoleData();
@@ -1196,8 +1192,7 @@ class Account_OrdersController extends Fisdap_Controller_Private
                 $accountData = $serial->getAccountDetails();
                 $codeType = "serial";
             }
-
-        } else if (ProductCode::getByProductCode($code) || ProductCode::isLegacyProductCode($code)) {
+        } elseif (ProductCode::getByProductCode($code) || ProductCode::isLegacyProductCode($code)) {
             // if it's a valid product code
             $productCode = ProductCode::getByProductCode($code);
 
@@ -1208,7 +1203,6 @@ class Account_OrdersController extends Fisdap_Controller_Private
                 $accountData = ProductCode::getAccountFromLegacyProductCode($code);
             }
             $codeType = "product";
-
         } else {
             // it's not a valid code
             $html = "Uh-oh! That activation code isn't valid. Please make sure you entered it correctly, or talk to your instructor.";
@@ -1216,7 +1210,6 @@ class Account_OrdersController extends Fisdap_Controller_Private
 
         // if we've gotten an account associated with this code, continue validation to make sure it works for this student
         if ($accountData) {
-
             $thisCert = $thisStudent->getCertification();
             $thisProgram = $thisStudent->program;
 
@@ -1229,16 +1222,14 @@ class Account_OrdersController extends Fisdap_Controller_Private
 
                 $html = "We're sorry! That activation code cannot be used with an account at " . $thisProgram->name . ", ";
                 $html .= "but you can use it to $action at " . $accountData['programName'] . ".";
-
-            } else if ($thisCert->id != $accountData['certId']) {
+            } elseif ($thisCert->id != $accountData['certId']) {
                 // make sure the cert levels match
                 $newCert = ($accountData['cert']) ? $accountData['cert'] : "instructor";
                 $action = "<a href='$logoutLink'>create a new $newCert account</a>";
 
                 $html = "We're sorry! That activation code cannot be used with your " . $thisCert->description . " account, ";
                 $html .= "but you can use it to $action.";
-
-            } else if (
+            } elseif (
                 ($accountData['configuration'] & $productService::PARAMEDIC_TRANSITION_CONFIG) ||
                 ($accountData['configuration'] & $productService::EMTB_TRANSITION_CONFIG) ||
                 ($accountData['configuration'] & $productService::AEMT_TRANSITION_CONFIG)) {
@@ -1364,9 +1355,7 @@ class Account_OrdersController extends Fisdap_Controller_Private
 
                 $this->redirect("/account/orders/upgrade-confirmation/$errorUrl");
             }
-
         }
         $this->redirect("/account/orders/upgrade-confirmation/error/true");
     }
 }
-

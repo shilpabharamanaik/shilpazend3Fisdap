@@ -38,6 +38,4 @@ require_once 'Zend/Session/Exception.php';
  */
 class Zend_Session_Validator_Exception extends Zend_Session_Exception
 {
-
 }
-

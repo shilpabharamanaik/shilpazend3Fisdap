@@ -92,7 +92,7 @@ class NewInstructorForm extends Form
             ],
         ]);
 
-		 // Add "HomePhone" field
+        // Add "HomePhone" field
         $this->add([
             'type'  => 'text',
             'name' => 'homePhone',
@@ -104,7 +104,7 @@ class NewInstructorForm extends Form
                 'label_attributes' => array('class' => 'grid_3 required')
             ],
         ]);
-		 // Add "WorkPhone" field
+        // Add "WorkPhone" field
         $this->add([
             'type'  => 'text',
             'name' => 'workPhone',
@@ -116,7 +116,7 @@ class NewInstructorForm extends Form
                 'label_attributes' => array('class' => 'grid_3 required')
             ],
         ]);
-		 // Add "CellPhone" field
+        // Add "CellPhone" field
         $this->add([
             'type'  => 'text',
             'name' => 'cellPhone',
@@ -128,8 +128,8 @@ class NewInstructorForm extends Form
                 'label_attributes' => array('class' => 'grid_3 required')
             ],
         ]);
-		
-		$this->add(array(
+        
+        $this->add(array(
         'type' => 'Zend\Form\Element\MultiCheckbox',
         'name' => 'Rules',
         'options' => array(
@@ -141,9 +141,9 @@ class NewInstructorForm extends Form
                 '3' => 'Instructor',
             ),
         )
-		));
-		
-		$this->add(array(
+        ));
+        
+        $this->add(array(
         'type' => 'Zend\Form\Element\MultiCheckbox',
         'name' => 'programPermissions',
         'options' => array(
@@ -156,9 +156,9 @@ class NewInstructorForm extends Form
                 '4' => 'Edit Program Settings',
             ),
         )
-		));
-		
-		$this->add(array(
+        ));
+        
+        $this->add(array(
         'type' => 'Zend\Form\Element\MultiCheckbox',
         'name' => 'skillsTrackerPermissions',
         'options' => array(
@@ -173,9 +173,9 @@ class NewInstructorForm extends Form
                 '6' => 'Edit Evals',
             ),
         )
-		));
-		
-		$this->add(array(
+        ));
+        
+        $this->add(array(
         'type' => 'Zend\Form\Element\MultiCheckbox',
         'name' => 'schedulePermissions',
         'options' => array(
@@ -188,9 +188,9 @@ class NewInstructorForm extends Form
                 '4' => 'Edit Lab Schedules',
             ),
         )
-		));
-	
-		$this->add(array(
+        ));
+    
+        $this->add(array(
         'type' => 'Zend\Form\Element\MultiCheckbox',
         'name' => 'reportsPermissions',
         'options' => array(
@@ -199,8 +199,8 @@ class NewInstructorForm extends Form
                 '0' => 'View Reports',
             ),
         )
-		));
-		$this->add(array(
+        ));
+        $this->add(array(
         'type' => 'Zend\Form\Element\MultiCheckbox',
         'name' => 'emailNewAccount',
         'options' => array(
@@ -209,8 +209,8 @@ class NewInstructorForm extends Form
                 '0' => 'Send email to instructor with his/her login information.',
             ),
         )
-		));
-		
+        ));
+        
         if ($this->scenario == 'create') {
 
             // Add "password" field
@@ -244,7 +244,7 @@ class NewInstructorForm extends Form
                 ]
             ],
         ]);
-		$this->add(array(
+        $this->add(array(
         'type' => 'Zend\Form\Element\MultiCheckbox',
         'name' => 'automatedEmails',
         'options' => array(
@@ -253,8 +253,8 @@ class NewInstructorForm extends Form
                 '0' => 'Student Events',
             ),
         )
-		));
-		$this->add(array(
+        ));
+        $this->add(array(
         'type' => 'Zend\Form\Element\MultiCheckbox',
         'name' => 'labEmails',
         'options' => array(
@@ -263,9 +263,9 @@ class NewInstructorForm extends Form
                 '0' => ' Lab Shifts',
             ),
         )
-		));
+        ));
 
-		$this->add(array(
+        $this->add(array(
         'type' => 'Zend\Form\Element\MultiCheckbox',
         'name' => 'clinicalEmails',
         'options' => array(
@@ -274,8 +274,8 @@ class NewInstructorForm extends Form
                 '0' => ' Clinical Shifts',
             ),
         )
-		));
-		$this->add(array(
+        ));
+        $this->add(array(
         'type' => 'Zend\Form\Element\MultiCheckbox',
         'name' => 'fieldEmails',
         'options' => array(
@@ -284,7 +284,7 @@ class NewInstructorForm extends Form
                 '0' => 'Field Shifts',
             ),
         )
-		));
+        ));
         // Add the Submit button
         $this->add([
             'type'  => 'submit',
@@ -372,7 +372,7 @@ class NewInstructorForm extends Form
                 ],
             ]);
 
-			// Add input for "homePhone" field
+        // Add input for "homePhone" field
         $inputFilter->add([
                 'name'     => 'homePhone',
                 'required' => true,
@@ -389,7 +389,7 @@ class NewInstructorForm extends Form
                     ],
                 ],
             ]);
-	// Add input for "workPhone" field
+        // Add input for "workPhone" field
         $inputFilter->add([
                 'name'     => 'workPhone',
                 'required' => true,
@@ -406,7 +406,7 @@ class NewInstructorForm extends Form
                     ],
                 ],
             ]);
-			// Add input for "cellPhone" field
+        // Add input for "cellPhone" field
         $inputFilter->add([
                 'name'     => 'cellPhone',
                 'required' => true,
@@ -423,8 +423,8 @@ class NewInstructorForm extends Form
                     ],
                 ],
             ]);
-			
-				// Add input for "address" field
+            
+        // Add input for "address" field
         $inputFilter->add([
                 'name'     => 'address',
                 'required' => true,
@@ -441,7 +441,7 @@ class NewInstructorForm extends Form
                     ],
                 ],
             ]);
-				// Add input for "city" field
+        // Add input for "city" field
         $inputFilter->add([
                 'name'     => 'city',
                 'required' => true,
@@ -458,7 +458,7 @@ class NewInstructorForm extends Form
                     ],
                 ],
             ]);
-				// Add input for "country" field
+        // Add input for "country" field
         $inputFilter->add([
                 'name'     => 'country',
                 'required' => true,
@@ -475,7 +475,7 @@ class NewInstructorForm extends Form
                     ],
                 ],
             ]);
-				// Add input for "zip" field
+        // Add input for "zip" field
         $inputFilter->add([
                 'name'     => 'zip',
                 'required' => true,
@@ -492,8 +492,8 @@ class NewInstructorForm extends Form
                     ],
                 ],
             ]);
-			
-			// Add input for "contact_name" field
+            
+        // Add input for "contact_name" field
         $inputFilter->add([
                 'name'     => 'contact_name',
                 'required' => true,
@@ -510,7 +510,7 @@ class NewInstructorForm extends Form
                     ],
                 ],
             ]);
-			// Add input for "contact_phone" field
+        // Add input for "contact_phone" field
         $inputFilter->add([
                 'name'     => 'contact_phone',
                 'required' => true,
@@ -527,7 +527,7 @@ class NewInstructorForm extends Form
                     ],
                 ],
             ]);
-			// Add input for "contact_relation" field
+        // Add input for "contact_relation" field
         $inputFilter->add([
                 'name'     => 'contact_relation',
                 'required' => true,

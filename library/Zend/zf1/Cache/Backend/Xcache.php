@@ -217,5 +217,4 @@ class Zend_Cache_Backend_Xcache extends Zend_Cache_Backend implements Zend_Cache
     {
         return false;
     }
-
 }

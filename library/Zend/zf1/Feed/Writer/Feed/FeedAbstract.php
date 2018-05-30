@@ -147,7 +147,7 @@ class Zend_Feed_Writer_Feed_FeedAbstract
      */
     public function addAuthors(array $authors)
     {
-        foreach($authors as $author) {
+        foreach ($authors as $author) {
             $this->addAuthor($author);
         }
     }
@@ -338,7 +338,6 @@ class Zend_Feed_Writer_Feed_FeedAbstract
                 $nvalid = $validator->isValid('info@' . $matches['name']);
             }
             return $dvalid && $nvalid;
-
         }
         return false;
     }

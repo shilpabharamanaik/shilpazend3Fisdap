@@ -7,7 +7,6 @@ use Fisdap\Entity\SerialNumberLegacy;
 use Fisdap\Entity\StudentLegacy;
 use Fisdap\Logging\Events\EventLogging;
 
-
 /**
  * An event listener for applying product limits to a student (StudentLegacy Entity),
  * when a serial number (SerialNumberLegacy Entity) has been activated
@@ -57,7 +56,7 @@ final class ApplyProductLimits
         // todo - discuss this logic with domain expert...it seems weirdly nested
         if ($serialNumber->hasProductLimits(true)) {
             // if there aren't any unlimited products (in a case where a student may have both)
-            if ( ! $serialNumber->hasProductLimits(false)) {
+            if (! $serialNumber->hasProductLimits(false)) {
                 $roleData = $serialNumber->getUserContext()->getRoleData();
 
                 if ($roleData instanceof StudentLegacy) {

@@ -11,7 +11,6 @@ use Fisdap\Logging\Events\EventLogging;
 use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-
 /**
  * An event listener that assigns requirements to a user context, when a serial number (SerialNumberLegacy Entity)
  * has been activated, and the serial number provides access to Fisdap Scheduler
@@ -63,17 +62,18 @@ final class UpdateComplianceRequirements implements ShouldQueue
 
             $userContexts[] = $userContext = $serialNumberEntity->getUserContext();
 
-            switch(get_class($userContext->getRoleData())) {
+            switch (get_class($userContext->getRoleData())) {
                 case InstructorLegacy::class:
                     $this->busDispatcher->dispatch(new AutoAttachRequirements($userContext));
                     break;
                 case StudentLegacy::class:
                     // todo - use ProductsFinder here
-                    if ( ! $serialNumberEntity->hasScheduler()) return;
+                    if (! $serialNumberEntity->hasScheduler()) {
+                        return;
+                    }
                     $this->busDispatcher->dispatch(new AutoAttachRequirements($userContext));
                     break;
             }
-
         }
 
         $this->busDispatcher->dispatch(new UpdateCompliance($userContexts));

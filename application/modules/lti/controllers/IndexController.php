@@ -7,7 +7,6 @@ use Psr\Log\LoggerInterface;
 use Zend\Diactoros\ServerRequest;
 use Zend\Diactoros\ServerRequestFactory;
 
-
 /**
  * Class Lti_IndexController
  *
@@ -48,10 +47,16 @@ final class Lti_IndexController extends Zend_Controller_Action
             $request = $this->getRequest();
 
             $serverRequest = new ServerRequest(
-                [], [], $request->getRequestUri(), $request->getMethod(), 'php://input', [], [],
-                [], $request->getPost()
+                [],
+                [],
+                $request->getRequestUri(),
+                $request->getMethod(),
+                'php://input',
+                [],
+                [],
+                [],
+                $request->getPost()
             );
-
         } else {
             $serverRequest = ServerRequestFactory::fromGlobals();
         }

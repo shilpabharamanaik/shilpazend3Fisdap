@@ -5,7 +5,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
 
-
 class LoadAliceFixture implements FixtureInterface
 {
     /**
@@ -78,7 +77,8 @@ class LoadAliceFixture implements FixtureInterface
      * to doctrine metadata. Should restore Doctrine lifecycle callback system to original state
      * (after modifyFixtureClassMetadata wipes out all lifecycle callbacks).
      */
-    protected function restoreLifecycleCallbacksBacks() {
+    protected function restoreLifecycleCallbacksBacks()
+    {
         foreach ($this->lifecycleCallbacks as $entityClass => $callbacks) {
             $classMetadata = $this->em->getClassMetadata($entityClass);
             $classMetadata->setLifecycleCallbacks($callbacks);

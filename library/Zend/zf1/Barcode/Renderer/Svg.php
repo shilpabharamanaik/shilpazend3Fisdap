@@ -167,9 +167,11 @@ class Zend_Barcode_Renderer_Svg extends Zend_Barcode_Renderer_RendererAbstract
             $this->_rootElement->setAttribute('width', $width);
             $this->_rootElement->setAttribute('height', $height);
 
-            $this->_appendRootElement('title',
+            $this->_appendRootElement(
+                'title',
                                       array(),
-                                      "Barcode " . strtoupper($this->_barcode->getType()) . " " . $this->_barcode->getText());
+                                      "Barcode " . strtoupper($this->_barcode->getType()) . " " . $this->_barcode->getText()
+            );
         } else {
             $this->_readRootElement();
             $width = $this->_rootElement->getAttribute('width');
@@ -177,12 +179,14 @@ class Zend_Barcode_Renderer_Svg extends Zend_Barcode_Renderer_RendererAbstract
         }
         $this->_adjustPosition($height, $width);
 
-        $this->_appendRootElement('rect',
+        $this->_appendRootElement(
+            'rect',
                           array('x' => $this->_leftOffset,
                                 'y' => $this->_topOffset,
                                 'width' => ($this->_leftOffset + $barcodeWidth - 1),
                                 'height' => ($this->_topOffset + $barcodeHeight - 1),
-                                'fill' => $imageBackgroundColor));
+                                'fill' => $imageBackgroundColor)
+        );
     }
 
     protected function _readRootElement()

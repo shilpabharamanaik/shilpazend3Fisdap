@@ -87,9 +87,9 @@ abstract class Zend_Session_Abstract
         }
 
         if ($name === null) {
-            return ( isset($_SESSION[$namespace]) || isset(self::$_expiringData[$namespace]) );
+            return (isset($_SESSION[$namespace]) || isset(self::$_expiringData[$namespace]));
         } else {
-            return ( isset($_SESSION[$namespace][$name]) || isset(self::$_expiringData[$namespace][$name]) );
+            return (isset($_SESSION[$namespace][$name]) || isset(self::$_expiringData[$namespace][$name]));
         }
     }
 

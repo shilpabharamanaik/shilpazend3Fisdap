@@ -37,4 +37,3 @@ final class GenderServiceProvider extends ServiceProvider
         ]);
     }
 }
-

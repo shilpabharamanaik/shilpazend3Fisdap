@@ -162,7 +162,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystem implements Zend_Cloud_Storage
         rename($this->_getFullPath($sourcePath), $this->_getFullPath($destinationPath));
     }
 
-        /**
+    /**
      * Rename an item in the storage service to a given name.
      *
      *
@@ -262,6 +262,6 @@ class Zend_Cloud_StorageService_Adapter_FileSystem implements Zend_Cloud_Storage
      */
     public function getClient()
     {
-         return $this->_directory;
+        return $this->_directory;
     }
 }

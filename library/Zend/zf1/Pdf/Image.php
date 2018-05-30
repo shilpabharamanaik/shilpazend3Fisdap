@@ -35,17 +35,17 @@
  */
 abstract class Zend_Pdf_Image
 {
-  /**** Class Constants ****/
+    /**** Class Constants ****/
 
 
-  /* Image Types */
+    /* Image Types */
 
     const TYPE_UNKNOWN = 0;
     const TYPE_JPEG = 1;
     const TYPE_PNG = 2;
     const TYPE_TIFF = 3;
 
-  /* TIFF Constants */
+    /* TIFF Constants */
 
     const TIFF_FIELD_TYPE_BYTE=1;
     const TIFF_FIELD_TYPE_ASCII=2;
@@ -80,7 +80,7 @@ abstract class Zend_Pdf_Image
     const TIFF_PHOTOMETRIC_INTERPRETATION_YCBCR=6;
     const TIFF_PHOTOMETRIC_INTERPRETATION_CIELAB=8;
 
-  /* PNG Constants */
+    /* PNG Constants */
 
     const PNG_COMPRESSION_DEFAULT_STRATEGY = 0;
     const PNG_COMPRESSION_FILTERED = 1;
@@ -102,10 +102,10 @@ abstract class Zend_Pdf_Image
     const PNG_CHANNEL_GRAY_ALPHA = 4;
     const PNG_CHANNEL_RGB_ALPHA = 6;
 
-  /**** Public Interface ****/
+    /**** Public Interface ****/
 
 
-  /* Factory Methods */
+    /* Factory Methods */
 
     /**
      * Returns a {@link Zend_Pdf_Resource_Image} object by file path.
@@ -166,14 +166,15 @@ abstract class Zend_Pdf_Image
 
         if ($image !== null) {
             return $image;
-
         } else {
             /* The type of image could not be determined. Give up.
              */
             require_once 'Zend/Pdf/Exception.php';
-            throw new Zend_Pdf_Exception("Cannot determine image type: $filePath",
-                                         Zend_Pdf_Exception::CANT_DETERMINE_IMAGE_TYPE);
-         }
+            throw new Zend_Pdf_Exception(
+                "Cannot determine image type: $filePath",
+                                         Zend_Pdf_Exception::CANT_DETERMINE_IMAGE_TYPE
+            );
+        }
     }
 
 

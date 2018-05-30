@@ -22,7 +22,8 @@ use Fisdap\Entity\SiteLegacy;
  * @package Fisdap\Data\Site
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface SiteStaffMemberRepository extends Repository {
+interface SiteStaffMemberRepository extends Repository
+{
 
     /**
      * Get the staff members associated with this site and program (or network)
@@ -32,5 +33,4 @@ interface SiteStaffMemberRepository extends Repository {
      * @return array an array of SiteStaffMembers
      */
     public function getStaffMembersBySiteAndProgram(SiteLegacy $site, array $programs);
-
-} 
+}

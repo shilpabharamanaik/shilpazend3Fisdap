@@ -590,7 +590,7 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
     public function getParam($paramName, $default = null)
     {
         $value = $this->getRequest()->getParam($paramName);
-         if ((null === $value || '' === $value) && (null !== $default)) {
+        if ((null === $value || '' === $value) && (null !== $default)) {
             $value = $default;
         }
 

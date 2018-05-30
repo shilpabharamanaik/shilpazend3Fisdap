@@ -38,9 +38,7 @@ require_once 'Zend/Service/DeveloperGarden/Response/SecurityTokenServer/Interfac
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Response_SecurityTokenServer_SecurityTokenResponse
-    extends Zend_Service_DeveloperGarden_Response_ResponseAbstract
-    implements Zend_Service_DeveloperGarden_Response_SecurityTokenServer_Interface
+class Zend_Service_DeveloperGarden_Response_SecurityTokenServer_SecurityTokenResponse extends Zend_Service_DeveloperGarden_Response_ResponseAbstract implements Zend_Service_DeveloperGarden_Response_SecurityTokenServer_Interface
 {
     /**
      * the token format, should be saml20

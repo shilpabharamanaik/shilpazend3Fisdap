@@ -35,41 +35,40 @@ require_once 'Zend/Service/Console/Command/ParameterSource/ParameterSourceInterf
  * @copyright  Copyright (c) 2009 - 2011, RealDolmen (http://www.realdolmen.com)
  * @license    http://phpazure.codeplex.com/license
  */
-class Zend_Service_Console_Command_ParameterSource_Env
-	implements Zend_Service_Console_Command_ParameterSource_ParameterSourceInterface
+class Zend_Service_Console_Command_ParameterSource_Env implements Zend_Service_Console_Command_ParameterSource_ParameterSourceInterface
 {
-	/**
-	 * Get value for a named parameter.
-	 *
-	 * @param mixed $parameter Parameter to get a value for
-	 * @param array $argv Argument values passed to the script when run in console.
-	 * @return mixed
-	 */
-	public function getValueForParameter($parameter, $argv = array())
-	{
-		// Default value
-		$parameterValue = null;
+    /**
+     * Get value for a named parameter.
+     *
+     * @param mixed $parameter Parameter to get a value for
+     * @param array $argv Argument values passed to the script when run in console.
+     * @return mixed
+     */
+    public function getValueForParameter($parameter, $argv = array())
+    {
+        // Default value
+        $parameterValue = null;
 
-		// Fetch value for parameter
-		foreach ($parameter->aliases as $alias) {
-			while (strpos($alias, '-') !== false) {
-				$alias = substr($alias, 1);
-			}
-			$value = getenv($alias);
+        // Fetch value for parameter
+        foreach ($parameter->aliases as $alias) {
+            while (strpos($alias, '-') !== false) {
+                $alias = substr($alias, 1);
+            }
+            $value = getenv($alias);
 
-			if (!is_null($value) && $value !== false) {
-				$parameterValue = $value;
-				break;
-			}
-		}
+            if (!is_null($value) && $value !== false) {
+                $parameterValue = $value;
+                break;
+            }
+        }
 
-		if (strtolower($parameterValue) == 'true') {
-			$parameterValue = true;
-		} else if (strtolower($parameterValue) == 'false') {
-			$parameterValue = false;
-		}
+        if (strtolower($parameterValue) == 'true') {
+            $parameterValue = true;
+        } elseif (strtolower($parameterValue) == 'false') {
+            $parameterValue = false;
+        }
 
-		// Done!
-		return $parameterValue;
-	}
+        // Done!
+        return $parameterValue;
+    }
 }

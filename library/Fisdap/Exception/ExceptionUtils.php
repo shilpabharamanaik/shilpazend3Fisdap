@@ -70,5 +70,3 @@ class Fisdap_Exception_ExceptionUtils
         return $s;
     }
 }
-
-?>

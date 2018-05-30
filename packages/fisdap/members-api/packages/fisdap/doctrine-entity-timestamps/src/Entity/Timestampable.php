@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping\MappedSuperclass;
 use Doctrine\ORM\Mapping\PrePersist;
 use Doctrine\ORM\Mapping\PreUpdate;
 
-
 /**
  * Base class that will add a created and updated field. The class also adds
  * logic to populate these fields.

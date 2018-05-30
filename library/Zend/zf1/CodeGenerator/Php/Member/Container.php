@@ -51,5 +51,4 @@ class Zend_CodeGenerator_Php_Member_Container extends ArrayObject
         $this->_type = $type;
         parent::__construct(array(), self::ARRAY_AS_PROPS);
     }
-
 }

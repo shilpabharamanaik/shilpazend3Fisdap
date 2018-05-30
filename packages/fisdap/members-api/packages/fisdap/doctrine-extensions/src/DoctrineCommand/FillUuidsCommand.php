@@ -40,7 +40,7 @@ class FillUuidsCommand extends Command
     /**
      * @var bool Should we find and fill columns that represent doctrine relationships to the target column?
      */
-    protected $doRelationships = FALSE;
+    protected $doRelationships = false;
 
     /**
      * @var array Array of entity classes as keys, values are either NULL or the metadata, if loaded
@@ -71,7 +71,8 @@ class FillUuidsCommand extends Command
             ))
             ->addOption('batch-size', null, InputOption::VALUE_REQUIRED, 'Set the number of records the tool should attempt to update at any one time')
             ->addOption('do-relationships', null, InputOption::VALUE_NONE, 'Should we find and fill columns that represent doctrine relationships to the target column?')
-            ->setHelp(<<<EOT
+            ->setHelp(
+                <<<EOT
 Fills existing UUID columns on entities with generated UUID values
 EOT
             );
@@ -94,7 +95,7 @@ EOT
             $this->batchSize = intval($input->getOption('batch-size'));
         }
         if ($input->getOption('do-relationships') !== null) {
-            $this->doRelationships = TRUE;
+            $this->doRelationships = true;
         }
 
         // CONSTRUCTION STUFF
@@ -112,7 +113,7 @@ EOT
 
 
         // DO WORK
-        foreach($this->targetEntities as $entityClass) {
+        foreach ($this->targetEntities as $entityClass) {
             // Get table metadata
             $identityInfo = $this->getEntityIdentityInfo($entityClass);
             $tableName = $this->allMetadata[$entityClass]->getTableName();
@@ -131,7 +132,6 @@ EOT
                 foreach ($relatedEntities as $relatedEntityClass => $properties) {
                     foreach ($properties as $property) {
                         $relatedAffected += $this->fillRelatedEntityProperties($relatedEntityClass, $property, $tableName, $identityInfo, $uuidColumnName);
-
                     }
                 }
             }
@@ -142,7 +142,6 @@ EOT
                 $output->writeln($relatedAffected . ' related table rows updated');
             }
         }
-
     }
 
     /**
@@ -175,10 +174,10 @@ EOT
         $node = self::getNodeFromSystem();
 
         // select a chunk of NULL data, ordered by ID
-        $keepGoing = TRUE;
+        $keepGoing = true;
         $rowsAffectedTotal = 0;
         while ($keepGoing) {
-            $keepGoing = FALSE; // set this to false in case no results from our select query
+            $keepGoing = false; // set this to false in case no results from our select query
             $selectQuery = $this->dbConnection->executeQuery(
                 "SELECT {$idColumnName} FROM {$tableName}
                       WHERE {$uuidColumnName} IS NULL
@@ -194,16 +193,16 @@ EOT
             // Add UUIDs for that chunk
             // start transaction
             //$this->dbConnection->beginTransaction();
-            $batchStartId = $batchStartTime = NULL;
+            $batchStartId = $batchStartTime = null;
             $rowsAffectedBatch = 0;
             $batchCaseStatement = '';
             $batchParams = $batchParamTypes = [];
             $batchIds = [];
             while ($id = $selectQuery->fetchColumn(0)) {
                 // We got results, so the next iteration of the loop should continue
-                $keepGoing = TRUE;
+                $keepGoing = true;
 
-                if ($batchStartId == NULL) {
+                if ($batchStartId == null) {
                     // set the ID that this batch started at, and the current time
                     $batchStartId = $id;
                     $batchStartTime = time();
@@ -219,7 +218,6 @@ EOT
                 $batchParams[":uuid{$id}"] = pack('H*', str_replace('-', '', UuidType::generateUuid($node)));
                 $batchParamTypes[":uuid{$id}"] = 'binary';
                 $batchIds[] = $id;
-
             }
 
             if (count($batchIds) > 0) {
@@ -362,7 +360,7 @@ EOT
     {
         $this->loadMetaDataForEntityClass($relatedEntityClass);
         $propertyPrefix = $property . '_';
-        $propertyColumnName = $this->getPropertyColumnName($property, $relatedEntityClass, TRUE);
+        $propertyColumnName = $this->getPropertyColumnName($property, $relatedEntityClass, true);
         $relatedUuidColumnName = $propertyPrefix . $this->propertyName;
         $this->loadMetaDataForEntityClass($relatedEntityClass);
         $relatedTableName = $this->allMetadata[$relatedEntityClass]->getTableName();

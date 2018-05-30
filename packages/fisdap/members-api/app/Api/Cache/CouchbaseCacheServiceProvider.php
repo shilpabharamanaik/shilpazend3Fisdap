@@ -5,7 +5,6 @@ use Couchbase;
 use Illuminate\Cache\Repository;
 use Illuminate\Support\ServiceProvider;
 
-
 /**
  * Extends Laravel cache facility, adding Couchbase driver
  *
@@ -21,8 +20,7 @@ class CouchbaseCacheServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Cache::extend('couchbase', function($app) {
-
+        Cache::extend('couchbase', function ($app) {
             $couchbaseConfig = $app['config']['cache.stores.couchbase'];
 
             return new Repository(new CouchbaseStore(
@@ -32,7 +30,8 @@ class CouchbaseCacheServiceProvider extends ServiceProvider
                     $couchbaseConfig['password'],
                     $couchbaseConfig['bucket'],
                     $couchbaseConfig['persistent']
-                ), $app['config']['cache.prefix']
+                ),
+                $app['config']['cache.prefix']
             ));
         });
     }

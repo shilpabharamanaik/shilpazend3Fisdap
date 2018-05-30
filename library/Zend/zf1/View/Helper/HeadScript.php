@@ -282,8 +282,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
         foreach ($this->getContainer() as $item) {
             if (($item->source === null)
                 && array_key_exists('src', $item->attributes)
-                && ($file == $item->attributes['src']))
-            {
+                && ($file == $item->attributes['src'])) {
                 return true;
             }
         }
@@ -301,8 +300,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
     {
         if ((!$value instanceof stdClass)
             || !isset($value->type)
-            || (!isset($value->source) && !isset($value->attributes)))
-        {
+            || (!isset($value->source) && !isset($value->attributes))) {
             return false;
         }
 
@@ -419,8 +417,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
         if (!empty($item->attributes)) {
             foreach ($item->attributes as $key => $value) {
                 if ((!$this->arbitraryAttributesAllowed() && !in_array($key, $this->_optionalAttributes))
-                    || in_array($key, array('conditional', 'noescape')))
-                {
+                    || in_array($key, array('conditional', 'noescape'))) {
                     continue;
                 }
                 if ('defer' == $key) {
@@ -453,8 +450,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
 
         if (isset($item->attributes['conditional'])
             && !empty($item->attributes['conditional'])
-            && is_string($item->attributes['conditional']))
-        {
+            && is_string($item->attributes['conditional'])) {
             // inner wrap with comment end and start if !IE
             if (str_replace(' ', '', $item->attributes['conditional']) === '!IE') {
                 $html = '<!-->' . $html . '<!--';

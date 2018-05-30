@@ -17,8 +17,8 @@
  * @license
  * @version    $id$
  */
-class WURFL_Xml_PersistenceProvider_FilePersistenceProvider extends WURFL_Xml_PersistenceProvider_AbstractPersistenceProvider {
-
+class WURFL_Xml_PersistenceProvider_FilePersistenceProvider extends WURFL_Xml_PersistenceProvider_AbstractPersistenceProvider
+{
     private $_persistenceDir;
     
     protected $persistenceIdentifier = "FILE_PERSISTENCE_PROVIDER";
@@ -26,8 +26,9 @@ class WURFL_Xml_PersistenceProvider_FilePersistenceProvider extends WURFL_Xml_Pe
     
     const DIR = "dir";
     
-    public function __construct($params) {
-    	$this->initialize($params);
+    public function __construct($params)
+    {
+        $this->initialize($params);
     }
     
     /**
@@ -35,48 +36,53 @@ class WURFL_Xml_PersistenceProvider_FilePersistenceProvider extends WURFL_Xml_Pe
      *
      * @param array of parameters for configuring the Persistence Provider
      */
-    function initialize($params) {
-    	if (is_array($params)) {
-			if (!array_key_exists(self::DIR, $params)) {
-				throw new WURFL_WURFLException("Specify a valid Persistence dir in the configuration file");
-			}
-			
-			// Check if the directory exist and it is also write access
-    		if (!is_writable($params[self::DIR])) {
-				throw new WURFL_WURFLException("The diricetory specified <" . $params[self::DIR]. "> for the persistence provider does not exist or it is not writable\n");	
-    		}
+    public function initialize($params)
+    {
+        if (is_array($params)) {
+            if (!array_key_exists(self::DIR, $params)) {
+                throw new WURFL_WURFLException("Specify a valid Persistence dir in the configuration file");
+            }
+            
+            // Check if the directory exist and it is also write access
+            if (!is_writable($params[self::DIR])) {
+                throw new WURFL_WURFLException("The diricetory specified <" . $params[self::DIR]. "> for the persistence provider does not exist or it is not writable\n");
+            }
 
-    		$this->_persistenceDir = $params[self::DIR] . DIRECTORY_SEPARATOR . $this->persistenceIdentifier;
-    		
-    		WURFL_FileManager::createDir($this->_persistenceDir);
-		} 
+            $this->_persistenceDir = $params[self::DIR] . DIRECTORY_SEPARATOR . $this->persistenceIdentifier;
+            
+            WURFL_FileManager::createDir($this->_persistenceDir);
+        }
     }
 
     /**
      * Saves the object on the file system
-     * 
+     *
      *
      * @param string $objectId
      * @param mixed $object
      */
-    public function save($objectId, $object) {
-    	WURFL_FileManager::save($this->encode($objectId), $object, $this->_persistenceDir);
+    public function save($objectId, $object)
+    {
+        WURFL_FileManager::save($this->encode($objectId), $object, $this->_persistenceDir);
     }
 
-    public function load($objectId) {
-    	return WURFL_FileManager::fetch($this->encode($objectId), $this->_persistenceDir);
+    public function load($objectId)
+    {
+        return WURFL_FileManager::fetch($this->encode($objectId), $this->_persistenceDir);
     }
 
-    public function remove($objectId) {
-    	return WURFL_FileManager::remove($this->encode($objectId), $this->_persistenceDir);
+    public function remove($objectId)
+    {
+        return WURFL_FileManager::remove($this->encode($objectId), $this->_persistenceDir);
     }
 
     
     /**
-     * Clears the persistence provider by removing the directory 
+     * Clears the persistence provider by removing the directory
      *
      */
-    public function clear() {
-    	WURFL_FileManager::removeDir($this->_persistenceDir);
+    public function clear()
+    {
+        WURFL_FileManager::removeDir($this->_persistenceDir);
     }
 }

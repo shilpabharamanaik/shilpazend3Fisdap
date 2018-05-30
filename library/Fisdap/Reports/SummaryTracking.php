@@ -17,19 +17,19 @@ class Fisdap_Reports_SummaryTracking extends Fisdap_Reports_Report
         'shiftInformationForm' => array(
             'title' => 'Select shift information',
             'options' => array(
-                'pickAuditStatus' => TRUE
+                'pickAuditStatus' => true
             )
         ),
         'multistudentPicklist' => array(
             'title' => 'Select one or more student(s)',
             'options' =>  array(
                 'mode' => 'multiple',
-                'loadJSCSS' => TRUE,
-                'loadStudents' => TRUE,
-                'showTotal' => TRUE,
-                'studentVersion' => TRUE,
-                'includeAnon' => TRUE,
-                'useSessionFilters' => TRUE,
+                'loadJSCSS' => true,
+                'loadStudents' => true,
+                'showTotal' => true,
+                'studentVersion' => true,
+                'includeAnon' => true,
+                'useSessionFilters' => true,
                 'sessionNamespace' => "ReportStudentFilter",
             ),
         )
@@ -37,9 +37,10 @@ class Fisdap_Reports_SummaryTracking extends Fisdap_Reports_Report
 
     private $siteTypes = array();
 
-    public function runReport() {
+    public function runReport()
+    {
         // Set the mysql timeout higher
-        \Fisdap\EntityUtils::getEntityManager()->getConnection()->exec( "SET SESSION wait_timeout = 100000" );
+        \Fisdap\EntityUtils::getEntityManager()->getConnection()->exec("SET SESSION wait_timeout = 100000");
         \Zend_Registry::get('db')->query("SET SESSION wait_timeout = 100000");
         $logger = \Zend_Registry::get('logger');
 
@@ -72,22 +73,22 @@ class Fisdap_Reports_SummaryTracking extends Fisdap_Reports_Report
         $goalCategories = array();
 
         foreach ($this->siteTypes as $siteType) {
-                if ($siteType == 'total'){
-                    $dataOptions['shiftSites'] = $this->getSiteIds();
-                } else {
-                    $dataOptions['shiftSites'] = $requestedSites[$siteType];
-                }
-                foreach ($students as $student_id => $nameOptions) {
-                    if ($student_id > 0) { // add student only if student_id is valid
-                        $goals = new \Fisdap\Goals($student_id, $goalSet, $dataOptions, $nameOptions['first_last_combined']);
-                        $goalsResults[$student_id][$siteType] = $goals->getGoalsResults(null, false);
-                        if (empty($goalCategories)){
-                            $anyStudentsResults = $goalsResults[$student_id][$siteType];
-                            $goalCategories = array_unique(array_keys($goalsResults[$student_id][$siteType]));
-                        }
-                        unset($goals);
+            if ($siteType == 'total') {
+                $dataOptions['shiftSites'] = $this->getSiteIds();
+            } else {
+                $dataOptions['shiftSites'] = $requestedSites[$siteType];
+            }
+            foreach ($students as $student_id => $nameOptions) {
+                if ($student_id > 0) { // add student only if student_id is valid
+                    $goals = new \Fisdap\Goals($student_id, $goalSet, $dataOptions, $nameOptions['first_last_combined']);
+                    $goalsResults[$student_id][$siteType] = $goals->getGoalsResults(null, false);
+                    if (empty($goalCategories)) {
+                        $anyStudentsResults = $goalsResults[$student_id][$siteType];
+                        $goalCategories = array_unique(array_keys($goalsResults[$student_id][$siteType]));
                     }
+                    unset($goals);
                 }
+            }
         }
 
 
@@ -109,8 +110,6 @@ class Fisdap_Reports_SummaryTracking extends Fisdap_Reports_Report
             $this->addPageBreak();
             unset($dataTables);
         }
-
-
     }
 
     /**
@@ -126,8 +125,8 @@ class Fisdap_Reports_SummaryTracking extends Fisdap_Reports_Report
     }
 
 
-    private function getDataTable($goalCategory, $type, $goalsResults, $anyStudentsResults, $students) {
-
+    private function getDataTable($goalCategory, $type, $goalsResults, $anyStudentsResults, $students)
+    {
         $title = $goalCategory;
 
         // set up the table structure
@@ -139,12 +138,11 @@ class Fisdap_Reports_SummaryTracking extends Fisdap_Reports_Report
             $catName = $goalResult->goal->def->name;
 
             $superHeader = "$catName <br/>goal: " . $goalResult->requirementDesc;
-                $subHeader = "<span class='subheader'>goal: " . $goalResult->requirementDesc . "</span>";
+            $subHeader = "<span class='subheader'>goal: " . $goalResult->requirementDesc . "</span>";
 
 
-                $superHeaderRow[] = array("data" => $superHeader, "rowspan" => 2);
-                //$subHeaderRow[] = array("data" => $subHeader, "rowspan" => 2);
-
+            $superHeaderRow[] = array("data" => $superHeader, "rowspan" => 2);
+            //$subHeaderRow[] = array("data" => $subHeader, "rowspan" => 2);
         }
 
         $superHeaderRow[] = array("data" => "Overall %",
@@ -166,7 +164,7 @@ class Fisdap_Reports_SummaryTracking extends Fisdap_Reports_Report
         if (!empty($subHeaderRow)) {
             $table_data['head'][] = $subHeaderRow;
         } else {
-            foreach($table_data['head'][0] as $i => $headerRow) {
+            foreach ($table_data['head'][0] as $i => $headerRow) {
                 $table_data['head'][0][$i]["rowspan"] = 1;
                 //$headerRow['rowspan'] = 1;
             }
@@ -231,7 +229,4 @@ class Fisdap_Reports_SummaryTracking extends Fisdap_Reports_Report
         $logger->debug($table_data);
         return $table_data;
     }
-
-
-
 }

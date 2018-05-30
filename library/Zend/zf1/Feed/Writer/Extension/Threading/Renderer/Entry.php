@@ -30,8 +30,7 @@ require_once 'Zend/Feed/Writer/Extension/RendererAbstract.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Writer_Extension_Threading_Renderer_Entry
-    extends Zend_Feed_Writer_Extension_RendererAbstract
+class Zend_Feed_Writer_Extension_Threading_Renderer_Entry extends Zend_Feed_Writer_Extension_RendererAbstract
 {
 
     /**
@@ -68,8 +67,10 @@ class Zend_Feed_Writer_Extension_Threading_Renderer_Entry
      */
     protected function _appendNamespaces()
     {
-        $this->getRootElement()->setAttribute('xmlns:thr',
-            'http://purl.org/syndication/thread/1.0');
+        $this->getRootElement()->setAttribute(
+            'xmlns:thr',
+            'http://purl.org/syndication/thread/1.0'
+        );
     }
 
     /**

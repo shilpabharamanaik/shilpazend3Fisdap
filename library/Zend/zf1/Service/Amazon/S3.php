@@ -158,7 +158,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
     {
         $this->_validBucketName($bucket);
         $headers=array();
-        if($location) {
+        if ($location) {
             $data = '<CreateBucketConfiguration><LocationConstraint>'.$location.'</LocationConstraint></CreateBucketConfiguration>';
             $headers[self::S3_CONTENT_TYPE_HEADER]= 'text/plain';
             $headers['Content-size']= strlen($data);
@@ -230,8 +230,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
             $info['size'] = $response->getHeader('Content-length');
             $info['mtime'] = strtotime($response->getHeader('Last-modified'));
             $info['etag'] = $response->getHeader('ETag');
-        }
-        else {
+        } else {
             return false;
         }
 
@@ -278,10 +277,10 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
             foreach ($objects as $object) {
                 $this->removeObject("$bucket/$object");
             }
-            $params= array (
+            $params= array(
                 'marker' => $objects[count($objects)-1]
             );
-            $objects = $this->getObjectsByBucket($bucket,$params);
+            $objects = $this->getObjectsByBucket($bucket, $params);
         }
         
         return true;
@@ -321,20 +320,20 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
 
         return $objects;
     }
-     /**
-     * List the objects and common prefixes in a bucket.
-     *
-     * Provides the list of object keys and common prefixes that are contained in the bucket.  Valid params include the following.
-     * prefix - Limits the response to keys which begin with the indicated prefix. You can use prefixes to separate a bucket into different sets of keys in a way similar to how a file system uses folders.
-     * marker - Indicates where in the bucket to begin listing. The list will only include keys that occur lexicographically after marker. This is convenient for pagination: To get the next page of results use the last key of the current page as the marker.
-     * max-keys - The maximum number of keys you'd like to see in the response body. The server might return fewer than this many keys, but will not return more.
-     * delimiter - Causes keys that contain the same string between the prefix and the first occurrence of the delimiter to be rolled up into a single result element in the CommonPrefixes collection. These rolled-up keys are not returned elsewhere in the response.
-     *
-     * @see ZF-11401
-     * @param  string $bucket
-     * @param array $params S3 GET Bucket Paramater
-     * @return array|false
-     */
+    /**
+    * List the objects and common prefixes in a bucket.
+    *
+    * Provides the list of object keys and common prefixes that are contained in the bucket.  Valid params include the following.
+    * prefix - Limits the response to keys which begin with the indicated prefix. You can use prefixes to separate a bucket into different sets of keys in a way similar to how a file system uses folders.
+    * marker - Indicates where in the bucket to begin listing. The list will only include keys that occur lexicographically after marker. This is convenient for pagination: To get the next page of results use the last key of the current page as the marker.
+    * max-keys - The maximum number of keys you'd like to see in the response body. The server might return fewer than this many keys, but will not return more.
+    * delimiter - Causes keys that contain the same string between the prefix and the first occurrence of the delimiter to be rolled up into a single result element in the CommonPrefixes collection. These rolled-up keys are not returned elsewhere in the response.
+    *
+    * @see ZF-11401
+    * @param  string $bucket
+    * @param array $params S3 GET Bucket Paramater
+    * @return array|false
+    */
     public function getObjectsAndPrefixesByBucket($bucket, $params = array())
     {
         $response = $this->_makeRequest('GET', $bucket, $params);
@@ -399,8 +398,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
         $object = $this->_fixupObjectName($object);
         if ($paidobject) {
             $response = $this->_makeRequest('GET', $object, null, array(self::S3_REQUESTPAY_HEADER => 'requester'));
-        }
-        else {
+        } else {
             $response = $this->_makeRequest('GET', $object);
         }
 
@@ -427,8 +425,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
         self::getHttpClient()->setStream($streamfile?$streamfile:true);
         if ($paidobject) {
             $response = $this->_makeRequest('GET', $object, null, array(self::S3_REQUESTPAY_HEADER => 'requester'));
-        }
-        else {
+        } else {
             $response = $this->_makeRequest('GET', $object);
         }
         self::getHttpClient()->setStream(null);
@@ -453,7 +450,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
         $object = $this->_fixupObjectName($object);
         $headers = (is_array($meta)) ? $meta : array();
 
-        if(!is_resource($data)) {
+        if (!is_resource($data)) {
             $headers['Content-MD5'] = base64_encode(md5($data, true));
         }
         $headers['Expect'] = '100-continue';
@@ -501,7 +498,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
         }
 
         if (!isset($meta[self::S3_CONTENT_TYPE_HEADER])) {
-           $meta[self::S3_CONTENT_TYPE_HEADER] = self::getMimeType($path);
+            $meta[self::S3_CONTENT_TYPE_HEADER] = self::getMimeType($path);
         }
 
         return $this->putObject($object, $data, $meta);
@@ -531,10 +528,10 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
         }
 
         if (!isset($meta[self::S3_CONTENT_TYPE_HEADER])) {
-           $meta[self::S3_CONTENT_TYPE_HEADER] = self::getMimeType($path);
+            $meta[self::S3_CONTENT_TYPE_HEADER] = self::getMimeType($path);
         }
 
-        if(!isset($meta['Content-MD5'])) {
+        if (!isset($meta['Content-MD5'])) {
             $meta['Content-MD5'] = base64_encode(md5_file($path, true));
         }
 
@@ -627,7 +624,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
 
         $headers['Date'] = gmdate(DATE_RFC1123, time());
 
-        if(is_resource($data) && $method != 'PUT') {
+        if (is_resource($data) && $method != 'PUT') {
             /**
              * @see Zend_Service_Amazon_S3_Exception
              */
@@ -644,12 +641,10 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
         }
         if (!empty($parts[1])) {
             // ZF-10218, ZF-10122
-            $pathparts = explode('?',$parts[1]);
+            $pathparts = explode('?', $parts[1]);
             $endpath = $pathparts[0];
             $endpoint->setPath('/'.$endpath);
-            
-        }
-        else {
+        } else {
             $endpoint->setPath('/');
             if ($parts[0]) {
                 $path = $parts[0].'/';
@@ -679,15 +674,15 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
             foreach ($params as $name=>$value) {
                 $client->setParameterGet($name, $value);
             }
-         }
+        }
 
-         if (($method == 'PUT') && ($data !== null)) {
-             if (!isset($headers['Content-type'])) {
-                 $headers['Content-type'] = self::getMimeType($path);
-             }
-             $client->setRawData($data, $headers['Content-type']);
-         } 
-         do {
+        if (($method == 'PUT') && ($data !== null)) {
+            if (!isset($headers['Content-type'])) {
+                $headers['Content-type'] = self::getMimeType($path);
+            }
+            $client->setRawData($data, $headers['Content-type']);
+        }
+        do {
             $retry = false;
 
             $response = $client->request($method);
@@ -698,12 +693,10 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
                 $retry = true;
                 $retry_count++;
                 sleep($retry_count / 4 * $retry_count);
-            }
-            else if ($response_code == 307) {
+            } elseif ($response_code == 307) {
                 // Need to redirect, new S3 endpoint given
                 // This should never happen as Zend_Http_Client will redirect automatically
-            }
-            else if ($response_code == 100) {
+            } elseif ($response_code == 100) {
                 // echo 'OK to Continue';
             }
         } while ($retry);
@@ -731,11 +724,9 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
         foreach ($headers as $key=>$val) {
             if (strcasecmp($key, 'content-type') == 0) {
                 $type = $val;
-            }
-            else if (strcasecmp($key, 'content-md5') == 0) {
+            } elseif (strcasecmp($key, 'content-md5') == 0) {
                 $md5 = $val;
-            }
-            else if (strcasecmp($key, 'date') == 0) {
+            } elseif (strcasecmp($key, 'date') == 0) {
                 $date = $val;
             }
         }
@@ -754,8 +745,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
             if (substr($key, 0, 6) == 'x-amz-') {
                 if (is_array($val)) {
                     $amz_headers[$key] = $val;
-                }
-                else {
+                } else {
                     $amz_headers[$key][] = preg_replace('/\s+/', ' ', $val);
                 }
             }
@@ -770,14 +760,11 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
         $sig_str .= '/'.parse_url($path, PHP_URL_PATH);
         if (strpos($path, '?location') !== false) {
             $sig_str .= '?location';
-        }
-        else if (strpos($path, '?acl') !== false) {
+        } elseif (strpos($path, '?acl') !== false) {
             $sig_str .= '?acl';
-        }
-        else if (strpos($path, '?torrent') !== false) {
+        } elseif (strpos($path, '?torrent') !== false) {
             $sig_str .= '?torrent';
-        }
-        else if (strpos($path, '?versions') !== false) {
+        } elseif (strpos($path, '?versions') !== false) {
             $sig_str .= '?versions';
         }
 
@@ -797,7 +784,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
     {
         $ext = substr(strrchr($path, '.'), 1);
 
-        if(!$ext) {
+        if (!$ext) {
             // shortcut
             return 'binary/octet-stream';
         }

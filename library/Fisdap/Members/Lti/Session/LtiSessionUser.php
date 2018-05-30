@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Members\Lti\Session;
 
-
 /**
  * DTO for storing LTI user information in the Session
  *

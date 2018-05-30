@@ -7,7 +7,6 @@ use Fisdap\Data\Slot\SlotAssignmentRepository;
 use Fisdap\Entity\UserContext;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 
-
 /**
  * Class UpdateCompliance
  *
@@ -58,11 +57,16 @@ final class UpdateCompliance extends Job
             }
 
             foreach ($sites as $siteId => $siteAssignments) {
-                $siteCompliant = $requirementRepository->isProgramSiteCompliant($userContext->getId(), $siteId,
-                    $userContext->getProgram()->getId());
+                $siteCompliant = $requirementRepository->isProgramSiteCompliant(
+                    $userContext->getId(),
+                    $siteId,
+                    $userContext->getProgram()->getId()
+                );
                 $globalSite = $userContext->getProgram()->sharesSite($siteId);
-                $globalSiteCompliant = ($globalSite) ? $requirementRepository->isGlobalSiteCompliant($userContext->getId(),
-                    $siteId) : 1;
+                $globalSiteCompliant = ($globalSite) ? $requirementRepository->isGlobalSiteCompliant(
+                    $userContext->getId(),
+                    $siteId
+                ) : 1;
 
                 foreach ($siteAssignments as $assignment) {
                     $assignment->compliant = $siteCompliant;

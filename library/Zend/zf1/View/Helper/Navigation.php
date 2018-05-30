@@ -38,8 +38,7 @@ require_once 'Zend/View/Helper/Navigation/HelperAbstract.php';
  * @method Zend_View_Helper_Navigation_Menu menu
  * @method Zend_View_Helper_Navigation_Sitemap sitemap
  */
-class Zend_View_Helper_Navigation
-    extends Zend_View_Helper_Navigation_HelperAbstract
+class Zend_View_Helper_Navigation extends Zend_View_Helper_Navigation_HelperAbstract
 {
     /**
      * View helper namespace
@@ -167,7 +166,9 @@ class Zend_View_Helper_Navigation
             
             $this->view->addHelperPath(
                     str_replace('_', '/', self::NS),
-                    self::NS);
+                    self::NS
+            
+            );
             
             foreach ($paths as $ns => $path) {
                 $this->view->addHelperPath($path, $ns);
@@ -190,7 +191,8 @@ class Zend_View_Helper_Navigation
                 $e = new Zend_View_Exception(sprintf(
                         'Proxy helper "%s" is not an instance of ' .
                         'Zend_View_Helper_Navigation_Helper',
-                        get_class($helper)));
+                        get_class($helper)
+                ));
                 $e->setView($this->view);
                 throw $e;
             }

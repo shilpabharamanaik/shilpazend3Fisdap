@@ -12,7 +12,7 @@ require_once 'Zend/Cloud/AbstractFactory.php';
 
 /**
  * Factory for infrastructure adapters
- * 
+ *
  * @package    Zend_Cloud
  * @subpackage Infrastructure
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
@@ -57,7 +57,8 @@ class Zend_Cloud_Infrastructure_Factory extends Zend_Cloud_AbstractFactory
         } elseif (!$adapter instanceof self::$_adapterInterface) {
             require_once 'Zend/Cloud/Infrastructure/Exception.php';
             throw new Zend_Cloud_Infrastructure_Exception(sprintf(
-                'Adapter must implement "%s"', self::$_adapterInterface
+                'Adapter must implement "%s"',
+                self::$_adapterInterface
             ));
         }
         return $adapter;

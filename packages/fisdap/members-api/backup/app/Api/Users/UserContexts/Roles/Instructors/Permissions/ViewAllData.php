@@ -4,7 +4,6 @@ use Fisdap\Api\Users\UserContexts\Permissions\Finder\FindsPermissions;
 use Fisdap\Api\Users\UserContexts\Permissions\UserContextPermission;
 use Fisdap\Entity\UserContext;
 
-
 /**
  * Validates whether an (instructor) user role has permission to 'view all data'
  *

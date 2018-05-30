@@ -246,13 +246,13 @@ class Zend_Barcode_Object_Code128 extends Zend_Barcode_Object_ObjectAbstract
     protected static function _isDigit($string, $pos, $length = 2)
     {
         if ($pos + $length > strlen($string)) {
-           return false;
+            return false;
         }
 
         for ($i = $pos; $i < $pos + $length; $i++) {
-              if (!is_numeric($string[$i])) {
-                  return false;
-              }
+            if (!is_numeric($string[$i])) {
+                return false;
+            }
         }
         return true;
     }
@@ -298,7 +298,7 @@ class Zend_Barcode_Object_Code128 extends Zend_Barcode_Object_ObjectAbstract
                     $result[] = $code;
                     $currentCharset = 'C';
                 }
-            } else if (in_array($char, $this->_charSets['B']) && $currentCharset != 'B'
+            } elseif (in_array($char, $this->_charSets['B']) && $currentCharset != 'B'
                   && !(in_array($char, $this->_charSets['A']) && $currentCharset == 'A')) {
                 /**
                  * Switch to B as B contains the char and B is not the current charset.
@@ -310,7 +310,7 @@ class Zend_Barcode_Object_Code128 extends Zend_Barcode_Object_ObjectAbstract
                 }
                 $result[] = $code;
                 $currentCharset = 'B';
-            } else if (array_key_exists($char, $this->_charSets['A']) && $currentCharset != 'A'
+            } elseif (array_key_exists($char, $this->_charSets['A']) && $currentCharset != 'A'
                   && !(array_key_exists($char, $this->_charSets['B']) && $currentCharset == 'B')) {
                 /**
                  * Switch to C as C contains the char and C is not the current charset.

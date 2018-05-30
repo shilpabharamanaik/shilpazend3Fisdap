@@ -10,5 +10,4 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineMentalOrientationRepository extends DoctrineRepository implements MentalOrientationRepository
 {
-
 }

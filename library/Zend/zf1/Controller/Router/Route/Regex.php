@@ -307,7 +307,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
      * @param array $array2
      * @return array
      */
-    protected function _arrayMergeNumericKeys(Array $array1, Array $array2)
+    protected function _arrayMergeNumericKeys(array $array1, array $array2)
     {
         $returnArray = $array1;
         foreach ($array2 as $array2Index => $array2Value) {

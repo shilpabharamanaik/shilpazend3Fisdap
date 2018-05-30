@@ -32,8 +32,7 @@ require_once 'Zend/Service/Amazon/SimpleDb/Attribute.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Cloud_DocumentService_Adapter_SimpleDb
-    extends Zend_Cloud_DocumentService_Adapter_AbstractAdapter
+class Zend_Cloud_DocumentService_Adapter_SimpleDb extends Zend_Cloud_DocumentService_Adapter_AbstractAdapter
 {
     /*
      * Options array keys for the SimpleDB adapter.
@@ -78,7 +77,8 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
         }
 
         $this->_simpleDb = new Zend_Service_Amazon_SimpleDb(
-            $options[self::AWS_ACCESS_KEY], $options[self::AWS_SECRET_KEY]
+            $options[self::AWS_ACCESS_KEY],
+            $options[self::AWS_SECRET_KEY]
         );
 
         if (isset($options[self::HTTP_ADAPTER])) {
@@ -109,7 +109,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
     {
         try {
             $this->_simpleDb->createDomain($name);
-        } catch(Zend_Service_Amazon_Exception $e) {
+        } catch (Zend_Service_Amazon_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on domain creation: '.$e->getMessage(), $e->getCode(), $e);
         }
     }
@@ -125,7 +125,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
     {
         try {
             $this->_simpleDb->deleteDomain($name);
-        } catch(Zend_Service_Amazon_Exception $e) {
+        } catch (Zend_Service_Amazon_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on collection deletion: '.$e->getMessage(), $e->getCode(), $e);
         }
     }
@@ -141,7 +141,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
         try {
             // TODO package this in Pages
             $domains = $this->_simpleDb->listDomains()->getData();
-        } catch(Zend_Service_Amazon_Exception $e) {
+        } catch (Zend_Service_Amazon_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on collection deletion: '.$e->getMessage(), $e->getCode(), $e);
         }
 
@@ -188,7 +188,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
                 $document->getID(),
                 $this->_makeAttributes($document->getID(), $document->getFields())
             );
-        } catch(Zend_Service_Amazon_Exception $e) {
+        } catch (Zend_Service_Amazon_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on document insertion: '.$e->getMessage(), $e->getCode(), $e);
         }
     }
@@ -271,7 +271,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
                 $this->_makeAttributes($documentId, $fieldset),
                 $replace
             );
-        } catch(Zend_Service_Amazon_Exception $e) {
+        } catch (Zend_Service_Amazon_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on document update: '.$e->getMessage(), $e->getCode(), $e);
         }
         return true;
@@ -292,7 +292,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
         }
         try {
             $this->_simpleDb->deleteAttributes($collectionName, $document);
-        } catch(Zend_Service_Amazon_Exception $e) {
+        } catch (Zend_Service_Amazon_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on document deletion: '.$e->getMessage(), $e->getCode(), $e);
         }
         return true;
@@ -314,7 +314,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
                 return false;
             }
             return $this->_resolveAttributes($attributes, true);
-        } catch(Zend_Service_Amazon_Exception $e) {
+        } catch (Zend_Service_Amazon_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on fetching document: '.$e->getMessage(), $e->getCode(), $e);
         }
     }
@@ -339,7 +339,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
                 $query = $query->assemble($collectionName);
             }
             $result = $this->_simpleDb->select($query);
-        } catch(Zend_Service_Amazon_Exception $e) {
+        } catch (Zend_Service_Amazon_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on document query: '.$e->getMessage(), $e->getCode(), $e);
         }
 

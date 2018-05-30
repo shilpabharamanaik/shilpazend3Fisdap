@@ -214,5 +214,4 @@ class Zend_Tool_Framework_Metadata_Tool extends Zend_Tool_Framework_Metadata_Bas
 
         return $string;
     }
-
 }

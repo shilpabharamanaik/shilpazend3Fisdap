@@ -147,10 +147,10 @@ abstract class Zend_Pdf_Element
         if (is_numeric($input)) {
             require_once 'Zend/Pdf/Element/Numeric.php';
             return new Zend_Pdf_Element_Numeric($input);
-        } else if (is_bool($input)) {
+        } elseif (is_bool($input)) {
             require_once 'Zend/Pdf/Element/Boolean.php';
             return new Zend_Pdf_Element_Boolean($input);
-        } else if (is_array($input)) {
+        } elseif (is_array($input)) {
             $pdfElementsArray = array();
             $isDictionary = false;
 

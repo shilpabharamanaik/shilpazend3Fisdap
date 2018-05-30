@@ -33,8 +33,7 @@ require_once 'Zend/Service/DeveloperGarden/Request/VoiceButler/NewCall.php';
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Request_VoiceButler_NewCallSequenced
-    extends Zend_Service_DeveloperGarden_Request_VoiceButler_NewCall
+class Zend_Service_DeveloperGarden_Request_VoiceButler_NewCallSequenced extends Zend_Service_DeveloperGarden_Request_VoiceButler_NewCall
 {
     /**
      * array of second numbers to be called sequenced

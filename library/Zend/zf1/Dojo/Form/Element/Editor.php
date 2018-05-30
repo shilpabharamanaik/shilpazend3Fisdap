@@ -378,7 +378,7 @@ class Zend_Dojo_Form_Element_Editor extends Zend_Dojo_Form_Element_Dijit
     public function getFocusOnLoad()
     {
         if (!$this->hasDijitParam('focusOnLoad')) {
-             return false;
+            return false;
         }
         return $this->getDijitParam('focusOnLoad');
     }
@@ -592,7 +592,7 @@ class Zend_Dojo_Form_Element_Editor extends Zend_Dojo_Form_Element_Dijit
     public function getUpdateInterval()
     {
         if (!$this->hasDijitParam('updateInterval')) {
-             return 200;
+            return 200;
         }
         return $this->getDijitParam('updateInterval');
     }

@@ -98,7 +98,7 @@ class Scheduler_Form_CalendarSubscriptionModal extends Fisdap_Form_BaseJQuery
         $this->addElement($url);
 
         // Staff only options
-        if($this->isStaff){
+        if ($this->isStaff) {
             // Get an array of non-staff instructors who have "View Schedules" access
             $instructors = \Fisdap\EntityUtils::getRepository('ProgramLegacy')->getNonStaffInstructorsByPermission($this->user->getProgramId(), 128);
 
@@ -157,7 +157,6 @@ class Scheduler_Form_CalendarSubscriptionModal extends Fisdap_Form_BaseJQuery
                       )
                 ),
             ));
-
     }
 
     public function process($form_data)

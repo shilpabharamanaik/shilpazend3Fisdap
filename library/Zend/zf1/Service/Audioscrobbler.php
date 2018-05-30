@@ -99,7 +99,7 @@ class Zend_Service_Audioscrobbler
      */
     public function getHttpClient()
     {
-        if($this->_client == null) {
+        if ($this->_client == null) {
             $this->lazyLoadHttpClient();
         }
         return $this->_client;
@@ -372,11 +372,11 @@ class Zend_Service_Audioscrobbler
      * @param integer $to optional UNIX timestamp for end of date range
      * @return SimpleXMLElement object containing result set
      */
-    public function userGetWeeklyAlbumChart($from = NULL, $to = NULL)
+    public function userGetWeeklyAlbumChart($from = null, $to = null)
     {
         $params = "";
 
-        if ($from != NULL && $to != NULL) {
+        if ($from != null && $to != null) {
             $from = (int)$from;
             $to = (int)$to;
             $params = "from={$from}&to={$to}";
@@ -393,11 +393,11 @@ class Zend_Service_Audioscrobbler
      * @param integer $to optional UNIX timestamp for end of date range
      * @return SimpleXMLElement object containing result set
      */
-    public function userGetWeeklyArtistChart($from = NULL, $to = NULL)
+    public function userGetWeeklyArtistChart($from = null, $to = null)
     {
         $params = "";
 
-        if ($from != NULL && $to != NULL) {
+        if ($from != null && $to != null) {
             $from = (int)$from;
             $to = (int)$to;
             $params = "from={$from}&to={$to}";
@@ -414,11 +414,11 @@ class Zend_Service_Audioscrobbler
      * @param integer $to optional UNIX timestamp for end of date range
      * @return SimpleXMLElement object containing result set
      */
-    public function userGetWeeklyTrackChart($from = NULL, $to = NULL)
+    public function userGetWeeklyTrackChart($from = null, $to = null)
     {
         $params = "";
 
-        if ($from != NULL && $to != NULL) {
+        if ($from != null && $to != null) {
             $from = (int)$from;
             $to = (int)$to;
             $params = "from={$from}&to={$to}";
@@ -581,10 +581,9 @@ class Zend_Service_Audioscrobbler
      * @param  int $to
      * @return SimpleXMLElement
      */
-    public function groupGetWeeklyArtistChartList($from = NULL, $to = NULL)
+    public function groupGetWeeklyArtistChartList($from = null, $to = null)
     {
-
-        if ($from != NULL && $to != NULL) {
+        if ($from != null && $to != null) {
             $from = (int)$from;
             $to = (int)$to;
             $params = "from={$from}&$to={$to}";
@@ -603,9 +602,9 @@ class Zend_Service_Audioscrobbler
      * @param  int $to
      * @return SimpleXMLElement
      */
-    public function groupGetWeeklyTrackChartList($from = NULL, $to = NULL)
+    public function groupGetWeeklyTrackChartList($from = null, $to = null)
     {
-        if ($from != NULL && $to != NULL) {
+        if ($from != null && $to != null) {
             $from = (int)$from;
             $to = (int)$to;
             $params = "from={$from}&to={$to}";
@@ -624,9 +623,9 @@ class Zend_Service_Audioscrobbler
      * @param int $to
      * @return SimpleXMLElement
      */
-    public function groupGetWeeklyAlbumChartList($from = NULL, $to = NULL)
+    public function groupGetWeeklyAlbumChartList($from = null, $to = null)
     {
-        if ($from != NULL && $to != NULL) {
+        if ($from != null && $to != null) {
             $from = (int)$from;
             $to = (int)$to;
             $params = "from={$from}&to={$to}";
@@ -668,7 +667,7 @@ class Zend_Service_Audioscrobbler
      */
     public function __call($method, $args)
     {
-        if(substr($method, 0, 3) !== "set") {
+        if (substr($method, 0, 3) !== "set") {
             require_once "Zend/Service/Exception.php";
             throw new Zend_Service_Exception(
                 "Method ".$method." does not exist in class Zend_Service_Audioscrobbler."
@@ -676,7 +675,7 @@ class Zend_Service_Audioscrobbler
         }
         $field = strtolower(substr($method, 3));
 
-        if(!is_array($args) || count($args) != 1) {
+        if (!is_array($args) || count($args) != 1) {
             require_once "Zend/Service/Exception.php";
             throw new Zend_Service_Exception(
                 "A value is required for setting a parameter field."

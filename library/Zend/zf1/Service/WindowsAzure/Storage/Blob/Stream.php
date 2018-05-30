@@ -31,49 +31,49 @@ class Zend_Service_WindowsAzure_Storage_Blob_Stream
 {
     /**
      * Current file name
-     * 
+     *
      * @var string
      */
     protected $_fileName = null;
     
     /**
      * Temporary file name
-     * 
+     *
      * @var string
      */
     protected $_temporaryFileName = null;
     
     /**
      * Temporary file handle
-     * 
+     *
      * @var resource
      */
     protected $_temporaryFileHandle = null;
     
     /**
      * Blob storage client
-     * 
+     *
      * @var Zend_Service_WindowsAzure_Storage_Blob
      */
     protected $_storageClient = null;
     
     /**
      * Write mode?
-     * 
+     *
      * @var boolean
      */
     protected $_writeMode = false;
     
     /**
      * List of blobs
-     * 
+     *
      * @var array
      */
     protected $_blobs = null;
     
     /**
      * Retrieve storage client for this stream type
-     * 
+     *
      * @param string $path
      * @return Zend_Service_WindowsAzure_Storage_Blob
      */
@@ -121,9 +121,9 @@ class Zend_Service_WindowsAzure_Storage_Blob_Stream
         $url = parse_url($path);
         if ($url['host']) {
             $fileName = isset($url['path']) ? $url['path'] : $url['host'];
-    	    if (strpos($fileName, '/') === 0) {
-    	        $fileName = substr($fileName, 1);
-    	    }
+            if (strpos($fileName, '/') === 0) {
+                $fileName = substr($fileName, 1);
+            }
             return $fileName;
         }
 
@@ -154,7 +154,7 @@ class Zend_Service_WindowsAzure_Storage_Blob_Stream
         // Write mode?
         if (strpbrk($mode, 'wax+')) {
             $this->_writeMode = true;
-    	} else {
+        } else {
             $this->_writeMode = false;
         }
         
@@ -295,7 +295,7 @@ class Zend_Service_WindowsAzure_Storage_Blob_Stream
     {
         $result = fflush($this->_temporaryFileHandle);
         
-         // Upload the file?
+        // Upload the file?
         if ($this->_writeMode) {
             // Make sure the container exists
             $containerExists = $this->_getStorageClient($this->_fileName)->containerExists(

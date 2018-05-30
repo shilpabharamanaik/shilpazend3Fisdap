@@ -6,7 +6,6 @@ use Fisdap\Data\SerialNumber\SerialNumberLegacyRepository;
 use Fisdap\Entity\SerialNumberLegacy;
 use Fisdap\Logging\Events\EventLogging;
 
-
 /**
  * An event listener for enrolling a user in Moodle courses,
  * when a serial number (SerialNumberLegacy Entity) has been activated
@@ -95,6 +94,5 @@ final class EnrollUserInMoodleCourses
 //                }
 //            }
 //        }
-
     }
 }

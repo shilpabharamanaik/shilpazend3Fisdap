@@ -14,18 +14,18 @@ class Module
     {
         return include __DIR__ . '/../config/module.config.php';
     }
-	 public function getViewHelperConfig()
+    public function getViewHelperConfig()
     {
         return array(
             'factories' => array(
-                'test_helper' => function($a, $b) {
+                'test_helper' => function ($a, $b) {
                     $helper = new View\Helper\Testhelper ;
                     return $helper;
                 }
             )
-        );   
-   }
-   public function getControllerConfig()
+        );
+    }
+    public function getControllerConfig()
     {
         return [
             'factories' => [

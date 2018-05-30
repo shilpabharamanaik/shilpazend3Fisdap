@@ -57,9 +57,11 @@ class Zend_Barcode_Object_Identcode extends Zend_Barcode_Object_Code25interleave
      */
     public function getTextToDisplay()
     {
-        return preg_replace('/([0-9]{2})([0-9]{3})([0-9]{3})([0-9]{3})([0-9])/',
+        return preg_replace(
+            '/([0-9]{2})([0-9]{3})([0-9]{3})([0-9]{3})([0-9])/',
                             '$1.$2 $3.$4 $5',
-                            $this->getText());
+                            $this->getText()
+        );
     }
 
     /**

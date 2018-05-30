@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Shifts\Patients\Skills\Jobs\OtherInterventions;
 
-
 use Doctrine\ORM\EntityManagerInterface;
 use Fisdap\Api\Shifts\Patients\Skills\AbstractSkills;
 use Fisdap\Entity\OtherIntervention;
@@ -11,7 +10,7 @@ use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
  * Class SetOtherInterventions
  * @package Fisdap\Api\Shifts\Patients\Skills\Jobs\OtherInterventions
  * @author  Isaac White <isaac.white@ascendlearning.com>
- * 
+ *
  * @SWG\Definition(
  *     definition="Other_Intervention",
  *     description="This is a model representation of a default Other Intervention",
@@ -38,7 +37,8 @@ final class SetOtherInterventions extends AbstractSkills
      */
     public $performed;
 
-    public function setOtherInterventionId($otherInterventionId) {
+    public function setOtherInterventionId($otherInterventionId)
+    {
         $this->otherInterventionId = $otherInterventionId;
     }
 
@@ -50,8 +50,7 @@ final class SetOtherInterventions extends AbstractSkills
     public function handle(
         EntityManagerInterface $em,
         EventDispatcher $eventDispatcher
-    )
-    {
+    ) {
         $this->em = $em;
 
         // Try to grab an existing Other Intervention. If not found, create a new one.
@@ -81,4 +80,3 @@ final class SetOtherInterventions extends AbstractSkills
         ];
     }
 }
-

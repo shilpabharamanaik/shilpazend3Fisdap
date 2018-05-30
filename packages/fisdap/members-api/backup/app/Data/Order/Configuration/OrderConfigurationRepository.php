@@ -7,13 +7,12 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface OrderConfigurationRepository
  *
  * @package Fisdap\Data\Order
  * @copyright 1996-2015 Headwaters Software, Inc.
  */
-interface OrderConfigurationRepository extends Repository {
-
+interface OrderConfigurationRepository extends Repository
+{
 }

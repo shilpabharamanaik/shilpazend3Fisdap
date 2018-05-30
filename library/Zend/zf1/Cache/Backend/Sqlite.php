@@ -541,7 +541,8 @@ class Zend_Cache_Backend_Sqlite extends Zend_Cache_Backend implements Zend_Cache
      * @param  string $tag Tag
      * @return boolean True if no problem
      */
-    private function _registerTag($id, $tag) {
+    private function _registerTag($id, $tag)
+    {
         $res = $this->_query("DELETE FROM TAG WHERE name='$tag' AND id='$id'");
         $res = $this->_query("INSERT INTO tag (name, id) VALUES ('$tag', '$id')");
         if (!$res) {
@@ -581,7 +582,9 @@ class Zend_Cache_Backend_Sqlite extends Zend_Cache_Backend implements Zend_Cache
     private function _checkStructureVersion()
     {
         $result = $this->_query("SELECT num FROM version");
-        if (!$result) return false;
+        if (!$result) {
+            return false;
+        }
         $row = @sqlite_fetch_array($result);
         if (!$row) {
             return false;
@@ -674,5 +677,4 @@ class Zend_Cache_Backend_Sqlite extends Zend_Cache_Backend implements Zend_Cache
         }
         return true;
     }
-
 }

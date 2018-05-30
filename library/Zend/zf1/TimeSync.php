@@ -276,7 +276,7 @@ class Zend_TimeSync implements IteratorAggregate
             if ($posbr and ($pos > $posbr)) {
                 $port = substr($adress, $pos + 1);
                 $adress = substr($adress, 0, $pos);
-            } else if (!$posbr and $pos) {
+            } elseif (!$posbr and $pos) {
                 $port = substr($adress, $pos + 1);
                 $adress = substr($adress, 0, $pos);
             } else {

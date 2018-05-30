@@ -130,7 +130,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
                 $identity = true;
             }
 
-            $desc[$this->_adapter->foldCase($row[$colname])] = array (
+            $desc[$this->_adapter->foldCase($row[$colname])] = array(
                 'SCHEMA_NAME'       => $this->_adapter->foldCase($row[$tabschema]),
                 'TABLE_NAME'        => $this->_adapter->foldCase($row[$tabname]),
                 'COLUMN_NAME'       => $this->_adapter->foldCase($row[$colname]),
@@ -252,9 +252,9 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
             /** @see Zend_Db_Adapter_Exception */
             require_once 'Zend/Db/Adapter/Exception.php';
             throw new Zend_Db_Adapter_Exception("LIMIT argument count=$count is not valid");
-        } else if ($count == 0) {
-              $limit_sql = str_ireplace("SELECT", "SELECT * FROM (SELECT", $sql);
-              $limit_sql .= ") WHERE 0 = 1";
+        } elseif ($count == 0) {
+            $limit_sql = str_ireplace("SELECT", "SELECT * FROM (SELECT", $sql);
+            $limit_sql .= ") WHERE 0 = 1";
         } else {
             $offset = intval($offset);
             if ($offset < 0) {
@@ -285,12 +285,12 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
         return $value;
     }
 
-     /**
-     * IDS-specific sequence id value
-     *
-     *  @param string $sequenceName
-     *  @return integer
-     */
+    /**
+    * IDS-specific sequence id value
+    *
+    *  @param string $sequenceName
+    *  @return integer
+    */
     public function nextSequenceId($sequenceName)
     {
         $sql = 'SELECT '.$this->_adapter->quoteIdentifier($sequenceName).'.NEXTVAL FROM '

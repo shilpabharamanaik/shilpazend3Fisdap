@@ -6,7 +6,6 @@ use Fisdap\Entity\Comment;
 use Fisdap\Entity\Message;
 use Fisdap\Entity\User;
 
-
 /**
  * Class Lib_CommentingController
  *
@@ -175,7 +174,6 @@ class SkillsTracker_CommentsController extends Zend_Controller_Action
             if ($comment->user->id != $this->user->id) {
                 $debuginfo = ' from: ' . $comment->user->id . " to: " . $this->user->id;
                 $messages[$errdt][] = 'User Id has changed' . $debuginfo;
-
             }
         } else { // new comment
             $debug['commentId'] = 'false: ' . $commentId;
@@ -197,7 +195,6 @@ class SkillsTracker_CommentsController extends Zend_Controller_Action
                     $messages['empty_' . $dt] = $errMsg;
                 }
             }
-
         }
 
         if (empty($messages)) {
@@ -244,7 +241,6 @@ class SkillsTracker_CommentsController extends Zend_Controller_Action
 
                         $successfulRecipients = $message->deliver($to);
                     }
-
                 }
             }
 
@@ -258,11 +254,13 @@ class SkillsTracker_CommentsController extends Zend_Controller_Action
                         $this->sendEmail($p['comment'], \Fisdap\EntityUtils::getEntity('PreceptorLegacy', $id));
                     } elseif (stripos($type, 'instructor') || $type == 'instructor') {
                         $this->sendEmail(
-                            $p['comment'], $userRepository->getOneById($id)->getCurrentRoleData()
+                            $p['comment'],
+                            $userRepository->getOneById($id)->getCurrentRoleData()
                         );
                     } elseif (stripos($type, 'student') || $type == 'student') {
                         $this->sendEmail(
-                            $p['comment'], $userRepository->getOneById($id)->getCurrentRoleData()
+                            $p['comment'],
+                            $userRepository->getOneById($id)->getCurrentRoleData()
                         );
                     }
                 }
@@ -381,14 +379,14 @@ class SkillsTracker_CommentsController extends Zend_Controller_Action
      */
     private function sendEmail($comment, $recipient)
     {
-		$p = $this->getAllParams();
+        $p = $this->getAllParams();
         if ($recipient->email != '') {
             $message = $this->user->first_name . ' ' . $this->user->last_name . ' posted the following comment: \n\n'
                 . $comment;
             $htmlMessage = $this->user->first_name . ' ' . $this->user->last_name
                 . ' posted the following comment: <br /><br />' . $comment;
-				
-			$htmlMessage .= '<br /><br /> Click <a href="https://members.fisdap.net/skills-tracker/shifts/comments/id/'.$p[dId].'"> here </a> to view the comment in Fisdap<br /><br />';
+                
+            $htmlMessage .= '<br /><br /> Click <a href="https://members.fisdap.net/skills-tracker/shifts/comments/id/'.$p[dId].'"> here </a> to view the comment in Fisdap<br /><br />';
 
             $mail = new \Fisdap_TemplateMailer();
             $mail->setBodyText($message);

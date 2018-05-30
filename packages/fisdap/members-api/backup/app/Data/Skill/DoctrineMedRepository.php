@@ -10,5 +10,4 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineMedRepository extends DoctrineRepository implements MedRepository
 {
-
 }

@@ -1,6 +1,5 @@
 <?php namespace Fisdap\AppHealthChecks\HealthChecks;
 
-
 /**
  * Contract for a health check
  *
@@ -9,7 +8,6 @@
  */
 interface ChecksHealth
 {
-
     const STATUS_SUCCESS = 'OK';
     const STATUS_QUIETFAIL = 'FAILED (QUIET)';
     const STATUS_FAILURE = 'FAILED';
@@ -44,4 +42,4 @@ interface ChecksHealth
      * @return array
      */
     public function getError();
-} 
+}

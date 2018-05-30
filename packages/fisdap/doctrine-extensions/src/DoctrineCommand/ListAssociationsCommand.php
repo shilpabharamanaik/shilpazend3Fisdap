@@ -44,7 +44,8 @@ class ListAssociationsCommand extends Command
                 new InputArgument('entity', InputArgument::REQUIRED, 'The full entity name, ie: Fisdap\\Entity\\ShiftLegacy.'),
                 new InputArgument('property', InputArgument::REQUIRED, 'The property name on that entity, ie: id.'),
             ))
-            ->setHelp(<<<EOT
+            ->setHelp(
+                <<<EOT
 Lists associations for a given entity and property name.
 EOT
             );
@@ -74,7 +75,7 @@ EOT
         // Make an array we can fill with class metadata
         $this->allMetadata = array();
         foreach ($entityClassNames as $class) {
-            $this->allMetadata[$class] = NULL;
+            $this->allMetadata[$class] = null;
         }
 
         // Empty array for holding our associations
@@ -98,7 +99,6 @@ EOT
         foreach ($entityClassMetadata->getAssociationMappings() as $field => $mapping) {
             $otherEntityField = $mapping['mappedBy'];
             if ($otherEntityField) {
-
                 $this->loadMetaDataForEntityClass($mapping['targetEntity']);
 
                 $otherEntityMappings = $this->allMetadata[$mapping['targetEntity']]->getAssociationMappings();
@@ -109,7 +109,7 @@ EOT
                 } else {
                     throw new \RuntimeException("joinColumns index missing for " . $mapping['targetEntity']
                         . ":" . $otherEntityField . ", "
-                        . " shows instead: " . print_r($otherEntityMappings, TRUE));
+                        . " shows instead: " . print_r($otherEntityMappings, true));
                 }
             }
         }
@@ -143,17 +143,18 @@ EOT
      * @param $joinColumns array The 'joinColumns' array from a metadata mapping
      * @return bool
      */
-    private function checkIfMappingJoinColumnMatches($entityColumnName, $joinColumns) {
+    private function checkIfMappingJoinColumnMatches($entityColumnName, $joinColumns)
+    {
         if (!is_array($joinColumns)) {
-            return FALSE;
+            return false;
         }
         foreach ($joinColumns as $joinColumn) {
             if ($joinColumn['referencedColumnName'] == $entityColumnName) {
-                return TRUE;
+                return true;
             }
         }
 
-        return FALSE;
+        return false;
     }
 
     /**
@@ -178,11 +179,11 @@ EOT
     private function checkIfAssociationAlreadyFoundOnEntity($class, $field)
     {
         if (!isset($this->foundAssociations['onEntity'][$class])) {
-            return FALSE;
-        } else if (in_array($field, $this->foundAssociations['onEntity'][$class])) {
-            return TRUE;
+            return false;
+        } elseif (in_array($field, $this->foundAssociations['onEntity'][$class])) {
+            return true;
         }
 
-        return FALSE;
+        return false;
     }
 }

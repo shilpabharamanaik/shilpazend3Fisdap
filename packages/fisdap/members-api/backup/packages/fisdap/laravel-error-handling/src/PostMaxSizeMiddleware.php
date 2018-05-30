@@ -4,7 +4,6 @@ use Closure;
 use Fisdap\ErrorHandling\Exceptions\PostMaxSizeExceeded;
 use Illuminate\Http\Request;
 
-
 /**
  * Gracefully handle files that exceed PHP INI 'post_max_size'
  *
@@ -27,7 +26,7 @@ class PostMaxSizeMiddleware
     {
         $maxPostSize = $this->iniGetBytes('post_max_size');
 
-        if ( ! isset($_SERVER['CONTENT_LENGTH'])) {
+        if (! isset($_SERVER['CONTENT_LENGTH'])) {
             return $next($request);
         }
         
@@ -63,8 +62,10 @@ class PostMaxSizeMiddleware
             case 'g':
                 $val *= 1024;
             /** @noinspection PhpMissingBreakStatementInspection */
+            // no break
             case 'm':
                 $val *= 1024;
+                // no break
             case 'k':
                 $val *= 1024;
         }

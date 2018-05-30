@@ -3,7 +3,6 @@
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
-
 /**
  * Add an 'email' field to fisdap2_user_roles (UserContext)
  *

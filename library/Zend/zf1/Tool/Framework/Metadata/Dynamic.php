@@ -36,8 +36,7 @@ require_once 'Zend/Tool/Framework/Metadata/Attributable.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Framework_Metadata_Dynamic
-    implements Zend_Tool_Framework_Metadata_Interface, Zend_Tool_Framework_Metadata_Attributable
+class Zend_Tool_Framework_Metadata_Dynamic implements Zend_Tool_Framework_Metadata_Interface, Zend_Tool_Framework_Metadata_Attributable
 {
 
     /**
@@ -67,7 +66,7 @@ class Zend_Tool_Framework_Metadata_Dynamic
         }
     }
 
-    public function setOptions(Array $options = array())
+    public function setOptions(array $options = array())
     {
         foreach ($options as $optName => $optValue) {
             $methodName = 'set' . $optName;
@@ -215,5 +214,4 @@ class Zend_Tool_Framework_Metadata_Dynamic
 //            throw new Zend_Tool_Framework_Registry_Exception('Property ' . $name . ' was not located in this registry.');
 //        }
     }
-
 }

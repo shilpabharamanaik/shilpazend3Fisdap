@@ -7,7 +7,6 @@ use Fisdap\Entity\User;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 
-
 /**
  * Ensures that student has Skills Tracker or Scheduler
  *
@@ -31,7 +30,8 @@ final class StudentHasSkillsTrackerOrScheduler
      * @param AuthManager                 $auth
      * @param HasSkillsTrackerOrScheduler $hasSkillsTrackerOrScheduler
      */
-    public function __construct(AuthManager $auth, HasSkillsTrackerOrScheduler $hasSkillsTrackerOrScheduler) {
+    public function __construct(AuthManager $auth, HasSkillsTrackerOrScheduler $hasSkillsTrackerOrScheduler)
+    {
         $this->user = $auth->guard()->user();
         $this->hasSkillsTrackerOrScheduler = $hasSkillsTrackerOrScheduler;
     }
@@ -46,7 +46,7 @@ final class StudentHasSkillsTrackerOrScheduler
     public function handle($request, Closure $next)
     {
         if ($this->user->context()->getRole()->getName() == 'student') {
-            if ( ! $this->hasSkillsTrackerOrScheduler->permitted($this->user->context())) {
+            if (! $this->hasSkillsTrackerOrScheduler->permitted($this->user->context())) {
                 throw new NoProductAccess(
                     'As a student, you do not have access to Skills Tracker or Scheduler'
                 );

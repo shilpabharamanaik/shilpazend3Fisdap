@@ -19,13 +19,13 @@
  */
 class SkillsTracker_View_Helper_AddShiftWidget extends Zend_View_Helper_Abstract
 {
-	/**
-	 * @var string the html to be rendered
-	 */
-	protected $_html;
+    /**
+     * @var string the html to be rendered
+     */
+    protected $_html;
 
-	public function addShiftWidget()
-	{
+    public function addShiftWidget()
+    {
         $user = \Fisdap\Entity\User::getLoggedInUser();
 
         $this->_html .= '<div id="add-shift-container">';
@@ -33,18 +33,29 @@ class SkillsTracker_View_Helper_AddShiftWidget extends Zend_View_Helper_Abstract
         //If the user is an instructor, we check to make sure they have permission to add each type of shift before displaying the requisite button.
         //We're drawing the permission int values from the fisdap2_permissions table.
         if ($user->isInstructor()) {
-	    if($user->hasPermission(14)){$this->_html .= '<a href="#" id="add-lab-shift" title="add a lab shift">+ Lab Practice</a>';}
-	    if($user->hasPermission(10)){$this->_html .= '<a href="#" id="add-clinical-shift" title="add a clinical shift">+ Clinical Shift</a>';}
-	    if($user->hasPermission(9)){$this->_html .= '<a href="#" id="add-field-shift" title="add a field shift">+ Field Shift</a>';}
+            if ($user->hasPermission(14)) {
+                $this->_html .= '<a href="#" id="add-lab-shift" title="add a lab shift">+ Lab Practice</a>';
+            }
+            if ($user->hasPermission(10)) {
+                $this->_html .= '<a href="#" id="add-clinical-shift" title="add a clinical shift">+ Clinical Shift</a>';
+            }
+            if ($user->hasPermission(9)) {
+                $this->_html .= '<a href="#" id="add-field-shift" title="add a field shift">+ Field Shift</a>';
+            }
         } else {
-            if ($user->getCurrentProgram()->can_students_create_lab) $this->_html .= '<a href="#" id="add-lab-shift" title="add a lab shift">+ Lab Practice</a>';
-            if ($user->getCurrentProgram()->can_students_create_clinical) $this->_html .= '<a href="#" id="add-clinical-shift" title="add a clinical shift">+ Clinical Shift</a>';
-            if ($user->getCurrentProgram()->can_students_create_field) $this->_html .= '<a href="#" id="add-field-shift" title="add a field shift">+ Field Shift</a>';
+            if ($user->getCurrentProgram()->can_students_create_lab) {
+                $this->_html .= '<a href="#" id="add-lab-shift" title="add a lab shift">+ Lab Practice</a>';
+            }
+            if ($user->getCurrentProgram()->can_students_create_clinical) {
+                $this->_html .= '<a href="#" id="add-clinical-shift" title="add a clinical shift">+ Clinical Shift</a>';
+            }
+            if ($user->getCurrentProgram()->can_students_create_field) {
+                $this->_html .= '<a href="#" id="add-field-shift" title="add a field shift">+ Field Shift</a>';
+            }
         }
 
         $this->_html .= "</div>";
 
         return $this->_html;
-
     }
 }

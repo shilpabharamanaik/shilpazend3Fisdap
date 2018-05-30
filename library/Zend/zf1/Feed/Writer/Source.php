@@ -29,5 +29,4 @@ require_once 'Zend/Feed/Writer/Feed/FeedAbstract.php';
  */
 class Zend_Feed_Writer_Source extends Zend_Feed_Writer_Feed_FeedAbstract
 {
-
 }

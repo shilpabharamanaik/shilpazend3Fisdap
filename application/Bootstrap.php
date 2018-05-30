@@ -13,20 +13,21 @@ use Monolog\Logger;
 use Fisdap\Members\Shifts\ShiftEventsSubscriber;
 use Doctrine\Common\Proxy\Autoloader as ProxyAutoloader;
 
-
 class Bootstrap
 {
     /**
      * @var Container
      */
-	protected $container;
-	
-	public function __construct() {
+    protected $container;
+    
+    public function __construct()
+    {
         global $container;
 
         $this->container = $container;
     }
-	public static function run(){
+    public static function run()
+    {
         self::prepare();
 
         //$response = self::$frontController->dispatch();
@@ -34,8 +35,9 @@ class Bootstrap
     }
 
 
-    public static function prepare(){
-		//echo "Bootstap";exit;
+    public static function prepare()
+    {
+        //echo "Bootstap";exit;
         //self::setIlluminateContainer();
 
         //self::_initXhprof();
@@ -52,7 +54,7 @@ class Bootstrap
         self::_initDoctrineAdditions();
         self::_initSession();
         self::_initCache();
-    } 
+    }
     /**
      * @param Container $container
      */
@@ -93,8 +95,7 @@ class Bootstrap
      */
     protected function _initDebugBar()
     {
-        if (APPLICATION_ENV == 'development' && env('DEBUG_BAR_ENABLED') == true && PHP_SAPI != 'cli')
-        {
+        if (APPLICATION_ENV == 'development' && env('DEBUG_BAR_ENABLED') == true && PHP_SAPI != 'cli') {
             $debugBar = new \DebugBar\DebugBar();
 
             $debugBar->addCollector(new DebugBar\DataCollector\PhpInfoCollector());
@@ -166,7 +167,8 @@ class Bootstrap
         // only enable FirePHP and ChromePHP handlers in development
         if (APPLICATION_ENV == 'development') {
             $handlers = array_merge(
-                $handlers, array(
+                $handlers,
+                array(
                     new FirePHPHandler(),
                     new ChromePHPHandler()
                 )
@@ -333,7 +335,7 @@ class Bootstrap
         // set up mysql_connect() so that it will also route through the correct db
         $dbConfig = $db->getConfig();
 
-        ($GLOBALS["___mysqli_ston"] = mysqli_connect($dbConfig['host'],  $dbConfig['username'],  $dbConfig['password']));
+        ($GLOBALS["___mysqli_ston"] = mysqli_connect($dbConfig['host'], $dbConfig['username'], $dbConfig['password']));
 
         $this->bootstrap('DebugBar');
         if (\Zend_Registry::isRegistered('debugBar')) {
@@ -361,7 +363,8 @@ class Bootstrap
         $em = \Zend_Registry::get('doctrine')->getEntityManager();
 
         ProxyAutoloader::register(
-            realpath($em->getConfiguration()->getProxyDir()), $em->getConfiguration()->getProxyNamespace()
+            realpath($em->getConfiguration()->getProxyDir()),
+            $em->getConfiguration()->getProxyNamespace()
         );
 
         // custom DQL functions
@@ -388,15 +391,15 @@ class Bootstrap
 
     protected function _initSession()
     {
-		//	return;
+        //	return;
         // skip session creation if we're on the command line
         if (PHP_SAPI == 'cli') {
             return;
         }
 
         $config = $this->getOption('couchbase');
-		//print_r($config); exit;
-		//print_r($Zend_Session_SaveHandler_Couchbase($config)); exit;
+        //print_r($config); exit;
+        //print_r($Zend_Session_SaveHandler_Couchbase($config)); exit;
         //Zend_Session::setSaveHandler(new Zend_Session_SaveHandler_Couchbase($config));
 
         //Zend_Session::start();
@@ -548,5 +551,4 @@ class Bootstrap
             $this->container->instance('Zend_Cache_Manager', false);
         }
     }
-
 }

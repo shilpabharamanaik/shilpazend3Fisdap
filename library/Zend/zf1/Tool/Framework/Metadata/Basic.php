@@ -36,8 +36,7 @@ require_once 'Zend/Tool/Framework/Metadata/Attributable.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Framework_Metadata_Basic
-    implements Zend_Tool_Framework_Metadata_Interface, Zend_Tool_Framework_Metadata_Attributable
+class Zend_Tool_Framework_Metadata_Basic implements Zend_Tool_Framework_Metadata_Interface, Zend_Tool_Framework_Metadata_Attributable
 {
 
     /**#@+
@@ -65,7 +64,7 @@ class Zend_Tool_Framework_Metadata_Basic
      *
      * @param array $options
      */
-    public function __construct(Array $options = array())
+    public function __construct(array $options = array())
     {
         if ($options) {
             $this->setOptions($options);
@@ -79,7 +78,7 @@ class Zend_Tool_Framework_Metadata_Basic
      * @param array $options
      * @return Zend_Tool_Framework_Metadata_Basic
      */
-    public function setOptions(Array $options)
+    public function setOptions(array $options)
     {
         foreach ($options as $optionName => $optionValue) {
             $setMethod = 'set' . $optionName;
@@ -198,7 +197,6 @@ class Zend_Tool_Framework_Metadata_Basic
             }
 
             if ($stringRepresentationOfNonScalars) {
-
                 if (is_object($varValue)) {
                     $varValue = '(object)';
                 }
@@ -206,7 +204,6 @@ class Zend_Tool_Framework_Metadata_Basic
                 if ($varValue === null) {
                     $varValue = '(null)';
                 }
-
             }
 
             $metadataPairValues[ltrim($varName, '_')] = $varValue;

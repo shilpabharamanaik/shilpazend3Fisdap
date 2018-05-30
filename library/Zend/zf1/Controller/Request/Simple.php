@@ -32,7 +32,6 @@ require_once 'Zend/Controller/Request/Abstract.php';
  */
 class Zend_Controller_Request_Simple extends Zend_Controller_Request_Abstract
 {
-
     public function __construct($action = null, $controller = null, $module = null, array $params = array())
     {
         if ($action) {
@@ -51,5 +50,4 @@ class Zend_Controller_Request_Simple extends Zend_Controller_Request_Abstract
             $this->setParams($params);
         }
     }
-
 }

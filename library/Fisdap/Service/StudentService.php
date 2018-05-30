@@ -7,6 +7,7 @@
  */
 
 namespace Fisdap\Service;
+
 use Fisdap\Data\User\UserRepository;
 use Fisdap\Entity\User;
 
@@ -16,7 +17,8 @@ use Fisdap\Entity\User;
  * Interface StudentService
  * @package Fisdap\Service
  */
-interface StudentService {
+interface StudentService
+{
     public function shuffleAndAnonymizeStudents(User $user, array $students);
 
     /**
@@ -30,5 +32,5 @@ interface StudentService {
      *
      * @return array
      */
-    public function transformStudentIds(User $user, UserRepository $repository, array $studentIds, $makeAnonymous = FALSE);
-} 
+    public function transformStudentIds(User $user, UserRepository $repository, array $studentIds, $makeAnonymous = false);
+}

@@ -33,8 +33,7 @@ require_once 'Zend/Service/DeveloperGarden/Response/VoiceButler/VoiceButlerAbstr
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Response_VoiceButler_NewCallResponse
-    extends Zend_Service_DeveloperGarden_Response_VoiceButler_VoiceButlerAbstract
+class Zend_Service_DeveloperGarden_Response_VoiceButler_NewCallResponse extends Zend_Service_DeveloperGarden_Response_VoiceButler_VoiceButlerAbstract
 {
     /**
      * returns the session id

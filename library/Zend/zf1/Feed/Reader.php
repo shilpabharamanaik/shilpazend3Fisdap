@@ -341,8 +341,8 @@ class Zend_Feed_Reader
     {
         $dom = new DOMDocument;
         try {
-            $dom = Zend_Xml_Security::scan($string, $dom);        
-        } catch (Zend_Xml_Exception $e) {    
+            $dom = Zend_Xml_Security::scan($string, $dom);
+        } catch (Zend_Xml_Exception $e) {
             require_once 'Zend/Feed/Exception.php';
             throw new Zend_Feed_Exception(
                 $e->getMessage()
@@ -451,9 +451,9 @@ class Zend_Feed_Reader
     {
         if ($feed instanceof Zend_Feed_Reader_FeedInterface) {
             $dom = $feed->getDomDocument();
-        } elseif($feed instanceof DOMDocument) {
+        } elseif ($feed instanceof DOMDocument) {
             $dom = $feed;
-        } elseif(is_string($feed) && !empty($feed)) {
+        } elseif (is_string($feed) && !empty($feed)) {
             @ini_set('track_errors', 1);
             //$oldValue = libxml_disable_entity_loader(true);
             $dom = new DOMDocument;
@@ -490,7 +490,7 @@ class Zend_Feed_Reader
             $version = $xpath->evaluate('string(/rss/@version)');
 
             if (strlen($version) > 0) {
-                switch($version) {
+                switch ($version) {
                     case '2.0':
                         $type = self::TYPE_RSS_20;
                         break;
@@ -753,5 +753,4 @@ class Zend_Feed_Reader
         }
         return $array;
     }
-
 }

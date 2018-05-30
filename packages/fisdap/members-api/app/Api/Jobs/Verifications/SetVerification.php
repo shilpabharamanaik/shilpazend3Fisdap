@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Jobs\Verifications;
 
-
 use Auth;
 use Fisdap\Api\Jobs\Job;
 use Fisdap\Api\Jobs\RequestHydrated;
@@ -95,12 +94,11 @@ final class SetVerification extends Job implements RequestHydrated
     public function handle(
         UserRepository $repository,
         AttachmentsFinder $finder
-    )
-    {
+    ) {
         $verification = $this->getVerification() ? $this->getVerification() : new Verification;
 
         // Should not be in here if no verification has not been explicitly called.
-        switch($this->type) {
+        switch ($this->type) {
             case null:
                 $verification->setVerifiedBy();
                 $verification->setVerified(false);
@@ -177,14 +175,16 @@ final class SetVerification extends Job implements RequestHydrated
     /**
      * @param Patient $patient
      */
-    public function setPatient(Patient $patient) {
+    public function setPatient(Patient $patient)
+    {
         $this->patient = $patient;
     }
 
     /**
      * @param ShiftLegacy $shift
      */
-    public function setShift(ShiftLegacy $shift) {
+    public function setShift(ShiftLegacy $shift)
+    {
         $this->shift = $shift;
     }
 }

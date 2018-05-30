@@ -122,8 +122,8 @@ class Zend_Pdf_Resource_Font_Extracted extends Zend_Pdf_Resource_Font
         $this->_fontNames[Zend_Pdf_Font::NAME_POSTSCRIPT]['en'] = iconv('UTF-8', 'UTF-16BE', $fontDictionary->BaseFont->value);
 
         $this->_isBold             = false; // this property is actually not used anywhere
-        $this->_isItalic           = ( ($fontDescriptor->Flags->value & (1 << 6)) != 0 ); // Bit-7 is set
-        $this->_isMonospace        = ( ($fontDescriptor->Flags->value & (1 << 0)) != 0 ); // Bit-1 is set
+        $this->_isItalic           = (($fontDescriptor->Flags->value & (1 << 6)) != 0); // Bit-7 is set
+        $this->_isMonospace        = (($fontDescriptor->Flags->value & (1 << 0)) != 0); // Bit-1 is set
         $this->_underlinePosition  = null; // Can't be extracted
         $this->_underlineThickness = null; // Can't be extracted
         $this->_strikePosition     = null; // Can't be extracted

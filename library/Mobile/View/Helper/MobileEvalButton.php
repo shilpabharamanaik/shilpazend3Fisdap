@@ -17,31 +17,31 @@
 /**
  * @package Mobile
  */
-class Mobile_View_Helper_MobileEvalButton extends Zend_View_Helper_Abstract 
+class Mobile_View_Helper_MobileEvalButton extends Zend_View_Helper_Abstract
 {
-	/**
-	 * @var string the html to be rendered
-	 */
-	protected $_html;
-	
-	/**
-	 * @param mixed integer or array of integers$runs array of arrays containing each run to be
-	 * rendered in a view for a mobile device
-	 *
-	 * @return string the run list rendered as an html table
-	 */
-	public function mobileEvalButton($hook_ids, $shiftId)
-	{
+    /**
+     * @var string the html to be rendered
+     */
+    protected $_html;
+    
+    /**
+     * @param mixed integer or array of integers$runs array of arrays containing each run to be
+     * rendered in a view for a mobile device
+     *
+     * @return string the run list rendered as an html table
+     */
+    public function mobileEvalButton($hook_ids, $shiftId)
+    {
         if (is_null($hook_ids)) {
             $hook_ids = array();
-        } else if (!is_array($hook_ids)) {
+        } elseif (!is_array($hook_ids)) {
             $hook_ids = array($hook_ids);
         }
         
         $user = \Fisdap\Entity\User::getLoggedInUser();
         $hasEvals = \Fisdap\EntityUtils::getRepository('EvalProgramHooksLegacy')->hasEvalsForHook($hook_ids, $user->getProgramId());
         
-	if ($hasEvals) {
+        if ($hasEvals) {
             $hook_str = implode(",", $hook_ids);
             return "<a href='/mobile/index/evals/hid/$hook_str/sid/$shiftId'>Evaluate</a>";
         }

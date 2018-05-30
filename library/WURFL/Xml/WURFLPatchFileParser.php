@@ -18,18 +18,17 @@
  * @version    $id$
  * @deprecated
  */
-class WURFL_Xml_WURFLPatchFileParser implements WURFL_Xml_Interface {
-
-	const WURFL_PATCHING_SCHEMA = "wurfl-patch.rng";
-	
-	/**
-	 * returns a map of devices by deviceId of the patching wurfl file
-	 *
-	 * @param string $fileName
-	 */
-	public function parse($fileName) {
-		return WURFL_Xml_ParserUtil::parse($fileName, self::WURFL_PATCHING_SCHEMA);
-	}
-
+class WURFL_Xml_WURFLPatchFileParser implements WURFL_Xml_Interface
+{
+    const WURFL_PATCHING_SCHEMA = "wurfl-patch.rng";
+    
+    /**
+     * returns a map of devices by deviceId of the patching wurfl file
+     *
+     * @param string $fileName
+     */
+    public function parse($fileName)
+    {
+        return WURFL_Xml_ParserUtil::parse($fileName, self::WURFL_PATCHING_SCHEMA);
+    }
 }
-?>

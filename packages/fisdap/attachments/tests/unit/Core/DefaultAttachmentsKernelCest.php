@@ -10,7 +10,6 @@ use Fisdap\Attachments\Entity\Attachment;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Filesystem\Factory as Filesystem;
 
-
 class DefaultAttachmentsKernelCest
 {
     /**
@@ -105,7 +104,7 @@ class DefaultAttachmentsKernelCest
     {
         // assert
         $I->assertTrue(
-            $I->seeExceptionThrown(MissingAttachmentConfiguration::class, function() {
+            $I->seeExceptionThrown(MissingAttachmentConfiguration::class, function () {
                 // arrange
                 $this->attachmentTypeMapperMock->shouldReceive('getAttachmentEntityClassName')->once()
                     ->with('foo')->andReturn(Attachment::class);
@@ -131,7 +130,8 @@ class DefaultAttachmentsKernelCest
     }
 
 
-    public function it_can_generate_a_temp_save_path(UnitTester $I) {
+    public function it_can_generate_a_temp_save_path(UnitTester $I)
+    {
         // arrange
         $this->configProviderMock->shouldReceive('get')->with('public_path')->once()->andReturn('path/to/public');
         $this->configProviderMock->shouldReceive('get')->with('temp_public_relative_path')->once()

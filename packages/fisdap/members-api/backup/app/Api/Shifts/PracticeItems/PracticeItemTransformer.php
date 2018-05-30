@@ -2,7 +2,6 @@
 
 use League\Fractal\TransformerAbstract as Transformer;
 
-
 /**
  * Class PracticeItemTransformer
  *

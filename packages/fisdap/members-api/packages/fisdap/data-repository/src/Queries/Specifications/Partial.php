@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Queries\Specifications;
 
-
 /**
  * Class Partial
  *

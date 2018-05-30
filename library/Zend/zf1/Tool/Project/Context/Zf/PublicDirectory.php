@@ -53,5 +53,4 @@ class Zend_Tool_Project_Context_Zf_PublicDirectory extends Zend_Tool_Project_Con
     {
         return 'PublicDirectory';
     }
-
 }

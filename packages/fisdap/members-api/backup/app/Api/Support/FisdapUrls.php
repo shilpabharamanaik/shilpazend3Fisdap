@@ -2,7 +2,6 @@
 
 use App;
 
-
 /**
  * Class FisdapUrls
  *

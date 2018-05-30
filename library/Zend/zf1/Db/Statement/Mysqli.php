@@ -358,5 +358,4 @@ class Zend_Db_Statement_Mysqli extends Zend_Db_Statement
         $mysqli = $this->_adapter->getConnection();
         return $mysqli->affected_rows;
     }
-
 }

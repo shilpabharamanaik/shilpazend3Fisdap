@@ -3,13 +3,12 @@
 use Fisdap\Api\Client\Shifts\Attachments\Gateway\ShiftAttachmentsGateway;
 use Psr\Log\LoggerInterface;
 
-
 /**
  * Class Appmon_TestController
  *
  * @author  Ben Getsug <bgetsug@fisdap.net>
  */
-class Appmon_TestController  extends Zend_Controller_Action
+class Appmon_TestController extends Zend_Controller_Action
 {
     /**
      * @var LoggerInterface
@@ -74,8 +73,7 @@ class Appmon_TestController  extends Zend_Controller_Action
     {
         $data = '';
 
-        while(true)
-        {
+        while (true) {
             $data .= str_repeat('#', PHP_INT_MAX);
         }
     }
@@ -131,4 +129,4 @@ class Appmon_TestController  extends Zend_Controller_Action
     {
         $keys = array_keys($array);
     }
-} 
+}

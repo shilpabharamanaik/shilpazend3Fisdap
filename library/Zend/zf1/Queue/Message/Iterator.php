@@ -36,13 +36,13 @@ class Zend_Queue_Message_Iterator implements Iterator, Countable
      */
     protected $_data = array();
 
-     /**
-     * Connected is true if we have a reference to a live
-     * Zend_Queue_Adapter_AdapterInterface object.
-     * This is false after the Message has been deserialized.
-     *
-     * @var boolean
-     */
+    /**
+    * Connected is true if we have a reference to a live
+    * Zend_Queue_Adapter_AdapterInterface object.
+    * This is false after the Message has been deserialized.
+    *
+    * @var boolean
+    */
     protected $_connected = true;
 
     /**
@@ -66,11 +66,11 @@ class Zend_Queue_Message_Iterator implements Iterator, Countable
      */
     protected $_messageClass = 'Zend_Queue_Message';
 
-     /**
-     * Iterator pointer.
-     *
-     * @var integer
-     */
+    /**
+    * Iterator pointer.
+    *
+    * @var integer
+    */
     protected $_pointer = 0;
 
     /**

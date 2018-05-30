@@ -11,10 +11,10 @@ class AttachmentsController extends Fisdap_Controller_Base
     }
 
     /**
-	 * This action creates or saves an attachment based on the posted values
-	 */
-	public function saveAttachmentAction()
-	{
+     * This action creates or saves an attachment based on the posted values
+     */
+    public function saveAttachmentAction()
+    {
         $request = $this->getRequest();
 
         // make sure we got here via a posted form, otherwise you're in the wrong neighborhood, buddy
@@ -54,8 +54,7 @@ class AttachmentsController extends Fisdap_Controller_Base
             }
 
             $this->_helper->json($form->process($formValues, $file));
-
-	    } else {
+        } else {
             // go home, you are drunk
             $this->_redirect("/");
         }
@@ -76,11 +75,9 @@ class AttachmentsController extends Fisdap_Controller_Base
             $attachmentsGateway = $this->container->make($gateway);
 
             $this->_helper->json($attachmentsGateway->delete($associatedEntityId, $attachmentIds));
-
         } else {
             // go home, you are drunk
             $this->_redirect("/");
         }
     }
-
 }

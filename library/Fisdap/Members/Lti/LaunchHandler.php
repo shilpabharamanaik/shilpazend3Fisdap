@@ -9,7 +9,6 @@ use Rhumsaa\Uuid\Uuid;
 use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Diactoros\Response\SapiEmitter;
 
-
 /**
  * Handles LTI launch request, initializing an LtiSession
  *
@@ -41,7 +40,8 @@ final class LaunchHandler
      * @param LoggerInterface $logger
      * @param SapiEmitter $emitter
      */
-    public function __construct(LtiSession $session, LoggerInterface $logger, SapiEmitter $emitter) {
+    public function __construct(LtiSession $session, LoggerInterface $logger, SapiEmitter $emitter)
+    {
         $this->session = $session;
         $this->logger = $logger;
         $this->emitter = $emitter;
@@ -97,7 +97,8 @@ final class LaunchHandler
         $this->session->getUser()->courseId = $toolProvider->resourceLink->getSetting('custom_course_id', null);
         $this->session->getUser()->programId = $toolProvider->resourceLink->getSetting('custom_program_id');
         $this->session->getUser()->isbns = explode(
-            ',', $toolProvider->resourceLink->getSetting('custom_fisdap_isbns')
+            ',',
+            $toolProvider->resourceLink->getSetting('custom_fisdap_isbns')
         );
     }
 

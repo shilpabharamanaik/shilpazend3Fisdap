@@ -26,9 +26,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Project_Provider_Controller
-    extends Zend_Tool_Project_Provider_Abstract
-    implements Zend_Tool_Framework_Provider_Pretendable
+class Zend_Tool_Project_Provider_Controller extends Zend_Tool_Project_Provider_Abstract implements Zend_Tool_Framework_Provider_Pretendable
 {
 
     /**
@@ -149,7 +147,6 @@ class Zend_Tool_Project_Provider_Controller
             if ($testingEnabled) {
                 $testActionResource = Zend_Tool_Project_Provider_Test::createApplicationResource($this->_loadedProfile, $name, 'index', $module);
             }
-
         } catch (Exception $e) {
             $response->setException($e);
             return;
@@ -169,7 +166,6 @@ class Zend_Tool_Project_Provider_Controller
 
         // do the creation
         if ($request->isPretend()) {
-
             $response->appendContent('Would create a controller at '  . $controllerResource->getContext()->getPath());
 
             if (isset($indexActionResource)) {
@@ -180,9 +176,7 @@ class Zend_Tool_Project_Provider_Controller
             if ($testingEnabled) {
                 $response->appendContent('Would create a controller test file at ' . $testActionResource->getParentResource()->getContext()->getPath());
             }
-
         } else {
-
             $response->appendContent('Creating a controller at ' . $controllerResource->getContext()->getPath());
             $controllerResource->create();
 
@@ -201,9 +195,5 @@ class Zend_Tool_Project_Provider_Controller
 
             $this->_storeProfile();
         }
-
     }
-
-
-
 }

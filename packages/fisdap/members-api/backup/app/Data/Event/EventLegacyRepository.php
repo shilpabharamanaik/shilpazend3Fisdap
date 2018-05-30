@@ -7,7 +7,6 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface EventLegacyRepository
  *
@@ -23,4 +22,4 @@ interface EventLegacyRepository extends Repository
      * @return array keyed by site_id
      */
     public function getUpcomingEventsByUserContextId($userContextId);
-} 
+}

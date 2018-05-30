@@ -47,7 +47,7 @@ class Admin_View_Helper_NotificationRecipientSummary extends Zend_View_Helper_Ab
     public function notificationRecipientSummary(array $params, array $viewData, $separator = "<br />")
     {
         //If this is the first time we're running thru this view helper, initialize the arrays of info
-        if (self::$initialized === false ) {
+        if (self::$initialized === false) {
             self::$initialized = true;
             self::$professionOptions = \Fisdap\EntityUtils::getRepository('Profession')->getFormOptions();
             self::$certOptions = \Fisdap\EntityUtils::getRepository('CertificationLevel')->getSortedFormOptions();
@@ -123,7 +123,7 @@ class Admin_View_Helper_NotificationRecipientSummary extends Zend_View_Helper_Ab
 
             if ($useAmpersands && ($i == $idsLength - 2)) {
                 $summary .= " & ";
-            } else if ($i < ($idsLength - 1)) {
+            } elseif ($i < ($idsLength - 1)) {
                 $summary .= ", ";
             }
         }
@@ -142,7 +142,7 @@ class Admin_View_Helper_NotificationRecipientSummary extends Zend_View_Helper_Ab
     private function generatePermissionSummary($configuration, array $options)
     {
         $permissions = [];
-        foreach($options as $bit_value => $name){
+        foreach ($options as $bit_value => $name) {
             if ($configuration & $bit_value) {
                 $permissions[] = $name;
             }

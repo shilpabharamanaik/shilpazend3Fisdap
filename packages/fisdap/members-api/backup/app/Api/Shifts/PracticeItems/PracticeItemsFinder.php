@@ -6,7 +6,6 @@ use Fisdap\Data\Practice\PracticeItemRepository;
 use Fisdap\Queries\Specifications\CommonSpec;
 use Happyr\DoctrineSpecification\Spec;
 
-
 /**
  * Service for retrieving practice items
  *

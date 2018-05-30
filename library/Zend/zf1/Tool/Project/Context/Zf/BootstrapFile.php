@@ -75,8 +75,6 @@ class Zend_Tool_Project_Context_Zf_BootstrapFile extends Zend_Tool_Project_Conte
         if (($this->_applicationConfigFile === false) || ($this->_applicationDirectory === false)) {
             throw new Exception('To use the BootstrapFile context, your project requires the use of both the "ApplicationConfigFile" and "ApplicationDirectory" contexts.');
         }
-
-
     }
 
     /**
@@ -86,7 +84,6 @@ class Zend_Tool_Project_Context_Zf_BootstrapFile extends Zend_Tool_Project_Conte
      */
     public function getContents()
     {
-
         $codeGenFile = new Zend_CodeGenerator_Php_File(array(
             'classes' => array(
                 new Zend_CodeGenerator_Php_Class(array(

@@ -65,7 +65,7 @@ class Zend_Cloud_Infrastructure_InstanceList implements Countable, Iterator, Arr
     protected function constructFromArray(array $list)
     {
         foreach ($list as $instance) {
-            $this->addInstance(new Zend_Cloud_Infrastructure_Instance($this->adapter,$instance));
+            $this->addInstance(new Zend_Cloud_Infrastructure_Instance($this->adapter, $instance));
         }
     }
 

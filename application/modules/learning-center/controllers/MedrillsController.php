@@ -28,7 +28,6 @@ class LearningCenter_MedrillsController extends Fisdap_Controller_Private
 
         $this->view->videos = \Fisdap\EntityUtils::getRepository('MedrillVideo')->getVideosByProduct($product_id);
         $this->view->view_link_base = '/learning-center/medrills/view/product/'.$product_id;
-
     }
 
     /**
@@ -78,10 +77,9 @@ class LearningCenter_MedrillsController extends Fisdap_Controller_Private
         } else {
             $this->view->startVideo = $start_video;
         }
-
     }
 
-    public function checkPermissions($userContext, $product_id = NULL)
+    public function checkPermissions($userContext, $product_id = null)
     {
         // if a product hasn't been specified, reroute back to the learning center landing page
         if (!$product_id) {
@@ -90,6 +88,4 @@ class LearningCenter_MedrillsController extends Fisdap_Controller_Private
 
         return ($userContext->getUser()->isStaff() || $userContext->getPrimarySerialNumber()->hasProductAccess($product_id));
     }
-
 }
-

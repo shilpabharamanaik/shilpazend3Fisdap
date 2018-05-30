@@ -33,8 +33,7 @@ require_once 'Zend/Service/DeveloperGarden/Request/SendSms/SendSmsAbstract.php';
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Request_SendSms_SendSMS
-    extends Zend_Service_DeveloperGarden_Request_SendSms_SendSmsAbstract
+class Zend_Service_DeveloperGarden_Request_SendSms_SendSMS extends Zend_Service_DeveloperGarden_Request_SendSms_SendSmsAbstract
 {
     /**
      * this is the sms type

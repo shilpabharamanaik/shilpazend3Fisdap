@@ -1,6 +1,7 @@
 <?php namespace Fisdap\Data\PreceptorRating;
 
 use Fisdap\Data\Repository\DoctrineRepository;
+
 /*
  * This file is subject to the terms and conditions defined in the
  * 'COPYRIGHT.txt' file, which is part of this source code package.
@@ -13,5 +14,4 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrinePreceptorRatingRepository extends DoctrineRepository implements PreceptorRatingRepository
 {
-
 }

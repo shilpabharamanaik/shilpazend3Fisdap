@@ -57,15 +57,20 @@ abstract class Job implements SelfHandling
      */
     protected function validResourceEntityManager($entityClass, $resourceParameter, $required = false)
     {
-        if (!$required && $resourceParameter == null) return null;
+        if (!$required && $resourceParameter == null) {
+            return null;
+        }
 
-        if (!$resourceParameter) throw new ResourceNotFound("No resource found for $entityClass.");
+        if (!$resourceParameter) {
+            throw new ResourceNotFound("No resource found for $entityClass.");
+        }
 
         $resource = $this->em->getRepository($entityClass)->find($resourceParameter);
         
-        if (empty($resource) && $required) throw new ResourceNotFound("No resource found for $entityClass with id '$resourceParameter'.");
+        if (empty($resource) && $required) {
+            throw new ResourceNotFound("No resource found for $entityClass with id '$resourceParameter'.");
+        }
 
         return $resource;
     }
-
 }

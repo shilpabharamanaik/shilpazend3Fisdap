@@ -3,7 +3,6 @@
 use Fisdap\Entity\CertificationLevel;
 use Fisdap\Fractal\Transformer;
 
-
 /**
  * Prepares certification level data for JSON output
  *

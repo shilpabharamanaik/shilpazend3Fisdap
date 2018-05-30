@@ -310,7 +310,7 @@ class Zend_Queue_Adapter_Memcacheq extends Zend_Queue_Adapter_AdapterAbstract
         }
 
         $msgs = array();
-        if ($maxMessages > 0 ) {
+        if ($maxMessages > 0) {
             for ($i = 0; $i < $maxMessages; $i++) {
                 $data = array(
                     'handle' => md5(uniqid(rand(), true)),

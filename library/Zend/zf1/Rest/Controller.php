@@ -73,5 +73,4 @@ abstract class Zend_Rest_Controller extends Zend_Controller_Action
      * identified by the 'id' value.
      */
     abstract public function deleteAction();
-
 }

@@ -6,10 +6,9 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Constraint Type
- * 
+ *
  * @Entity(repositoryClass="Fisdap\Data\ConstraintType\DoctrineConstraintTypeRepository")
  * @Table(name="fisdap2_constraint_type")
  */
@@ -34,11 +33,10 @@ class ConstraintType extends EntityBaseClass
      * @Column(type="string", nullable=true)
      */
     protected $entity_name;
-	
-	/**
+    
+    /**
      * @var string
      * @Column(type="string", nullable=true)
      */
     protected $description;
-
 }

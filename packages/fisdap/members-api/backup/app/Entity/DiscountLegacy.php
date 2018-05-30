@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Legacy Entity class for Discounts.
  *
@@ -17,12 +16,12 @@ use Doctrine\ORM\Mapping\Table;
  */
 class DiscountLegacy extends EntityBaseClass
 {
-	/**
-	 * @Id
-	 * @Column(name="pd_id", type="integer")
-	 * @GeneratedValue
-	 */
-	protected $id;
+    /**
+     * @Id
+     * @Column(name="pd_id", type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
 
     /**
      * @var \Fisdap\Entity\ProgramLegacy
@@ -79,24 +78,24 @@ class DiscountLegacy extends EntityBaseClass
         $this->end_date = new \DateTime("0000-00-00");
     }
 
-	public function getDiscountedPrice($originalPrice)
-	{
+    public function getDiscountedPrice($originalPrice)
+    {
         return round(($originalPrice - ($originalPrice * $this->percent_off * .01)), 2, PHP_ROUND_HALF_DOWN);
-	}
+    }
 
-	/**
-	 * Get a summary for this discount
-	 * @param integer $config the configuration that we care about
-	 * @return string
-	 */
-	public function getSummary($config = 0)
-	{
-		if ($config > 0) {
-			$config = $config & $this->configuration;
-		} else {
-			$config = $this->configuration;
-		}
+    /**
+     * Get a summary for this discount
+     * @param integer $config the configuration that we care about
+     * @return string
+     */
+    public function getSummary($config = 0)
+    {
+        if ($config > 0) {
+            $config = $config & $this->configuration;
+        } else {
+            $config = $this->configuration;
+        }
 
-		return round($this->percent_off) . "% " . Product::getProductSummary($config, $this->program->profession->id);
-	}
+        return round($this->percent_off) . "% " . Product::getProductSummary($config, $this->program->profession->id);
+    }
 }

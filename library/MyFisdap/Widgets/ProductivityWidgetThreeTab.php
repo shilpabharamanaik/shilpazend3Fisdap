@@ -9,7 +9,8 @@ class MyFisdap_Widgets_ProductivityWidgetThreeTab extends MyFisdap_Widgets_Base
     protected $user = null;
 
     /* Constructor */
-    public function __construct($widgetId){
+    public function __construct($widgetId)
+    {
         // include parent constructor's work
         parent::__construct($widgetId);
 
@@ -18,7 +19,8 @@ class MyFisdap_Widgets_ProductivityWidgetThreeTab extends MyFisdap_Widgets_Base
     }
 
     /* default methods */
-    public function getDefaultData(){
+    public function getDefaultData()
+    {
         return array(
             'selected' => '0',
             'inbox' => array(
@@ -47,7 +49,8 @@ class MyFisdap_Widgets_ProductivityWidgetThreeTab extends MyFisdap_Widgets_Base
 
 
     /* render methods */
-    public function render(){
+    public function render()
+    {
         $elemName = $this->getNamespacedName('productivity-widget-tt');
 
         $js = "
@@ -83,7 +86,7 @@ class MyFisdap_Widgets_ProductivityWidgetThreeTab extends MyFisdap_Widgets_Base
             /* if ($serialNumber->hasProductAccess('tracking')) {
                 $calendarLinks[] = '<a href="/skills-tracker/shifts">Patient Care Documentation</a>';
             }*/
-        } else if ($this->user->isInstructor() && $this->user->hasPermission('View Schedules')) {
+        } elseif ($this->user->isInstructor() && $this->user->hasPermission('View Schedules')) {
             if ($this->getWidgetProgram()->get_use_scheduler()) {
                 // instructors who can view schedules in a program that uses scheduler
                 $calendarLinks[] = '<a href="/skills-tracker/shifts/calendar">View Full Schedule</a>';
@@ -203,22 +206,24 @@ class MyFisdap_Widgets_ProductivityWidgetThreeTab extends MyFisdap_Widgets_Base
         return $html;
     }
 
-    public function renderHeader(){
-            return "";
+    public function renderHeader()
+    {
+        return "";
     }
 
-    	/**
-	 * This method renders the widget container- specifically the title bar and all
-	 * available tools.
-	 *
-	 * @return String containing the HTML for the widget container.
-	 */
-	public function renderContainer(){
-		$widgetContents = $this->render();
+    /**
+     * This method renders the widget container- specifically the title bar and all
+     * available tools.
+     *
+     * @return String containing the HTML for the widget container.
+     */
+    public function renderContainer()
+    {
+        $widgetContents = $this->render();
 
-		$header = $this->renderHeader();
+        $header = $this->renderHeader();
 
-		$html = <<<EOF
+        $html = <<<EOF
 			<div id='widget_{$this->widgetData->id}_container' class='widget-container widget-container-blank'>
 				<div id='widget_{$this->widgetData->id}_render' class='widget-render'>
 					{$widgetContents}
@@ -226,20 +231,21 @@ class MyFisdap_Widgets_ProductivityWidgetThreeTab extends MyFisdap_Widgets_Base
 			</div>
 EOF;
 
-		return $html;
-	}
+        return $html;
+    }
 
 
     /* custom AJAX callbacks */
-    public function parseViewportSettings($viewportElemName, $viewportParams) {
+    public function parseViewportSettings($viewportElemName, $viewportParams)
+    {
         // strip off the element name crud to get the unique part of the viewport name
         $viewportName =  str_replace($this->getNamespacedName('productivity-widget-tt') . '-', '', $viewportElemName);
 
         // go through viewport params and save them to data
-        foreach($viewportParams as $key => $value) {
+        foreach ($viewportParams as $key => $value) {
             switch ($key) {
                 case 'filters':
-                    foreach($value as $filter => $state) {
+                    foreach ($value as $filter => $state) {
                         if (isset($this->data[$viewportName]['filters'][$filter])) {
                             $this->data[$viewportName]['filters'][$filter] = intval($state);
                         }
@@ -264,9 +270,10 @@ EOF;
         )
      )
      */
-    public function ajaxModifyWidgetSettings($params) {
+    public function ajaxModifyWidgetSettings($params)
+    {
         $elemName = $this->getNamespacedName('productivity-widget-tt');
-        foreach($params as $key => $value) {
+        foreach ($params as $key => $value) {
             switch ($key) {
                 case 'selected':
                     $this->data['selected'] = $value;
@@ -290,7 +297,8 @@ EOF;
      *
      * @param array $data Data sent by the ajax request
      */
-    public function ajaxGetMessages($data = null) {
+    public function ajaxGetMessages($data = null)
+    {
         // process incoming data
         if (isset($data['entityIds']) && isset($data['entityType'])) {
             if (is_array($data['entityIds'])) {
@@ -305,10 +313,10 @@ EOF;
             $entityType = null;
         }
 
-        if (isset($data['full']) && $data['full'] == TRUE) {
-            $full = TRUE;
+        if (isset($data['full']) && $data['full'] == true) {
+            $full = true;
         } else {
-            $full = FALSE;
+            $full = false;
         }
 
         if ($this->user->id) {
@@ -343,14 +351,14 @@ EOF;
 
             // Get proper messageDelivery entities. THis accounts for "true" messages in the Fisdap Messaging system
             $resultMsgs = new stdClass();
-            foreach($delivered as $delivery) {
+            foreach ($delivered as $delivery) {
                 // construct the message object as recognized by javascript
                 $resultMsg = new stdClass();
                 $resultMsg->id = $delivery['id'];
                 $resultMsg->type = 'message';
                 $resultMsg->title = $delivery['title'];
                 $resultMsg->receivedDate = $delivery['updated']->format("Y-m-d H:i:s");
-				//\Zend_Registry::get('logger')->debug('MyFisdap_Widgets_ProductivityWidgetThreeTab - Message delivery received date: ' . $resultMsg->receivedDate);
+                //\Zend_Registry::get('logger')->debug('MyFisdap_Widgets_ProductivityWidgetThreeTab - Message delivery received date: ' . $resultMsg->receivedDate);
                 $resultMsg->priority = $delivery['priority'];
                 $resultMsg->deleted = 0;
                 $resultMsg->read = $delivery['is_read'];
@@ -363,7 +371,7 @@ EOF;
                     $resultMsg->teaser = '';
                 } else {
                     $suffix = '';
-                    if (substr($delivery['body'], 100, 1) !== FALSE) {
+                    if (substr($delivery['body'], 100, 1) !== false) {
                         $suffix = '...';
                     }
                     // strip all but the allowed tags
@@ -381,7 +389,7 @@ EOF;
                 // derive formatted author
                 if ($delivery['author_type'] == 'user' && $delivery['author'] == $this->user->id) {
                     $resultMsg->author = 'me';
-                } else if ($delivery['author_type'] == 'system') {
+                } elseif ($delivery['author_type'] == 'system') {
                     $resultMsg->author = 'Fisdap Robot';
                 } else {
                     $resultMsg->author = $delivery['author_first_name'] . ' ' . $delivery['author_last_name'];
@@ -406,7 +414,7 @@ EOF;
                     $subType->date = $delivery['due_start']->format("Y-m-d H:i:s");
                     $resultMsg->subTypes->due = $subType; // @todo timezone conversion??? $event->format() on entity is too heavy duty
                 }
-                if ($delivery['event_start'] != NULL) {
+                if ($delivery['event_start'] != null) {
                     $resultMsg->type = 'event';
 
                     $subType = new stdClass();
@@ -419,17 +427,17 @@ EOF;
             }
 
             // Also get upcoming shifts. Thesse are not true messages, but we want them and it seems wasteful to replicate the data as messages
-            foreach($shifts as $shift) {
+            foreach ($shifts as $shift) {
                 // If this is a scheduler shift (has an event_id), then it might be a duplicate and we want to compound duplicates
-                $new = FALSE;
-				if (is_numeric($shift['event_id']) && $shift['event_id'] > 0) {
+                $new = false;
+                if (is_numeric($shift['event_id']) && $shift['event_id'] > 0) {
                     $entityId = 'shiftevent_' . $shift['event_id'];
                     if (!isset($resultMsgs->{$entityId})) {
-                        $new = TRUE;
+                        $new = true;
                     }
                 } else {
                     $entityId = 'shift_' . $shift['shift_id'];
-                    $new = TRUE;
+                    $new = true;
                 }
 
                 if ($new) {
@@ -503,17 +511,18 @@ EOF;
      *
      * @param array $message Data sent by the ajax request, in this case a message object
      */
-    public function ajaxSaveMessage($message = null) {
-	if (\Zend_Auth::getInstance()->hasIdentity() && $this->user->id > 0) {
+    public function ajaxSaveMessage($message = null)
+    {
+        if (\Zend_Auth::getInstance()->hasIdentity() && $this->user->id > 0) {
             // existing or new message?
             if (isset($message['id']) && $message['id'] != 'new') {
                 // check if the user has permission to modify this message.
                 // first load the existing message
                 $existDelivery = \Fisdap\EntityUtils::getEntity('MessageDelivery', $message['id']);
                 // determine message type from the existing delivery
-                if ($existDelivery->todo != NULL && $existDelivery->todo instanceof \Fisdap\Entity\Todo) {
+                if ($existDelivery->todo != null && $existDelivery->todo instanceof \Fisdap\Entity\Todo) {
                     $type = 'todo';
-                } else if ($existDelivery->message->event != NULL && $existDelivery->message->event instanceof \Fisdap\Entity\Event) {
+                } elseif ($existDelivery->message->event != null && $existDelivery->message->event instanceof \Fisdap\Entity\Event) {
                     $type = 'event';
                 } else {
                     $type = 'message'; //fall back to regular message
@@ -538,7 +547,7 @@ EOF;
                         if ($canEditMessage) {
                             // Soft delete the message itself (and by consequence the associated deliveries)
                             $existDelivery->message->set_soft_delete($message['deleted']);
-                        } else if ($canEditDelivery) {
+                        } elseif ($canEditDelivery) {
                             // SOft delete only the delivery of the message
                             $existDelivery->set_soft_delete($message['deleted']);
                         }
@@ -548,11 +557,13 @@ EOF;
                     // as long as the message is not being deleted, we can check for other properties
                     if ($message['deleted'] != 1) {
                         // look through properties to update
-                        foreach($message as $key => $value) {
-                            switch($key) {
+                        foreach ($message as $key => $value) {
+                            switch ($key) {
                                 // simple modifications to the message entity
                                 case 'title':
-                                    if ($canEditMessage) { $existDelivery->message->set_title($filter::checkPlain($value)); }
+                                    if ($canEditMessage) {
+                                        $existDelivery->message->set_title($filter::checkPlain($value));
+                                    }
                                     break;
                                 case 'body':
                                     if ($canEditMessage) {
@@ -562,21 +573,29 @@ EOF;
                                     break;
                                 // simple modifications to the messageDelivery entity
                                 case 'priority':
-                                    if ($canEditDelivery) { $existDelivery->set_priority($value); }
+                                    if ($canEditDelivery) {
+                                        $existDelivery->set_priority($value);
+                                    }
                                     break;
                                 case 'read':
-                                    if ($canEditDelivery) { $existDelivery->set_is_read($value); }
+                                    if ($canEditDelivery) {
+                                        $existDelivery->set_is_read($value);
+                                    }
                                     break;
                                 case 'archived':
-                                    if ($canEditDelivery) { $existDelivery->set_archived($value); }
+                                    if ($canEditDelivery) {
+                                        $existDelivery->set_archived($value);
+                                    }
                                     break;
                                 case 'priority':
-                                    if ($canEditDelivery) { $existDelivery->set_priority($value); }
+                                    if ($canEditDelivery) {
+                                        $existDelivery->set_priority($value);
+                                    }
                                     break;
 
                                 // subtype handling
                                 case 'subTypes':
-                                    foreach($value as $subtype => $subvalues) {
+                                    foreach ($value as $subtype => $subvalues) {
                                         switch ($subtype) {
                                             case 'todo':
                                                 if ($canEditDelivery) {
@@ -617,7 +636,6 @@ EOF;
                 } else {
                     return false; // unable to modify the message.
                 }
-
             } else {
                 $message['id'] = 'new';
                 // check if the user has permission to create this type of message.
@@ -660,7 +678,6 @@ EOF;
                     $result = $this->ajaxGetMessages(array('entityType' => 'message', 'entityIds' => array($successfulDeliveries[$this->user->id]->id)));
 
                     return $result;
-
                 } else {
                     return false; // unabel to create the message
                 }
@@ -673,10 +690,11 @@ EOF;
      *
      * @param array $deliveries Array of delivery IDs submitted by JS as ones that should be hard deleted
      */
-    public function ajaxDoPendingDeletions($deliveries) {
-	if (\Zend_Auth::getInstance()->hasIdentity() && $this->user->id > 0) {
+    public function ajaxDoPendingDeletions($deliveries)
+    {
+        if (\Zend_Auth::getInstance()->hasIdentity() && $this->user->id > 0) {
             // check through the supplied messages
-            foreach($deliveries as $deliveryId) {
+            foreach ($deliveries as $deliveryId) {
                 // check if the user has permission to modify this message.
                 // first load the existing message
                 $existDelivery = \Fisdap\EntityUtils::getEntity('MessageDelivery', $deliveryId);
@@ -685,9 +703,9 @@ EOF;
                 if ($existDelivery->soft_delete == 1) {
 
                     // check permissions for editing message and/or delivery
-                    if ($existDelivery->todo != NULL && $existDelivery->todo instanceof \Fisdap\Entity\Todo) {
+                    if ($existDelivery->todo != null && $existDelivery->todo instanceof \Fisdap\Entity\Todo) {
                         $type = 'todo';
-                    } else if ($existDelivery->message->event != NULL && $existDelivery->message->event instanceof \Fisdap\Entity\Event) {
+                    } elseif ($existDelivery->message->event != null && $existDelivery->message->event instanceof \Fisdap\Entity\Event) {
                         $type = 'event';
                     } else {
                         $type = 'message'; //fall back to regular message
@@ -698,7 +716,7 @@ EOF;
                     if ($canEditMessage) {
                         // Hard delete the message itself (and by consequence the associated deliveries)
                         $existDelivery->message->delete();
-                    } else if ($canEditDelivery) {
+                    } elseif ($canEditDelivery) {
                         // Hard delete only the delivery of the message
                         $existDelivery->delete();
                     }
@@ -709,11 +727,12 @@ EOF;
 
 
     // $selector: $this->data['inbox']['filters']['message'] === array('inbox', 'filters', 'message')
-    private function _getDataOrDefault($selector = array(), $useDefault = FALSE) {
-        $data = FALSE;
+    private function _getDataOrDefault($selector = array(), $useDefault = false)
+    {
+        $data = false;
         if (!empty($selector)) {
             // loop through parts of the selector successfully drilling deeper
-            foreach($selector as $part) {
+            foreach ($selector as $part) {
                 if ($data) {
                     // we are partly down the selector list and have successfully found data so far
                     if (isset($data[$part])) {
@@ -721,10 +740,10 @@ EOF;
                         continue;
                     } else {
                         // ran into a dead-end try again, but go straight for the defaults
-                        return $this->_getDataOrDefault($selector, TRUE);
+                        return $this->_getDataOrDefault($selector, true);
                     }
                 } else {
-                    if ($useDefault == TRUE) {
+                    if ($useDefault == true) {
                         // we have been instructed to get the default value
                         $defaults = $this->getDefaultData();
                         if (isset($defaults[$part])) {
@@ -734,13 +753,13 @@ EOF;
                             // wow, not even the default exists
                             return null;
                         }
-                    } else if (isset($this->data[$part])) {
+                    } elseif (isset($this->data[$part])) {
                         // we're on the first selector part and have found data
                         $data = $this->data[$part];
                         continue;
                     } else {
                         // ran into a dead-end try again, but go straight for the defaults
-                        return $this->_getDataOrDefault($selector, TRUE);
+                        return $this->_getDataOrDefault($selector, true);
                     }
                 }
             }
@@ -752,7 +771,8 @@ EOF;
         }
     }
 
-    private function _formatShiftTeaser($shift, $students = array()) {
+    private function _formatShiftTeaser($shift, $students = array())
+    {
         $teaser = '';
 
         $teaser .= '<div class="message-shift-teaser-top">';
@@ -797,7 +817,7 @@ EOF;
             } else {
                 $openIcon = '' . $icons['slotOpen'];
             }
-            for($i = 0; $i < ($shift['total_slots'] - $shift['occupied_slots']); $i++) {
+            for ($i = 0; $i < ($shift['total_slots'] - $shift['occupied_slots']); $i++) {
                 if ($slotsCount < 4) {
                     $displaySlots .= ' ' . $openIcon;
                 } else {
@@ -829,14 +849,14 @@ EOF;
         return $teaser;
     }
 
-    private function _formatShiftBody($shift, $students = array()) {
-
+    private function _formatShiftBody($shift, $students = array())
+    {
         $body = '<div class="message-shift-details">';
 
         $body .= '<div class="message-shift-details-site message-shift-details-item">' . ucfirst($shift['type']) . ' Shift -- ' . $shift['site_name'] . ', ' . $shift['base_name'] . '</div>';
         $startString = $shift['start_date'] . ' ' . substr(str_pad($shift['start_time'], 4, '0', STR_PAD_LEFT), 0, 2) . ':' . substr(str_pad($shift['start_time'], 4, '0', STR_PAD_LEFT), 2, 2) . ':00';
         $start = new \DateTime($startString);
-		$endMilTime = (int)$shift['start_time'] + (int)(floor($shift['hours']) * 100) + (int)(($shift['hours'] - floor($shift['hours'])) * 60);
+        $endMilTime = (int)$shift['start_time'] + (int)(floor($shift['hours']) * 100) + (int)(($shift['hours'] - floor($shift['hours'])) * 60);
         $body .= '<div class="message-shift-details-time message-shift-details-item">' . $start->format('M j, Y') . ', ' . $shift['start_time'] . ' - ' . $endMilTime . '</div>';
 
         // add relevant links
@@ -846,11 +866,11 @@ EOF;
             if ($shift['event_id'] > 0) {
                 // scheduler shift
                 //$body .= '<p><a href="/oldfisdap/redirect?loc=scheduler/logic.html@Event_id=' . $shift['event_id'] . '">View in Fisdap Scheduler</a></p>';
-				if ($this->user->getCurrentProgram()->scheduler_beta) {
-	                $utilityLinks[] = '<a href="/scheduler/shift/details/event/' . $shift['event_id'] . '">View in Fisdap Scheduler</a>';
-				} else {
-	                $utilityLinks[] = '<a href="/oldfisdap/redirect?loc=index.html@target_pagename=scheduler/schedulercont.html@goToPage=logic.html%26name0=Event_id%26val0=' . $shift['event_id'] . '">View in Fisdap Scheduler</a>';
-				}
+                if ($this->user->getCurrentProgram()->scheduler_beta) {
+                    $utilityLinks[] = '<a href="/scheduler/shift/details/event/' . $shift['event_id'] . '">View in Fisdap Scheduler</a>';
+                } else {
+                    $utilityLinks[] = '<a href="/oldfisdap/redirect?loc=index.html@target_pagename=scheduler/schedulercont.html@goToPage=logic.html%26name0=Event_id%26val0=' . $shift['event_id'] . '">View in Fisdap Scheduler</a>';
+                }
             } else {
                 // skills tracker shift
                 $utilityLinks[]= '<a href="/skills-tracker/shifts/my-shift/shiftId/' . $shift['shift_id'] . '">Patient Care documentation</a>';
@@ -877,7 +897,6 @@ EOF;
         if ($isInstructor) {
             // instructor view
             $body .= '<div class="message-shift-details-students"><strong>Students Attending:</strong><div class="message-shift-details-students-list">' . implode(', ', $students) . '</div></div>';
-
         }
 
 

@@ -30,8 +30,7 @@ require_once 'Zend/Feed/Writer/Extension/RendererAbstract.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Writer_Extension_ITunes_Renderer_Entry
-    extends Zend_Feed_Writer_Extension_RendererAbstract
+class Zend_Feed_Writer_Extension_ITunes_Renderer_Entry extends Zend_Feed_Writer_Extension_RendererAbstract
 {
     /**
      * Set to TRUE if a rendering method actually renders something. This
@@ -68,8 +67,10 @@ class Zend_Feed_Writer_Extension_ITunes_Renderer_Entry
      */
     protected function _appendNamespaces()
     {
-        $this->getRootElement()->setAttribute('xmlns:itunes',
-            'http://www.itunes.com/dtds/podcast-1.0.dtd');
+        $this->getRootElement()->setAttribute(
+            'xmlns:itunes',
+            'http://www.itunes.com/dtds/podcast-1.0.dtd'
+        );
     }
 
     /**

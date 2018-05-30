@@ -7,7 +7,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineSlotAssignmentRepository
  *
@@ -122,7 +121,7 @@ class DoctrineSlotAssignmentRepository extends DoctrineRepository implements Slo
             ->setParameters(array(1 => $startDate, 2 => $endDate));
 
         $results = $qb->getQuery()->getResult();
-        foreach($results as $result) {
+        foreach ($results as $result) {
             $conflicts[$result['student_id']][] = $result;
         }
 

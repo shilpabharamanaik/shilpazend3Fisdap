@@ -7,7 +7,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineScheduleEmailRepository
  *

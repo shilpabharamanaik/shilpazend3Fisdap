@@ -76,7 +76,7 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
      *
      * @param array $options
      */
-    public function setOptions(Array $options)
+    public function setOptions(array $options)
     {
         foreach ($options as $optionName => $optionValue) {
             if (substr($optionName, -1, 1) != 's') {
@@ -198,14 +198,12 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
      *
      * @return unknown
      */
-    function getChildren()
+    public function getChildren()
     {
-
         if (empty($this->ref)) {
             $this->ref = new ReflectionClass($this);
         }
 
         return $this->ref->newInstance($this->getInnerIterator()->getChildren(), $this->_rawOptions);
     }
-
 }

@@ -61,7 +61,7 @@ abstract class Zend_Service_DeveloperGarden_Client_ClientAbstract
      *
      * @var int
      */
-    static protected $_consts = null;
+    protected static $_consts = null;
 
     /**
      * Available options
@@ -137,16 +137,16 @@ abstract class Zend_Service_DeveloperGarden_Client_ClientAbstract
 
         while (list($name, $value) = each($options)) {
             switch (ucfirst($name)) {
-                case 'Username' :
+                case 'Username':
                     $this->_credential->setUsername($value);
                     break;
-                case 'Password' :
+                case 'Password':
                     $this->_credential->setPassword($value);
                     break;
-                case 'Realm' :
+                case 'Realm':
                     $this->_credential->setRealm($value);
                     break;
-                case 'Environment' :
+                case 'Environment':
                     $this->setEnvironment($value);
             }
         }
@@ -354,7 +354,7 @@ abstract class Zend_Service_DeveloperGarden_Client_ClientAbstract
      * helper method to create const arrays
      * @return null
      */
-    static protected function _buildConstArray()
+    protected static function _buildConstArray()
     {
         $r = new ReflectionClass(__CLASS__);
         foreach ($r->getConstants() as $k => $v) {
@@ -371,7 +371,7 @@ abstract class Zend_Service_DeveloperGarden_Client_ClientAbstract
      *
      * @return array
      */
-    static public function getParticipantActions()
+    public static function getParticipantActions()
     {
         if (empty(self::$_consts)) {
             self::_buildConstArray();
@@ -387,7 +387,7 @@ abstract class Zend_Service_DeveloperGarden_Client_ClientAbstract
      * @throws Zend_Service_DeveloperGarden_Client_Exception
      * @return void
      */
-    static public function checkParticipantAction($action)
+    public static function checkParticipantAction($action)
     {
         if (!array_key_exists($action, self::getParticipantActions())) {
             require_once 'Zend/Service/DeveloperGarden/Client/Exception.php';
@@ -402,7 +402,7 @@ abstract class Zend_Service_DeveloperGarden_Client_ClientAbstract
      *
      * @return array
      */
-    static public function getEnvironments()
+    public static function getEnvironments()
     {
         if (empty(self::$_consts)) {
             self::_buildConstArray();
@@ -418,7 +418,7 @@ abstract class Zend_Service_DeveloperGarden_Client_ClientAbstract
      * @throws Zend_Service_DeveloperGarden_Client_Exception
      * @return void
      */
-    static public function checkEnvironment($environment)
+    public static function checkEnvironment($environment)
     {
         if (!array_key_exists($environment, self::getEnvironments())) {
             require_once 'Zend/Service/DeveloperGarden/Client/Exception.php';

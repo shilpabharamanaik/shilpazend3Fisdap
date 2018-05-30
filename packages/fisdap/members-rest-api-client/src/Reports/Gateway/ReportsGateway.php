@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Client\Reports\Gateway;
 
-
 /**
  * Contract for reports gateways
  *

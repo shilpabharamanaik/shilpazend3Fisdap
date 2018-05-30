@@ -6,10 +6,9 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Site Type
- * 
+ *
  * @Entity
  * @Table(name="fisdap2_site_type")
  */
@@ -29,7 +28,8 @@ class SiteType extends Enumerated
      */
     protected $name;
     
-    public static function getCapitalizedFormOptions() {
+    public static function getCapitalizedFormOptions()
+    {
         $capitalized_options = array();
         $options = parent::getFormOptions();
         foreach ($options as $key => $option) {

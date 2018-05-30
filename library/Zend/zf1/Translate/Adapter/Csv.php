@@ -50,7 +50,7 @@ class Zend_Translate_Adapter_Csv extends Zend_Translate_Adapter
 
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
-        } else if (func_num_args() > 1) {
+        } elseif (func_num_args() > 1) {
             $args               = func_get_args();
             $options            = array();
             $options['content'] = array_shift($args);
@@ -63,7 +63,7 @@ class Zend_Translate_Adapter_Csv extends Zend_Translate_Adapter
                 $opt     = array_shift($args);
                 $options = array_merge($opt, $options);
             }
-        } else if (!is_array($options)) {
+        } elseif (!is_array($options)) {
             $options = array('content' => $options);
         }
 
@@ -89,7 +89,7 @@ class Zend_Translate_Adapter_Csv extends Zend_Translate_Adapter
             throw new Zend_Translate_Exception('Error opening translation file \'' . $filename . '\'.');
         }
 
-        while(($data = fgetcsv($this->_file, $options['length'], $options['delimiter'], $options['enclosure'])) !== false) {
+        while (($data = fgetcsv($this->_file, $options['length'], $options['delimiter'], $options['enclosure'])) !== false) {
             if (substr($data[0], 0, 1) === '#') {
                 continue;
             }

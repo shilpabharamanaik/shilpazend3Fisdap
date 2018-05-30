@@ -17,24 +17,24 @@
 /**
  * @package LearningCenter
  */
-class Fisdap_View_Helper_ScheduledTestList extends Zend_View_Helper_Abstract 
+class Fisdap_View_Helper_ScheduledTestList extends Zend_View_Helper_Abstract
 {
-	/**
-	 * @var string the html to be returned
-	 */
-	protected $_html; 
-	
-	/**
-	 * @param array $links an array of links
-	 * @return string html to render a quick links box
-	 */
+    /**
+     * @var string the html to be returned
+     */
+    protected $_html;
+    
+    /**
+     * @param array $links an array of links
+     * @return string html to render a quick links box
+     */
     public function scheduledTestList($filters = array())
-	{
-		$stRepos = \Fisdap\EntityUtils::getRepository('ScheduledTestsLegacy');
-		$scheduledTests = $stRepos->getFilteredTests($filters);
-		
-		$this->_html = "<div id='scheduled-tests'>";
-		$this->_html .= "
+    {
+        $stRepos = \Fisdap\EntityUtils::getRepository('ScheduledTestsLegacy');
+        $scheduledTests = $stRepos->getFilteredTests($filters);
+        
+        $this->_html = "<div id='scheduled-tests'>";
+        $this->_html .= "
 	
 		<table class='fisdap-table' id='scheduled-test-list'>
 			<thead>
@@ -50,34 +50,33 @@ class Fisdap_View_Helper_ScheduledTestList extends Zend_View_Helper_Abstract
 			</tr>
 			</thead>
 			<tbody>";
-			
-		foreach ($scheduledTests as $test) {
-			$this->_html .= "<tr>";
-			$this->_html .= "<td>" . $test->start_date->format('m/d/Y') . "</td>";
-			if($test->publish_scores > 0){
-				$this->_html .= "<td>" . $test->test->test_name . "</td>";
-			}
-			else {
-				$this->_html .= "<td>" . $test->test->test_name . " - <span class='npublished'>scores not published</span></td>";
-			}
-			$this->_html .= "<td class='student-cell'>" . count($test->get_scheduled_students()) . "</td>";
-			$this->_html .= "<td class='contactCell'>" . $test->contact_name . "</td>";
+            
+        foreach ($scheduledTests as $test) {
+            $this->_html .= "<tr>";
+            $this->_html .= "<td>" . $test->start_date->format('m/d/Y') . "</td>";
+            if ($test->publish_scores > 0) {
+                $this->_html .= "<td>" . $test->test->test_name . "</td>";
+            } else {
+                $this->_html .= "<td>" . $test->test->test_name . " - <span class='npublished'>scores not published</span></td>";
+            }
+            $this->_html .= "<td class='student-cell'>" . count($test->get_scheduled_students()) . "</td>";
+            $this->_html .= "<td class='contactCell'>" . $test->contact_name . "</td>";
 
-			$this->_html .= "<td class='action'><a href='/learning-center/test/edit/stid/" . $test->id . "'><img src='/images/icons/edit_black.png'><br />edit</a></td>";
-			$this->_html .= "<td class='action'><a href='/learning-center/test/details/stid/" . $test->id . "'><img src='/images/icons/details_black.png'><br />details</a></td>";
+            $this->_html .= "<td class='action'><a href='/learning-center/test/edit/stid/" . $test->id . "'><img src='/images/icons/edit_black.png'><br />edit</a></td>";
+            $this->_html .= "<td class='action'><a href='/learning-center/test/details/stid/" . $test->id . "'><img src='/images/icons/details_black.png'><br />details</a></td>";
 
-			
-			$this->_html .= "<td class='action'><a href='/learning-center/index/retrieve/stid/" . $test->id . "'><img src='/images/icons/scores_black.png'><br />scores</a></td>";
+            
+            $this->_html .= "<td class='action'><a href='/learning-center/index/retrieve/stid/" . $test->id . "'><img src='/images/icons/scores_black.png'><br />scores</a></td>";
 
-			
-			$this->_html .= "<td class='action'><a href='/learning-center/test/delete/stid/" . $test->id . "'><img src='/images/icons/delete-test_black.png'><br />delete</a></td>";
+            
+            $this->_html .= "<td class='action'><a href='/learning-center/test/delete/stid/" . $test->id . "'><img src='/images/icons/delete-test_black.png'><br />delete</a></td>";
 
-			$this->_html .= "</tr>";
-		}
+            $this->_html .= "</tr>";
+        }
 
-		$this->_html .= "</tbody></table>";
-		$this->_html .= "</div>";
-	
-		return $this->_html;
+        $this->_html .= "</tbody></table>";
+        $this->_html .= "</div>";
+    
+        return $this->_html;
     }
 }

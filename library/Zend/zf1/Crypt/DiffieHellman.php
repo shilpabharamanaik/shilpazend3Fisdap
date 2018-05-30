@@ -128,7 +128,7 @@ class Zend_Crypt_DiffieHellman
             if ($this->hasPrivateKey()) {
                 $details['priv_key'] = $this->getPrivateKey();
             }
-            $opensslKeyResource = openssl_pkey_new( array('dh' => $details) );
+            $opensslKeyResource = openssl_pkey_new(array('dh' => $details));
             $data = openssl_pkey_get_details($opensslKeyResource);
             $this->setPrivateKey($data['dh']['priv_key'], self::BINARY);
             $this->setPublicKey($data['dh']['pub_key'], self::BINARY);
@@ -384,5 +384,4 @@ class Zend_Crypt_DiffieHellman
         $rand = $this->_math->rand($this->getGenerator(), $this->getPrime());
         return $rand;
     }
-
 }

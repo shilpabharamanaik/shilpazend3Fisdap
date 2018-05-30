@@ -3,7 +3,6 @@
 use Illuminate\Foundation\Console\RoutesCommand;
 use Illuminate\Routing\Route;
 
-
 /**
  * Extension of Artisan 'routes' command, providing details on route filters
  *

@@ -91,7 +91,7 @@ class Zend_Paginator_Adapter_DbSelect implements Zend_Paginator_Adapter_Interfac
 
     /**
      * Returns the cache identifier.
-     * 
+     *
      * @return string
      */
     public function getCacheIdentifier()
@@ -142,7 +142,7 @@ class Zend_Paginator_Adapter_DbSelect implements Zend_Paginator_Adapter_Interfac
             $result = $rowCount->query(Zend_Db::FETCH_ASSOC)->fetch();
 
             $this->_rowCount = count($result) > 0 ? $result[$rowCountColumn] : 0;
-        } else if (is_integer($rowCount)) {
+        } elseif (is_integer($rowCount)) {
             $this->_rowCount = $rowCount;
         } else {
             /**
@@ -237,14 +237,14 @@ class Zend_Paginator_Adapter_DbSelect implements Zend_Paginator_Adapter_Interfac
              * than one group, or if the query has a HAVING clause, then take
              * the original query and use it as a subquery os the COUNT query.
              */
-            if (($isDistinct && ((count($columnParts) == 1 && $columnParts[0][1] == Zend_Db_Select::SQL_WILDCARD) 
+            if (($isDistinct && ((count($columnParts) == 1 && $columnParts[0][1] == Zend_Db_Select::SQL_WILDCARD)
                  || count($columnParts) > 1)) || count($groupParts) > 1 || !empty($havingParts)) {
                 $rowCount->reset(Zend_Db_Select::ORDER);
                 $rowCount = $db
                                ->select()
                                ->bind($rowCount->getBind())
                                ->from($rowCount);
-            } else if ($isDistinct) {
+            } elseif ($isDistinct) {
                 $part = $columnParts[0];
 
                 if ($part[1] !== Zend_Db_Select::SQL_WILDCARD && !($part[1] instanceof Zend_Db_Expr)) {
@@ -256,7 +256,7 @@ class Zend_Paginator_Adapter_DbSelect implements Zend_Paginator_Adapter_Interfac
 
                     $groupPart = $column;
                 }
-            } else if (!empty($groupParts)) {
+            } elseif (!empty($groupParts)) {
                 $groupPart = $db->quoteIdentifier($groupParts[0], true);
             }
 

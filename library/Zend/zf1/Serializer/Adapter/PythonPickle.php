@@ -428,7 +428,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
      */
     protected function _writeString($value)
     {
-        if ( ($id=$this->_searchMomo($value)) !== false ) {
+        if (($id=$this->_searchMomo($value)) !== false) {
             $this->_writeGet($id);
             return;
         }
@@ -462,7 +462,8 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
     protected function _writeArrayDict(array $value)
     {
         if (($id=$this->_searchMomo($value)) !== false) {
-            $this->_writeGet($id);;
+            $this->_writeGet($id);
+            ;
             return;
         }
 
@@ -1122,16 +1123,13 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
 
         if ($uniCode < 0x80) { // 1Byte
             $utf8Char = chr($uniCode);
-
         } elseif ($uniCode < 0x800) { // 2Byte
             $utf8Char = chr(0xC0 | $uniCode >> 6)
                       . chr(0x80 | $uniCode & 0x3F);
-
         } elseif ($uniCode < 0x10000) { // 3Byte
             $utf8Char = chr(0xE0 | $uniCode >> 12)
                       . chr(0x80 | $uniCode >> 6 & 0x3F)
                       . chr(0x80 | $uniCode & 0x3F);
-
         } elseif ($uniCode < 0x110000) { // 4Byte
             $utf8Char  = chr(0xF0 | $uniCode >> 18)
                        . chr(0x80 | $uniCode >> 12 & 0x3F)
@@ -1241,7 +1239,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
 
         // remove all elements after marker
         $max = count($this->_stack);
-        for($i = $k + 1; $i < $max; $i++) {
+        for ($i = $k + 1; $i < $max; $i++) {
             unset($this->_stack[$i]);
         }
     }
@@ -1299,7 +1297,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         $this->_stack[$k] =  array();
         $tuple            =& $this->_stack[$k];
         $max              =  count($this->_stack);
-        for($i = $k + 1; $i < $max; $i++) {
+        for ($i = $k + 1; $i < $max; $i++) {
             $tuple[] = $this->_stack[$i];
             unset($this->_stack[$i]);
         }
@@ -1333,7 +1331,8 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
      *
      * @return void
      */
-    protected function _loadTuple3() {
+    protected function _loadTuple3()
+    {
         $value3 = array_pop($this->_stack);
         $value2 = array_pop($this->_stack);
         $value1 = array_pop($this->_stack);
@@ -1462,7 +1461,6 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
             if (0x80 <= ord($data[$nbytes-1])) {
                 $long = bcsub($long, bcpow(2, $nbytes * 8));
             }
-
         } else {
             for ($i=0; $i<$nbytes; $i++) {
                 $long+= ord($data[$i]) * pow(256, $i);

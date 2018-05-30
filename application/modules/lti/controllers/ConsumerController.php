@@ -9,7 +9,6 @@ use Franzl\Lti\Storage\DummyStorage;
 use Franzl\Lti\ToolConsumer;
 use Happyr\DoctrineSpecification\Spec;
 
-
 /**
  * Class Lti_ConsumerController
  *
@@ -60,7 +59,8 @@ final class Lti_ConsumerController extends Fisdap_Controller_Private
 
         if (! is_null($toolProvider->getLogoutUrl())) {
             $ltiToolProvidersSession->addLaunchedTool(
-                $toolProvider->getResourceLinkTitle(), $toolProvider->getLogoutUrl()
+                $toolProvider->getResourceLinkTitle(),
+                $toolProvider->getLogoutUrl()
             );
         }
     }

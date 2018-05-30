@@ -10,27 +10,26 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Entity class for Legacy Test Blueprint Columns
- * 
+ *
  * @Entity
  * @Table(name="TestBPColumns")
  */
 class TestBlueprintColumnsLegacy extends EntityBaseClass
 {
-	/**
-	 * @Id
-	 * @Column(name="tbpColumn_id", type="integer")
-	 * @GeneratedValue
-	 */
-	protected $id;
-	
-	/**
-	 * @ManyToOne(targetEntity="TestBlueprintsLegacy", inversedBy="columns")
-	 * @JoinColumn(name="tbp_id", referencedColumnName="tbp_id")
-	 */
-	protected $blueprint;
+    /**
+     * @Id
+     * @Column(name="tbpColumn_id", type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
+    
+    /**
+     * @ManyToOne(targetEntity="TestBlueprintsLegacy", inversedBy="columns")
+     * @JoinColumn(name="tbp_id", referencedColumnName="tbp_id")
+     */
+    protected $blueprint;
     
     /**
      * @Column(name="Name", type="string")

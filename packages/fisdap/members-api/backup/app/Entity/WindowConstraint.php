@@ -9,10 +9,9 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Window Constraint
- * 
+ *
  * @Entity
  * @Table(name="fisdap2_window_constraints")
  */
@@ -64,5 +63,4 @@ class WindowConstraint extends EntityBaseClass
         $this->values->add($value);
         $value->constraint = $this;
     }
-
 }

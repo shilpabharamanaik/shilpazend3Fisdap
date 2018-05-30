@@ -202,7 +202,7 @@ class Zend_Config_Yaml extends Zend_Config
                 if (!isset($config[$sectionName])) {
                     require_once 'Zend/Config/Exception.php';
                     throw new Zend_Config_Exception(sprintf(
-                        'Section "%s" cannot be found', 
+                        'Section "%s" cannot be found',
                         implode(' ', (array)$section)
                     ));
                 }
@@ -214,7 +214,7 @@ class Zend_Config_Yaml extends Zend_Config
             if (!isset($config[$section])) {
                 require_once 'Zend/Config/Exception.php';
                 throw new Zend_Config_Exception(sprintf(
-                    'Section "%s" cannot be found', 
+                    'Section "%s" cannot be found',
                     implode(' ', (array)$section)
                 ));
             }
@@ -344,7 +344,8 @@ class Zend_Config_Yaml extends Zend_Config
                 require_once 'Zend/Config/Exception.php';
                 throw new Zend_Config_Exception(sprintf(
                     'Error parsing YAML at line %d - unsupported syntax: "%s"',
-                    $lineno, $line
+                    $lineno,
+                    $line
                 ));
             }
         }

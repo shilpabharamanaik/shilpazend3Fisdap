@@ -4,11 +4,10 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\OneToMany;
 use User\Entity\ProgramReport;
 
-
 /**
  * Class Reports
  *
- * 
+ *
  */
 trait Reports
 {
@@ -21,16 +20,16 @@ trait Reports
     
     public function getActiveReports($entitymanager = null)
     {
-		
         $active_reports = array();
-		echo "123"; var_dump($this->profession->id); die();
+        echo "123";
+        var_dump($this->profession->id);
+        die();
         // get all the reports available to this profession
-		if(null != $entitymanager){    
-			$reports = $entitymanager->getRepository(Reports::class)->getAvailableReportsByProfession($this->profession->id);					
-		}
-		else{
-			$reports = EntityUtils::getRepository('Reports')->getAvailableReportsByProfession($this->profession->id);
-		}
+        if (null != $entitymanager) {
+            $reports = $entitymanager->getRepository(Reports::class)->getAvailableReportsByProfession($this->profession->id);
+        } else {
+            $reports = EntityUtils::getRepository('Reports')->getAvailableReportsByProfession($this->profession->id);
+        }
         // loop through all available reports add the active ones
         foreach ($reports as $report) {
             // default to active in case there is no link

@@ -195,7 +195,7 @@ class Zend_Measure_Number extends Zend_Measure_Abstract
             throw new Zend_Measure_Exception('unknown type of number:' . $type);
         }
 
-        switch($type) {
+        switch ($type) {
             case 'BINARY':
                 preg_match('/[01]+/', $value, $ergebnis);
                 $value = $ergebnis[0];
@@ -284,9 +284,15 @@ class Zend_Measure_Number extends Zend_Measure_Abstract
             $length = strlen($input);
             for ($x = 0; $x < $length; ++$x) {
                 $split[$x] = hexdec($split[$x]);
-                $value     = call_user_func(Zend_Locale_Math::$add, $value,
-                            call_user_func(Zend_Locale_Math::$mul, $split[$x],
-                            call_user_func(Zend_Locale_Math::$pow, $this->_units[$type][0], ($length - $x - 1))));
+                $value     = call_user_func(
+                    Zend_Locale_Math::$add,
+                    $value,
+                            call_user_func(
+                                Zend_Locale_Math::$mul,
+                                $split[$x],
+                            call_user_func(Zend_Locale_Math::$pow, $this->_units[$type][0], ($length - $x - 1))
+                            )
+                );
             }
         }
 

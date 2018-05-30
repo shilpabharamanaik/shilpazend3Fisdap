@@ -46,7 +46,9 @@ class Zend_Queue_Stomp_Client
      * @param integer port
      */
     public function __construct(
-        $scheme = null, $host = null, $port = null,
+        $scheme = null,
+        $host = null,
+        $port = null,
         $connectionClass = 'Zend_Queue_Stomp_Client_Connection',
         $frameClass = 'Zend_Queue_Stomp_Frame'
     ) {

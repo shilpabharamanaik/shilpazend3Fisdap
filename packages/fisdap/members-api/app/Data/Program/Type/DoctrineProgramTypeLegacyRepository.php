@@ -3,7 +3,6 @@
 use Fisdap\Data\Repository\DoctrineRepository;
 use Fisdap\Data\Repository\RetrievesByName;
 
-
 /**
  * Class DoctrineProgramTypeLegacyRepository
  *

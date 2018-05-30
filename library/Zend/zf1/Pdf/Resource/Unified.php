@@ -35,4 +35,3 @@ require_once 'Zend/Pdf/Resource.php';
 class Zend_Pdf_Resource_Unified extends Zend_Pdf_Resource
 {
 }
-

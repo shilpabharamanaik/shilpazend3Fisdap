@@ -114,12 +114,14 @@ class Zend_Auth_Adapter_OpenId implements Zend_Auth_Adapter_Interface
      * @param Zend_Controller_Response_Abstract $response an optional response
      *        object to perform HTTP or HTML form redirection
      */
-    public function __construct($id = null,
+    public function __construct(
+        $id = null,
                                 Zend_OpenId_Consumer_Storage $storage = null,
                                 $returnTo = null,
                                 $root = null,
                                 $extensions = null,
-                                Zend_Controller_Response_Abstract $response = null) {
+                                Zend_Controller_Response_Abstract $response = null
+    ) {
         $this->_id         = $id;
         $this->_storage    = $storage;
         $this->_returnTo   = $returnTo;
@@ -218,7 +220,8 @@ class Zend_Auth_Adapter_OpenId implements Zend_Auth_Adapter_Interface
      *
      * @param Zend_Http_Client $client HTTP client object to be used
      */
-    public function setHttpClient($client) {
+    public function setHttpClient($client)
+    {
         $this->_httpClient = $client;
     }
 
@@ -229,33 +232,40 @@ class Zend_Auth_Adapter_OpenId implements Zend_Auth_Adapter_Interface
      * @throws Zend_Auth_Adapter_Exception If answering the authentication query is impossible
      * @return Zend_Auth_Result
      */
-    public function authenticate() {
+    public function authenticate()
+    {
         $id = $this->_id;
         if (!empty($id)) {
             $consumer = new Zend_OpenId_Consumer($this->_storage);
             $consumer->setHttpClient($this->_httpClient);
             /* login() is never returns on success */
             if (!$this->_check_immediate) {
-                if (!$consumer->login($id,
+                if (!$consumer->login(
+                    $id,
                         $this->_returnTo,
                         $this->_root,
                         $this->_extensions,
-                        $this->_response)) {
+                        $this->_response
+                )) {
                     return new Zend_Auth_Result(
                         Zend_Auth_Result::FAILURE,
                         $id,
-                        array("Authentication failed", $consumer->getError()));
+                        array("Authentication failed", $consumer->getError())
+                    );
                 }
             } else {
-                if (!$consumer->check($id,
+                if (!$consumer->check(
+                    $id,
                         $this->_returnTo,
                         $this->_root,
                         $this->_extensions,
-                        $this->_response)) {
+                        $this->_response
+                )) {
                     return new Zend_Auth_Result(
                         Zend_Auth_Result::FAILURE,
                         $id,
-                        array("Authentication failed", $consumer->getError()));
+                        array("Authentication failed", $consumer->getError())
+                    );
                 }
             }
         } else {
@@ -266,18 +276,20 @@ class Zend_Auth_Adapter_OpenId implements Zend_Auth_Adapter_Interface
             if ($consumer->verify(
                     $params,
                     $id,
-                    $this->_extensions)) {
+                    $this->_extensions
+            )) {
                 return new Zend_Auth_Result(
                     Zend_Auth_Result::SUCCESS,
                     $id,
-                    array("Authentication successful"));
+                    array("Authentication successful")
+                );
             } else {
                 return new Zend_Auth_Result(
                     Zend_Auth_Result::FAILURE,
                     $id,
-                    array("Authentication failed", $consumer->getError()));
+                    array("Authentication failed", $consumer->getError())
+                );
             }
         }
     }
-
 }

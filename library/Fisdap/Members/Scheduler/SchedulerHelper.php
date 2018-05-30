@@ -6,7 +6,6 @@ use Scheduler_View_Helper_CalendarView;
 use Util_Array;
 use Zend_Mime;
 
-
 /**
  * Class SchedulerHelper
  *
@@ -48,7 +47,8 @@ class SchedulerHelper
         $legend_switch = $options["legend_switch"];
         if ($legend_switch == 1) {
             $legend_html = $view->partial(
-                "scheduler-legend.phtml", array("isStudent" => $this->view->isStudent,
+                "scheduler-legend.phtml",
+                array("isStudent" => $this->view->isStudent,
                                                 "pdf"       => $view->pdf)
             );
         }
@@ -61,10 +61,17 @@ class SchedulerHelper
             $html .= "<div>";
             $html .= $pageHeader;
             $html .= "<h2 class='page-sub-title'>" . $this->getSectionHeader(
-                    $view_type, $section['start_date'], $section['end_date']
+                    $view_type,
+                $section['start_date'],
+                $section['end_date']
                 ) . "</h2>";
             $html .= $calViewHelper->getCalendarHtml(
-                $view_type, $section['start_date'], $section['end_date'], $filters, $view, $filter_set
+                $view_type,
+                $section['start_date'],
+                $section['end_date'],
+                $filters,
+                $view,
+                $filter_set
             );
             $html .= "<div class='clear'></div>";
 
@@ -140,7 +147,6 @@ class SchedulerHelper
 
         if (!$color) {
             $header .= "<link type='text/css' rel='stylesheet' media='screen' href='/css/library/Scheduler/View/Helper/calendar-view-greyscale.css'>\n";
-
         }
 
         $header .= "</head>\n";
@@ -230,7 +236,8 @@ class SchedulerHelper
             $certs = $filterInfo['all_available_certs']
                 ? $filterInfo['available_certs']
                 : implode(
-                    "/", $filterInfo['available_certs']
+                    "/",
+                    $filterInfo['available_certs']
                 );
             $header
                 .= "<h4 class='section-header no-border'>
@@ -246,7 +253,8 @@ class SchedulerHelper
             $certs = $filterInfo['all_chosen_certs']
                 ? $filterInfo['chosen_certs']
                 : implode(
-                    "/", $filterInfo['chosen_certs']
+                    "/",
+                    $filterInfo['chosen_certs']
                 );
             $header
                 .= "<h4 class='section-header no-border'>

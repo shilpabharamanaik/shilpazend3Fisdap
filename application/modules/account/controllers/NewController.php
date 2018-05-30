@@ -17,7 +17,6 @@ use Fisdap\Members\Commerce\Events\CustomerWasAdded;
 use Fisdap\Members\Commerce\Events\OrderWasCompleted;
 use Illuminate\Contracts\Events\Dispatcher;
 
-
 /**
  * Class Account_NewController
  */
@@ -73,7 +72,7 @@ class Account_NewController extends Fisdap_Controller_Base
 
                 //Redirect to the acct confirmation page if we have a product code
                 // also checks to see if it's a valid legacy product code
-                else if (ProductCode::getByProductCode($params['code']) || ProductCode::isLegacyProductCode($params['code'])) {
+                elseif (ProductCode::getByProductCode($params['code']) || ProductCode::isLegacyProductCode($params['code'])) {
                     $this->redirect("/account/new/confirm-account/?pc=" . $params['code']);
                 } else {
                     // if we got here something went wrong. the form should handle the validation
@@ -92,7 +91,7 @@ class Account_NewController extends Fisdap_Controller_Base
         // make sure we have a product code of some kind
         if ($this->getParam('pc')) {
             $code = $this->getParam('pc');
-        } else if ($this->getParam('productCode')) {
+        } elseif ($this->getParam('productCode')) {
             $code = $this->getParam('productCode');
         } else {
             $this->displayError("You've reached this page in error.");
@@ -204,10 +203,10 @@ class Account_NewController extends Fisdap_Controller_Base
             if ($product->category->id == 2 && !$testingFlag) {
                 $tutorialArray = array_merge($tutorialArray, $product->getTutorials());
                 $testingFlag = true;
-            } else if ($product->category->id == 3 && !$studyToolsFlag) {
+            } elseif ($product->category->id == 3 && !$studyToolsFlag) {
                 $tutorialArray = array_merge($tutorialArray, $product->getTutorials());
                 $studyToolsFlag = true;
-            } else if ($product->category->id != 2 && $product->category->id != 3) {
+            } elseif ($product->category->id != 2 && $product->category->id != 3) {
                 if ($product->getTutorials()) {
                     $tutorialArray = array_merge($tutorialArray, $product->getTutorials());
                 }
@@ -346,7 +345,6 @@ class Account_NewController extends Fisdap_Controller_Base
 
         $this->checkOrderPermissions($orderRepository->getOneById($orderId));
         $this->view->order = $orderRepository->getOneById($orderId);
-
     }
 
 
@@ -373,7 +371,6 @@ class Account_NewController extends Fisdap_Controller_Base
 
     private function getGroupFields($config)
     {
-
         $fields = array('First Name', 'Last Name', 'Username', 'Password', 'Email');
 
         if (!$config->onlyTransitionCourse() && !$config->onlyPreceptorTraining()) {
@@ -392,7 +389,6 @@ class Account_NewController extends Fisdap_Controller_Base
         }
 
         return $fields;
-
     }
 
 
@@ -417,7 +413,6 @@ class Account_NewController extends Fisdap_Controller_Base
         $count = 1;
 
         foreach ($configs as $config) {
-
             $list[] = array($this->getGroupDescription($config));
             $list[] = $this->getGroupFields($config);
 
@@ -611,7 +606,7 @@ class Account_NewController extends Fisdap_Controller_Base
         if ($request->isPost()) {
             if ($howWeGotHere == "Purchase more attempts >" || $howWeGotHere == "Upgrade account >") {
                 $this->redirect("/account/orders/upgrade-individual");
-            } else if ($howWeGotHere != "Purchase a New Account >") {
+            } elseif ($howWeGotHere != "Purchase a New Account >") {
                 if ($this->view->form->process($request->getPost()) === true) {
                     $this->redirect("/account/new/student-purchase/orderId/" . $this->view->form->orderId);
                 }
@@ -710,11 +705,12 @@ class Account_NewController extends Fisdap_Controller_Base
         $products = $productRepository->getProducts($this->view->orderConfig->configuration, true);
         $this->view->summary = $this->view->upgradeOrderSummary($products, $order->program->id);
 
-        if (!$request->isPost()) return;
+        if (!$request->isPost()) {
+            return;
+        }
 
         if ($this->view->form->process($request->getPost()) === true) {
             if ($order->completed) {
-
                 $this->session->unsetAll();
                 $idmsToken->clearIdmsToken();
 
@@ -762,8 +758,7 @@ class Account_NewController extends Fisdap_Controller_Base
         OrderConfigurationRepository $orderConfigurationRepository,
         ProgramLegacyRepository $programLegacyRepository,
         CertificationLevelRepository $certificationLevelRepository
-    )
-    {
+    ) {
         $code = $this->getParam('code');
         $productCode = ProductCode::getByProductCode($code);
 

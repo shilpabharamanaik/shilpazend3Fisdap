@@ -61,5 +61,5 @@ abstract class Zend_Amf_Parse_Deserializer
      * @param  int $typeMarker
      * @return mixed Whatever the data type is of the marker in php
      */
-    public abstract function readTypeMarker($markerType = null);
+    abstract public function readTypeMarker($markerType = null);
 }

@@ -49,7 +49,7 @@ class Zend_Tool_Framework_Client_Console_ArgumentParser implements Zend_Tool_Fra
      *
      * @var Zend_Tool_Framework_Manifest_Repository
      */
-      protected $_manifestRepository = null;
+    protected $_manifestRepository = null;
 
     /**
      * @var Zend_Tool_Framework_Client_Request
@@ -83,7 +83,7 @@ class Zend_Tool_Framework_Client_Console_ArgumentParser implements Zend_Tool_Fra
      * @param array $arguments
      * @return Zend_Tool_Framework_Client_Console_ArgumentParser
      */
-    public function setArguments(Array $arguments)
+    public function setArguments(array $arguments)
     {
         $this->_argumentsOriginal = $this->_argumentsWorking = $arguments;
         return $this;
@@ -115,7 +115,6 @@ class Zend_Tool_Framework_Client_Console_ArgumentParser implements Zend_Tool_Fra
      */
     public function parse()
     {
-
         if ($this->_request == null || $this->_response == null) {
             require_once 'Zend/Tool/Framework/Client/Exception.php';
             throw new Zend_Tool_Framework_Client_Exception('The client registry must have both a request and response registered.');
@@ -483,7 +482,6 @@ class Zend_Tool_Framework_Client_Console_ArgumentParser implements Zend_Tool_Fra
                 // then break out.
                 break;
             }
-
         }
 
         if ($wordStack && $wordArguments) {
@@ -533,7 +531,5 @@ class Zend_Tool_Framework_Client_Console_ArgumentParser implements Zend_Tool_Fra
         } else {
             $helpSystem->respondWithGeneralHelp();
         }
-
     }
-
 }

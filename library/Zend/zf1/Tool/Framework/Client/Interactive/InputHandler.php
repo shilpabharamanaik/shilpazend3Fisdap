@@ -69,6 +69,4 @@ class Zend_Tool_Framework_Client_Interactive_InputHandler
 
         return $inputResponse;
     }
-
-
 }

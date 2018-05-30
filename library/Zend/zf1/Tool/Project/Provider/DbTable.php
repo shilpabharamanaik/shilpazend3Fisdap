@@ -26,11 +26,8 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Project_Provider_DbTable
-    extends Zend_Tool_Project_Provider_Abstract
-    implements Zend_Tool_Framework_Provider_Pretendable
+class Zend_Tool_Project_Provider_DbTable extends Zend_Tool_Project_Provider_Abstract implements Zend_Tool_Framework_Provider_Pretendable
 {
-
     protected $_specialties = array('FromDatabase');
 
     /**
@@ -146,7 +143,7 @@ class Zend_Tool_Project_Provider_DbTable
     /**
      * @param string $module        Module name action should be applied to.
      * @param bool $forceOverwrite  Whether should force overwriting previous classes generated
-     * @return void 
+     * @return void
      */
     public function createFromDatabase($module = null, $forceOverwrite = false)
     {
@@ -169,7 +166,6 @@ class Zend_Tool_Project_Provider_DbTable
 
         $tableResources = array();
         foreach ($db->listTables() as $actualTableName) {
-
             $dbTableName = $this->_convertTableNameToClassName($actualTableName);
 
             if (!$forceOverwrite && self::hasResource($this->_loadedProfile, $dbTableName, $module)) {
@@ -193,13 +189,10 @@ class Zend_Tool_Project_Provider_DbTable
 
         // do the creation
         if ($this->_registry->getRequest()->isPretend()) {
-
             foreach ($tableResources as $tableResource) {
                 $this->_registry->getResponse()->appendContent('Would create a DbTable at '  . $tableResource->getContext()->getPath());
             }
-
         } else {
-
             foreach ($tableResources as $tableResource) {
                 $this->_registry->getResponse()->appendContent('Creating a DbTable at ' . $tableResource->getContext()->getPath());
                 $tableResource->create();
@@ -207,8 +200,6 @@ class Zend_Tool_Project_Provider_DbTable
 
             $this->_storeProfile();
         }
-
-
     }
 
     protected function _convertTableNameToClassName($tableName)
@@ -221,5 +212,4 @@ class Zend_Tool_Project_Provider_DbTable
 
         return $this->_nameFilter->filter($tableName);
     }
-
 }

@@ -2,7 +2,6 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface ProgramPreceptorLegacyRepository
  *
@@ -10,5 +9,4 @@ use Fisdap\Data\Repository\Repository;
  */
 interface ProgramPreceptorLegacyRepository extends Repository
 {
-
 }

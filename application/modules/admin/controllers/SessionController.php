@@ -21,6 +21,5 @@ class Admin_SessionController extends Fisdap_Controller_Private
         $this->view->oldsession = $_SESSION;
         $this->view->currentuser = $this->user;
         $this->view->currentcontext = $this->user->getCurrentUserContext();
-
     }
 }

@@ -283,7 +283,8 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
                                     'Could not load date due to unrecognised'
                                     .' format (should follow RFC 822 or 2822):'
                                     . $e->getMessage(),
-                                    0, $e
+                                    0,
+                                    $e
                                 );
                             }
                         }

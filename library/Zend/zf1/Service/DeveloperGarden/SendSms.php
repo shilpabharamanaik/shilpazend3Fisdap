@@ -53,8 +53,7 @@ require_once 'Zend/Service/DeveloperGarden/Request/SendSms/SendFlashSMS.php';
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_SendSms
-    extends Zend_Service_DeveloperGarden_Client_ClientAbstract
+class Zend_Service_DeveloperGarden_SendSms extends Zend_Service_DeveloperGarden_Client_ClientAbstract
 {
     /**
      * wsdl file
@@ -138,14 +137,14 @@ class Zend_Service_DeveloperGarden_SendSms
         );
         switch ($sms->getSmsType()) {
             // Sms
-            case 1 :
+            case 1:
                 $response = $client->sendSms($request);
                 break;
             // flashSms
-            case 2 :
+            case 2:
                 $response = $client->sendFlashSms($request);
                 break;
-            default : {
+            default: {
                 require_once 'Zend/Service/DeveloperGarden/Client/Exception.php';
                 throw new Zend_Service_DeveloperGarden_Client_Exception('Unknown SMS Type');
             }

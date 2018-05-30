@@ -133,8 +133,8 @@ class Zend_Service_Amazon_Sqs extends Zend_Service_Amazon_Abstract
 
     /**
      * Get the SQS endpoint
-     * 
-     * @return string 
+     *
+     * @return string
      */
     public function getEndpoint()
     {
@@ -199,7 +199,6 @@ class Zend_Service_Amazon_Sqs extends Zend_Service_Amazon_Abstract
             } else {
                 return (string) $result->CreateQueueResult->QueueUrl;
             }
-
         } while ($retry);
 
         return false;
@@ -289,7 +288,7 @@ class Zend_Service_Amazon_Sqs extends Zend_Service_Amazon_Abstract
         ) {
             require_once 'Zend/Service/Amazon/Sqs/Exception.php';
             throw new Zend_Service_Amazon_Sqs_Exception($result->Error->Code);
-        } else if ((string) $result->SendMessageResult->MD5OfMessageBody != $checksum) {
+        } elseif ((string) $result->SendMessageResult->MD5OfMessageBody != $checksum) {
             require_once 'Zend/Service/Amazon/Sqs/Exception.php';
             throw new Zend_Service_Amazon_Sqs_Exception('MD5 of body does not match message sent');
         }
@@ -397,9 +396,9 @@ class Zend_Service_Amazon_Sqs extends Zend_Service_Amazon_Abstract
             throw new Zend_Service_Amazon_Sqs_Exception($result->Error->Code);
         }
 
-        if(count($result->GetQueueAttributesResult->Attribute) > 1) {
+        if (count($result->GetQueueAttributesResult->Attribute) > 1) {
             $attr_result = array();
-            foreach($result->GetQueueAttributesResult->Attribute as $attribute) {
+            foreach ($result->GetQueueAttributesResult->Attribute as $attribute) {
                 $attr_result[(string)$attribute->Name] = (string)$attribute->Value;
             }
             return $attr_result;
@@ -519,8 +518,7 @@ class Zend_Service_Amazon_Sqs extends Zend_Service_Amazon_Abstract
         $data .= $this->_sqsEndpoint . "\n";
         if ($queue_url !== null) {
             $data .= parse_url($queue_url, PHP_URL_PATH);
-        }
-        else {
+        } else {
             $data .= '/';
         }
         $data .= "\n";
@@ -529,7 +527,7 @@ class Zend_Service_Amazon_Sqs extends Zend_Service_Amazon_Abstract
         unset($paramaters['Signature']);
 
         $arrData = array();
-        foreach($paramaters as $key => $value) {
+        foreach ($paramaters as $key => $value) {
             $arrData[] = $key . '=' . str_replace('%7E', '~', urlencode($value));
         }
 

@@ -2,7 +2,6 @@
 
 use Illuminate\Validation\ValidationServiceProvider as IlluminateValidationServiceProvider;
 
-
 /**
  * Class ValidationServiceProvider
  *

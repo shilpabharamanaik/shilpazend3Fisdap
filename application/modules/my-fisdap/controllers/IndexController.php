@@ -2,7 +2,6 @@
 
 class MyFisdap_IndexController extends Fisdap_Controller_Private
 {
-
     public function init()
     {
         parent::init();
@@ -26,5 +25,4 @@ class MyFisdap_IndexController extends Fisdap_Controller_Private
         $this->view->headScript()->appendFile("/js/jquery.cluetip.js");
         $this->view->headLink()->appendStylesheet("/css/jquery.cluetip.css");
     }
-
 }

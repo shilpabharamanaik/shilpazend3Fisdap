@@ -134,8 +134,10 @@ class Zend_Feed_Element implements ArrayAccess
     public function saveXml()
     {
         // Return a complete document including XML prologue.
-        $doc = new DOMDocument($this->_element->ownerDocument->version,
-                               $this->_element->ownerDocument->actualEncoding);
+        $doc = new DOMDocument(
+            $this->_element->ownerDocument->version,
+                               $this->_element->ownerDocument->actualEncoding
+        );
         $doc->appendChild($doc->importNode($this->_element, true));
         return $doc->saveXML();
     }
@@ -230,12 +232,17 @@ class Zend_Feed_Element implements ArrayAccess
         if (!$nodes) {
             if (strpos($var, ':') !== false) {
                 list($ns, $elt) = explode(':', $var, 2);
-                $node = $this->_element->ownerDocument->createElementNS(Zend_Feed::lookupNamespace($ns),
-                    $var, htmlspecialchars($val, ENT_NOQUOTES, $this->getEncoding()));
+                $node = $this->_element->ownerDocument->createElementNS(
+                    Zend_Feed::lookupNamespace($ns),
+                    $var,
+                    htmlspecialchars($val, ENT_NOQUOTES, $this->getEncoding())
+                );
                 $this->_element->appendChild($node);
             } else {
-                $node = $this->_element->ownerDocument->createElement($var,
-                    htmlspecialchars($val, ENT_NOQUOTES, $this->getEncoding()));
+                $node = $this->_element->ownerDocument->createElement(
+                    $var,
+                    htmlspecialchars($val, ENT_NOQUOTES, $this->getEncoding())
+                );
                 $this->_element->appendChild($node);
             }
         } elseif (count($nodes) > 1) {
@@ -433,5 +440,4 @@ class Zend_Feed_Element implements ArrayAccess
             return $this->_element->removeAttribute($offset);
         }
     }
-
 }

@@ -172,7 +172,7 @@ class User
      * @codeCoverageIgnore
      * @deprecated
      */
-     public $serial_numbers;
+    public $serial_numbers;
 
     /**
      * @var Staff|null

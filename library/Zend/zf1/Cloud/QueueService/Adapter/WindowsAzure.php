@@ -30,8 +30,7 @@ require_once 'Zend/Service/WindowsAzure/Storage/Queue.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Cloud_QueueService_Adapter_WindowsAzure
-    extends Zend_Cloud_QueueService_Adapter_AbstractAdapter
+class Zend_Cloud_QueueService_Adapter_WindowsAzure extends Zend_Cloud_QueueService_Adapter_AbstractAdapter
 {
     /**
      * Option array keys for the Windows Azure adapter.
@@ -98,7 +97,10 @@ class Zend_Cloud_QueueService_Adapter_WindowsAzure
         try {
             // TODO: support $usePathStyleUri and $retryPolicy
             $this->_storageClient = new Zend_Service_WindowsAzure_Storage_Queue(
-                $host, $options[self::ACCOUNT_NAME], $options[self::ACCOUNT_KEY]);
+                $host,
+                $options[self::ACCOUNT_NAME],
+                $options[self::ACCOUNT_KEY]
+            );
             // Parse other options
             if (! empty($options[self::PROXY_HOST])) {
                 $proxyHost = $options[self::PROXY_HOST];
@@ -109,10 +111,9 @@ class Zend_Cloud_QueueService_Adapter_WindowsAzure
             if (isset($options[self::HTTP_ADAPTER])) {
                 $this->_storageClient->setHttpClientChannel($httpAdapter);
             }
-        } catch(Zend_Service_WindowsAzure_Exception $e) {
+        } catch (Zend_Service_WindowsAzure_Exception $e) {
             throw new Zend_Cloud_QueueService_Exception('Error on create: '.$e->getMessage(), $e->getCode(), $e);
         }
-
     }
 
     /**
@@ -234,7 +235,9 @@ class Zend_Cloud_QueueService_Adapter_WindowsAzure
                 $queueId = $queueId->Name;
             }
             return $this->_storageClient->putMessage(
-                $queueId, $message, $options[self::MESSAGE_TTL]
+                $queueId,
+                $message,
+                $options[self::MESSAGE_TTL]
             );
         } catch (Zend_Service_WindowsAzure_Exception $e) {
             throw new Zend_Cloud_QueueService_Exception('Error on sending message: '.$e->getMessage(), $e->getCode(), $e);
@@ -330,7 +333,7 @@ class Zend_Cloud_QueueService_Adapter_WindowsAzure
         } catch (Zend_Service_WindowsAzure_Exception $e) {
             throw new Zend_Cloud_QueueService_Exception('Error on peeking messages: '.$e->getMessage(), $e->getCode(), $e);
         }
-   }
+    }
 
     /**
      * Get Azure implementation

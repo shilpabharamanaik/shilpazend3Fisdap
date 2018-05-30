@@ -20,7 +20,7 @@ return [
                     ],
                 ],
             ],
-			 'allreports' => [
+             'allreports' => [
                 'type'    => Segment::class,
                 'options' => [
                     'route' => '/reports',

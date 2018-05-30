@@ -33,36 +33,38 @@ require_once 'Zend/Service/WindowsAzure/Storage/TableEntity.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Service_WindowsAzure_Storage_DynamicTableEntity extends Zend_Service_WindowsAzure_Storage_TableEntity
-{   
+{
     /**
      * Dynamic properties
-     * 
+     *
      * @var array
      */
     protected $_dynamicProperties = array();
     
     /**
      * Magic overload for setting properties
-     * 
+     *
      * @param string $name     Name of the property
      * @param string $value    Value to set
      */
-    public function __set($name, $value) {      
+    public function __set($name, $value)
+    {
         $this->setAzureProperty($name, $value, null);
     }
 
     /**
      * Magic overload for getting properties
-     * 
+     *
      * @param string $name     Name of the property
      */
-    public function __get($name) {
+    public function __get($name)
+    {
         return $this->getAzureProperty($name);
     }
     
     /**
      * Set an Azure property
-     * 
+     *
      * @param string $name Property name
      * @param mixed $value Property value
      * @param string $type Property type (Edm.xxxx)
@@ -72,9 +74,9 @@ class Zend_Service_WindowsAzure_Storage_DynamicTableEntity extends Zend_Service_
     {
         if (strtolower($name) == 'partitionkey') {
             $this->setPartitionKey($value);
-        } else if (strtolower($name) == 'rowkey') {
+        } elseif (strtolower($name) == 'rowkey') {
             $this->setRowKey($value);
-        } else if (strtolower($name) == 'etag') {
+        } elseif (strtolower($name) == 'etag') {
             $this->setEtag($value);
         } else {
             if (!array_key_exists(strtolower($name), $this->_dynamicProperties)) {
@@ -83,11 +85,11 @@ class Zend_Service_WindowsAzure_Storage_DynamicTableEntity extends Zend_Service_
                     $type = 'Edm.String';
                     if (is_int($value)) {
                         $type = 'Edm.Int32';
-                    } else if (is_float($value)) {
+                    } elseif (is_float($value)) {
                         $type = 'Edm.Double';
-                    } else if (is_bool($value)) {
+                    } elseif (is_bool($value)) {
                         $type = 'Edm.Boolean';
-                    } else if ($value instanceof DateTime || $this->_convertToDateTime($value) !== false) {
+                    } elseif ($value instanceof DateTime || $this->_convertToDateTime($value) !== false) {
                         if (!$value instanceof DateTime) {
                             $value = $this->_convertToDateTime($value);
                         }
@@ -98,32 +100,32 @@ class Zend_Service_WindowsAzure_Storage_DynamicTableEntity extends Zend_Service_
                 // Set dynamic property
                 $this->_dynamicProperties[strtolower($name)] = (object)array(
                         'Name'  => $name,
-                    	'Type'  => $type,
-                    	'Value' => $value,
+                        'Type'  => $type,
+                        'Value' => $value,
                     );
             }
             
             // Set type?
             if (!is_null($type)) {
-            	$this->_dynamicProperties[strtolower($name)]->Type = $type;
-            	
-            	// Try to convert the type
-            	if ($type == 'Edm.Int32' || $type == 'Edm.Int64') {
-            		$value = intval($value);
-            	} else if ($type == 'Edm.Double') {
-            		$value = floatval($value);
-            	} else if ($type == 'Edm.Boolean') {
-            		if (!is_bool($value)) {
-            			$value = strtolower($value) == 'true';
-            		}
-            	} else if ($type == 'Edm.DateTime') {
-            		if (!$value instanceof DateTime) {
-                    	$value = $this->_convertToDateTime($value);
+                $this->_dynamicProperties[strtolower($name)]->Type = $type;
+                
+                // Try to convert the type
+                if ($type == 'Edm.Int32' || $type == 'Edm.Int64') {
+                    $value = intval($value);
+                } elseif ($type == 'Edm.Double') {
+                    $value = floatval($value);
+                } elseif ($type == 'Edm.Boolean') {
+                    if (!is_bool($value)) {
+                        $value = strtolower($value) == 'true';
                     }
-            	}
+                } elseif ($type == 'Edm.DateTime') {
+                    if (!$value instanceof DateTime) {
+                        $value = $this->_convertToDateTime($value);
+                    }
+                }
             }
        
-    		// Set value
+            // Set value
             $this->_dynamicProperties[strtolower($name)]->Value = $value;
         }
         return $this;
@@ -131,7 +133,7 @@ class Zend_Service_WindowsAzure_Storage_DynamicTableEntity extends Zend_Service_
     
     /**
      * Set an Azure property type
-     * 
+     *
      * @param string $name Property name
      * @param string $type Property type (Edm.xxxx)
      * @return Zend_Service_WindowsAzure_Storage_DynamicTableEntity
@@ -139,16 +141,16 @@ class Zend_Service_WindowsAzure_Storage_DynamicTableEntity extends Zend_Service_
     public function setAzurePropertyType($name, $type = 'Edm.String')
     {
         if (!array_key_exists(strtolower($name), $this->_dynamicProperties)) {
-            $this->setAzureProperty($name, '', $type);            
+            $this->setAzureProperty($name, '', $type);
         } else {
-            $this->_dynamicProperties[strtolower($name)]->Type = $type;   
+            $this->_dynamicProperties[strtolower($name)]->Type = $type;
         }
         return $this;
     }
     
     /**
      * Get an Azure property
-     * 
+     *
      * @param string $name Property name
      * @param mixed $value Property value
      * @param string $type Property type (Edm.xxxx)
@@ -167,7 +169,7 @@ class Zend_Service_WindowsAzure_Storage_DynamicTableEntity extends Zend_Service_
         }
 
         if (!array_key_exists(strtolower($name), $this->_dynamicProperties)) {
-            $this->setAzureProperty($name);            
+            $this->setAzureProperty($name);
         }
 
         return $this->_dynamicProperties[strtolower($name)]->Value;
@@ -175,14 +177,14 @@ class Zend_Service_WindowsAzure_Storage_DynamicTableEntity extends Zend_Service_
     
     /**
      * Get an Azure property type
-     * 
+     *
      * @param string $name Property name
      * @return string Property type (Edm.xxxx)
      */
     public function getAzurePropertyType($name)
     {
         if (!array_key_exists(strtolower($name), $this->_dynamicProperties)) {
-            $this->setAzureProperty($name, '', $type);            
+            $this->setAzureProperty($name, '', $type);
         }
         
         return $this->_dynamicProperties[strtolower($name)]->Type;
@@ -190,7 +192,7 @@ class Zend_Service_WindowsAzure_Storage_DynamicTableEntity extends Zend_Service_
     
     /**
      * Get Azure values
-     * 
+     *
      * @return array
      */
     public function getAzureValues()
@@ -200,7 +202,7 @@ class Zend_Service_WindowsAzure_Storage_DynamicTableEntity extends Zend_Service_
     
     /**
      * Set Azure values
-     * 
+     *
      * @param array $values
      * @param boolean $throwOnError Throw Zend_Service_WindowsAzure_Exception when a property is not specified in $values?
      * @throws Zend_Service_WindowsAzure_Exception
@@ -211,8 +213,7 @@ class Zend_Service_WindowsAzure_Storage_DynamicTableEntity extends Zend_Service_
         parent::setAzureValues($values, false);
         
         // Set current values
-        foreach ($values as $key => $value) 
-        {
+        foreach ($values as $key => $value) {
             $this->$key = $value;
         }
     }

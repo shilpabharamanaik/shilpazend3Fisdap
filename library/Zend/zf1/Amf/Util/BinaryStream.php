@@ -293,5 +293,4 @@ class Zend_Amf_Util_BinaryStream
         $this->_stream.= $stream;
         return $this;
     }
-
 }

@@ -7,7 +7,6 @@ use Fisdap_Controller_Base;
 use Zend\Authentication;
 use Zend_Session_Namespace;
 
-
 /**
  * Class CommonAuthController
  *

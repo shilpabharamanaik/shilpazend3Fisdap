@@ -93,5 +93,4 @@ abstract class Zend_CodeGenerator_Php_Abstract extends Zend_CodeGenerator_Abstra
     {
         return $this->_indentation;
     }
-
 }

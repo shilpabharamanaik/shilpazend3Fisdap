@@ -5,7 +5,6 @@ use Fisdap\Attachments\Core\LogsAttachmentEvents;
 use Fisdap\Attachments\Jobs\DeleteTempFiles;
 use League\Flysystem\FilesystemInterface;
 
-
 class DeleteTempFilesCest
 {
     /**

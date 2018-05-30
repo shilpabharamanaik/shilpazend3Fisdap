@@ -32,8 +32,7 @@ require_once 'Zend/Service/WindowsAzure/Storage/Table.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Cloud_DocumentService_Adapter_WindowsAzure
-    extends Zend_Cloud_DocumentService_Adapter_AbstractAdapter
+class Zend_Cloud_DocumentService_Adapter_WindowsAzure extends Zend_Cloud_DocumentService_Adapter_AbstractAdapter
 {
     /*
      * Options array keys for the Azure adapter.
@@ -124,7 +123,10 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
         // TODO: support $usePathStyleUri and $retryPolicy
         try {
             $this->_storageClient = new Zend_Service_WindowsAzure_Storage_Table(
-                    $host, $options[self::ACCOUNT_NAME], $options[self::ACCOUNT_KEY]);
+                    $host,
+                $options[self::ACCOUNT_NAME],
+                $options[self::ACCOUNT_KEY]
+            );
             // Parse other options
             if (! empty($options[self::PROXY_HOST])) {
                 $proxyHost = $options[self::PROXY_HOST];
@@ -135,7 +137,7 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
             if (isset($options[self::HTTP_ADAPTER])) {
                 $this->_storageClient->setHttpClientChannel($options[self::HTTP_ADAPTER]);
             }
-        } catch(Zend_Service_WindowsAzure_Exception $e) {
+        } catch (Zend_Service_WindowsAzure_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on document service creation: '.$e->getMessage(), $e->getCode(), $e);
         }
     }
@@ -177,7 +179,7 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
         }
         try {
             $this->_storageClient->createTable($name);
-        } catch(Zend_Service_WindowsAzure_Exception $e) {
+        } catch (Zend_Service_WindowsAzure_Exception $e) {
             if (strpos($e->getMessage(), "table specified already exists") === false) {
                 throw new Zend_Cloud_DocumentService_Exception('Error on collection creation: '.$e->getMessage(), $e->getCode(), $e);
             }
@@ -196,7 +198,7 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
     {
         try {
             $this->_storageClient->deleteTable($name);
-        } catch(Zend_Service_WindowsAzure_Exception $e) {
+        } catch (Zend_Service_WindowsAzure_Exception $e) {
             if (strpos($e->getMessage(), "does not exist") === false) {
                 throw new Zend_Cloud_DocumentService_Exception('Error on collection deletion: '.$e->getMessage(), $e->getCode(), $e);
             }
@@ -219,7 +221,7 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
                 $restables[] = $table->name;
             }
             return $restables;
-        } catch(Zend_Service_WindowsAzure_Exception $e) {
+        } catch (Zend_Service_WindowsAzure_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on collection list: '.$e->getMessage(), $e->getCode(), $e);
         }
 
@@ -239,7 +241,7 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
         if (!isset($document[Zend_Cloud_DocumentService_Document::KEY_FIELD])) {
             if (isset($document[self::ROW_KEY])) {
                 $rowKey = $document[self::ROW_KEY];
-                    unset($document[self::ROW_KEY]);
+                unset($document[self::ROW_KEY]);
                 if (isset($document[self::PARTITION_KEY])) {
                     $key = array($document[self::PARTITION_KEY], $rowKey);
                     unset($document[self::PARTITION_KEY]);
@@ -294,11 +296,10 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
         $this->_validateCompositeKey($key);
         $this->_validateFields($document);
         try {
-
             $entity = new Zend_Service_WindowsAzure_Storage_DynamicTableEntity($key[0], $key[1]);
             $entity->setAzureValues($document->getFields(), true);
             $this->_storageClient->insertEntity($collectionName, $entity);
-        } catch(Zend_Service_WindowsAzure_Exception $e) {
+        } catch (Zend_Service_WindowsAzure_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on document insertion: '.$e->getMessage(), $e->getCode(), $e);
         }
     }
@@ -332,7 +333,7 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
             }
 
             $this->_storageClient->updateEntity($collectionName, $entity, isset($options[self::VERIFY_ETAG]));
-        } catch(Zend_Service_WindowsAzure_Exception $e) {
+        } catch (Zend_Service_WindowsAzure_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on document replace: '.$e->getMessage(), $e->getCode(), $e);
         }
     }
@@ -377,7 +378,7 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
             }
 
             $this->_storageClient->mergeEntity($collectionName, $entity, isset($options[self::VERIFY_ETAG]));
-        } catch(Zend_Service_WindowsAzure_Exception $e) {
+        } catch (Zend_Service_WindowsAzure_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on document update: '.$e->getMessage(), $e->getCode(), $e);
         }
     }
@@ -403,7 +404,7 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
                 $entity->setEtag($options[self::VERIFY_ETAG]);
             }
             $this->_storageClient->deleteEntity($collectionName, $entity, isset($options[self::VERIFY_ETAG]));
-        } catch(Zend_Service_WindowsAzure_Exception $e) {
+        } catch (Zend_Service_WindowsAzure_Exception $e) {
             if (strpos($e->getMessage(), "does not exist") === false) {
                 throw new Zend_Cloud_DocumentService_Exception('Error on document deletion: '.$e->getMessage(), $e->getCode(), $e);
             }
@@ -459,7 +460,7 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
                     array($entity->getPartitionKey(), $entity->getRowKey())
                 );
             }
-        } catch(Zend_Service_WindowsAzure_Exception $e) {
+        } catch (Zend_Service_WindowsAzure_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on document query: '.$e->getMessage(), $e->getCode(), $e);
         }
 

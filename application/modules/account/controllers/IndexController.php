@@ -2,7 +2,6 @@
 
 class Account_IndexController extends Fisdap_Controller_Private
 {
-
     public function init()
     {
         /* Initialize action controller here */
@@ -38,15 +37,14 @@ class Account_IndexController extends Fisdap_Controller_Private
     {
         // action body
 
-        $dummyStudentID = NULL; // this hook is not associated with a given user
-        $dummyShiftID = NULL; // this hook is not associated with a given shift
+        $dummyStudentID = null; // this hook is not associated with a given user
+        $dummyShiftID = null; // this hook is not associated with a given shift
         $dummyHookID = 120; // globl program hook
 
         $this->view->evalListLink = Util_GetLegacyTopNavLinks::getLink(Util_GetLegacyTopNavLinks::EVAL_LIST, $this->view->serverUrl());
         $this->view->studentID = $dummyStudentID;
         $this->view->shiftID = $dummyShiftID;
         $this->view->hookID = $dummyHookID;
-
     }
 
     public function guidedTourTestAction()
@@ -67,7 +65,4 @@ class Account_IndexController extends Fisdap_Controller_Private
 
         $this->view->tour = new Fisdap_View_Helper_GuidedTourHelper();
     }
-
-
 }
-

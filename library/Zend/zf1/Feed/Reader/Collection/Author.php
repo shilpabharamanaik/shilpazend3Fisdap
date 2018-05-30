@@ -30,8 +30,7 @@ require_once 'Zend/Feed/Reader/Collection/CollectionAbstract.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Reader_Collection_Author
-extends Zend_Feed_Reader_Collection_CollectionAbstract
+class Zend_Feed_Reader_Collection_Author extends Zend_Feed_Reader_Collection_CollectionAbstract
 {
 
     /**
@@ -40,12 +39,12 @@ extends Zend_Feed_Reader_Collection_CollectionAbstract
      *
      * @return array
      */
-    public function getValues() {
+    public function getValues()
+    {
         $authors = array();
         foreach ($this->getIterator() as $element) {
             $authors[] = $element['name'];
         }
         return array_unique($authors);
     }
-
 }

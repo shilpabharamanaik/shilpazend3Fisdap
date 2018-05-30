@@ -6,7 +6,6 @@ use Zend_Registry;
 use Fisdap\Attachments\Repository\AttachmentsRepository;
 use Fisdap\Attachments\Entity\Attachment;
 
-
 /**
  * Provides attachment repositories
  *
@@ -28,4 +27,4 @@ class AttachmentsRepositoryServiceProvider extends ServiceProvider
             }
         );
     }
-} 
+}

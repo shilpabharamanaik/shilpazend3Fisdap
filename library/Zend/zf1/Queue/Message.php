@@ -38,13 +38,13 @@ class Zend_Queue_Message
      */
     protected $_data = array();
 
-     /**
-     * Connected is true if we have a reference to a live
-     * Zend_Queue_Adapter_Abstract object.
-     * This is false after the Message has been deserialized.
-     *
-     * @var boolean
-     */
+    /**
+    * Connected is true if we have a reference to a live
+    * Zend_Queue_Adapter_Abstract object.
+    * This is false after the Message has been deserialized.
+    *
+    * @var boolean
+    */
     protected $_connected = true;
 
     /**
@@ -166,11 +166,11 @@ class Zend_Queue_Message
         $this->_connected = false;
     }
 
-     /**
-     * Returns the queue object, or null if this is disconnected message
-     *
-     * @return Zend_Queue|null
-     */
+    /**
+    * Returns the queue object, or null if this is disconnected message
+    *
+    * @return Zend_Queue|null
+    */
     public function getQueue()
     {
         return $this->_queue;

@@ -183,4 +183,3 @@ class Zend_Service_DeveloperGarden_Credential
         return $this->_realm;
     }
 }
-

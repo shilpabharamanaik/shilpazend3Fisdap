@@ -7,13 +7,12 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface RunRepository
  *
  * @package Fisdap\Data\Run
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface RunRepository extends Repository {
-
+interface RunRepository extends Repository
+{
 }

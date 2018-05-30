@@ -32,8 +32,7 @@ require_once 'Zend/Date.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Reader_Extension_Syndication_Feed
-    extends Zend_Feed_Reader_Extension_FeedAbstract
+class Zend_Feed_Reader_Extension_Syndication_Feed extends Zend_Feed_Reader_Extension_FeedAbstract
 {
     /**
      * Get update period
@@ -49,15 +48,15 @@ class Zend_Feed_Reader_Extension_Syndication_Feed
             return 'daily'; //Default specified by spec
         }
 
-        switch ($period)
-        {
+        switch ($period) {
             case 'hourly':
             case 'daily':
             case 'weekly':
             case 'yearly':
                 return $period;
             default:
-                throw new Zend_Feed_Exception("Feed specified invalid update period: '$period'."
+                throw new Zend_Feed_Exception(
+                    "Feed specified invalid update period: '$period'."
                     .  " Must be one of hourly, daily, weekly or yearly"
                 );
         }
@@ -97,15 +96,17 @@ class Zend_Feed_Reader_Extension_Syndication_Feed
         $period = $this->getUpdatePeriod();
         $ticks = 1;
 
-        switch ($period)
-        {
+        switch ($period) {
             //intentional fall through
             case 'yearly':
                 $ticks *= 52; //TODO: fix generalisation, how?
+                // no break
             case 'weekly':
                 $ticks *= 7;
+                // no break
             case 'daily':
                 $ticks *= 24;
+                // no break
             case 'hourly':
                 $ticks *= 3600;
                 break;

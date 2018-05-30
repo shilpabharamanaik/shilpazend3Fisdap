@@ -32,7 +32,6 @@ require_once 'Zend/Filter/PregReplace.php';
  */
 class Zend_Filter_Word_SeparatorToSeparator extends Zend_Filter_PregReplace
 {
-
     protected $_searchSeparator = null;
     protected $_replacementSeparator = null;
 
@@ -125,5 +124,4 @@ class Zend_Filter_Word_SeparatorToSeparator extends Zend_Filter_PregReplace
         $this->setReplacement($this->_replacementSeparator);
         return parent::filter($value);
     }
-
 }

@@ -108,7 +108,8 @@ class Zend_Service_Technorati_CosmosResult extends Zend_Service_Technorati_Resul
      *
      * @return  Zend_Service_Technorati_Weblog
      */
-    public function getWeblog() {
+    public function getWeblog()
+    {
         return $this->_weblog;
     }
 
@@ -117,7 +118,8 @@ class Zend_Service_Technorati_CosmosResult extends Zend_Service_Technorati_Resul
      *
      * @return  Zend_Uri_Http
      */
-    public function getNearestPermalink() {
+    public function getNearestPermalink()
+    {
         return $this->_nearestPermalink;
     }
 
@@ -126,7 +128,8 @@ class Zend_Service_Technorati_CosmosResult extends Zend_Service_Technorati_Resul
      *
      * @return  string
      */
-    public function getExcerpt() {
+    public function getExcerpt()
+    {
         return $this->_excerpt;
     }
 
@@ -135,7 +138,8 @@ class Zend_Service_Technorati_CosmosResult extends Zend_Service_Technorati_Resul
      *
      * @return  Zend_Date
      */
-    public function getLinkCreated() {
+    public function getLinkCreated()
+    {
         return $this->_linkCreated;
     }
 
@@ -145,8 +149,8 @@ class Zend_Service_Technorati_CosmosResult extends Zend_Service_Technorati_Resul
      *
      * @return  Zend_Uri_Http
      */
-    public function getLinkUrl() {
+    public function getLinkUrl()
+    {
         return $this->_linkUrl;
     }
-
 }

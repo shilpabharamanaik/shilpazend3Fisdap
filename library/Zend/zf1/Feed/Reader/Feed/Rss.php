@@ -244,7 +244,8 @@ class Zend_Feed_Reader_Feed_Rss extends Zend_Feed_Reader_FeedAbstract
                                     'Could not load date due to unrecognised'
                                     .' format (should follow RFC 822 or 2822):'
                                     . $e->getMessage(),
-                                    0, $e
+                                    0,
+                                    $e
                                 );
                             }
                         }
@@ -306,7 +307,8 @@ class Zend_Feed_Reader_Feed_Rss extends Zend_Feed_Reader_FeedAbstract
                                     'Could not load date due to unrecognised'
                                     .' format (should follow RFC 822 or 2822):'
                                     . $e->getMessage(),
-                                    0, $e
+                                    0,
+                                    $e
                                 );
                             }
                         }
@@ -707,7 +709,7 @@ class Zend_Feed_Reader_Feed_Rss extends Zend_Feed_Reader_FeedAbstract
             $entries = $this->_xpath->evaluate('//rss:item');
         }
 
-        foreach($entries as $index=>$entry) {
+        foreach ($entries as $index=>$entry) {
             $this->_entries[$index] = $entry;
         }
     }

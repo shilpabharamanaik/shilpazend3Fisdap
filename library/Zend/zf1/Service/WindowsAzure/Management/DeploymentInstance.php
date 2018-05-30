@@ -31,7 +31,7 @@ require_once 'Zend/Service/WindowsAzure/Management/ServiceEntityAbstract.php';
  * @subpackage Management
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * 
+ *
  * @property string $Name            The name for the deployment. This name must be unique among other deployments for the specified hosted service.
  * @property string $DeploymentSlot  The environment to which the hosted service is deployed, either staging or production.
  * @property string $PrivateID       The unique identifier for this deployment.
@@ -47,12 +47,11 @@ require_once 'Zend/Service/WindowsAzure/Management/ServiceEntityAbstract.php';
  * @property array  $RoleInstanceList           The list of role instances.
  * @property array  $RoleList                   The list of roles.
  */
-class Zend_Service_WindowsAzure_Management_DeploymentInstance
-	extends Zend_Service_WindowsAzure_Management_ServiceEntityAbstract
-{    
+class Zend_Service_WindowsAzure_Management_DeploymentInstance extends Zend_Service_WindowsAzure_Management_ServiceEntityAbstract
+{
     /**
      * Constructor
-     * 
+     *
      * @param string $name            The name for the deployment. This name must be unique among other deployments for the specified hosted service.
      * @param string $deploymentSlot  The environment to which the hosted service is deployed, either staging or production.
      * @param string $privateID       The unique identifier for this deployment.
@@ -67,9 +66,9 @@ class Zend_Service_WindowsAzure_Management_DeploymentInstance
      * @param string $upgradeDomainCount         An integer value that indicates the number of upgrade domains in the deployment.
      * @param array  $roleInstanceList           The list of role instances.
      * @param array  $roleList                   The list of roles.
-	 */
-    public function __construct($name, $deploymentSlot, $privateID, $label, $url, $configuration, $status, $upgradeStatus, $upgradeType, $currentUpgradeDomainState, $currentUpgradeDomain, $upgradeDomainCount, $roleInstanceList = array(), $roleList = array()) 
-    {	        
+     */
+    public function __construct($name, $deploymentSlot, $privateID, $label, $url, $configuration, $status, $upgradeStatus, $upgradeType, $currentUpgradeDomainState, $currentUpgradeDomain, $upgradeDomainCount, $roleInstanceList = array(), $roleList = array())
+    {
         $this->_data = array(
             'name'                        => $name,
             'deploymentslot'              => $deploymentSlot,
@@ -84,7 +83,7 @@ class Zend_Service_WindowsAzure_Management_DeploymentInstance
             'currentupgradedomain'        => $currentUpgradeDomain,
             'upgradedomaincount'          => $upgradeDomainCount,
             'roleinstancelist'            => $roleInstanceList,
-            'rolelist'                    => $roleList    
+            'rolelist'                    => $roleList
         );
     }
 }

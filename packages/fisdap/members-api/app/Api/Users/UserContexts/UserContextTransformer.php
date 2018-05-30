@@ -10,7 +10,6 @@ use Fisdap\Entity\StudentLegacy;
 use Fisdap\Entity\UserContext;
 use Fisdap\Fractal\Transformer;
 
-
 /**
  * Prepares user context data for JSON output
  *
@@ -69,7 +68,9 @@ final class UserContextTransformer extends Transformer
     {
         $certificationLevel = $userContext instanceof UserContext ? $userContext->getCertificationLevel() : $userContext['certification_level'];
 
-        if (empty($certificationLevel)) return;
+        if (empty($certificationLevel)) {
+            return;
+        }
 
         return $this->item($certificationLevel, new CertificationLevelTransformer);
     }
@@ -133,4 +134,4 @@ final class UserContextTransformer extends Transformer
 
         return null;
     }
-} 
+}

@@ -148,7 +148,6 @@ class Zend_Service_SlideShare
      */
     public function getHttpClient()
     {
-
         if (!($this->_httpclient instanceof Zend_Http_Client)) {
             $client = new Zend_Http_Client();
             $client->setConfig(
@@ -187,7 +186,6 @@ class Zend_Service_SlideShare
      */
     public function getCacheObject()
     {
-
         if (!($this->_cacheobject instanceof Zend_Cache_Core)) {
             $cache = Zend_Cache::factory(
                 'Core',
@@ -302,9 +300,11 @@ class Zend_Service_SlideShare
      * @param string $password     The password
      */
     public function __construct(
-        $apikey, $sharedSecret, $username = null, $password = null
-    )
-    {
+        $apikey,
+        $sharedSecret,
+        $username = null,
+        $password = null
+    ) {
         $this->setApiKey($apikey)
             ->setSharedSecret($sharedSecret)
             ->setUserName($username)
@@ -328,9 +328,9 @@ class Zend_Service_SlideShare
      * @throws Zend_Service_SlideShare_Exception
      */
     public function uploadSlideShow(
-        Zend_Service_SlideShare_SlideShow $ss, $makeSrcPublic = true
-    )
-    {
+        Zend_Service_SlideShare_SlideShow $ss,
+        $makeSrcPublic = true
+    ) {
         $timestamp = time();
 
         $params = array(
@@ -381,7 +381,9 @@ class Zend_Service_SlideShare
         } catch (Zend_Http_Client_Exception $e) {
             require_once 'Zend/Service/SlideShare/Exception.php';
             throw new Zend_Service_SlideShare_Exception(
-                "Service Request Failed: {$e->getMessage()}", 0, $e
+                "Service Request Failed: {$e->getMessage()}",
+                0,
+                $e
             );
         }
 
@@ -442,7 +444,9 @@ class Zend_Service_SlideShare
             } catch (Zend_Http_Client_Exception $e) {
                 require_once 'Zend/Service/SlideShare/Exception.php';
                 throw new Zend_Service_SlideShare_Exception(
-                    "Service Request Failed: {$e->getMessage()}", 0, $e
+                    "Service Request Failed: {$e->getMessage()}",
+                    0,
+                    $e
                 );
             }
 
@@ -481,11 +485,15 @@ class Zend_Service_SlideShare
      * @return array An array of Zend_Service_SlideShare_SlideShow objects
      */
     public function getSlideShowsByUsername(
-        $username, $offset = null, $limit = null
-    )
-    {
+        $username,
+        $offset = null,
+        $limit = null
+    ) {
         return $this->_getSlideShowsByType(
-            'username_for', $username, $offset, $limit
+            'username_for',
+            $username,
+            $offset,
+            $limit
         );
     }
 
@@ -499,7 +507,6 @@ class Zend_Service_SlideShare
      */
     public function getSlideShowsByTag($tag, $offset = null, $limit = null)
     {
-
         if (is_array($tag)) {
             $tmp = array();
             foreach ($tag as $t) {
@@ -537,9 +544,11 @@ class Zend_Service_SlideShare
      * @throws Zend_Service_SlideShare_Exception
      */
     protected function _getSlideShowsByType(
-        $key, $value, $offset = null, $limit = null
-    )
-    {
+        $key,
+        $value,
+        $offset = null,
+        $limit = null
+    ) {
         $key = strtolower($key);
 
         switch ($key) {
@@ -594,7 +603,9 @@ class Zend_Service_SlideShare
             } catch (Zend_Http_Client_Exception $e) {
                 require_once 'Zend/Service/SlideShare/Exception.php';
                 throw new Zend_Service_SlideShare_Exception(
-                    "Service Request Failed: {$e->getMessage()}", 0, $e
+                    "Service Request Failed: {$e->getMessage()}",
+                    0,
+                    $e
                 );
             }
 
@@ -605,7 +616,8 @@ class Zend_Service_SlideShare
                 list($code, $errorStr) = explode(':', $message);
                 require_once 'Zend/Service/SlideShare/Exception.php';
                 throw new Zend_Service_SlideShare_Exception(
-                    trim($errorStr), $code
+                    trim($errorStr),
+                    $code
                 );
             }
 
@@ -642,7 +654,6 @@ class Zend_Service_SlideShare
      */
     protected function _slideShowNodeToObject(SimpleXMLElement $node)
     {
-
         if ($node->getName() == 'Slideshow') {
             $ss = new Zend_Service_SlideShare_SlideShow();
 

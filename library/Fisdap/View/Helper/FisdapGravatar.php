@@ -19,7 +19,7 @@
  *
  * @return Profile picture
  */
-class Zend_View_Helper_FisdapGravatar extends Zend_View_Helper_Abstract 
+class Zend_View_Helper_FisdapGravatar extends Zend_View_Helper_Abstract
 {
     protected $_html;
     
@@ -31,7 +31,7 @@ class Zend_View_Helper_FisdapGravatar extends Zend_View_Helper_Abstract
         $this->_html .= $this->view->gravatar($email, array('imgSize' => 195, 'secure' => true));
         
         if (!$user || $email == $user->email) {
-            if ($this->hasGravatar($email)){
+            if ($this->hasGravatar($email)) {
                 $this->_html .= "<br /><a target='_blank' href='https://en.gravatar.com/" . md5($email) . "'>Edit image</a>";
             } else {
                 $this->_html .= "<br /><a target='_blank' href='https://en.gravatar.com/connect/?source=_signup&email=$email'>Add a photo!</a>";
@@ -49,9 +49,9 @@ class Zend_View_Helper_FisdapGravatar extends Zend_View_Helper_Abstract
         $headers = @get_headers($uri);
         
         if (!preg_match("|200|", $headers[0])) {
-            $has_valid_avatar = FALSE;
+            $has_valid_avatar = false;
         } else {
-            $has_valid_avatar = TRUE;
+            $has_valid_avatar = true;
         }
         
         return $has_valid_avatar;

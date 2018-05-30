@@ -1,14 +1,15 @@
 <?php
 
-class Exchange_View_Helper_ScenarioListHelper extends Zend_View_Helper_Abstract 
-{ 
-    function scenarioListHelper($scenarioList, $isUserlist, $isStaff=false) { 
+class Exchange_View_Helper_ScenarioListHelper extends Zend_View_Helper_Abstract
+{
+    public function scenarioListHelper($scenarioList, $isUserlist, $isStaff=false)
+    {
         $html = "";
         
-        if($isUserlist){
-        	$html .= "<h2 class='page-sub-title'>Your scenarios</h2>";
-        }else{
-        	$html .= "<h2 class='page-sub-title'>Available for review</h2>";
+        if ($isUserlist) {
+            $html .= "<h2 class='page-sub-title'>Your scenarios</h2>";
+        } else {
+            $html .= "<h2 class='page-sub-title'>Available for review</h2>";
         }
         
         $html .= "
@@ -22,63 +23,63 @@ class Exchange_View_Helper_ScenarioListHelper extends Zend_View_Helper_Abstract
         			</thead>
         ";
         
-        foreach($scenarioList as $scenario){
-        	$html .= "<tr>";
+        foreach ($scenarioList as $scenario) {
+            $html .= "<tr>";
         
-        	$validIcon = "pending";
+            $validIcon = "pending";
         
-        	switch($scenario->state->name){
-        		case "Valid":
-        			$validIcon = "valid";
-        			break;
-        		case "Invalid":
-        			$validIcon = "invalid";
-        			break;
-        	}
+            switch ($scenario->state->name) {
+                case "Valid":
+                    $validIcon = "valid";
+                    break;
+                case "Invalid":
+                    $validIcon = "invalid";
+                    break;
+            }
         
-        	$html .= "<td><img src='/images/icons/scenario-" . $validIcon . ".png' /></td>";
-        	$html .= "<td>" . $scenario->title . "</td>";
-        	
-        	$description = $scenario->getDescription();
-        	
-        	$html .= "<td>" . $description . "</td>";
-        	
-        	$html .= "<td>";
-        	
-        	$editImage = "/images/icons/edit.png";
-        	$editAlttext = "Edit";
-        	
-        	if(!$isUserlist){
-        		$editImage = "/images/icons/scores.png";
-        		
-        		if($isStaff){
-        			// Show the counts of all reviews...
-	        		if(count($scenario->reviews) > 0){
-	        			$editImage = "/images/icons/scores_black.png";
-	        			$editAlttext = count($scenario->reviews) . " Review(s)";
-	        		}
-        		}else{
-        			$repo = \Fisdap\EntityUtils::getRepository('ScenarioReview');
-        			$review = $repo->findOneBy(array('reviewer' => \Fisdap\Entity\User::getLoggedInUser(), 'scenario' => $scenario));
-        			
-        			if($review){
-        				$editImage = "/images/icons/scores_black.png";
-        				$editAlttext = "Edit Review";
-        			}else{
-        				$editAlttext = "Add Review";
-        			}
-        		}
-        	}
-        	
-        	$html .= "<a id='edit_button' class='edit_button' data-scenarioid='" . $scenario->id . "' href='#'><img src='{$editImage}' class='tool_icon' alt='{$editAlttext}' title='{$editAlttext}' /></a>";
-        	
-        	if($isStaff){
-        		$html .= " <a id='delete_button' class='delete_button' data-scenarioid='" . $scenario->id . "' href='#'><img src='/images/icons/delete.png' class='tool_icon' alt='Delete' title='Delete' /></a>";
-        	}
-        	
-        	$html .= "</td>";
-        	
-        	$html .= "</tr>";
+            $html .= "<td><img src='/images/icons/scenario-" . $validIcon . ".png' /></td>";
+            $html .= "<td>" . $scenario->title . "</td>";
+            
+            $description = $scenario->getDescription();
+            
+            $html .= "<td>" . $description . "</td>";
+            
+            $html .= "<td>";
+            
+            $editImage = "/images/icons/edit.png";
+            $editAlttext = "Edit";
+            
+            if (!$isUserlist) {
+                $editImage = "/images/icons/scores.png";
+                
+                if ($isStaff) {
+                    // Show the counts of all reviews...
+                    if (count($scenario->reviews) > 0) {
+                        $editImage = "/images/icons/scores_black.png";
+                        $editAlttext = count($scenario->reviews) . " Review(s)";
+                    }
+                } else {
+                    $repo = \Fisdap\EntityUtils::getRepository('ScenarioReview');
+                    $review = $repo->findOneBy(array('reviewer' => \Fisdap\Entity\User::getLoggedInUser(), 'scenario' => $scenario));
+                    
+                    if ($review) {
+                        $editImage = "/images/icons/scores_black.png";
+                        $editAlttext = "Edit Review";
+                    } else {
+                        $editAlttext = "Add Review";
+                    }
+                }
+            }
+            
+            $html .= "<a id='edit_button' class='edit_button' data-scenarioid='" . $scenario->id . "' href='#'><img src='{$editImage}' class='tool_icon' alt='{$editAlttext}' title='{$editAlttext}' /></a>";
+            
+            if ($isStaff) {
+                $html .= " <a id='delete_button' class='delete_button' data-scenarioid='" . $scenario->id . "' href='#'><img src='/images/icons/delete.png' class='tool_icon' alt='Delete' title='Delete' /></a>";
+            }
+            
+            $html .= "</td>";
+            
+            $html .= "</tr>";
         }
         
         $html .= "
@@ -88,5 +89,5 @@ class Exchange_View_Helper_ScenarioListHelper extends Zend_View_Helper_Abstract
         ";
         
         return $html;
-    } 
+    }
 }

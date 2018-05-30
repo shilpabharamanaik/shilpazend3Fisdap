@@ -49,7 +49,9 @@ class Zend_Ldap_Converter
             $char = substr($string, $i, 1);
             if (ord($char)<32) {
                 $hex = dechex(ord($char));
-                if (strlen($hex) == 1) $hex = '0' . $hex;
+                if (strlen($hex) == 1) {
+                    $hex = '0' . $hex;
+                }
                 $string = str_replace($char, '\\' . $hex, $string);
             }
         }
@@ -112,21 +114,21 @@ class Zend_Ldap_Converter
                 default:
                     if (is_string($value)) {
                         return $value;
-                    } else if (is_int($value) || is_float($value)) {
+                    } elseif (is_int($value) || is_float($value)) {
                         return (string)$value;
-                    } else if (is_bool($value)) {
+                    } elseif (is_bool($value)) {
                         return self::toldapBoolean($value);
-                    } else if (is_object($value)) {
+                    } elseif (is_object($value)) {
                         if ($value instanceof DateTime) {
                             return self::toLdapDatetime($value);
-                        } else if ($value instanceof Zend_Date) {
+                        } elseif ($value instanceof Zend_Date) {
                             return self::toLdapDatetime($value);
                         } else {
                             return self::toLdapSerialize($value);
                         }
-                    } else if (is_array($value)) {
+                    } elseif (is_array($value)) {
                         return self::toLdapSerialize($value);
-                    } else if (is_resource($value) && get_resource_type($value) === 'stream') {
+                    } elseif (is_resource($value) && get_resource_type($value) === 'stream') {
                         return stream_get_contents($value);
                     } else {
                         return null;
@@ -157,9 +159,9 @@ class Zend_Ldap_Converter
             if (is_int($date)) {
                 $date = new DateTime('@' . $date);
                 $date->setTimezone(new DateTimeZone(date_default_timezone_get()));
-            } else if (is_string($date)) {
+            } elseif (is_string($date)) {
                 $date = new DateTime($date);
-            } else if ($date instanceof Zend_Date) {
+            } elseif ($date instanceof Zend_Date) {
                 $date = new DateTime($date->get(Zend_Date::ISO_8601));
             } else {
                 throw new InvalidArgumentException('Parameter $date is not of the expected type');
@@ -170,7 +172,7 @@ class Zend_Ldap_Converter
             $date->setTimezone(new DateTimeZone('UTC'));
             $timezone = 'Z';
         }
-        if ( '+0000' === $timezone ) {
+        if ('+0000' === $timezone) {
             $timezone = 'Z';
         }
         return $date->format('YmdHis') . $timezone;
@@ -234,7 +236,7 @@ class Zend_Ldap_Converter
                 if (is_numeric($value)) {
                     // prevent numeric values to be treated as date/time
                     return $value;
-                } else if ('TRUE' === $value || 'FALSE' === $value) {
+                } elseif ('TRUE' === $value || 'FALSE' === $value) {
                     return self::fromLdapBoolean($value);
                 }
                 if (preg_match('/^\d{4}[\d\+\-Z\.]*$/', $value)) {
@@ -242,7 +244,8 @@ class Zend_Ldap_Converter
                 }
                 try {
                     return self::fromLdapUnserialize($value);
-                } catch (UnexpectedValueException $e) { }
+                } catch (UnexpectedValueException $e) {
+                }
                 break;
         }
         return $value;
@@ -260,8 +263,8 @@ class Zend_Ldap_Converter
      */
     public static function fromLdapDateTime($date, $asUtc = true)
     {
-        $datepart = array ();
-        if (!preg_match('/^(\d{4})/', $date, $datepart) ) {
+        $datepart = array();
+        if (!preg_match('/^(\d{4})/', $date, $datepart)) {
             throw new InvalidArgumentException('Invalid date format found');
         }
 
@@ -269,7 +272,7 @@ class Zend_Ldap_Converter
             throw new InvalidArgumentException('Invalid date format found (too short)');
         }
 
-        $time = array (
+        $time = array(
             // The year is mandatory!
             'year'   => $datepart[1],
             'month'  => 1,
@@ -331,7 +334,7 @@ class Zend_Ldap_Converter
 
         // Set Offset
         $offsetRegEx = '/([Z\-\+])(\d{2}\'?){0,1}(\d{2}\'?){0,1}$/';
-        $off         = array ();
+        $off         = array();
         if (preg_match($offsetRegEx, $date, $off)) {
             $offset = $off[1];
             if ($offset == '+' || $offset == '-') {
@@ -356,8 +359,8 @@ class Zend_Ldap_Converter
 
         // Raw-Data is present, so lets create a DateTime-Object from it.
         $offset = $time['offdir']
-                . str_pad($time['offsethours'],2,'0',STR_PAD_LEFT)
-                . str_pad($time['offsetminutes'],2,'0',STR_PAD_LEFT);
+                . str_pad($time['offsethours'], 2, '0', STR_PAD_LEFT)
+                . str_pad($time['offsetminutes'], 2, '0', STR_PAD_LEFT);
         $timestring = $time['year'] . '-'
                     . str_pad($time['month'], 2, '0', STR_PAD_LEFT) . '-'
                     . str_pad($time['day'], 2, '0', STR_PAD_LEFT) . ' '
@@ -383,9 +386,9 @@ class Zend_Ldap_Converter
      */
     public static function fromLdapBoolean($value)
     {
-        if ( 'TRUE' === $value ) {
+        if ('TRUE' === $value) {
             return true;
-        } else if ( 'FALSE' === $value ) {
+        } elseif ('FALSE' === $value) {
             return false;
         } else {
             throw new InvalidArgumentException('The given value is not a boolean value');

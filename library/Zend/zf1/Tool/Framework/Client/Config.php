@@ -28,7 +28,6 @@
  */
 class Zend_Tool_Framework_Client_Config
 {
-
     protected $_configFilepath = null;
 
     /**
@@ -49,7 +48,7 @@ class Zend_Tool_Framework_Client_Config
     /**
      * @param array $options
      */
-    public function setOptions(Array $options)
+    public function setOptions(array $options)
     {
         foreach ($options as $optionName => $optionValue) {
             $setMethodName = 'set' . $optionName;
@@ -100,7 +99,8 @@ class Zend_Tool_Framework_Client_Config
                 break;
             default:
                 require_once 'Zend/Tool/Framework/Client/Exception.php';
-                throw new Zend_Tool_Framework_Client_Exception('Unknown config file type '
+                throw new Zend_Tool_Framework_Client_Exception(
+                    'Unknown config file type '
                     . $suffix . ' at location ' . $configFilepath
                     );
         }
@@ -147,7 +147,7 @@ class Zend_Tool_Framework_Client_Config
      */
     public function __isset($name)
     {
-        if($this->exists() == false) {
+        if ($this->exists() == false) {
             return false;
         }
         return isset($this->getConfigInstance()->{$name});
@@ -186,7 +186,7 @@ class Zend_Tool_Framework_Client_Config
      */
     public function getConfigInstance()
     {
-        if(!$this->exists()) {
+        if (!$this->exists()) {
             require_once "Zend/Tool/Framework/Client/Exception.php";
             throw new Zend_Tool_Framework_Client_Exception("Client has no persistent configuration.");
         }
@@ -201,7 +201,7 @@ class Zend_Tool_Framework_Client_Config
      */
     public function save()
     {
-        if($this->exists()) {
+        if ($this->exists()) {
             $writer = $this->getConfigWriter();
             $writer->write($this->getConfigFilepath(), $this->getConfigInstance(), true);
             $this->loadConfig($this->getConfigFilepath());
@@ -219,7 +219,7 @@ class Zend_Tool_Framework_Client_Config
     protected function getConfigWriter()
     {
         $suffix = substr($this->getConfigFilepath(), -4);
-        switch($suffix) {
+        switch ($suffix) {
             case '.ini':
                 require_once "Zend/Config/Writer/Ini.php";
                 $writer = new Zend_Config_Writer_Ini();
@@ -235,7 +235,8 @@ class Zend_Tool_Framework_Client_Config
                 break;
             default:
                 require_once 'Zend/Tool/Framework/Client/Exception.php';
-                throw new Zend_Tool_Framework_Client_Exception('Unknown config file type '
+                throw new Zend_Tool_Framework_Client_Exception(
+                    'Unknown config file type '
                     . $suffix . ' at location ' . $this->getConfigFilepath()
                     );
         }

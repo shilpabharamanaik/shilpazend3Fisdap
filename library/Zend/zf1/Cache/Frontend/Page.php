@@ -314,7 +314,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
         $contentType = null;
         $storedHeaders = array();
         $headersList = headers_list();
-        foreach($this->_specificOptions['memorize_headers'] as $key=>$headerName) {
+        foreach ($this->_specificOptions['memorize_headers'] as $key=>$headerName) {
             foreach ($headersList as $headerSent) {
                 $tmp = explode(':', $headerSent);
                 $headerSentName = trim(array_shift($tmp));
@@ -341,7 +341,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
     {
         $tmp = $_SERVER['REQUEST_URI'];
         $array = explode('?', $tmp, 2);
-          $tmp = $array[0];
+        $tmp = $array[0];
         foreach (array('Get', 'Post', 'Session', 'Files', 'Cookie') as $arrayName) {
             $tmp2 = $this->_makePartialId($arrayName, $this->_activeOptions['cache_with_' . strtolower($arrayName) . '_variables'], $this->_activeOptions['make_id_with_' . strtolower($arrayName) . '_variables']);
             if ($tmp2===false) {
@@ -400,5 +400,4 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
         }
         return '';
     }
-
 }

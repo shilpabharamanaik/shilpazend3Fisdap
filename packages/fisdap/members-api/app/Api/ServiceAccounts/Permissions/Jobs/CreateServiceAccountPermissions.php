@@ -5,7 +5,6 @@ use Fisdap\Api\ServiceAccounts\Entities\ServiceAccountPermission;
 use Fisdap\Api\ServiceAccounts\Permissions\Repository\ServiceAccountPermissionsRepository;
 use Illuminate\Routing\Router;
 
-
 /**
  * Class CreateServiceAccountPermissions
  *
@@ -41,11 +40,11 @@ final class CreateServiceAccountPermissions extends Job
     {
         $routes = $router->getRoutes();
         
-        $routeNames = array_filter($this->routeNames, function($routeName) use ($routes) {
+        $routeNames = array_filter($this->routeNames, function ($routeName) use ($routes) {
             return $routes->hasNamedRoute($routeName);
         });
         
-        $serviceAccountPermissionsRepository->storeCollection(array_map(function($routeName) {
+        $serviceAccountPermissionsRepository->storeCollection(array_map(function ($routeName) {
             return new ServiceAccountPermission($routeName);
         }, $routeNames));
         

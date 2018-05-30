@@ -1,38 +1,42 @@
 <?= $this->doctype() ?>
-<?php 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Session\SessionManager;
-use Zend\View\Model\ViewModel;
-use Zend\Session\Container;
-use Zend\Mvc\MvcEvent; 
-use User\Entity\User;
-use User\Entity\UserContext; 
-use User\Entity\StudentLegacy;
-$userSession = new Container('user');
-        $username = $userSession->username;
-		$globalSession = new Container('global');
-		$entityManager = unserialize($globalSession->entityManager);
-		$objUser = $entityManager->getRepository(User::class)->findOneByUsername($username);
-		if(!empty($objUser)){
+<?php
+    use Zend\Mvc\Controller\AbstractActionController;
+    use Zend\Session\SessionManager;
+    use Zend\View\Model\ViewModel;
+    use Zend\Session\Container;
+    use Zend\Mvc\MvcEvent;
+    use User\Entity\User;
+    use User\Entity\UserContext;
+    use User\Entity\StudentLegacy;
+
+    $userSession = new Container('user');
+    $username = $userSession->username;
+	$globalSession = new Container('global');
+	$entityManager = unserialize($globalSession->entityManager);
+	$objUser = $entityManager->getRepository(User::class)->findOneByUsername($username);
+	if(!empty($objUser)){
+
 		$userContext = $objUser->getCurrentUserContext();
+
 		if ($userContext->id) {
             $profession = $userContext->getProgram()->profession->name;
         } else {
             $profession = "EMS";
         }
+
 		if (RELEASE_STAGE != 'Prod') {
             $releaseStageHtml = ' <span style="font-weight: bold; color: white; background-color: red;">&nbsp;' . strtoupper(RELEASE_STAGE) . '&nbsp;</span>';
         } else {
             $releaseStageHtml = null;
         }
+
 		$masqText = '';
 		$ret = "Hi, <span class='user_first_name'>". $objUser->getFirstName()
 				 . "</span>! (<span class='user_name'>" .$username. "</span>) ";
 		if ($objUser->isStaff()) {
 			$masqText = " | <a href='/login/masquerade' title='Masquerade as another user'><img src='/images/masquerade.png' class='masquerade' alt='masquerade' title='masquerade' /></a> ";
 			$gearsText = " | <a href='#'><img src='/images/icons/gear_gray_small.png' id='staff-settings'  alt='settings' title='settings' /></a>";
-		}
-		else{
+		} else {
 			$user = $userContext->getUser();
 			$html = "<div id='context-switcher'>" . $userContext->getDescription();
 			//echo count($user->userContexts);
@@ -67,23 +71,23 @@ $userSession = new Container('user');
                                . "<img src='/images/icons/magnifying-glass-dark-gray.png' class='magnifying-glass' title='Search for students' />";
             }
 		}
-			$popup = " | "
-            . "<a href='http://www.fisdap.net/support/system-status' target='_blank' title='Open system status in a new window.'>"
-            . "<img src='/images/icons/bell-icon.png' class='notification-bell' /></a>"
-            . "<div class='notification-popup-container-main'>";
-			$notifications = $popup;
-			$ret .= $masqText;
-			$ret .= $gearsText;
-			//$ret .= $programSelectText;
+		$popup = " | "
+        . "<a href='http://www.fisdap.net/support/system-status' target='_blank' title='Open system status in a new window.'>"
+        . "<img src='/images/icons/bell-icon.png' class='notification-bell' /></a>"
+        . "<div class='notification-popup-container-main'>";
+		$notifications = $popup;
+		$ret .= $masqText;
+		$ret .= $gearsText;
+		//$ret .= $programSelectText;
 
-            $ret .= $studentSearch;
+        $ret .= $studentSearch;
 
-            //$ret .= $notifications;
+        //$ret .= $notifications;
 
-			/*$ret .= " | "
-                 . "<a class='logout' style='font-weight: 900;' href='$logoutLink'>"
-                 . "<img src='/images/icons/logout-orange-20px.png' class='logout-img' title='$logoutText' /></a>"; */
-		}
+		$ret .= ' | '
+             . '<a class="logout" style="font-weight: 900;" href="/logout">'
+             . '<img src="/images/icons/logout-orange-20px.png" class="logout-img" title="$logoutText" /></a>';
+    }
  ?>
 <html lang="en">
     <head>

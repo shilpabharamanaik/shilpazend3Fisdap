@@ -45,10 +45,10 @@ class Zend_Rest_Client extends Zend_Service_Abstract
      */
     protected $_data = array();
 
-     /**
-     * Zend_Uri of this web service
-     * @var Zend_Uri_Http
-     */
+    /**
+    * Zend_Uri of this web service
+    * @var Zend_Uri_Http
+    */
     protected $_uri = null;
     
     /**
@@ -126,7 +126,7 @@ class Zend_Rest_Client extends Zend_Service_Abstract
          * because the Zend_Http_Client instance is shared among all Zend_Service_Abstract subclasses.
          */
         if ($this->_noReset) {
-            // if $_noReset we do not want to reset on this request, 
+            // if $_noReset we do not want to reset on this request,
             // but we do on any subsequent request
             $this->_noReset = false;
         } else {
@@ -137,7 +137,7 @@ class Zend_Rest_Client extends Zend_Service_Abstract
     }
     
     /**
-     * Tells Zend_Rest_Client not to reset all parameters on it's 
+     * Tells Zend_Rest_Client not to reset all parameters on it's
      * Zend_Http_Client. If you want no reset, this must be called explicitly
      * before every request for which you do not want to reset the parameters.
      * Parameters will accumulate between requests, but as soon as you do not

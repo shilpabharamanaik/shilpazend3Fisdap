@@ -7,7 +7,6 @@ use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Mail\Message;
 
-
 /**
  * Class SendNewProgramNotification
  *

@@ -95,7 +95,6 @@ class Zend_Tool_Project_Context_Zf_TestApplicationControllerFile extends Zend_To
      */
     public function getContents()
     {
-
         $filter = new Zend_Filter_Word_DashToCamelCase();
 
         $className = $filter->filter($this->_forControllerName) . 'ControllerTest';
@@ -105,7 +104,7 @@ class Zend_Tool_Project_Context_Zf_TestApplicationControllerFile extends Zend_To
         if ($controllerDirectoryResource->getParentResource()->getName() == 'TestApplicationModuleDirectory') {
             $className = $filter->filter(ucfirst($controllerDirectoryResource->getParentResource()->getForModuleName()))
                 . '_' . $className;
-        }        
+        }
         
         $codeGenFile = new Zend_CodeGenerator_Php_File(array(
             'classes' => array(
@@ -127,5 +126,4 @@ EOS
 
         return $codeGenFile->generate();
     }
-
 }

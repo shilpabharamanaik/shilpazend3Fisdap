@@ -7,7 +7,6 @@ use Happyr\DoctrineSpecification\Result\ResultModifier;
 use Happyr\DoctrineSpecification\Specification\Specification;
 use Psr\Log\LoggerInterface;
 
-
 /**
  * Class DoctrineRepository
  *
@@ -132,7 +131,10 @@ class DoctrineRepository extends EntityRepository implements Repository
      * @return mixed
      */
     public function match(
-        Specification $specification, ResultModifier $modifier = null, $firstResult = null, $maxResults = null
+        Specification $specification,
+        ResultModifier $modifier = null,
+        $firstResult = null,
+        $maxResults = null
     ) {
         $query = $this->getQuery($specification, $modifier);
 

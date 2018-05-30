@@ -52,7 +52,7 @@ class Zend_Service_Rackspace_Files_ObjectList implements Countable, Iterator, Ar
     protected $service;
     /**
      * The container name of the object list
-     * 
+     *
      * @var string
      */
     protected $container;
@@ -62,7 +62,7 @@ class Zend_Service_Rackspace_Files_ObjectList implements Countable, Iterator, Ar
      * @param  array $list
      * @return boolean
      */
-    public function __construct($service,$list,$container)
+    public function __construct($service, $list, $container)
     {
         if (!($service instanceof Zend_Service_Rackspace_Files)) {
             require_once 'Zend/Service/Rackspace/Files/Exception.php';
@@ -90,7 +90,7 @@ class Zend_Service_Rackspace_Files_ObjectList implements Countable, Iterator, Ar
     {
         foreach ($list as $obj) {
             $obj['container']= $this->container;
-            $this->_addObject(new Zend_Service_Rackspace_Files_Object($this->service,$obj));
+            $this->_addObject(new Zend_Service_Rackspace_Files_Object($this->service, $obj));
         }
     }
     /**
@@ -99,7 +99,7 @@ class Zend_Service_Rackspace_Files_ObjectList implements Countable, Iterator, Ar
      * @param  Zend_Service_Rackspace_Files_Object $obj
      * @return Zend_Service_Rackspace_Files_ObjectList
      */
-    protected function _addObject (Zend_Service_Rackspace_Files_Object $obj)
+    protected function _addObject(Zend_Service_Rackspace_Files_Object $obj)
     {
         $this->objects[] = $obj;
         return $this;

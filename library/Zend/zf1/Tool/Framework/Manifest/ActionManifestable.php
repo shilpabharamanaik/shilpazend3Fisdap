@@ -43,5 +43,4 @@ interface Zend_Tool_Framework_Manifest_ActionManifestable extends Zend_Tool_Fram
      * @return array|Zend_Tool_Framework_Action_Interface
      */
     public function getActions();
-
 }

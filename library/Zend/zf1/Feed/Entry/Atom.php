@@ -278,5 +278,4 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
 
         return null;
     }
-
 }

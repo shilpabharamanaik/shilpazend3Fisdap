@@ -675,7 +675,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
             return true;
         }
         $metadataFiles = array();
-        foreach ($glob as $file)  {
+        foreach ($glob as $file) {
             if (is_file($file)) {
                 $fileName = basename($file);
                 if ($this->_isMetadatasFile($fileName)) {
@@ -688,7 +688,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
                 }
                 $id = $this->_fileNameToId($fileName);
                 $metadatas = $this->_getMetadatas($id);
-                if ($metadatas === FALSE) {
+                if ($metadatas === false) {
                     $metadatas = array('expire' => 1, 'tags' => array());
                 }
                 switch ($mode) {
@@ -773,12 +773,12 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
             // On some systems it is impossible to distinguish between empty match and an error.
             return array();
         }
-        foreach ($glob as $file)  {
+        foreach ($glob as $file) {
             if (is_file($file)) {
                 $fileName = basename($file);
                 $id = $this->_fileNameToId($fileName);
                 $metadatas = $this->_getMetadatas($id);
-                if ($metadatas === FALSE) {
+                if ($metadatas === false) {
                     continue;
                 }
                 if (time() > $metadatas['expire']) {
@@ -989,9 +989,13 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
         }
         $f = @fopen($file, 'rb');
         if ($f) {
-            if ($this->_options['file_locking']) @flock($f, LOCK_SH);
+            if ($this->_options['file_locking']) {
+                @flock($f, LOCK_SH);
+            }
             $result = stream_get_contents($f);
-            if ($this->_options['file_locking']) @flock($f, LOCK_UN);
+            if ($this->_options['file_locking']) {
+                @flock($f, LOCK_UN);
+            }
             @fclose($f);
         }
         return $result;
@@ -1009,11 +1013,13 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
         $result = false;
         $f = @fopen($file, 'ab+');
         if ($f) {
-            if ($this->_options['file_locking']) @flock($f, LOCK_EX);
+            if ($this->_options['file_locking']) {
+                @flock($f, LOCK_EX);
+            }
             fseek($f, 0);
             ftruncate($f, 0);
             $tmp = @fwrite($f, $string);
-            if (!($tmp === FALSE)) {
+            if (!($tmp === false)) {
                 $result = true;
             }
             @fclose($f);
@@ -1033,5 +1039,4 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
         $prefix = $this->_options['file_name_prefix'];
         return preg_replace('~^' . $prefix . '---(.*)$~', '$1', $fileName);
     }
-
 }

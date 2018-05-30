@@ -45,9 +45,9 @@ class Zend_Test_PHPUnit_Db_DataSet_DbRowset extends PHPUnit_Extensions_Database_
      */
     public function __construct(Zend_Db_Table_Rowset_Abstract $rowset, $tableName = null)
     {
-        if($tableName == null) {
+        if ($tableName == null) {
             $table = $rowset->getTable();
-            if($table !== null) {
+            if ($table !== null) {
                 $tableName = $table->info('name');
             } else {
                 require_once "Zend/Test/PHPUnit/Db/Exception.php";
@@ -61,9 +61,9 @@ class Zend_Test_PHPUnit_Db_DataSet_DbRowset extends PHPUnit_Extensions_Database_
         $this->data = $rowset->toArray();
 
         $columns = array();
-        if(isset($this->data[0]) > 0) {
+        if (isset($this->data[0]) > 0) {
             $columns = array_keys($this->data[0]);
-        } else if($rowset->getTable() != null) {
+        } elseif ($rowset->getTable() != null) {
             $columns = $rowset->getTable()->info('cols');
         }
 

@@ -7,7 +7,6 @@ use Fisdap\Entity\SchedulerFilterSet;
 use Fisdap\Members\Scheduler\Http\LimitFilters;
 use Fisdap\Members\Scheduler\SchedulerHelper;
 
-
 class Scheduler_PdfExportController extends Fisdap_Controller_Private
 {
     use LimitFilters;
@@ -47,7 +46,8 @@ class Scheduler_PdfExportController extends Fisdap_Controller_Private
         $modalFormValues['bw_switch'] = $modalFormValues['pdf_color_type'] == 'color' ? 0 : 1;
         $modalFormValues['pdf'] = true;
         $modalFormValues['email_recipients'] = implode(
-            ',', Util_Array::getCleanArray($modalFormValues['email_recipients'])
+            ',',
+            Util_Array::getCleanArray($modalFormValues['email_recipients'])
         );
 
         $email_id = $modalFormValues['email_id'];
@@ -110,7 +110,7 @@ class Scheduler_PdfExportController extends Fisdap_Controller_Private
                 $scheduleEmail->color = $modalFormValues['pdf_color_type'] == 'color' ? 1 : 0;
 
                 // if this is a new recurring email, create the filter set
-                if ( ! $email_id) {
+                if (! $email_id) {
                     $filterSet = new SchedulerFilterSet();
                     $filterSet->user_context = null; // so we don't override the user's session filters
                     $filterSet->setViewTypeByName($view_type);
@@ -142,7 +142,11 @@ class Scheduler_PdfExportController extends Fisdap_Controller_Private
                 $pdfHelper = new SchedulerHelper();
                 $this->view->pdf = true;
                 $html = $pdfHelper->getScheduleHtml(
-                    $view_type, $modalFormValues, $filters, $this->view, $this->user->getCurrentProgram()->id
+                    $view_type,
+                    $modalFormValues,
+                    $filters,
+                    $this->view,
+                    $this->user->getCurrentProgram()->id
                 );
 
                 // flip it back to false, so we don't screw up the html view

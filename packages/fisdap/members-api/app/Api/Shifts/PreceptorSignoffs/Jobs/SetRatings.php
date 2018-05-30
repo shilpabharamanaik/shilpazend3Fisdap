@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Shifts\PreceptorSignoffs\Jobs;
 
-
 use Doctrine\ORM\EntityManagerInterface;
 use Fisdap\Api\Jobs\Job;
 use Fisdap\Api\Jobs\RequestHydrated;
@@ -61,8 +60,7 @@ final class SetRatings extends Job implements RequestHydrated
         EntityManagerInterface $em,
         EventDispatcher $eventDispatcher,
         PreceptorRatingRepository $preceptorRatingRepository
-    )
-    {
+    ) {
         $this->em = $em;
         
         $rating = $preceptorRatingRepository->findOneBy(['signoff' => $this->signoff, 'type' => $this->type, 'rater_type' => $this->raterType]);
@@ -92,6 +90,4 @@ final class SetRatings extends Job implements RequestHydrated
     {
         return $this->signoff;
     }
-
 }
-

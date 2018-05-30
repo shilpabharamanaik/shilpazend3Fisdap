@@ -36,10 +36,8 @@ require_once 'Zend/Tool/Framework/Provider/Interface.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Framework_System_Provider_Manifest
-    implements Zend_Tool_Framework_Provider_Interface, Zend_Tool_Framework_Registry_EnabledInterface
+class Zend_Tool_Framework_System_Provider_Manifest implements Zend_Tool_Framework_Provider_Interface, Zend_Tool_Framework_Registry_EnabledInterface
 {
-
     public function setRegistry(Zend_Tool_Framework_Registry_Interface $registry)
     {
         $this->_registry = $registry;
@@ -52,7 +50,6 @@ class Zend_Tool_Framework_System_Provider_Manifest
 
     public function show()
     {
-
         $manifestRepository = $this->_registry->getManifestRepository();
         $response           = $this->_registry->getResponse();
 
@@ -61,7 +58,6 @@ class Zend_Tool_Framework_System_Provider_Manifest
         $longestAttrNameLen = 50;
 
         foreach ($manifestRepository as $metadata) {
-
             $metadataType  = $metadata->getType();
             $metadataName  = $metadata->getName();
             $metadataAttrs = $metadata->getAttributes('attributesParent');
@@ -109,6 +105,5 @@ class Zend_Tool_Framework_System_Provider_Manifest
                 }
             }
         }
-
     }
 }

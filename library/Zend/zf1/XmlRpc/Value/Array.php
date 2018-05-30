@@ -70,4 +70,3 @@ class Zend_XmlRpc_Value_Array extends Zend_XmlRpc_Value_Collection
                   ->closeElement('value');
     }
 }
-

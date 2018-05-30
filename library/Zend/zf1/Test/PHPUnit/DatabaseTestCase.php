@@ -111,7 +111,7 @@ abstract class Zend_Test_PHPUnit_DatabaseTestCase extends PHPUnit_Extensions_Dat
     protected function createDbTableDataSet(array $tables=array())
     {
         $dataSet = new Zend_Test_PHPUnit_Db_DataSet_DbTableDataSet();
-        foreach($tables AS $table) {
+        foreach ($tables as $table) {
             $dataSet->addTable($table);
         }
         return $dataSet;

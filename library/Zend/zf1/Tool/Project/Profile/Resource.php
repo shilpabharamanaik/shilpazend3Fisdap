@@ -258,5 +258,4 @@ class Zend_Tool_Project_Profile_Resource extends Zend_Tool_Project_Profile_Resou
             throw new Zend_Tool_Project_Profile_Exception('cannot call ' . $method);
         }
     }
-
 }

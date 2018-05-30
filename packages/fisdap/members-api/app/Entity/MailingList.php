@@ -4,10 +4,9 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Mailing List
- * 
+ *
  * @Entity
  * @Table(name="fisdap2_mailing_list")
  */

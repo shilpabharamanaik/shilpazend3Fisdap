@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Client\Gateway;
 
-
 /**
  * General contract for a Gateway
  *

@@ -3,7 +3,6 @@
 use Fisdap\Api\Events\Event;
 use Fisdap\Entity\UserContext;
 
-
 /**
  * Event to fire when (requirement) compliance was updated for one or more UserContexts
  *

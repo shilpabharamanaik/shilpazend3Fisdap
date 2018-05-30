@@ -41,11 +41,9 @@ class EvalsController extends Fisdap_Controller_Base
             $db->query($query3);
             $db->query($query4);
             $this->_helper->json(true);
-
         } else {
             // go home, you are drunk
             $this->_redirect("/");
         }
     }
-
 }

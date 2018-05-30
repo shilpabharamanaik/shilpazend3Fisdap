@@ -80,5 +80,4 @@ class Zend_Markup_Renderer_Html_Img extends Zend_Markup_Renderer_Html_HtmlAbstra
 
         return "<img src=\"{$uri}\" alt=\"{$alt}\"" . Zend_Markup_Renderer_Html::renderAttributes($token) . " />";
     }
-
 }

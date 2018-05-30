@@ -68,8 +68,7 @@ require_once 'Zend/Service/DeveloperGarden/Request/IpLocation/LocateIPRequest.ph
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_IpLocation
-    extends Zend_Service_DeveloperGarden_Client_ClientAbstract
+class Zend_Service_DeveloperGarden_IpLocation extends Zend_Service_DeveloperGarden_Client_ClientAbstract
 {
     /**
      * wsdl file

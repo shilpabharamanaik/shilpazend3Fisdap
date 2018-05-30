@@ -23,7 +23,8 @@ class XhprofCollector extends \DebugBar\DataCollector\DataCollector implements \
         return $this->xhprofURL = $url;
     }
 
-    public function getAssets() {
+    public function getAssets()
+    {
         return array(
             'js' => '/js/library/Fisdap/DebugBar/DataCollector/LinkIndicator.js'
         );

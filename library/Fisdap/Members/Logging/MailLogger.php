@@ -2,7 +2,6 @@
 
 use Fisdap\Logging\ComponentLogger;
 
-
 /**
  * Class MailLogger
  *

@@ -8,14 +8,13 @@
 use Fisdap\Data\Repository\Repository;
 use Illuminate\Auth\AuthManager;
 
-
 /**
  * Interface PreceptorLegacyRepository
  *
  * @package Fisdap\Data\Preceptor
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface PreceptorLegacyRepository extends Repository {
-
+interface PreceptorLegacyRepository extends Repository
+{
     public function getPreceptorsBySite($siteId, AuthManager $auth);
 }

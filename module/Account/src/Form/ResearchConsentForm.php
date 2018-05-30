@@ -51,7 +51,7 @@ class ResearchConsentForm extends Form
      */
     protected function addElements()
     {
-		
+        
         // Add "firstName" field
         $this->add([
         'type' => 'Zend\Form\Element\Radio',
@@ -64,7 +64,7 @@ class ResearchConsentForm extends Form
         ),
     ]);
 
-         $this->add([
+        $this->add([
         'type' => 'Zend\Form\Element\Radio',
         'name' => 'dataRelease',
         'options' => array(
@@ -76,7 +76,7 @@ class ResearchConsentForm extends Form
     ]);
         
 
-         // Add the Submit button
+        // Add the Submit button
         $this->add([
             'type'  => 'submit',
             'name' => 'submit',

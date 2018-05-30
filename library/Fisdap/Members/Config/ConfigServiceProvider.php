@@ -6,8 +6,6 @@ use Zend\Mvc\Application;
 use Zend\Config\Config;
 use Zend_Registry;
 
-
-
 /**
  * Class ConfigServiceProvider
  *
@@ -28,9 +26,9 @@ class ConfigServiceProvider extends ServiceProvider
 
         // get config from this Bootstrap
         $config = new Config($zendApplication->getConfig(), true);
-		
+        
         \Zend_Registry::set('config', $config);
-		
+        
         // Laravel-style configs
         $config->merge(new \Zend\Config\Config(require APPLICATION_PATH . '/configs/braintree.php'));
         $config->merge(new \Zend\Config\Config(require APPLICATION_PATH . '/configs/database.php'));

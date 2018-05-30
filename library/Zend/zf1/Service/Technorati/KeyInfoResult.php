@@ -82,7 +82,8 @@ class Zend_Service_Technorati_KeyInfoResult
      *
      * @return  string  API Key string
      */
-    public function getApiKey() {
+    public function getApiKey()
+    {
         return $this->_apiKey;
     }
 
@@ -91,7 +92,8 @@ class Zend_Service_Technorati_KeyInfoResult
      *
      * @return  int     number of queries sent today
      */
-    public function getApiQueries() {
+    public function getApiQueries()
+    {
         return $this->_apiQueries;
     }
 
@@ -100,7 +102,8 @@ class Zend_Service_Technorati_KeyInfoResult
      *
      * @return  int     maximum number of available queries per day
      */
-    public function getMaxQueries() {
+    public function getMaxQueries()
+    {
         return $this->_maxQueries;
     }
 
@@ -111,7 +114,8 @@ class Zend_Service_Technorati_KeyInfoResult
      * @param   string $apiKey  the API Key
      * @return  Zend_Service_Technorati_KeyInfoResult $this instance
      */
-    public function setApiKey($apiKey) {
+    public function setApiKey($apiKey)
+    {
         $this->_apiKey = $apiKey;
         return $this;
     }

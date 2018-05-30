@@ -120,7 +120,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
         $colseq         = 11;
 
         foreach ($result as $key => $row) {
-            list ($primary, $primaryPosition, $identity) = array(false, null, false);
+            list($primary, $primaryPosition, $identity) = array(false, null, false);
             if ($row[$tabconstype] == 'P') {
                 $primary = true;
                 $primaryPosition = $row[$colseq];

@@ -29,60 +29,66 @@
  * @license
  * @version    $id$
  */
-class WURFL_Cache_MemcacheCacheProvider implements WURFL_Cache_CacheProvider {
+class WURFL_Cache_MemcacheCacheProvider implements WURFL_Cache_CacheProvider
+{
+    const EXTENSION_MODULE_NAME = "memcache";
+    const DEFAULT_HOST = "127.0.0.1";
+    const DEFAULT_PORT = 11211;
+    
+    
+    private $_memcache;
+    private $_host;
+    private $_port;
 
-	const EXTENSION_MODULE_NAME = "memcache";
-	const DEFAULT_HOST = "127.0.0.1";
-	const DEFAULT_PORT = 11211;
-	
-	
-	private $_memcache;
-	private $_host;
-	private $_port;
+    public function __construct($params)
+    {
+        if (is_array($params)) {
+            $this->_host = isset($params["host"]) ? $params["host"] : self::DEFAULT_HOST;
+            $this->_port = isset($params["port"]) ? $params["port"] : self::DEFAULT_PORT;
+        }
+        $this->initialize();
+    }
 
-	public function __construct($params) {
-		if (is_array($params)) {
-			$this->_host = isset($params["host"]) ? $params["host"] : self::DEFAULT_HOST;
-			$this->_port = isset($params["port"]) ? $params["port"] : self::DEFAULT_PORT;			
-		}
-		$this->initialize();
-	}
-
-	/**
-	 * Initializes the Memcache Module
-	 *
-	 */
-	public final function initialize() {
-		$this->_ensureModuleExistance();
-		$this->_memcache = new Memcache();
-		$this->_memcache->connect($this->_host, $this->_port);
-	}
+    /**
+     * Initializes the Memcache Module
+     *
+     */
+    final public function initialize()
+    {
+        $this->_ensureModuleExistance();
+        $this->_memcache = new Memcache();
+        $this->_memcache->connect($this->_host, $this->_port);
+    }
 
 
-	function get($key) {
-		return $this->_memcache->get($key);
-	}
+    public function get($key)
+    {
+        return $this->_memcache->get($key);
+    }
 
-	function put($key, $value) {
-		$this->_memcache->set($key, $value);
-	}
+    public function put($key, $value)
+    {
+        $this->_memcache->set($key, $value);
+    }
 
-	function clear() {
-	}
+    public function clear()
+    {
+    }
 
-	function close( ) {
-		$this->_memcache->close();
-		$this->_memcache = null;
-	}
+    public function close()
+    {
+        $this->_memcache->close();
+        $this->_memcache = null;
+    }
 
-	/**
-	 * Ensures the existance of the the PHP Extension memcache
-	 *
-	 */
-	private function _ensureModuleExistance() {
-		if(!extension_loaded(self::EXTENSION_MODULE_NAME)) {
-			throw new WURFL_Xml_PersistenceProvider_Exception("The PHP extension memcache must be installed and loaded in order to use the Memcached.");
-		}
-	}
+    /**
+     * Ensures the existance of the the PHP Extension memcache
+     *
+     */
+    private function _ensureModuleExistance()
+    {
+        if (!extension_loaded(self::EXTENSION_MODULE_NAME)) {
+            throw new WURFL_Xml_PersistenceProvider_Exception("The PHP extension memcache must be installed and loaded in order to use the Memcached.");
+        }
+    }
 }
-?>

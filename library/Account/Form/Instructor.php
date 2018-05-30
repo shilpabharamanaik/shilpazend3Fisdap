@@ -4,7 +4,6 @@ use Fisdap\Api\Users\CurrentUser\CurrentUser;
 use Fisdap\Entity\InstructorLegacy;
 use Fisdap\Entity\User;
 
-
 /**
  * Form for editing a Fisdap Instructor account
  *
@@ -126,7 +125,8 @@ class Account_Form_Instructor extends Fisdap_Form_Base
 			 $("#workPhone").mask("999-999-9999? x99999");
 			 $("#cellPhone").mask("999-999-9999");
 			 $("#contactPhone").mask("999-999-9999");
-			');
+			'
+        );
 
 
         //first name
@@ -386,7 +386,7 @@ class Account_Form_Instructor extends Fisdap_Form_Base
         //and if the logged in user is 'secure'
         if (!$this->instructor->id) {
             $passwordElements = array($username, $newPassword, $confirmPassword);
-        } else if ($this->isSecure) {
+        } elseif ($this->isSecure) {
             $passwordElements = array($newPassword, $confirmPassword);
         } else {
             $passwordElements = array($currentPassword, $newPassword, $confirmPassword);
@@ -435,7 +435,7 @@ class Account_Form_Instructor extends Fisdap_Form_Base
                 'reportsPermissions' => $permissionBits,
                 'subRoles' => $this->instructor->getPermissionSubRoleIds(),
             ));
-        } else if ($this->serial->id) {
+        } elseif ($this->serial->id) {
             //If we don't have an instructor but do have a serial, default all the email checkboxes to off
             $this->setDefaults(array(
                 "automatedEmails" => 0,
@@ -506,9 +506,9 @@ class Account_Form_Instructor extends Fisdap_Form_Base
                 //Figure out the program ID by using the serial number or the logged in user, or the programId given to the form
                 if ($serial->id) {
                     $programId = $serial->program->id;
-                } else if (User::getLoggedInUser()->id) {
+                } elseif (User::getLoggedInUser()->id) {
                     $programId = User::getLoggedInUser()->getProgramId();
-                } else if ($values['programId']) {
+                } elseif ($values['programId']) {
                     $programId = $values['programId'];
                 }
 
@@ -657,7 +657,7 @@ class Account_Form_Instructor extends Fisdap_Form_Base
 
     private function isLtiUser()
     {
-        if ( ! isset($this->instructor)) {
+        if (! isset($this->instructor)) {
             return false;
         }
         

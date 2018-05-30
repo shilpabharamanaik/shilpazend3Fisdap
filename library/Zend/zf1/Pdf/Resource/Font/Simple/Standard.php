@@ -64,10 +64,10 @@ require_once 'Zend/Pdf/Resource/Font/Simple.php';
  */
 abstract class Zend_Pdf_Resource_Font_Simple_Standard extends Zend_Pdf_Resource_Font_Simple
 {
-  /**** Public Interface ****/
+    /**** Public Interface ****/
 
 
-  /* Object Lifecycle */
+    /* Object Lifecycle */
 
     /**
      * Object constructor

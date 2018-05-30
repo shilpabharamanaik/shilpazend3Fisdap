@@ -7,13 +7,12 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface ShiftLegacyRepository
  *
  * @package Fisdap\Data\Shift
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface ShiftLegacyRepository extends Repository {
-
+interface ShiftLegacyRepository extends Repository
+{
 }

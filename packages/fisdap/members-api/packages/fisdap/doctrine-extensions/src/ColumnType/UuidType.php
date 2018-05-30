@@ -1,5 +1,6 @@
 <?php
 namespace Fisdap\Doctrine\Extensions\ColumnType;
+
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Rhumsaa\Uuid\Uuid;
@@ -72,7 +73,7 @@ class UuidType extends Type
     {
         if ($value !== null) {
             // If the app put any dashes in, we strip them, just in case
-            return hex2bin(str_replace('-', '',$value));
+            return hex2bin(str_replace('-', '', $value));
         }
     }
 
@@ -96,7 +97,7 @@ class UuidType extends Type
      *
      * @return string MySQL-optimized UUID that works well with UUID column type
      */
-    public static function generateUuid($node = NULL)
+    public static function generateUuid($node = null)
     {
         $uuid = Uuid::uuid1($node)->toString();
 

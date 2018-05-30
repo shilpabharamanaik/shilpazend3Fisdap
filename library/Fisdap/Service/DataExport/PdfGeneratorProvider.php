@@ -9,9 +9,8 @@ namespace Fisdap\Service\DataExport;
 
 use Illuminate\Support\ServiceProvider;
 
-
-class PdfGeneratorProvider extends ServiceProvider {
-
+class PdfGeneratorProvider extends ServiceProvider
+{
     public function register()
     {
         $this->app->bind('Fisdap\Service\DataExport\PdfGenerator', 'Fisdap\Service\DataExport\WkhtmlPdfGenerator');

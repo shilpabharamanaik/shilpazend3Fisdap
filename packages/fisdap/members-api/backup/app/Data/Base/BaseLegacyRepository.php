@@ -7,7 +7,6 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 interface BaseLegacyRepository extends Repository
 {
     public function getBaseAssociationsByProgramOptimized($siteId = null, $programId, $active = true, $type = null, $all = null);

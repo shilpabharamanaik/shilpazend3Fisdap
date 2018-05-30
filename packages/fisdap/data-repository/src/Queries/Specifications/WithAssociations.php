@@ -4,7 +4,6 @@ use Fisdap\Queries\Specifications\QueryModifiers\LeftFetchJoin;
 use Happyr\DoctrineSpecification\BaseSpecification;
 use Happyr\DoctrineSpecification\Spec;
 
-
 /**
  * Facilitates left joins for specified entity associations and nested associations
  *

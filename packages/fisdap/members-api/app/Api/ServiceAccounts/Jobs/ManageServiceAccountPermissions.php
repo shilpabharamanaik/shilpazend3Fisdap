@@ -6,7 +6,6 @@ use Fisdap\Api\ServiceAccounts\Entities\ServiceAccountPermission;
 use Fisdap\Api\ServiceAccounts\Permissions\Repository\ServiceAccountPermissionsRepository;
 use Fisdap\Api\ServiceAccounts\Repository\ServiceAccountsRepository;
 
-
 /**
  * Class ManageServiceAccountPermissions
  *
@@ -61,7 +60,7 @@ final class ManageServiceAccountPermissions extends Job
         ServiceAccountsRepository $serviceAccountsRepository,
         ServiceAccountPermissionsRepository $serviceAccountPermissionsRepository
     ) {
-        if ( ! in_array($this->operation, array_keys(self::$allowedOperations))) {
+        if (! in_array($this->operation, array_keys(self::$allowedOperations))) {
             throw new \InvalidArgumentException(
                 "'{$this->operation}' is not a valid operation. Valid operations: " . implode(', ', array_keys(self::$allowedOperations))
             );

@@ -92,7 +92,6 @@ class Zend_Tool_Project_Provider_View extends Zend_Tool_Project_Provider_Abstrac
      */
     public function create($controllerName, $actionNameOrSimpleName, $module = null)
     {
-
         if ($controllerName == '' || $actionNameOrSimpleName == '') {
             require_once 'Zend/Tool/Project/Provider/Exception.php';
             throw new Zend_Tool_Project_Provider_Exception('ControllerName and/or ActionName are empty.');
@@ -113,6 +112,5 @@ class Zend_Tool_Project_Provider_View extends Zend_Tool_Project_Provider_Abstrac
             $view->create();
             $this->_storeProfile();
         }
-
     }
 }

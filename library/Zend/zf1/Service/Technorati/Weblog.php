@@ -159,27 +159,41 @@ class Zend_Service_Technorati_Weblog
         $xpath = new DOMXPath($dom->ownerDocument);
 
         $result = $xpath->query('./name/text()', $dom);
-        if ($result->length == 1) $this->setName($result->item(0)->data);
+        if ($result->length == 1) {
+            $this->setName($result->item(0)->data);
+        }
 
         $result = $xpath->query('./url/text()', $dom);
-        if ($result->length == 1) $this->setUrl($result->item(0)->data);
+        if ($result->length == 1) {
+            $this->setUrl($result->item(0)->data);
+        }
 
         $result = $xpath->query('./inboundblogs/text()', $dom);
-        if ($result->length == 1) $this->setInboundBlogs($result->item(0)->data);
+        if ($result->length == 1) {
+            $this->setInboundBlogs($result->item(0)->data);
+        }
 
         $result = $xpath->query('./inboundlinks/text()', $dom);
-        if ($result->length == 1) $this->setInboundLinks($result->item(0)->data);
+        if ($result->length == 1) {
+            $this->setInboundLinks($result->item(0)->data);
+        }
 
         $result = $xpath->query('./lastupdate/text()', $dom);
-        if ($result->length == 1) $this->setLastUpdate($result->item(0)->data);
+        if ($result->length == 1) {
+            $this->setLastUpdate($result->item(0)->data);
+        }
 
         /* The following elements need more attention */
 
         $result = $xpath->query('./rssurl/text()', $dom);
-        if ($result->length == 1) $this->setRssUrl($result->item(0)->data);
+        if ($result->length == 1) {
+            $this->setRssUrl($result->item(0)->data);
+        }
 
         $result = $xpath->query('./atomurl/text()', $dom);
-        if ($result->length == 1) $this->setAtomUrl($result->item(0)->data);
+        if ($result->length == 1) {
+            $this->setAtomUrl($result->item(0)->data);
+        }
 
         $result = $xpath->query('./author', $dom);
         if ($result->length >= 1) {
@@ -196,16 +210,24 @@ class Zend_Service_Technorati_Weblog
          */
 
         $result = $xpath->query('./rank/text()', $dom);
-        if ($result->length == 1) $this->setRank($result->item(0)->data);
+        if ($result->length == 1) {
+            $this->setRank($result->item(0)->data);
+        }
 
         $result = $xpath->query('./lat/text()', $dom);
-        if ($result->length == 1) $this->setLat($result->item(0)->data);
+        if ($result->length == 1) {
+            $this->setLat($result->item(0)->data);
+        }
 
         $result = $xpath->query('./lon/text()', $dom);
-        if ($result->length == 1) $this->setLon($result->item(0)->data);
+        if ($result->length == 1) {
+            $this->setLon($result->item(0)->data);
+        }
 
         $result = $xpath->query('./hasphoto/text()', $dom);
-        if ($result->length == 1) $this->setHasPhoto($result->item(0)->data);
+        if ($result->length == 1) {
+            $this->setHasPhoto($result->item(0)->data);
+        }
     }
 
 
@@ -300,7 +322,8 @@ class Zend_Service_Technorati_Weblog
      *
      * @return  float   weblog latitude coordinate
      */
-    public function getLat() {
+    public function getLat()
+    {
         return $this->_lat;
     }
 
@@ -482,5 +505,4 @@ class Zend_Service_Technorati_Weblog
         $this->_hasPhoto = (bool) $hasPhoto;
         return $this;
     }
-
 }

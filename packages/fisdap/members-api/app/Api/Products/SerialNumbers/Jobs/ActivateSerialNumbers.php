@@ -19,7 +19,6 @@ use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
-
 /**
  * A Job (Command) for activating a serial number (SerialNumberLegacy Entity)
  *

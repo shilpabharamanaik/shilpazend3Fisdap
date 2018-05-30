@@ -36,4 +36,3 @@ require_once 'Zend/Pdf/Action.php';
 class Zend_Pdf_Action_SubmitForm extends Zend_Pdf_Action
 {
 }
-

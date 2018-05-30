@@ -47,11 +47,11 @@ class Zend_Service_Amazon_Ec2_Instance_Reserved extends Zend_Service_Amazon_Ec2_
         $params = array();
         $params['Action'] = 'DescribeReservedInstances';
 
-        if(is_array($instanceId) && !empty($instanceId)) {
-            foreach($instanceId as $k=>$name) {
+        if (is_array($instanceId) && !empty($instanceId)) {
+            foreach ($instanceId as $k=>$name) {
                 $params['ReservedInstancesId.' . ($k+1)] = $name;
             }
-        } elseif($instanceId) {
+        } elseif ($instanceId) {
             $params['ReservedInstancesId.1'] = $instanceId;
         }
 
@@ -61,7 +61,7 @@ class Zend_Service_Amazon_Ec2_Instance_Reserved extends Zend_Service_Amazon_Ec2_
         $items = $xpath->query('//ec2:reservedInstancesSet/ec2:item');
 
         $return = array();
-        foreach($items as $item) {
+        foreach ($items as $item) {
             $i = array();
             $i['reservedInstancesId'] = $xpath->evaluate('string(ec2:reservedInstancesId/text())', $item);
             $i['instanceType'] = $xpath->evaluate('string(ec2:instanceType/text())', $item);
@@ -99,7 +99,7 @@ class Zend_Service_Amazon_Ec2_Instance_Reserved extends Zend_Service_Amazon_Ec2_
         $items = $xpath->query('//ec2:reservedInstancesOfferingsSet/ec2:item');
 
         $return = array();
-        foreach($items as $item) {
+        foreach ($items as $item) {
             $i = array();
             $i['reservedInstancesOfferingId'] = $xpath->evaluate('string(ec2:reservedInstancesOfferingId/text())', $item);
             $i['instanceType'] = $xpath->evaluate('string(ec2:instanceType/text())', $item);

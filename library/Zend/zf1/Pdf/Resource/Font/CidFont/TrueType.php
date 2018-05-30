@@ -84,5 +84,4 @@ class Zend_Pdf_Resource_Font_CidFont_TrueType extends Zend_Pdf_Resource_Font_Cid
         $cidToGidMap->dictionary->Filter = new Zend_Pdf_Element_Name('FlateDecode');
         $this->_resource->CIDToGIDMap = $cidToGidMap;
     }
-
 }

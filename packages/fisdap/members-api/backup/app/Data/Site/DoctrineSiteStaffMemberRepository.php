@@ -16,7 +16,6 @@ namespace Fisdap\Data\Site;
 use Fisdap\Data\Repository\DoctrineRepository;
 use Fisdap\Entity\SiteLegacy;
 
-
 /**
  * Class DoctrineSiteStaffMemberRepository
  *
@@ -32,7 +31,8 @@ class DoctrineSiteStaffMemberRepository extends DoctrineRepository implements Si
      * @param array $programs an array of program ids for this program or the programs in this network
      * @return array an array of SiteStaffMembers
      */
-    public function getStaffMembersBySiteAndProgram(SiteLegacy $site, array $programs) {
+    public function getStaffMembersBySiteAndProgram(SiteLegacy $site, array $programs)
+    {
         $qb = $this->_em->createQueryBuilder();
         $qb->select('ssm')
             ->from('\Fisdap\Entity\SiteStaffMember', 'ssm')
@@ -43,5 +43,4 @@ class DoctrineSiteStaffMemberRepository extends DoctrineRepository implements Si
 
         return $qb->getQuery()->getResult();
     }
-
 }

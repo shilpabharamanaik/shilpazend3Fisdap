@@ -9,7 +9,6 @@ use Monolog\Processor\MemoryPeakUsageProcessor;
 use Monolog\Processor\MemoryUsageProcessor;
 use Monolog\Processor\WebProcessor;
 
-
 /**
  * Enables additional configuration for Monolog logger (as provided by the Laravel Framework)
  *

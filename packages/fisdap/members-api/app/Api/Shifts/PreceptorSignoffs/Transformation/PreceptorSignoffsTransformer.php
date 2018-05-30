@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\Shifts\PreceptorSignoffs\Transformation;
 
-
 use Fisdap\Entity\PreceptorSignoff;
 use Fisdap\Fractal\Transformer;
 
@@ -25,16 +24,16 @@ final class PreceptorSignoffsTransformer extends Transformer
             // are NOT in the database.
             // - Nick
             $signoff['ratings'] = array();
-            foreach($ratings as $rating) {
+            foreach ($ratings as $rating) {
                 $found = false;
-                foreach($signoff['ratings'] as $existingRating) {
-                    if($rating->id == $existingRating['id']) {
+                foreach ($signoff['ratings'] as $existingRating) {
+                    if ($rating->id == $existingRating['id']) {
                         $found = true;
                         break;
                     }
                 }
 
-                if(!$found) {
+                if (!$found) {
                     $signoff['ratings'][] = $rating->toArray();
                 }
             }
@@ -54,7 +53,7 @@ final class PreceptorSignoffsTransformer extends Transformer
             if (isset($verification)) {
                 $signoff['verification'] = $verification->toArray();
             } elseif ($patient) {
-                if($patient->getVerification() != null && $patient->getVerification()->getSignature() != null) {
+                if ($patient->getVerification() != null && $patient->getVerification()->getSignature() != null) {
                     $signature = $patient->getVerification()->getSignature();
 
                     // This is only needed to return the signature string after creation.
@@ -70,7 +69,7 @@ final class PreceptorSignoffsTransformer extends Transformer
 
                 $signoff['verification'] = $patient->getVerificationArray() ? $patient->getVerificationArray() : null;
             } elseif ($shift) {
-                if($shift->getVerification() != null && $shift->getVerification()->getSignature() != null) {
+                if ($shift->getVerification() != null && $shift->getVerification()->getSignature() != null) {
                     $signature = $shift->getVerification()->getSignature();
 
                     // This is only needed to return the signature string after creation.

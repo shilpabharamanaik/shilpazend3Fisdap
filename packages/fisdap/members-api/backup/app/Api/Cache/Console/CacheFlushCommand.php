@@ -6,7 +6,6 @@ use Illuminate\Cache\Repository;
 use Illuminate\Contracts\Cache\Store;
 use Symfony\Component\Console\Input\InputArgument;
 
-
 /**
  * Class CacheFlushCommand
  *

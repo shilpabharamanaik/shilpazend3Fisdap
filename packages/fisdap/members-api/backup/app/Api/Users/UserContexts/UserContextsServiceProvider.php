@@ -10,7 +10,6 @@ use Illuminate\Config\Repository as Config;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
-
 /**
  * Enables user context-related routes, providing REST API endpoint documentation for each,
  * and provides user context-related services such as permissions finding, etc.
@@ -81,7 +80,7 @@ final class UserContextsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(FindsPermissions::class, function() {
+        $this->app->singleton(FindsPermissions::class, function () {
             return new CachingPermissionsFinder(
                 $this->app->make(AuthManager::class),
                 $this->app->make(PermissionsFinder::class),

@@ -48,5 +48,4 @@ interface Zend_Tool_Framework_Metadata_Interface
      *
      */
     public function getValue();
-
 }

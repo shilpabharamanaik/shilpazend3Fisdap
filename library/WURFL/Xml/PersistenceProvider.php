@@ -17,13 +17,14 @@
  * @license
  * @version    $id$
  */
-interface WURFL_Xml_PersistenceProvider {
-	/**
-	 * Saves the object 
-	 *
-	 * @param string $objectId
-	 * @param mixed $object
-	 */
+interface WURFL_Xml_PersistenceProvider
+{
+    /**
+     * Saves the object
+     *
+     * @param string $objectId
+     * @param mixed $object
+     */
     public function save($objectId, $object);
 
     
@@ -34,7 +35,7 @@ interface WURFL_Xml_PersistenceProvider {
      * @param string $objectId
      */
     public function load($objectId);
-	
+    
     
     /**
      * Removes the element form the Persistence identified by the object Id
@@ -53,5 +54,4 @@ interface WURFL_Xml_PersistenceProvider {
     public function isWURFLLoaded();
 
     public function setWURFLLoaded();
-
 }

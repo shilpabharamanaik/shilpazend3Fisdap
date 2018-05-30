@@ -190,7 +190,7 @@ abstract class Zend_Feed_Reader_FeedAbstract implements Zend_Feed_Reader_FeedInt
      */
     public function saveXml()
     {
-          return $this->getDomDocument()->saveXml();
+        return $this->getDomDocument()->saveXml();
     }
 
     /**
@@ -200,7 +200,7 @@ abstract class Zend_Feed_Reader_FeedAbstract implements Zend_Feed_Reader_FeedInt
      */
     public function getElement()
     {
-          return $this->getDomDocument()->documentElement;
+        return $this->getDomDocument()->documentElement;
     }
 
     /**
@@ -210,7 +210,7 @@ abstract class Zend_Feed_Reader_FeedAbstract implements Zend_Feed_Reader_FeedInt
      */
     public function getXpath()
     {
-          return $this->_xpath;
+        return $this->_xpath;
     }
 
     /**
@@ -302,7 +302,9 @@ abstract class Zend_Feed_Reader_FeedAbstract implements Zend_Feed_Reader_FeedInt
             }
             $className = Zend_Feed_Reader::getPluginLoader()->getClassName($extension);
             $this->_extensions[$extension] = new $className(
-                $this->getDomDocument(), $this->_data['type'], $this->_xpath
+                $this->getDomDocument(),
+                $this->_data['type'],
+                $this->_xpath
             );
         }
     }

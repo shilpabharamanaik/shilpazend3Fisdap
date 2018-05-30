@@ -45,12 +45,12 @@ class Zend_Test_PHPUnit_Db_Operation_Truncate implements PHPUnit_Extensions_Data
      */
     public function execute(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
     {
-        if(!($connection instanceof Zend_Test_PHPUnit_Db_Connection)) {
+        if (!($connection instanceof Zend_Test_PHPUnit_Db_Connection)) {
             require_once "Zend/Test/PHPUnit/Db/Exception.php";
             throw new Zend_Test_PHPUnit_Db_Exception("Not a valid Zend_Test_PHPUnit_Db_Connection instance, ".get_class($connection)." given!");
         }
 
-        foreach ($dataSet->getReverseIterator() AS $table) {
+        foreach ($dataSet->getReverseIterator() as $table) {
             try {
                 $tableName = $table->getTableMetaData()->getTableName();
                 $this->_truncate($connection->getConnection(), $tableName);
@@ -70,9 +70,9 @@ class Zend_Test_PHPUnit_Db_Operation_Truncate implements PHPUnit_Extensions_Data
     protected function _truncate(Zend_Db_Adapter_Abstract $db, $tableName)
     {
         $tableName = $db->quoteIdentifier($tableName, true);
-        if($db instanceof Zend_Db_Adapter_Pdo_Sqlite) {
+        if ($db instanceof Zend_Db_Adapter_Pdo_Sqlite) {
             $db->query('DELETE FROM '.$tableName);
-        } else if($db instanceof Zend_Db_Adapter_Db2) {
+        } elseif ($db instanceof Zend_Db_Adapter_Db2) {
             /*if(strstr(PHP_OS, "WIN")) {
                 $file = tempnam(sys_get_temp_dir(), "zendtestdbibm_");
                 file_put_contents($file, "");
@@ -83,9 +83,9 @@ class Zend_Test_PHPUnit_Db_Operation_Truncate implements PHPUnit_Extensions_Data
             }*/
             require_once "Zend/Exception.php";
             throw Zend_Exception("IBM Db2 TRUNCATE not supported.");
-        } else if($this->_isMssqlOrOracle($db)) {
+        } elseif ($this->_isMssqlOrOracle($db)) {
             $db->query('TRUNCATE TABLE '.$tableName);
-        } else if($db instanceof Zend_Db_Adapter_Pdo_Pgsql) {
+        } elseif ($db instanceof Zend_Db_Adapter_Pdo_Pgsql) {
             $db->query('TRUNCATE '.$tableName.' CASCADE');
         } else {
             $db->query('TRUNCATE '.$tableName);

@@ -4,7 +4,6 @@ use Fisdap\Api\ClassSections\ClassSectionStudentTransformer;
 use Fisdap\Entity\StudentLegacy;
 use Fisdap\Fractal\Transformer;
 
-
 /**
  * Prepares student user role data for JSON output
  *

@@ -38,8 +38,7 @@ require_once 'Zend/Service/DeveloperGarden/Response/LocalSearch/LocalSearchRespo
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Response_LocalSearch_LocalSearchResponse
-    extends Zend_Service_DeveloperGarden_Response_BaseType
+class Zend_Service_DeveloperGarden_Response_LocalSearch_LocalSearchResponse extends Zend_Service_DeveloperGarden_Response_BaseType
 {
     /**
      *

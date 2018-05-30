@@ -1,6 +1,5 @@
 <?php namespace Fisdap\Api\VerificationTypes;
 
-
 use Fisdap\Api\VerificationTypes\Http\VerificationTypesController;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
@@ -22,7 +21,7 @@ final class VerificationTypesServiceProvider extends ServiceProvider
 
     /**
      * Define route to obtain all verification types.
-     * 
+     *
      * @param Router $router
      */
     public function map(Router $router)
@@ -33,4 +32,3 @@ final class VerificationTypesServiceProvider extends ServiceProvider
         ]);
     }
 }
-

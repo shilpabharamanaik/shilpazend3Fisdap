@@ -22,11 +22,11 @@ final class ShiftAttachmentsServiceProvider extends ServiceProvider
      * @inheritdoc
      */
     
-	public function boot()
+    public function boot()
     {
-		$router = app('router'); // Router Instance
+        $router = app('router'); // Router Instance
         parent::boot();
-		Config::set('attachments.types.shift.entity', ShiftAttachment::class);
+        Config::set('attachments.types.shift.entity', ShiftAttachment::class);
     }
 
     /**

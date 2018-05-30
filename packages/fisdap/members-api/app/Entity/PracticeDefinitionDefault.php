@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
-
 /**
  * Practice Definition Default
  * This entity will be used to store the default practice definitions to be give to a new program
@@ -23,20 +22,20 @@ use Fisdap\EntityUtils;
 class PracticeDefinitionDefault extends EntityBaseClass
 {
     /**
-	 * @var integer
-	 * @Id
-	 * @Column(type="integer")
-	 * @GeneratedValue
-	 */
-	protected $id;
+     * @var integer
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
     
     /**
-	 * @var ProgramLegacy
-	 * @ManyToOne(targetEntity="ProgramLegacy")
-	 * @JoinColumn(name="program_id", referencedColumnName="Program_id")
+     * @var ProgramLegacy
+     * @ManyToOne(targetEntity="ProgramLegacy")
+     * @JoinColumn(name="program_id", referencedColumnName="Program_id")
      * @todo this may not be needed...investigate
-	 */
-	protected $program;
+     */
+    protected $program;
     
     /**
      * @var PracticeCategoryDefault
@@ -60,12 +59,12 @@ class PracticeDefinitionDefault extends EntityBaseClass
     
     /**
      * @var ArrayCollection
-	 * @ManyToMany(targetEntity="PracticeSkill")
+     * @ManyToMany(targetEntity="PracticeSkill")
      * @JoinTable(name="fisdap2_practice_definitions_skills_defaults",
      *  joinColumns={@JoinColumn(name="practice_definition_id", referencedColumnName="id")},
      *  inverseJoinColumns={@JoinColumn(name="practice_skill_id",referencedColumnName="id")})
      */
-	protected $practice_skills;
+    protected $practice_skills;
     
     /**
      * @var string the name of this practice definition
@@ -171,7 +170,7 @@ class PracticeDefinitionDefault extends EntityBaseClass
             $ids = array($ids);
         }
         
-        foreach($ids as $id) {
+        foreach ($ids as $id) {
             $this->practice_skills->add(EntityUtils::getEntity("PracticeSkill", $id));
         }
         
@@ -192,18 +191,17 @@ class PracticeDefinitionDefault extends EntityBaseClass
         $return = array();
         $definitions = EntityUtils::getRepository("PracticeDefinition")->findBy(array("certification_level" => $certificationId, "program" => $programId, "active" => 1));
         
-		
-        foreach($definitions as $def) {
-			if($categories){
-				if(!$return[$def->category->name]){
-					$return[$def->category->name] = array();
-				}
+        
+        foreach ($definitions as $def) {
+            if ($categories) {
+                if (!$return[$def->category->name]) {
+                    $return[$def->category->name] = array();
+                }
 
-				$return[$def->category->name][$def->id] = $def->name;
-			}
-			else {
-				$return[$def->id] = $def->name;
-			}
+                $return[$def->category->name][$def->id] = $def->name;
+            } else {
+                $return[$def->id] = $def->name;
+            }
         }
         
         return $return;

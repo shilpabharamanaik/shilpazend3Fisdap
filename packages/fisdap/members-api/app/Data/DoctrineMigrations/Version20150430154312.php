@@ -3,7 +3,6 @@
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
-
 /**
  * Adding Attachments, ShiftAttachments, AttachmentCategories, ShiftAttachmentCategories, and relationship between
  * ShiftAttachments and fisdap2_verifications

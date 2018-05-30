@@ -48,8 +48,7 @@ require_once 'Zend/Service/DeveloperGarden/Response/SecurityTokenServer/GetToken
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_SecurityTokenServer
-    extends Zend_Service_DeveloperGarden_Client_ClientAbstract
+class Zend_Service_DeveloperGarden_SecurityTokenServer extends Zend_Service_DeveloperGarden_Client_ClientAbstract
 {
     /**
      * wsdl file

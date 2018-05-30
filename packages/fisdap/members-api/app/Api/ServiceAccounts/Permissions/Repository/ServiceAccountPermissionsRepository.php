@@ -2,7 +2,6 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface ServiceAccountPermissionsRepository
  *

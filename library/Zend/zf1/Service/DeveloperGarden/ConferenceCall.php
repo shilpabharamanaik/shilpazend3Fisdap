@@ -323,8 +323,7 @@ require_once 'Zend/Service/DeveloperGarden/ConferenceCall/ConferenceAccount.php'
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_ConferenceCall
-    extends Zend_Service_DeveloperGarden_Client_ClientAbstract
+class Zend_Service_DeveloperGarden_ConferenceCall extends Zend_Service_DeveloperGarden_Client_ClientAbstract
 {
     /**
      * wsdl file
@@ -406,7 +405,8 @@ class Zend_Service_DeveloperGarden_ConferenceCall
      * @param integer $account
      * @return Zend_Service_DeveloperGarden_Response_ConferenceCall_CreateConferenceResponseType
      */
-    public function createConference($ownerId,
+    public function createConference(
+        $ownerId,
         Zend_Service_DeveloperGarden_ConferenceCall_ConferenceDetail $conferenceDetails,
         Zend_Service_DeveloperGarden_ConferenceCall_ConferenceSchedule $conferenceSchedule = null,
         $account = null

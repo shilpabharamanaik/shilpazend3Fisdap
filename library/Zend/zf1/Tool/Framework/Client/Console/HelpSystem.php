@@ -207,14 +207,12 @@ class Zend_Tool_Framework_Client_Console_HelpSystem
         }
 
         foreach ($displayProviderMetadatas as $providerMetadata) {
-
             $providerNameDisplayed = false;
 
             $providerName = $providerMetadata->getProviderName();
             $providerSignature = $providerMetadata->getReference();
 
             foreach ($providerSignature->getActions() as $actionInfo) {
-
                 $actionName = $actionInfo->getName();
 
                 // check to see if this action name is valid
@@ -251,7 +249,6 @@ class Zend_Tool_Framework_Client_Console_HelpSystem
                     ));
 
                 if ($actionableGlobalLongParamMetadata) {
-
                     if (!$providerNameDisplayed) {
                         $this->_respondWithProviderName($providerMetadata);
                         $providerNameDisplayed = true;
@@ -273,9 +270,7 @@ class Zend_Tool_Framework_Client_Console_HelpSystem
                 }
 
                 if ($includeAllSpecialties || $isSingleSpecialProviderAction) {
-
                     foreach ($providerSignature->getSpecialties() as $specialtyName) {
-
                         if ($specialtyName == '_Global') {
                             continue;
                         }
@@ -297,10 +292,9 @@ class Zend_Tool_Framework_Client_Console_HelpSystem
                             'clientName'    => 'console'
                             ));
 
-                        if($actionableSpecialtyLongMetadata) {
+                        if ($actionableSpecialtyLongMetadata) {
                             $this->_respondWithCommand($providerMetadata, $actionMetadata, $specialtyMetadata, $actionableSpecialtyLongMetadata);
                         }
-
                     }
                 }
 
@@ -315,7 +309,6 @@ class Zend_Tool_Framework_Client_Console_HelpSystem
                         );
                     $this->_response->appendContent(' to get specific help on them.', array('color' => 'yellow'));
                 }
-
             }
 
             if ($providerNameDisplayed) {
@@ -350,7 +343,8 @@ class Zend_Tool_Framework_Client_Console_HelpSystem
         Zend_Tool_Framework_Metadata_Tool $providerMetadata,
         Zend_Tool_Framework_Metadata_Tool $actionMetadata,
         Zend_Tool_Framework_Metadata_Tool $specialtyMetadata,
-        Zend_Tool_Framework_Metadata_Tool $parameterLongMetadata)//,
+        Zend_Tool_Framework_Metadata_Tool $parameterLongMetadata
+    )//,
         //Zend_Tool_Framework_Metadata_Tool $parameterShortMetadata)
     {
         $this->_response->appendContent(
@@ -365,14 +359,13 @@ class Zend_Tool_Framework_Client_Console_HelpSystem
         foreach ($parameterLongMetadata->getValue() as $paramName => $consoleParamName) {
             $methodInfo = $parameterLongMetadata->getReference();
             $paramString = ' ' . $consoleParamName;
-            if ( ($defaultValue = $methodInfo['parameterInfo'][$paramName]['default']) != null) {
+            if (($defaultValue = $methodInfo['parameterInfo'][$paramName]['default']) != null) {
                 $paramString .= '[=' . $defaultValue . ']';
             }
             $this->_response->appendContent($paramString . '', array('separator' => false));
         }
 
-       $this->_response->appendContent(null, array('separator' => true));
-       return $this;
+        $this->_response->appendContent(null, array('separator' => true));
+        return $this;
     }
-
 }

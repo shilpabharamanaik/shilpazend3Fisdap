@@ -239,7 +239,7 @@ class Zend_Gdata_Analytics_DataQuery extends Zend_Gdata_Query
      */
     public function addDimension($dimension)
     {
-        $this->_dimensions[$dimension] = true;        
+        $this->_dimensions[$dimension] = true;
         return $this;
     }
 

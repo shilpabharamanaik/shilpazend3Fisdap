@@ -140,7 +140,7 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
      */
     public function setMasterFile($masterFile)
     {
-          $this->setMasterFiles(array($masterFile));
+        $this->setMasterFiles(array($masterFile));
     }
 
     /**
@@ -157,7 +157,7 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
     {
         if ($name == 'master_file') {
             $this->setMasterFile($value);
-        } else if ($name == 'master_files') {
+        } elseif ($name == 'master_files') {
             $this->setMasterFiles($value);
         } else {
             parent::setOption($name, $value);
@@ -195,7 +195,7 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
         if ($lastModified) {
             if ($this->_specificOptions['master_files_mode'] == self::MODE_AND) {
                 // MODE_AND
-                foreach($this->_masterFile_mtimes as $masterFileMTime) {
+                foreach ($this->_masterFile_mtimes as $masterFileMTime) {
                     if ($masterFileMTime) {
                         if ($lastModified > $masterFileMTime) {
                             return $lastModified;
@@ -205,7 +205,7 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
             } else {
                 // MODE_OR
                 $res = true;
-                foreach($this->_masterFile_mtimes as $masterFileMTime) {
+                foreach ($this->_masterFile_mtimes as $masterFileMTime) {
                     if ($masterFileMTime) {
                         if ($lastModified <= $masterFileMTime) {
                             return false;
@@ -217,6 +217,4 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
         }
         return false;
     }
-
 }
-

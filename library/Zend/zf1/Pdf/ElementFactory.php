@@ -132,7 +132,7 @@ class Zend_Pdf_ElementFactory implements Zend_Pdf_ElementFactory_Interface
      * @param integer $objCount
      * @return Zend_Pdf_ElementFactory_Interface
      */
-    static public function createFactory($objCount)
+    public static function createFactory($objCount)
     {
         require_once 'Zend/Pdf/ElementFactory/Proxy.php';
         return new Zend_Pdf_ElementFactory_Proxy(new Zend_Pdf_ElementFactory($objCount));
@@ -209,7 +209,7 @@ class Zend_Pdf_ElementFactory implements Zend_Pdf_ElementFactory_Interface
      */
     public function attach(Zend_Pdf_ElementFactory_Interface $factory)
     {
-        if ( $factory === $this || isset($this->_attachedFactories[$factory->getId()])) {
+        if ($factory === $this || isset($this->_attachedFactories[$factory->getId()])) {
             /**
              * Don't attach factory twice.
              * We do not check recusively because of nature of attach operation
@@ -377,14 +377,18 @@ class Zend_Pdf_ElementFactory implements Zend_Pdf_ElementFactory_Interface
         require_once 'Zend/Pdf/UpdateInfoContainer.php';
         foreach ($this->_modifiedObjects as $objNum => $obj) {
             if ($this->_removedObjects->contains($obj)) {
-                            $result[$objNum+$shift] = new Zend_Pdf_UpdateInfoContainer($objNum + $shift,
+                $result[$objNum+$shift] = new Zend_Pdf_UpdateInfoContainer(
+                                $objNum + $shift,
                                                                            $obj->getGenNum()+1,
-                                                                           true);
+                                                                           true
+                            );
             } else {
-                $result[$objNum+$shift] = new Zend_Pdf_UpdateInfoContainer($objNum + $shift,
+                $result[$objNum+$shift] = new Zend_Pdf_UpdateInfoContainer(
+                    $objNum + $shift,
                                                                            $obj->getGenNum(),
                                                                            false,
-                                                                           $obj->dump($rootFactory));
+                                                                           $obj->dump($rootFactory)
+                );
             }
         }
 
@@ -443,4 +447,3 @@ class Zend_Pdf_ElementFactory implements Zend_Pdf_ElementFactory_Interface
         return false;
     }
 }
-

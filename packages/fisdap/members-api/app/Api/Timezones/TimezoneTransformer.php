@@ -3,7 +3,6 @@
 use Fisdap\Entity\Timezone;
 use Fisdap\Fractal\Transformer;
 
-
 /**
  * Prepares timezone data for JSON output
  *
@@ -25,4 +24,4 @@ final class TimezoneTransformer extends Transformer
         
         return $timezone;
     }
-} 
+}

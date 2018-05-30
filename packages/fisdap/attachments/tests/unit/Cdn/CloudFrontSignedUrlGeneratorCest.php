@@ -4,7 +4,6 @@ use Aws\CloudFront\CloudFrontClient;
 use Fisdap\Attachments\Cdn\CloudFrontSignedUrlGenerator;
 use Fisdap\Attachments\Core\Kernel\AttachmentsKernel;
 
-
 class CloudFrontSignedUrlGeneratorCest
 {
     public function _before(UnitTester $I)

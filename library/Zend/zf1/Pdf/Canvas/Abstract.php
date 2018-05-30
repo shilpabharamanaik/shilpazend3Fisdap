@@ -389,9 +389,14 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
      */
     public function clipCircle($x, $y, $radius, $startAngle = null, $endAngle = null)
     {
-        $this->clipEllipse($x - $radius, $y - $radius,
-                           $x + $radius, $y + $radius,
-                           $startAngle, $endAngle);
+        $this->clipEllipse(
+            $x - $radius,
+            $y - $radius,
+                           $x + $radius,
+            $y + $radius,
+                           $startAngle,
+            $endAngle
+        );
 
         return $this;
     }
@@ -435,8 +440,12 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
         $yC = new Zend_Pdf_Element_Numeric($y);
 
         if ($startAngle !== null) {
-            if ($startAngle != 0) { $startAngle = fmod($startAngle, M_PI*2); }
-            if ($endAngle   != 0) { $endAngle   = fmod($endAngle,   M_PI*2); }
+            if ($startAngle != 0) {
+                $startAngle = fmod($startAngle, M_PI*2);
+            }
+            if ($endAngle   != 0) {
+                $endAngle   = fmod($endAngle, M_PI*2);
+            }
 
             if ($startAngle > $endAngle) {
                 $endAngle += M_PI*2;
@@ -446,7 +455,7 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
             $clipSectors = (int)ceil(($endAngle - $startAngle)/M_PI_4);
             $clipRadius  = max($x2 - $x1, $y2 - $y1);
 
-            for($count = 0; $count <= $clipSectors; $count++) {
+            for ($count = 0; $count <= $clipSectors; $count++) {
                 $pAngle = $startAngle + ($endAngle - $startAngle)*$count/(float)$clipSectors;
 
                 $pX = new Zend_Pdf_Element_Numeric($x + cos($pAngle)*$clipRadius);
@@ -549,7 +558,7 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
         return $this;
     }
 
-// ------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------
     /**
      * Draw a circle centered on x, y with a radius of radius.
      *
@@ -574,11 +583,17 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
      * @param mixed $param6
      * @return Zend_Pdf_Canvas_Interface
      */
-    public function  drawCircle($x, $y, $radius, $param4 = null, $param5 = null, $param6 = null)
+    public function drawCircle($x, $y, $radius, $param4 = null, $param5 = null, $param6 = null)
     {
-        $this->drawEllipse($x - $radius, $y - $radius,
-                           $x + $radius, $y + $radius,
-                           $param4, $param5, $param6);
+        $this->drawEllipse(
+            $x - $radius,
+            $y - $radius,
+                           $x + $radius,
+            $y + $radius,
+                           $param4,
+            $param5,
+            $param6
+        );
 
         return $this;
     }
@@ -609,7 +624,7 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
             // drawEllipse($x1, $y1, $x2, $y2);
             $startAngle = null;
             $fillType = Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE;
-        } else if ($param6 === null) {
+        } elseif ($param6 === null) {
             // drawEllipse($x1, $y1, $x2, $y2, $fillType);
             $startAngle = null;
             $fillType = $param5;
@@ -646,8 +661,12 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
         $yC = new Zend_Pdf_Element_Numeric($y);
 
         if ($startAngle !== null) {
-            if ($startAngle != 0) { $startAngle = fmod($startAngle, M_PI*2); }
-            if ($endAngle   != 0) { $endAngle   = fmod($endAngle,   M_PI*2); }
+            if ($startAngle != 0) {
+                $startAngle = fmod($startAngle, M_PI*2);
+            }
+            if ($endAngle   != 0) {
+                $endAngle   = fmod($endAngle, M_PI*2);
+            }
 
             if ($startAngle > $endAngle) {
                 $endAngle += M_PI*2;
@@ -657,7 +676,7 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
             $clipSectors = (int)ceil(($endAngle - $startAngle)/M_PI_4);
             $clipRadius  = max($x2 - $x1, $y2 - $y1);
 
-            for($count = 0; $count <= $clipSectors; $count++) {
+            for ($count = 0; $count <= $clipSectors; $count++) {
                 $pAngle = $startAngle + ($endAngle - $startAngle)*$count/(float)$clipSectors;
 
                 $pX = new Zend_Pdf_Element_Numeric($x + cos($pAngle)*$clipRadius);
@@ -798,10 +817,12 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
      * @param integer $fillMethod
      * @return Zend_Pdf_Canvas_Interface
      */
-    public function drawPolygon($x, $y,
+    public function drawPolygon(
+        $x,
+        $y,
                                 $fillType = Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE,
-                                $fillMethod = Zend_Pdf_Page::FILL_METHOD_NON_ZERO_WINDING)
-    {
+                                $fillMethod = Zend_Pdf_Page::FILL_METHOD_NON_ZERO_WINDING
+    ) {
         $this->_addProcSet('PDF');
 
         $firstPoint = true;
@@ -906,17 +927,21 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
      * @param integer $fillType
      * @return Zend_Pdf_Canvas_Interface
      */
-    public function drawRoundedRectangle($x1, $y1, $x2, $y2, $radius,
-                                         $fillType = Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE)
-    {
-
+    public function drawRoundedRectangle(
+        $x1,
+        $y1,
+        $x2,
+        $y2,
+        $radius,
+                                         $fillType = Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE
+    ) {
         $this->_addProcSet('PDF');
 
-        if(!is_array($radius)) {
+        if (!is_array($radius)) {
             $radius = array($radius, $radius, $radius, $radius);
         } else {
             for ($i = 0; $i < 4; $i++) {
-                if(!isset($radius[$i])) {
+                if (!isset($radius[$i])) {
                     $radius[$i] = 0;
                 }
             }
@@ -1057,14 +1082,14 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
         return $this;
     }
 
-     /**
-     * Close the path by drawing a straight line back to it's beginning.
-     *
-     * @internal (needs implementation)
-     *
-     * @throws Zend_Pdf_Exception    - if a path hasn't been started with pathMove()
-     * @return Zend_Pdf_Canvas_Interface
-     */
+    /**
+    * Close the path by drawing a straight line back to it's beginning.
+    *
+    * @internal (needs implementation)
+    *
+    * @throws Zend_Pdf_Exception    - if a path hasn't been started with pathMove()
+    * @return Zend_Pdf_Canvas_Interface
+    */
     public function pathClose()
     {
         /** @todo implementation */

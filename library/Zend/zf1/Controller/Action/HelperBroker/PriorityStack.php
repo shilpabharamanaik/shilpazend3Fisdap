@@ -29,7 +29,6 @@
  */
 class Zend_Controller_Action_HelperBroker_PriorityStack implements IteratorAggregate, ArrayAccess, Countable
 {
-
     protected $_helpersByPriority = array();
     protected $_helpersByNameRef  = array();
     protected $_nextDefaultPriority = 1;
@@ -276,5 +275,4 @@ class Zend_Controller_Action_HelperBroker_PriorityStack implements IteratorAggre
     {
         return $this->_helpersByNameRef;
     }
-
 }

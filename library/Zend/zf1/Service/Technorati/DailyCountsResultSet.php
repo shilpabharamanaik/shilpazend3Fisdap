@@ -79,7 +79,9 @@ class Zend_Service_Technorati_DailyCountsResultSet extends Zend_Service_Technora
         // Zend_Locale::setDefault('en');
 
         $result = $this->_xpath->query('/tapi/document/result/days/text()');
-        if ($result->length == 1) $this->_days = (int) $result->item(0)->data;
+        if ($result->length == 1) {
+            $this->_days = (int) $result->item(0)->data;
+        }
 
         $result = $this->_xpath->query('/tapi/document/result/searchurl/text()');
         if ($result->length == 1) {
@@ -96,7 +98,8 @@ class Zend_Service_Technorati_DailyCountsResultSet extends Zend_Service_Technora
      *
      * @return  Zend_Uri_Http
      */
-    public function getSearchUrl() {
+    public function getSearchUrl()
+    {
         return $this->_searchUrl;
     }
 
@@ -105,7 +108,8 @@ class Zend_Service_Technorati_DailyCountsResultSet extends Zend_Service_Technora
      *
      * @return  int
      */
-    public function getDays() {
+    public function getDays()
+    {
         return $this->_days;
     }
 

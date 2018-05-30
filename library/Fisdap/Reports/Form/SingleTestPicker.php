@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -17,7 +17,7 @@
  *
  * This extends SkillsTracker_Form_Modal because we need self::$strippedFormJQueryElements
  * but maybe that's crazy...
- * 
+ *
  * @author jmortenson
  * // SkillsTracker_Form_Modal
  */
@@ -28,8 +28,8 @@ class Fisdap_Reports_Form_SingleTestPicker extends Fisdap_Form_Base
      */
     public $formOptions = array();
 
-    /**                                                                                                                                                                                             
-    * @param $options mixed additional Zend_Form options                                                                                                                                           
+    /**
+    * @param $options mixed additional Zend_Form options
     */
     public function __construct($filters = null, $options = null, $formOptions = array())
     {
@@ -52,17 +52,17 @@ class Fisdap_Reports_Form_SingleTestPicker extends Fisdap_Form_Base
 
         $options = $testInfo['product'];
         if (is_array($options)) {
-          $options = array('' => '') + $options;
+            $options = array('' => '') + $options;
         } else {
-          $options = array();
+            $options = array();
         }
 
         // do we need to exclude certain quizzes?
 
         if (isset($this->formOptions['excludeTests']) && is_array($this->formOptions['excludeTests'])) {
-            foreach($options as $groupKey => $groupValue) {
+            foreach ($options as $groupKey => $groupValue) {
                 if (is_array($groupValue)) {
-                    foreach($groupValue as $key => $value) {
+                    foreach ($groupValue as $key => $value) {
                         if (in_array($key, $this->formOptions['excludeTests'])) {
                             // remove from the array of options
                             unset($options[$groupKey][$key]);
@@ -115,26 +115,26 @@ class Fisdap_Reports_Form_SingleTestPicker extends Fisdap_Form_Base
         // add elements to the form
         $this->addElements(array($test, $dateRange, $attempt)); //$this->addElements($formElements);
         
-        //Set the decorators for the form                                                                                                                                                       
+        //Set the decorators for the form
         $this->setDecorators(array(
             'FormErrors',
             'PrepareElements',
             array('ViewScript', array('viewScript' => 'forms/single-test-picker.phtml')),
         ));
-
     }
 
     
     /**
      * Return user-legible set of fields/values for display in a Fisdap Report Summary
      */
-    public function getReportSummary($config = array()) {
+    public function getReportSummary($config = array())
+    {
         // get test names so we can display the happy legible test name
         $moodleRepos = \Fisdap\EntityUtils::getRepository('MoodleTestDataLegacy');
         $testInfo = $moodleRepos->getMoodleTestList(array('active' => array(1,3), 'extraGroups' => array('pilot_tests')), 'productArrayWithInfo');
         $testLabel = $testInfo['info'][$config['test_id']]->test_name;
 
-            $summary = array(
+        $summary = array(
             'Exam' => $testLabel,
         );
         if ($config['dateRange']['startDate']) {

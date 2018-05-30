@@ -225,5 +225,4 @@ EOS
         return $controllerCodeGenFile->getClass()->hasMethod('test' . $actionName . 'Action');
     }
     */
-
 }

@@ -40,8 +40,7 @@ require_once 'Zend/Feed/Reader.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Pubsubhubbub_Subscriber_Callback
-    extends Zend_Feed_Pubsubhubbub_CallbackAbstract
+class Zend_Feed_Pubsubhubbub_Subscriber_Callback extends Zend_Feed_Pubsubhubbub_CallbackAbstract
 {
     /**
      * Contains the content of any feeds sent as updates to the Callback URL

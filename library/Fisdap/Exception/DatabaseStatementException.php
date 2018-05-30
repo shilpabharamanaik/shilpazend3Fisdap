@@ -42,5 +42,3 @@ class Fisdap_Exception_DatabaseStatementException extends Fisdap_Exception_Datab
         );
     }
 }
-
-?>

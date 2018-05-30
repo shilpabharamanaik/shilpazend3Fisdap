@@ -527,14 +527,12 @@ class Zend_Json_Server extends Zend_Server_Abstract
         }
 
         //Make sure named parameters are passed in correct order
-        if ( is_string( key( $params ) ) ) {
-
+        if (is_string(key($params))) {
             $callback = $invocable->getCallback();
             if ('function' == $callback->getType()) {
-                $reflection = new ReflectionFunction( $callback->getFunction() );
+                $reflection = new ReflectionFunction($callback->getFunction());
                 $refParams  = $reflection->getParameters();
             } else {
-
                 $reflection = new ReflectionMethod(
                     $callback->getClass(),
                     $callback->getMethod()
@@ -543,10 +541,10 @@ class Zend_Json_Server extends Zend_Server_Abstract
             }
 
             $orderedParams = array();
-            foreach( $reflection->getParameters() as $refParam ) {
-                if( isset( $params[ $refParam->getName() ] ) ) {
+            foreach ($reflection->getParameters() as $refParam) {
+                if (isset($params[ $refParam->getName() ])) {
                     $orderedParams[ $refParam->getName() ] = $params[ $refParam->getName() ];
-                } elseif( $refParam->isOptional() ) {
+                } elseif ($refParam->isOptional()) {
                     $orderedParams[ $refParam->getName() ] = $refParam->getDefaultValue();
                 } else {
                     throw new Zend_Server_Exception(

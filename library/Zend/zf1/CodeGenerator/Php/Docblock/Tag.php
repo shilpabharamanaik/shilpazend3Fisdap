@@ -95,7 +95,8 @@ class Zend_CodeGenerator_Php_Docblock_Tag extends Zend_CodeGenerator_Php_Abstrac
     {
         if (self::$_pluginLoader == null) {
             require_once 'Zend/Loader/PluginLoader.php';
-            self::setPluginLoader(new Zend_Loader_PluginLoader(array(
+            self::setPluginLoader(
+                new Zend_Loader_PluginLoader(array(
                 'Zend_CodeGenerator_Php_Docblock_Tag' => dirname(__FILE__) . '/Tag/'))
                 );
         }
@@ -174,5 +175,4 @@ class Zend_CodeGenerator_Php_Docblock_Tag extends Zend_CodeGenerator_Php_Abstrac
         }
         return $tag;
     }
-
 }

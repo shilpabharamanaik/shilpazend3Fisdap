@@ -133,5 +133,4 @@ interface Zend_Tool_Framework_Registry_Interface
      * @return Zend_Tool_Framework_Client_Response
      */
     public function getResponse();
-
 }

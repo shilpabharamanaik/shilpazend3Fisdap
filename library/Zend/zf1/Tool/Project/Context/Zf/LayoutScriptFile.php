@@ -105,5 +105,4 @@ EOS;
 
         return $contents;
     }
-
 }

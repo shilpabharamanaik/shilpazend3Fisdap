@@ -5,7 +5,6 @@ use Illuminate\Support\ServiceProvider;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-
 /**
  * Provides command logger configuration and registration
  *
@@ -28,8 +27,10 @@ final class LoggingCommandBusServiceProvider extends ServiceProvider
 
         $streamHandler = new StreamHandler(
             Config::get('commands.log_file', storage_path('logs/commands.log')),
-            Config::get('commands.log_level',
-                Config::get('app.debug') == true ? Logger::DEBUG : Logger::INFO)
+            Config::get(
+                'commands.log_level',
+                Config::get('app.debug') == true ? Logger::DEBUG : Logger::INFO
+            )
         );
         $monologLogger->pushHandler($streamHandler);
     }

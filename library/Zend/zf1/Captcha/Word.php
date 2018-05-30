@@ -39,10 +39,10 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
     /**#@+
      * @var array Character sets
      */
-    static $V  = array("a", "e", "i", "o", "u", "y");
-    static $VN = array("a", "e", "i", "o", "u", "y","2","3","4","5","6","7","8","9");
-    static $C  = array("b","c","d","f","g","h","j","k","m","n","p","q","r","s","t","u","v","w","x","z");
-    static $CN = array("b","c","d","f","g","h","j","k","m","n","p","q","r","s","t","u","v","w","x","z","2","3","4","5","6","7","8","9");
+    public static $V  = array("a", "e", "i", "o", "u", "y");
+    public static $VN = array("a", "e", "i", "o", "u", "y","2","3","4","5","6","7","8","9");
+    public static $C  = array("b","c","d","f","g","h","j","k","m","n","p","q","r","s","t","u","v","w","x","z");
+    public static $CN = array("b","c","d","f","g","h","j","k","m","n","p","q","r","s","t","u","v","w","x","z","2","3","4","5","6","7","8","9");
     /**#@-*/
 
     /**
@@ -175,7 +175,7 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
      *
      * @return string
      */
-    public function getId ()
+    public function getId()
     {
         if (null === $this->_id) {
             $this->_setId($this->_generateRandomId());
@@ -189,7 +189,7 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
      * @param string $id
      * @return Zend_Captcha_Word
      */
-    protected function _setId ($id)
+    protected function _setId($id)
     {
         $this->_id = $id;
         return $this;
@@ -280,7 +280,7 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
     public function setSession(Zend_Session_Namespace $session)
     {
         $this->_session = $session;
-        if($session) {
+        if ($session) {
             $this->_keepSession = true;
         }
         return $this;
@@ -347,7 +347,7 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
      */
     public function generate()
     {
-        if(!$this->_keepSession) {
+        if (!$this->_keepSession) {
             $this->_session = null;
         }
         $id = $this->_generateRandomId();

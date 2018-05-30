@@ -4,7 +4,6 @@ use Fisdap\Api\Users\CurrentUser\CurrentUser;
 use Fisdap\Data\Student\StudentLegacyRepository;
 use Fisdap\Entity\StudentLegacy;
 
-
 /**
  * @package    Account
  */
@@ -108,7 +107,6 @@ class Account_Form_ResearchConsentForm extends Fisdap_Form_Base
 
         $this->addElement($dataUse);
         $this->addElement($dataRelease);
-
     }
 
 

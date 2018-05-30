@@ -17,7 +17,7 @@ class Fisdap_Reports_SkillsFinder extends Fisdap_Reports_Report
         'shiftInformationForm' => array(
             'title' => 'Select shift information',
             'options' => array(
-                'pickPatientType' => FALSE,
+                'pickPatientType' => false,
                 'selected' => array('sites' => array())
             ),
         ),
@@ -27,12 +27,12 @@ class Fisdap_Reports_SkillsFinder extends Fisdap_Reports_Report
         'multistudentPicklist' => array(
             'title' => 'Select one or more student(s)',
             'options' => array(
-                'loadJSCSS' => TRUE,
-                'loadStudents' => TRUE,
-                'showTotal' => TRUE,
-                'studentVersion' => TRUE,
-                'includeAnon' => TRUE,
-                'useSessionFilters' => TRUE,
+                'loadJSCSS' => true,
+                'loadStudents' => true,
+                'showTotal' => true,
+                'studentVersion' => true,
+                'includeAnon' => true,
+                'useSessionFilters' => true,
                 'sessionNamespace' => "ReportStudentFilter",
             ),
         ),
@@ -46,8 +46,8 @@ class Fisdap_Reports_SkillsFinder extends Fisdap_Reports_Report
         'Med' => 'Meds',
         'ALSSkills' => 'ALS Skills',
         'OtherIntervention' => 'Other Procedures',
-        'Complaints' => 'Patient Complaints',		
-	'Impressions' => 'Impressions',
+        'Complaints' => 'Patient Complaints',
+    'Impressions' => 'Impressions',
     );
 
     /**
@@ -76,8 +76,8 @@ class Fisdap_Reports_SkillsFinder extends Fisdap_Reports_Report
 
     public $ComplaintsHeader = array('1' => array('Date', 'Subject', 'Patient',
         'Complaint', 'Exam', 'Interview', 'Team Lead'));
-		
-	public $ImpressionsHeader = array('1' => array('Date', 'Subject', 'Patient', 'Primary Impression', 'Secondary Impression', 'Exam', 'Interview', 'Team Lead'));
+        
+    public $ImpressionsHeader = array('1' => array('Date', 'Subject', 'Patient', 'Primary Impression', 'Secondary Impression', 'Exam', 'Interview', 'Team Lead'));
  
 
     protected function skillFinderComponent($config = null)
@@ -159,7 +159,6 @@ class Fisdap_Reports_SkillsFinder extends Fisdap_Reports_Report
             // add the table
             $this->data[] = array("type" => "table",
                 "content" => $table_data);
-
         }
         //var_export($this->data);
     }

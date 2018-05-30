@@ -79,7 +79,6 @@ class Zend_Reflection_Docblock implements Reflector
      */
     public static function export()
     {
-
     }
 
     /**
@@ -95,7 +94,7 @@ class Zend_Reflection_Docblock implements Reflector
         $str = "Docblock [ /* Docblock */ ] {".PHP_EOL.PHP_EOL;
         $str .= "  - Tags [".count($this->_tags)."] {".PHP_EOL;
 
-        foreach($this->_tags AS $tag) {
+        foreach ($this->_tags as $tag) {
             $str .= "    ".$tag;
         }
 
@@ -124,7 +123,6 @@ class Zend_Reflection_Docblock implements Reflector
 
             $this->_startLine = $this->_reflector->getStartLine() - $lineCount - 1;
             $this->_endLine   = $this->_reflector->getStartLine() - 1;
-
         } elseif (is_string($commentOrReflector)) {
             $docComment = $commentOrReflector;
         } else {
@@ -285,7 +283,6 @@ class Zend_Reflection_Docblock implements Reflector
 
                 $parsedDocComment = substr($parsedDocComment, $newlinePos + 1);
             }
-
         }
 
         $this->_shortDescription = rtrim($this->_shortDescription);

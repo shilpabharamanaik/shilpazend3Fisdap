@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Class ServiceAccount
  *
@@ -139,7 +138,9 @@ class ServiceAccount
     public function addPermissions(array $permissions)
     {
         foreach ($permissions as $permission) {
-            if ( ! $permission instanceof ServiceAccountPermission) continue;
+            if (! $permission instanceof ServiceAccountPermission) {
+                continue;
+            }
             
             $this->addPermission($permission);
         }
@@ -161,7 +162,9 @@ class ServiceAccount
     public function removePermissions(array $permissions)
     {
         foreach ($permissions as $permission) {
-            if ( ! $permission instanceof ServiceAccountPermission) continue;
+            if (! $permission instanceof ServiceAccountPermission) {
+                continue;
+            }
 
             $this->removePermission($permission);
         }

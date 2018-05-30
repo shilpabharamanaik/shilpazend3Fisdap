@@ -5,7 +5,6 @@ use Fisdap\Attachments\Cdn\SignedUrlGeneratorFactory;
 use Fisdap\Attachments\Cdn\UnsupportedCdn;
 use Illuminate\Container\Container;
 
-
 class SignedUrlGeneratorFactoryCest
 {
     /**
@@ -62,7 +61,7 @@ class SignedUrlGeneratorFactoryCest
     {
         // assert
         $I->assertTrue(
-            $I->seeExceptionThrown(UnsupportedCdn::class, function() {
+            $I->seeExceptionThrown(UnsupportedCdn::class, function () {
                 // act
                 $this->signedUrlGeneratorFactory->create('foo');
             })

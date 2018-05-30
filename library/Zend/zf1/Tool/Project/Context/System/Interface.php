@@ -33,5 +33,4 @@
  */
 interface Zend_Tool_Project_Context_System_Interface
 {
-
 }

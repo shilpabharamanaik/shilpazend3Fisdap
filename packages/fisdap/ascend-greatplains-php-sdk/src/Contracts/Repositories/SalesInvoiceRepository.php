@@ -11,5 +11,4 @@
  */
 interface SalesInvoiceRepository extends Repository
 {
-
 }

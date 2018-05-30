@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -66,10 +66,9 @@ class SkillsTracker_Form_Element_Rating extends Zend_Form_Element_Xhtml
     public function getValue()
     {
         if ($this->_disabled) {
-            return -1;            
+            return -1;
         } else {
             return $this->_rating;
         }
-    
     }
 }

@@ -65,7 +65,7 @@ class Zend_Wildfire_Protocol_JsonStream
      */
     public function registerPlugin(Zend_Wildfire_Plugin_Interface $plugin)
     {
-        if (in_array($plugin,$this->_plugins)) {
+        if (in_array($plugin, $this->_plugins)) {
             return false;
         }
         $this->_plugins[] = $plugin;
@@ -82,13 +82,13 @@ class Zend_Wildfire_Protocol_JsonStream
      */
     public function recordMessage(Zend_Wildfire_Plugin_Interface $plugin, $structure, $data)
     {
-        if(!isset($this->_messages[$structure])) {
+        if (!isset($this->_messages[$structure])) {
             $this->_messages[$structure] = array();
         }
 
         $uri = $plugin->getUri();
 
-        if(!isset($this->_messages[$structure][$uri])) {
+        if (!isset($this->_messages[$structure][$uri])) {
             $this->_messages[$structure][$uri] = array();
         }
 
@@ -108,8 +108,7 @@ class Zend_Wildfire_Protocol_JsonStream
 
         $present = false;
         foreach ($this->_messages as $structure => $messages) {
-
-            if(!isset($this->_messages[$structure][$uri])) {
+            if (!isset($this->_messages[$structure][$uri])) {
                 continue;
             }
 
@@ -181,23 +180,18 @@ class Zend_Wildfire_Protocol_JsonStream
 
         $payload[] = array('Protocol-'.$protocol_index, self::PROTOCOL_URI);
 
-        foreach ($this->_messages as $structure_uri => $plugin_messages ) {
-
+        foreach ($this->_messages as $structure_uri => $plugin_messages) {
             $payload[] = array($protocol_index.'-Structure-'.$structure_index, $structure_uri);
 
-            foreach ($plugin_messages as $plugin_uri => $messages ) {
-
+            foreach ($plugin_messages as $plugin_uri => $messages) {
                 $payload[] = array($protocol_index.'-Plugin-'.$plugin_index, $plugin_uri);
 
                 foreach ($messages as $message) {
-
-                    $parts = explode("\n",chunk_split($message, 5000, "\n"));
+                    $parts = explode("\n", chunk_split($message, 5000, "\n"));
 
                     for ($i=0 ; $i<count($parts) ; $i++) {
-
                         $part = $parts[$i];
                         if ($part) {
-
                             $msg = '';
 
                             if (count($parts)>2) {
@@ -230,6 +224,4 @@ class Zend_Wildfire_Protocol_JsonStream
 
         return $payload;
     }
-
 }
-

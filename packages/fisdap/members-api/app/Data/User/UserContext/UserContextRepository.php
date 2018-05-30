@@ -2,7 +2,6 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface UserRepository
  *
@@ -10,5 +9,4 @@ use Fisdap\Data\Repository\Repository;
  */
 interface UserContextRepository extends Repository
 {
-
 }

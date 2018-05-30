@@ -78,7 +78,8 @@ class Zend_Service_Technorati_DailyCountsResult extends Zend_Service_Technorati_
      *
      * @return  Zend_Date
      */
-    public function getDate() {
+    public function getDate()
+    {
         return $this->_date;
     }
 
@@ -87,7 +88,8 @@ class Zend_Service_Technorati_DailyCountsResult extends Zend_Service_Technorati_
      *
      * @return  int
      */
-    public function getCount() {
+    public function getCount()
+    {
         return $this->_count;
     }
 }

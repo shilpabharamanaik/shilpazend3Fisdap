@@ -44,5 +44,4 @@ interface Zend_Wildfire_Plugin_Interface
      * @return string Returns the URI of the plugin.
      */
     public function getUri();
-
 }

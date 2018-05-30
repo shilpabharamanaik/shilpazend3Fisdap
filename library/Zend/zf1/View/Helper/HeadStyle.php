@@ -187,8 +187,7 @@ class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_
     {
         if ((!$value instanceof stdClass)
             || !isset($value->content)
-            || !isset($value->attributes))
-        {
+            || !isset($value->attributes)) {
             return false;
         }
 
@@ -338,14 +337,14 @@ class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_
                     continue;
                 }
                 if ('media' == $key) {
-                    if(false === strpos($value, ',')) {
+                    if (false === strpos($value, ',')) {
                         if (!in_array($value, $this->_mediaTypes)) {
                             continue;
                         }
                     } else {
                         $media_types = explode(',', $value);
                         $value = '';
-                        foreach($media_types as $type) {
+                        foreach ($media_types as $type) {
                             $type = trim($type);
                             if (!in_array($type, $this->_mediaTypes)) {
                                 continue;
@@ -420,7 +419,7 @@ class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_
     {
         if (!isset($attributes['media'])) {
             $attributes['media'] = 'screen';
-        } else if(is_array($attributes['media'])) {
+        } elseif (is_array($attributes['media'])) {
             $attributes['media'] = implode(',', $attributes['media']);
         }
 

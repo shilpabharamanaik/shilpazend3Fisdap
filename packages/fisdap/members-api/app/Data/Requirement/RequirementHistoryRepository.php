@@ -7,13 +7,12 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface RequirementHistoryRepository
  *
  * @package Fisdap\Data\Requirement
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface RequirementHistoryRepository extends Repository {
-
+interface RequirementHistoryRepository extends Repository
+{
 }

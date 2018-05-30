@@ -57,6 +57,5 @@ class Version20141002102534 extends AbstractMigration
 
         // drop contact email column from sites table
         $this->addSql('ALTER TABLE AmbulanceServices DROP COLUMN contact_email');
-
     }
 }

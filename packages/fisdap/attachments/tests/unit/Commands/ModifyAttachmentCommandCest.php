@@ -10,10 +10,9 @@ use Fisdap\Attachments\Queries\FindsAttachments;
 use Fisdap\Attachments\Repository\AttachmentsRepository;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 
-
 /**
  * Class ModifyAttachmentCommandCest
- * 
+ *
  * @author  Ben Getsug <bgetsug@fisdap.net>
  */
 class ModifyAttachmentCommandCest

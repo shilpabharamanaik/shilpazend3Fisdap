@@ -17,17 +17,18 @@
 /**
  * @package Fisdap
  */
-class Fisdap_View_Helper_FancyButton extends Zend_View_Helper_Abstract 
+class Fisdap_View_Helper_FancyButton extends Zend_View_Helper_Abstract
 {
-	/**
-	 * @var string
-	 */
-	protected $_html= "";
-	
-    public function fancyButton($id, $text, $url, $color = 'gray-button', $size = "medium") {
+    /**
+     * @var string
+     */
+    protected $_html= "";
+    
+    public function fancyButton($id, $text, $url, $color = 'gray-button', $size = "medium")
+    {
         $this->view->jQuery()->addOnLoad("$('#$id').button().parent().addClass('$color $size');");
         
         $this->_html = "<div style='display:inline;'><a href='$url' id='$id'>$text</a></div>";
         return $this->_html;
-    } 
+    }
 }

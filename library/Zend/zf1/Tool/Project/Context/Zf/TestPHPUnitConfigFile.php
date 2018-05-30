@@ -77,5 +77,4 @@ class Zend_Tool_Project_Context_Zf_TestPHPUnitConfigFile extends Zend_Tool_Proje
 
 EOS;
     }
-
 }

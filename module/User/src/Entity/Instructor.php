@@ -163,5 +163,4 @@ class Instructor
     {
         return $this->pager;
     }
-
 }

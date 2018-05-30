@@ -32,7 +32,6 @@
  */
 class Zend_Mobile_Push_Response_Gcm
 {
-
     const RESULT_MESSAGE_ID = 'message_id';
     const RESULT_ERROR = 'error';
     const RESULT_CANONICAL = 'registration_id';
@@ -100,7 +99,6 @@ class Zend_Mobile_Push_Response_Gcm
         if ($message) {
             $this->setMessage($message);
         }
-
     }
 
     /**
@@ -195,7 +193,7 @@ class Zend_Mobile_Push_Response_Gcm
      *
      * @return array multi dimensional array of:
      *         NOTE: key is registration_id if the message is passed.
-     *         'registration_id' => array( 
+     *         'registration_id' => array(
      *             'message_id' => 'id',
      *             'error' => 'error',
      *             'registration_id' => 'id'
@@ -234,7 +232,7 @@ class Zend_Mobile_Push_Response_Gcm
         $results = $this->_results;
         if ($this->_message && $results) {
             $tokens = $this->_message->getToken();
-            while($token = array_shift($tokens)) {
+            while ($token = array_shift($tokens)) {
                 $results[$token] = array_shift($results);
             }
         }

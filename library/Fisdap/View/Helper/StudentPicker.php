@@ -19,51 +19,51 @@
  */
 class Fisdap_View_Helper_StudentPicker extends Zend_View_Helper_Abstract
 {
-	
-	/**
-	 * This helper is used to generate a chunk of HTML and JS that will allow someone
-	 * to pick a student from the current program.
-	 * 
-	 * @param integer $studentId ID of the student to show up pre-selected (I guess)...
-	 * @param string $clickLink String containing the URL to link to when a user 
-	 *		clicks on a name from the main search box dropdown options
-	 * @param string $listBaseLink String containing the URL to use for the 
-	 *		results that return when searching using the "Go" button.  If null, 
-	 *		defaults to $clickLink.
-	 * @param string $studentDropdownLink String containing the URL to redirect 
-	 *		to when a user selects a student from the advanced search student 
-	 *		dropdown.  If null, defaults to $clickLink.
-	 * @return type String containing the HTML for the student selector.
-	 */
-	public function studentPicker($studentId, $clickLink, $listBaseLink=null)
-	{
-		if($listBaseLink == null){
-			$listBaseLink = $clickLink;
-		}
-		
-		$this->view->headScript()->appendFile("/js/library/Fisdap/View/Helper/studentPicker.js");
-		$this->view->headLink()->appendStylesheet("/css/library/Fisdap/View/Helper/studentPicker.css");
-		
-		$user = \Fisdap\Entity\User::getLoggedInUser();
+    
+    /**
+     * This helper is used to generate a chunk of HTML and JS that will allow someone
+     * to pick a student from the current program.
+     *
+     * @param integer $studentId ID of the student to show up pre-selected (I guess)...
+     * @param string $clickLink String containing the URL to link to when a user
+     *		clicks on a name from the main search box dropdown options
+     * @param string $listBaseLink String containing the URL to use for the
+     *		results that return when searching using the "Go" button.  If null,
+     *		defaults to $clickLink.
+     * @param string $studentDropdownLink String containing the URL to redirect
+     *		to when a user selects a student from the advanced search student
+     *		dropdown.  If null, defaults to $clickLink.
+     * @return type String containing the HTML for the student selector.
+     */
+    public function studentPicker($studentId, $clickLink, $listBaseLink=null)
+    {
+        if ($listBaseLink == null) {
+            $listBaseLink = $clickLink;
+        }
+        
+        $this->view->headScript()->appendFile("/js/library/Fisdap/View/Helper/studentPicker.js");
+        $this->view->headLink()->appendStylesheet("/css/library/Fisdap/View/Helper/studentPicker.css");
+        
+        $user = \Fisdap\Entity\User::getLoggedInUser();
 
         $students = \Fisdap\EntityUtils::getRepository('User')->getAllStudentsByProgram($user->getProgramId());
         $studentOptions = array('Select one...');
         foreach ($students as $student) {
             $studentOptions[$student['id']] = $student['first_name'] . " " . $student['last_name'];
         }
-		
-		// Set up the class sections and years here, and return them for use 
-		// in the quicksearch
-		$classSectionRepository = \Fisdap\EntityUtils::getRepository('ClassSectionLegacy');
+        
+        // Set up the class sections and years here, and return them for use
+        // in the quicksearch
+        $classSectionRepository = \Fisdap\EntityUtils::getRepository('ClassSectionLegacy');
 
-		$classSectionYears = $classSectionRepository->getUniqueYears($user->getProgramId());
-		$classSections = $classSectionRepository->getNamesByProgram($user->getProgramId());
+        $classSectionYears = $classSectionRepository->getUniqueYears($user->getProgramId());
+        $classSections = $classSectionRepository->getNamesByProgram($user->getProgramId());
 
-		$defaultMessage = 'Type a student\'s name, username, or email, etc.';
-		
-		$this->view->headScript()->appendFile("/js/jquery.fieldtag.js");
-		
-		$html = <<<HTML
+        $defaultMessage = 'Type a student\'s name, username, or email, etc.';
+        
+        $this->view->headScript()->appendFile("/js/jquery.fieldtag.js");
+        
+        $html = <<<HTML
 			<div id="find-student-container" class="grid_12">
 			{$this->view->autoComplete('studentSearch', '', array('select' => new Zend_Json_Expr('function( event, ui ) { location.href="' . $clickLink . '" + ui.item.id; }'), 'source' => '/ajax/usersearch/'), array('size' => 80, 'title' => $defaultMessage))}
 			<script type="text/javascript">
@@ -115,7 +115,7 @@ class Fisdap_View_Helper_StudentPicker extends Zend_View_Helper_Abstract
 			</div>
 		</div>
 HTML;
-			
-		return $html;
-	}
+            
+        return $html;
+    }
 }

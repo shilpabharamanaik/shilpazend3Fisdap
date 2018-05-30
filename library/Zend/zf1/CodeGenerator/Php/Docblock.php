@@ -131,7 +131,7 @@ class Zend_CodeGenerator_Php_Docblock extends Zend_CodeGenerator_Php_Abstract
      * @param array $tags
      * @return Zend_CodeGenerator_Php_Docblock
      */
-    public function setTags(Array $tags)
+    public function setTags(array $tags)
     {
         foreach ($tags as $tag) {
             $this->setTag($tag);

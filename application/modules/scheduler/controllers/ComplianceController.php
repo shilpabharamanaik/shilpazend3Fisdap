@@ -6,7 +6,6 @@ use Fisdap\Entity\Requirement;
 use Fisdap\Entity\User;
 use Illuminate\Queue\Capsule\Manager as Queue;
 
-
 class Scheduler_ComplianceController extends Fisdap_Controller_Private
 {
     /**
@@ -59,7 +58,7 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
         parent::init();
 
         // redirect to login if the user is not logged in yet
-        if ( ! $this->user) {
+        if (! $this->user) {
             return;
         }
 
@@ -76,7 +75,7 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
 
     public function indexAction()
     {
-        if(!$this->hasPermission()){
+        if (!$this->hasPermission()) {
             $this->displayError("You do not have permission to view this page.");
             return;
         }
@@ -88,10 +87,10 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
     public function settingsAction()
     {
         // Check permissions
-        if ( ! $this->user->isInstructor()) {
+        if (! $this->user->isInstructor()) {
             $this->displayError("You do not have permission to view this page.");
             return;
-        } else if ( ! ($this->user->hasPermission("Edit Program Settings") && $this->hasPermission())) {
+        } elseif (! ($this->user->hasPermission("Edit Program Settings") && $this->hasPermission())) {
             $this->displayError("You do not have permission to view this page.");
             return;
         }
@@ -113,9 +112,9 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
         // do a few permissions checks. Is this an instructor who can edit compliance status at a program that is using scheduler beta?
         $user = User::getLoggedInUser();
         $has_permission = false;
-        if($user->getCurrentRoleName() == "instructor"){
+        if ($user->getCurrentRoleName() == "instructor") {
             $instructor = $user->getCurrentRoleData();
-            if($instructor->hasPermission("Edit Compliance Status")){
+            if ($instructor->hasPermission("Edit Compliance Status")) {
                 $has_permission = true;
             }
         }
@@ -138,7 +137,7 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
             }
         }
 
-        if ( ! $has_permission) {
+        if (! $has_permission) {
             $this->displayError("You do not have permission to add new requirements.");
             return;
         }
@@ -183,7 +182,7 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
             }
         }
 
-        if ( ! $has_permission) {
+        if (! $has_permission) {
             $this->displayError("You do not have permission to edit requirements.");
             return;
         }
@@ -191,7 +190,7 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
         $requirement_id = $this->_getParam('id');
         $req = $this->requirementRepository->getOneById($requirement_id);
 
-        if ( ! $req) {
+        if (! $req) {
             $this->displayError("We couldn't find that requirement.");
             return;
         }
@@ -273,7 +272,8 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
      *
      * @throws Zend_Exception
      */
-    public function checkQueuedEditsAction() {
+    public function checkQueuedEditsAction()
+    {
         $reqIds = $this->_getParam("req_ids");
         $this->_helper->json($this->checkQueuedEdits($reqIds));
     }
@@ -284,21 +284,26 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
         $params = $this->getAllParams();
 
         if ($params['account_type'] == "students") {
-
             $filters = [];
-            if ($params['graduationYear']){$filters['graduationYear'] = $params['graduationYear'];}
-            if ($params['graduationMonth']){$filters['graduationMonth'] = $params['graduationMonth'];}
-            if ($params['section']){$filters['section'] = $params['section'];}
+            if ($params['graduationYear']) {
+                $filters['graduationYear'] = $params['graduationYear'];
+            }
+            if ($params['graduationMonth']) {
+                $filters['graduationMonth'] = $params['graduationMonth'];
+            }
+            if ($params['section']) {
+                $filters['section'] = $params['section'];
+            }
             if ($params['certificationLevels']) {
                 $filters['certificationLevels'] = [];
-                foreach($params['certificationLevels'] as $certLevel){
+                foreach ($params['certificationLevels'] as $certLevel) {
                     $filters['certificationLevels'][] = $certLevel;
                 }
             }
 
             if ($params['graduationStatus']) {
                 $filters['graduationStatus'] = [];
-                foreach($params['graduationStatus'] as $gradStatus){
+                foreach ($params['graduationStatus'] as $gradStatus) {
                     $filters['graduationStatus'][] = $gradStatus;
                 }
             }
@@ -311,22 +316,24 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
             $assignable = [];
             $hidden_students = [];
 
-            foreach($students as $student){
+            foreach ($students as $student) {
                 // for now, these students must have Scheduler
                 $config = $student['configuration'];
                 $show = ((boolean)($config & 8192) || (boolean)($config & 2));
-                if($show){$assignable[$student['userContextId']] = $student['first_name'] . " " . $student['last_name'];}
-                else {$hidden_students[$student['userContextId']] = $student['first_name'] . " " . $student['last_name'];}
+                if ($show) {
+                    $assignable[$student['userContextId']] = $student['first_name'] . " " . $student['last_name'];
+                } else {
+                    $hidden_students[$student['userContextId']] = $student['first_name'] . " " . $student['last_name'];
+                }
             }
 
             $people = array("assignable" => $assignable, "hidden_students" => $hidden_students);
         } else {
-
             $instructors = $this->userRepository->getAllInstructorsByProgram(User::getLoggedInUser()->getProgramId());
             $people = [];
             $people['assignable'] = [];
             $people['hidden_students'] = [];
-            foreach($instructors as $instructor){
+            foreach ($instructors as $instructor) {
                 $people['assignable'][$instructor['userContextId']] = $instructor['first_name'] . " " . $instructor['last_name'];
             }
         }
@@ -349,10 +356,10 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
     {
         $requirement_ids = $this->_getParam('requirement_ids');
         $picklistOptions = array(
-            'loadJSCSS' => FALSE,
+            'loadJSCSS' => false,
             'helpText' => 'multistudent-picklist-help-compliance.phtml',
-            'showTotal' => FALSE,
-            'includeSubmit' => FALSE,
+            'showTotal' => false,
+            'includeSubmit' => false,
         );
         $msp = $this->view->multistudentPicklist($this->user, null, $picklistOptions, $this->view);
         $form = new Scheduler_Form_RequirementAssignModal($this->requirementRepository, $msp, $requirement_ids);
@@ -391,7 +398,7 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
         $user = User::getLoggedInUser();
 
         // do a few permissions checks. Is this an instructor who can edit compliance status at a program that is using scheduler beta?
-        if ( ! $this->hasPermission()) {
+        if (! $this->hasPermission()) {
             $this->displayError("You do not have permission to view this page.");
             return;
         }
@@ -431,7 +438,8 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
 
         if ($selectFormValues) {
             $this->view->editComplianceForm = new Scheduler_Form_EditComplianceStatus(
-                $this->requirementRepository, $selectFormValues
+                $this->requirementRepository,
+                $selectFormValues
             );
         }
 
@@ -471,8 +479,12 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
 
         $role_data_ids = [];
 
-        foreach($students as $data){$role_data_ids[] = $data['id'];}
-        foreach($instructors as $data){$role_data_ids[] = $data['id'];}
+        foreach ($students as $data) {
+            $role_data_ids[] = $data['id'];
+        }
+        foreach ($instructors as $data) {
+            $role_data_ids[] = $data['id'];
+        }
 
         return $role_data_ids;
     }
@@ -491,7 +503,6 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
         $all_students = true;
 
         if ($selection_by == "by-requirements") {
-
             $default_filters = array('graduationStatus' => array(1), 'show_instructors' => 1);
 
             // format sub-filters for the students
@@ -551,12 +562,12 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
     {
         $this->session->select_form_values = $selectFormValues = $this->getSelectFormValues();
 
-        if(!$selectFormValues['userContextIds']){
+        if (!$selectFormValues['userContextIds']) {
             $this->_helper->json("No user roles");
             return;
         }
 
-        if(!$selectFormValues['requirementIds']){
+        if (!$selectFormValues['requirementIds']) {
             $this->_helper->json("No requirements");
             return;
         }
@@ -573,18 +584,19 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
     {
         $selectFormValues = $this->getSelectFormValues();
 
-        if ( ! $selectFormValues['userContextIds']) {
+        if (! $selectFormValues['userContextIds']) {
             $this->_helper->json("No user roles");
             return;
         }
 
-        if ( ! $selectFormValues['requirementIds']) {
+        if (! $selectFormValues['requirementIds']) {
             $this->_helper->json("No requirements");
             return;
         }
 
         $attachments = $this->requirementRepository->getRequirementAttachmentsByUserContexts(
-            $selectFormValues['userContextIds'], $selectFormValues['requirementIds']
+            $selectFormValues['userContextIds'],
+            $selectFormValues['requirementIds']
         );
 
         $this->_helper->json(count($attachments));
@@ -603,10 +615,10 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
     public function manageAction()
     {
         // Check permissions
-        if ( ! $this->user->isInstructor()) {
+        if (! $this->user->isInstructor()) {
             $this->displayError("You do not have permission to view this page.");
             return;
-        } else if ( ! ($this->user->getCurrentRoleData()->hasPermission("Edit Program Settings") && $this->hasPermission())) {
+        } elseif (! ($this->user->getCurrentRoleData()->hasPermission("Edit Program Settings") && $this->hasPermission())) {
             $this->displayError("You do not have permission to view this page.");
             return;
         }
@@ -633,7 +645,6 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
         $reqIds = $this->requirementRepository->getRequirements($this->user->getProgramId(), true, true, true, true, $filters);
         $queuedReqs = $this->checkQueuedEdits($reqIds);
         $this->view->queuedReqs = $queuedReqs['reqsQueued'];
-
     }
 
 
@@ -686,7 +697,6 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
         if (count($batch) > 0) {
             $this->queue->push('UpdateCompliance', ["cacheId" => $cacheId, "userContextIds" => $batch]);
         }
-
     }
 
 
@@ -703,7 +713,8 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
     }
 
 
-    public function saveSettingsAction(){
+    public function saveSettingsAction()
+    {
         $settingsForm = new Scheduler_Form_ComplianceSettings();
         $this->_helper->json($settingsForm->process($this->_getAllParams()));
     }
@@ -794,19 +805,21 @@ class Scheduler_ComplianceController extends Fisdap_Controller_Private
                 $requirement = $this->requirementRepository->getOneById($req_id);
                 $attachmentInfo = $this->requirementRepository->getAttachmentSummariesByRequirement($req_id, $user->getProgramId());
 
-                $reqsUpdated[$req_id] = $this->view->partial("manageRequirementRow.phtml",
+                $reqsUpdated[$req_id] = $this->view->partial(
+                    "manageRequirementRow.phtml",
                     array("requirement" => $requirement,
                         "attachmentInfo" => $attachmentInfo,
                         "pendingEdits" => false
-                    ));
+                    )
+                );
             }
         }
 
         // are we still waiting for some edits?
         if (count($reqsQueued) > 0) {
-            $waiting = TRUE;
+            $waiting = true;
         } else {
-            $waiting = FALSE;
+            $waiting = false;
         }
 
         // return array of requirements for which we are still performing edits

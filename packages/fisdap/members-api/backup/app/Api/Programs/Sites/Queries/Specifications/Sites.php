@@ -3,7 +3,6 @@
 use Fisdap\Api\Programs\Sites\Queries\SiteQueryParameters;
 use Fisdap\Queries\Specifications\CommonSpec;
 
-
 /**
  * Class Sites
  *
@@ -36,7 +35,8 @@ class Sites extends CommonSpec
     public function getSpec()
     {
         return self::makeSpecWithAssociations(
-            $this->queryParams->getAssociations(), $this->queryParams->getAssociationIds()
+            $this->queryParams->getAssociations(),
+            $this->queryParams->getAssociationIds()
         );
     }
 }

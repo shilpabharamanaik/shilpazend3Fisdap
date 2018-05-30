@@ -286,10 +286,12 @@ class Zend_Feed_Builder implements Zend_Feed_Builder_Interface
                     throw new Zend_Feed_Builder_Exception("you have to define $mandatory property of your textInput");
                 }
             }
-            $this->_header->setTextInput($data['textInput']['title'],
+            $this->_header->setTextInput(
+                $data['textInput']['title'],
                                          $data['textInput']['description'],
                                          $data['textInput']['name'],
-                                         $data['textInput']['link']);
+                                         $data['textInput']['link']
+            );
         }
         if (isset($data['skipHours'])) {
             $this->_header->setSkipHours($data['skipHours']);

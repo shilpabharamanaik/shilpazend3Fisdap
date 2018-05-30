@@ -20,7 +20,6 @@ use Happyr\DoctrineSpecification\Spec;
 use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
 use Illuminate\Support\Collection;
 
-
 /**
  * Class Account_LtiController
  *
@@ -110,7 +109,7 @@ final class Account_LtiController extends CommonAuthController
 
     private function handleExistingLogin()
     {
-        if ( ! Zend_Auth::getInstance()->hasIdentity()) {
+        if (! Zend_Auth::getInstance()->hasIdentity()) {
             return;
         }
 
@@ -156,7 +155,6 @@ final class Account_LtiController extends CommonAuthController
         $usersCount = count($usersByEmail);
 
         if ($usersCount > 1) {
-
             $this->ltiSession->setFisdapAccounts(
                 array_map(
                     function (User $user) {
@@ -165,12 +163,12 @@ final class Account_LtiController extends CommonAuthController
                         $fisdapUser->fullName = $user->getFullName();
 
                         return $fisdapUser;
-                    }, $usersByEmail
+                    },
+                    $usersByEmail
                 )
             );
 
             $this->redirect('/account/lti/choose-account');
-
         } elseif ($usersCount == 1) {
             $this->ltiSession->setFisdapUsername($usersByEmail[0]->getUsername());
         }
@@ -243,7 +241,6 @@ final class Account_LtiController extends CommonAuthController
         $result = $this->authenticate($this->ltiSession->getFisdapUsername(), $this->getParam('password'));
 
         if ($result->isValid()) {
-
             $user = $this->userRepository->getOneByUsername($this->ltiSession->getFisdapUsername());
 
             $userContext = $this->getOrCreateUserContext($user);
@@ -304,7 +301,6 @@ final class Account_LtiController extends CommonAuthController
 
 
         if ($this->getRequest()->isPost()) {
-
             $productsOrPackages = [];
             $serialNumber = null;
             
@@ -405,14 +401,14 @@ final class Account_LtiController extends CommonAuthController
 
         // check for context matching course
         /** @var Collection[] $contextsByCourse */
-        $contextsByCourse = $contexts->groupBy(function(UserContext $userContext) {
+        $contextsByCourse = $contexts->groupBy(function (UserContext $userContext) {
             return $userContext->getCourseId();
         })->all();
 
         if (array_key_exists($this->ltiSession->getUser()->courseId, $contextsByCourse)) {
             $this->logger->debug('Found context matching course');
             return $contextsByCourse[$this->ltiSession->getUser()->courseId]->first();
-        } elseif ( ! $contexts->isEmpty()) {
+        } elseif (! $contexts->isEmpty()) {
             // no context matching course was found, link course to first matching context
             $this->logger->debug('No context matching course was found; linking course to first context matching LTI criteria');
             $contexts->first()->setCourseId($this->ltiSession->getUser()->courseId);
@@ -468,9 +464,13 @@ final class Account_LtiController extends CommonAuthController
      */
     private function updateUserProfile(User $user, $isNewUser = false)
     {
-        if ($isNewUser === true) return;
+        if ($isNewUser === true) {
+            return;
+        }
 
-        if ($user->getUsername() !== $this->ltiSession->getUser()->id) return;
+        if ($user->getUsername() !== $this->ltiSession->getUser()->id) {
+            return;
+        }
 
         $changedFields = [];
 
@@ -511,13 +511,13 @@ final class Account_LtiController extends CommonAuthController
      */
     private function getProductsOrPackages()
     {
-		$productsOrPackages = array();
-		if(is_array($this->ltiSession->getUser()->isbns)){
-			$productsOrPackages = $this->productsFinder->findProductsAndPackagesByIsbns(
-				$this->ltiSession->getUser()->isbns
-			);
-		}
-		return $productsOrPackages;		       
+        $productsOrPackages = array();
+        if (is_array($this->ltiSession->getUser()->isbns)) {
+            $productsOrPackages = $this->productsFinder->findProductsAndPackagesByIsbns(
+                $this->ltiSession->getUser()->isbns
+            );
+        }
+        return $productsOrPackages;
     }
 
 
@@ -590,11 +590,10 @@ final class Account_LtiController extends CommonAuthController
      */
     private function getCertLevelIdFromFirstProductOrPackage(array $productsOrPackages)
     {
-        if(!empty($productsOrPackages[0]->getCertificationLevel())){
-			return $productsOrPackages[0]->getCertificationLevel()->getId();
-		}
-		else{
-			return;
-		}
+        if (!empty($productsOrPackages[0]->getCertificationLevel())) {
+            return $productsOrPackages[0]->getCertificationLevel()->getId();
+        } else {
+            return;
+        }
     }
 }

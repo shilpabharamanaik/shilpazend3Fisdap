@@ -36,4 +36,3 @@ require_once 'Zend/Pdf/Action.php';
 class Zend_Pdf_Action_Trans extends Zend_Pdf_Action
 {
 }
-

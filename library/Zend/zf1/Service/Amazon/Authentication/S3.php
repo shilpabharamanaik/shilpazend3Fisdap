@@ -59,9 +59,9 @@ class Zend_Service_Amazon_Authentication_S3 extends Zend_Service_Amazon_Authenti
         foreach ($headers as $key => $val) {
             if (strcasecmp($key, 'content-type') == 0) {
                 $type = $val;
-            } else if (strcasecmp($key, 'content-md5') == 0) {
+            } elseif (strcasecmp($key, 'content-md5') == 0) {
                 $md5 = $val;
-            } else if (strcasecmp($key, 'date') == 0) {
+            } elseif (strcasecmp($key, 'date') == 0) {
                 $date = $val;
             }
         }
@@ -96,13 +96,11 @@ class Zend_Service_Amazon_Authentication_S3 extends Zend_Service_Amazon_Authenti
         $sig_str .= '/'.parse_url($path, PHP_URL_PATH);
         if (strpos($path, '?location') !== false) {
             $sig_str .= '?location';
-        } else
-            if (strpos($path, '?acl') !== false) {
-                $sig_str .= '?acl';
-            } else
-                if (strpos($path, '?torrent') !== false) {
-                    $sig_str .= '?torrent';
-                }
+        } elseif (strpos($path, '?acl') !== false) {
+            $sig_str .= '?acl';
+        } elseif (strpos($path, '?torrent') !== false) {
+            $sig_str .= '?torrent';
+        }
 
         $signature = base64_encode(Zend_Crypt_Hmac::compute($this->_secretKey, 'sha1', utf8_encode($sig_str), Zend_Crypt_Hmac::BINARY));
         $headers['Authorization'] = 'AWS ' . $this->_accessKey . ':' . $signature;

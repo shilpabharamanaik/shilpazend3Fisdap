@@ -2,7 +2,6 @@
 
 use Fisdap\Entity\User;
 
-
 /**
  * Class ExceptionLogger
  *
@@ -10,7 +9,8 @@ use Fisdap\Entity\User;
  *
  * @author Ben Getsug (bgetsug@fisdap.net)
  */
-class ExceptionLogger {
+class ExceptionLogger
+{
 
     /**
      * @var Psr\Log\LoggerInterface
@@ -95,7 +95,7 @@ class ExceptionLogger {
      */
     protected function sendToLogger(Exception $exception, $severity, $errorId)
     {
-        if ( ! $this->logger instanceof Psr\Log\LoggerInterface) {
+        if (! $this->logger instanceof Psr\Log\LoggerInterface) {
             return;
         }
 
@@ -134,7 +134,6 @@ class ExceptionLogger {
         ) : array();
 
         if (!in_array($severity, $silencedSeverites)) {
-
             $this->logger->$severity($this->makeDetailedMessage($exception), $context);
 
             /*
@@ -161,7 +160,6 @@ class ExceptionLogger {
         $bugsnag = Zend_Registry::isRegistered('bugsnag') ? Zend_Registry::get('bugsnag') : null;
 
         if ($bugsnag instanceof Bugsnag_Client) {
-
             $user = User::getLoggedInUser();
 
             // *** using user.email field as workaround to make errorId searchable ***
@@ -212,4 +210,4 @@ class ExceptionLogger {
     {
         return $exception->getMessage() . ' in ' . $exception->getFile() . ' on line ' . $exception->getLine();
     }
-} 
+}

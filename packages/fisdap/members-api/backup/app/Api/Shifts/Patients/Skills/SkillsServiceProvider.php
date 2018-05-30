@@ -29,7 +29,7 @@ final class SkillsServiceProvider extends ServiceProvider
         // Patient Skills
         $router->group([
             'prefix' => 'patients/{patientId}/skills',
-        ],  function (Router $router) {
+        ], function (Router $router) {
             $router->put('airways/{airwayId}', [
                 'as'   => 'patients.patientId.skills.airways.airwayId',
                 'uses' => SkillsController::class . '@setPatientAirways'
@@ -59,7 +59,7 @@ final class SkillsServiceProvider extends ServiceProvider
         // Shift (quick add) Skills
         $router->group([
             'prefix' => 'shifts/{shiftId}/skills',
-        ],  function (Router $router) {
+        ], function (Router $router) {
             $router->put('airways/{airwayId}', [
                 'as'   => 'shifts.shiftId.skills.airways.airwayId',
                 'uses' => SkillsController::class . '@setShiftAirways'
@@ -86,9 +86,11 @@ final class SkillsServiceProvider extends ServiceProvider
             ]);
         });
         // Medications
-        $router->group([
+        $router->group(
+            [
             'prefix' => 'patients/skills/medications',
-        ],  function (Router $router) {
+        ],
+            function (Router $router) {
                 $router->get('types', [
                     'as'   => 'patients.skills.medications.types',
                     'uses' => MedicationsController::class . '@getMedicationTypes'
@@ -101,9 +103,11 @@ final class SkillsServiceProvider extends ServiceProvider
         );
         
         // Vitals
-        $router->group([
+        $router->group(
+            [
             'prefix' => 'patients/skills/vitals',
-        ],  function (Router $router) {
+        ],
+            function (Router $router) {
                 $router->get('pulse-qualities', [
                     'as'   => 'patients.skills.vitals.pulse_qualities',
                     'uses' => VitalsController::class . '@getVitalsPulseQualities'
@@ -149,4 +153,3 @@ final class SkillsServiceProvider extends ServiceProvider
         ]);
     }
 }
-

@@ -53,5 +53,4 @@ class Zend_Tool_Project_Context_Zf_LibraryDirectory extends Zend_Tool_Project_Co
     {
         return 'LibraryDirectory';
     }
-
 }

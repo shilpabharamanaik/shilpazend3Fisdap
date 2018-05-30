@@ -7,7 +7,6 @@
 
 use Fisdap\Data\Repository\DoctrineRepository;
 
-
 /**
  * Class DoctrineMaintenanceRepository
  *
@@ -16,13 +15,14 @@ use Fisdap\Data\Repository\DoctrineRepository;
  */
 class DoctrineMaintenanceRepository extends DoctrineRepository implements MaintenanceRepository
 {
-	/*
-	 * Function to retrieve any currently enabled and relevant maintenance warning
-	 * Relevant = between warning_starts and downtime_starts
-	 */
-	public function getCurrentMaintenance() {
-		$now = new \DateTime('now');
-		
+    /*
+     * Function to retrieve any currently enabled and relevant maintenance warning
+     * Relevant = between warning_starts and downtime_starts
+     */
+    public function getCurrentMaintenance()
+    {
+        $now = new \DateTime('now');
+        
         // construct the query
         $qb = $this->_em->createQueryBuilder();
         
@@ -31,19 +31,19 @@ class DoctrineMaintenanceRepository extends DoctrineRepository implements Mainte
         $qb->select('maintenance')
            ->from('\Fisdap\Entity\Maintenance', 'maintenance')
            ->where('maintenance.warning_starts <= ?1')
-		   ->andWhere('maintenance.downtime_starts > ?1')
-		   ->andWhere('maintenance.enabled = 1')
+           ->andWhere('maintenance.downtime_starts > ?1')
+           ->andWhere('maintenance.enabled = 1')
            ->setParameter(1, $now, \Doctrine\DBAL\Types\Type::DATETIME)
-		   ->orderBy('maintenance.downtime_starts', 'ASC');
+           ->orderBy('maintenance.downtime_starts', 'ASC');
            
         $query = $qb->getQuery();
         //$sql = $query->getSQL();
         $results = $query->getResult();
-		
-		if (empty($results)) {
-			return FALSE;
-		} else {
-			return current($results);
-		}
-	}
+        
+        if (empty($results)) {
+            return false;
+        } else {
+            return current($results);
+        }
+    }
 }

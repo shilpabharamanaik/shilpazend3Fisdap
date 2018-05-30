@@ -65,7 +65,7 @@ class Zend_View_Helper_ServerUrl
 
         if (isset($_SERVER['HTTP_HOST']) && !empty($_SERVER['HTTP_HOST'])) {
             $this->setHost($_SERVER['HTTP_HOST']);
-        } else if (isset($_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT'])) {
+        } elseif (isset($_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT'])) {
             $name = $_SERVER['SERVER_NAME'];
             $port = $_SERVER['SERVER_PORT'];
 
@@ -93,7 +93,7 @@ class Zend_View_Helper_ServerUrl
     {
         if ($requestUri === true) {
             $path = $_SERVER['REQUEST_URI'];
-        } else if (is_string($requestUri)) {
+        } elseif (is_string($requestUri)) {
             $path = $requestUri;
         } else {
             $path = '';

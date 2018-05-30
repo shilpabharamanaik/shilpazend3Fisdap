@@ -33,7 +33,6 @@ require_once 'Zend/Service/DeveloperGarden/Response/ResponseAbstract.php';
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Response_BaseUserService_ChangeQuotaPoolResponse
-    extends Zend_Service_DeveloperGarden_Response_ResponseAbstract
+class Zend_Service_DeveloperGarden_Response_BaseUserService_ChangeQuotaPoolResponse extends Zend_Service_DeveloperGarden_Response_ResponseAbstract
 {
 }

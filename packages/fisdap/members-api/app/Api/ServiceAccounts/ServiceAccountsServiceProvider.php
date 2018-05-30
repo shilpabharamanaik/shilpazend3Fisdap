@@ -9,7 +9,6 @@ use Fisdap\Api\ServiceAccounts\Permissions\Console\ListServiceAccountPermissions
 use Fisdap\Api\ServiceAccounts\Permissions\Console\RemoveServiceAccountPermissionsCommand;
 use Illuminate\Support\ServiceProvider;
 
-
 /**
  * Class ServiceAccountsServiceProvider
  *

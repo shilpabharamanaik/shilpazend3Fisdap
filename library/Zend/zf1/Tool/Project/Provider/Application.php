@@ -26,11 +26,8 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Project_Provider_Application
-    extends Zend_Tool_Project_Provider_Abstract
-    implements Zend_Tool_Framework_Provider_Pretendable
+class Zend_Tool_Project_Provider_Application extends Zend_Tool_Project_Provider_Abstract implements Zend_Tool_Framework_Provider_Pretendable
 {
-
     protected $_specialties = array('ClassNamePrefix');
 
     /**
@@ -83,5 +80,4 @@ class Zend_Tool_Project_Provider_Application
         // store profile
         $this->_storeProfile();
     }
-
 }

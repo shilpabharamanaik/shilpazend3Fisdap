@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 use Fisdap\EntityUtils;
 
-
 /**
  * Entity class for Product Codes
  *
@@ -173,7 +172,7 @@ class ProductCode extends EntityBaseClass
         }
 
         // if there is a remainder after the hyphen, this is a bad code
-        if ($Remainder != NULL) {
+        if ($Remainder != null) {
             return false;
         }
 
@@ -309,7 +308,6 @@ class ProductCode extends EntityBaseClass
         );
 
         return $accountDetails;
-
     }
 
     // painful - copied directly from legacy to handle parsing the 'numericCode' piece of the product code
@@ -424,7 +422,6 @@ class ProductCode extends EntityBaseClass
             "type" => $AccountType,
             "config" => $Configuration
         );
-
     }
 
     /**

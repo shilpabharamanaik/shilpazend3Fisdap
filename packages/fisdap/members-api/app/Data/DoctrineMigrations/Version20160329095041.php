@@ -16,7 +16,8 @@ class Version20160329095041 extends AbstractMigration
         $this->addSql("ALTER TABLE ProgramData MODIFY CanBuyAccounts TINYINT(1)");
     }
 
-    public function down(Schema $schema){
+    public function down(Schema $schema)
+    {
         $this->addSql("ALTER TABLE ProgramData MODIFY CanBuyAccounts TINYINT(1) NOT NULL DEFAULT 1");
     }
 }

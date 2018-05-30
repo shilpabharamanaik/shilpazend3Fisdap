@@ -161,5 +161,4 @@ abstract class Zend_Tool_Project_Context_Filesystem_Abstract implements Zend_Too
      *
      */
     abstract public function delete();
-
 }

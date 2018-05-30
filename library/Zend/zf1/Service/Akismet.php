@@ -211,8 +211,7 @@ class Zend_Service_Akismet extends Zend_Service_Abstract
     public function setUserAgent($userAgent)
     {
         if (!is_string($userAgent)
-            || !preg_match(":^[^\n/]*/[^ ]* \| Akismet/[0-9\.]*$:i", $userAgent))
-        {
+            || !preg_match(":^[^\n/]*/[^ ]* \| Akismet/[0-9\.]*$:i", $userAgent)) {
             require_once 'Zend/Service/Exception.php';
             throw new Zend_Service_Exception('Invalid User Agent string; must be of format "Application name/version | Akismet/version"');
         }

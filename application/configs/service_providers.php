@@ -29,7 +29,6 @@ use Illuminate\Pipeline\PipelineServiceProvider;
 use Illuminate\Translation\TranslationServiceProvider;
 use Illuminate\View\ViewServiceProvider;
 
-
 /**
  * Return an array of class names, each of which extend the abstract ServiceProvider class
  */

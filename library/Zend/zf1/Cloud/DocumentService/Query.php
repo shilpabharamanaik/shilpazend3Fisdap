@@ -31,8 +31,7 @@ require_once 'Zend/Cloud/DocumentService/QueryAdapter.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Cloud_DocumentService_Query
-    implements Zend_Cloud_DocumentService_QueryAdapter
+class Zend_Cloud_DocumentService_Query implements Zend_Cloud_DocumentService_QueryAdapter
 {
     /**
      * Known query types
@@ -96,7 +95,7 @@ class Zend_Cloud_DocumentService_Query
      */
     public function from($name)
     {
-        if(!is_string($name)) {
+        if (!is_string($name)) {
             require_once 'Zend/Cloud/DocumentService/Exception.php';
             throw new Zend_Cloud_DocumentService_Exception("FROM argument must be a string");
         }
@@ -186,6 +185,6 @@ class Zend_Cloud_DocumentService_Query
      */
     public function getClauses()
     {
-         return $this->_clauses;
+        return $this->_clauses;
     }
 }

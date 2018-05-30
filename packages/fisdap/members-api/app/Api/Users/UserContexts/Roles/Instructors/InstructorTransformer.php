@@ -3,7 +3,6 @@
 use Fisdap\Entity\InstructorLegacy;
 use Fisdap\Fractal\Transformer;
 
-
 /**
  * Prepares instructor user role data for JSON output
  *
@@ -35,4 +34,4 @@ final class InstructorTransformer extends Transformer
 
         return $instructor;
     }
-} 
+}

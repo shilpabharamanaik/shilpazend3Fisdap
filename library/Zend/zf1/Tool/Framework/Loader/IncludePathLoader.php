@@ -92,7 +92,7 @@ class Zend_Tool_Framework_Loader_IncludePathLoader extends Zend_Tool_Framework_L
             // iterate over the accepted items
             foreach ($iterator as $item) {
                 $file = (string)$item;
-                if($this->_fileIsBlacklisted($file)) {
+                if ($this->_fileIsBlacklisted($file)) {
                     continue;
                 }
 
@@ -129,8 +129,8 @@ class Zend_Tool_Framework_Loader_IncludePathLoader extends Zend_Tool_Framework_L
             "Zend".DIRECTORY_SEPARATOR."OpenId".DIRECTORY_SEPARATOR."Provider"
         );
 
-        foreach($blacklist AS $blacklitedPattern) {
-            if(strpos($file, $blacklitedPattern) !== false) {
+        foreach ($blacklist as $blacklitedPattern) {
+            if (strpos($file, $blacklitedPattern) !== false) {
                 return true;
             }
         }

@@ -2,7 +2,6 @@
 
 use Illuminate\Support\ServiceProvider;
 
-
 /**
  * Class LtiSessionServiceProvider
  *

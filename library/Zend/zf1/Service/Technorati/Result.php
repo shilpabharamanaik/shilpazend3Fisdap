@@ -79,7 +79,7 @@ abstract class Zend_Service_Technorati_Result
         $this->_fields = array_merge($this->_fields, $fields);
 
         // add results to appropriate fields
-        foreach($this->_fields as $phpName => $xmlName) {
+        foreach ($this->_fields as $phpName => $xmlName) {
             $query = "./$xmlName/text()";
             $node = $this->_xpath->query($query, $this->_dom);
             if ($node->length == 1) {

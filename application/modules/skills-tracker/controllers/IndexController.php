@@ -2,18 +2,16 @@
 
 class SkillsTracker_IndexController extends Fisdap_Controller_SkillsTracker_Private
 {
-
     public function init()
     {
         parent::init();
 
         if ($this->userContext->isStudent()) {
-			$serialNumber = $this->userContext->getPrimarySerialNumber();
+            $serialNumber = $this->userContext->getPrimarySerialNumber();
             $hasScheduler = $serialNumber->hasScheduler();
             $doesNotHaveTracking = !$serialNumber->hasSkillsTracker();
 
-            if ($hasScheduler && $doesNotHaveTracking)  // student has Scheduler but not Tracking
-            {
+            if ($hasScheduler && $doesNotHaveTracking) {  // student has Scheduler but not Tracking
                 $this->_redirect("/scheduler");
             }
         }
@@ -54,4 +52,3 @@ class SkillsTracker_IndexController extends Fisdap_Controller_SkillsTracker_Priv
         $this->view->status = $status;
     }
 }
-

@@ -17,21 +17,21 @@
 /**
  * @package Mobile
  */
-class Mobile_View_Helper_MobileRunList extends Zend_View_Helper_Abstract 
+class Mobile_View_Helper_MobileRunList extends Zend_View_Helper_Abstract
 {
-	/**
-	 * @var string the html to be rendered
-	 */
-	protected $_html;
-	
-	/**
-	 * @param array $runs array of arrays containing each run to be
-	 * rendered in a view for a mobile device
-	 *
-	 * @return string the run list rendered as an html table
-	 */
-	public function mobileRunList($shiftId, $isInstructor = false)
-	{
+    /**
+     * @var string the html to be rendered
+     */
+    protected $_html;
+    
+    /**
+     * @param array $runs array of arrays containing each run to be
+     * rendered in a view for a mobile device
+     *
+     * @return string the run list rendered as an html table
+     */
+    public function mobileRunList($shiftId, $isInstructor = false)
+    {
         $shift = \Fisdap\EntityUtils::getEntity('ShiftLegacy', $shiftId);
         $runs = array();
         
@@ -39,18 +39,18 @@ class Mobile_View_Helper_MobileRunList extends Zend_View_Helper_Abstract
             $runs[] = array('run' => $run);
         }
         
-		$this->_html .= $this->view->formHidden('shiftId', $shift->id);
+        $this->_html .= $this->view->formHidden('shiftId', $shift->id);
         $this->_html .= "<div id='run-list-container'>";
         $this->_html .= $this->view->partialLoop('runContainer.phtml', $runs);
         $this->_html .= "</div>";
         
 
-		//if ($isInstructor) {
-		//	$this->_html .= $this->view->partialLoop('runCellsInstructor.phtml', $runs);
-		//} else {
-		//	$this->_html .= $this->view->partialLoop('runCells.phtml', $runs);						
-		//}
-		
-		return $this->_html;
-	}
+        //if ($isInstructor) {
+        //	$this->_html .= $this->view->partialLoop('runCellsInstructor.phtml', $runs);
+        //} else {
+        //	$this->_html .= $this->view->partialLoop('runCells.phtml', $runs);
+        //}
+        
+        return $this->_html;
+    }
 }

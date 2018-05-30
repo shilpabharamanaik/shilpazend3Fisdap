@@ -33,8 +33,7 @@ require_once 'Zend/Service/DeveloperGarden/Request/RequestAbstract.php';
  * @author     Marco Kaiser
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_DeveloperGarden_Request_ConferenceCall_UpdateConferenceTemplateParticipantRequest
-    extends Zend_Service_DeveloperGarden_Request_RequestAbstract
+class Zend_Service_DeveloperGarden_Request_ConferenceCall_UpdateConferenceTemplateParticipantRequest extends Zend_Service_DeveloperGarden_Request_RequestAbstract
 {
     /**
      * the template id
@@ -65,7 +64,10 @@ class Zend_Service_DeveloperGarden_Request_ConferenceCall_UpdateConferenceTempla
      * @param string $participantId
      * @param Zend_Service_DeveloperGarden_ConferenceCall_ParticipantDetail $participant
      */
-    public function __construct($environment, $templateId, $participantId,
+    public function __construct(
+        $environment,
+        $templateId,
+        $participantId,
         Zend_Service_DeveloperGarden_ConferenceCall_ParticipantDetail $participant = null
     ) {
         parent::__construct($environment);

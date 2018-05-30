@@ -7,7 +7,6 @@ use Illuminate\Console\Command;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Collection;
 
-
 /**
  * Class AddServiceAccountCommand
  *
@@ -56,12 +55,12 @@ final class AddServiceAccountCommand extends Command
     {
         $permissionsIds = [];
 
-        if ( ! empty($this->argument('permission-route-names'))) {
+        if (! empty($this->argument('permission-route-names'))) {
             $permissions = new Collection($serviceAccountPermissionsRepository->findBy(
                 ['routeName' => $this->argument('permission-route-names')]
             ));
 
-            $permissionsIds = $permissions->map(function(ServiceAccountPermission $permission) {
+            $permissionsIds = $permissions->map(function (ServiceAccountPermission $permission) {
                 return $permission->getId();
             })->all();
         }

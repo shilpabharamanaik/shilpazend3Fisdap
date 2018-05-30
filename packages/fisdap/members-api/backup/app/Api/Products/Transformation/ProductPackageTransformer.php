@@ -3,7 +3,6 @@
 use Fisdap\Entity\ProductPackage;
 use Fisdap\Fractal\Transformer;
 
-
 /**
  * Class ProductPackageTransformer
  *

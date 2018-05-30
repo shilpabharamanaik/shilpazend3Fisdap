@@ -45,9 +45,8 @@ require_once 'Zend/Tool/Framework/Client/Interactive/OutputInterface.php';
  *
  * @todo methods need more API documentation.
  */
-class Zend_Tool_Framework_Client_Console
-    extends Zend_Tool_Framework_Client_Abstract
-    implements Zend_Tool_Framework_Client_Interactive_InputInterface,
+class Zend_Tool_Framework_Client_Console extends Zend_Tool_Framework_Client_Abstract implements
+    Zend_Tool_Framework_Client_Interactive_InputInterface,
                Zend_Tool_Framework_Client_Interactive_OutputInterface
 {
 
@@ -120,8 +119,8 @@ class Zend_Tool_Framework_Client_Console
     }
 
     /**
-		 * @param array $classesToLoad
-		 */
+         * @param array $classesToLoad
+         */
     public function setClassesToLoad($classesToLoad)
     {
         $this->_classesToLoad = $classesToLoad;
@@ -308,5 +307,4 @@ class Zend_Tool_Framework_Client_Console
 
         return $this->_filterFromClientNaming->filter($string);
     }
-
 }

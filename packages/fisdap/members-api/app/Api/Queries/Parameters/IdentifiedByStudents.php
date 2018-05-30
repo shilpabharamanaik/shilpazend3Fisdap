@@ -2,14 +2,14 @@
 
 use Fisdap\ErrorHandling\Exceptions\InvalidType;
 
-
 /**
  * Query parameter for student ID(s)
  *
  * @package Fisdap\Api\Queries\Parameters
  * @author  Ben Getsug <bgetsug@fisdap.net>
  */
-trait IdentifiedByStudents {
+trait IdentifiedByStudents
+{
 
     /**
      * @var int[]|null
@@ -35,7 +35,7 @@ trait IdentifiedByStudents {
     public function setStudentIds(array $studentIds)
     {
         foreach ($studentIds as $studentId) {
-            if ( ! is_numeric($studentId)) {
+            if (! is_numeric($studentId)) {
                 throw new InvalidType('student id must be an integer');
             }
         }

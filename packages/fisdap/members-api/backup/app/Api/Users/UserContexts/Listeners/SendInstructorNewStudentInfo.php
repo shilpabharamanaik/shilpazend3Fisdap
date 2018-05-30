@@ -11,7 +11,6 @@ use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Message;
 
-
 /**
  * A queued event listener for sending instructors e-mail notifications of a new student,
  * when their user context (UserContext Entity) was created

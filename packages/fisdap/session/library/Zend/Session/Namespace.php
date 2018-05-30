@@ -140,11 +140,11 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
         $this->_namespace = $namespace;
 
         // Process metadata specific only to this namespace.
-       try {
-			Zend_Session::start();
-		} catch(Zend_Session_Exception $e) {
-			session_start();
-		} // attempt auto-start (throws exception if strict option set)
+        try {
+            Zend_Session::start();
+        } catch (Zend_Session_Exception $e) {
+            session_start();
+        } // attempt auto-start (throws exception if strict option set)
 
         if (self::$_readable === false) {
             /**
@@ -188,7 +188,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
                             unset($_SESSION['__ZF'][$namespace]['ENVNH'][$variable]);
                         }
                     }
-                    if(empty($_SESSION['__ZF'][$namespace]['ENVNH'])) {
+                    if (empty($_SESSION['__ZF'][$namespace]['ENVNH'])) {
                         unset($_SESSION['__ZF'][$namespace]['ENVNH']);
                     }
                 }
@@ -450,9 +450,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
 
             // apply expiration to entire namespace
             $_SESSION['__ZF'][$this->_namespace]['ENT'] = time() + $seconds;
-
         } else {
-
             if (is_string($variables)) {
                 $variables = array($variables);
             }
@@ -502,9 +500,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
             } else {
                 $_SESSION['__ZF'][$this->_namespace]['ENNH'] = $hops;
             }
-
         } else {
-
             if (is_string($variables)) {
                 $variables = array($variables);
             }

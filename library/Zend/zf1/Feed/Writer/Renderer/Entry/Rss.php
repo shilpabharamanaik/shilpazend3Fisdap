@@ -30,9 +30,7 @@ require_once 'Zend/Feed/Writer/Renderer/RendererAbstract.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Writer_Renderer_Entry_Rss
-    extends Zend_Feed_Writer_Renderer_RendererAbstract
-    implements Zend_Feed_Writer_Renderer_RendererInterface
+class Zend_Feed_Writer_Renderer_Entry_Rss extends Zend_Feed_Writer_Renderer_RendererAbstract implements Zend_Feed_Writer_Renderer_RendererInterface
 {
     /**
      * Constructor
@@ -40,7 +38,7 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      * @param  Zend_Feed_Writer_Entry $container
      * @return void
      */
-    public function __construct (Zend_Feed_Writer_Entry $container)
+    public function __construct(Zend_Feed_Writer_Entry $container)
     {
         parent::__construct($container);
     }
@@ -87,7 +85,7 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      */
     protected function _setTitle(DOMDocument $dom, DOMElement $root)
     {
-        if(!$this->getDataContainer()->getDescription()
+        if (!$this->getDataContainer()->getDescription()
         && !$this->getDataContainer()->getTitle()) {
             require_once 'Zend/Feed/Exception.php';
             $message = 'RSS 2.0 entry elements SHOULD contain exactly one'
@@ -116,7 +114,7 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      */
     protected function _setDescription(DOMDocument $dom, DOMElement $root)
     {
-        if(!$this->getDataContainer()->getDescription()
+        if (!$this->getDataContainer()->getDescription()
         && !$this->getDataContainer()->getTitle()) {
             require_once 'Zend/Feed/Exception.php';
             $message = 'RSS 2.0 entry elements SHOULD contain exactly one'
@@ -149,7 +147,7 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      */
     protected function _setDateModified(DOMDocument $dom, DOMElement $root)
     {
-        if(!$this->getDataContainer()->getDateModified()) {
+        if (!$this->getDataContainer()->getDateModified()) {
             return;
         }
 
@@ -265,7 +263,7 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      */
     protected function _setLink(DOMDocument $dom, DOMElement $root)
     {
-        if(!$this->getDataContainer()->getLink()) {
+        if (!$this->getDataContainer()->getLink()) {
             return;
         }
         $link = $dom->createElement('link');
@@ -283,7 +281,7 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      */
     protected function _setId(DOMDocument $dom, DOMElement $root)
     {
-        if(!$this->getDataContainer()->getId()
+        if (!$this->getDataContainer()->getId()
         && !$this->getDataContainer()->getLink()) {
             return;
         }
@@ -292,7 +290,8 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
         $root->appendChild($id);
         if (!$this->getDataContainer()->getId()) {
             $this->getDataContainer()->setId(
-                $this->getDataContainer()->getLink());
+                $this->getDataContainer()->getLink()
+            );
         }
         $text = $dom->createTextNode($this->getDataContainer()->getId());
         $id->appendChild($text);

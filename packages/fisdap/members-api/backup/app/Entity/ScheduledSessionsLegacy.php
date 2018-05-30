@@ -9,37 +9,36 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * @Entity(repositoryClass="Fisdap\Data\ScheduledSession\DoctrineScheduledSessionsLegacyRepository")
  * @Table(name="ScheduledSessions")
  */
 class ScheduledSessionsLegacy extends EntityBaseClass
 {
-	/**
-	 * @Id
-	 * @Column(name="ScheduledSession_id", type="integer")
-	 * @GeneratedValue
-	 */
-	protected $id;
-	
-	/**
-	 * @OneToMany(targetEntity="ScheduledSessionSignupsLegacy", mappedBy="scheduled_session")
-	 * @JoinColumn(name="ScheduledSession_id", referencedColumnName="ScheduledSession_id")
-	 */
-	protected $signups;
-	
-	/**
-	 * @ManyToOne(targetEntity="ScheduledSessionTypesLegacy", inversedBy="signups")
-	 * @JoinColumn(name="Type", referencedColumnName="type_id")
-	 */
-	protected $type;
-	
-	/**
-	 * @Column(name="Date", type="date")
-	 */
-	protected $date;
-	
+    /**
+     * @Id
+     * @Column(name="ScheduledSession_id", type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
+    
+    /**
+     * @OneToMany(targetEntity="ScheduledSessionSignupsLegacy", mappedBy="scheduled_session")
+     * @JoinColumn(name="ScheduledSession_id", referencedColumnName="ScheduledSession_id")
+     */
+    protected $signups;
+    
+    /**
+     * @ManyToOne(targetEntity="ScheduledSessionTypesLegacy", inversedBy="signups")
+     * @JoinColumn(name="Type", referencedColumnName="type_id")
+     */
+    protected $type;
+    
+    /**
+     * @Column(name="Date", type="date")
+     */
+    protected $date;
+    
     /**
      * @Column(name="StartTime", type="string")
      */

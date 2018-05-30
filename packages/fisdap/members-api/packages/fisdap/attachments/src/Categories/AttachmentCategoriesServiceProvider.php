@@ -53,7 +53,6 @@ final class AttachmentCategoriesServiceProvider extends ServiceProvider
         $this->app->bind('command.attachment.categories.rename', RenameAttachmentCategory::class);
         $this->app->bind('command.attachment.categories.remove', RemoveAttachmentCategories::class);
         $this->app->bind('command.attachment.categories.list', ListAttachmentCategories::class);
-
     }
 
 

@@ -9,5 +9,3 @@
 class Fisdap_Exception_Runtime extends Fisdap_Exception_Base
 {
 }
-
-?>

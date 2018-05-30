@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
-
 /**
  * Entity class for Legacy Marketing Billboards.
  *

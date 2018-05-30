@@ -25,7 +25,7 @@ final class DeleteAirway extends AbstractSkills implements RequestHydrated
     public function handle(AirwayRepository $airwayRepository)
     {
         $airway = $airwayRepository->find($this->id);
-        if($airway) {
+        if ($airway) {
             $airwayRepository->destroy($airway);
         }
 

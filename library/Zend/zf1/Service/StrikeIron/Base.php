@@ -92,11 +92,13 @@ class Zend_Service_StrikeIron_Base
 
         // make soap call, capturing the result and output headers
         try {
-            $result = $this->_options['client']->__soapCall($method,
+            $result = $this->_options['client']->__soapCall(
+                $method,
                                                             $params,
                                                             $this->_options['options'],
                                                             $this->_options['headers'],
-                                                            $this->_outputHeaders);
+                                                            $this->_outputHeaders
+            );
         } catch (Exception $e) {
             $message = get_class($e) . ': ' . $e->getMessage();
             /**
@@ -123,8 +125,10 @@ class Zend_Service_StrikeIron_Base
         }
 
         if (! isset($this->_options['client'])) {
-            $this->_options['client'] = new SoapClient($this->_options['wsdl'],
-                                                       $this->_options['options']);
+            $this->_options['client'] = new SoapClient(
+                $this->_options['wsdl'],
+                                                       $this->_options['options']
+            );
         }
     }
 
@@ -150,7 +154,7 @@ class Zend_Service_StrikeIron_Base
                      */
                     require_once 'Zend/Service/StrikeIron/Exception.php';
                     throw new Zend_Service_StrikeIron_Exception('Header must be instance of SoapHeader');
-                } else if ($header->name == 'LicenseInfo') {
+                } elseif ($header->name == 'LicenseInfo') {
                     $foundLicenseInfo = true;
                     break;
                 }
@@ -161,10 +165,12 @@ class Zend_Service_StrikeIron_Base
 
         // add default LicenseInfo header if a custom one was not supplied
         if (! $foundLicenseInfo) {
-            $this->_options['headers'][] = new SoapHeader('http://ws.strikeiron.com',
+            $this->_options['headers'][] = new SoapHeader(
+                'http://ws.strikeiron.com',
                             'LicenseInfo',
                             array('RegisteredUser' => array('UserID'   => $this->_options['username'],
-                                                            'Password' => $this->_options['password'])));
+                                                            'Password' => $this->_options['password']))
+            );
         }
     }
 

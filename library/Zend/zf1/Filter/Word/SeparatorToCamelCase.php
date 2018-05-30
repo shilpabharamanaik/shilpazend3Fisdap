@@ -32,7 +32,6 @@ require_once 'Zend/Filter/Word/Separator/Abstract.php';
  */
 class Zend_Filter_Word_SeparatorToCamelCase extends Zend_Filter_Word_Separator_Abstract
 {
-
     public function filter($value)
     {
         // a unicode safe way of converting characters to \x00\x00 notation
@@ -60,5 +59,4 @@ class Zend_Filter_Word_SeparatorToCamelCase extends Zend_Filter_Word_Separator_A
         }
         return strtoupper($matches[1]);
     }
-
 }

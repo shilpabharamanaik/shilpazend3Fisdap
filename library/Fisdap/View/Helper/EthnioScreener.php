@@ -29,7 +29,8 @@ class Fisdap_View_Helper_EthnioScreener extends Zend_View_Helper_Abstract
      *
      * @return string
      */
-    public function ethnioScreener() {
+    public function ethnioScreener()
+    {
         //Get the current request URI
         $request = Zend_Controller_Front::getInstance()->getRequest();
         $url = $request->getRequestUri();

@@ -46,7 +46,7 @@ class Zend_Mobile_Push_Message_Gcm extends Zend_Mobile_Push_Message_Abstract
 
     /**
      * Data key value pairs
-     * 
+     *
      * @var array
      */
     protected $_data = array();
@@ -60,7 +60,7 @@ class Zend_Mobile_Push_Message_Gcm extends Zend_Mobile_Push_Message_Abstract
 
     /**
      * Time to live in seconds
-     * 
+     *
      * @var int
      */
     protected $_ttl = 2419200;
@@ -78,7 +78,7 @@ class Zend_Mobile_Push_Message_Gcm extends Zend_Mobile_Push_Message_Abstract
             throw new Zend_Mobile_Push_Message_Exception('$token must be a string');
         }
         if (!in_array($token, $this->_token)) {
-           $this->_token[] = $token;
+            $this->_token[] = $token;
         }
         return $this;
     }
@@ -95,7 +95,7 @@ class Zend_Mobile_Push_Message_Gcm extends Zend_Mobile_Push_Message_Abstract
         $this->clearToken();
         if (is_string($token)) {
             $this->addToken($token);
-        } else if (is_array($token)) {
+        } elseif (is_array($token)) {
             foreach ($token as $t) {
                 $this->addToken($t);
             }

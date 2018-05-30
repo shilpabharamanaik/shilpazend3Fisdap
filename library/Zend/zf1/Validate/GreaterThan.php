@@ -32,7 +32,6 @@ require_once 'Zend/Validate/Abstract.php';
  */
 class Zend_Validate_GreaterThan extends Zend_Validate_Abstract
 {
-
     const NOT_GREATER = 'notGreaterThan';
 
     /**
@@ -120,5 +119,4 @@ class Zend_Validate_GreaterThan extends Zend_Validate_Abstract
         }
         return true;
     }
-
 }

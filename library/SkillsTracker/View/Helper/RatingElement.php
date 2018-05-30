@@ -35,9 +35,9 @@ class SkillsTracker_View_Helper_RatingElement extends Zend_View_Helper_FormEleme
      */
     public function ratingElement($name, $value = null, $attribs = null)
     {
-		$this->view->jQuery()->addOnLoad("$('#rating-set-$name').buttonset();");
-		$this->view->jQuery()->addOnLoad(new Zend_Json_Expr(
-			"var buttons = $('#$name-disabled').click(function() {
+        $this->view->jQuery()->addOnLoad("$('#rating-set-$name').buttonset();");
+        $this->view->jQuery()->addOnLoad(new Zend_Json_Expr(
+            "var buttons = $('#$name-disabled').click(function() {
 				var buttonset = $('#rating-set-$name');
 				if ($(this).is(':checked')) {
 					buttonset.buttonset('option', 'disabled', true );
@@ -50,30 +50,30 @@ class SkillsTracker_View_Helper_RatingElement extends Zend_View_Helper_FormEleme
 				var buttonset = $('#rating-set-$name');
 				buttonset.buttonset('option', 'disabled', true );
 			}"
-		));
+        ));
 
         //get data from values
         $rating = isset($value) ? $value : null;
-		$options = array(
-			0 => 0,
-			1 => 1,
-			2 => 2,
-		);
+        $options = array(
+            0 => 0,
+            1 => 1,
+            2 => 2,
+        );
         if (isset($attribs['disabled'])) {
             $disabledAttribs['disabled'] = $attribs['disabled'];
         } else {
             $disabledAttribs = array();
         }
 
-		$this->html = "<span id='rating-set-$name' class='cupertino'>";
-		$this->html .= $this->view->fisdapFormRadio($name . "[rating]", $rating, $disabledAttribs, $options, "");
-		$this->html .= "</span>";
+        $this->html = "<span id='rating-set-$name' class='cupertino'>";
+        $this->html .= $this->view->fisdapFormRadio($name . "[rating]", $rating, $disabledAttribs, $options, "");
+        $this->html .= "</span>";
 
         //Add the c
         $disabledAttribs['checked'] = ($rating == -1);
-		$this->html .= $this->view->formCheckbox($name . "[disabled]", null, $disabledAttribs) . $this->view->formLabel($name . "[disabled]", "N/A");
+        $this->html .= $this->view->formCheckbox($name . "[disabled]", null, $disabledAttribs) . $this->view->formLabel($name . "[disabled]", "N/A");
 
-		
+        
         
         return $this->html;
     }

@@ -88,5 +88,4 @@ class Zend_Service_StrikeIron
         $service = new $class(array_merge($this->_options, $options));
         return $service;
     }
-
 }

@@ -7,7 +7,6 @@ use Illuminate\Console\Command;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Collection;
 
-
 /**
  * Class ManageServiceAccountPermissionsCommand
  *
@@ -56,7 +55,7 @@ final class ManageServiceAccountPermissionsCommand extends Command
     {
         $permissionsIds = [];
 
-        if ( ! empty($this->argument('permission-route-names'))) {
+        if (! empty($this->argument('permission-route-names'))) {
             $permissions = new Collection($serviceAccountPermissionsRepository->findBy(
                 ['routeName' => $this->argument('permission-route-names')]
             ));
@@ -73,7 +72,9 @@ final class ManageServiceAccountPermissionsCommand extends Command
         ));
 
 
-        $this->info("Managed permissions for service account '{$this->argument('oauth2-client-id')}': " . implode(', ',
-                $permissionsManaged));
+        $this->info("Managed permissions for service account '{$this->argument('oauth2-client-id')}': " . implode(
+            ', ',
+                $permissionsManaged
+        ));
     }
 }

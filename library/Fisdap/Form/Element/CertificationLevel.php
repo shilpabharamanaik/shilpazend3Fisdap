@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *                                                                           *
 *        Copyright (C) 1996-2011.  This is an unpublished work of           *
 *                         Headwaters Software, Inc.                         *
@@ -23,7 +23,7 @@ class Fisdap_Form_Element_CertificationLevel extends Zend_Form_Element_MultiChec
 {
     public function init()
     {
-        $options = \Fisdap\Entity\CertificationLevel::getFormOptions(false,false,"description");
+        $options = \Fisdap\Entity\CertificationLevel::getFormOptions(false, false, "description");
         $this->setMultiOptions($options);
         $this->setLabel("Certification level");
     }

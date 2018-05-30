@@ -6,7 +6,6 @@ use Fisdap\Data\Student\StudentLegacyRepository;
 use Fisdap\Queries\Specifications\CommonSpec;
 use Happyr\DoctrineSpecification\Spec;
 
-
 /**
  * Service for retrieving one or more students by various criteria
  *
@@ -33,7 +32,8 @@ final class StudentsFinder implements FindsStudents
     /**
      * @inheritdoc
      */
-    public function getById($id, array $associations = null, array $associationIds = null, $asArray = false) {
+    public function getById($id, array $associations = null, array $associationIds = null, $asArray = false)
+    {
         $spec = CommonSpec::makeSpecWithAssociations($associations, $associationIds);
         $spec->andX(new ById($id));
 

@@ -53,5 +53,4 @@ class Zend_Tool_Project_Context_Zf_PublicScriptsDirectory extends Zend_Tool_Proj
     {
         return 'PublicScriptsDirectory';
     }
-
 }

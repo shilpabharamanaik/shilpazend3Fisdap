@@ -39,9 +39,7 @@ require_once 'Zend/View/Helper/HtmlElement.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_View_Helper_Navigation_HelperAbstract
-    extends Zend_View_Helper_HtmlElement
-    implements Zend_View_Helper_Navigation_Helper
+abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Helper_HtmlElement implements Zend_View_Helper_Navigation_Helper
 {
     /**
      * Container to operate on by default
@@ -613,7 +611,8 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
     {
         return call_user_func_array(
                 array($this->getContainer(), $method),
-                $arguments);
+                $arguments
+        );
     }
 
     /**
@@ -660,10 +659,11 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      *                                               'page', or an empty array
      *                                               if not found
      */
-    public function findActive(Zend_Navigation_Container $container,
+    public function findActive(
+        Zend_Navigation_Container $container,
                                $minDepth = null,
-                               $maxDepth = -1)
-    {
+                               $maxDepth = -1
+    ) {
         if (!is_int($minDepth)) {
             $minDepth = $this->getMinDepth();
         }
@@ -673,8 +673,10 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
 
         $found  = null;
         $foundDepth = -1;
-        $iterator = new RecursiveIteratorIterator($container,
-                RecursiveIteratorIterator::CHILD_FIRST);
+        $iterator = new RecursiveIteratorIterator(
+            $container,
+                RecursiveIteratorIterator::CHILD_FIRST
+        );
 
         foreach ($iterator as $page) {
             $currDepth = $iterator->getDepth();
@@ -922,7 +924,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      * @return string           Normalized ID
      */
     protected function _normalizeId($value)
-    {        
+    {
         if (false === $this->_skipPrefixForId) {
             $prefix = $this->getPrefixForId();
 

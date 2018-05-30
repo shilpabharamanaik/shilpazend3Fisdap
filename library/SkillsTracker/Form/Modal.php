@@ -20,48 +20,48 @@
  */
 class SkillsTracker_Form_Modal extends Fisdap_Form_BaseJQuery
 {
-	/**
-	 * @var array decorators for individual elements
-	 */
+    /**
+     * @var array decorators for individual elements
+     */
     public static $elementDecorators = array(
         'ViewHelper',
-		array(array('break' => 'HtmlTag'), array('tag' => 'br', 'openOnly' => true, 'placement' => 'PREPEND')),
+        array(array('break' => 'HtmlTag'), array('tag' => 'br', 'openOnly' => true, 'placement' => 'PREPEND')),
         array('LabelDescription', array('escape' => false)),
         array(array('prompt' => 'HtmlTag'), array('tag'=>'div', 'class'=>'form-prompt')),
     );
-	
-	/**
-	 * @var array decorators for checkbox elements
-	 */
-	public static $checkboxDecorators = array(
-		'ViewHelper',
-		array('Label', array('placement' => 'APPEND')),
-	);
-	
-	/**
-	 * @var array decorators for buttons
-	 */
-	public static $buttonDecorators = array(
-		'ViewHelper',
-	);
-	
-	/**
-	 * @var array decorators for jQuery form elements
-	 */
-	public static $formJQueryElements = array(
+    
+    /**
+     * @var array decorators for checkbox elements
+     */
+    public static $checkboxDecorators = array(
+        'ViewHelper',
+        array('Label', array('placement' => 'APPEND')),
+    );
+    
+    /**
+     * @var array decorators for buttons
+     */
+    public static $buttonDecorators = array(
+        'ViewHelper',
+    );
+    
+    /**
+     * @var array decorators for jQuery form elements
+     */
+    public static $formJQueryElements = array(
         'ErrorHighlight',
         array('UiWidgetElement', array('tag' => '')), // it necessary to include for jquery elements
-		array(array('break' => 'HtmlTag'), array('tag' => 'br', 'openOnly' => true, 'placement' => 'PREPEND')),
+        array(array('break' => 'HtmlTag'), array('tag' => 'br', 'openOnly' => true, 'placement' => 'PREPEND')),
         array('LabelDescription', array('class' => '', 'escape' => false)),
         array('HtmlTag', array('tag'=>'div', 'class'=>'form-prompt')),
-	);
-	
-	/**
-	 * @var array decorators for hidden elements
-	 */
-	public static $hiddenElementDecorators = array(
-		'ViewHelper',
-	);
+    );
+    
+    /**
+     * @var array decorators for hidden elements
+     */
+    public static $hiddenElementDecorators = array(
+        'ViewHelper',
+    );
     
     public function init()
     {

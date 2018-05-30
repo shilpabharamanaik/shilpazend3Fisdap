@@ -7,13 +7,12 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface WidgetUploadsRepository
  *
  * @package Fisdap\Data\Widget
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface WidgetUploadsRepository extends Repository {
-
+interface WidgetUploadsRepository extends Repository
+{
 }

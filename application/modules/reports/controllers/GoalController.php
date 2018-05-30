@@ -51,11 +51,11 @@ class Reports_GoalController extends Fisdap_Controller_Private
 
         $request = $this->getRequest();
 
-        if($request->isPost()){
+        if ($request->isPost()) {
             $postVals = $request->getPost();
 
             // was cancel pressed?
-            if(isset($postVals['Cancel'])) {
+            if (isset($postVals['Cancel'])) {
                 $this->_redirect($postVals['cancel_redirect_to']);
             }
             $this->formValues = $form->process($postVals);
@@ -76,7 +76,7 @@ class Reports_GoalController extends Fisdap_Controller_Private
                         $classmates = $studentRepo->getAllStudentsByProgram($this->programId);
                     }
                     $classmatesIds = array();
-                    foreach($classmates as $classmate) {
+                    foreach ($classmates as $classmate) {
                         // we append an underscore to match the input format expected by code later in the process
                         $classmatesIds[] = '_' . $classmate['id'];
                     }
@@ -89,7 +89,7 @@ class Reports_GoalController extends Fisdap_Controller_Private
             if (!$this->formValues) {
                 // todo: error handling
                 $this->view->messages = $this->flashMessenger->getMessages();
-            } else if ($this->formValues['studentIDs']) {
+            } elseif ($this->formValues['studentIDs']) {
                 // back links
                 $this->view->pageTitleLinkURL = '/reports/goal';
                 $this->view->pageTitleLinkText = '<< Return to "Goals Report: Pick Your Settings"';
@@ -112,7 +112,6 @@ class Reports_GoalController extends Fisdap_Controller_Private
             $studentId = $this->user->getCurrentRoleData()->id;
             $this->view->studentId = $studentId;
         }
-
     }
 
     public function customizeAction()
@@ -120,7 +119,7 @@ class Reports_GoalController extends Fisdap_Controller_Private
         if (!$this->isInstructor) {
             $this->displayError("Students are not allowed to access this page.");
             return;
-        }else if (!$this->user->hasPermission("Edit Program Settings")) {
+        } elseif (!$this->user->hasPermission("Edit Program Settings")) {
             $this->displayPermissionError("Edit Program Settings");
             return;
         }
@@ -143,8 +142,7 @@ class Reports_GoalController extends Fisdap_Controller_Private
 
             // go ahead and take 'em to the form
             $this->customizeGoalSet($goalSetId);
-
-        } else if ($goalSetId) {
+        } elseif ($goalSetId) {
             $goalSet = \Fisdap\EntityUtils::getEntity('GoalSet', $goalSetId);
 
             // if this is a standard goal set, you can't edit it
@@ -184,7 +182,7 @@ class Reports_GoalController extends Fisdap_Controller_Private
         // then send us back where we came from
         if ($this->getRequest()->isPost()) {
             $values = $form->process($this->getRequest()->getPost());
-            if(is_null($values)) {
+            if (is_null($values)) {
                 $this->view->pageTitle = $newGoalSet ? "Create Custom Goal Set" : "Edit Custom Goal Set";
                 $this->view->form = $form;
                 return;
@@ -233,7 +231,7 @@ class Reports_GoalController extends Fisdap_Controller_Private
         // for any student user, place the student at the top of the list
         // and shuffle the rest, because we are anonymizing classmate data
         // also do this for any instructor who has the "reports withotu names" permission
-        if(!$this->isInstructor) {
+        if (!$this->isInstructor) {
             if (!$this->isInstructor) { // for students only
                 // Get the student record that matches the user and pull it out of results
                 $currentStudent = $students[$this->user->getCurrentRoleData()->id];
@@ -248,7 +246,7 @@ class Reports_GoalController extends Fisdap_Controller_Private
             if (!$this->isInstructor) { // put back "current student" for students only
                 $reorderedStudents = array($currentStudent['id'] => $currentStudent);
             }
-            foreach($otherStudentKeys as $key) {
+            foreach ($otherStudentKeys as $key) {
                 $reorderedStudents[$key] = $students[$key];
             }
 
@@ -276,8 +274,7 @@ class Reports_GoalController extends Fisdap_Controller_Private
         $this->view->headLink()->appendStylesheet("/css/jquery.tablescroll.css");
 
         $goalSet = \Fisdap\EntityUtils::getEntity('GoalSet', $goalSetId);
-        foreach ($students as $sId => $student)
-        {
+        foreach ($students as $sId => $student) {
             $goals = new \Fisdap\Goals($sId, $goalSet, $dataOptions, $student['first_name'] . " " . $student['last_name']);
             $goalsResults[$sId] = $goals->getGoalsResults();
         }
@@ -304,12 +301,13 @@ class Reports_GoalController extends Fisdap_Controller_Private
      * because Chrome and Opera are stupid and will resort a javascript collection
      * numerically by index.
      */
-    public function getStudents($studentIds) {
+    public function getStudents($studentIds)
+    {
         $studentIds = str_replace("_", "", $studentIds);
         $studentResults = \Fisdap\EntityUtils::getRepository("User")->getAllStudentsByProgram($this->user->getProgramId(), array("includeStudentIds" => $studentIds));
 
         $students = array();
-        foreach($studentResults as $result) {
+        foreach ($studentResults as $result) {
             $students[$result['id']] = $result;
         }
 
@@ -346,7 +344,7 @@ class Reports_GoalController extends Fisdap_Controller_Private
         for ($i=0; $i<$howMany; $i++) {
             if ($howMany==$count) {
                 $studentId = $allStudents[$i]['Student_id'];
-                if(in_array($studentId, $skip)) {	// remove: for debug removing long test student names
+                if (in_array($studentId, $skip)) {	// remove: for debug removing long test student names
                     continue;
                 }
             } else {
@@ -454,5 +452,4 @@ class Reports_GoalController extends Fisdap_Controller_Private
 
         $this->_helper->json($form->__toString());
     }
-
 }

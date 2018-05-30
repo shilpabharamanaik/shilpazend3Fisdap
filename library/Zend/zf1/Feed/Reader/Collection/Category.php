@@ -30,8 +30,7 @@ require_once 'Zend/Feed/Reader/Collection/CollectionAbstract.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Reader_Collection_Category
-extends Zend_Feed_Reader_Collection_CollectionAbstract
+class Zend_Feed_Reader_Collection_Category extends Zend_Feed_Reader_Collection_CollectionAbstract
 {
 
     /**
@@ -42,7 +41,8 @@ extends Zend_Feed_Reader_Collection_CollectionAbstract
      *
      * @return array
      */
-    public function getValues() {
+    public function getValues()
+    {
         $categories = array();
         foreach ($this->getIterator() as $element) {
             if (isset($element['label']) && !empty($element['label'])) {
@@ -53,5 +53,4 @@ extends Zend_Feed_Reader_Collection_CollectionAbstract
         }
         return array_unique($categories);
     }
-
 }

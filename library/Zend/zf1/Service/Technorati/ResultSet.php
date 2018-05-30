@@ -265,7 +265,8 @@ abstract class Zend_Service_Technorati_ResultSet implements SeekableIterator
      *
      * @return void
      */
-    public function __sleep() {
+    public function __sleep()
+    {
         $this->_xml     = $this->getXml();
         $vars = array_keys(get_object_vars($this));
         return array_diff($vars, array('_dom', '_xpath'));
@@ -280,7 +281,8 @@ abstract class Zend_Service_Technorati_ResultSet implements SeekableIterator
      *
      * @return void
      */
-    public function __wakeup() {
+    public function __wakeup()
+    {
         $dom = new DOMDocument();
         $dom->loadXml($this->_xml);
         $this->_init($dom);

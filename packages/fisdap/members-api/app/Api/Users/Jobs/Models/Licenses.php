@@ -2,7 +2,6 @@
 
 use Swagger\Annotations as SWG;
 
-
 /**
  * Class Licenses
  *

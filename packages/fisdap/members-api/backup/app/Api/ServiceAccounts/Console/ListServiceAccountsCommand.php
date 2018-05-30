@@ -6,7 +6,6 @@ use Fisdap\Api\ServiceAccounts\Repository\ServiceAccountsRepository;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 
-
 /**
  * Class ListServiceAccountsCommand
  *
@@ -54,8 +53,8 @@ final class ListServiceAccountsCommand extends Command
      
         $this->table(['OAuth2 Client ID', 'Name', 'Permissions'], $serviceAccounts->map(function (ServiceAccount $serviceAccount) {
             return [
-                $serviceAccount->getOauth2ClientId(), 
-                $serviceAccount->getName(), 
+                $serviceAccount->getOauth2ClientId(),
+                $serviceAccount->getName(),
                 implode(PHP_EOL, $serviceAccount->getPermissions()->map(function (ServiceAccountPermission $permission) {
                     return $permission->getRouteName();
                 })->toArray())

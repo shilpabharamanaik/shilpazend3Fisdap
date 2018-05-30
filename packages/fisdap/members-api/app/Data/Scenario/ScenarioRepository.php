@@ -7,13 +7,12 @@
 
 use Fisdap\Data\Repository\Repository;
 
-
 /**
  * Interface ScenarioRepository
  *
  * @package Fisdap\Data\Scenario
  * @copyright 1996-2014 Headwaters Software, Inc.
  */
-interface ScenarioRepository extends Repository {
-
+interface ScenarioRepository extends Repository
+{
 }

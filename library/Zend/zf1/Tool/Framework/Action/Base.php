@@ -91,5 +91,4 @@ class Zend_Tool_Framework_Action_Base implements Zend_Tool_Framework_Action_Inte
         $actionName = substr($className, strrpos($className, '_')+1);
         return $actionName;
     }
-
 }

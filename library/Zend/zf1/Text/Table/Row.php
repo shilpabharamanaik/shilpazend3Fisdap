@@ -134,10 +134,11 @@ class Zend_Text_Table_Row
      * @throws Zend_Text_Table_Exception When there are too many columns
      * @return string
      */
-    public function render(array $columnWidths,
+    public function render(
+        array $columnWidths,
                            Zend_Text_Table_Decorator_Interface $decorator,
-                           $padding = 0)
-    {
+                           $padding = 0
+    ) {
         // Prepare an array to store all column widths
         $this->_columnWidths = array();
 
@@ -163,9 +164,11 @@ class Zend_Text_Table_Row
             }
 
             // Calculate the column width
-            $columnWidth = ($colSpan - 1 + array_sum(array_slice($columnWidths,
+            $columnWidth = ($colSpan - 1 + array_sum(array_slice(
+                $columnWidths,
                                                                  $colNum,
-                                                                 $colSpan)));
+                                                                 $colSpan
+            )));
 
             // Render the column and split it's lines into an array
             $result = explode("\n", $column->render($columnWidth, $padding));
@@ -185,8 +188,10 @@ class Zend_Text_Table_Row
         // it with an empty column
         if ($colNum < count($columnWidths)) {
             $remainingWidth = (count($columnWidths) - $colNum - 1) +
-                               array_sum(array_slice($columnWidths,
-                                                     $colNum));
+                               array_sum(array_slice(
+                                   $columnWidths,
+                                                     $colNum
+                               ));
             $renderedColumns[] = array(str_repeat(' ', $remainingWidth));
 
             $this->_columnWidths[] = $remainingWidth;

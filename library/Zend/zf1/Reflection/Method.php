@@ -152,15 +152,19 @@ class Zend_Reflection_Method extends ReflectionMethod
 
         // Strip off lines until we come to a closing bracket
         do {
-            if (count($lines) == 0) break;
+            if (count($lines) == 0) {
+                break;
+            }
             $firstLine = array_shift($lines);
         } while (strpos($firstLine, ')') === false);
 
-        // If the opening brace isn't on the same line as method 
+        // If the opening brace isn't on the same line as method
         // signature, then we should pop off more lines until we find it
-        if (strpos($firstLine,'{') === false) {
+        if (strpos($firstLine, '{') === false) {
             do {
-                if (count($lines) == 0) break;
+                if (count($lines) == 0) {
+                    break;
+                }
                 $firstLine = array_shift($lines);
             } while (strpos($firstLine, '{') === false);
         }

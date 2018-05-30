@@ -274,12 +274,12 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
      */
     public function setOption($key, $value)
     {
-      if (!array_key_exists($key,$this->_options)) {
-        throw new Zend_Wildfire_Exception('Option with name "'.$key.'" does not exist!');
-      }
-      $previous = $this->_options[$key];
-      $this->_options[$key] = $value;
-      return $previous;
+        if (!array_key_exists($key, $this->_options)) {
+            throw new Zend_Wildfire_Exception('Option with name "'.$key.'" does not exist!');
+        }
+        $previous = $this->_options[$key];
+        $this->_options[$key] = $value;
+        return $previous;
     }
 
     /**
@@ -290,10 +290,10 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
      */
     public function getOption($key)
     {
-      if (!array_key_exists($key,$this->_options)) {
-        throw new Zend_Wildfire_Exception('Option with name "'.$key.'" does not exist!');
-      }
-      return $this->_options[$key];
+        if (!array_key_exists($key, $this->_options)) {
+            throw new Zend_Wildfire_Exception('Option with name "'.$key.'" does not exist!');
+        }
+        return $this->_options[$key];
     }
 
     /**
@@ -303,7 +303,7 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
      */
     public function getOptions()
     {
-      return $this->_options;
+        return $this->_options;
     }
 
     /**
@@ -315,8 +315,9 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
      * @param array $Filter An array of members to exclude
      * @return void
      */
-    public function setObjectFilter($class, $filter) {
-      $this->_objectFilters[$class] = $filter;
+    public function setObjectFilter($class, $filter)
+    {
+        $this->_objectFilters[$class] = $filter;
     }
 
     /**
@@ -361,7 +362,6 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
         }
 
         if ($var instanceof Zend_Wildfire_Plugin_FirePhp_Message) {
-
             if ($var->getBuffered()) {
                 if (!in_array($var, self::$_instance->_messages)) {
                     self::$_instance->_messages[] = $var;
@@ -398,7 +398,6 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
         $meta['Type'] = $style;
 
         if ($var instanceof Exception) {
-
             $eTrace = $var->getTrace();
             $eTrace = array_splice($eTrace, 0, $options['maxTraceDepth']);
 
@@ -412,18 +411,17 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
             $meta['Type'] = self::EXCEPTION;
 
             $skipFinalEncode = true;
-
-        } else
-        if ($meta['Type']==self::TRACE) {
-
+        } elseif ($meta['Type']==self::TRACE) {
             if (!$label && $var) {
                 $label = $var;
                 $var = null;
             }
 
             if (!$trace) {
-                $trace = $firephp->_getStackTrace(array_merge($options,
-                                                              array('maxTraceDepth'=>$options['maxTraceDepth']+1)));
+                $trace = $firephp->_getStackTrace(array_merge(
+                    $options,
+                                                              array('maxTraceDepth'=>$options['maxTraceDepth']+1)
+                ));
             }
 
             $var = array('Class'=>$trace[0]['class'],
@@ -433,17 +431,13 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
                          'File'=>isset($trace[0]['file'])?$trace[0]['file']:'',
                          'Line'=>isset($trace[0]['line'])?$trace[0]['line']:'',
                          'Args'=>isset($trace[0]['args'])?$firephp->_encodeObject($trace[0]['args']):'',
-                         'Trace'=>$firephp->_encodeTrace(array_splice($trace,1)));
+                         'Trace'=>$firephp->_encodeTrace(array_splice($trace, 1)));
 
-          $skipFinalEncode = true;
+            $skipFinalEncode = true;
+        } elseif ($meta['Type']==self::TABLE) {
+            $var = $firephp->_encodeTable($var);
 
-        } else
-        if ($meta['Type']==self::TABLE) {
-
-          $var = $firephp->_encodeTable($var);
-
-          $skipFinalEncode = true;
-
+            $skipFinalEncode = true;
         } else {
             if ($meta['Type']===null) {
                 $meta['Type'] = self::LOG;
@@ -474,15 +468,15 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
 
         if ($meta['Type'] != self::DUMP && $options['includeLineNumbers']) {
             if (!isset($meta['File']) || !isset($meta['Line'])) {
-
                 if (!$trace) {
-                    $trace = $firephp->_getStackTrace(array_merge($options,
-                                                                  array('maxTraceDepth'=>$options['maxTraceDepth']+1)));
+                    $trace = $firephp->_getStackTrace(array_merge(
+                        $options,
+                                                                  array('maxTraceDepth'=>$options['maxTraceDepth']+1)
+                    ));
                 }
 
                 $meta['File'] = isset($trace[0]['file'])?$trace[0]['file']:'';
                 $meta['Line'] = isset($trace[0]['line'])?$trace[0]['line']:'';
-
             }
         } else {
             unset($meta['File']);
@@ -496,18 +490,19 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
         }
 
         if ($meta['Type'] == self::DUMP) {
-
-          return $firephp->_recordMessage(self::STRUCTURE_URI_DUMP,
+            return $firephp->_recordMessage(
+              self::STRUCTURE_URI_DUMP,
                                           array('key'=>$meta['Label'],
                                                 'data'=>$var),
-                                          $skipFinalEncode);
-
+                                          $skipFinalEncode
+          );
         } else {
-
-          return $firephp->_recordMessage(self::STRUCTURE_URI_FIREBUGCONSOLE,
+            return $firephp->_recordMessage(
+              self::STRUCTURE_URI_FIREBUGCONSOLE,
                                           array('data'=>$var,
                                                 'meta'=>$meta),
-                                          $skipFinalEncode);
+                                          $skipFinalEncode
+          );
         }
     }
 
@@ -531,7 +526,6 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
             if (count($trace) >=3 &&
                 isset($trace[0]['file']) && substr($trace[0]['file'], -7, 7)=='Log.php' &&
                 isset($trace[1]['function']) && $trace[1]['function']=='__call') {
-
                 $trace = array_splice($trace, 2);
             }
         }
@@ -550,7 +544,7 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
      */
     protected function _recordMessage($structure, $data, $skipEncode=false)
     {
-        switch($structure) {
+        switch ($structure) {
 
             case self::STRUCTURE_URI_DUMP:
 
@@ -558,45 +552,48 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
                     require_once 'Zend/Wildfire/Exception.php';
                     throw new Zend_Wildfire_Exception('You must supply a key.');
                 }
-                if (!array_key_exists('data',$data)) {
+                if (!array_key_exists('data', $data)) {
                     require_once 'Zend/Wildfire/Exception.php';
                     throw new Zend_Wildfire_Exception('You must supply data.');
                 }
 
                 $value = $data['data'];
                 if (!$skipEncode) {
-                  $value = $this->_encodeObject($data['data']);
+                    $value = $this->_encodeObject($data['data']);
                 }
 
                 return $this->_channel->getProtocol(self::PROTOCOL_URI)->
-                           recordMessage($this,
+                           recordMessage(
+                               $this,
                                          $structure,
-                                         array($data['key']=>$value));
+                                         array($data['key']=>$value)
+                           );
 
             case self::STRUCTURE_URI_FIREBUGCONSOLE:
 
                 if (!isset($data['meta']) ||
                     !is_array($data['meta']) ||
-                    !array_key_exists('Type',$data['meta'])) {
-
+                    !array_key_exists('Type', $data['meta'])) {
                     require_once 'Zend/Wildfire/Exception.php';
                     throw new Zend_Wildfire_Exception('You must supply a "Type" in the meta information.');
                 }
-                if (!array_key_exists('data',$data)) {
+                if (!array_key_exists('data', $data)) {
                     require_once 'Zend/Wildfire/Exception.php';
                     throw new Zend_Wildfire_Exception('You must supply data.');
                 }
 
                 $value = $data['data'];
                 if (!$skipEncode) {
-                  $value = $this->_encodeObject($data['data']);
+                    $value = $this->_encodeObject($data['data']);
                 }
 
                 return $this->_channel->getProtocol(self::PROTOCOL_URI)->
-                           recordMessage($this,
+                           recordMessage(
+                               $this,
                                          $structure,
                                          array($data['meta'],
-                                               $value));
+                                               $value)
+                           );
 
             default:
                 require_once 'Zend/Wildfire/Exception.php';
@@ -614,17 +611,17 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
      */
     protected function _encodeTable($table)
     {
-      if (!$table) {
-          return $table;
-      }
-      for ($i=0 ; $i<count($table) ; $i++) {
-          if (is_array($table[$i])) {
-              for ($j=0 ; $j<count($table[$i]) ; $j++) {
-                  $table[$i][$j] = $this->_encodeObject($table[$i][$j]);
-              }
-          }
+        if (!$table) {
+            return $table;
         }
-      return $table;
+        for ($i=0 ; $i<count($table) ; $i++) {
+            if (is_array($table[$i])) {
+                for ($j=0 ; $j<count($table[$i]) ; $j++) {
+                    $table[$i][$j] = $this->_encodeObject($table[$i][$j]);
+                }
+            }
+        }
+        return $table;
     }
 
     /**
@@ -635,15 +632,15 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
      */
     protected function _encodeTrace($trace)
     {
-      if (!$trace) {
-          return $trace;
-      }
-      for ($i=0 ; $i<sizeof($trace) ; $i++) {
-          if (isset($trace[$i]['args'])) {
-              $trace[$i]['args'] = $this->_encodeObject($trace[$i]['args']);
-          }
-      }
-      return $trace;
+        if (!$trace) {
+            return $trace;
+        }
+        for ($i=0 ; $i<sizeof($trace) ; $i++) {
+            if (isset($trace[$i]['args'])) {
+                $trace[$i]['args'] = $this->_encodeObject($trace[$i]['args']);
+            }
+        }
+        return $trace;
     }
 
     /**
@@ -660,14 +657,10 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
         $return = array();
 
         if (is_resource($object)) {
-
             return '** '.(string)$object.' **';
-
-        } else
-        if (is_object($object)) {
-
+        } elseif (is_object($object)) {
             if ($objectDepth > $this->_options['maxObjectDepth']) {
-              return '** Max Object Depth ('.$this->_options['maxObjectDepth'].') **';
+                return '** Max Object Depth ('.$this->_options['maxObjectDepth'].') **';
             }
 
             foreach ($this->_objectStack as $refVal) {
@@ -681,14 +674,13 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
 
             $reflectionClass = new ReflectionClass($class);
             $properties = array();
-            foreach ( $reflectionClass->getProperties() as $property) {
+            foreach ($reflectionClass->getProperties() as $property) {
                 $properties[$property->getName()] = $property;
             }
 
             $members = (array)$object;
 
             foreach ($properties as $just_name => $property) {
-
                 $name = $raw_name = $just_name;
 
                 if ($property->isStatic()) {
@@ -696,45 +688,38 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
                 }
                 if ($property->isPublic()) {
                     $name = 'public:'.$name;
-                } else
-                if ($property->isPrivate()) {
+                } elseif ($property->isPrivate()) {
                     $name = 'private:'.$name;
                     $raw_name = "\0".$class."\0".$raw_name;
-                } else
-                if ($property->isProtected()) {
+                } elseif ($property->isProtected()) {
                     $name = 'protected:'.$name;
                     $raw_name = "\0".'*'."\0".$raw_name;
                 }
 
                 if (!(isset($this->_objectFilters[$class])
                       && is_array($this->_objectFilters[$class])
-                      && in_array($just_name,$this->_objectFilters[$class]))) {
-
-                    if (array_key_exists($raw_name,$members)
+                      && in_array($just_name, $this->_objectFilters[$class]))) {
+                    if (array_key_exists($raw_name, $members)
                         && !$property->isStatic()) {
-
                         $return[$name] = $this->_encodeObject($members[$raw_name], $objectDepth + 1, 1);
-
                     } else {
-                        if (method_exists($property,'setAccessible')) {
+                        if (method_exists($property, 'setAccessible')) {
                             $property->setAccessible(true);
                             $return[$name] = $this->_encodeObject($property->getValue($object), $objectDepth + 1, 1);
-                        } else
-                        if ($property->isPublic()) {
+                        } elseif ($property->isPublic()) {
                             $return[$name] = $this->_encodeObject($property->getValue($object), $objectDepth + 1, 1);
                         } else {
                             $return[$name] = '** Need PHP 5.3 to get value **';
                         }
                     }
                 } else {
-                  $return[$name] = '** Excluded by Filter **';
+                    $return[$name] = '** Excluded by Filter **';
                 }
             }
 
             // Include all members that are not defined in the class
             // but exist in the object
-            foreach($members as $just_name => $value) {
-
+            foreach ($members as $just_name => $value) {
                 $name = $raw_name = $just_name;
 
                 if ($name{0} == "\0") {
@@ -746,36 +731,32 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
 
                     if (!(isset($this->objectFilters[$class])
                           && is_array($this->objectFilters[$class])
-                          && in_array($just_name,$this->objectFilters[$class]))) {
-
-                      $return[$name] = $this->_encodeObject($value, $objectDepth + 1, 1);
+                          && in_array($just_name, $this->objectFilters[$class]))) {
+                        $return[$name] = $this->_encodeObject($value, $objectDepth + 1, 1);
                     } else {
-                      $return[$name] = '** Excluded by Filter **';
+                        $return[$name] = '** Excluded by Filter **';
                     }
                 }
             }
 
             array_pop($this->_objectStack);
-
         } elseif (is_array($object)) {
-
             if ($arrayDepth > $this->_options['maxArrayDepth']) {
-              return '** Max Array Depth ('.$this->_options['maxArrayDepth'].') **';
+                return '** Max Array Depth ('.$this->_options['maxArrayDepth'].') **';
             }
 
             foreach ($object as $key => $val) {
 
               // Encoding the $GLOBALS PHP array causes an infinite loop
-              // if the recursion is not reset here as it contains
-              // a reference to itself. This is the only way I have come up
-              // with to stop infinite recursion in this case.
-              if ($key=='GLOBALS'
+                // if the recursion is not reset here as it contains
+                // a reference to itself. This is the only way I have come up
+                // with to stop infinite recursion in this case.
+                if ($key=='GLOBALS'
                   && is_array($val)
-                  && array_key_exists('GLOBALS',$val)) {
-
-                  $val['GLOBALS'] = '** Recursion (GLOBALS) **';
-              }
-              $return[$key] = $this->_encodeObject($val, 1, $arrayDepth + 1);
+                  && array_key_exists('GLOBALS', $val)) {
+                    $val['GLOBALS'] = '** Recursion (GLOBALS) **';
+                }
+                $return[$key] = $this->_encodeObject($val, 1, $arrayDepth + 1);
             }
         } else {
             return $object;
@@ -809,12 +790,14 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
             return;
         }
 
-        foreach( $this->_messages as $message ) {
+        foreach ($this->_messages as $message) {
             if (!$message->getDestroy()) {
-                $this->send($message->getMessage(),
+                $this->send(
+                    $message->getMessage(),
                             $message->getLabel(),
                             $message->getStyle(),
-                            $message->getOptions());
+                            $message->getOptions()
+                );
             }
         }
 

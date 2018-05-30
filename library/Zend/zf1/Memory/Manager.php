@@ -174,9 +174,11 @@ class Zend_Memory_Manager
                 case 'g':
                     $this->_memoryLimit *= 1024;
                     // Break intentionally omitted
+                    // no break
                 case 'm':
                     $this->_memoryLimit *= 1024;
                     // Break intentionally omitted
+                    // no break
                 case 'k':
                     $this->_memoryLimit *= 1024;
                     break;
@@ -253,7 +255,7 @@ class Zend_Memory_Manager
      */
     public function create($value = '')
     {
-        return $this->_create($value,  false);
+        return $this->_create($value, false);
     }
 
     /**
@@ -344,7 +346,7 @@ class Zend_Memory_Manager
         }
 
         // Remove just updated object from list of candidates to unload
-        if( isset($this->_unloadCandidates[$id])) {
+        if (isset($this->_unloadCandidates[$id])) {
             unset($this->_unloadCandidates[$id]);
         }
 

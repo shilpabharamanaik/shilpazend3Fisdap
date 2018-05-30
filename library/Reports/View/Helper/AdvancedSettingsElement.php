@@ -19,10 +19,9 @@
  */
 class Reports_View_Helper_AdvancedSettingsElement extends Zend_View_Helper_FormElement
 {
-
-	public function advancedSettingsElement($name, $value = null, $attribs = null)
-	{
-		$html = "
+    public function advancedSettingsElement($name, $value = null, $attribs = null)
+    {
+        $html = "
 			<div class='report-block'>
 				<div id='advanced-settings-toggle'>
 					<a class='small-link' href='#'>
@@ -31,9 +30,9 @@ class Reports_View_Helper_AdvancedSettingsElement extends Zend_View_Helper_FormE
 					</a>
 				</div>
 				"
-				//<div class='report-header clickable'><span id='toggle-header'>Advanced settings</span><span id='advanced-settings-toggle'>
-				//	<img id='toggle-indicator-on' src='/images/arrow_left.png' width='15' height='15'/><img id='toggle-indicator-off' src='/images/arrow_down.png' width='15' height='15'/></span></div>
-				."
+                //<div class='report-header clickable'><span id='toggle-header'>Advanced settings</span><span id='advanced-settings-toggle'>
+                //	<img id='toggle-indicator-on' src='/images/arrow_left.png' width='15' height='15'/><img id='toggle-indicator-off' src='/images/arrow_down.png' width='15' height='15'/></span></div>
+                ."
 					
 				<div class='grid_8 report-body' id='advanced-settings'>
 					Include all data from: <br />
@@ -55,20 +54,19 @@ class Reports_View_Helper_AdvancedSettingsElement extends Zend_View_Helper_FormE
 				</div>
 			</div>
 		";
-					// In case Louise wants it back the old way
-					//<div class='grid_4'>" . $this->view->formCheckbox($name . "[patient-type][]", null, array('checked' => true, 'id' => 'patient-type-human-live'), array("live humans")) . " Live Humans</div>
-					//<div class='grid_4'>" . $this->view->formCheckbox($name . "[patient-type][]", null, array('id' => 'patient-type-animal-live'), array("live animals")) . " Live Animals</div>					
-					//<div class='grid_4'>" . $this->view->formCheckbox($name . "[patient-type][]", null, array('id' => 'patient-type-sim-manikin'), array("manikin sims")) . " Manikin Sims</div>
-					//<div class='grid_4'>" . $this->view->formCheckbox($name . "[patient-type][]", null, array('id' => 'patient-type-human-dead'), array("dead humans")) . " Dead Humans</div>
-					//<div class='grid_4'>" . $this->view->formCheckbox($name . "[patient-type][]", null, array('id' => 'patient-type-animal-dead'), array("dead animals")) . " Dead Animals</div>
-					//<div class='grid_4'>" . $this->view->formCheckbox($name . "[patient-type][]", null, array('id' => 'patient-type-sim-other'), array("other sims")) . " Other Sims</div>
-		return $html;
-	}
-
+        // In case Louise wants it back the old way
+        //<div class='grid_4'>" . $this->view->formCheckbox($name . "[patient-type][]", null, array('checked' => true, 'id' => 'patient-type-human-live'), array("live humans")) . " Live Humans</div>
+        //<div class='grid_4'>" . $this->view->formCheckbox($name . "[patient-type][]", null, array('id' => 'patient-type-animal-live'), array("live animals")) . " Live Animals</div>
+        //<div class='grid_4'>" . $this->view->formCheckbox($name . "[patient-type][]", null, array('id' => 'patient-type-sim-manikin'), array("manikin sims")) . " Manikin Sims</div>
+        //<div class='grid_4'>" . $this->view->formCheckbox($name . "[patient-type][]", null, array('id' => 'patient-type-human-dead'), array("dead humans")) . " Dead Humans</div>
+        //<div class='grid_4'>" . $this->view->formCheckbox($name . "[patient-type][]", null, array('id' => 'patient-type-animal-dead'), array("dead animals")) . " Dead Animals</div>
+        //<div class='grid_4'>" . $this->view->formCheckbox($name . "[patient-type][]", null, array('id' => 'patient-type-sim-other'), array("other sims")) . " Other Sims</div>
+        return $html;
+    }
 }
 
-				//
-				//<div><a class='small-link' href='#'>
-				//	<span id='toggle-header'>Advanced settings</span><span id='advanced-settings-toggle'>
-				//	<img id='toggle-indicator-on' src='/images/arrow_left.png' width='15' height='15'/><img id='toggle-indicator-off' src='/images/arrow_down.png' width='15' height='15'/></span>
-				//	</a></div>
+                //
+                //<div><a class='small-link' href='#'>
+                //	<span id='toggle-header'>Advanced settings</span><span id='advanced-settings-toggle'>
+                //	<img id='toggle-indicator-on' src='/images/arrow_left.png' width='15' height='15'/><img id='toggle-indicator-off' src='/images/arrow_down.png' width='15' height='15'/></span>
+                //	</a></div>

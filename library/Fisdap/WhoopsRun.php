@@ -6,8 +6,8 @@ use Whoops\Run;
 use Whoops\Exception\ErrorException;
 use Exception;
 
-
-class WhoopsRun extends Run {
+class WhoopsRun extends Run
+{
 
     /**
      * @var \ExceptionLogger
@@ -38,13 +38,12 @@ class WhoopsRun extends Run {
     public function handleError($level, $message, $file = null, $line = null)
     {
         if ($level & error_reporting()) {
-
             $exception = new ErrorException($message, $level, 0, $file, $line);
 
             foreach ($this->silencedPatterns as $entry) {
                 $pathMatches = (bool) preg_match($entry["pattern"], $file);
                 $levelMatches = $level & $entry["levels"];
-                if ($pathMatches && $levelMatches)  {
+                if ($pathMatches && $levelMatches) {
                     // Ignore the error, abort handling
                     $this->exceptionLogger->log($exception); // Fisdap addition to make sure we always log the error
                     return true;
@@ -117,4 +116,4 @@ class WhoopsRun extends Run {
             )
         );
     }
-} 
+}

@@ -5,12 +5,12 @@
  */
 class DownloadController extends Fisdap_Controller_Base
 {
-	/**
-	 * This action creates a csv document based on the posted values
-	 * Sends HTML headers for file to download (prompts download dialog)
-	 */
-	public function downloadAttachmentAction()
-	{
+    /**
+     * This action creates a csv document based on the posted values
+     * Sends HTML headers for file to download (prompts download dialog)
+     */
+    public function downloadAttachmentAction()
+    {
         $attachmentId = $this->_getParam('attachment');
         $attachmentType = $this->_getParam('attachmentType');
         $associatedEntityId = $this->_getParam('associatedEntityId');
@@ -40,7 +40,7 @@ class DownloadController extends Fisdap_Controller_Base
 
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_POST, 0);
-            curl_setopt($ch,CURLOPT_URL, str_replace(' ', '%20',$file));
+            curl_setopt($ch, CURLOPT_URL, str_replace(' ', '%20', $file));
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             $file_content = curl_exec($ch);
             curl_close($ch);
@@ -57,7 +57,5 @@ class DownloadController extends Fisdap_Controller_Base
             echo $file_content;
             exit;
         }
-
-	}
-
+    }
 }

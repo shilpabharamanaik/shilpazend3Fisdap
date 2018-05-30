@@ -3,10 +3,9 @@
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
-
 /**
  * Fixing nullability of Program phone/fax
- * 
+ *
  * @author  Ben Getsug <bgetsug@fisdap.net>
  */
 class Version20160308172546 extends AbstractMigration

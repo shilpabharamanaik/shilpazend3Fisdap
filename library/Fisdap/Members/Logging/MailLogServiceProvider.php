@@ -6,7 +6,6 @@ use Monolog\Logger;
 use Monolog\Processor\MemoryPeakUsageProcessor;
 use Monolog\Processor\MemoryUsageProcessor;
 
-
 /**
  * Class MailLogServiceProvider
  *

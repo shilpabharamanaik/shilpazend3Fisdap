@@ -2,7 +2,6 @@
 
 use Doctrine\ORM\Mapping\Column;
 
-
 /**
  * Class DeprecatedProgramProperties
  *
@@ -90,14 +89,15 @@ trait DeprecatedProgramProperties
      * @return int
      * @deprecated
      */
-    public function get_use_scheduler() {
+    public function get_use_scheduler()
+    {
         return $this->use_scheduler;
     }
 
 
     /**
      * @return string
-     * @deprecated 
+     * @deprecated
      */
     public function getSchedulerUrl()
     {

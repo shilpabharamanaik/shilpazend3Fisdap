@@ -6,7 +6,6 @@ use Illuminate\Contracts\Foundation\Application as ApplicationContract;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
 
-
 /**
  * Fisdap implementation of an Illuminate\Foundation\Application, based on the one from Laravel 5.1
  *
@@ -724,20 +723,20 @@ class Application extends Container implements ApplicationContract
     public function getCachedServicesPath()
     {
         // TODO: Implement getCachedServicesPath() method.
-	}
-	
-	/**
+    }
+    
+    /**
      * Get the path to the cached services.json file.
      *
      * @return string
      */
    
-	public function getCachedPackagesPath()
+    public function getCachedPackagesPath()
     {
         // TODO: Implement getCachedServicesPath() method.
-	}
-	public function runningInConsole()
+    }
+    public function runningInConsole()
     {
         // TODO: Implement getCachedServicesPath() method.
-	}
+    }
 }

@@ -6,7 +6,6 @@ use Psy\Shell;
 use Symfony\Component\Console\Input\InputArgument;
 use Zend_Registry;
 
-
 /**
  * Class FiddleCommand
  *

@@ -11,5 +11,4 @@
  */
 class Repository extends BaseRepository
 {
-
 }

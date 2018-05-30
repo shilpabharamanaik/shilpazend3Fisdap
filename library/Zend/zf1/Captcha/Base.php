@@ -96,7 +96,7 @@ abstract class Zend_Captcha_Base extends Zend_Validate_Abstract implements Zend_
         // Set options
         if (is_array($options)) {
             $this->setOptions($options);
-        } else if ($options instanceof Zend_Config) {
+        } elseif ($options instanceof Zend_Config) {
             $this->setConfig($options);
         }
     }
@@ -114,10 +114,10 @@ abstract class Zend_Captcha_Base extends Zend_Validate_Abstract implements Zend_
             return $this;
         }
 
-        $method = 'set' . ucfirst ($key);
-        if (method_exists ($this, $method)) {
+        $method = 'set' . ucfirst($key);
+        if (method_exists($this, $method)) {
             // Setter exists; use it
-            $this->$method ($value);
+            $this->$method($value);
             $this->_options[$key] = $value;
         } elseif (property_exists($this, $key)) {
             // Assume it's metadata

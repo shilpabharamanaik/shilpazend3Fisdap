@@ -74,8 +74,7 @@ class ProductService
      * @param $orphanStudyTools
      * @return array
      */
-    public
-    function sortProductsForUpgrade($availableProducts, $user, $currentConfig, $orphanStudyTools)
+    public function sortProductsForUpgrade($availableProducts, $user, $currentConfig, $orphanStudyTools)
     {
         $sortedProducts = array();
 
@@ -120,7 +119,7 @@ class ProductService
         // if this user can purchase more attempts, they can upgrade
         if ($this->canPurchaseMoreAttempts($product, $user, $currentConfig)) {
             return true;
-        } else if ($currentConfig & $product->configuration) {
+        } elseif ($currentConfig & $product->configuration) {
             // if they already have this product and they can't buy more attempts, they can't upgrade
             return false;
         }
@@ -209,7 +208,6 @@ class ProductService
 
             // if we've gotten here, the user should be able to buy more attempts
             return true;
-
         }
         return false;
     }
@@ -318,5 +316,4 @@ class ProductService
 
         return $titles;
     }
-
 }

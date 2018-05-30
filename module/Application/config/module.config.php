@@ -38,12 +38,12 @@ return [
     ],
     'controllers' => [
         'factories' => [
-			Controller\AccountController::class => Controller\Factory\AccountControllerFactory::class,
+            Controller\AccountController::class => Controller\Factory\AccountControllerFactory::class,
         ],
     ],
-	'view_helpers' => [
+    'view_helpers' => [
         'invokables'=> [
-            'test_helper' => 'Application\View\Helper\Testhelper', 
+            'test_helper' => 'Application\View\Helper\Testhelper',
         ],
     ],
     'view_manager' => [

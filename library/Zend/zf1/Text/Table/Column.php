@@ -129,7 +129,6 @@ class Zend_Text_Table_Column
                 // AIX does not understand these character sets
                 $content = iconv($inputCharset, $outputCharset, $content);
             }
-
         }
 
         $this->_content = $content;
@@ -230,7 +229,7 @@ class Zend_Text_Table_Column
         $lines         = explode("\n", Zend_Text_MultiByte::wordWrap($this->_content, $columnWidth, "\n", true, $outputCharset));
         $paddedLines   = array();
 
-        foreach ($lines AS $line) {
+        foreach ($lines as $line) {
             $paddedLines[] = str_repeat(' ', $padding)
                            . Zend_Text_MultiByte::strPad($line, $columnWidth, ' ', $padMode, $outputCharset)
                            . str_repeat(' ', $padding);

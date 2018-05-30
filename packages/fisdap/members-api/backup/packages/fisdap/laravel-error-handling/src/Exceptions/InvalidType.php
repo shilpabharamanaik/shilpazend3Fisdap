@@ -2,7 +2,6 @@
 
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
-
 /**
  * Exception to be thrown when an unexpected data type has been detected
  *

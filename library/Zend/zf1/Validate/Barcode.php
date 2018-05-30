@@ -196,7 +196,7 @@ class Zend_Validate_Barcode extends Zend_Validate_Abstract
             if (is_array($this->_length)) {
                 $temp = $this->_length;
                 $this->_length = "";
-                foreach($temp as $length) {
+                foreach ($temp as $length) {
                     $this->_length .= "/";
                     $this->_length .= $length;
                 }

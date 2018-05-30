@@ -397,7 +397,7 @@ class Zend_Feed_Reader_Feed_Atom extends Zend_Feed_Reader_FeedAbstract
             $entries = array();
             $entries = $this->_xpath->evaluate('//atom:entry');
 
-            foreach($entries as $index=>$entry) {
+            foreach ($entries as $index=>$entry) {
                 $this->_entries[$index] = $entry;
             }
         }

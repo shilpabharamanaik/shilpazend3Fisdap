@@ -156,14 +156,25 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
             }
             if ($this->_options['compatibility']) {
                 // No status for compatibility mode (#ZF-5887)
-                $this->_memcache->addServer($server['host'], $server['port'], $server['persistent'],
-                                        $server['weight'], $server['timeout'],
-                                        $server['retry_interval']);
+                $this->_memcache->addServer(
+                    $server['host'],
+                    $server['port'],
+                    $server['persistent'],
+                                        $server['weight'],
+                    $server['timeout'],
+                                        $server['retry_interval']
+                );
             } else {
-                $this->_memcache->addServer($server['host'], $server['port'], $server['persistent'],
-                                        $server['weight'], $server['timeout'],
+                $this->_memcache->addServer(
+                    $server['host'],
+                    $server['port'],
+                    $server['persistent'],
+                                        $server['weight'],
+                    $server['timeout'],
                                         $server['retry_interval'],
-                                        $server['status'], $server['failure_callback']);
+                                        $server['status'],
+                    $server['failure_callback']
+                );
             }
         }
     }
@@ -505,5 +516,4 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
             'get_list' => false
         );
     }
-
 }

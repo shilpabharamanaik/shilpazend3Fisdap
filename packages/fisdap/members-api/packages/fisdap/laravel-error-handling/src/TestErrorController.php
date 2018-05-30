@@ -5,7 +5,6 @@ use Illuminate\Routing\Controller;
 use Input;
 use Response;
 
-
 /**
  * This controller is just used for testing error responses
  *
@@ -34,7 +33,8 @@ final class TestErrorController extends Controller
      *
      * @return \Response
      */
-    public function error($httpCode){
+    public function error($httpCode)
+    {
         switch ($httpCode) {
             case HttpResponse::HTTP_OK:
                 return Response::json(['data' => "An HTTP response code of '200' is not an error"]);

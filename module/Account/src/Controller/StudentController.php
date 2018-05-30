@@ -16,12 +16,13 @@ use User\Entity\UserRole;
 use User\Entity\StudentLegacy;
 use Account\Form\StudentForm;
 use Account\Form\ResearchConsentForm;
+
 class StudentController extends AbstractActionController
 {
-/**
-     * Session manager.
-     * @var Zend\Session\SessionManager
-     */
+    /**
+         * Session manager.
+         * @var Zend\Session\SessionManager
+         */
     private $sessionManager;
 
     /**
@@ -32,23 +33,25 @@ class StudentController extends AbstractActionController
 
     private $objUser;
     private $username;
-	private $table;
+    private $table;
     
    
     public function __construct($entityManager)
     {
-		 //$this->table = $table;
+        //$this->table = $table;
         $this->entityManager = $entityManager;
         $userSession = new Container('user');
         $this->username = $userSession->username;
         $this->objUser = $this->entityManager->getRepository(User::class)->findOneByUsername($this->username);
     }
-	public function studentAction(){
-		// Check instructor permissions
-		$userContext = $this->objUser->getCurrentUserContext();
+    public function studentAction()
+    {
+        // Check instructor permissions
+        $userContext = $this->objUser->getCurrentUserContext();
         if ($this->objUser->isInstructor()
             && !$userContext->getRoleData()->hasPermission(
-                "Edit Student Accounts",$this->entityManager
+                "Edit Student Accounts",
+                $this->entityManager
             )
         ) {
             $this->displayError(
@@ -61,7 +64,7 @@ class StudentController extends AbstractActionController
 
         // Get the student's ID
         if ($userContext->isInstructor()) {
-			//echo "jhgjh";
+            //echo "jhgjh";
             $studentId = 327700; //$this->getParam('studentId', $this->globalSession->studentId);
             //$this->globalSession->studentId = $studentId;
 
@@ -74,7 +77,7 @@ class StudentController extends AbstractActionController
                 'useSessionFilters' => true,
                 'longLabel'         => true
             );
-			echo "FIlTER";*/
+            echo "FIlTER";*/
             //$this->view->studentPicker = $this->view->multistudentPicklist($this->user, $config, $picklistOptions);
         } else {
             $studentId = $userContext->getRoleData()->getId();
@@ -84,11 +87,11 @@ class StudentController extends AbstractActionController
 
         /** @var StudentLegacy $student */
         //$this->view->student = $student = EntityUtils::getEntity('StudentLegacy', $studentId);
-		//echo $studentId;
-		
-		$student = $this->entityManager->getRepository(StudentLegacy::class)->findOneById($studentId);
-		//print_r($student);
-		
+        //echo $studentId;
+        
+        $student = $this->entityManager->getRepository(StudentLegacy::class)->findOneById($studentId);
+        //print_r($student);
+        
         // Make sure this student is in this user's program
         if ($student && $student->getUserContext()->getProgram()->getId()
             && ($student->getUserContext()->getProgram()->getId() != $userContext->getProgram()->getId())
@@ -100,112 +103,111 @@ class StudentController extends AbstractActionController
 
         $pageTitle = "Edit Student Accounts";
         //$this->view->form = new Account_Form_Student($studentId);
-		$form = new StudentForm('update', $this->entityManager, $student);
-		 if ($this->getRequest()->isPost()) {
-			 $data = $this->params()->fromPost();
-			 
-			 $student = $this->entityManager->getRepository(StudentLegacy::class)->findOneById($studentId);
-             /*$serial = $student->getSerialNumber();
-			 if(!is_null($data['certLevel'])){
-              $serial->set_certification_level($data['certLevel']);
-              $serial->save();
+        $form = new StudentForm('update', $this->entityManager, $student);
+        if ($this->getRequest()->isPost()) {
+            $data = $this->params()->fromPost();
+             
+            $student = $this->entityManager->getRepository(StudentLegacy::class)->findOneById($studentId);
+            /*$serial = $student->getSerialNumber();
+            if(!is_null($data['certLevel'])){
+             $serial->set_certification_level($data['certLevel']);
+             $serial->save();
             }*/
-			$student->user->first_name = $data['firstName'];
+            $student->user->first_name = $data['firstName'];
             $student->user->last_name = $data['lastName'];
             $student->user->email = $data['email'];
             $student->user->homePhone = $data['homePhone'];
             $student->user->cellPhone = $data['cellPhone'];
             $student->user->workPhone = $data['workPhone'];
-           /* $student->user->address = $data['address'];
-            $student->user->city = $data['city'];
-            $student->user->country = $data['country'];
-            $student->user->state = $data['state'];
-            $student->user->zip = $data['zip'];
-            $student->user->contact_name = $data['contactName'];
-            $student->user->contact_phone = $data['contactPhone'];
-            $student->user->contact_relation = $data['contactRelationship'];
+            /* $student->user->address = $data['address'];
+             $student->user->city = $data['city'];
+             $student->user->country = $data['country'];
+             $student->user->state = $data['state'];
+             $student->user->zip = $data['zip'];
+             $student->user->contact_name = $data['contactName'];
+             $student->user->contact_phone = $data['contactPhone'];
+             $student->user->contact_relation = $data['contactRelationship'];
 
-            //Transition Course stuff
+             //Transition Course stuff
 
-            if ($serial->hasTransitionCourse()) {
-                $student->user->license_number = $data['licenseNumber'];
-                $student->user->license_state = $data['licenseState'];
-                $student->user->license_expiration_date = $data['licenseExpirationDate'];
-                $student->user->state_license_number = $data['stateLicenseNumber'];
-                $student->user->state_license_expiration_date = $data['stateLicenseExpirationDate'];
+             if ($serial->hasTransitionCourse()) {
+                 $student->user->license_number = $data['licenseNumber'];
+                 $student->user->license_state = $data['licenseState'];
+                 $student->user->license_expiration_date = $data['licenseExpirationDate'];
+                 $student->user->state_license_number = $data['stateLicenseNumber'];
+                 $student->user->state_license_expiration_date = $data['stateLicenseExpirationDate'];
 
-                //Update the user fields in moodle
-                $moodleAPI = new \Util_MoodleAPI("transition_course");
-                $moodleAPI->updateMoodleUser($student->user);
-            }
+                 //Update the user fields in moodle
+                 $moodleAPI = new \Util_MoodleAPI("transition_course");
+                 $moodleAPI->updateMoodleUser($student->user);
+             }
 
 
-            //student only fields
-            if (!$this->instructorView && $data['studentId']) {
-                $data['mailingList'] ? $student->addToMailingList() : $student->removeFromMailingList();
-            }
+             //student only fields
+             if (!$this->instructorView && $data['studentId']) {
+                 $data['mailingList'] ? $student->addToMailingList() : $student->removeFromMailingList();
+             }
 
-            //Instructor only fields
-            if ($this->instructorView && $data['studentId']) {
-                $student->setGraduationDate(new \DateTime($data['gradDate']['year'] . "-" . $data['gradDate']['month'] . "-01"));
-                $student->graduation_status = $data['graduationStatus'];
+             //Instructor only fields
+             if ($this->instructorView && $data['studentId']) {
+                 $student->setGraduationDate(new \DateTime($data['gradDate']['year'] . "-" . $data['gradDate']['month'] . "-01"));
+                 $student->graduation_status = $data['graduationStatus'];
 
-                switch ($data['goodData']) {
-                    case 1:
-                        $student->good_data = true;
-                        break;
-                    case 0:
-                        $student->good_data = false;
-                        break;
-                    case -1:
-                        $student->good_data = NULL;
-                        break;
-                }
-            }
+                 switch ($data['goodData']) {
+                     case 1:
+                         $student->good_data = true;
+                         break;
+                     case 0:
+                         $student->good_data = false;
+                         break;
+                     case -1:
+                         $student->good_data = NULL;
+                         break;
+                 }
+             }
 
-            //Staff only fields
-            if ($this->staffView && $data['studentId']) {
-                $student->setCertification($data['certLevel']);
-            }
-            if (array_key_exists('newPassword', $data) && $data['newPassword']) {
-                $student->user->password = $data['newPassword'];
-            }
+             //Staff only fields
+             if ($this->staffView && $data['studentId']) {
+                 $student->setCertification($data['certLevel']);
+             }
+             if (array_key_exists('newPassword', $data) && $data['newPassword']) {
+                 $student->user->password = $data['newPassword'];
+             }
 */
-  //          $student->save();
-			$this->entityManager->persist($student);
+            //          $student->save();
+            $this->entityManager->persist($student);
             $this->entityManager->flush();
-			//$this->saveStudent($student);
-
-		}
+            //$this->saveStudent($student);
+        }
 
         return new ViewModel([
             'studentId' => $studentId,
             'student' => $student,
             'form' => $form,
             'username' => $this->username,
-        ]);       
-		 
-	}
-	
-	public function researchConsentAction(){
-		$userContext = $this->objUser->getCurrentUserContext();
-		$studentname = $userContext->getUser()->getFullname();
-		$date = new \DateTime();
+        ]);
+    }
+    
+    public function researchConsentAction()
+    {
+        $userContext = $this->objUser->getCurrentUserContext();
+        $studentname = $userContext->getUser()->getFullname();
+        $date = new \DateTime();
         $todaysDate = $date->format("F j, Y");
-		if ($this->objUser->isInstructor()) {
+        if ($this->objUser->isInstructor()) {
             $pageTitle = "Sample Research Consent Form";
         } else {
             $pageTitle = "Research Consent";
         }
-		$form = new ResearchConsentForm();
+        $form = new ResearchConsentForm();
         if ($this->getRequest()->isPost()) {
-			 $data = $this->params()->fromPost();
-		}
-		return new ViewModel([
-		'studentname' => $studentname,
+            $data = $this->params()->fromPost();
+        }
+        return new ViewModel([
+        'studentname' => $studentname,
             'date' => $todaysDate,
             'form' => $form
-			]);
+            ]);
 
         /*if ($request->isPost()) {
             if ($this->view->form->process($request->getPost()) === true) {
@@ -221,7 +223,5 @@ class StudentController extends AbstractActionController
                 $this->redirect($url);
             }
         }*/
-
-	}
-  
+    }
 }

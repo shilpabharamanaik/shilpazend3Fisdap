@@ -2,7 +2,6 @@
 
 class Styleguide_IndexController extends Fisdap_Controller_Staff
 {
-
     public function init()
     {
         parent::init();

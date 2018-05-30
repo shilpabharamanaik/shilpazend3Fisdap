@@ -13,7 +13,6 @@ use Fisdap\Entity\RequirementNotification;
 use Fisdap\Entity\UserContext;
 use Fisdap\EntityUtils;
 
-
 /**
  * Entity class for Legacy Events.
  *
@@ -298,8 +297,8 @@ class EventLegacy extends EntityBaseClass
     {
         $slot = null;
 
-        foreach($this->slots as $slot){
-            if($slot->slot_type->name == "student"){
+        foreach ($this->slots as $slot) {
+            if ($slot->slot_type->name == "student") {
                 $slot = $slot;
                 break;
             }
@@ -325,7 +324,7 @@ class EventLegacy extends EntityBaseClass
         $total_slots = $student_slot->count;
         $total_assignments = count($student_slot->assignments);
 
-        if($total_slots > $total_assignments){
+        if ($total_slots > $total_assignments) {
             return true;
         }
 
@@ -336,7 +335,8 @@ class EventLegacy extends EntityBaseClass
      * Returns a string for emails that looks like "Filled slots (# of #)" with an optional
      * list of student names below it.
      */
-    public function getStudentSlotText($includeStudentNames=false, $text_only = false){
+    public function getStudentSlotText($includeStudentNames=false, $text_only = false)
+    {
         $student_slot = $this->getStudentSlot();
         $total_slots = $student_slot->count;
         $total_assignments = count($student_slot->assignments);
@@ -346,8 +346,8 @@ class EventLegacy extends EntityBaseClass
         $outStr .= "Filled slots ($total_assignments of $total_slots)";
         $outStr .= ($text_only) ? "" : "<br />";
 
-        if($includeStudentNames){
-            foreach($student_slot->assignments as $a){
+        if ($includeStudentNames) {
+            foreach ($student_slot->assignments as $a) {
                 $outStr .= $a->user_context->getContextualName() . "<br />";
             }
         }
@@ -379,28 +379,31 @@ class EventLegacy extends EntityBaseClass
         $assignmentsToCheck = EntityUtils::getRepository("SlotAssignment")->getStudentAssignmentsByEvent($this);
 
 
-        foreach($students as $student){
+        foreach ($students as $student) {
             $show = false;
             $config = $student['configuration'];
 
             $hasValidProduct = $this->hasProductForSignUp($config, $student['id']);
 
-            if($hasValidProduct){
+            if ($hasValidProduct) {
                 // do we meet the broad qualitifcations (from Casey - has nothing to do with windows since an instructor can override those with assignments)
                 $show = ($this->cert_levels & $student['cert_bit']) ? true : false;
             }
 
-            if($alreadyAssigned) {
-                foreach($assignmentsToCheck as $assignment){
-                    if($assignment->user_context->id == $student['userContextId']){
+            if ($alreadyAssigned) {
+                foreach ($assignmentsToCheck as $assignment) {
+                    if ($assignment->user_context->id == $student['userContextId']) {
                         $assigned[$student['id']]  = $student['first_name'] . " " . $student['last_name'];
                         $assigned[$student['id']] .= ($show) ? "" : "*";
                     }
                 }
             }
 
-            if($show){$assignable[$student['id']] = $student['first_name'] . " " . $student['last_name'];}
-            else {$hidden_students[$student['id']] = $student['first_name'] . " " . $student['last_name'];}
+            if ($show) {
+                $assignable[$student['id']] = $student['first_name'] . " " . $student['last_name'];
+            } else {
+                $hidden_students[$student['id']] = $student['first_name'] . " " . $student['last_name'];
+            }
         }
 
         foreach ($assignmentsToCheck as $assignment) {
@@ -411,11 +414,11 @@ class EventLegacy extends EntityBaseClass
 
         // now add assignments from a differnet program (if there are any)
         // if the number of assignments is equal to the number of 'assigned' skip this step
-        if(count($assignmentsToCheck) != count($assigned)){
+        if (count($assignmentsToCheck) != count($assigned)) {
             $assigned_different_program = $this->getAssignedFromDifferentProgram($assignmentsToCheck, $assigned);
         }
 
-        if($alreadyAssigned){
+        if ($alreadyAssigned) {
             return array("assignable" => $assignable, "assigned" => $assigned, "hidden_students" => $hidden_students, "different_program_students" => $assigned_different_program, "has_data" => $hasData);
         }
 
@@ -430,24 +433,21 @@ class EventLegacy extends EntityBaseClass
     {
         $assigned_different_program = array();
         $current_users_program = EntityUtils::getEntity("ProgramLegacy", User::getLoggedInUser()->getProgramId());
-        foreach($assignments as $assignment){
-
+        foreach ($assignments as $assignment) {
             $assignment_user = $assignment->user_context->user;
             $assignment_student_id = $assignment_user->getCurrentRoleData()->id;
 
             $program = $assignment->user_context->program;
 
-            if(!isset($assigned[$assignment_student_id])){
-
-                if($current_users_program->seesSharedStudents($this->site->id)){
+            if (!isset($assigned[$assignment_student_id])) {
+                if ($current_users_program->seesSharedStudents($this->site->id)) {
                     $name = $assignment_user->first_name . " " . $assignment_user->last_name;
-                }
-                else {
+                } else {
                     $name = "Student from " . $program->name;
                 }
 
                 // add an * if we're Casey
-                if($current_users_program->isAdmin($this->site->id)){
+                if ($current_users_program->isAdmin($this->site->id)) {
                     $name .= "*";
                 }
 
@@ -463,7 +463,8 @@ class EventLegacy extends EntityBaseClass
      * @param $config
      * @return bool
      */
-    public static function hasFullScheduler($config) {
+    public static function hasFullScheduler($config)
+    {
         return (boolean)($config & 2);
     }
 
@@ -472,7 +473,8 @@ class EventLegacy extends EntityBaseClass
      * @param $config
      * @return bool
      */
-    public static function hasLimitedScheduler($config) {
+    public static function hasLimitedScheduler($config)
+    {
         return (boolean)($config & 8192);
     }
 
@@ -481,7 +483,8 @@ class EventLegacy extends EntityBaseClass
      * @param $config
      * @return bool
      */
-    public static function hasEitherScheduler($config) {
+    public static function hasEitherScheduler($config)
+    {
         return self::hasLimitedScheduler($config) || self::hasFullScheduler($config);
     }
 
@@ -496,7 +499,8 @@ class EventLegacy extends EntityBaseClass
      * @param null $event_type The explicit event type that we want to
      * @return bool
      */
-    public static function hasProductForSignUpByEventType($config, $student_id, $event_type = null) {
+    public static function hasProductForSignUpByEventType($config, $student_id, $event_type = null)
+    {
 
         // By default, assume the student doesn't have a valid product
         $hasValidProduct = false;
@@ -505,21 +509,21 @@ class EventLegacy extends EntityBaseClass
         $type = ($event_type) ? $event_type : false;
 
         // Continue, only if this event has an event type
-        if(!$type){ return false; }
+        if (!$type) {
+            return false;
+        }
 
-        if(self::hasLimitedScheduler($config)){
+        if (self::hasLimitedScheduler($config)) {
 
             // Get the student entity
             $student_entity = EntityUtils::getEntity("StudentLegacy", $student_id);
 
             // Assuming the student isn't over their limit, return true
-            if(!$student_entity->atLimit($type))
-            {
+            if (!$student_entity->atLimit($type)) {
                 $hasValidProduct = true;
             }
         } else {
-            if(self::hasFullScheduler($config))
-            {
+            if (self::hasFullScheduler($config)) {
                 $hasValidProduct = true;
             }
         }
@@ -547,13 +551,12 @@ class EventLegacy extends EntityBaseClass
         $students = $programRepo->getReasonableStudentsByProgram($program_id);
         $availableUsers = array();
 
-        foreach($students as $student){
-
+        foreach ($students as $student) {
             $userContext = ($entities) ? EntityUtils::getEntity('UserContext', $student['user_context']['id']) : $student['user_context']['id'];
             $cert = $student['user_context']['certification_level']['id'];
             $groups = $student_group_repo->getProgramGroups($program_id, null, $student['id'], true, true);
 
-            if($this->isAvailableTo($cert, $groups, $program_id, false, $student['user_context']['user']['id'])){
+            if ($this->isAvailableTo($cert, $groups, $program_id, false, $student['user_context']['user']['id'])) {
                 $availableUsers[$student['user_context']['id']] = ($entities) ? $userContext : $student['user_context']['user']['first_name'] . " " . $student['user_context']['user']['last_name'];
             }
         }
@@ -577,19 +580,18 @@ class EventLegacy extends EntityBaseClass
 
 
         // the event must be available to them
-        if($this->isAvailableTo($user_cert, $user_groups, $user_program, false, $user)){
+        if ($this->isAvailableTo($user_cert, $user_groups, $user_program, false, $user)) {
             $user_has_permission = true;
         }
         // they must be attending the event
-        else if($this->isAttending($userContext->id)){
+        elseif ($this->isAttending($userContext->id)) {
             $user_has_permission = true;
-        }
-        else {
+        } else {
             // else, they need permission to see other students schedules and someone from their program must be attending
-            if($user_program->program_settings->student_view_full_calendar){
-                if($this->getSlotByType('student')->assignments){
-                    foreach($this->getSlotByType('student')->assignments as $assignment){
-                        if($assignment->user_context->program->id == $user_program->id){
+            if ($user_program->program_settings->student_view_full_calendar) {
+                if ($this->getSlotByType('student')->assignments) {
+                    foreach ($this->getSlotByType('student')->assignments as $assignment) {
+                        if ($assignment->user_context->program->id == $user_program->id) {
                             $user_has_permission = true;
                             break;
                         }
@@ -604,10 +606,10 @@ class EventLegacy extends EntityBaseClass
     public function isAttending($userContextId, $return_entity = false)
     {
         $attending = false;
-        foreach($this->slots as $slot){
-            if($slot->assignments) {
-                foreach($slot->assignments as $assignment){
-                    if($assignment->user_context->id == $userContextId){
+        foreach ($this->slots as $slot) {
+            if ($slot->assignments) {
+                foreach ($slot->assignments as $assignment) {
+                    if ($assignment->user_context->id == $userContextId) {
                         return ($return_entity) ? $assignment : true;
                     }
                 }
@@ -624,7 +626,7 @@ class EventLegacy extends EntityBaseClass
         $passedAWindow = false;
 
         // determine first if this user even has scheduler
-        if(is_numeric($user)){
+        if (is_numeric($user)) {
             $user = EntityUtils::getEntity('User', $user);
         }
 
@@ -642,63 +644,58 @@ class EventLegacy extends EntityBaseClass
 
         $hasValidProduct = $this->hasProductForSignUp($config, $student_id);
 
-        if($hasValidProduct){
+        if ($hasValidProduct) {
             // make sure the user meets the high level event certification level requriements
             $has_event_cert_level = false;
             $cert_level_entity = EntityUtils::getEntity('CertificationLevel', $userCertId);
-            if($this->cert_levels & $cert_level_entity->bit_value){
+            if ($this->cert_levels & $cert_level_entity->bit_value) {
                 $has_event_cert_level = true;
             }
 
-            if($has_event_cert_level){
-                foreach($this->slots as $slot){
-
-                    if(!is_numeric($user_program)){
+            if ($has_event_cert_level) {
+                foreach ($this->slots as $slot) {
+                    if (!is_numeric($user_program)) {
                         $user_program = $user_program->id;
                     }
 
 
                     $windows = EntityUtils::getRepository('Window')->getActiveWindowsBySlot($user_program, $slot->id);
 
-                    if($windows){
-                        foreach($windows as $window){
+                    if ($windows) {
+                        foreach ($windows as $window) {
 
                             // this will get us any array of details about who is part of the window
                             // we'll get a who['description'] (not helpful here), a who['certs'] that will be
                             // an array of ids, and a who['groups'] which is also an array of group ids
                             $who = $window->getWhoDescription();
 
-                            if(count($who['certs']) > 0){
-                                if(in_array($userCertId, $who['certs'])){
+                            if (count($who['certs']) > 0) {
+                                if (in_array($userCertId, $who['certs'])) {
                                     $hasCert = true;
                                 }
-                            }
-                            else {
+                            } else {
                                 // they aren't limiting by certs, so we can call it a pass
                                 $hasCert = true;
                             }
 
-                            if(count($who['groups']) > 0){
-                                if(count($userGroups) > 0){
+                            if (count($who['groups']) > 0) {
+                                if (count($userGroups) > 0) {
 
                                     // a student can be part of multiple active groups - check each of them
-                                    foreach($userGroups as $group_id){
-
-                                        if(in_array($group_id, $who['groups'])){
+                                    foreach ($userGroups as $group_id) {
+                                        if (in_array($group_id, $who['groups'])) {
                                             $hasGroup = true;
                                         }
                                     }
-
                                 }
-                            }
-                            else {
+                            } else {
                                 // they aren't limiting by group, so go ahead and pass
                                 $hasGroup = true;
                             }
 
 
                             // did we make it in this window?
-                            if($hasCert && $hasGroup){
+                            if ($hasCert && $hasGroup) {
                                 if ($now) {
                                     if ($window->getStatus() == 'open') {
                                         $passedAWindow = true;
@@ -719,7 +716,6 @@ class EventLegacy extends EntityBaseClass
 
         // as long as they passed once, it's a go
         return $passedAWindow;
-
     }
 
     /**
@@ -753,7 +749,7 @@ class EventLegacy extends EntityBaseClass
     public function getDurationText()
     {
         $title = $this->duration . "hr";
-        if($this->duration > 1){
+        if ($this->duration > 1) {
             $title .= "s";
         }
         return $title;
@@ -764,7 +760,7 @@ class EventLegacy extends EntityBaseClass
         $preceptors = array();
         if (count($this->preceptor_associations) > 0) {
             $title = (count($this->preceptor_associations) == 1) ? "Preceptor: " : "Preceptors: ";
-            foreach($this->preceptor_associations as $pa){
+            foreach ($this->preceptor_associations as $pa) {
                 $preceptors[] = $pa->preceptor->first_name . " " . $pa->preceptor->last_name;
             }
         }
@@ -780,7 +776,7 @@ class EventLegacy extends EntityBaseClass
         $title = '';
         if (count($instructorAssignments) > 0) {
             $title = (count($instructorAssignments) == 1) ? "Instructor: " : "Instructors: ";
-            foreach($instructorAssignments as $ia){
+            foreach ($instructorAssignments as $ia) {
                 $instructors[] = $ia->user_context->user->first_name . " " . $ia->user_context->user->last_name;
             }
         }
@@ -816,7 +812,7 @@ class EventLegacy extends EntityBaseClass
         $can_assign = true;
 
         if ($assign_ur_role_name == "student") {
-            if ( ! $this->hasOpenStudentSlot()) {
+            if (! $this->hasOpenStudentSlot()) {
                 $can_assign = false;
             }
         }
@@ -832,8 +828,7 @@ class EventLegacy extends EntityBaseClass
                 $mail_template = "shift-signup.phtml";
                 $subject = "Shift signup";
                 $initiator = $assign_user_context;
-                $recipient = NULL;
-
+                $recipient = null;
             } else {
                 // assign
                 $action_type = 2;
@@ -866,7 +861,7 @@ class EventLegacy extends EntityBaseClass
             //Notifications
             $notifications = array();
 
-            foreach($requirements as $requirement) {
+            foreach ($requirements as $requirement) {
                 $attachment = $assign_user_context->assignRequirement($requirement, null, 0, null, "shift at " . $this->site->name, "Fisdap Robot");
                 if ($attachment && $assign_user_context->program->sendNewRequirementNotification($requirement->id)) {
                     $notifications[] = $attachment;
@@ -874,7 +869,7 @@ class EventLegacy extends EntityBaseClass
             }
 
             if ($shared) {
-                foreach($globalRequirements as $requirement) {
+                foreach ($globalRequirements as $requirement) {
                     $attachment = $assign_user_context->assignRequirement($requirement, null, 0, null, "shift at " . $this->site->name, "Fisdap Robot");
                     if ($attachment && $assign_user_context->program->sendNewRequirementNotification($requirement->id)) {
                         $notifications[] = $attachment;
@@ -886,7 +881,7 @@ class EventLegacy extends EntityBaseClass
             $email = $assign_user_context->user->email;
 
             $usersToNotify = array();
-            foreach($notifications as $attachment) {
+            foreach ($notifications as $attachment) {
                 $usersToNotify[$assign_user_context->id][] = array(
                     "name" => $fullName,
                     "email" => $email,
@@ -986,7 +981,7 @@ class EventLegacy extends EntityBaseClass
 
         // add assigned preceptors
         if (count($this->preceptor_associations) > 0) {
-            foreach($this->preceptor_associations as $pa){
+            foreach ($this->preceptor_associations as $pa) {
                 if ($pa->preceptor->email != "") {
                     $emails[] = $pa->preceptor->email;
                 }
@@ -1026,7 +1021,6 @@ class EventLegacy extends EntityBaseClass
 
         // if this is a beta program AND not the owner of the event, do a bunch of other stuff
         if ($beta && $program->id != $this->program->id) {
-
             $slot = $this->getSlotByType('student');
 
             // create the window
@@ -1037,8 +1031,7 @@ class EventLegacy extends EntityBaseClass
             $window->program = $program;
 
             // Check to see if the program recieving has a default window for this shift type
-            if($default_window){
-
+            if ($default_window) {
                 $window->set_offset_type_start($default_window->offset_type_start);
                 $window->set_offset_type_end($default_window->offset_type_end);
 
@@ -1048,9 +1041,7 @@ class EventLegacy extends EntityBaseClass
 
                 $window->set_start_date($window->calculateOffsetDate($default_window->offset_type_start->id, $default_window->offset_value_start, $this->start_datetime));
                 $window->set_end_date($window->calculateOffsetDate($default_window->offset_type_end->id, $default_window->offset_value_end, $this->start_datetime));
-
-            }
-            else {
+            } else {
 
                 // If they do not have a default for this shift type, do our usual "today" until "1 week"
                 $window->set_start_date(new \DateTime());
@@ -1067,7 +1058,7 @@ class EventLegacy extends EntityBaseClass
             // less than $programs->profession->cert_levels total config
             $high_level_cert_data = $this->openToAllCertsInProfession($program->profession->id);
 
-            if(!$high_level_cert_data['open']){
+            if (!$high_level_cert_data['open']) {
                 // create the constraints
                 $levelConstraint = EntityUtils::getEntity('WindowConstraint');
                 $levelConstraint->set_constraint_type(2);
@@ -1093,27 +1084,24 @@ class EventLegacy extends EntityBaseClass
         $open = false;
 
         // first check to see if they are limiting at all (there's a good chance they aren't so lets save a step if we can!)
-        if(\Fisdap\Entity\CertificationLevel::getConfiguration() != $this->cert_levels){
-
+        if (\Fisdap\Entity\CertificationLevel::getConfiguration() != $this->cert_levels) {
             $included_certs = array();
             $profession_cert_count = 0;
             // get all of the certificaiotn levels for the given profession and find out if its included in this evnet's cert bit config
-            foreach(\Fisdap\Entity\CertificationLevel::getAllByProfession($profession_id) as $cert){
+            foreach (\Fisdap\Entity\CertificationLevel::getAllByProfession($profession_id) as $cert) {
                 $profession_cert_count++;
 
-                if ($cert->bit_value & $this->cert_levels){
+                if ($cert->bit_value & $this->cert_levels) {
                     $included_certs[$cert->id] = $cert->description;
                 }
             }
 
             // now, if the number of included certs does not equal the number of certifcaiton levels for this profession,
             // we'll need to create a window constraint (and values for each certificaiton level)
-            if(count($included_certs) < $profession_cert_count){
+            if (count($included_certs) < $profession_cert_count) {
                 $open = false;
             }
-
-        }
-        else {
+        } else {
             $open = true;
         }
 
@@ -1129,8 +1117,8 @@ class EventLegacy extends EntityBaseClass
     public function getPreferencesForProgram($programId)
     {
         if ($this->shared_preferences) {
-            foreach($this->shared_preferences as $preference){
-                if($preference->program->id == $programId){
+            foreach ($this->shared_preferences as $preference) {
+                if ($preference->program->id == $programId) {
                     return $preference;
                 }
             }
@@ -1152,7 +1140,8 @@ class EventLegacy extends EntityBaseClass
         return false;
     }
 
-    public function isPast() {
+    public function isPast()
+    {
         $now = new \DateTime;
         if ($this->start_datetime < $now) {
             return true;
@@ -1160,7 +1149,8 @@ class EventLegacy extends EntityBaseClass
         return false;
     }
 
-    public function removeUser($userContextId, $flush = true, $send_email = true) {
+    public function removeUser($userContextId, $flush = true, $send_email = true)
+    {
         $assignment = $this->isAttending($userContextId, true);
         $assignment->remove($flush, $send_email);
     }

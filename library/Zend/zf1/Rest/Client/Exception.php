@@ -37,4 +37,3 @@ require_once 'Zend/Rest/Exception.php';
 class Zend_Rest_Client_Exception extends Zend_Rest_Exception
 {
 }
-

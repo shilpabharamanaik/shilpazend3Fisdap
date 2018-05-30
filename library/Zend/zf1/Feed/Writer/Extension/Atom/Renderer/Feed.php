@@ -30,8 +30,7 @@ require_once 'Zend/Feed/Writer/Extension/RendererAbstract.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Writer_Extension_Atom_Renderer_Feed
-    extends Zend_Feed_Writer_Extension_RendererAbstract
+class Zend_Feed_Writer_Extension_Atom_Renderer_Feed extends Zend_Feed_Writer_Extension_RendererAbstract
 {
 
     /**
@@ -71,8 +70,10 @@ class Zend_Feed_Writer_Extension_Atom_Renderer_Feed
      */
     protected function _appendNamespaces()
     {
-        $this->getRootElement()->setAttribute('xmlns:atom',
-            'http://www.w3.org/2005/Atom');
+        $this->getRootElement()->setAttribute(
+            'xmlns:atom',
+            'http://www.w3.org/2005/Atom'
+        );
     }
 
     /**
@@ -85,7 +86,7 @@ class Zend_Feed_Writer_Extension_Atom_Renderer_Feed
     protected function _setFeedLinks(DOMDocument $dom, DOMElement $root)
     {
         $flinks = $this->getDataContainer()->getFeedLinks();
-        if(!$flinks || empty($flinks)) {
+        if (!$flinks || empty($flinks)) {
             return;
         }
         foreach ($flinks as $type => $href) {

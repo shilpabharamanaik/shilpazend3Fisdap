@@ -8,9 +8,8 @@
  */
 class Appmon_IndexController extends Zend_Controller_Action
 {
-
     public function indexAction()
     {
-	    $this->redirect('/appmon/status');
+        $this->redirect('/appmon/status');
     }
 }

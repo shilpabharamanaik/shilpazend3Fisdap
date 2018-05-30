@@ -60,9 +60,11 @@ class Zend_Cache_Backend_ZendServer_ShMem extends Zend_Cache_Backend_ZendServer 
      */
     protected function _store($data, $id, $timeToLive)
     {
-        if (zend_shm_cache_store($this->_options['namespace'] . '::' . $id,
+        if (zend_shm_cache_store(
+            $this->_options['namespace'] . '::' . $id,
                                   $data,
-                                  $timeToLive) === false) {
+                                  $timeToLive
+        ) === false) {
             $this->_log('Store operation failed.');
             return false;
         }

@@ -51,7 +51,7 @@ class MyFisdap_Widgets_QuickLinks extends MyFisdap_Widgets_Base implements MyFis
 
         if (!$isInstructor && ($sn->hasProductAccess("secure_testing"))) {
             //$links['Fisdap']['Take a Test'] = array('key' => 'Fisdap_Take_a_test', 'url' => \Fisdap\MoodleUtils::getUrl("secure_testing"));
-			$links['Fisdap']['Take a Test'] = array('key' => 'Fisdap_Take_a_test', 'url' => "https://members.fisdap.net/learning-center");
+            $links['Fisdap']['Take a Test'] = array('key' => 'Fisdap_Take_a_test', 'url' => "https://members.fisdap.net/learning-center");
         }
 
         if ($isInstructor || $sn->hasSkillsTracker() || ($sn->hasScheduler() && $user->getCurrentProgram()->scheduler_beta)) {

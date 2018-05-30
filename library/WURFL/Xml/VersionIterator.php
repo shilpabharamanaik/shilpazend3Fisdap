@@ -18,46 +18,43 @@
  * @version    $id$
  *
  */
-class WURFL_Xml_VersionIterator extends WURFL_Xml_AbstractIterator {
-	
-	function __construct($inputFile) {
-		parent::__construct ( $inputFile );
-	}
-	
-	public function readNextElement() {
-		$version = "";
-		$lastUpdated = "";
-		$officialURL = "";
-		while ( $this->xmlReader->read () ) {
-			
-			$nodeName = $this->xmlReader->name;
-			switch ($this->xmlReader->nodeType) {
-				case XMLReader::TEXT :
-					$currentText = $this->xmlReader->value;
-					break;
-				case XMLReader::END_ELEMENT :
-					switch ($nodeName) {
-						case 'version' :
-							$this->currentElement = new WURFL_Xml_Info ( $version, $lastUpdated, $officialURL );
-							break 2;
-						
-						case 'ver' :
-							$version = $currentText;
-						break;						
-						
-						case 'last_updated' :
-							$lastUpdated = $currentText;
-							break;
-						
-						case "official_url" :
-							$officialURL = $currentText;
-							break;
-					}
-			}
-		} // end of while
-	
-
-	}
-
+class WURFL_Xml_VersionIterator extends WURFL_Xml_AbstractIterator
+{
+    public function __construct($inputFile)
+    {
+        parent::__construct($inputFile);
+    }
+    
+    public function readNextElement()
+    {
+        $version = "";
+        $lastUpdated = "";
+        $officialURL = "";
+        while ($this->xmlReader->read()) {
+            $nodeName = $this->xmlReader->name;
+            switch ($this->xmlReader->nodeType) {
+                case XMLReader::TEXT:
+                    $currentText = $this->xmlReader->value;
+                    break;
+                case XMLReader::END_ELEMENT:
+                    switch ($nodeName) {
+                        case 'version':
+                            $this->currentElement = new WURFL_Xml_Info($version, $lastUpdated, $officialURL);
+                            break 2;
+                        
+                        case 'ver':
+                            $version = $currentText;
+                        break;
+                        
+                        case 'last_updated':
+                            $lastUpdated = $currentText;
+                            break;
+                        
+                        case "official_url":
+                            $officialURL = $currentText;
+                            break;
+                    }
+            }
+        } // end of while
+    }
 }
-?>

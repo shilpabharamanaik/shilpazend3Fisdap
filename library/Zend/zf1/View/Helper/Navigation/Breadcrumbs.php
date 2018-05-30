@@ -34,8 +34,7 @@ require_once 'Zend/View/Helper/Navigation/HelperAbstract.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_View_Helper_Navigation_Breadcrumbs
-    extends Zend_View_Helper_Navigation_HelperAbstract
+class Zend_View_Helper_Navigation_Breadcrumbs extends Zend_View_Helper_Navigation_HelperAbstract
 {
     /**
      * Breadcrumbs separator string
@@ -247,9 +246,10 @@ class Zend_View_Helper_Navigation_Breadcrumbs
      *                                               be found.
      * @return string                                helper output
      */
-    public function renderPartial(Zend_Navigation_Container $container = null,
-                                  $partial = null)
-    {
+    public function renderPartial(
+        Zend_Navigation_Container $container = null,
+                                  $partial = null
+    ) {
         if (null === $container) {
             $container = $this->getContainer();
         }

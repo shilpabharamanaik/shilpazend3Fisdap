@@ -14,7 +14,6 @@ class Version20150401165116 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql("ALTER TABLE fisdap2_program_settings ADD allow_educator_signoff_attachment TINYINT AFTER allow_educator_signoff_email");
-
     }
 
     public function down(Schema $schema)
