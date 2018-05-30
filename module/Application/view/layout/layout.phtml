@@ -7,6 +7,7 @@ use Zend\Session\Container;
 use Zend\Mvc\MvcEvent; 
 use User\Entity\User;
 use User\Entity\UserContext; 
+use User\Entity\StudentLegacy;
 $userSession = new Container('user');
         $username = $userSession->username;
 		$globalSession = new Container('global');
@@ -57,12 +58,15 @@ $userSession = new Container('user');
         $html .= "</div>";
 			$gearsText = " | " . $html;
 		}
+		$studentSearch = '';
+		if ($userContext->isInstructor()) {
 		  if ($userContext->getRoleData()->hasPermission("Edit Student Accounts", $entityManager)) {
                 $studentSearch = " | "
                                . "<form class='header-search-form' id='student-search' action='JavaScript:postSearchForm()' method='POST' autocomplete='off'>"
                                . "<input class='header-search-box fancy-input' type='text' id='search-string' name='search-string'></form>"
                                . "<img src='/images/icons/magnifying-glass-dark-gray.png' class='magnifying-glass' title='Search for students' />";
             }
+		}
 			$popup = " | "
             . "<a href='http://www.fisdap.net/support/system-status' target='_blank' title='Open system status in a new window.'>"
             . "<img src='/images/icons/bell-icon.png' class='notification-bell' /></a>"
